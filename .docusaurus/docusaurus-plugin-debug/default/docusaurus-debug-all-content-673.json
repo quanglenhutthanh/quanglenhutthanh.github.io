@@ -77,8 +77,8 @@
               "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
               "source": "@site/docs/Python/About.md",
               "sourceDirName": "Python",
-              "slug": "/Python/About",
-              "permalink": "/Python/About",
+              "slug": "/",
+              "permalink": "/",
               "draft": false,
               "unlisted": false,
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/About.md",
@@ -86,6 +86,7 @@
               "version": "current",
               "sidebarPosition": 1,
               "frontMatter": {
+                "slug": "/",
                 "sidebar_position": 1,
                 "sidebar_label": "About"
               },
@@ -101,8 +102,8 @@
             },
             {
               "id": "Python/numpy",
-              "title": "numpy",
-              "description": "",
+              "title": "Introduction",
+              "description": "NumPy short for Numerical Python. NumPy is a fundemental package for scientific computing in Python.It is a Python library that provides a multidimensional array object, various derived objects (such as masked arrays and matrices),and an assortment of routines for fast operations on arrays, including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation and much more.",
               "source": "@site/docs/Python/numpy.md",
               "sourceDirName": "Python",
               "slug": "/Python/numpy",
@@ -120,7 +121,7 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "About",
-                "permalink": "/Python/About"
+                "permalink": "/"
               },
               "next": {
                 "title": "Pandas",
@@ -822,11 +823,6 @@
   },
   "docusaurus-plugin-content-pages": {
     "default": [
-      {
-        "type": "jsx",
-        "permalink": "/",
-        "source": "@site/src/pages/index.js"
-      },
       {
         "type": "mdx",
         "permalink": "/markdown-page",

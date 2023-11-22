@@ -186,29 +186,22 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-702": {
-    "__comp": "__comp---site-src-pages-index-jsc-4-f-f99",
-    "__context": {
-      "plugin": "plugin---markdown-page-74-a-38d"
-    },
-    "config": "config---5-e-9-4f3"
-  },
-  "/-307": {
+  "/-7df": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-870": {
+  "/-1fc": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-801": {
+  "/-96a": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/About-7c3": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---974-3c6"
+    "content": "content---about-974-fc8"
   },
   "/category/data-analyst-nd002-f2e": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -229,10 +222,6 @@
   "/CV-93e": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---cv-3-ec-abf"
-  },
-  "/Python/About-913": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---python-aboutcb-9-86a"
   },
   "/Python/numpy-2ee": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -269,5 +258,9 @@
   "/Udacity Courses/Intermediate Python/skills-941": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-intermediate-python-skillsbbe-ccb"
+  },
+  "/-20f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---cb-9-669"
   }
 }

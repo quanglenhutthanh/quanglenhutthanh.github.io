@@ -4,8 +4,8 @@
   "permalink": "/docs/category/udacity-learning-path",
   "navigation": {
     "previous": {
-      "title": "NumPy",
-      "permalink": "/docs/Python/numpy"
+      "title": "Pandas",
+      "permalink": "/docs/Python/pandas"
     },
     "next": {
       "title": "About Udacity",

@@ -8,7 +8,7 @@
           "label": "Next",
           "isLast": true,
           "path": "/",
-          "mainDocId": "About",
+          "mainDocId": "Python/About",
           "docs": [
             {
               "id": "About",
@@ -22,7 +22,7 @@
             },
             {
               "id": "Python/About",
-              "path": "/Python/About",
+              "path": "/",
               "sidebar": "tutorialSidebar"
             },
             {
