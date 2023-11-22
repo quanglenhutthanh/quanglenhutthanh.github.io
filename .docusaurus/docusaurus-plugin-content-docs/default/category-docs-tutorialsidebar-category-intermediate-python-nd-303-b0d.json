@@ -1,0 +1,15 @@
+{
+  "title": "Intermediate Python (nd303)",
+  "slug": "/category/intermediate-python-nd303",
+  "permalink": "/docs/category/intermediate-python-nd303",
+  "navigation": {
+    "previous": {
+      "title": "About Udacity",
+      "permalink": "/docs/Udacity Courses/About"
+    },
+    "next": {
+      "title": "Course Outline",
+      "permalink": "/docs/Udacity Courses/Intermediate Python/course-outline"
+    }
+  }
+}

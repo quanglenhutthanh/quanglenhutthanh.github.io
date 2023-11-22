@@ -1,0 +1,15 @@
+{
+  "title": "Udaciy",
+  "slug": "/category/udaciy",
+  "permalink": "/docs/category/udaciy",
+  "navigation": {
+    "previous": {
+      "title": "Translate your site",
+      "permalink": "/docs/tutorial-extras/translate-your-site"
+    },
+    "next": {
+      "title": "Create a Document",
+      "permalink": "/docs/udaciy-intermediate-python/create-a-document"
+    }
+  }
+}

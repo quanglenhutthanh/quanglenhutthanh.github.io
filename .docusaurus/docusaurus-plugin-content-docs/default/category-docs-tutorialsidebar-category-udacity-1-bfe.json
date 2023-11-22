@@ -1,0 +1,15 @@
+{
+  "title": "Udacity",
+  "slug": "/category/udacity-1",
+  "permalink": "/docs/category/udacity-1",
+  "navigation": {
+    "previous": {
+      "title": "Course Outline",
+      "permalink": "/docs/Udacity/About"
+    },
+    "next": {
+      "title": "Course Outline",
+      "permalink": "/docs/Udacity/Intermediate Python/About"
+    }
+  }
+}

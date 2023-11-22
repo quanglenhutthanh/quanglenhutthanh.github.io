@@ -1,0 +1,28 @@
+{
+  "id": "Udacity Courses/Intermediate Python/course-outline",
+  "title": "Intermediate Python (nd303)",
+  "description": "Course Link",
+  "source": "@site/docs/Udacity Courses/Intermediate Python/course-outline.md",
+  "sourceDirName": "Udacity Courses/Intermediate Python",
+  "slug": "/Udacity Courses/Intermediate Python/course-outline",
+  "permalink": "/docs/Udacity Courses/Intermediate Python/course-outline",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/course-outline.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "sidebar_position": 10,
+    "sidebar_label": "Course Outline"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Intermediate Python (nd303)",
+    "permalink": "/docs/category/intermediate-python-nd303"
+  },
+  "next": {
+    "title": "Nanodegree Skills",
+    "permalink": "/docs/Udacity Courses/Intermediate Python/skills"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Udacity Data Analyst",
+  "slug": "/category/udacity-data-analyst-1",
+  "permalink": "/docs/category/udacity-data-analyst-1",
+  "navigation": {
+    "previous": {
+      "title": "Translate your site",
+      "permalink": "/docs/Udacity/tutorial-extras/translate-your-site"
+    },
+    "next": {
+      "title": "Manage Docs Versions",
+      "permalink": "/docs/tutorial-extras/manage-docs-versions"
+    }
+  }
+}

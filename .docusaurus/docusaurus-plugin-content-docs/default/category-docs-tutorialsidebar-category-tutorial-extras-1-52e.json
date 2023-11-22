@@ -1,0 +1,15 @@
+{
+  "title": "Tutorial - Extras",
+  "slug": "/category/tutorial---extras-1",
+  "permalink": "/docs/category/tutorial---extras-1",
+  "navigation": {
+    "previous": {
+      "title": "Translate your site",
+      "permalink": "/docs/tutorial-extras/translate-your-site"
+    },
+    "next": {
+      "title": "Create a Document",
+      "permalink": "/docs/udaciy-intermediate-python/create-a-document"
+    }
+  }
+}

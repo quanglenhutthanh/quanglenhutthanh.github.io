@@ -1,0 +1,28 @@
+{
+  "id": "Udacity/Intermediate Python/meme-generator",
+  "title": "meme-generator",
+  "description": "The project for this course is a meme generator, an application you'll write in Python that will pair random images with random quotes.",
+  "source": "@site/docs/Udacity/Intermediate Python/meme-generator.md",
+  "sourceDirName": "Udacity/Intermediate Python",
+  "slug": "/Udacity/Intermediate Python/meme-generator",
+  "permalink": "/docs/Udacity/Intermediate Python/meme-generator",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity/Intermediate Python/meme-generator.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 30,
+  "frontMatter": {
+    "sidebar_position": 30,
+    "sidebar_label": "Project: Meme Generator"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Project: Exploring Near-Earth Objects",
+    "permalink": "/docs/Udacity/Intermediate Python/near-earth-objects"
+  },
+  "next": {
+    "title": "Udacity Data Analyst",
+    "permalink": "/docs/category/udacity-data-analyst"
+  }
+}

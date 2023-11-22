@@ -1,0 +1,28 @@
+{
+  "id": "Udacity/First lesson/About",
+  "title": "About",
+  "description": "",
+  "source": "@site/docs/Udacity/First lesson/About.md",
+  "sourceDirName": "Udacity/First lesson",
+  "slug": "/Udacity/First lesson/About",
+  "permalink": "/docs/Udacity/First lesson/About",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity/First lesson/About.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "sidebar_position": 10,
+    "sidebar_label": "Course Outline"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Udacity",
+    "permalink": "/docs/category/udacity-1"
+  },
+  "next": {
+    "title": "Udacity Intermediate Python",
+    "permalink": "/docs/category/udacity-intermediate-python"
+  }
+}

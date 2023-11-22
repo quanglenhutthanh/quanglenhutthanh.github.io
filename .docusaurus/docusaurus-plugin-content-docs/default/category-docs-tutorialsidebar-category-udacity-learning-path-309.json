@@ -1,0 +1,15 @@
+{
+  "title": "Udacity Learning Path",
+  "slug": "/category/udacity-learning-path",
+  "permalink": "/docs/category/udacity-learning-path",
+  "navigation": {
+    "previous": {
+      "title": "NumPy",
+      "permalink": "/docs/Python/numpy"
+    },
+    "next": {
+      "title": "About Udacity",
+      "permalink": "/docs/Udacity Courses/About"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Udacity Data Analyst",
+  "slug": "/category/udacity-data-analyst",
+  "permalink": "/docs/category/udacity-data-analyst",
+  "navigation": {
+    "previous": {
+      "title": "Project: Meme Generator",
+      "permalink": "/docs/Udacity/Intermediate Python/meme-generator"
+    },
+    "next": {
+      "title": "Manage Docs Versions",
+      "permalink": "/docs/Udacity/tutorial-extras/manage-docs-versions"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Udacity AI Engi",
+  "slug": "/category/udacity-ai-engi",
+  "permalink": "/docs/category/udacity-ai-engi",
+  "navigation": {
+    "previous": {
+      "title": "Course Outline",
+      "permalink": "/docs/udaciy-intermediate-python/course-outline"
+    },
+    "next": {
+      "title": "Manage Docs Versions",
+      "permalink": "/docs/tutorial-extras/manage-docs-versions"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Udacity Data Analyst (nd002)",
+  "slug": "/category/udacity-data-analyst-nd002",
+  "permalink": "/docs/category/udacity-data-analyst-nd002",
+  "navigation": {
+    "previous": {
+      "title": "Project: Meme Generator",
+      "permalink": "/docs/Udacity Courses/Intermediate Python/meme-generator"
+    },
+    "next": {
+      "title": "Course Outline",
+      "permalink": "/docs/Udacity Courses/Data Analyst/course-outline"
+    }
+  }
+}

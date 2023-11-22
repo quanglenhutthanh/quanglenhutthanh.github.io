@@ -1,0 +1,15 @@
+{
+  "title": "Udacity Lear",
+  "slug": "/category/udacity-lear",
+  "permalink": "/docs/category/udacity-lear",
+  "navigation": {
+    "previous": {
+      "title": "Curriculum Vitae",
+      "permalink": "/docs/CV"
+    },
+    "next": {
+      "title": "About Courses",
+      "permalink": "/docs/Udacity Courses/About"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "About Me",
+  "title": "ABOUT",
+  "description": "- Fullname:  Lê Nhựt Thanh Quang",
+  "source": "@site/docs/About Me.md",
+  "sourceDirName": ".",
+  "slug": "/About Me",
+  "permalink": "/docs/About Me",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/About Me.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Tutorial - Extras",
+    "permalink": "/docs/category/tutorial---extras"
+  }
+}

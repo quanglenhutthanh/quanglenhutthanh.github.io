@@ -1,0 +1,15 @@
+{
+  "title": "Intermediate Python",
+  "slug": "/category/intermediate-python",
+  "permalink": "/docs/category/intermediate-python",
+  "navigation": {
+    "previous": {
+      "title": "About",
+      "permalink": "/docs/Udacity/About"
+    },
+    "next": {
+      "title": "Course Outline",
+      "permalink": "/docs/Udacity/Intermediate Python/course-outline"
+    }
+  }
+}

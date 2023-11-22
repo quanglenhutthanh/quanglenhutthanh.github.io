@@ -1,0 +1,16 @@
+{
+  "title": "Udacity Intermediate ",
+  "description": "5 minutes to learn the most important Docusaurus concepts.",
+  "slug": "/category/udacity-intermediate-",
+  "permalink": "/docs/category/udacity-intermediate-",
+  "navigation": {
+    "previous": {
+      "title": "ABOUT",
+      "permalink": "/docs/About Me"
+    },
+    "next": {
+      "title": "Create a Page",
+      "permalink": "/docs/udaciy-intermediate-python/create-a-page"
+    }
+  }
+}

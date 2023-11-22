@@ -1,0 +1,15 @@
+{
+  "title": "Python",
+  "slug": "/category/python",
+  "permalink": "/docs/category/python",
+  "navigation": {
+    "previous": {
+      "title": "Curriculum Vitae",
+      "permalink": "/docs/CV"
+    },
+    "next": {
+      "title": "About",
+      "permalink": "/docs/Python/About"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Udacity Intermediate Python",
+  "slug": "/category/udacity-intermediate-python",
+  "permalink": "/docs/category/udacity-intermediate-python",
+  "navigation": {
+    "previous": {
+      "title": "Project: Meme Generator",
+      "permalink": "/docs/Udacity/Intermediate Python/meme-generator"
+    },
+    "next": {
+      "title": "Course Outline",
+      "permalink": "/docs/udaciy-intermediate-python/course-outline"
+    }
+  }
+}

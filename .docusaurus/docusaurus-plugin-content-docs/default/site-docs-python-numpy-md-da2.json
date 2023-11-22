@@ -1,0 +1,28 @@
+{
+  "id": "Python/numpy",
+  "title": "numpy",
+  "description": "",
+  "source": "@site/docs/Python/numpy.md",
+  "sourceDirName": "Python",
+  "slug": "/Python/numpy",
+  "permalink": "/docs/Python/numpy",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/numpy.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "sidebar_position": 10,
+    "sidebar_label": "NumPy"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "About",
+    "permalink": "/docs/Python/About"
+  },
+  "next": {
+    "title": "Udacity Learning Path",
+    "permalink": "/docs/category/udacity-learning-path"
+  }
+}

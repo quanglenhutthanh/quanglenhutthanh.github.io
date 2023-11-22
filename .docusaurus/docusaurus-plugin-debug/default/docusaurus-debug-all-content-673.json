@@ -1,0 +1,814 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/docs",
+          "tagsPath": "/docs/tags",
+          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs",
+          "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "E:\\Docs_Site\\src\\sidebars.js",
+          "contentPath": "E:\\Docs_Site\\src\\docs",
+          "contentPathLocalized": "E:\\Docs_Site\\src\\i18n\\en\\docusaurus-plugin-content-docs\\current",
+          "docs": [
+            {
+              "id": "About",
+              "title": "About Me",
+              "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics Navision Techincal Consultant.",
+              "source": "@site/docs/About.md",
+              "sourceDirName": ".",
+              "slug": "/About",
+              "permalink": "/docs/About",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/About.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1,
+                "sidebar_label": "About"
+              },
+              "sidebar": "tutorialSidebar",
+              "next": {
+                "title": "Curriculum Vitae",
+                "permalink": "/docs/CV"
+              }
+            },
+            {
+              "id": "CV",
+              "title": "Hi",
+              "description": "INFORMATION",
+              "source": "@site/docs/CV.md",
+              "sourceDirName": ".",
+              "slug": "/CV",
+              "permalink": "/docs/CV",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/CV.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Curriculum Vitae"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "About",
+                "permalink": "/docs/About"
+              },
+              "next": {
+                "title": "Python",
+                "permalink": "/docs/category/python"
+              }
+            },
+            {
+              "id": "Python/About",
+              "title": "About",
+              "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
+              "source": "@site/docs/Python/About.md",
+              "sourceDirName": "Python",
+              "slug": "/Python/About",
+              "permalink": "/docs/Python/About",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/About.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1,
+                "sidebar_label": "About"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Python",
+                "permalink": "/docs/category/python"
+              },
+              "next": {
+                "title": "NumPy",
+                "permalink": "/docs/Python/numpy"
+              }
+            },
+            {
+              "id": "Python/numpy",
+              "title": "numpy",
+              "description": "",
+              "source": "@site/docs/Python/numpy.md",
+              "sourceDirName": "Python",
+              "slug": "/Python/numpy",
+              "permalink": "/docs/Python/numpy",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/numpy.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "NumPy"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "About",
+                "permalink": "/docs/Python/About"
+              },
+              "next": {
+                "title": "Udacity Learning Path",
+                "permalink": "/docs/category/udacity-learning-path"
+              }
+            },
+            {
+              "id": "Udacity Courses/About",
+              "title": "About Udacity",
+              "description": "https://www.udacity.com/",
+              "source": "@site/docs/Udacity Courses/About.md",
+              "sourceDirName": "Udacity Courses",
+              "slug": "/Udacity Courses/About",
+              "permalink": "/docs/Udacity Courses/About",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/About.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "About Udacity"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Udacity Learning Path",
+                "permalink": "/docs/category/udacity-learning-path"
+              },
+              "next": {
+                "title": "Intermediate Python (nd303)",
+                "permalink": "/docs/category/intermediate-python-nd303"
+              }
+            },
+            {
+              "id": "Udacity Courses/Data Analyst/course-outline",
+              "title": "Data Analyst (nd002)",
+              "description": "Course Link",
+              "source": "@site/docs/Udacity Courses/Data Analyst/course-outline.md",
+              "sourceDirName": "Udacity Courses/Data Analyst",
+              "slug": "/Udacity Courses/Data Analyst/course-outline",
+              "permalink": "/docs/Udacity Courses/Data Analyst/course-outline",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Data Analyst/course-outline.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Course Outline"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Data Analyst (nd002)",
+                "permalink": "/docs/category/data-analyst-nd002"
+              },
+              "next": {
+                "title": "Nanodegree Skills",
+                "permalink": "/docs/Udacity Courses/Data Analyst/skills"
+              }
+            },
+            {
+              "id": "Udacity Courses/Data Analyst/skills",
+              "title": "Nanodegree Skills",
+              "description": "Introduction to Data Analysis with Pandas and NumPy",
+              "source": "@site/docs/Udacity Courses/Data Analyst/skills.md",
+              "sourceDirName": "Udacity Courses/Data Analyst",
+              "slug": "/Udacity Courses/Data Analyst/skills",
+              "permalink": "/docs/Udacity Courses/Data Analyst/skills",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Data Analyst/skills.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 15,
+              "frontMatter": {
+                "sidebar_position": 15,
+                "sidebar_label": "Nanodegree Skills"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Course Outline",
+                "permalink": "/docs/Udacity Courses/Data Analyst/course-outline"
+              }
+            },
+            {
+              "id": "Udacity Courses/Intermediate Python/course-outline",
+              "title": "Intermediate Python (nd303)",
+              "description": "Course Link",
+              "source": "@site/docs/Udacity Courses/Intermediate Python/course-outline.md",
+              "sourceDirName": "Udacity Courses/Intermediate Python",
+              "slug": "/Udacity Courses/Intermediate Python/course-outline",
+              "permalink": "/docs/Udacity Courses/Intermediate Python/course-outline",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/course-outline.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Course Outline"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Intermediate Python (nd303)",
+                "permalink": "/docs/category/intermediate-python-nd303"
+              },
+              "next": {
+                "title": "Nanodegree Skills",
+                "permalink": "/docs/Udacity Courses/Intermediate Python/skills"
+              }
+            },
+            {
+              "id": "Udacity Courses/Intermediate Python/meme-generator",
+              "title": "Project: Meme Generator",
+              "description": "The project for this course is a meme generator, an application you'll write in Python that will pair random images with random quotes.",
+              "source": "@site/docs/Udacity Courses/Intermediate Python/meme-generator.md",
+              "sourceDirName": "Udacity Courses/Intermediate Python",
+              "slug": "/Udacity Courses/Intermediate Python/meme-generator",
+              "permalink": "/docs/Udacity Courses/Intermediate Python/meme-generator",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/meme-generator.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 30,
+              "frontMatter": {
+                "sidebar_position": 30,
+                "sidebar_label": "Project: Meme Generator"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Project: Exploring Near-Earth Objects",
+                "permalink": "/docs/Udacity Courses/Intermediate Python/near-earth-objects"
+              },
+              "next": {
+                "title": "Data Analyst (nd002)",
+                "permalink": "/docs/category/data-analyst-nd002"
+              }
+            },
+            {
+              "id": "Udacity Courses/Intermediate Python/near-earth-objects",
+              "title": "Project: Exploring Near-Earth Objects",
+              "description": "In this project, you'll use Python - and the skills we've developed throughout this course - to search for and explore close approaches of near-Earth objects (NEOs), using data from NASA/JPL's Center for Near-Earth Object Studies.",
+              "source": "@site/docs/Udacity Courses/Intermediate Python/near-earth-objects.md",
+              "sourceDirName": "Udacity Courses/Intermediate Python",
+              "slug": "/Udacity Courses/Intermediate Python/near-earth-objects",
+              "permalink": "/docs/Udacity Courses/Intermediate Python/near-earth-objects",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/near-earth-objects.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 20,
+              "frontMatter": {
+                "sidebar_position": 20,
+                "sidebar_label": "Project: Exploring Near-Earth Objects"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Nanodegree Skills",
+                "permalink": "/docs/Udacity Courses/Intermediate Python/skills"
+              },
+              "next": {
+                "title": "Project: Meme Generator",
+                "permalink": "/docs/Udacity Courses/Intermediate Python/meme-generator"
+              }
+            },
+            {
+              "id": "Udacity Courses/Intermediate Python/skills",
+              "title": "Nanodegree Skills",
+              "description": "Advanced Python Techniques",
+              "source": "@site/docs/Udacity Courses/Intermediate Python/skills.md",
+              "sourceDirName": "Udacity Courses/Intermediate Python",
+              "slug": "/Udacity Courses/Intermediate Python/skills",
+              "permalink": "/docs/Udacity Courses/Intermediate Python/skills",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/skills.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 15,
+              "frontMatter": {
+                "sidebar_position": 15,
+                "sidebar_label": "Nanodegree Skills"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Course Outline",
+                "permalink": "/docs/Udacity Courses/Intermediate Python/course-outline"
+              },
+              "next": {
+                "title": "Project: Exploring Near-Earth Objects",
+                "permalink": "/docs/Udacity Courses/Intermediate Python/near-earth-objects"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "tutorialSidebar": [
+              {
+                "type": "doc",
+                "id": "About",
+                "label": "About"
+              },
+              {
+                "type": "doc",
+                "id": "CV",
+                "label": "Curriculum Vitae"
+              },
+              {
+                "type": "category",
+                "label": "Python",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "Python/About",
+                    "label": "About"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "Python/numpy",
+                    "label": "NumPy"
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "slug": "/category/python",
+                  "permalink": "/docs/category/python"
+                }
+              },
+              {
+                "type": "category",
+                "label": "Udacity Learning Path",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "Udacity Courses/About",
+                    "label": "About Udacity"
+                  },
+                  {
+                    "type": "category",
+                    "label": "Intermediate Python (nd303)",
+                    "collapsible": true,
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Intermediate Python/course-outline",
+                        "label": "Course Outline"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Intermediate Python/skills",
+                        "label": "Nanodegree Skills"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Intermediate Python/near-earth-objects",
+                        "label": "Project: Exploring Near-Earth Objects"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Intermediate Python/meme-generator",
+                        "label": "Project: Meme Generator"
+                      }
+                    ],
+                    "link": {
+                      "type": "generated-index",
+                      "slug": "/category/intermediate-python-nd303",
+                      "permalink": "/docs/category/intermediate-python-nd303"
+                    }
+                  },
+                  {
+                    "type": "category",
+                    "label": "Data Analyst (nd002)",
+                    "collapsible": true,
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Data Analyst/course-outline",
+                        "label": "Course Outline"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Data Analyst/skills",
+                        "label": "Nanodegree Skills"
+                      }
+                    ],
+                    "link": {
+                      "type": "generated-index",
+                      "slug": "/category/data-analyst-nd002",
+                      "permalink": "/docs/category/data-analyst-nd002"
+                    }
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "slug": "/category/udacity-learning-path",
+                  "permalink": "/docs/category/udacity-learning-path"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogSidebarTitle": "Recent posts",
+      "blogPosts": [
+        {
+          "id": "welcome",
+          "metadata": {
+            "permalink": "/blog/welcome",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2021-08-26-welcome/index.md",
+            "source": "@site/blog/2021-08-26-welcome/index.md",
+            "title": "Welcome",
+            "description": "Docusaurus blogging features are powered by the blog plugin.",
+            "date": "2021-08-26T00:00:00.000Z",
+            "formattedDate": "August 26, 2021",
+            "tags": [
+              {
+                "label": "facebook",
+                "permalink": "/blog/tags/facebook"
+              },
+              {
+                "label": "hello",
+                "permalink": "/blog/tags/hello"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/blog/tags/docusaurus"
+              }
+            ],
+            "readingTime": 0.405,
+            "hasTruncateMarker": false,
+            "authors": [
+              {
+                "name": "Sébastien Lorber",
+                "title": "Docusaurus maintainer",
+                "url": "https://sebastienlorber.com",
+                "imageURL": "https://github.com/slorber.png",
+                "key": "slorber"
+              },
+              {
+                "name": "Yangshun Tay",
+                "title": "Front End Engineer @ Facebook",
+                "url": "https://github.com/yangshun",
+                "imageURL": "https://github.com/yangshun.png",
+                "key": "yangshun"
+              }
+            ],
+            "frontMatter": {
+              "slug": "welcome",
+              "title": "Welcome",
+              "authors": [
+                "slorber",
+                "yangshun"
+              ],
+              "tags": [
+                "facebook",
+                "hello",
+                "docusaurus"
+              ]
+            },
+            "unlisted": false,
+            "nextItem": {
+              "title": "MDX Blog Post",
+              "permalink": "/blog/mdx-blog-post"
+            }
+          },
+          "content": "[Docusaurus blogging features](https://docusaurus.io/docs/blog) are powered by the [blog plugin](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog).\n\nSimply add Markdown files (or folders) to the `blog` directory.\n\nRegular blog authors can be added to `authors.yml`.\n\nThe blog post date can be extracted from filenames, such as:\n\n- `2019-05-30-welcome.md`\n- `2019-05-30-welcome/index.md`\n\nA blog post folder can be convenient to co-locate blog post images:\n\n![Docusaurus Plushie](./docusaurus-plushie-banner.jpeg)\n\nThe blog supports tags as well!\n\n**And if you don't want a blog**: just delete this directory, and use `blog: false` in your Docusaurus config."
+        },
+        {
+          "id": "mdx-blog-post",
+          "metadata": {
+            "permalink": "/blog/mdx-blog-post",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2021-08-01-mdx-blog-post.mdx",
+            "source": "@site/blog/2021-08-01-mdx-blog-post.mdx",
+            "title": "MDX Blog Post",
+            "description": "Blog posts support Docusaurus Markdown features, such as MDX.",
+            "date": "2021-08-01T00:00:00.000Z",
+            "formattedDate": "August 1, 2021",
+            "tags": [
+              {
+                "label": "docusaurus",
+                "permalink": "/blog/tags/docusaurus"
+              }
+            ],
+            "readingTime": 0.175,
+            "hasTruncateMarker": false,
+            "authors": [
+              {
+                "name": "Sébastien Lorber",
+                "title": "Docusaurus maintainer",
+                "url": "https://sebastienlorber.com",
+                "imageURL": "https://github.com/slorber.png",
+                "key": "slorber"
+              }
+            ],
+            "frontMatter": {
+              "slug": "mdx-blog-post",
+              "title": "MDX Blog Post",
+              "authors": [
+                "slorber"
+              ],
+              "tags": [
+                "docusaurus"
+              ]
+            },
+            "unlisted": false,
+            "prevItem": {
+              "title": "Welcome",
+              "permalink": "/blog/welcome"
+            },
+            "nextItem": {
+              "title": "Long Blog Post",
+              "permalink": "/blog/long-blog-post"
+            }
+          },
+          "content": "Blog posts support [Docusaurus Markdown features](https://docusaurus.io/docs/markdown-features), such as [MDX](https://mdxjs.com/).\n\n:::tip\n\nUse the power of React to create interactive blog posts.\n\n```js\n<button onClick={() => alert('button clicked!')}>Click me!</button>\n```\n\n<button onClick={() => alert('button clicked!')}>Click me!</button>\n\n:::"
+        },
+        {
+          "id": "long-blog-post",
+          "metadata": {
+            "permalink": "/blog/long-blog-post",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2019-05-29-long-blog-post.md",
+            "source": "@site/blog/2019-05-29-long-blog-post.md",
+            "title": "Long Blog Post",
+            "description": "This is the summary of a very long blog post,",
+            "date": "2019-05-29T00:00:00.000Z",
+            "formattedDate": "May 29, 2019",
+            "tags": [
+              {
+                "label": "hello",
+                "permalink": "/blog/tags/hello"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/blog/tags/docusaurus"
+              }
+            ],
+            "readingTime": 2.05,
+            "hasTruncateMarker": true,
+            "authors": [
+              {
+                "name": "Endilie Yacop Sucipto",
+                "title": "Maintainer of Docusaurus",
+                "url": "https://github.com/endiliey",
+                "imageURL": "https://github.com/endiliey.png",
+                "key": "endi"
+              }
+            ],
+            "frontMatter": {
+              "slug": "long-blog-post",
+              "title": "Long Blog Post",
+              "authors": "endi",
+              "tags": [
+                "hello",
+                "docusaurus"
+              ]
+            },
+            "unlisted": false,
+            "prevItem": {
+              "title": "MDX Blog Post",
+              "permalink": "/blog/mdx-blog-post"
+            },
+            "nextItem": {
+              "title": "First Blog Post",
+              "permalink": "/blog/first-blog-post"
+            }
+          },
+          "content": "This is the summary of a very long blog post,\n\nUse a `<!--` `truncate` `-->` comment to limit blog post size in the list view.\n\n<!--truncate-->\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet"
+        },
+        {
+          "id": "first-blog-post",
+          "metadata": {
+            "permalink": "/blog/first-blog-post",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2019-05-28-first-blog-post.md",
+            "source": "@site/blog/2019-05-28-first-blog-post.md",
+            "title": "First Blog Post",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet",
+            "date": "2019-05-28T00:00:00.000Z",
+            "formattedDate": "May 28, 2019",
+            "tags": [
+              {
+                "label": "hola",
+                "permalink": "/blog/tags/hola"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/blog/tags/docusaurus"
+              }
+            ],
+            "readingTime": 0.12,
+            "hasTruncateMarker": false,
+            "authors": [
+              {
+                "name": "Gao Wei",
+                "title": "Docusaurus Core Team",
+                "url": "https://github.com/wgao19",
+                "image_url": "https://github.com/wgao19.png",
+                "imageURL": "https://github.com/wgao19.png"
+              }
+            ],
+            "frontMatter": {
+              "slug": "first-blog-post",
+              "title": "First Blog Post",
+              "authors": {
+                "name": "Gao Wei",
+                "title": "Docusaurus Core Team",
+                "url": "https://github.com/wgao19",
+                "image_url": "https://github.com/wgao19.png",
+                "imageURL": "https://github.com/wgao19.png"
+              },
+              "tags": [
+                "hola",
+                "docusaurus"
+              ]
+            },
+            "unlisted": false,
+            "prevItem": {
+              "title": "Long Blog Post",
+              "permalink": "/blog/long-blog-post"
+            }
+          },
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet"
+        }
+      ],
+      "blogListPaginated": [
+        {
+          "items": [
+            "welcome",
+            "mdx-blog-post",
+            "long-blog-post",
+            "first-blog-post"
+          ],
+          "metadata": {
+            "permalink": "/blog",
+            "page": 1,
+            "postsPerPage": 10,
+            "totalPages": 1,
+            "totalCount": 4,
+            "blogDescription": "Blog",
+            "blogTitle": "Blog"
+          }
+        }
+      ],
+      "blogTags": {
+        "/blog/tags/facebook": {
+          "label": "facebook",
+          "items": [
+            "welcome"
+          ],
+          "permalink": "/blog/tags/facebook",
+          "pages": [
+            {
+              "items": [
+                "welcome"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/facebook",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ],
+          "unlisted": false
+        },
+        "/blog/tags/hello": {
+          "label": "hello",
+          "items": [
+            "welcome",
+            "long-blog-post"
+          ],
+          "permalink": "/blog/tags/hello",
+          "pages": [
+            {
+              "items": [
+                "welcome",
+                "long-blog-post"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/hello",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 2,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ],
+          "unlisted": false
+        },
+        "/blog/tags/docusaurus": {
+          "label": "docusaurus",
+          "items": [
+            "welcome",
+            "mdx-blog-post",
+            "long-blog-post",
+            "first-blog-post"
+          ],
+          "permalink": "/blog/tags/docusaurus",
+          "pages": [
+            {
+              "items": [
+                "welcome",
+                "mdx-blog-post",
+                "long-blog-post",
+                "first-blog-post"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/docusaurus",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 4,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ],
+          "unlisted": false
+        },
+        "/blog/tags/hola": {
+          "label": "hola",
+          "items": [
+            "first-blog-post"
+          ],
+          "permalink": "/blog/tags/hola",
+          "pages": [
+            {
+              "items": [
+                "first-blog-post"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/hola",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ],
+          "unlisted": false
+        }
+      },
+      "blogTagsListPath": "/blog/tags"
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": [
+      {
+        "type": "jsx",
+        "permalink": "/",
+        "source": "@site/src/pages/index.js"
+      },
+      {
+        "type": "mdx",
+        "permalink": "/markdown-page",
+        "source": "@site/src/pages/markdown-page.md",
+        "title": "Markdown page example",
+        "description": "You don't need React to write simple standalone pages.",
+        "frontMatter": {
+          "title": "Markdown page example"
+        },
+        "unlisted": false
+      }
+    ]
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

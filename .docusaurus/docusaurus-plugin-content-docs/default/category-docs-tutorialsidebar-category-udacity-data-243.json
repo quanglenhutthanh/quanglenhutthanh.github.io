@@ -1,0 +1,15 @@
+{
+  "title": "Udacity Data",
+  "slug": "/category/udacity-data",
+  "permalink": "/docs/category/udacity-data",
+  "navigation": {
+    "previous": {
+      "title": "Course Outline",
+      "permalink": "/docs/udaciy-intermediate-python/course-outline"
+    },
+    "next": {
+      "title": "Manage Docs Versions",
+      "permalink": "/docs/tutorial-extras/manage-docs-versions"
+    }
+  }
+}

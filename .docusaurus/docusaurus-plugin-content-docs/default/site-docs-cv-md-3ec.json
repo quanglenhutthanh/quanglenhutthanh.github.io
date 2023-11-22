@@ -1,0 +1,28 @@
+{
+  "id": "CV",
+  "title": "Hi",
+  "description": "INFORMATION",
+  "source": "@site/docs/CV.md",
+  "sourceDirName": ".",
+  "slug": "/CV",
+  "permalink": "/docs/CV",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/CV.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "sidebar_position": 10,
+    "sidebar_label": "Curriculum Vitae"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "About",
+    "permalink": "/docs/About"
+  },
+  "next": {
+    "title": "Python",
+    "permalink": "/docs/category/python"
+  }
+}

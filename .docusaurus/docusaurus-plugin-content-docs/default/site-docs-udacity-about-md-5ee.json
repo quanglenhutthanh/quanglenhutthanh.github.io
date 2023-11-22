@@ -1,0 +1,28 @@
+{
+  "id": "Udacity/About",
+  "title": "About",
+  "description": "",
+  "source": "@site/docs/Udacity/About.md",
+  "sourceDirName": "Udacity",
+  "slug": "/Udacity/About",
+  "permalink": "/docs/Udacity/About",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity/About.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "sidebar_position": 10,
+    "sidebar_label": "About"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Udacity",
+    "permalink": "/docs/category/udacity"
+  },
+  "next": {
+    "title": "Intermediate Python",
+    "permalink": "/docs/category/intermediate-python"
+  }
+}
