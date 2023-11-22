@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksrc=self.webpackChunksrc||[]).push([[5750],{1020:t=>{t.exports=JSON.parse('{"title":"Python","slug":"/category/python","permalink":"/category/python","navigation":{"previous":{"title":"Curriculum Vitae","permalink":"/CV"},"next":{"title":"About","permalink":"/Python/About"}}}')}}]);
