@@ -186,22 +186,18 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-7df": {
+  "/-5d8": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-1fc": {
+  "/-cde": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-96a": {
+  "/-6b8": {
     "__comp": "__comp---theme-doc-roota-94-67a"
-  },
-  "/About-7c3": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---about-974-fc8"
   },
   "/category/data-analyst-nd002-f2e": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -222,6 +218,10 @@
   "/CV-93e": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---cv-3-ec-abf"
+  },
+  "/Python/About-913": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---cb-9-669"
   },
   "/Python/numpy-2ee": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -259,8 +259,8 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-intermediate-python-skillsbbe-ccb"
   },
-  "/-20f": {
+  "/-d17": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---cb-9-669"
+    "content": "content---about-974-fc8"
   }
 }

@@ -12,7 +12,7 @@
       {
         "type": "link",
         "label": "About",
-        "href": "/About",
+        "href": "/",
         "docId": "About",
         "unlisted": false
       },
@@ -32,7 +32,7 @@
           {
             "type": "link",
             "label": "About",
-            "href": "/",
+            "href": "/Python/About",
             "docId": "Python/About",
             "unlisted": false
           },
@@ -134,8 +134,8 @@
   "docs": {
     "About": {
       "id": "About",
-      "title": "About Me",
-      "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics Navision Techincal Consultant.",
+      "title": "About",
+      "description": "img",
       "sidebar": "tutorialSidebar"
     },
     "CV": {

@@ -99,22 +99,16 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '7df'),
+    component: ComponentCreator('/', '5d8'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '1fc'),
+        component: ComponentCreator('/', 'cde'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '96a'),
+            component: ComponentCreator('/', '6b8'),
             routes: [
-              {
-                path: '/About',
-                component: ComponentCreator('/About', '7c3'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
               {
                 path: '/category/data-analyst-nd002',
                 component: ComponentCreator('/category/data-analyst-nd002', 'f2e'),
@@ -142,6 +136,12 @@ export default [
               {
                 path: '/CV',
                 component: ComponentCreator('/CV', '93e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Python/About',
+                component: ComponentCreator('/Python/About', '913'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -201,7 +201,7 @@ export default [
               },
               {
                 path: '/',
-                component: ComponentCreator('/', '20f'),
+                component: ComponentCreator('/', 'd17'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }

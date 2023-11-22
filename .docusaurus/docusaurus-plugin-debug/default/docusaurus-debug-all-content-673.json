@@ -21,12 +21,12 @@
           "docs": [
             {
               "id": "About",
-              "title": "About Me",
-              "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics Navision Techincal Consultant.",
+              "title": "About",
+              "description": "img",
               "source": "@site/docs/About.md",
               "sourceDirName": ".",
-              "slug": "/About",
-              "permalink": "/About",
+              "slug": "/",
+              "permalink": "/",
               "draft": false,
               "unlisted": false,
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/About.md",
@@ -34,6 +34,7 @@
               "version": "current",
               "sidebarPosition": 1,
               "frontMatter": {
+                "slug": "/",
                 "sidebar_position": 1,
                 "sidebar_label": "About"
               },
@@ -64,7 +65,7 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "About",
-                "permalink": "/About"
+                "permalink": "/"
               },
               "next": {
                 "title": "Python",
@@ -77,8 +78,8 @@
               "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
               "source": "@site/docs/Python/About.md",
               "sourceDirName": "Python",
-              "slug": "/",
-              "permalink": "/",
+              "slug": "/Python/About",
+              "permalink": "/Python/About",
               "draft": false,
               "unlisted": false,
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/About.md",
@@ -86,7 +87,6 @@
               "version": "current",
               "sidebarPosition": 1,
               "frontMatter": {
-                "slug": "/",
                 "sidebar_position": 1,
                 "sidebar_label": "About"
               },
@@ -121,7 +121,7 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "About",
-                "permalink": "/"
+                "permalink": "/Python/About"
               },
               "next": {
                 "title": "Pandas",

@@ -4,8 +4,8 @@
   "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
   "source": "@site/docs/Python/About.md",
   "sourceDirName": "Python",
-  "slug": "/",
-  "permalink": "/",
+  "slug": "/Python/About",
+  "permalink": "/Python/About",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/About.md",
@@ -13,7 +13,6 @@
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
-    "slug": "/",
     "sidebar_position": 1,
     "sidebar_label": "About"
   },

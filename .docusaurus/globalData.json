@@ -8,11 +8,11 @@
           "label": "Next",
           "isLast": true,
           "path": "/",
-          "mainDocId": "Python/About",
+          "mainDocId": "About",
           "docs": [
             {
               "id": "About",
-              "path": "/About",
+              "path": "/",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -22,7 +22,7 @@
             },
             {
               "id": "Python/About",
-              "path": "/",
+              "path": "/Python/About",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -95,7 +95,7 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/About",
+                "path": "/",
                 "label": "About"
               }
             }

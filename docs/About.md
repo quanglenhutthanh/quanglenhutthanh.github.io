@@ -1,9 +1,11 @@
 ---
+slug: /
 sidebar_position: 1
 sidebar_label : "About"
 ---
+![img](img/Welcome.png)
 
-# About Me
+# Welcome!!!
 
 I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics Navision Techincal Consultant.
 

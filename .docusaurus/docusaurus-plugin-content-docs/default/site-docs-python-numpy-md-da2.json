@@ -19,7 +19,7 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "About",
-    "permalink": "/"
+    "permalink": "/Python/About"
   },
   "next": {
     "title": "Pandas",
