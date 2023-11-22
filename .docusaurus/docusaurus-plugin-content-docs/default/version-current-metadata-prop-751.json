@@ -158,8 +158,8 @@
     },
     "Python/pandas": {
       "id": "Python/pandas",
-      "title": "pandas",
-      "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
+      "title": "Introduction",
+      "description": "Pandas is a fast, powerful, flexible and open source data and manipulation tool, built on top of Python programming language.",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/About": {
