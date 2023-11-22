@@ -42,6 +42,13 @@
             "href": "/Python/numpy",
             "docId": "Python/numpy",
             "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Pandas",
+            "href": "/Python/pandas",
+            "docId": "Python/pandas",
+            "unlisted": false
           }
         ],
         "href": "/category/python"
@@ -147,6 +154,12 @@
       "id": "Python/numpy",
       "title": "numpy",
       "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "Python/pandas": {
+      "id": "Python/pandas",
+      "title": "pandas",
+      "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/About": {

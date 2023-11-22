@@ -99,15 +99,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '251'),
+    component: ComponentCreator('/', '5d8'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '8c6'),
+        component: ComponentCreator('/', 'cde'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '9dd'),
+            component: ComponentCreator('/', '6b8'),
             routes: [
               {
                 path: '/category/data-analyst-nd002',
@@ -148,6 +148,12 @@ export default [
               {
                 path: '/Python/numpy',
                 component: ComponentCreator('/Python/numpy', '2ee'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Python/pandas',
+                component: ComponentCreator('/Python/pandas', '5d6'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

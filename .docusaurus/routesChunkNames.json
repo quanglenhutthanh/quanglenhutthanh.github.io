@@ -186,17 +186,17 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-251": {
+  "/-5d8": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-8c6": {
+  "/-cde": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-9dd": {
+  "/-6b8": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/category/data-analyst-nd002-f2e": {
@@ -226,6 +226,10 @@
   "/Python/numpy-2ee": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---python-numpyda-2-5a8"
+  },
+  "/Python/pandas-5d6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---python-pandasf-13-d83"
   },
   "/Udacity Courses/About-3f5": {
     "__comp": "__comp---theme-doc-item-178-a40",
