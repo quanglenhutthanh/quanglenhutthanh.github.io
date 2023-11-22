@@ -186,18 +186,29 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-5d8": {
+  "/-702": {
+    "__comp": "__comp---site-src-pages-index-jsc-4-f-f99",
+    "__context": {
+      "plugin": "plugin---markdown-page-74-a-38d"
+    },
+    "config": "config---5-e-9-4f3"
+  },
+  "/-307": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-cde": {
+  "/-870": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-6b8": {
+  "/-801": {
     "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/About-7c3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---974-3c6"
   },
   "/category/data-analyst-nd002-f2e": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -258,9 +269,5 @@
   "/Udacity Courses/Intermediate Python/skills-941": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-intermediate-python-skillsbbe-ccb"
-  },
-  "/-d17": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---974-3c6"
   }
 }

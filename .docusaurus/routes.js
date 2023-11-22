@@ -99,16 +99,27 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '5d8'),
+    component: ComponentCreator('/', '702'),
+    exact: true
+  },
+  {
+    path: '/',
+    component: ComponentCreator('/', '307'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'cde'),
+        component: ComponentCreator('/', '870'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '6b8'),
+            component: ComponentCreator('/', '801'),
             routes: [
+              {
+                path: '/About',
+                component: ComponentCreator('/About', '7c3'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
               {
                 path: '/category/data-analyst-nd002',
                 component: ComponentCreator('/category/data-analyst-nd002', 'f2e'),
@@ -196,12 +207,6 @@ export default [
               {
                 path: '/Udacity Courses/Intermediate Python/skills',
                 component: ComponentCreator('/Udacity Courses/Intermediate Python/skills', '941'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/',
-                component: ComponentCreator('/', 'd17'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }

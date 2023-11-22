@@ -12,7 +12,7 @@
       {
         "type": "link",
         "label": "About",
-        "href": "/",
+        "href": "/About",
         "docId": "About",
         "unlisted": false
       },

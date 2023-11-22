@@ -12,7 +12,7 @@
           "docs": [
             {
               "id": "About",
-              "path": "/",
+              "path": "/About",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -95,7 +95,7 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/",
+                "path": "/About",
                 "label": "About"
               }
             }
