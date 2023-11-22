@@ -3,164 +3,199 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
+    path: '/__docusaurus/debug',
+    component: ComponentCreator('/__docusaurus/debug', 'f71'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/config',
+    component: ComponentCreator('/__docusaurus/debug/config', '196'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/content',
+    component: ComponentCreator('/__docusaurus/debug/content', 'f21'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/globalData',
+    component: ComponentCreator('/__docusaurus/debug/globalData', '29e'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/metadata',
+    component: ComponentCreator('/__docusaurus/debug/metadata', '7ee'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/registry',
+    component: ComponentCreator('/__docusaurus/debug/registry', 'a82'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/routes',
+    component: ComponentCreator('/__docusaurus/debug/routes', '76a'),
+    exact: true
+  },
+  {
     path: '/blog',
-    component: ComponentCreator('/blog', '9eb'),
+    component: ComponentCreator('/blog', '311'),
     exact: true
   },
   {
     path: '/blog/archive',
-    component: ComponentCreator('/blog/archive', 'fb0'),
+    component: ComponentCreator('/blog/archive', '47c'),
     exact: true
   },
   {
     path: '/blog/first-blog-post',
-    component: ComponentCreator('/blog/first-blog-post', 'f64'),
+    component: ComponentCreator('/blog/first-blog-post', '656'),
     exact: true
   },
   {
     path: '/blog/long-blog-post',
-    component: ComponentCreator('/blog/long-blog-post', 'b9a'),
+    component: ComponentCreator('/blog/long-blog-post', 'a66'),
     exact: true
   },
   {
     path: '/blog/mdx-blog-post',
-    component: ComponentCreator('/blog/mdx-blog-post', 'cb4'),
+    component: ComponentCreator('/blog/mdx-blog-post', 'a5b'),
     exact: true
   },
   {
     path: '/blog/tags',
-    component: ComponentCreator('/blog/tags', '4ca'),
+    component: ComponentCreator('/blog/tags', '706'),
     exact: true
   },
   {
     path: '/blog/tags/docusaurus',
-    component: ComponentCreator('/blog/tags/docusaurus', '141'),
+    component: ComponentCreator('/blog/tags/docusaurus', '8fd'),
     exact: true
   },
   {
     path: '/blog/tags/facebook',
-    component: ComponentCreator('/blog/tags/facebook', '205'),
+    component: ComponentCreator('/blog/tags/facebook', '756'),
     exact: true
   },
   {
     path: '/blog/tags/hello',
-    component: ComponentCreator('/blog/tags/hello', '840'),
+    component: ComponentCreator('/blog/tags/hello', '7ee'),
     exact: true
   },
   {
     path: '/blog/tags/hola',
-    component: ComponentCreator('/blog/tags/hola', 'd3b'),
+    component: ComponentCreator('/blog/tags/hola', 'bb3'),
     exact: true
   },
   {
     path: '/blog/welcome',
-    component: ComponentCreator('/blog/welcome', 'b87'),
+    component: ComponentCreator('/blog/welcome', '948'),
     exact: true
   },
   {
     path: '/markdown-page',
-    component: ComponentCreator('/markdown-page', '2a5'),
+    component: ComponentCreator('/markdown-page', '3ea'),
     exact: true
   },
   {
-    path: '/docs',
-    component: ComponentCreator('/docs', '284'),
+    path: '/',
+    component: ComponentCreator('/', '251'),
     routes: [
       {
-        path: '/docs',
-        component: ComponentCreator('/docs', '94d'),
+        path: '/',
+        component: ComponentCreator('/', '8c6'),
         routes: [
           {
-            path: '/docs',
-            component: ComponentCreator('/docs', '977'),
+            path: '/',
+            component: ComponentCreator('/', '9dd'),
             routes: [
               {
-                path: '/docs/About',
-                component: ComponentCreator('/docs/About', '816'),
+                path: '/category/data-analyst-nd002',
+                component: ComponentCreator('/category/data-analyst-nd002', 'f2e'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/category/data-analyst-nd002',
-                component: ComponentCreator('/docs/category/data-analyst-nd002', '048'),
+                path: '/category/intermediate-python-nd303',
+                component: ComponentCreator('/category/intermediate-python-nd303', 'b3a'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/category/intermediate-python-nd303',
-                component: ComponentCreator('/docs/category/intermediate-python-nd303', '477'),
+                path: '/category/python',
+                component: ComponentCreator('/category/python', '06c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/category/python',
-                component: ComponentCreator('/docs/category/python', '5ff'),
+                path: '/category/udacity-learning-path',
+                component: ComponentCreator('/category/udacity-learning-path', 'cb7'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/category/udacity-learning-path',
-                component: ComponentCreator('/docs/category/udacity-learning-path', 'e33'),
+                path: '/CV',
+                component: ComponentCreator('/CV', '93e'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/CV',
-                component: ComponentCreator('/docs/CV', 'cb5'),
+                path: '/Python/About',
+                component: ComponentCreator('/Python/About', '913'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Python/About',
-                component: ComponentCreator('/docs/Python/About', '8b6'),
+                path: '/Python/numpy',
+                component: ComponentCreator('/Python/numpy', '2ee'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Python/numpy',
-                component: ComponentCreator('/docs/Python/numpy', 'f0f'),
+                path: '/Udacity Courses/About',
+                component: ComponentCreator('/Udacity Courses/About', '3f5'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Udacity Courses/About',
-                component: ComponentCreator('/docs/Udacity Courses/About', '45b'),
+                path: '/Udacity Courses/Data Analyst/course-outline',
+                component: ComponentCreator('/Udacity Courses/Data Analyst/course-outline', '48f'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Udacity Courses/Data Analyst/course-outline',
-                component: ComponentCreator('/docs/Udacity Courses/Data Analyst/course-outline', '786'),
+                path: '/Udacity Courses/Data Analyst/skills',
+                component: ComponentCreator('/Udacity Courses/Data Analyst/skills', '8cc'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Udacity Courses/Data Analyst/skills',
-                component: ComponentCreator('/docs/Udacity Courses/Data Analyst/skills', 'a3a'),
+                path: '/Udacity Courses/Intermediate Python/course-outline',
+                component: ComponentCreator('/Udacity Courses/Intermediate Python/course-outline', '081'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Udacity Courses/Intermediate Python/course-outline',
-                component: ComponentCreator('/docs/Udacity Courses/Intermediate Python/course-outline', '8b6'),
+                path: '/Udacity Courses/Intermediate Python/meme-generator',
+                component: ComponentCreator('/Udacity Courses/Intermediate Python/meme-generator', 'a67'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Udacity Courses/Intermediate Python/meme-generator',
-                component: ComponentCreator('/docs/Udacity Courses/Intermediate Python/meme-generator', '058'),
+                path: '/Udacity Courses/Intermediate Python/near-earth-objects',
+                component: ComponentCreator('/Udacity Courses/Intermediate Python/near-earth-objects', 'bca'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Udacity Courses/Intermediate Python/near-earth-objects',
-                component: ComponentCreator('/docs/Udacity Courses/Intermediate Python/near-earth-objects', '634'),
+                path: '/Udacity Courses/Intermediate Python/skills',
+                component: ComponentCreator('/Udacity Courses/Intermediate Python/skills', '941'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/Udacity Courses/Intermediate Python/skills',
-                component: ComponentCreator('/docs/Udacity Courses/Intermediate Python/skills', '0b9'),
+                path: '/',
+                component: ComponentCreator('/', 'd17'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }
@@ -169,11 +204,6 @@ export default [
         ]
       }
     ]
-  },
-  {
-    path: '/',
-    component: ComponentCreator('/', '8da'),
-    exact: true
   },
   {
     path: '*',

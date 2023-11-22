@@ -12,14 +12,14 @@
       {
         "type": "link",
         "label": "About",
-        "href": "/docs/About",
+        "href": "/",
         "docId": "About",
         "unlisted": false
       },
       {
         "type": "link",
         "label": "Curriculum Vitae",
-        "href": "/docs/CV",
+        "href": "/CV",
         "docId": "CV",
         "unlisted": false
       },
@@ -32,19 +32,19 @@
           {
             "type": "link",
             "label": "About",
-            "href": "/docs/Python/About",
+            "href": "/Python/About",
             "docId": "Python/About",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "NumPy",
-            "href": "/docs/Python/numpy",
+            "href": "/Python/numpy",
             "docId": "Python/numpy",
             "unlisted": false
           }
         ],
-        "href": "/docs/category/python"
+        "href": "/category/python"
       },
       {
         "type": "category",
@@ -55,7 +55,7 @@
           {
             "type": "link",
             "label": "About Udacity",
-            "href": "/docs/Udacity Courses/About",
+            "href": "/Udacity Courses/About",
             "docId": "Udacity Courses/About",
             "unlisted": false
           },
@@ -68,33 +68,33 @@
               {
                 "type": "link",
                 "label": "Course Outline",
-                "href": "/docs/Udacity Courses/Intermediate Python/course-outline",
+                "href": "/Udacity Courses/Intermediate Python/course-outline",
                 "docId": "Udacity Courses/Intermediate Python/course-outline",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Nanodegree Skills",
-                "href": "/docs/Udacity Courses/Intermediate Python/skills",
+                "href": "/Udacity Courses/Intermediate Python/skills",
                 "docId": "Udacity Courses/Intermediate Python/skills",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Project: Exploring Near-Earth Objects",
-                "href": "/docs/Udacity Courses/Intermediate Python/near-earth-objects",
+                "href": "/Udacity Courses/Intermediate Python/near-earth-objects",
                 "docId": "Udacity Courses/Intermediate Python/near-earth-objects",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Project: Meme Generator",
-                "href": "/docs/Udacity Courses/Intermediate Python/meme-generator",
+                "href": "/Udacity Courses/Intermediate Python/meme-generator",
                 "docId": "Udacity Courses/Intermediate Python/meme-generator",
                 "unlisted": false
               }
             ],
-            "href": "/docs/category/intermediate-python-nd303"
+            "href": "/category/intermediate-python-nd303"
           },
           {
             "type": "category",
@@ -105,22 +105,22 @@
               {
                 "type": "link",
                 "label": "Course Outline",
-                "href": "/docs/Udacity Courses/Data Analyst/course-outline",
+                "href": "/Udacity Courses/Data Analyst/course-outline",
                 "docId": "Udacity Courses/Data Analyst/course-outline",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Nanodegree Skills",
-                "href": "/docs/Udacity Courses/Data Analyst/skills",
+                "href": "/Udacity Courses/Data Analyst/skills",
                 "docId": "Udacity Courses/Data Analyst/skills",
                 "unlisted": false
               }
             ],
-            "href": "/docs/category/data-analyst-nd002"
+            "href": "/category/data-analyst-nd002"
           }
         ],
-        "href": "/docs/category/udacity-learning-path"
+        "href": "/category/udacity-learning-path"
       }
     ]
   },

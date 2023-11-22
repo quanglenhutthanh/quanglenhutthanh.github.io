@@ -4,8 +4,8 @@
   "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics Navision Techincal Consultant.",
   "source": "@site/docs/About.md",
   "sourceDirName": ".",
-  "slug": "/About",
-  "permalink": "/docs/About",
+  "slug": "/",
+  "permalink": "/",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/About.md",
@@ -13,12 +13,13 @@
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
+    "slug": "/",
     "sidebar_position": 1,
     "sidebar_label": "About"
   },
   "sidebar": "tutorialSidebar",
   "next": {
     "title": "Curriculum Vitae",
-    "permalink": "/docs/CV"
+    "permalink": "/CV"
   }
 }

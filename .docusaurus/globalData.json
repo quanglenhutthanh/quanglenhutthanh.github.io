@@ -1,88 +1,88 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/docs",
+      "path": "/",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/docs",
+          "path": "/",
           "mainDocId": "About",
           "docs": [
             {
               "id": "About",
-              "path": "/docs/About",
+              "path": "/",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "CV",
-              "path": "/docs/CV",
+              "path": "/CV",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Python/About",
-              "path": "/docs/Python/About",
+              "path": "/Python/About",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Python/numpy",
-              "path": "/docs/Python/numpy",
+              "path": "/Python/numpy",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Udacity Courses/About",
-              "path": "/docs/Udacity Courses/About",
+              "path": "/Udacity Courses/About",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Udacity Courses/Data Analyst/course-outline",
-              "path": "/docs/Udacity Courses/Data Analyst/course-outline",
+              "path": "/Udacity Courses/Data Analyst/course-outline",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Udacity Courses/Data Analyst/skills",
-              "path": "/docs/Udacity Courses/Data Analyst/skills",
+              "path": "/Udacity Courses/Data Analyst/skills",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Udacity Courses/Intermediate Python/course-outline",
-              "path": "/docs/Udacity Courses/Intermediate Python/course-outline",
+              "path": "/Udacity Courses/Intermediate Python/course-outline",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Udacity Courses/Intermediate Python/meme-generator",
-              "path": "/docs/Udacity Courses/Intermediate Python/meme-generator",
+              "path": "/Udacity Courses/Intermediate Python/meme-generator",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Udacity Courses/Intermediate Python/near-earth-objects",
-              "path": "/docs/Udacity Courses/Intermediate Python/near-earth-objects",
+              "path": "/Udacity Courses/Intermediate Python/near-earth-objects",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Udacity Courses/Intermediate Python/skills",
-              "path": "/docs/Udacity Courses/Intermediate Python/skills",
+              "path": "/Udacity Courses/Intermediate Python/skills",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "/category/python",
-              "path": "/docs/category/python",
+              "path": "/category/python",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "/category/udacity-learning-path",
-              "path": "/docs/category/udacity-learning-path",
+              "path": "/category/udacity-learning-path",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "/category/intermediate-python-nd303",
-              "path": "/docs/category/intermediate-python-nd303",
+              "path": "/category/intermediate-python-nd303",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "/category/data-analyst-nd002",
-              "path": "/docs/category/data-analyst-nd002",
+              "path": "/category/data-analyst-nd002",
               "sidebar": "tutorialSidebar"
             }
           ],
@@ -90,7 +90,7 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/docs/About",
+                "path": "/",
                 "label": "About"
               }
             }
