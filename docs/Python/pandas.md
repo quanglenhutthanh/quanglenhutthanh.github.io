@@ -41,14 +41,14 @@ Using `pip`, you can install Pandas with:
 pip intall pandas
 ```
 ## Import Pandas
-Once NumPy installed, you can import it in your applications:
+Once Pandas installed, you can import it in your applications:
 
 ```python
 import pandas
 ```
 
 ## Pandas as pd
-NumPy is usually imported as `np` alias.
+Pandas is usually imported as `pd` alias.
 ```python
 import pandas as pd
 ```
