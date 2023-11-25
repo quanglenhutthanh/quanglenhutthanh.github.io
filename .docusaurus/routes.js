@@ -99,15 +99,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'b96'),
+    component: ComponentCreator('/', '0a8'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'd60'),
+        component: ComponentCreator('/', 'd38'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', 'e13'),
+            component: ComponentCreator('/', '6b8'),
             routes: [
               {
                 path: '/category/data-analyst-nd002',
@@ -136,6 +136,12 @@ export default [
               {
                 path: '/CV',
                 component: ComponentCreator('/CV', '93e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/intro',
+                component: ComponentCreator('/intro', '283'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

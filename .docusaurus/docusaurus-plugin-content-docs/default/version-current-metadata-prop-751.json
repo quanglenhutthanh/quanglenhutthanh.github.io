@@ -24,6 +24,13 @@
         "unlisted": false
       },
       {
+        "type": "link",
+        "label": "How I create my site",
+        "href": "/intro",
+        "docId": "intro",
+        "unlisted": false
+      },
+      {
         "type": "category",
         "label": "Python",
         "collapsible": true,
@@ -149,6 +156,12 @@
       "id": "CV",
       "title": "Hi",
       "description": "INFORMATION",
+      "sidebar": "tutorialSidebar"
+    },
+    "intro": {
+      "id": "intro",
+      "title": "How I create this page",
+      "description": "I've chosen Docusaurus to build my website specifically for documentation purposes. Docusaurus is an open-source tool tailored for creating and managing documentation websites. Its user-friendly interface allows for swift and straightforward site creation. You can easily and quickly set up your site by following the instructions outlined here//docusaurus.io/docs.",
       "sidebar": "tutorialSidebar"
     },
     "Python/About": {

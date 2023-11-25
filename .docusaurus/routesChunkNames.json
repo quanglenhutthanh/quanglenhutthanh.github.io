@@ -186,17 +186,17 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-b96": {
+  "/-0a8": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-d60": {
+  "/-d38": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-e13": {
+  "/-6b8": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/category/data-analyst-nd002-f2e": {
@@ -218,6 +218,10 @@
   "/CV-93e": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---cv-3-ec-abf"
+  },
+  "/intro-283": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---intro-0-e-3-7b8"
   },
   "/Python/About-913": {
     "__comp": "__comp---theme-doc-item-178-a40",
