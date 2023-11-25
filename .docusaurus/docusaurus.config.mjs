@@ -43,7 +43,10 @@ export default {
   "themeConfig": {
     "image": "img/docusaurus-social-card.jpg",
     "navbar": {
-      "title": "QuangLNT",
+      "logo": {
+        "alt": "My Site Logo",
+        "src": "img/favicon.ico"
+      },
       "items": [
         {
           "type": "docSidebar",
