@@ -186,17 +186,17 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-5d8": {
+  "/-b96": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-cde": {
+  "/-d60": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-6b8": {
+  "/-e13": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/category/data-analyst-nd002-f2e": {
@@ -221,7 +221,7 @@
   },
   "/Python/About-913": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---cb-9-669"
+    "content": "content---python-aboutcb-9-86a"
   },
   "/Python/numpy-2ee": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -238,6 +238,10 @@
   "/Udacity Courses/Data Analyst/course-outline-48f": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-data-analyst-course-outlinea-8-d-7cd"
+  },
+  "/Udacity Courses/Data Analyst/investigate-dataset-0ab": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-data-analyst-investigate-datasetd-32-0ab"
   },
   "/Udacity Courses/Data Analyst/skills-8cc": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -261,6 +265,6 @@
   },
   "/-d17": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---about-974-fc8"
+    "content": "content---974-3c6"
   }
 }

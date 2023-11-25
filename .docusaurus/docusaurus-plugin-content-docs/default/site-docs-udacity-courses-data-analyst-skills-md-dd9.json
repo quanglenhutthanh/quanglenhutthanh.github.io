@@ -20,5 +20,9 @@
   "previous": {
     "title": "Course Outline",
     "permalink": "/Udacity Courses/Data Analyst/course-outline"
+  },
+  "next": {
+    "title": "Project: Investigate a dataset",
+    "permalink": "/Udacity Courses/Data Analyst/investigate-dataset"
   }
 }

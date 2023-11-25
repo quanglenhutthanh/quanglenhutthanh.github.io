@@ -213,6 +213,30 @@
               }
             },
             {
+              "id": "Udacity Courses/Data Analyst/investigate-dataset",
+              "title": "Project: Investigate a dataset",
+              "description": "In this project, you will analyze a dataset and then communicate your findings about it. You will use the python libraries NumPy and pandas for analysis within Jupyter Notebook.",
+              "source": "@site/docs/Udacity Courses/Data Analyst/investigate-dataset.md",
+              "sourceDirName": "Udacity Courses/Data Analyst",
+              "slug": "/Udacity Courses/Data Analyst/investigate-dataset",
+              "permalink": "/Udacity Courses/Data Analyst/investigate-dataset",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Data Analyst/investigate-dataset.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 30,
+              "frontMatter": {
+                "sidebar_position": 30,
+                "sidebar_label": "Project: Investigate a dataset"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Nanodegree Skills",
+                "permalink": "/Udacity Courses/Data Analyst/skills"
+              }
+            },
+            {
               "id": "Udacity Courses/Data Analyst/skills",
               "title": "Nanodegree Skills",
               "description": "Introduction to Data Analysis with Pandas and NumPy",
@@ -234,6 +258,10 @@
               "previous": {
                 "title": "Course Outline",
                 "permalink": "/Udacity Courses/Data Analyst/course-outline"
+              },
+              "next": {
+                "title": "Project: Investigate a dataset",
+                "permalink": "/Udacity Courses/Data Analyst/investigate-dataset"
               }
             },
             {
@@ -449,6 +477,11 @@
                         "type": "doc",
                         "id": "Udacity Courses/Data Analyst/skills",
                         "label": "Nanodegree Skills"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Data Analyst/investigate-dataset",
+                        "label": "Project: Investigate a dataset"
                       }
                     ],
                     "link": {

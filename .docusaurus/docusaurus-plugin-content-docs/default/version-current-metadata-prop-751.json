@@ -122,6 +122,13 @@
                 "href": "/Udacity Courses/Data Analyst/skills",
                 "docId": "Udacity Courses/Data Analyst/skills",
                 "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Project: Investigate a dataset",
+                "href": "/Udacity Courses/Data Analyst/investigate-dataset",
+                "docId": "Udacity Courses/Data Analyst/investigate-dataset",
+                "unlisted": false
               }
             ],
             "href": "/category/data-analyst-nd002"
@@ -172,6 +179,12 @@
       "id": "Udacity Courses/Data Analyst/course-outline",
       "title": "Data Analyst (nd002)",
       "description": "Course Link",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/Data Analyst/investigate-dataset": {
+      "id": "Udacity Courses/Data Analyst/investigate-dataset",
+      "title": "Project: Investigate a dataset",
+      "description": "In this project, you will analyze a dataset and then communicate your findings about it. You will use the python libraries NumPy and pandas for analysis within Jupyter Notebook.",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/Data Analyst/skills": {

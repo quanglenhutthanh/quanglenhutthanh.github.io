@@ -99,15 +99,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '5d8'),
+    component: ComponentCreator('/', 'b96'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'cde'),
+        component: ComponentCreator('/', 'd60'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '6b8'),
+            component: ComponentCreator('/', 'e13'),
             routes: [
               {
                 path: '/category/data-analyst-nd002',
@@ -166,6 +166,12 @@ export default [
               {
                 path: '/Udacity Courses/Data Analyst/course-outline',
                 component: ComponentCreator('/Udacity Courses/Data Analyst/course-outline', '48f'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/Data Analyst/investigate-dataset',
+                component: ComponentCreator('/Udacity Courses/Data Analyst/investigate-dataset', '0ab'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

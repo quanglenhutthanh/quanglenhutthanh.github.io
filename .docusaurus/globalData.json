@@ -46,6 +46,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "Udacity Courses/Data Analyst/investigate-dataset",
+              "path": "/Udacity Courses/Data Analyst/investigate-dataset",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "Udacity Courses/Data Analyst/skills",
               "path": "/Udacity Courses/Data Analyst/skills",
               "sidebar": "tutorialSidebar"
