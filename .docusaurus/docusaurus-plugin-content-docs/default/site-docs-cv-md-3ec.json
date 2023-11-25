@@ -18,11 +18,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "About",
-    "permalink": "/"
-  },
-  "next": {
     "title": "How I create my site",
     "permalink": "/intro"
+  },
+  "next": {
+    "title": "Dynamics 365 Business Central",
+    "permalink": "/category/dynamics-365-business-central"
   }
 }

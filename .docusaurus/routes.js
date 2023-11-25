@@ -99,19 +99,31 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '0a8'),
+    component: ComponentCreator('/', '1d1'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'd38'),
+        component: ComponentCreator('/', '164'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '6b8'),
+            component: ComponentCreator('/', '080'),
             routes: [
               {
                 path: '/category/data-analyst-nd002',
                 component: ComponentCreator('/category/data-analyst-nd002', 'f2e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/development',
+                component: ComponentCreator('/category/development', '74a'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/dynamics-365-business-central',
+                component: ComponentCreator('/category/dynamics-365-business-central', '94a'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -136,6 +148,18 @@ export default [
               {
                 path: '/CV',
                 component: ComponentCreator('/CV', '93e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Dynamics 365 Business Central/About',
+                component: ComponentCreator('/Dynamics 365 Business Central/About', 'd5d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Dynamics 365 Business Central/Development/overview',
+                component: ComponentCreator('/Dynamics 365 Business Central/Development/overview', '5d0'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

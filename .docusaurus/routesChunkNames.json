@@ -186,22 +186,30 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-0a8": {
+  "/-1d1": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-d38": {
+  "/-164": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-6b8": {
+  "/-080": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/category/data-analyst-nd002-f2e": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-data-analyst-nd-0026-f-3-5cc"
+  },
+  "/category/development-74a": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-development-9-c-0-85e"
+  },
+  "/category/dynamics-365-business-central-94a": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-dynamics-365-business-central-16-b-c62"
   },
   "/category/intermediate-python-nd303-b3a": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -218,6 +226,14 @@
   "/CV-93e": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---cv-3-ec-abf"
+  },
+  "/Dynamics 365 Business Central/About-d5d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---dynamics-365-business-central-aboutc-21-0a7"
+  },
+  "/Dynamics 365 Business Central/Development/overview-5d0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---dynamics-365-business-central-development-overviewad-7-e62"
   },
   "/intro-283": {
     "__comp": "__comp---theme-doc-item-178-a40",

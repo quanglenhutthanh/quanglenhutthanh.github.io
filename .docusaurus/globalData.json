@@ -21,6 +21,16 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "Dynamics 365 Business Central/About",
+              "path": "/Dynamics 365 Business Central/About",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Dynamics 365 Business Central/Development/overview",
+              "path": "/Dynamics 365 Business Central/Development/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "intro",
               "path": "/intro",
               "sidebar": "tutorialSidebar"
@@ -78,6 +88,16 @@
             {
               "id": "Udacity Courses/Intermediate Python/skills",
               "path": "/Udacity Courses/Intermediate Python/skills",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/dynamics-365-business-central",
+              "path": "/category/dynamics-365-business-central",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/development",
+              "path": "/category/development",
               "sidebar": "tutorialSidebar"
             },
             {

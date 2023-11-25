@@ -19,7 +19,7 @@
   },
   "sidebar": "tutorialSidebar",
   "next": {
-    "title": "Curriculum Vitae",
-    "permalink": "/CV"
+    "title": "How I create my site",
+    "permalink": "/intro"
   }
 }

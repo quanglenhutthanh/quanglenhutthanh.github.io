@@ -1,5 +1,5 @@
 ---
-sidebar_position: 20
+sidebar_position: 5
 sidebar_label : "How I create my site"
 ---
 
