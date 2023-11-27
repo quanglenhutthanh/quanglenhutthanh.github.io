@@ -7,11 +7,9 @@ To start writing extensions for Dynamics 365 Business Central, you’ll need a B
 
 [Container-based sandbox.](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-get-started-container-sandbox)
 
-[Information about sandbox]
-(https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-sandbox-overview)
+[Information about sandbox](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-sandbox-overview)
 
-[Sign up for Microsoft Dynamics 365 Business Central]
-(https://signup.microsoft.com/get-started/signup?sku=6a4a1628-9b9a-424d-bed5-4118f0ede3fd&ru=https%3a%2f%2fbusinesscentral.dynamics.com%2fSandbox%2f%3fredirectedFromSignup%3d1&products=6a4a1628-9b9a-424d-bed5-4118f0ede3fd&brandingId=28b276fb-d2a0-4379-a7c0-57dce33da0f9&ali=1)
+[Sign up for Microsoft Dynamics 365 Business Central](https://signup.microsoft.com/get-started/signup?sku=6a4a1628-9b9a-424d-bed5-4118f0ede3fd&ru=https%3a%2f%2fbusinesscentral.dynamics.com%2fSandbox%2f%3fredirectedFromSignup%3d1&products=6a4a1628-9b9a-424d-bed5-4118f0ede3fd&brandingId=28b276fb-d2a0-4379-a7c0-57dce33da0f9&ali=1)
 
 2.	Download Visual Studio Code.
 Visual Studio Code is a cross-platform editor that you will you for coding and debugging.
