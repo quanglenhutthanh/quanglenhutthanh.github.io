@@ -9,7 +9,7 @@ sidebar_label : "Curriculum Vitae"
 
 - **Fullname:**  Lê Nhựt Thanh Quang
 - **Gender:**  Male
-- **Position:**  Dynamics 365 Business Central and Dynamics Navision Technical Consultant, Software Developer.
+- **Position:**  Dynamics 365 Business Central and Dynamics NAV Technical Consultant, Software Developer.
 - **LinkedIn:** [My LinkedIn profile](https://www.linkedin.com/in/quanglnt/)
 - **GitHub:** [My GitHub](https://github.com/quanglenhutthanh)
 
