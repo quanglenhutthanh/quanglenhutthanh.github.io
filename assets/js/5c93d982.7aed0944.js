@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksrc=self.webpackChunksrc||[]).push([[5750],{1020:e=>{e.exports=JSON.parse('{"title":"Python","slug":"/category/python","permalink":"/category/python","navigation":{"previous":{"title":"Development Overview","permalink":"/Dynamics 365 Business Central/Development/overview"},"next":{"title":"About","permalink":"/Python/About"}}}')}}]);
