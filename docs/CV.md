@@ -11,6 +11,7 @@ sidebar_label : "Curriculum Vitae"
 - **Gender:**  Male
 - **Position:**  Dynamics 365 Business Central and Dynamics Navision Technical Consultant, Software Developer.
 - **LinkedIn:** [My LinkedIn profile](https://www.linkedin.com/in/quanglnt/)
+- **GitHub:** [My GitHub](https://github.com/quanglenhutthanh)
 
 ## PROFESSIONAL SUMMARY
 
