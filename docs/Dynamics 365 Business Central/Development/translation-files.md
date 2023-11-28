@@ -33,35 +33,20 @@ By setting the `GenerateCaptions` flag in the app.json file, you specify that yo
 In the generated .xlf file, you can see a `<source>` element for each label. For the translation, you'll now have to add the target-language and a `<target>` element per label. The target-language must be specified in the format `"<language code>-<country code>"`, for example `"da-DK"`, `"es-ES"`, or `"de-DE"`. The `<trans-unit id>` attribute corresponds to the object ID in the extension. This is illustrated in the example below.
 
 ```XML
-
 <?xml version="1.0" encoding="utf-8"?>
-
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-
-<file datatype="xml" source-language="en-US" target-language="da-DK" original="ALProject16">
-
-<body>
-
-<group id="body">
-
-<trans-unit id="PageExtension 50110" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
-
-<source>Developer translation for %1</source>
-
-<target>Udvikleroversættelse for %1</target>
-
-<note from="Developer" annotates="general" priority="2">%1 is extension name</note>
-
-<note from="Xliff Generator" annotates="general" priority="3">PageExtension - PageExtension</note>
-
-</trans-unit>
-
-</group>
-
-</body>
-
-</file>
-
+    <file datatype="xml" source-language="en-US" target-language="da-DK" original="ALProject16">
+    <body>
+        <group id="body">
+            <trans-unit id="PageExtension 50110" maxWidth="999" size-unit="char" translate="yes" xml:space="preserve">
+                <source>Developer translation for %1</source>
+                <target>Udvikleroversættelse for %1</target>
+                <note from="Developer" annotates="general" priority="2">%1 is extension name</note>
+                <note from="Xliff Generator" annotates="general" priority="3">PageExtension - PageExtension</note>
+            </trans-unit>
+        </group>
+    </body>
+    </file>
 </xliff>
 
 ```
