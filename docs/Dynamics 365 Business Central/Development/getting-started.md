@@ -24,7 +24,7 @@ This extension will help with full support for formatting, syntax highlighting, 
  
 
 4.	Create new extension from Visual Studio Code.
-Press the Ctrl + Shift + P shortcut key, select AL:Go! (or press the Alt+A, Alt+L).
+Press the **Ctrl + Shift + P** shortcut key, select **AL:Go!** (or press the Alt+A, Alt+L).
 
 Choose the path to a new empty folder and select version to run.
 
@@ -35,5 +35,5 @@ Enter credentials
 Download symbols
 
 5.	Build and deploy extension to Business Central.
-Press Ctrl+F5 to build and deploy extension to Business Central.
+Press **Ctrl+F5** to build and deploy extension to Business Central.
 

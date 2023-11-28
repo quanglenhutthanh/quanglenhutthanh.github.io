@@ -27,12 +27,10 @@ export default {
       {
         "docs": {
           "routeBasePath": "/",
-          "sidebarPath": "./sidebars.js",
-          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
+          "sidebarPath": "./sidebars.js"
         },
         "blog": {
-          "showReadingTime": true,
-          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
+          "showReadingTime": true
         },
         "theme": {
           "customCss": "./src/css/custom.css"
@@ -55,7 +53,7 @@ export default {
           "label": "Docs"
         },
         {
-          "href": "https://blogs.quanglnt.info/",
+          "to": "blog",
           "label": "Blog",
           "position": "left"
         },

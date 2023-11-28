@@ -34,12 +34,8 @@
     ]
   },
   "unlisted": false,
-  "prevItem": {
-    "title": "Welcome",
-    "permalink": "/blog/welcome"
-  },
   "nextItem": {
-    "title": "Long Blog Post",
-    "permalink": "/blog/long-blog-post"
+    "title": "First Blog Post",
+    "permalink": "/blog/first-blog-post"
   }
 }

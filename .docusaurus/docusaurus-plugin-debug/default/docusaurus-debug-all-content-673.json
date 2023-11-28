@@ -11,8 +11,6 @@
           "className": "docs-version-current",
           "path": "/",
           "tagsPath": "/tags",
-          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs",
-          "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
           "isLast": true,
           "routePriority": -1,
           "sidebarFilePath": "E:\\Docs_Site\\site\\src\\sidebars.js",
@@ -29,7 +27,6 @@
               "permalink": "/",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/About.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -54,7 +51,6 @@
               "permalink": "/CV",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/CV.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 10,
@@ -82,7 +78,6 @@
               "permalink": "/Dynamics 365 Business Central/About",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Dynamics 365 Business Central/About.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -101,6 +96,33 @@
               }
             },
             {
+              "id": "Dynamics 365 Business Central/Development/getting-started",
+              "title": "Getting Started",
+              "description": "Steps to set up a sandbox environment and Visual Studio Code",
+              "source": "@site/docs/Dynamics 365 Business Central/Development/getting-started.md",
+              "sourceDirName": "Dynamics 365 Business Central/Development",
+              "slug": "/Dynamics 365 Business Central/Development/getting-started",
+              "permalink": "/Dynamics 365 Business Central/Development/getting-started",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 20,
+              "frontMatter": {
+                "sidebar_position": 20,
+                "sidebar_label": "Getting Started"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Development Overview",
+                "permalink": "/Dynamics 365 Business Central/Development/overview"
+              },
+              "next": {
+                "title": "Working with translation files",
+                "permalink": "/Dynamics 365 Business Central/Development/translation-files"
+              }
+            },
+            {
               "id": "Dynamics 365 Business Central/Development/overview",
               "title": "overview",
               "description": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/",
@@ -110,7 +132,6 @@
               "permalink": "/Dynamics 365 Business Central/Development/overview",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Dynamics 365 Business Central/Development/overview.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 10,
@@ -122,6 +143,33 @@
               "previous": {
                 "title": "Development",
                 "permalink": "/category/development"
+              },
+              "next": {
+                "title": "Getting Started",
+                "permalink": "/Dynamics 365 Business Central/Development/getting-started"
+              }
+            },
+            {
+              "id": "Dynamics 365 Business Central/Development/translation-files",
+              "title": "Working with translation files",
+              "description": "Dynamics 365 Business Central is multi-language enabled, which means you can display the User Interface in different languages. In Dynamics 365 Business Central, this is done by using XLIFF file, which is a standardized format used computer-based translations.",
+              "source": "@site/docs/Dynamics 365 Business Central/Development/translation-files.md",
+              "sourceDirName": "Dynamics 365 Business Central/Development",
+              "slug": "/Dynamics 365 Business Central/Development/translation-files",
+              "permalink": "/Dynamics 365 Business Central/Development/translation-files",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 30,
+              "frontMatter": {
+                "sidebar_position": 30,
+                "sidebar_label": "Working with translation files"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Getting Started",
+                "permalink": "/Dynamics 365 Business Central/Development/getting-started"
               },
               "next": {
                 "title": "Python",
@@ -138,7 +186,6 @@
               "permalink": "/intro",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 5,
@@ -166,7 +213,6 @@
               "permalink": "/Python/About",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/About.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -185,6 +231,33 @@
               }
             },
             {
+              "id": "Python/file-i-o",
+              "title": "File I/O",
+              "description": "What we're doing",
+              "source": "@site/docs/Python/file-i-o.md",
+              "sourceDirName": "Python",
+              "slug": "/Python/file-i-o",
+              "permalink": "/Python/file-i-o",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 30,
+              "frontMatter": {
+                "sidebar_position": 30,
+                "sidebar_label": "File I/O"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Pandas",
+                "permalink": "/Python/pandas"
+              },
+              "next": {
+                "title": "Udacity Learning Path",
+                "permalink": "/category/udacity-learning-path"
+              }
+            },
+            {
               "id": "Python/numpy",
               "title": "Introduction",
               "description": "NumPy short for Numerical Python. NumPy is a fundemental package for scientific computing in Python.It is a Python library that provides a multidimensional array object, various derived objects (such as masked arrays and matrices),and an assortment of routines for fast operations on arrays, including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation and much more.",
@@ -194,7 +267,6 @@
               "permalink": "/Python/numpy",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/numpy.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 10,
@@ -222,7 +294,6 @@
               "permalink": "/Python/pandas",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Python/pandas.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 20,
@@ -236,8 +307,8 @@
                 "permalink": "/Python/numpy"
               },
               "next": {
-                "title": "Udacity Learning Path",
-                "permalink": "/category/udacity-learning-path"
+                "title": "File I/O",
+                "permalink": "/Python/file-i-o"
               }
             },
             {
@@ -250,7 +321,6 @@
               "permalink": "/Udacity Courses/About",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/About.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 10,
@@ -264,8 +334,58 @@
                 "permalink": "/category/udacity-learning-path"
               },
               "next": {
-                "title": "Intermediate Python (nd303)",
-                "permalink": "/category/intermediate-python-nd303"
+                "title": "Intermediate Python",
+                "permalink": "/category/intermediate-python"
+              }
+            },
+            {
+              "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+              "title": "AI Engineer using Microsoft Azure (nd073)",
+              "description": "Course Link",
+              "source": "@site/docs/Udacity Courses/AI Engineer using Microsoft Azure/course-outline.md",
+              "sourceDirName": "Udacity Courses/AI Engineer using Microsoft Azure",
+              "slug": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+              "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Course Outline"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "AI Engineer using Microsoft Azure",
+                "permalink": "/category/ai-engineer-using-microsoft-azure"
+              },
+              "next": {
+                "title": "Nanodegree Skills",
+                "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/skills"
+              }
+            },
+            {
+              "id": "Udacity Courses/AI Engineer using Microsoft Azure/skills",
+              "title": "Nanodegree Skills",
+              "description": "Building Computer Vision Solutions with Azure",
+              "source": "@site/docs/Udacity Courses/AI Engineer using Microsoft Azure/skills.md",
+              "sourceDirName": "Udacity Courses/AI Engineer using Microsoft Azure",
+              "slug": "/Udacity Courses/AI Engineer using Microsoft Azure/skills",
+              "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/skills",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 20,
+              "frontMatter": {
+                "sidebar_position": 20,
+                "sidebar_label": "Nanodegree Skills"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Course Outline",
+                "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline"
               }
             },
             {
@@ -278,7 +398,6 @@
               "permalink": "/Udacity Courses/Data Analyst/course-outline",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Data Analyst/course-outline.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 10,
@@ -288,8 +407,8 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Data Analyst (nd002)",
-                "permalink": "/category/data-analyst-nd002"
+                "title": "Data Analyst",
+                "permalink": "/category/data-analyst"
               },
               "next": {
                 "title": "Nanodegree Skills",
@@ -306,7 +425,6 @@
               "permalink": "/Udacity Courses/Data Analyst/investigate-dataset",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Data Analyst/investigate-dataset.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 30,
@@ -318,6 +436,10 @@
               "previous": {
                 "title": "Nanodegree Skills",
                 "permalink": "/Udacity Courses/Data Analyst/skills"
+              },
+              "next": {
+                "title": "AI Engineer using Microsoft Azure",
+                "permalink": "/category/ai-engineer-using-microsoft-azure"
               }
             },
             {
@@ -330,7 +452,6 @@
               "permalink": "/Udacity Courses/Data Analyst/skills",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Data Analyst/skills.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 15,
@@ -358,7 +479,6 @@
               "permalink": "/Udacity Courses/Intermediate Python/course-outline",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/course-outline.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 10,
@@ -368,8 +488,8 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Intermediate Python (nd303)",
-                "permalink": "/category/intermediate-python-nd303"
+                "title": "Intermediate Python",
+                "permalink": "/category/intermediate-python"
               },
               "next": {
                 "title": "Nanodegree Skills",
@@ -386,7 +506,6 @@
               "permalink": "/Udacity Courses/Intermediate Python/meme-generator",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/meme-generator.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 30,
@@ -400,8 +519,8 @@
                 "permalink": "/Udacity Courses/Intermediate Python/near-earth-objects"
               },
               "next": {
-                "title": "Data Analyst (nd002)",
-                "permalink": "/category/data-analyst-nd002"
+                "title": "Data Analyst",
+                "permalink": "/category/data-analyst"
               }
             },
             {
@@ -414,7 +533,6 @@
               "permalink": "/Udacity Courses/Intermediate Python/near-earth-objects",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/near-earth-objects.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 20,
@@ -442,7 +560,6 @@
               "permalink": "/Udacity Courses/Intermediate Python/skills",
               "draft": false,
               "unlisted": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Udacity Courses/Intermediate Python/skills.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 15,
@@ -500,6 +617,16 @@
                         "type": "doc",
                         "id": "Dynamics 365 Business Central/Development/overview",
                         "label": "Development Overview"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Dynamics 365 Business Central/Development/getting-started",
+                        "label": "Getting Started"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Dynamics 365 Business Central/Development/translation-files",
+                        "label": "Working with translation files"
                       }
                     ],
                     "link": {
@@ -535,6 +662,11 @@
                     "type": "doc",
                     "id": "Python/pandas",
                     "label": "Pandas"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "Python/file-i-o",
+                    "label": "File I/O"
                   }
                 ],
                 "link": {
@@ -556,7 +688,7 @@
                   },
                   {
                     "type": "category",
-                    "label": "Intermediate Python (nd303)",
+                    "label": "Intermediate Python",
                     "collapsible": true,
                     "collapsed": true,
                     "items": [
@@ -583,13 +715,13 @@
                     ],
                     "link": {
                       "type": "generated-index",
-                      "slug": "/category/intermediate-python-nd303",
-                      "permalink": "/category/intermediate-python-nd303"
+                      "slug": "/category/intermediate-python",
+                      "permalink": "/category/intermediate-python"
                     }
                   },
                   {
                     "type": "category",
-                    "label": "Data Analyst (nd002)",
+                    "label": "Data Analyst",
                     "collapsible": true,
                     "collapsed": true,
                     "items": [
@@ -611,8 +743,31 @@
                     ],
                     "link": {
                       "type": "generated-index",
-                      "slug": "/category/data-analyst-nd002",
-                      "permalink": "/category/data-analyst-nd002"
+                      "slug": "/category/data-analyst",
+                      "permalink": "/category/data-analyst"
+                    }
+                  },
+                  {
+                    "type": "category",
+                    "label": "AI Engineer using Microsoft Azure",
+                    "collapsible": true,
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+                        "label": "Course Outline"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/AI Engineer using Microsoft Azure/skills",
+                        "label": "Nanodegree Skills"
+                      }
+                    ],
+                    "link": {
+                      "type": "generated-index",
+                      "slug": "/category/ai-engineer-using-microsoft-azure",
+                      "permalink": "/category/ai-engineer-using-microsoft-azure"
                     }
                   }
                 ],
@@ -633,179 +788,14 @@
       "blogSidebarTitle": "Recent posts",
       "blogPosts": [
         {
-          "id": "welcome",
-          "metadata": {
-            "permalink": "/blog/welcome",
-            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2021-08-26-welcome/index.md",
-            "source": "@site/blog/2021-08-26-welcome/index.md",
-            "title": "Welcome",
-            "description": "Docusaurus blogging features are powered by the blog plugin.",
-            "date": "2021-08-26T00:00:00.000Z",
-            "formattedDate": "August 26, 2021",
-            "tags": [
-              {
-                "label": "facebook",
-                "permalink": "/blog/tags/facebook"
-              },
-              {
-                "label": "hello",
-                "permalink": "/blog/tags/hello"
-              },
-              {
-                "label": "docusaurus",
-                "permalink": "/blog/tags/docusaurus"
-              }
-            ],
-            "readingTime": 0.405,
-            "hasTruncateMarker": false,
-            "authors": [
-              {
-                "name": "Sébastien Lorber",
-                "title": "Docusaurus maintainer",
-                "url": "https://sebastienlorber.com",
-                "imageURL": "https://github.com/slorber.png",
-                "key": "slorber"
-              },
-              {
-                "name": "Yangshun Tay",
-                "title": "Front End Engineer @ Facebook",
-                "url": "https://github.com/yangshun",
-                "imageURL": "https://github.com/yangshun.png",
-                "key": "yangshun"
-              }
-            ],
-            "frontMatter": {
-              "slug": "welcome",
-              "title": "Welcome",
-              "authors": [
-                "slorber",
-                "yangshun"
-              ],
-              "tags": [
-                "facebook",
-                "hello",
-                "docusaurus"
-              ]
-            },
-            "unlisted": false,
-            "nextItem": {
-              "title": "MDX Blog Post",
-              "permalink": "/blog/mdx-blog-post"
-            }
-          },
-          "content": "[Docusaurus blogging features](https://docusaurus.io/docs/blog) are powered by the [blog plugin](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog).\n\nSimply add Markdown files (or folders) to the `blog` directory.\n\nRegular blog authors can be added to `authors.yml`.\n\nThe blog post date can be extracted from filenames, such as:\n\n- `2019-05-30-welcome.md`\n- `2019-05-30-welcome/index.md`\n\nA blog post folder can be convenient to co-locate blog post images:\n\n![Docusaurus Plushie](./docusaurus-plushie-banner.jpeg)\n\nThe blog supports tags as well!\n\n**And if you don't want a blog**: just delete this directory, and use `blog: false` in your Docusaurus config."
-        },
-        {
-          "id": "mdx-blog-post",
-          "metadata": {
-            "permalink": "/blog/mdx-blog-post",
-            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2021-08-01-mdx-blog-post.mdx",
-            "source": "@site/blog/2021-08-01-mdx-blog-post.mdx",
-            "title": "MDX Blog Post",
-            "description": "Blog posts support Docusaurus Markdown features, such as MDX.",
-            "date": "2021-08-01T00:00:00.000Z",
-            "formattedDate": "August 1, 2021",
-            "tags": [
-              {
-                "label": "docusaurus",
-                "permalink": "/blog/tags/docusaurus"
-              }
-            ],
-            "readingTime": 0.175,
-            "hasTruncateMarker": false,
-            "authors": [
-              {
-                "name": "Sébastien Lorber",
-                "title": "Docusaurus maintainer",
-                "url": "https://sebastienlorber.com",
-                "imageURL": "https://github.com/slorber.png",
-                "key": "slorber"
-              }
-            ],
-            "frontMatter": {
-              "slug": "mdx-blog-post",
-              "title": "MDX Blog Post",
-              "authors": [
-                "slorber"
-              ],
-              "tags": [
-                "docusaurus"
-              ]
-            },
-            "unlisted": false,
-            "prevItem": {
-              "title": "Welcome",
-              "permalink": "/blog/welcome"
-            },
-            "nextItem": {
-              "title": "Long Blog Post",
-              "permalink": "/blog/long-blog-post"
-            }
-          },
-          "content": "Blog posts support [Docusaurus Markdown features](https://docusaurus.io/docs/markdown-features), such as [MDX](https://mdxjs.com/).\n\n:::tip\n\nUse the power of React to create interactive blog posts.\n\n```js\n<button onClick={() => alert('button clicked!')}>Click me!</button>\n```\n\n<button onClick={() => alert('button clicked!')}>Click me!</button>\n\n:::"
-        },
-        {
-          "id": "long-blog-post",
-          "metadata": {
-            "permalink": "/blog/long-blog-post",
-            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2019-05-29-long-blog-post.md",
-            "source": "@site/blog/2019-05-29-long-blog-post.md",
-            "title": "Long Blog Post",
-            "description": "This is the summary of a very long blog post,",
-            "date": "2019-05-29T00:00:00.000Z",
-            "formattedDate": "May 29, 2019",
-            "tags": [
-              {
-                "label": "hello",
-                "permalink": "/blog/tags/hello"
-              },
-              {
-                "label": "docusaurus",
-                "permalink": "/blog/tags/docusaurus"
-              }
-            ],
-            "readingTime": 2.05,
-            "hasTruncateMarker": true,
-            "authors": [
-              {
-                "name": "Endilie Yacop Sucipto",
-                "title": "Maintainer of Docusaurus",
-                "url": "https://github.com/endiliey",
-                "imageURL": "https://github.com/endiliey.png",
-                "key": "endi"
-              }
-            ],
-            "frontMatter": {
-              "slug": "long-blog-post",
-              "title": "Long Blog Post",
-              "authors": "endi",
-              "tags": [
-                "hello",
-                "docusaurus"
-              ]
-            },
-            "unlisted": false,
-            "prevItem": {
-              "title": "MDX Blog Post",
-              "permalink": "/blog/mdx-blog-post"
-            },
-            "nextItem": {
-              "title": "First Blog Post",
-              "permalink": "/blog/first-blog-post"
-            }
-          },
-          "content": "This is the summary of a very long blog post,\n\nUse a `<!--` `truncate` `-->` comment to limit blog post size in the list view.\n\n<!--truncate-->\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet"
-        },
-        {
           "id": "first-blog-post",
           "metadata": {
             "permalink": "/blog/first-blog-post",
-            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2019-05-28-first-blog-post.md",
-            "source": "@site/blog/2019-05-28-first-blog-post.md",
-            "title": "First Blog Post",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet",
-            "date": "2019-05-28T00:00:00.000Z",
-            "formattedDate": "May 28, 2019",
+            "source": "@site/blog/2023-11-28-first-blog-post.md",
+            "title": "The 5-Hour Rule, How Successful People Stay Relevant Through Continuous Learning",
+            "description": "What sets successful people apart from the rest? Is it their intelligence, their skills, or their work ethic? While these factors certainly play a role, there's another important element that many successful people share: a commitment to continuous learning.",
+            "date": "2023-11-28T00:00:00.000Z",
+            "formattedDate": "November 28, 2023",
             "tags": [
               {
                 "label": "hola",
@@ -816,47 +806,25 @@
                 "permalink": "/blog/tags/docusaurus"
               }
             ],
-            "readingTime": 0.12,
+            "readingTime": 1.13,
             "hasTruncateMarker": false,
-            "authors": [
-              {
-                "name": "Gao Wei",
-                "title": "Docusaurus Core Team",
-                "url": "https://github.com/wgao19",
-                "image_url": "https://github.com/wgao19.png",
-                "imageURL": "https://github.com/wgao19.png"
-              }
-            ],
+            "authors": [],
             "frontMatter": {
               "slug": "first-blog-post",
-              "title": "First Blog Post",
-              "authors": {
-                "name": "Gao Wei",
-                "title": "Docusaurus Core Team",
-                "url": "https://github.com/wgao19",
-                "image_url": "https://github.com/wgao19.png",
-                "imageURL": "https://github.com/wgao19.png"
-              },
+              "title": "The 5-Hour Rule, How Successful People Stay Relevant Through Continuous Learning",
               "tags": [
                 "hola",
                 "docusaurus"
               ]
             },
-            "unlisted": false,
-            "prevItem": {
-              "title": "Long Blog Post",
-              "permalink": "/blog/long-blog-post"
-            }
+            "unlisted": false
           },
-          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet"
+          "content": "What sets successful people apart from the rest? Is it their intelligence, their skills, or their work ethic? While these factors certainly play a role, there's another important element that many successful people share: a commitment to continuous learning.\n\n**So, what exactly is the 5-hour rule, and how can it help you stay relevant and successful in your own career? Let's explore.**\n\nThe 5-hour rule means spending 1 hour a day, 5 days a week on learning and personal growth. This deliberate learning and dedication to personal development can make a significant impact over time. This could include reading, listening to podcasts, watching Ted Talks, attending workshops or some upskilling sessions, or practicing a new skill.\n\nThis 5-hour rule can help you maintain your industry relevance and keep your skills finely honed, particularly important in today's fast-paced and ever-changing job market. By doing so, you become better equipped to tackle new challenges and adjust to changes within your field.\n\nSome examples of successful people who practice the 5-hour rule include Bill Gates, who reads for one hour every night, and Warren Buffett, who spends up to six hours a day reading. Both Gates and Buffett credit their commitment to continuous learning as a key factor in their success. You don't have to be a billionaire to benefit from the 5-hour rule. But this habit to make"
         }
       ],
       "blogListPaginated": [
         {
           "items": [
-            "welcome",
-            "mdx-blog-post",
-            "long-blog-post",
             "first-blog-post"
           ],
           "metadata": {
@@ -864,93 +832,13 @@
             "page": 1,
             "postsPerPage": 10,
             "totalPages": 1,
-            "totalCount": 4,
+            "totalCount": 1,
             "blogDescription": "Blog",
             "blogTitle": "Blog"
           }
         }
       ],
       "blogTags": {
-        "/blog/tags/facebook": {
-          "label": "facebook",
-          "items": [
-            "welcome"
-          ],
-          "permalink": "/blog/tags/facebook",
-          "pages": [
-            {
-              "items": [
-                "welcome"
-              ],
-              "metadata": {
-                "permalink": "/blog/tags/facebook",
-                "page": 1,
-                "postsPerPage": 10,
-                "totalPages": 1,
-                "totalCount": 1,
-                "blogDescription": "Blog",
-                "blogTitle": "Blog"
-              }
-            }
-          ],
-          "unlisted": false
-        },
-        "/blog/tags/hello": {
-          "label": "hello",
-          "items": [
-            "welcome",
-            "long-blog-post"
-          ],
-          "permalink": "/blog/tags/hello",
-          "pages": [
-            {
-              "items": [
-                "welcome",
-                "long-blog-post"
-              ],
-              "metadata": {
-                "permalink": "/blog/tags/hello",
-                "page": 1,
-                "postsPerPage": 10,
-                "totalPages": 1,
-                "totalCount": 2,
-                "blogDescription": "Blog",
-                "blogTitle": "Blog"
-              }
-            }
-          ],
-          "unlisted": false
-        },
-        "/blog/tags/docusaurus": {
-          "label": "docusaurus",
-          "items": [
-            "welcome",
-            "mdx-blog-post",
-            "long-blog-post",
-            "first-blog-post"
-          ],
-          "permalink": "/blog/tags/docusaurus",
-          "pages": [
-            {
-              "items": [
-                "welcome",
-                "mdx-blog-post",
-                "long-blog-post",
-                "first-blog-post"
-              ],
-              "metadata": {
-                "permalink": "/blog/tags/docusaurus",
-                "page": 1,
-                "postsPerPage": 10,
-                "totalPages": 1,
-                "totalCount": 4,
-                "blogDescription": "Blog",
-                "blogTitle": "Blog"
-              }
-            }
-          ],
-          "unlisted": false
-        },
         "/blog/tags/hola": {
           "label": "hola",
           "items": [
@@ -964,6 +852,30 @@
               ],
               "metadata": {
                 "permalink": "/blog/tags/hola",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ],
+          "unlisted": false
+        },
+        "/blog/tags/docusaurus": {
+          "label": "docusaurus",
+          "items": [
+            "first-blog-post"
+          ],
+          "permalink": "/blog/tags/docusaurus",
+          "pages": [
+            {
+              "items": [
+                "first-blog-post"
+              ],
+              "metadata": {
+                "permalink": "/blog/tags/docusaurus",
                 "page": 1,
                 "postsPerPage": 10,
                 "totalPages": 1,

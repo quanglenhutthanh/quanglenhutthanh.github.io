@@ -26,8 +26,18 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "Dynamics 365 Business Central/Development/getting-started",
+              "path": "/Dynamics 365 Business Central/Development/getting-started",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "Dynamics 365 Business Central/Development/overview",
               "path": "/Dynamics 365 Business Central/Development/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Dynamics 365 Business Central/Development/translation-files",
+              "path": "/Dynamics 365 Business Central/Development/translation-files",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -38,6 +48,11 @@
             {
               "id": "Python/About",
               "path": "/Python/About",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Python/file-i-o",
+              "path": "/Python/file-i-o",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -53,6 +68,16 @@
             {
               "id": "Udacity Courses/About",
               "path": "/Udacity Courses/About",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+              "path": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Udacity Courses/AI Engineer using Microsoft Azure/skills",
+              "path": "/Udacity Courses/AI Engineer using Microsoft Azure/skills",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -111,13 +136,18 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/intermediate-python-nd303",
-              "path": "/category/intermediate-python-nd303",
+              "id": "/category/intermediate-python",
+              "path": "/category/intermediate-python",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/data-analyst-nd002",
-              "path": "/category/data-analyst-nd002",
+              "id": "/category/data-analyst",
+              "path": "/category/data-analyst",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/ai-engineer-using-microsoft-azure",
+              "path": "/category/ai-engineer-using-microsoft-azure",
               "sidebar": "tutorialSidebar"
             }
           ],

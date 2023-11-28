@@ -55,6 +55,20 @@
                 "href": "/Dynamics 365 Business Central/Development/overview",
                 "docId": "Dynamics 365 Business Central/Development/overview",
                 "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Getting Started",
+                "href": "/Dynamics 365 Business Central/Development/getting-started",
+                "docId": "Dynamics 365 Business Central/Development/getting-started",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Working with translation files",
+                "href": "/Dynamics 365 Business Central/Development/translation-files",
+                "docId": "Dynamics 365 Business Central/Development/translation-files",
+                "unlisted": false
               }
             ],
             "href": "/category/development"
@@ -88,6 +102,13 @@
             "href": "/Python/pandas",
             "docId": "Python/pandas",
             "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "File I/O",
+            "href": "/Python/file-i-o",
+            "docId": "Python/file-i-o",
+            "unlisted": false
           }
         ],
         "href": "/category/python"
@@ -107,7 +128,7 @@
           },
           {
             "type": "category",
-            "label": "Intermediate Python (nd303)",
+            "label": "Intermediate Python",
             "collapsible": true,
             "collapsed": true,
             "items": [
@@ -140,11 +161,11 @@
                 "unlisted": false
               }
             ],
-            "href": "/category/intermediate-python-nd303"
+            "href": "/category/intermediate-python"
           },
           {
             "type": "category",
-            "label": "Data Analyst (nd002)",
+            "label": "Data Analyst",
             "collapsible": true,
             "collapsed": true,
             "items": [
@@ -170,7 +191,30 @@
                 "unlisted": false
               }
             ],
-            "href": "/category/data-analyst-nd002"
+            "href": "/category/data-analyst"
+          },
+          {
+            "type": "category",
+            "label": "AI Engineer using Microsoft Azure",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Course Outline",
+                "href": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+                "docId": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Nanodegree Skills",
+                "href": "/Udacity Courses/AI Engineer using Microsoft Azure/skills",
+                "docId": "Udacity Courses/AI Engineer using Microsoft Azure/skills",
+                "unlisted": false
+              }
+            ],
+            "href": "/category/ai-engineer-using-microsoft-azure"
           }
         ],
         "href": "/category/udacity-learning-path"
@@ -196,10 +240,22 @@
       "description": "https://dynamics.microsoft.com/en-us/business-central/overview/",
       "sidebar": "tutorialSidebar"
     },
+    "Dynamics 365 Business Central/Development/getting-started": {
+      "id": "Dynamics 365 Business Central/Development/getting-started",
+      "title": "Getting Started",
+      "description": "Steps to set up a sandbox environment and Visual Studio Code",
+      "sidebar": "tutorialSidebar"
+    },
     "Dynamics 365 Business Central/Development/overview": {
       "id": "Dynamics 365 Business Central/Development/overview",
       "title": "overview",
       "description": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/",
+      "sidebar": "tutorialSidebar"
+    },
+    "Dynamics 365 Business Central/Development/translation-files": {
+      "id": "Dynamics 365 Business Central/Development/translation-files",
+      "title": "Working with translation files",
+      "description": "Dynamics 365 Business Central is multi-language enabled, which means you can display the User Interface in different languages. In Dynamics 365 Business Central, this is done by using XLIFF file, which is a standardized format used computer-based translations.",
       "sidebar": "tutorialSidebar"
     },
     "intro": {
@@ -212,6 +268,12 @@
       "id": "Python/About",
       "title": "About",
       "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
+      "sidebar": "tutorialSidebar"
+    },
+    "Python/file-i-o": {
+      "id": "Python/file-i-o",
+      "title": "File I/O",
+      "description": "What we're doing",
       "sidebar": "tutorialSidebar"
     },
     "Python/numpy": {
@@ -230,6 +292,18 @@
       "id": "Udacity Courses/About",
       "title": "About Udacity",
       "description": "https://www.udacity.com/",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/AI Engineer using Microsoft Azure/course-outline": {
+      "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+      "title": "AI Engineer using Microsoft Azure (nd073)",
+      "description": "Course Link",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/AI Engineer using Microsoft Azure/skills": {
+      "id": "Udacity Courses/AI Engineer using Microsoft Azure/skills",
+      "title": "Nanodegree Skills",
+      "description": "Building Computer Vision Solutions with Azure",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/Data Analyst/course-outline": {

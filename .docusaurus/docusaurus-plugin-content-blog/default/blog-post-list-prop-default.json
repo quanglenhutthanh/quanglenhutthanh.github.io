@@ -2,22 +2,7 @@
   "title": "Recent posts",
   "items": [
     {
-      "title": "Welcome",
-      "permalink": "/blog/welcome",
-      "unlisted": false
-    },
-    {
-      "title": "MDX Blog Post",
-      "permalink": "/blog/mdx-blog-post",
-      "unlisted": false
-    },
-    {
-      "title": "Long Blog Post",
-      "permalink": "/blog/long-blog-post",
-      "unlisted": false
-    },
-    {
-      "title": "First Blog Post",
+      "title": "The 5-Hour Rule, How Successful People Stay Relevant Through Continuous Learning",
       "permalink": "/blog/first-blog-post",
       "unlisted": false
     }

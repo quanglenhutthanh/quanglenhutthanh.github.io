@@ -7,7 +7,7 @@ sidebar_label : "About"
 
 # Welcome!!!
 
-I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics Navision Techincal Consultant.
+I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.
 
 This site isn’t just about showcasing my expertise; it’s a personal journey. It’s a place where I can document my learning, experiences, thoughts, and evolving perspectives on life. 
 

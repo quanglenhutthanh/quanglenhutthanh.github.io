@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '311'),
+    component: ComponentCreator('/blog', 'd8d'),
     exact: true
   },
   {
@@ -49,17 +49,7 @@ export default [
   },
   {
     path: '/blog/first-blog-post',
-    component: ComponentCreator('/blog/first-blog-post', '656'),
-    exact: true
-  },
-  {
-    path: '/blog/long-blog-post',
-    component: ComponentCreator('/blog/long-blog-post', 'a66'),
-    exact: true
-  },
-  {
-    path: '/blog/mdx-blog-post',
-    component: ComponentCreator('/blog/mdx-blog-post', 'a5b'),
+    component: ComponentCreator('/blog/first-blog-post', 'e5f'),
     exact: true
   },
   {
@@ -69,27 +59,12 @@ export default [
   },
   {
     path: '/blog/tags/docusaurus',
-    component: ComponentCreator('/blog/tags/docusaurus', '8fd'),
-    exact: true
-  },
-  {
-    path: '/blog/tags/facebook',
-    component: ComponentCreator('/blog/tags/facebook', '756'),
-    exact: true
-  },
-  {
-    path: '/blog/tags/hello',
-    component: ComponentCreator('/blog/tags/hello', '7ee'),
+    component: ComponentCreator('/blog/tags/docusaurus', '8c2'),
     exact: true
   },
   {
     path: '/blog/tags/hola',
-    component: ComponentCreator('/blog/tags/hola', 'bb3'),
-    exact: true
-  },
-  {
-    path: '/blog/welcome',
-    component: ComponentCreator('/blog/welcome', '948'),
+    component: ComponentCreator('/blog/tags/hola', 'b8c'),
     exact: true
   },
   {
@@ -99,19 +74,25 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '1d1'),
+    component: ComponentCreator('/', 'a13'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '164'),
+        component: ComponentCreator('/', '646'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '080'),
+            component: ComponentCreator('/', 'c78'),
             routes: [
               {
-                path: '/category/data-analyst-nd002',
-                component: ComponentCreator('/category/data-analyst-nd002', 'f2e'),
+                path: '/category/ai-engineer-using-microsoft-azure',
+                component: ComponentCreator('/category/ai-engineer-using-microsoft-azure', 'bbb'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/data-analyst',
+                component: ComponentCreator('/category/data-analyst', '533'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -128,8 +109,8 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/category/intermediate-python-nd303',
-                component: ComponentCreator('/category/intermediate-python-nd303', 'b3a'),
+                path: '/category/intermediate-python',
+                component: ComponentCreator('/category/intermediate-python', '422'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -158,8 +139,20 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/Dynamics 365 Business Central/Development/getting-started',
+                component: ComponentCreator('/Dynamics 365 Business Central/Development/getting-started', '277'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/Dynamics 365 Business Central/Development/overview',
                 component: ComponentCreator('/Dynamics 365 Business Central/Development/overview', '5d0'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Dynamics 365 Business Central/Development/translation-files',
+                component: ComponentCreator('/Dynamics 365 Business Central/Development/translation-files', '887'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -172,6 +165,12 @@ export default [
               {
                 path: '/Python/About',
                 component: ComponentCreator('/Python/About', '913'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Python/file-i-o',
+                component: ComponentCreator('/Python/file-i-o', '7b4'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -190,6 +189,18 @@ export default [
               {
                 path: '/Udacity Courses/About',
                 component: ComponentCreator('/Udacity Courses/About', '3f5'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/AI Engineer using Microsoft Azure/course-outline',
+                component: ComponentCreator('/Udacity Courses/AI Engineer using Microsoft Azure/course-outline', '923'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/AI Engineer using Microsoft Azure/skills',
+                component: ComponentCreator('/Udacity Courses/AI Engineer using Microsoft Azure/skills', 'ad9'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

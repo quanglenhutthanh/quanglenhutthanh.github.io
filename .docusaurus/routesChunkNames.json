@@ -42,7 +42,7 @@
       "plugin": "plugin---docusaurus-debug-3-fa-711"
     }
   },
-  "/blog-311": {
+  "/blog-d8d": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blog-884-212"
@@ -50,16 +50,7 @@
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
       {
-        "content": "content---blog-766-e3c"
-      },
-      {
-        "content": "content---blogf-4-f-cd7"
-      },
-      {
-        "content": "content---blog-871-381"
-      },
-      {
-        "content": "content---blog-925-e00"
+        "content": "content---blog-8-c-6-086"
       }
     ],
     "metadata": "metadata---blogb-2-b-df1"
@@ -71,29 +62,13 @@
     },
     "archive": "archive---blog-archiveb-2-f-393"
   },
-  "/blog/first-blog-post-656": {
+  "/blog/first-blog-post-e5f": {
     "__comp": "__comp---theme-blog-post-pageccc-cab",
     "__context": {
       "plugin": "plugin---blog-884-212"
     },
     "sidebar": "sidebar---blog-814-8ac",
-    "content": "content---blog-first-blog-poste-27-4a1"
-  },
-  "/blog/long-blog-post-a66": {
-    "__comp": "__comp---theme-blog-post-pageccc-cab",
-    "__context": {
-      "plugin": "plugin---blog-884-212"
-    },
-    "sidebar": "sidebar---blog-814-8ac",
-    "content": "content---blog-long-blog-post-736-bc7"
-  },
-  "/blog/mdx-blog-post-a5b": {
-    "__comp": "__comp---theme-blog-post-pageccc-cab",
-    "__context": {
-      "plugin": "plugin---blog-884-212"
-    },
-    "sidebar": "sidebar---blog-814-8ac",
-    "content": "content---blog-mdx-blog-post-593-37b"
+    "content": "content---blog-first-blog-post-126-2ab"
   },
   "/blog/tags-706": {
     "__comp": "__comp---theme-blog-tags-list-page-01-a-d0b",
@@ -103,7 +78,7 @@
     "sidebar": "sidebar---blog-814-8ac",
     "tags": "tags---blog-tagsa-70-da2"
   },
-  "/blog/tags/docusaurus-8fd": {
+  "/blog/tags/docusaurus-8c2": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
       "plugin": "plugin---blog-884-212"
@@ -111,22 +86,13 @@
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
       {
-        "content": "content---blog-766-e3c"
-      },
-      {
-        "content": "content---blogf-4-f-cd7"
-      },
-      {
-        "content": "content---blog-871-381"
-      },
-      {
-        "content": "content---blog-925-e00"
+        "content": "content---blog-8-c-6-086"
       }
     ],
     "tag": "tag---blog-tags-docusaurusa-80-728",
     "listMetadata": "listMetadata---blog-tags-docusaurus-608-c09"
   },
-  "/blog/tags/facebook-756": {
+  "/blog/tags/hola-b8c": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
       "plugin": "plugin---blog-884-212"
@@ -134,50 +100,11 @@
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
       {
-        "content": "content---blog-766-e3c"
-      }
-    ],
-    "tag": "tag---blog-tags-facebook-031-c52",
-    "listMetadata": "listMetadata---blog-tags-facebook-096-d31"
-  },
-  "/blog/tags/hello-7ee": {
-    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
-    "__context": {
-      "plugin": "plugin---blog-884-212"
-    },
-    "sidebar": "sidebar---blog-814-8ac",
-    "items": [
-      {
-        "content": "content---blog-766-e3c"
-      },
-      {
-        "content": "content---blog-871-381"
-      }
-    ],
-    "tag": "tag---blog-tags-hello-30-a-bed",
-    "listMetadata": "listMetadata---blog-tags-hello-664-70a"
-  },
-  "/blog/tags/hola-bb3": {
-    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
-    "__context": {
-      "plugin": "plugin---blog-884-212"
-    },
-    "sidebar": "sidebar---blog-814-8ac",
-    "items": [
-      {
-        "content": "content---blog-925-e00"
+        "content": "content---blog-8-c-6-086"
       }
     ],
     "tag": "tag---blog-tags-holae-16-18a",
     "listMetadata": "listMetadata---blog-tags-hola-4-c-9-a24"
-  },
-  "/blog/welcome-948": {
-    "__comp": "__comp---theme-blog-post-pageccc-cab",
-    "__context": {
-      "plugin": "plugin---blog-884-212"
-    },
-    "sidebar": "sidebar---blog-814-8ac",
-    "content": "content---blog-welcomed-9-f-ffb"
   },
   "/markdown-page-3ea": {
     "__comp": "__comp---theme-mdx-page-1-f-3-b90",
@@ -186,22 +113,26 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-1d1": {
+  "/-a13": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-164": {
+  "/-646": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-080": {
+  "/-c78": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
-  "/category/data-analyst-nd002-f2e": {
+  "/category/ai-engineer-using-microsoft-azure-bbb": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
-    "categoryGeneratedIndex": "categoryGeneratedIndex---category-data-analyst-nd-0026-f-3-5cc"
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-ai-engineer-using-microsoft-azurec-25-a2f"
+  },
+  "/category/data-analyst-533": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-data-analysta-5-c-85e"
   },
   "/category/development-74a": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -211,9 +142,9 @@
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-dynamics-365-business-central-16-b-c62"
   },
-  "/category/intermediate-python-nd303-b3a": {
+  "/category/intermediate-python-422": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
-    "categoryGeneratedIndex": "categoryGeneratedIndex---category-intermediate-python-nd-303632-c76"
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-intermediate-python-48-b-ff2"
   },
   "/category/python-06c": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -231,9 +162,17 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-aboutc-21-0a7"
   },
+  "/Dynamics 365 Business Central/Development/getting-started-277": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---dynamics-365-business-central-development-getting-startedaf-5-b79"
+  },
   "/Dynamics 365 Business Central/Development/overview-5d0": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-development-overviewad-7-e62"
+  },
+  "/Dynamics 365 Business Central/Development/translation-files-887": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---dynamics-365-business-central-development-translation-files-94-a-0da"
   },
   "/intro-283": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -242,6 +181,10 @@
   "/Python/About-913": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---python-aboutcb-9-86a"
+  },
+  "/Python/file-i-o-7b4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---python-file-i-o-16-c-ac2"
   },
   "/Python/numpy-2ee": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -254,6 +197,14 @@
   "/Udacity Courses/About-3f5": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-about-9-fd-0ac"
+  },
+  "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline-923": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-ai-engineer-using-microsoft-azure-course-outline-349-9d7"
+  },
+  "/Udacity Courses/AI Engineer using Microsoft Azure/skills-ad9": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-ai-engineer-using-microsoft-azure-skills-76-d-01d"
   },
   "/Udacity Courses/Data Analyst/course-outline-48f": {
     "__comp": "__comp---theme-doc-item-178-a40",
