@@ -1,3 +1,7 @@
+---
+sidebar_position: 20
+sidebar_label : "Getting Started"
+---
 # Getting Started
 ## Steps to set up a sandbox environment and Visual Studio Code
 
