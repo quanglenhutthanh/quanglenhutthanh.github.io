@@ -8,7 +8,7 @@ Dynamics 365 Business Central is multi-language enabled, which means you can dis
 
 **XLIFF – XML Localization Interchange File Format**. XLIFF is an XML based format. It was created to standardize the way that localizable data is passed between tools during a localization process, and to serve as a common format for files that are used by computer-aided translation (CAT) tools.
 
-## Microsoft Dynamics 365 Translation Service
+## Generate XLIFF file
 
 In the app.json file of your extension, add the following line:
 
@@ -32,7 +32,7 @@ By setting the `GenerateCaptions` flag in the app.json file, you specify that yo
 
 In the generated .xlf file, you can see a `<source>` element for each label. For the translation, you'll now have to add the target-language and a `<target>` element per label. The target-language must be specified in the format `"<language code>-<country code>"`, for example `"da-DK"`, `"es-ES"`, or `"de-DE"`. The `<trans-unit id>` attribute corresponds to the object ID in the extension. This is illustrated in the example below.
 
-```
+```XML
 
 <?xml version="1.0" encoding="utf-8"?>
 
