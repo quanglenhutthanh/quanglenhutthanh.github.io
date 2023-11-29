@@ -51,3 +51,6 @@ In the generated .xlf file, you can see a `<source>` element for each label. For
 
 ```
 > You can have only one .xlf file per language. If you translate your extension to multiple languages, you must have a translation file per language. There is no enforced naming on the file, but it's a good practice to name it `<extensionname>.<language>.xlf`.
+
+## Use NAB extension
+Use [NAB AL Tools](https://github.com/jwikman/nab-al-tools/blob/master/extension/README.md) to work with translation files.
