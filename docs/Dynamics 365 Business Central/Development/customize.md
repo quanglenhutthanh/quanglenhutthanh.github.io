@@ -2,8 +2,6 @@
 sidebar_position: 40
 sidebar_label: "Customize Business Central"
 ---
-<![endif]-->
-
 # Customize Business Central
 
 Every business is unique. In addition to the core functionalities of Sales, Purchase, and Inventory Management, Microsoft Dynamics 365 Business Central also offers tools that enable you to build fully customized functionality to adapt to your company's specific business requirements.
