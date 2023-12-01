@@ -2,13 +2,11 @@
 sidebar_position: 10
 sidebar_label : "Prebuilt Form Recognizer Models"
 ---
-# Prebuilt Form Recognizer Models
-
 This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.
 
 > Form Recognizer is now **Azure AI Document Intelligence**! As of July 2023. But There are no breaking changes to application programming interfaces (APIs) or SDKs.
 
-## Introduction
+## Prebuilt Form Recognizer Models
 For certain common types of business or personal documents, which share similar information, Azure Form Recognizer has a few prebuilt models that let us extract information found in these documents:
 
 -	Receipts	
@@ -16,7 +14,7 @@ For certain common types of business or personal documents, which share similar 
 -	Business cards
 -	Identity cards (e.g. driver’s license and passport)
 
-This code samples shows Prebuild Receipt operations with Azure Form Recognizer client library.
+This code samples shows Prebuilt Receipt operations with Azure Form Recognizer client library.
 
 
 ## Installation
@@ -32,6 +30,8 @@ Install the Azure Form Recognizer client for Python with `pip`
 !pip install azure-core
 ```
 
+## Python SDK Demo
+
 Import necessary classes:
 
 
@@ -41,18 +41,15 @@ from azure.ai.formrecognizer import FormTrainingClient
 from azure.core.credentials import AzureKeyCredential
 ```
 
-**FormRecognizerClient** and **FormTrainingClient** for working with Azure Form Recognizer.
+`FormRecognizerClient` and `FormTrainingClient` for working with Azure Form Recognizer.
 
-**AzureKeyCredential** for providing the authentication credentials.
-
-## Usage
+`AzureKeyCredential` for providing the authentication credentials.
 
 
 ```python
 endpoint = "YOUR_FORM_RECOGNIZER_ENDPOINT"
 key = "YOUR_FORM_RECOGNIZER_KEY"
 ```
-
 
 `endpoint` and `key` are  Azure AI Document Intelligence Url and Key, which you can obtain from Azure portal.
 
@@ -168,5 +165,24 @@ begin_recognize_business_cards
 begin_recognize_identity_documents_from_url
 begin_recognize_identity_documents
 ```
+
+In your RESTful API, you just need to make the minor change in your code to reflect which pre-built model you want to choose:
+
+- Receipt: `receipt`
+  
+- Invoice: `invoice`
+
+- Business card: `businessCard`
+
+- Identity document: `idDocument`
+  
+All prebuilt models have a similar API.
+
+Check the documentation to understand the fields extracted from each prebuilt model and the locales supported by the model.
+
+All API supports synchronous and asynchronous models, so you can choose what is most suitable for your application requirements.
+
+The SDK is easier to use than using the RESTful API directly, so if your language-based SDK is available, you should use it.
+
 
 
