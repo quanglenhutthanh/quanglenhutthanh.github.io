@@ -1,8 +1,8 @@
 ---
 sidebar_position: 10
-sidebar_label : "Prebuild Form Recognizer"
+sidebar_label : "Prebuilt Form Recognizer Models"
 ---
-# Prebuild Form Recognizer
+# Prebuilt Form Recognizer Models
 
 This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.
 
