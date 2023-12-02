@@ -1,9 +1,9 @@
 ---
-slug: first-blog-post
+slug: 5-hour-rule
 title: The 5-Hour Rule, How Successful People Stay Relevant Through Continuous Learning
 
 
-tags: [hola, docusaurus]
+tags: [learning]
 ---
 
 What sets successful people apart from the rest? Is it their intelligence, their skills, or their work ethic? While these factors certainly play a role, there's another important element that many successful people share: a commitment to continuous learning.
