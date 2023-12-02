@@ -121,6 +121,7 @@ with open("sample.json",'r') as file:
 ## Using Pandas
 Pandas, a powerful library in Python, simplifies data manipulation tasks, especially when working with tabular data.
 
+[Using Pandas](pandas.md)
 
 ```python
 import pandas as pd

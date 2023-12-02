@@ -40,7 +40,7 @@ Pandas is a fast, powerful, flexible and open source data and manipulation tool,
 Using `pip`, you can install Pandas with:
 
 ```cmd
-pip intall pandas
+pip install pandas
 ```
 ## Import Pandas
 Once Pandas installed, you can import it in your applications:
