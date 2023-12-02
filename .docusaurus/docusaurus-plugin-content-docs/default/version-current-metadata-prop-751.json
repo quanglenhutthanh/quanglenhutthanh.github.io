@@ -69,6 +69,13 @@
                 "href": "/Dynamics 365 Business Central/Development/translation-files",
                 "docId": "Dynamics 365 Business Central/Development/translation-files",
                 "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Customize Business Central",
+                "href": "/Dynamics 365 Business Central/Development/customize",
+                "docId": "Dynamics 365 Business Central/Development/customize",
+                "unlisted": false
               }
             ],
             "href": "/category/development"
@@ -91,9 +98,16 @@
           },
           {
             "type": "link",
-            "label": "NumPy",
-            "href": "/Python/numpy",
-            "docId": "Python/numpy",
+            "label": "Object-Oriented Programming",
+            "href": "/Python/oop",
+            "docId": "Python/oop",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "File I/O",
+            "href": "/Python/file-i-o",
+            "docId": "Python/file-i-o",
             "unlisted": false
           },
           {
@@ -105,9 +119,16 @@
           },
           {
             "type": "link",
-            "label": "File I/O",
-            "href": "/Python/file-i-o",
-            "docId": "Python/file-i-o",
+            "label": "NumPy",
+            "href": "/Python/numpy",
+            "docId": "Python/numpy",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Flask",
+            "href": "/Python/flask",
+            "docId": "Python/flask",
             "unlisted": false
           }
         ],
@@ -218,6 +239,38 @@
           }
         ],
         "href": "/category/udacity-learning-path"
+      },
+      {
+        "type": "category",
+        "label": "AI & ML",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "category",
+            "label": "Computer Vision",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Prebuilt Form Recognizer Models",
+                "href": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+                "docId": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Custom Form Recognizer Model",
+                "href": "/AI Engineer/Computer Vision/custom-form-recognizer-model",
+                "docId": "AI Engineer/Computer Vision/custom-form-recognizer-model",
+                "unlisted": false
+              }
+            ],
+            "href": "/category/computer-vision"
+          }
+        ],
+        "href": "/category/ai--ml"
       }
     ]
   },
@@ -226,6 +279,18 @@
       "id": "About",
       "title": "About",
       "description": "img",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI Engineer/Computer Vision/custom-form-recognizer-model": {
+      "id": "AI Engineer/Computer Vision/custom-form-recognizer-model",
+      "title": "Custom Form Recognizer Model",
+      "description": "Sometimes, the prebuilt models are not sufficient to extract information from you unique documents with particular layout of information. In this case, you should develop your own custom Form Recognizer model to meet your unique business requirements.",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI Engineer/Computer Vision/prebuilt-form-recognizer-models": {
+      "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+      "title": "prebuilt-form-recognizer-models",
+      "description": "This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.",
       "sidebar": "tutorialSidebar"
     },
     "CV": {
@@ -238,6 +303,12 @@
       "id": "Dynamics 365 Business Central/About",
       "title": "Microsoft Dynamics 365 Business Central",
       "description": "https://dynamics.microsoft.com/en-us/business-central/overview/",
+      "sidebar": "tutorialSidebar"
+    },
+    "Dynamics 365 Business Central/Development/customize": {
+      "id": "Dynamics 365 Business Central/Development/customize",
+      "title": "Customize Business Central",
+      "description": "Every business is unique. In addition to the core functionalities of Sales, Purchase, and Inventory Management, Microsoft Dynamics 365 Business Central also offers tools that enable you to build fully customized functionality to adapt to your company's specific business requirements.",
       "sidebar": "tutorialSidebar"
     },
     "Dynamics 365 Business Central/Development/getting-started": {
@@ -276,16 +347,28 @@
       "description": "What we're doing",
       "sidebar": "tutorialSidebar"
     },
+    "Python/flask": {
+      "id": "Python/flask",
+      "title": "flask",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
     "Python/numpy": {
       "id": "Python/numpy",
       "title": "Introduction",
-      "description": "NumPy short for Numerical Python. NumPy is a fundemental package for scientific computing in Python.It is a Python library that provides a multidimensional array object, various derived objects (such as masked arrays and matrices),and an assortment of routines for fast operations on arrays, including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation and much more.",
+      "description": "NumPy",
+      "sidebar": "tutorialSidebar"
+    },
+    "Python/oop": {
+      "id": "Python/oop",
+      "title": "oop",
+      "description": "",
       "sidebar": "tutorialSidebar"
     },
     "Python/pandas": {
       "id": "Python/pandas",
       "title": "Introduction",
-      "description": "Pandas is a fast, powerful, flexible and open source data and manipulation tool, built on top of Python programming language.",
+      "description": "NumPy",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/About": {

@@ -1,12 +1,7 @@
 [
   {
-    "label": "hola",
-    "permalink": "/blog/tags/hola",
-    "count": 1
-  },
-  {
-    "label": "docusaurus",
-    "permalink": "/blog/tags/docusaurus",
+    "label": "learning",
+    "permalink": "/blog/tags/learning",
     "count": 1
   }
 ]

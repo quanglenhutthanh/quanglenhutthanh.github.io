@@ -55,20 +55,20 @@
     ],
     "metadata": "metadata---blogb-2-b-df1"
   },
+  "/blog/5-hour-rule-76c": {
+    "__comp": "__comp---theme-blog-post-pageccc-cab",
+    "__context": {
+      "plugin": "plugin---blog-884-212"
+    },
+    "sidebar": "sidebar---blog-814-8ac",
+    "content": "content---blog-5-hour-rule-126-1b8"
+  },
   "/blog/archive-47c": {
     "__comp": "__comp---theme-blog-archive-page-9-e-4-1d8",
     "__context": {
       "plugin": "plugin---blog-884-212"
     },
     "archive": "archive---blog-archiveb-2-f-393"
-  },
-  "/blog/first-blog-post-e5f": {
-    "__comp": "__comp---theme-blog-post-pageccc-cab",
-    "__context": {
-      "plugin": "plugin---blog-884-212"
-    },
-    "sidebar": "sidebar---blog-814-8ac",
-    "content": "content---blog-first-blog-post-126-2ab"
   },
   "/blog/tags-706": {
     "__comp": "__comp---theme-blog-tags-list-page-01-a-d0b",
@@ -78,7 +78,7 @@
     "sidebar": "sidebar---blog-814-8ac",
     "tags": "tags---blog-tagsa-70-da2"
   },
-  "/blog/tags/docusaurus-8c2": {
+  "/blog/tags/learning-5ab": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
       "plugin": "plugin---blog-884-212"
@@ -89,22 +89,8 @@
         "content": "content---blog-8-c-6-086"
       }
     ],
-    "tag": "tag---blog-tags-docusaurusa-80-728",
-    "listMetadata": "listMetadata---blog-tags-docusaurus-608-c09"
-  },
-  "/blog/tags/hola-b8c": {
-    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
-    "__context": {
-      "plugin": "plugin---blog-884-212"
-    },
-    "sidebar": "sidebar---blog-814-8ac",
-    "items": [
-      {
-        "content": "content---blog-8-c-6-086"
-      }
-    ],
-    "tag": "tag---blog-tags-holae-16-18a",
-    "listMetadata": "listMetadata---blog-tags-hola-4-c-9-a24"
+    "tag": "tag---blog-tags-learning-9-a-7-b79",
+    "listMetadata": "listMetadata---blog-tags-learning-643-3e1"
   },
   "/markdown-page-3ea": {
     "__comp": "__comp---theme-mdx-page-1-f-3-b90",
@@ -113,22 +99,38 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-a13": {
+  "/-5ac": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-646": {
+  "/-e6f": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-c78": {
+  "/-89c": {
     "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/AI Engineer/Computer Vision/custom-form-recognizer-model-3ba": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-engineer-computer-vision-custom-form-recognizer-modelf-6-a-8e2"
+  },
+  "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models-5c0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-engineer-computer-vision-prebuilt-form-recognizer-models-311-c48"
+  },
+  "/category/ai--ml-d80": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-ai-ml-7-d-6-2e2"
   },
   "/category/ai-engineer-using-microsoft-azure-bbb": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-ai-engineer-using-microsoft-azurec-25-a2f"
+  },
+  "/category/computer-vision-6c3": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-computer-vision-9-f-7-6eb"
   },
   "/category/data-analyst-533": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -162,6 +164,10 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-aboutc-21-0a7"
   },
+  "/Dynamics 365 Business Central/Development/customize-cbb": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---dynamics-365-business-central-development-customizec-30-e4e"
+  },
   "/Dynamics 365 Business Central/Development/getting-started-277": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-development-getting-startedaf-5-b79"
@@ -186,9 +192,17 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---python-file-i-o-16-c-ac2"
   },
+  "/Python/flask-e35": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---python-flask-073-81d"
+  },
   "/Python/numpy-2ee": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---python-numpyda-2-5a8"
+  },
+  "/Python/oop-f59": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---python-oopfba-8e3"
   },
   "/Python/pandas-5d6": {
     "__comp": "__comp---theme-doc-item-178-a40",

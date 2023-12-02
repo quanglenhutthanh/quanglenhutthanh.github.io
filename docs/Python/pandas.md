@@ -1,8 +1,10 @@
 ---
-sidebar_position: 20
+sidebar_position: 30
 sidebar_label : "Pandas"
 ---
 # Introduction
+
+![NumPy](img/pandas.png)
 
 Pandas is a fast, powerful, flexible and open source data and manipulation tool, built on top of Python programming language.
 

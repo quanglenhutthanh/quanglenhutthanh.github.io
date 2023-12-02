@@ -16,6 +16,16 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "path": "/AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "path": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "CV",
               "path": "/CV",
               "sidebar": "tutorialSidebar"
@@ -23,6 +33,11 @@
             {
               "id": "Dynamics 365 Business Central/About",
               "path": "/Dynamics 365 Business Central/About",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Dynamics 365 Business Central/Development/customize",
+              "path": "/Dynamics 365 Business Central/Development/customize",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -56,8 +71,18 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "Python/flask",
+              "path": "/Python/flask",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "Python/numpy",
               "path": "/Python/numpy",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Python/oop",
+              "path": "/Python/oop",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -148,6 +173,16 @@
             {
               "id": "/category/ai-engineer-using-microsoft-azure",
               "path": "/category/ai-engineer-using-microsoft-azure",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/ai--ml",
+              "path": "/category/ai--ml",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/computer-vision",
+              "path": "/category/computer-vision",
               "sidebar": "tutorialSidebar"
             }
           ],

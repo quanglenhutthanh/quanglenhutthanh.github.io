@@ -1,7 +1,7 @@
 {
   "id": "Python/numpy",
   "title": "Introduction",
-  "description": "NumPy short for Numerical Python. NumPy is a fundemental package for scientific computing in Python.It is a Python library that provides a multidimensional array object, various derived objects (such as masked arrays and matrices),and an assortment of routines for fast operations on arrays, including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation and much more.",
+  "description": "NumPy",
   "source": "@site/docs/Python/numpy.md",
   "sourceDirName": "Python",
   "slug": "/Python/numpy",
@@ -10,18 +10,18 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 10,
+  "sidebarPosition": 40,
   "frontMatter": {
-    "sidebar_position": 10,
+    "sidebar_position": 40,
     "sidebar_label": "NumPy"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "About",
-    "permalink": "/Python/About"
-  },
-  "next": {
     "title": "Pandas",
     "permalink": "/Python/pandas"
+  },
+  "next": {
+    "title": "Flask",
+    "permalink": "/Python/flask"
   }
 }

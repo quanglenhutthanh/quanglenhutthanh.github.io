@@ -43,13 +43,13 @@ export default [
     exact: true
   },
   {
-    path: '/blog/archive',
-    component: ComponentCreator('/blog/archive', '47c'),
+    path: '/blog/5-hour-rule',
+    component: ComponentCreator('/blog/5-hour-rule', '76c'),
     exact: true
   },
   {
-    path: '/blog/first-blog-post',
-    component: ComponentCreator('/blog/first-blog-post', 'e5f'),
+    path: '/blog/archive',
+    component: ComponentCreator('/blog/archive', '47c'),
     exact: true
   },
   {
@@ -58,13 +58,8 @@ export default [
     exact: true
   },
   {
-    path: '/blog/tags/docusaurus',
-    component: ComponentCreator('/blog/tags/docusaurus', '8c2'),
-    exact: true
-  },
-  {
-    path: '/blog/tags/hola',
-    component: ComponentCreator('/blog/tags/hola', 'b8c'),
+    path: '/blog/tags/learning',
+    component: ComponentCreator('/blog/tags/learning', '5ab'),
     exact: true
   },
   {
@@ -74,19 +69,43 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'a13'),
+    component: ComponentCreator('/', '5ac'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '646'),
+        component: ComponentCreator('/', 'e6f'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', 'c78'),
+            component: ComponentCreator('/', '89c'),
             routes: [
+              {
+                path: '/AI Engineer/Computer Vision/custom-form-recognizer-model',
+                component: ComponentCreator('/AI Engineer/Computer Vision/custom-form-recognizer-model', '3ba'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI Engineer/Computer Vision/prebuilt-form-recognizer-models',
+                component: ComponentCreator('/AI Engineer/Computer Vision/prebuilt-form-recognizer-models', '5c0'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/ai--ml',
+                component: ComponentCreator('/category/ai--ml', 'd80'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
               {
                 path: '/category/ai-engineer-using-microsoft-azure',
                 component: ComponentCreator('/category/ai-engineer-using-microsoft-azure', 'bbb'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/computer-vision',
+                component: ComponentCreator('/category/computer-vision', '6c3'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -139,6 +158,12 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/Dynamics 365 Business Central/Development/customize',
+                component: ComponentCreator('/Dynamics 365 Business Central/Development/customize', 'cbb'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/Dynamics 365 Business Central/Development/getting-started',
                 component: ComponentCreator('/Dynamics 365 Business Central/Development/getting-started', '277'),
                 exact: true,
@@ -175,8 +200,20 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/Python/flask',
+                component: ComponentCreator('/Python/flask', 'e35'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/Python/numpy',
                 component: ComponentCreator('/Python/numpy', '2ee'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Python/oop',
+                component: ComponentCreator('/Python/oop', 'f59'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

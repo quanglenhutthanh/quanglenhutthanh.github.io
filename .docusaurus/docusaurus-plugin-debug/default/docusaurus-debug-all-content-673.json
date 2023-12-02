@@ -42,6 +42,52 @@
               }
             },
             {
+              "id": "AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "title": "Custom Form Recognizer Model",
+              "description": "Sometimes, the prebuilt models are not sufficient to extract information from you unique documents with particular layout of information. In this case, you should develop your own custom Form Recognizer model to meet your unique business requirements.",
+              "source": "@site/docs/AI Engineer/Computer Vision/custom-form-recognizer-model.md",
+              "sourceDirName": "AI Engineer/Computer Vision",
+              "slug": "/AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "permalink": "/AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Prebuilt Form Recognizer Models",
+                "permalink": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models"
+              }
+            },
+            {
+              "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "title": "prebuilt-form-recognizer-models",
+              "description": "This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.",
+              "source": "@site/docs/AI Engineer/Computer Vision/prebuilt-form-recognizer-models.md",
+              "sourceDirName": "AI Engineer/Computer Vision",
+              "slug": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "permalink": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Prebuilt Form Recognizer Models"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Computer Vision",
+                "permalink": "/category/computer-vision"
+              },
+              "next": {
+                "title": "Custom Form Recognizer Model",
+                "permalink": "/AI Engineer/Computer Vision/custom-form-recognizer-model"
+              }
+            },
+            {
               "id": "CV",
               "title": "Hi",
               "description": "INFORMATION",
@@ -93,6 +139,33 @@
               "next": {
                 "title": "Development",
                 "permalink": "/category/development"
+              }
+            },
+            {
+              "id": "Dynamics 365 Business Central/Development/customize",
+              "title": "Customize Business Central",
+              "description": "Every business is unique. In addition to the core functionalities of Sales, Purchase, and Inventory Management, Microsoft Dynamics 365 Business Central also offers tools that enable you to build fully customized functionality to adapt to your company's specific business requirements.",
+              "source": "@site/docs/Dynamics 365 Business Central/Development/customize.md",
+              "sourceDirName": "Dynamics 365 Business Central/Development",
+              "slug": "/Dynamics 365 Business Central/Development/customize",
+              "permalink": "/Dynamics 365 Business Central/Development/customize",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 40,
+              "frontMatter": {
+                "sidebar_position": 40,
+                "sidebar_label": "Customize Business Central"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Working with translation files",
+                "permalink": "/Dynamics 365 Business Central/Development/translation-files"
+              },
+              "next": {
+                "title": "Python",
+                "permalink": "/category/python"
               }
             },
             {
@@ -172,8 +245,8 @@
                 "permalink": "/Dynamics 365 Business Central/Development/getting-started"
               },
               "next": {
-                "title": "Python",
-                "permalink": "/category/python"
+                "title": "Customize Business Central",
+                "permalink": "/Dynamics 365 Business Central/Development/customize"
               }
             },
             {
@@ -226,8 +299,8 @@
                 "permalink": "/category/python"
               },
               "next": {
-                "title": "NumPy",
-                "permalink": "/Python/numpy"
+                "title": "Object-Oriented Programming",
+                "permalink": "/Python/oop"
               }
             },
             {
@@ -242,15 +315,42 @@
               "unlisted": false,
               "tags": [],
               "version": "current",
-              "sidebarPosition": 30,
+              "sidebarPosition": 20,
               "frontMatter": {
-                "sidebar_position": 30,
+                "sidebar_position": 20,
                 "sidebar_label": "File I/O"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
+                "title": "Object-Oriented Programming",
+                "permalink": "/Python/oop"
+              },
+              "next": {
                 "title": "Pandas",
                 "permalink": "/Python/pandas"
+              }
+            },
+            {
+              "id": "Python/flask",
+              "title": "flask",
+              "description": "",
+              "source": "@site/docs/Python/flask.md",
+              "sourceDirName": "Python",
+              "slug": "/Python/flask",
+              "permalink": "/Python/flask",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 50,
+              "frontMatter": {
+                "sidebar_position": 50,
+                "sidebar_label": "Flask"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "NumPy",
+                "permalink": "/Python/numpy"
               },
               "next": {
                 "title": "Udacity Learning Path",
@@ -260,7 +360,7 @@
             {
               "id": "Python/numpy",
               "title": "Introduction",
-              "description": "NumPy short for Numerical Python. NumPy is a fundemental package for scientific computing in Python.It is a Python library that provides a multidimensional array object, various derived objects (such as masked arrays and matrices),and an assortment of routines for fast operations on arrays, including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation and much more.",
+              "description": "NumPy",
               "source": "@site/docs/Python/numpy.md",
               "sourceDirName": "Python",
               "slug": "/Python/numpy",
@@ -269,10 +369,37 @@
               "unlisted": false,
               "tags": [],
               "version": "current",
+              "sidebarPosition": 40,
+              "frontMatter": {
+                "sidebar_position": 40,
+                "sidebar_label": "NumPy"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Pandas",
+                "permalink": "/Python/pandas"
+              },
+              "next": {
+                "title": "Flask",
+                "permalink": "/Python/flask"
+              }
+            },
+            {
+              "id": "Python/oop",
+              "title": "oop",
+              "description": "",
+              "source": "@site/docs/Python/oop.md",
+              "sourceDirName": "Python",
+              "slug": "/Python/oop",
+              "permalink": "/Python/oop",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
               "sidebarPosition": 10,
               "frontMatter": {
                 "sidebar_position": 10,
-                "sidebar_label": "NumPy"
+                "sidebar_label": "Object-Oriented Programming"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -280,14 +407,14 @@
                 "permalink": "/Python/About"
               },
               "next": {
-                "title": "Pandas",
-                "permalink": "/Python/pandas"
+                "title": "File I/O",
+                "permalink": "/Python/file-i-o"
               }
             },
             {
               "id": "Python/pandas",
               "title": "Introduction",
-              "description": "Pandas is a fast, powerful, flexible and open source data and manipulation tool, built on top of Python programming language.",
+              "description": "NumPy",
               "source": "@site/docs/Python/pandas.md",
               "sourceDirName": "Python",
               "slug": "/Python/pandas",
@@ -296,19 +423,19 @@
               "unlisted": false,
               "tags": [],
               "version": "current",
-              "sidebarPosition": 20,
+              "sidebarPosition": 30,
               "frontMatter": {
-                "sidebar_position": 20,
+                "sidebar_position": 30,
                 "sidebar_label": "Pandas"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "NumPy",
-                "permalink": "/Python/numpy"
-              },
-              "next": {
                 "title": "File I/O",
                 "permalink": "/Python/file-i-o"
+              },
+              "next": {
+                "title": "NumPy",
+                "permalink": "/Python/numpy"
               }
             },
             {
@@ -386,6 +513,10 @@
               "previous": {
                 "title": "Course Outline",
                 "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline"
+              },
+              "next": {
+                "title": "AI & ML",
+                "permalink": "/category/ai--ml"
               }
             },
             {
@@ -627,6 +758,11 @@
                         "type": "doc",
                         "id": "Dynamics 365 Business Central/Development/translation-files",
                         "label": "Working with translation files"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Dynamics 365 Business Central/Development/customize",
+                        "label": "Customize Business Central"
                       }
                     ],
                     "link": {
@@ -655,8 +791,13 @@
                   },
                   {
                     "type": "doc",
-                    "id": "Python/numpy",
-                    "label": "NumPy"
+                    "id": "Python/oop",
+                    "label": "Object-Oriented Programming"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "Python/file-i-o",
+                    "label": "File I/O"
                   },
                   {
                     "type": "doc",
@@ -665,8 +806,13 @@
                   },
                   {
                     "type": "doc",
-                    "id": "Python/file-i-o",
-                    "label": "File I/O"
+                    "id": "Python/numpy",
+                    "label": "NumPy"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "Python/flask",
+                    "label": "Flask"
                   }
                 ],
                 "link": {
@@ -776,6 +922,41 @@
                   "slug": "/category/udacity-learning-path",
                   "permalink": "/category/udacity-learning-path"
                 }
+              },
+              {
+                "type": "category",
+                "label": "AI & ML",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "Computer Vision",
+                    "collapsible": true,
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+                        "label": "Prebuilt Form Recognizer Models"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "AI Engineer/Computer Vision/custom-form-recognizer-model"
+                      }
+                    ],
+                    "link": {
+                      "type": "generated-index",
+                      "slug": "/category/computer-vision",
+                      "permalink": "/category/computer-vision"
+                    }
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "slug": "/category/ai--ml",
+                  "permalink": "/category/ai--ml"
+                }
               }
             ]
           }
@@ -788,9 +969,9 @@
       "blogSidebarTitle": "Recent posts",
       "blogPosts": [
         {
-          "id": "first-blog-post",
+          "id": "5-hour-rule",
           "metadata": {
-            "permalink": "/blog/first-blog-post",
+            "permalink": "/blog/5-hour-rule",
             "source": "@site/blog/2023-11-28-first-blog-post.md",
             "title": "The 5-Hour Rule, How Successful People Stay Relevant Through Continuous Learning",
             "description": "What sets successful people apart from the rest? Is it their intelligence, their skills, or their work ethic? While these factors certainly play a role, there's another important element that many successful people share: a commitment to continuous learning.",
@@ -798,34 +979,29 @@
             "formattedDate": "November 28, 2023",
             "tags": [
               {
-                "label": "hola",
-                "permalink": "/blog/tags/hola"
-              },
-              {
-                "label": "docusaurus",
-                "permalink": "/blog/tags/docusaurus"
+                "label": "learning",
+                "permalink": "/blog/tags/learning"
               }
             ],
-            "readingTime": 1.13,
+            "readingTime": 2.115,
             "hasTruncateMarker": false,
             "authors": [],
             "frontMatter": {
-              "slug": "first-blog-post",
+              "slug": "5-hour-rule",
               "title": "The 5-Hour Rule, How Successful People Stay Relevant Through Continuous Learning",
               "tags": [
-                "hola",
-                "docusaurus"
+                "learning"
               ]
             },
             "unlisted": false
           },
-          "content": "What sets successful people apart from the rest? Is it their intelligence, their skills, or their work ethic? While these factors certainly play a role, there's another important element that many successful people share: a commitment to continuous learning.\n\n**So, what exactly is the 5-hour rule, and how can it help you stay relevant and successful in your own career? Let's explore.**\n\nThe 5-hour rule means spending 1 hour a day, 5 days a week on learning and personal growth. This deliberate learning and dedication to personal development can make a significant impact over time. This could include reading, listening to podcasts, watching Ted Talks, attending workshops or some upskilling sessions, or practicing a new skill.\n\nThis 5-hour rule can help you maintain your industry relevance and keep your skills finely honed, particularly important in today's fast-paced and ever-changing job market. By doing so, you become better equipped to tackle new challenges and adjust to changes within your field.\n\nSome examples of successful people who practice the 5-hour rule include Bill Gates, who reads for one hour every night, and Warren Buffett, who spends up to six hours a day reading. Both Gates and Buffett credit their commitment to continuous learning as a key factor in their success. You don't have to be a billionaire to benefit from the 5-hour rule. But this habit to make"
+          "content": "What sets successful people apart from the rest? Is it their intelligence, their skills, or their work ethic? While these factors certainly play a role, there's another important element that many successful people share: a commitment to continuous learning.\n\n**So, what exactly is the 5-hour rule, and how can it help you stay relevant and successful in your own career? Let's explore.**\n\nThe 5-hour rule means spending 1 hour a day, 5 days a week on learning and personal growth. This deliberate learning and dedication to personal development can make a significant impact over time. This could include reading, listening to podcasts, watching Ted Talks, attending workshops or some upskilling sessions, or practicing a new skill.\n\nThis 5-hour rule can help you maintain your industry relevance and keep your skills finely honed, particularly important in today's fast-paced and ever-changing job market. By doing so, you become better equipped to tackle new challenges and adjust to changes within your field.\n\nSome examples of successful people who practice the 5-hour rule include Bill Gates, who reads for one hour every night, and Warren Buffett, who spends up to six hours a day reading. Both Gates and Buffett credit their commitment to continuous learning as a key factor in their success. You don't have to be a billionaire to benefit from the 5-hour rule. But this habit to make a commitment to continuous learning can definitely make you successful!\n\n**Here are some tips for implementing the 5-hour rule in your own life:**\n\n- Start small: Don't feel like you need to spend five hours a day on deliberate learning right away. Start with just one hour a day and build from there.\n\n- Make it a habit: Schedule your daily learning time into your calendar and treat it like any other appointment or meeting.\n\n- Choose the right activities: Make sure the activities you choose for your daily learning time are relevant to your goals and interests. This could include reading books or articles, listening to podcasts or audiobooks, or attending workshops or training sessions.\n\n- Be consistent: Stick to your commitment to daily learning, even when life gets busy or stressful. \n\nRemember that small, consistent efforts can lead to big results over time. By committing to continuous learning, you can stay relevant and successful in your career, no matter what challenges or changes come your way. So, why not give the 5-hour rule a try and see where it takes you? Who knows, you just might become one of the world's most successful people yourself."
         }
       ],
       "blogListPaginated": [
         {
           "items": [
-            "first-blog-post"
+            "5-hour-rule"
           ],
           "metadata": {
             "permalink": "/blog",
@@ -839,43 +1015,19 @@
         }
       ],
       "blogTags": {
-        "/blog/tags/hola": {
-          "label": "hola",
+        "/blog/tags/learning": {
+          "label": "learning",
           "items": [
-            "first-blog-post"
+            "5-hour-rule"
           ],
-          "permalink": "/blog/tags/hola",
+          "permalink": "/blog/tags/learning",
           "pages": [
             {
               "items": [
-                "first-blog-post"
+                "5-hour-rule"
               ],
               "metadata": {
-                "permalink": "/blog/tags/hola",
-                "page": 1,
-                "postsPerPage": 10,
-                "totalPages": 1,
-                "totalCount": 1,
-                "blogDescription": "Blog",
-                "blogTitle": "Blog"
-              }
-            }
-          ],
-          "unlisted": false
-        },
-        "/blog/tags/docusaurus": {
-          "label": "docusaurus",
-          "items": [
-            "first-blog-post"
-          ],
-          "permalink": "/blog/tags/docusaurus",
-          "pages": [
-            {
-              "items": [
-                "first-blog-post"
-              ],
-              "metadata": {
-                "permalink": "/blog/tags/docusaurus",
+                "permalink": "/blog/tags/learning",
                 "page": 1,
                 "postsPerPage": 10,
                 "totalPages": 1,
