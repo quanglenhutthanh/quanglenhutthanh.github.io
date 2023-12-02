@@ -3,15 +3,17 @@ sidebar_position: 1
 sidebar_label : "About"
 ---
 
+![image](img/python.jpeg)
+
 Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:
 
 
 ## Usage:
 
-Web Development: Building websites, web applications, and APIs.
+**Web Development**: Building websites, web applications, and APIs.
 
-Data Science: Data analysis, visualization, and machine learning.
+**Data Science**: Data analysis, visualization, and machine learning.
 
-Scripting: Automating repetitive tasks, system administration, and more.
+**Scripting**: Automating repetitive tasks, system administration, and more.
 
-Education: Widely used in educational settings due to its readability and ease of learning.
+**Education**: Widely used in educational settings due to its readability and ease of learning.
