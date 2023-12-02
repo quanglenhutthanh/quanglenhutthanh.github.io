@@ -9,8 +9,8 @@
     <icon>https://quanglnt.info/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[The 5-Hour Rule, How Successful People Stay Relevant Through Continuous Learning]]></title>
-        <id>https://quanglnt.info/blog/first-blog-post</id>
-        <link href="https://quanglnt.info/blog/first-blog-post"/>
+        <id>https://quanglnt.info/blog/5-hour-rule</id>
+        <link href="https://quanglnt.info/blog/5-hour-rule"/>
         <updated>2023-11-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[What sets successful people apart from the rest? Is it their intelligence, their skills, or their work ethic? While these factors certainly play a role, there's another important element that many successful people share: a commitment to continuous learning.]]></summary>
         <content type="html"><![CDATA[<p>What sets successful people apart from the rest? Is it their intelligence, their skills, or their work ethic? While these factors certainly play a role, there's another important element that many successful people share: a commitment to continuous learning.</p>
@@ -34,7 +34,6 @@
 </li>
 </ul>
 <p>Remember that small, consistent efforts can lead to big results over time. By committing to continuous learning, you can stay relevant and successful in your career, no matter what challenges or changes come your way. So, why not give the 5-hour rule a try and see where it takes you? Who knows, you just might become one of the world's most successful people yourself.</p>]]></content>
-        <category label="hola" term="hola"/>
-        <category label="docusaurus" term="docusaurus"/>
+        <category label="learning" term="learning"/>
     </entry>
 </feed>
