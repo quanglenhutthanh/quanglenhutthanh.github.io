@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksrc=self.webpackChunksrc||[]).push([[9932],{9759:t=>{t.exports=JSON.parse('{"title":"Udacity Learning Path","slug":"/category/udacity-learning-path","permalink":"/category/udacity-learning-path","navigation":{"previous":{"title":"Flask","permalink":"/Python/flask"},"next":{"title":"About Udacity","permalink":"/Udacity Courses/About"}}}')}}]);
