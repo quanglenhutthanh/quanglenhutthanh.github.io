@@ -2,6 +2,11 @@
   {
     "label": "learning",
     "permalink": "/blog/tags/learning",
+    "count": 2
+  },
+  {
+    "label": "AI",
+    "permalink": "/blog/tags/ai",
     "count": 1
   }
 ]

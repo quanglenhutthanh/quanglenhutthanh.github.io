@@ -42,7 +42,7 @@
       "plugin": "plugin---docusaurus-debug-3-fa-711"
     }
   },
-  "/blog-d8d": {
+  "/blog-fc6": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blog-884-212"
@@ -50,18 +50,21 @@
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
       {
-        "content": "content---blog-8-c-6-086"
+        "content": "content---blogeb-4-78c"
+      },
+      {
+        "content": "content---blogd-62-0ee"
       }
     ],
     "metadata": "metadata---blogb-2-b-df1"
   },
-  "/blog/5-hour-rule-76c": {
+  "/blog/5-hour-rule-0d2": {
     "__comp": "__comp---theme-blog-post-pageccc-cab",
     "__context": {
       "plugin": "plugin---blog-884-212"
     },
     "sidebar": "sidebar---blog-814-8ac",
-    "content": "content---blog-5-hour-rule-126-1b8"
+    "content": "content---blog-5-hour-rule-6-c-2-de4"
   },
   "/blog/archive-47c": {
     "__comp": "__comp---theme-blog-archive-page-9-e-4-1d8",
@@ -69,6 +72,14 @@
       "plugin": "plugin---blog-884-212"
     },
     "archive": "archive---blog-archiveb-2-f-393"
+  },
+  "/blog/learning-in-the-age-ai-8a3": {
+    "__comp": "__comp---theme-blog-post-pageccc-cab",
+    "__context": {
+      "plugin": "plugin---blog-884-212"
+    },
+    "sidebar": "sidebar---blog-814-8ac",
+    "content": "content---blog-learning-in-the-age-aibba-0f8"
   },
   "/blog/tags-706": {
     "__comp": "__comp---theme-blog-tags-list-page-01-a-d0b",
@@ -78,7 +89,7 @@
     "sidebar": "sidebar---blog-814-8ac",
     "tags": "tags---blog-tagsa-70-da2"
   },
-  "/blog/tags/learning-5ab": {
+  "/blog/tags/ai-730": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
       "plugin": "plugin---blog-884-212"
@@ -86,7 +97,24 @@
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
       {
-        "content": "content---blog-8-c-6-086"
+        "content": "content---blogeb-4-78c"
+      }
+    ],
+    "tag": "tag---blog-tags-aif-32-543",
+    "listMetadata": "listMetadata---blog-tags-aiab-4-9b4"
+  },
+  "/blog/tags/learning-4c5": {
+    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
+    "__context": {
+      "plugin": "plugin---blog-884-212"
+    },
+    "sidebar": "sidebar---blog-814-8ac",
+    "items": [
+      {
+        "content": "content---blogeb-4-78c"
+      },
+      {
+        "content": "content---blogd-62-0ee"
       }
     ],
     "tag": "tag---blog-tags-learning-9-a-7-b79",
@@ -99,18 +127,22 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-5ac": {
+  "/-217": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---85-d-aca"
     }
   },
-  "/-e6f": {
+  "/-12a": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-89c": {
+  "/-e3d": {
     "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/AI Engineer/AI-621": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-engineer-a-icb-9-956"
   },
   "/AI Engineer/Computer Vision/custom-form-recognizer-model-3ba": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -119,6 +151,18 @@
   "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models-5c0": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---ai-engineer-computer-vision-prebuilt-form-recognizer-models-311-c48"
+  },
+  "/AI Engineer/Knowledge Mining/About-09d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-engineer-knowledge-mining-about-874-b0b"
+  },
+  "/AI Engineer/Natural Language Processing (NLP)/About-732": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-engineer-natural-language-processing-nlp-about-50-c-900"
+  },
+  "/AI Engineer/roadmap-88a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-engineer-roadmap-7-d-5-a1c"
   },
   "/category/ai--ml-d80": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -147,6 +191,14 @@
   "/category/intermediate-python-422": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-intermediate-python-48-b-ff2"
+  },
+  "/category/knowledge-mining-647": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-knowledge-miningea-8-384"
+  },
+  "/category/natural-language-processing-nlp-88c": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-natural-language-processing-nlpcc-2-eb9"
   },
   "/category/python-06c": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -207,6 +259,10 @@
   "/Python/pandas-5d6": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---python-pandasf-13-d83"
+  },
+  "/Python/roadmap-2e1": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---python-roadmap-6-c-6-967"
   },
   "/Udacity Courses/About-3f5": {
     "__comp": "__comp---theme-doc-item-178-a40",

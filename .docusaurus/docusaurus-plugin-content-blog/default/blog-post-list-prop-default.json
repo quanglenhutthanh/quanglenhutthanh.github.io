@@ -2,6 +2,11 @@
   "title": "Recent posts",
   "items": [
     {
+      "title": "Learning in the Age of AI, Why It Matters for Tech Professionals",
+      "permalink": "/blog/learning-in-the-age-ai",
+      "unlisted": false
+    },
+    {
       "title": "The 5-Hour Rule, How Successful People Stay Relevant Through Continuous Learning",
       "permalink": "/blog/5-hour-rule",
       "unlisted": false

@@ -16,6 +16,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "AI Engineer/AI",
+              "path": "/AI Engineer/AI",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "AI Engineer/Computer Vision/custom-form-recognizer-model",
               "path": "/AI Engineer/Computer Vision/custom-form-recognizer-model",
               "sidebar": "tutorialSidebar"
@@ -23,6 +28,21 @@
             {
               "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
               "path": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "AI Engineer/Knowledge Mining/About",
+              "path": "/AI Engineer/Knowledge Mining/About",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "AI Engineer/Natural Language Processing (NLP)/About",
+              "path": "/AI Engineer/Natural Language Processing (NLP)/About",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "AI Engineer/roadmap",
+              "path": "/AI Engineer/roadmap",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -88,6 +108,11 @@
             {
               "id": "Python/pandas",
               "path": "/Python/pandas",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Python/roadmap",
+              "path": "/Python/roadmap",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -183,6 +208,16 @@
             {
               "id": "/category/computer-vision",
               "path": "/category/computer-vision",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/natural-language-processing-nlp",
+              "path": "/category/natural-language-processing-nlp",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/knowledge-mining",
+              "path": "/category/knowledge-mining",
               "sidebar": "tutorialSidebar"
             }
           ],

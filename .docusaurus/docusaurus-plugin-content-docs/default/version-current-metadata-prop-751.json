@@ -98,6 +98,13 @@
           },
           {
             "type": "link",
+            "label": "Python Roadmap",
+            "href": "/Python/roadmap",
+            "docId": "Python/roadmap",
+            "unlisted": false
+          },
+          {
+            "type": "link",
             "label": "Object-Oriented Programming",
             "href": "/Python/oop",
             "docId": "Python/oop",
@@ -247,6 +254,20 @@
         "collapsed": true,
         "items": [
           {
+            "type": "link",
+            "label": "The Age of AI",
+            "href": "/AI Engineer/AI",
+            "docId": "AI Engineer/AI",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "AI and Data Scientist Roadmap",
+            "href": "/AI Engineer/roadmap",
+            "docId": "AI Engineer/roadmap",
+            "unlisted": false
+          },
+          {
             "type": "category",
             "label": "Computer Vision",
             "collapsible": true,
@@ -268,6 +289,38 @@
               }
             ],
             "href": "/category/computer-vision"
+          },
+          {
+            "type": "category",
+            "label": "Natural Language Processing (NLP)",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Natural Language Processing",
+                "href": "/AI Engineer/Natural Language Processing (NLP)/About",
+                "docId": "AI Engineer/Natural Language Processing (NLP)/About",
+                "unlisted": false
+              }
+            ],
+            "href": "/category/natural-language-processing-nlp"
+          },
+          {
+            "type": "category",
+            "label": "Knowledge Mining",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Computer Vision",
+                "href": "/AI Engineer/Knowledge Mining/About",
+                "docId": "AI Engineer/Knowledge Mining/About",
+                "unlisted": false
+              }
+            ],
+            "href": "/category/knowledge-mining"
           }
         ],
         "href": "/category/ai--ml"
@@ -281,6 +334,12 @@
       "description": "img",
       "sidebar": "tutorialSidebar"
     },
+    "AI Engineer/AI": {
+      "id": "AI Engineer/AI",
+      "title": "What is AI",
+      "description": "image",
+      "sidebar": "tutorialSidebar"
+    },
     "AI Engineer/Computer Vision/custom-form-recognizer-model": {
       "id": "AI Engineer/Computer Vision/custom-form-recognizer-model",
       "title": "Custom Form Recognizer Model",
@@ -291,6 +350,24 @@
       "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
       "title": "prebuilt-form-recognizer-models",
       "description": "This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI Engineer/Knowledge Mining/About": {
+      "id": "AI Engineer/Knowledge Mining/About",
+      "title": "About",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI Engineer/Natural Language Processing (NLP)/About": {
+      "id": "AI Engineer/Natural Language Processing (NLP)/About",
+      "title": "About",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI Engineer/roadmap": {
+      "id": "AI Engineer/roadmap",
+      "title": "AI and Data Scientist Roadmap",
+      "description": "From Roadmap.sh",
       "sidebar": "tutorialSidebar"
     },
     "CV": {
@@ -349,8 +426,8 @@
     },
     "Python/flask": {
       "id": "Python/flask",
-      "title": "flask",
-      "description": "",
+      "title": "Flask",
+      "description": "Flask",
       "sidebar": "tutorialSidebar"
     },
     "Python/numpy": {
@@ -361,14 +438,20 @@
     },
     "Python/oop": {
       "id": "Python/oop",
-      "title": "oop",
-      "description": "",
+      "title": "Object-Oriented Programming",
+      "description": "OOP",
       "sidebar": "tutorialSidebar"
     },
     "Python/pandas": {
       "id": "Python/pandas",
       "title": "Introduction",
       "description": "NumPy",
+      "sidebar": "tutorialSidebar"
+    },
+    "Python/roadmap": {
+      "id": "Python/roadmap",
+      "title": "Python Roadmap",
+      "description": "From Roadmap.sh",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/About": {

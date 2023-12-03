@@ -39,12 +39,12 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', 'd8d'),
+    component: ComponentCreator('/blog', 'fc6'),
     exact: true
   },
   {
     path: '/blog/5-hour-rule',
-    component: ComponentCreator('/blog/5-hour-rule', '76c'),
+    component: ComponentCreator('/blog/5-hour-rule', '0d2'),
     exact: true
   },
   {
@@ -53,13 +53,23 @@ export default [
     exact: true
   },
   {
+    path: '/blog/learning-in-the-age-ai',
+    component: ComponentCreator('/blog/learning-in-the-age-ai', '8a3'),
+    exact: true
+  },
+  {
     path: '/blog/tags',
     component: ComponentCreator('/blog/tags', '706'),
     exact: true
   },
   {
+    path: '/blog/tags/ai',
+    component: ComponentCreator('/blog/tags/ai', '730'),
+    exact: true
+  },
+  {
     path: '/blog/tags/learning',
-    component: ComponentCreator('/blog/tags/learning', '5ab'),
+    component: ComponentCreator('/blog/tags/learning', '4c5'),
     exact: true
   },
   {
@@ -69,16 +79,22 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '5ac'),
+    component: ComponentCreator('/', '217'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'e6f'),
+        component: ComponentCreator('/', '12a'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '89c'),
+            component: ComponentCreator('/', 'e3d'),
             routes: [
+              {
+                path: '/AI Engineer/AI',
+                component: ComponentCreator('/AI Engineer/AI', '621'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
               {
                 path: '/AI Engineer/Computer Vision/custom-form-recognizer-model',
                 component: ComponentCreator('/AI Engineer/Computer Vision/custom-form-recognizer-model', '3ba'),
@@ -88,6 +104,24 @@ export default [
               {
                 path: '/AI Engineer/Computer Vision/prebuilt-form-recognizer-models',
                 component: ComponentCreator('/AI Engineer/Computer Vision/prebuilt-form-recognizer-models', '5c0'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI Engineer/Knowledge Mining/About',
+                component: ComponentCreator('/AI Engineer/Knowledge Mining/About', '09d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI Engineer/Natural Language Processing (NLP)/About',
+                component: ComponentCreator('/AI Engineer/Natural Language Processing (NLP)/About', '732'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI Engineer/roadmap',
+                component: ComponentCreator('/AI Engineer/roadmap', '88a'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -130,6 +164,18 @@ export default [
               {
                 path: '/category/intermediate-python',
                 component: ComponentCreator('/category/intermediate-python', '422'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/knowledge-mining',
+                component: ComponentCreator('/category/knowledge-mining', '647'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/natural-language-processing-nlp',
+                component: ComponentCreator('/category/natural-language-processing-nlp', '88c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -220,6 +266,12 @@ export default [
               {
                 path: '/Python/pandas',
                 component: ComponentCreator('/Python/pandas', '5d6'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Python/roadmap',
+                component: ComponentCreator('/Python/roadmap', '2e1'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
