@@ -348,7 +348,7 @@
     },
     "AI Engineer/Computer Vision/prebuilt-form-recognizer-models": {
       "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-      "title": "prebuilt-form-recognizer-models",
+      "title": "Prebuilt Form Recognizer Models",
       "description": "This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.",
       "sidebar": "tutorialSidebar"
     },

@@ -2,11 +2,14 @@
 sidebar_position: 10
 sidebar_label : "Prebuilt Form Recognizer Models"
 ---
+
+# Prebuilt Form Recognizer Models
+
 This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.
 
 > Form Recognizer is now **Azure AI Document Intelligence**! As of July 2023. But There are no breaking changes to application programming interfaces (APIs) or SDKs.
 
-## Prebuilt Form Recognizer Models
+## Introduction
 For certain common types of business or personal documents, which share similar information, Azure Form Recognizer has a few prebuilt models that let us extract information found in these documents:
 
 -	Receipts	
