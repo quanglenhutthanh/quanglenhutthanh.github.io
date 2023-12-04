@@ -4,9 +4,6 @@ sidebar_label : "The Age of AI"
 ---
 
 # What is AI
-
-![image](img/AI.jpeg)
-
 AI, Artificial Intelligence is a branch of computer science focused on creating systems that can perform tasks that would require human intelligence. These tasks range from understanding natural language, making decisions, and learning from experience.
 
 ## Different Types of Artificial Intelligence
@@ -24,5 +21,9 @@ AI, Artificial Intelligence is a branch of computer science focused on creating 
 - **Deep Learning**: Deep Learning is a subset of ML that specifically focuses on artificial neural networks. It involves building and training neural networks with multiple layers (hence the term "deep") to learn and represent complex patterns and relationships within data.
 
 - **Data science** is a cross-disciplinary field that uses all of the above, amongst other skills like data analysis, statistics, data visualization, and more, to get insight from data.
+
+## Learning
+
+From Microsoft: https://microsoft.github.io/AI-For-Beginners/
 
 ![image](img/ai_vs_ml_vs_dl_vs_data_science.png)
