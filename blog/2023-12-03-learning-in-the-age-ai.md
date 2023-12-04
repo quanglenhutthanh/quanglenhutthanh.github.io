@@ -12,6 +12,8 @@ tags: [learning, AI]
 
 Artificial intelligence (AI) is transforming every industry, from healthcare to finance to education. As a tech professional, you might think that you are already ahead of the curve when it comes to AI, but the truth is that you need to keep learning and updating your skills to stay relevant and competitive in this fast-changing field.
 
+<!--truncate-->
+
 ## Why is learning so important in the age of AI? Here are some reasons:
 
 - AI is constantly evolving and improving. New algorithms, frameworks, tools, and applications are being developed and deployed every day. To keep up with the latest trends and innovations, you need to learn new concepts, techniques, and best practices.
