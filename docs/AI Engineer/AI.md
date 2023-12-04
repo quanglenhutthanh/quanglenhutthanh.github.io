@@ -22,8 +22,9 @@ AI, Artificial Intelligence is a branch of computer science focused on creating 
 
 - **Data science** is a cross-disciplinary field that uses all of the above, amongst other skills like data analysis, statistics, data visualization, and more, to get insight from data.
 
+![image](img/ai_vs_ml_vs_dl_vs_data_science.png)
+
 ## Learning
 
 From Microsoft: https://microsoft.github.io/AI-For-Beginners/
 
-![image](img/ai_vs_ml_vs_dl_vs_data_science.png)
