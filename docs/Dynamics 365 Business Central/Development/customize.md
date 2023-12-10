@@ -1,5 +1,5 @@
 ---
-sidebar_position: 40
+sidebar_position: 15
 sidebar_label: "Customize Business Central"
 ---
 # Customize Business Central

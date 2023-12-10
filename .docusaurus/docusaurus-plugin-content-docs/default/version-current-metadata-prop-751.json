@@ -44,6 +44,20 @@
             "unlisted": false
           },
           {
+            "type": "link",
+            "label": "Architecture",
+            "href": "/Dynamics 365 Business Central/architecture",
+            "docId": "Dynamics 365 Business Central/architecture",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "History",
+            "href": "/Dynamics 365 Business Central/history",
+            "docId": "Dynamics 365 Business Central/history",
+            "unlisted": false
+          },
+          {
             "type": "category",
             "label": "Development",
             "collapsible": true,
@@ -58,6 +72,13 @@
               },
               {
                 "type": "link",
+                "label": "Customize Business Central",
+                "href": "/Dynamics 365 Business Central/Development/customize",
+                "docId": "Dynamics 365 Business Central/Development/customize",
+                "unlisted": false
+              },
+              {
+                "type": "link",
                 "label": "Getting Started",
                 "href": "/Dynamics 365 Business Central/Development/getting-started",
                 "docId": "Dynamics 365 Business Central/Development/getting-started",
@@ -68,13 +89,6 @@
                 "label": "Working with translation files",
                 "href": "/Dynamics 365 Business Central/Development/translation-files",
                 "docId": "Dynamics 365 Business Central/Development/translation-files",
-                "unlisted": false
-              },
-              {
-                "type": "link",
-                "label": "Customize Business Central",
-                "href": "/Dynamics 365 Business Central/Development/customize",
-                "docId": "Dynamics 365 Business Central/Development/customize",
                 "unlisted": false
               }
             ],
@@ -282,9 +296,16 @@
               },
               {
                 "type": "link",
-                "label": "Custom Form Recognizer Model",
+                "label": "Prebuilt Form Recognizer Models",
                 "href": "/AI Engineer/Computer Vision/custom-form-recognizer-model",
                 "docId": "AI Engineer/Computer Vision/custom-form-recognizer-model",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Azure Face Service",
+                "href": "/AI Engineer/Computer Vision/face-api",
+                "docId": "AI Engineer/Computer Vision/face-api",
                 "unlisted": false
               }
             ],
@@ -337,13 +358,19 @@
     "AI Engineer/AI": {
       "id": "AI Engineer/AI",
       "title": "What is AI",
-      "description": "image",
+      "description": "AI, Artificial Intelligence is a branch of computer science focused on creating systems that can perform tasks that would require human intelligence. These tasks range from understanding natural language, making decisions, and learning from experience.",
       "sidebar": "tutorialSidebar"
     },
     "AI Engineer/Computer Vision/custom-form-recognizer-model": {
       "id": "AI Engineer/Computer Vision/custom-form-recognizer-model",
       "title": "Custom Form Recognizer Model",
       "description": "Sometimes, the prebuilt models are not sufficient to extract information from you unique documents with particular layout of information. In this case, you should develop your own custom Form Recognizer model to meet your unique business requirements.",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI Engineer/Computer Vision/face-api": {
+      "id": "AI Engineer/Computer Vision/face-api",
+      "title": "Azure AI Face",
+      "description": "The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as identification, touchless access control, and face blurring for privacy.",
       "sidebar": "tutorialSidebar"
     },
     "AI Engineer/Computer Vision/prebuilt-form-recognizer-models": {
@@ -382,6 +409,12 @@
       "description": "https://dynamics.microsoft.com/en-us/business-central/overview/",
       "sidebar": "tutorialSidebar"
     },
+    "Dynamics 365 Business Central/architecture": {
+      "id": "Dynamics 365 Business Central/architecture",
+      "title": "Microsoft Dynamics 365 Business Central Architecture",
+      "description": "Architecture",
+      "sidebar": "tutorialSidebar"
+    },
     "Dynamics 365 Business Central/Development/customize": {
       "id": "Dynamics 365 Business Central/Development/customize",
       "title": "Customize Business Central",
@@ -404,6 +437,12 @@
       "id": "Dynamics 365 Business Central/Development/translation-files",
       "title": "Working with translation files",
       "description": "Dynamics 365 Business Central is multi-language enabled, which means you can display the User Interface in different languages. In Dynamics 365 Business Central, this is done by using XLIFF file, which is a standardized format used computer-based translations.",
+      "sidebar": "tutorialSidebar"
+    },
+    "Dynamics 365 Business Central/history": {
+      "id": "Dynamics 365 Business Central/history",
+      "title": "From Navision to Microsoft Dynamics 365 Business Central",
+      "description": "Navision, a Danish software company founded in 1984, created an ERP (Enterprise Resource Planning) solution known as Navision Financials. This platform offered comprehensive financial and operational management for businesses. Over time, Navision evolved its product lineup, incorporating functionalities beyond finance, like supply chain management and CRM, becoming known as Navision Attain.",
       "sidebar": "tutorialSidebar"
     },
     "intro": {

@@ -4,90 +4,90 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/__docusaurus/debug',
-    component: ComponentCreator('/__docusaurus/debug', 'f71'),
+    component: ComponentCreator('/__docusaurus/debug', 'a37'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/config',
-    component: ComponentCreator('/__docusaurus/debug/config', '196'),
+    component: ComponentCreator('/__docusaurus/debug/config', '7d5'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/content',
-    component: ComponentCreator('/__docusaurus/debug/content', 'f21'),
+    component: ComponentCreator('/__docusaurus/debug/content', 'c3b'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/globalData',
-    component: ComponentCreator('/__docusaurus/debug/globalData', '29e'),
+    component: ComponentCreator('/__docusaurus/debug/globalData', '905'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/metadata',
-    component: ComponentCreator('/__docusaurus/debug/metadata', '7ee'),
+    component: ComponentCreator('/__docusaurus/debug/metadata', '697'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/registry',
-    component: ComponentCreator('/__docusaurus/debug/registry', 'a82'),
+    component: ComponentCreator('/__docusaurus/debug/registry', 'b9d'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/routes',
-    component: ComponentCreator('/__docusaurus/debug/routes', '76a'),
+    component: ComponentCreator('/__docusaurus/debug/routes', 'e69'),
     exact: true
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', 'fc6'),
+    component: ComponentCreator('/blog', 'f6e'),
     exact: true
   },
   {
     path: '/blog/5-hour-rule',
-    component: ComponentCreator('/blog/5-hour-rule', '0d2'),
+    component: ComponentCreator('/blog/5-hour-rule', '850'),
     exact: true
   },
   {
     path: '/blog/archive',
-    component: ComponentCreator('/blog/archive', '47c'),
+    component: ComponentCreator('/blog/archive', '250'),
     exact: true
   },
   {
     path: '/blog/learning-in-the-age-ai',
-    component: ComponentCreator('/blog/learning-in-the-age-ai', '8a3'),
+    component: ComponentCreator('/blog/learning-in-the-age-ai', '2d8'),
     exact: true
   },
   {
     path: '/blog/tags',
-    component: ComponentCreator('/blog/tags', '706'),
+    component: ComponentCreator('/blog/tags', 'e62'),
     exact: true
   },
   {
     path: '/blog/tags/ai',
-    component: ComponentCreator('/blog/tags/ai', '730'),
+    component: ComponentCreator('/blog/tags/ai', '2de'),
     exact: true
   },
   {
     path: '/blog/tags/learning',
-    component: ComponentCreator('/blog/tags/learning', '4c5'),
+    component: ComponentCreator('/blog/tags/learning', '259'),
     exact: true
   },
   {
     path: '/markdown-page',
-    component: ComponentCreator('/markdown-page', '3ea'),
+    component: ComponentCreator('/markdown-page', '690'),
     exact: true
   },
   {
     path: '/',
-    component: ComponentCreator('/', '217'),
+    component: ComponentCreator('/', 'e52'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '12a'),
+        component: ComponentCreator('/', '88a'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', 'e3d'),
+            component: ComponentCreator('/', 'a4f'),
             routes: [
               {
                 path: '/AI Engineer/AI',
@@ -98,6 +98,12 @@ export default [
               {
                 path: '/AI Engineer/Computer Vision/custom-form-recognizer-model',
                 component: ComponentCreator('/AI Engineer/Computer Vision/custom-form-recognizer-model', '3ba'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI Engineer/Computer Vision/face-api',
+                component: ComponentCreator('/AI Engineer/Computer Vision/face-api', '317'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -204,6 +210,12 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/Dynamics 365 Business Central/architecture',
+                component: ComponentCreator('/Dynamics 365 Business Central/architecture', '490'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/Dynamics 365 Business Central/Development/customize',
                 component: ComponentCreator('/Dynamics 365 Business Central/Development/customize', 'cbb'),
                 exact: true,
@@ -224,6 +236,12 @@ export default [
               {
                 path: '/Dynamics 365 Business Central/Development/translation-files',
                 component: ComponentCreator('/Dynamics 365 Business Central/Development/translation-files', '887'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Dynamics 365 Business Central/history',
+                component: ComponentCreator('/Dynamics 365 Business Central/history', '1e9'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

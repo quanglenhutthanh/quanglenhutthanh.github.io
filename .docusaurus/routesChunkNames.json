@@ -1,51 +1,51 @@
 {
-  "/__docusaurus/debug-f71": {
+  "/__docusaurus/debug-a37": {
     "__comp": "__comp---theme-debug-config-23-a-2ff",
     "__context": {
-      "plugin": "plugin---docusaurus-debug-3-fa-711"
+      "plugin": "plugin---docusaurus-debug-364-c4b"
     }
   },
-  "/__docusaurus/debug/config-196": {
+  "/__docusaurus/debug/config-7d5": {
     "__comp": "__comp---theme-debug-config-23-a-2ff",
     "__context": {
-      "plugin": "plugin---docusaurus-debug-3-fa-711"
+      "plugin": "plugin---docusaurus-debug-364-c4b"
     }
   },
-  "/__docusaurus/debug/content-f21": {
+  "/__docusaurus/debug/content-c3b": {
     "__comp": "__comp---theme-debug-contentba-8-ce7",
     "__context": {
-      "plugin": "plugin---docusaurus-debug-3-fa-711"
+      "plugin": "plugin---docusaurus-debug-364-c4b"
     },
     "allContent": "allContent---docusaurus-debug-content-246-9aa"
   },
-  "/__docusaurus/debug/globalData-29e": {
+  "/__docusaurus/debug/globalData-905": {
     "__comp": "__comp---theme-debug-global-dataede-0fa",
     "__context": {
-      "plugin": "plugin---docusaurus-debug-3-fa-711"
+      "plugin": "plugin---docusaurus-debug-364-c4b"
     }
   },
-  "/__docusaurus/debug/metadata-7ee": {
+  "/__docusaurus/debug/metadata-697": {
     "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
     "__context": {
-      "plugin": "plugin---docusaurus-debug-3-fa-711"
+      "plugin": "plugin---docusaurus-debug-364-c4b"
     }
   },
-  "/__docusaurus/debug/registry-a82": {
+  "/__docusaurus/debug/registry-b9d": {
     "__comp": "__comp---theme-debug-registry-679-501",
     "__context": {
-      "plugin": "plugin---docusaurus-debug-3-fa-711"
+      "plugin": "plugin---docusaurus-debug-364-c4b"
     }
   },
-  "/__docusaurus/debug/routes-76a": {
+  "/__docusaurus/debug/routes-e69": {
     "__comp": "__comp---theme-debug-routes-946-699",
     "__context": {
-      "plugin": "plugin---docusaurus-debug-3-fa-711"
+      "plugin": "plugin---docusaurus-debug-364-c4b"
     }
   },
-  "/blog-fc6": {
+  "/blog-f6e": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
-      "plugin": "plugin---blog-884-212"
+      "plugin": "plugin---blogb-8-d-777"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
@@ -58,41 +58,41 @@
     ],
     "metadata": "metadata---blogb-2-b-df1"
   },
-  "/blog/5-hour-rule-0d2": {
+  "/blog/5-hour-rule-850": {
     "__comp": "__comp---theme-blog-post-pageccc-cab",
     "__context": {
-      "plugin": "plugin---blog-884-212"
+      "plugin": "plugin---blogb-8-d-777"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "content": "content---blog-5-hour-rule-6-c-2-de4"
   },
-  "/blog/archive-47c": {
+  "/blog/archive-250": {
     "__comp": "__comp---theme-blog-archive-page-9-e-4-1d8",
     "__context": {
-      "plugin": "plugin---blog-884-212"
+      "plugin": "plugin---blogb-8-d-777"
     },
     "archive": "archive---blog-archiveb-2-f-393"
   },
-  "/blog/learning-in-the-age-ai-8a3": {
+  "/blog/learning-in-the-age-ai-2d8": {
     "__comp": "__comp---theme-blog-post-pageccc-cab",
     "__context": {
-      "plugin": "plugin---blog-884-212"
+      "plugin": "plugin---blogb-8-d-777"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "content": "content---blog-learning-in-the-age-aibba-0f8"
   },
-  "/blog/tags-706": {
+  "/blog/tags-e62": {
     "__comp": "__comp---theme-blog-tags-list-page-01-a-d0b",
     "__context": {
-      "plugin": "plugin---blog-884-212"
+      "plugin": "plugin---blogb-8-d-777"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "tags": "tags---blog-tagsa-70-da2"
   },
-  "/blog/tags/ai-730": {
+  "/blog/tags/ai-2de": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
-      "plugin": "plugin---blog-884-212"
+      "plugin": "plugin---blogb-8-d-777"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
@@ -103,10 +103,10 @@
     "tag": "tag---blog-tags-aif-32-543",
     "listMetadata": "listMetadata---blog-tags-aiab-4-9b4"
   },
-  "/blog/tags/learning-4c5": {
+  "/blog/tags/learning-259": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
-      "plugin": "plugin---blog-884-212"
+      "plugin": "plugin---blogb-8-d-777"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
@@ -120,24 +120,24 @@
     "tag": "tag---blog-tags-learning-9-a-7-b79",
     "listMetadata": "listMetadata---blog-tags-learning-643-3e1"
   },
-  "/markdown-page-3ea": {
+  "/markdown-page-690": {
     "__comp": "__comp---theme-mdx-page-1-f-3-b90",
     "__context": {
-      "plugin": "plugin---markdown-page-74-a-38d"
+      "plugin": "plugin---markdown-page-749-8c0"
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-217": {
+  "/-e52": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
-      "plugin": "plugin---85-d-aca"
+      "plugin": "plugin---256-a45"
     }
   },
-  "/-12a": {
+  "/-88a": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-e3d": {
+  "/-a4f": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/AI Engineer/AI-621": {
@@ -147,6 +147,10 @@
   "/AI Engineer/Computer Vision/custom-form-recognizer-model-3ba": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---ai-engineer-computer-vision-custom-form-recognizer-modelf-6-a-8e2"
+  },
+  "/AI Engineer/Computer Vision/face-api-317": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-engineer-computer-vision-face-api-686-0d1"
   },
   "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models-5c0": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -216,6 +220,10 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-aboutc-21-0a7"
   },
+  "/Dynamics 365 Business Central/architecture-490": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---dynamics-365-business-central-architecture-79-b-ebe"
+  },
   "/Dynamics 365 Business Central/Development/customize-cbb": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-development-customizec-30-e4e"
@@ -231,6 +239,10 @@
   "/Dynamics 365 Business Central/Development/translation-files-887": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-development-translation-files-94-a-0da"
+  },
+  "/Dynamics 365 Business Central/history-1e9": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---dynamics-365-business-central-history-205-072"
   },
   "/intro-283": {
     "__comp": "__comp---theme-doc-item-178-a40",

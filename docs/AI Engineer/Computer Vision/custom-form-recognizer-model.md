@@ -1,3 +1,8 @@
+---
+sidebar_position: 20
+sidebar_label : "Prebuilt Form Recognizer Models"
+---
+
 # Custom Form Recognizer Model 
 
 Sometimes, the prebuilt models are not sufficient to extract information from you unique documents with particular layout of information. In this case, you should develop your own custom Form Recognizer model to meet your unique business requirements.

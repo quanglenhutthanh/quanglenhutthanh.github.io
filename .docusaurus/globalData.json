@@ -26,6 +26,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "AI Engineer/Computer Vision/face-api",
+              "path": "/AI Engineer/Computer Vision/face-api",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
               "path": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
               "sidebar": "tutorialSidebar"
@@ -56,6 +61,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "Dynamics 365 Business Central/architecture",
+              "path": "/Dynamics 365 Business Central/architecture",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "Dynamics 365 Business Central/Development/customize",
               "path": "/Dynamics 365 Business Central/Development/customize",
               "sidebar": "tutorialSidebar"
@@ -73,6 +83,11 @@
             {
               "id": "Dynamics 365 Business Central/Development/translation-files",
               "path": "/Dynamics 365 Business Central/Development/translation-files",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Dynamics 365 Business Central/history",
+              "path": "/Dynamics 365 Business Central/history",
               "sidebar": "tutorialSidebar"
             },
             {
