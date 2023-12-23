@@ -21,6 +21,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "AI/AI Engineer/Getting Started/consume",
+              "path": "/AI/AI Engineer/Getting Started/consume",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "AI/AI Engineer/Getting Started/prepare",
               "path": "/AI/AI Engineer/Getting Started/prepare",
               "sidebar": "tutorialSidebar"

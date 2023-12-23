@@ -69,6 +69,33 @@
               }
             },
             {
+              "id": "AI/AI Engineer/Getting Started/consume",
+              "title": "Introduction",
+              "description": "Azure AI services are cloud-based services that encapsulate AI capabilities. Rather than a single product, you should think of AI services as a set of individual services that you can use as building blocks to compose sophisticated, intelligent applications.",
+              "source": "@site/docs/AI/AI Engineer/Getting Started/consume.md",
+              "sourceDirName": "AI/AI Engineer/Getting Started",
+              "slug": "/AI/AI Engineer/Getting Started/consume",
+              "permalink": "/AI/AI Engineer/Getting Started/consume",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 20,
+              "frontMatter": {
+                "sidebar_position": 20,
+                "sidebar_label": "Create and consume Azure AI services"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Prepare to develop AI solutions on Azure",
+                "permalink": "/AI/AI Engineer/Getting Started/prepare"
+              },
+              "next": {
+                "title": "Computer Vision",
+                "permalink": "/category/computer-vision"
+              }
+            },
+            {
               "id": "AI/AI Engineer/Getting Started/prepare",
               "title": "Introduction",
               "description": "Start a journey to become an AI Engineer",
@@ -91,8 +118,8 @@
                 "permalink": "/category/get-started-with-azure-ai-services"
               },
               "next": {
-                "title": "Computer Vision",
-                "permalink": "/category/computer-vision"
+                "title": "Create and consume Azure AI services",
+                "permalink": "/AI/AI Engineer/Getting Started/consume"
               }
             },
             {
@@ -1249,6 +1276,11 @@
                             "type": "doc",
                             "id": "AI/AI Engineer/Getting Started/prepare",
                             "label": "Prepare to develop AI solutions on Azure"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "AI/AI Engineer/Getting Started/consume",
+                            "label": "Create and consume Azure AI services"
                           }
                         ],
                         "link": {

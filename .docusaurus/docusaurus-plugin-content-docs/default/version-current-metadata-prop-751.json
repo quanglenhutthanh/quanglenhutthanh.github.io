@@ -306,6 +306,13 @@
                     "href": "/AI/AI Engineer/Getting Started/prepare",
                     "docId": "AI/AI Engineer/Getting Started/prepare",
                     "unlisted": false
+                  },
+                  {
+                    "type": "link",
+                    "label": "Create and consume Azure AI services",
+                    "href": "/AI/AI Engineer/Getting Started/consume",
+                    "docId": "AI/AI Engineer/Getting Started/consume",
+                    "unlisted": false
                   }
                 ],
                 "href": "/category/get-started-with-azure-ai-services"
@@ -391,6 +398,12 @@
       "id": "AI/AI",
       "title": "What is AI",
       "description": "AI, Artificial Intelligence is a branch of computer science focused on creating systems that can perform tasks that would require human intelligence. These tasks range from understanding natural language, making decisions, and learning from experience.",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI/AI Engineer/Getting Started/consume": {
+      "id": "AI/AI Engineer/Getting Started/consume",
+      "title": "Introduction",
+      "description": "Azure AI services are cloud-based services that encapsulate AI capabilities. Rather than a single product, you should think of AI services as a set of individual services that you can use as building blocks to compose sophisticated, intelligent applications.",
       "sidebar": "tutorialSidebar"
     },
     "AI/AI Engineer/Getting Started/prepare": {
