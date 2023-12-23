@@ -79,61 +79,73 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'e52'),
+    component: ComponentCreator('/', 'eba'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '88a'),
+        component: ComponentCreator('/', 'e52'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', 'a4f'),
+            component: ComponentCreator('/', 'cd8'),
             routes: [
               {
-                path: '/AI Engineer/AI',
-                component: ComponentCreator('/AI Engineer/AI', '621'),
+                path: '/AI/',
+                component: ComponentCreator('/AI/', 'dde'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI Engineer/Computer Vision/custom-form-recognizer-model',
-                component: ComponentCreator('/AI Engineer/Computer Vision/custom-form-recognizer-model', '3ba'),
+                path: '/AI/AI Engineer/Getting Started/prepare',
+                component: ComponentCreator('/AI/AI Engineer/Getting Started/prepare', 'fdc'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI Engineer/Computer Vision/face-api',
-                component: ComponentCreator('/AI Engineer/Computer Vision/face-api', '317'),
+                path: '/AI/Computer Vision/custom-form-recognizer-model',
+                component: ComponentCreator('/AI/Computer Vision/custom-form-recognizer-model', '399'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI Engineer/Computer Vision/prebuilt-form-recognizer-models',
-                component: ComponentCreator('/AI Engineer/Computer Vision/prebuilt-form-recognizer-models', '5c0'),
+                path: '/AI/Computer Vision/face-api',
+                component: ComponentCreator('/AI/Computer Vision/face-api', 'a78'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI Engineer/Knowledge Mining/About',
-                component: ComponentCreator('/AI Engineer/Knowledge Mining/About', '09d'),
+                path: '/AI/Computer Vision/prebuilt-form-recognizer-models',
+                component: ComponentCreator('/AI/Computer Vision/prebuilt-form-recognizer-models', '7f8'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI Engineer/Natural Language Processing (NLP)/About',
-                component: ComponentCreator('/AI Engineer/Natural Language Processing (NLP)/About', '732'),
+                path: '/AI/Knowledge Mining/About',
+                component: ComponentCreator('/AI/Knowledge Mining/About', '9c9'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI Engineer/roadmap',
-                component: ComponentCreator('/AI Engineer/roadmap', '88a'),
+                path: '/AI/Natural Language Processing (NLP)/About',
+                component: ComponentCreator('/AI/Natural Language Processing (NLP)/About', 'dcf'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/roadmap',
+                component: ComponentCreator('/AI/roadmap', 'd78'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/category/ai--ml',
                 component: ComponentCreator('/category/ai--ml', 'd80'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/ai-engineer-using-azure-services',
+                component: ComponentCreator('/category/ai-engineer-using-azure-services', '1a6'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -168,6 +180,12 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/category/get-started-with-azure-ai-services',
+                component: ComponentCreator('/category/get-started-with-azure-ai-services', '2c6'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/category/intermediate-python',
                 component: ComponentCreator('/category/intermediate-python', '422'),
                 exact: true,
@@ -192,8 +210,8 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/category/udacity-learning-path',
-                component: ComponentCreator('/category/udacity-learning-path', 'cb7'),
+                path: '/category/udacity-learning-projects',
+                component: ComponentCreator('/category/udacity-learning-projects', '808'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -296,6 +314,12 @@ export default [
               {
                 path: '/Udacity Courses/About',
                 component: ComponentCreator('/Udacity Courses/About', '3f5'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/AI Engineer using Microsoft Azure/course_1',
+                component: ComponentCreator('/Udacity Courses/AI Engineer using Microsoft Azure/course_1', '3f4'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

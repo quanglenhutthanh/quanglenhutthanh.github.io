@@ -157,7 +157,7 @@
       },
       {
         "type": "category",
-        "label": "Udacity Learning Path",
+        "label": "Udacity Learning Projects",
         "collapsible": true,
         "collapsed": true,
         "items": [
@@ -254,12 +254,19 @@
                 "href": "/Udacity Courses/AI Engineer using Microsoft Azure/skills",
                 "docId": "Udacity Courses/AI Engineer using Microsoft Azure/skills",
                 "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Project: Automated Passenger Boarding Kiosk",
+                "href": "/Udacity Courses/AI Engineer using Microsoft Azure/course_1",
+                "docId": "Udacity Courses/AI Engineer using Microsoft Azure/course_1",
+                "unlisted": false
               }
             ],
             "href": "/category/ai-engineer-using-microsoft-azure"
           }
         ],
-        "href": "/category/udacity-learning-path"
+        "href": "/category/udacity-learning-projects"
       },
       {
         "type": "category",
@@ -270,16 +277,41 @@
           {
             "type": "link",
             "label": "The Age of AI",
-            "href": "/AI Engineer/AI",
-            "docId": "AI Engineer/AI",
+            "href": "/AI/",
+            "docId": "AI/AI",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "AI and Data Scientist Roadmap",
-            "href": "/AI Engineer/roadmap",
-            "docId": "AI Engineer/roadmap",
+            "href": "/AI/roadmap",
+            "docId": "AI/roadmap",
             "unlisted": false
+          },
+          {
+            "type": "category",
+            "label": "AI Engineer using Azure Services",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "category",
+                "label": "Get started with Azure AI Services",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "link",
+                    "label": "Prepare to develop AI solutions on Azure",
+                    "href": "/AI/AI Engineer/Getting Started/prepare",
+                    "docId": "AI/AI Engineer/Getting Started/prepare",
+                    "unlisted": false
+                  }
+                ],
+                "href": "/category/get-started-with-azure-ai-services"
+              }
+            ],
+            "href": "/category/ai-engineer-using-azure-services"
           },
           {
             "type": "category",
@@ -290,22 +322,22 @@
               {
                 "type": "link",
                 "label": "Prebuilt Form Recognizer Models",
-                "href": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-                "docId": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+                "href": "/AI/Computer Vision/prebuilt-form-recognizer-models",
+                "docId": "AI/Computer Vision/prebuilt-form-recognizer-models",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Prebuilt Form Recognizer Models",
-                "href": "/AI Engineer/Computer Vision/custom-form-recognizer-model",
-                "docId": "AI Engineer/Computer Vision/custom-form-recognizer-model",
+                "href": "/AI/Computer Vision/custom-form-recognizer-model",
+                "docId": "AI/Computer Vision/custom-form-recognizer-model",
                 "unlisted": false
               },
               {
                 "type": "link",
                 "label": "Azure Face Service",
-                "href": "/AI Engineer/Computer Vision/face-api",
-                "docId": "AI Engineer/Computer Vision/face-api",
+                "href": "/AI/Computer Vision/face-api",
+                "docId": "AI/Computer Vision/face-api",
                 "unlisted": false
               }
             ],
@@ -320,8 +352,8 @@
               {
                 "type": "link",
                 "label": "Natural Language Processing",
-                "href": "/AI Engineer/Natural Language Processing (NLP)/About",
-                "docId": "AI Engineer/Natural Language Processing (NLP)/About",
+                "href": "/AI/Natural Language Processing (NLP)/About",
+                "docId": "AI/Natural Language Processing (NLP)/About",
                 "unlisted": false
               }
             ],
@@ -336,8 +368,8 @@
               {
                 "type": "link",
                 "label": "Computer Vision",
-                "href": "/AI Engineer/Knowledge Mining/About",
-                "docId": "AI Engineer/Knowledge Mining/About",
+                "href": "/AI/Knowledge Mining/About",
+                "docId": "AI/Knowledge Mining/About",
                 "unlisted": false
               }
             ],
@@ -355,44 +387,50 @@
       "description": "img",
       "sidebar": "tutorialSidebar"
     },
-    "AI Engineer/AI": {
-      "id": "AI Engineer/AI",
+    "AI/AI": {
+      "id": "AI/AI",
       "title": "What is AI",
       "description": "AI, Artificial Intelligence is a branch of computer science focused on creating systems that can perform tasks that would require human intelligence. These tasks range from understanding natural language, making decisions, and learning from experience.",
       "sidebar": "tutorialSidebar"
     },
-    "AI Engineer/Computer Vision/custom-form-recognizer-model": {
-      "id": "AI Engineer/Computer Vision/custom-form-recognizer-model",
+    "AI/AI Engineer/Getting Started/prepare": {
+      "id": "AI/AI Engineer/Getting Started/prepare",
+      "title": "Introduction",
+      "description": "Start a journey to become an AI Engineer",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI/Computer Vision/custom-form-recognizer-model": {
+      "id": "AI/Computer Vision/custom-form-recognizer-model",
       "title": "Custom Form Recognizer Model",
       "description": "Sometimes, the prebuilt models are not sufficient to extract information from you unique documents with particular layout of information. In this case, you should develop your own custom Form Recognizer model to meet your unique business requirements.",
       "sidebar": "tutorialSidebar"
     },
-    "AI Engineer/Computer Vision/face-api": {
-      "id": "AI Engineer/Computer Vision/face-api",
+    "AI/Computer Vision/face-api": {
+      "id": "AI/Computer Vision/face-api",
       "title": "Azure AI Face",
       "description": "The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as identification, touchless access control, and face blurring for privacy.",
       "sidebar": "tutorialSidebar"
     },
-    "AI Engineer/Computer Vision/prebuilt-form-recognizer-models": {
-      "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+    "AI/Computer Vision/prebuilt-form-recognizer-models": {
+      "id": "AI/Computer Vision/prebuilt-form-recognizer-models",
       "title": "Prebuilt Form Recognizer Models",
       "description": "This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.",
       "sidebar": "tutorialSidebar"
     },
-    "AI Engineer/Knowledge Mining/About": {
-      "id": "AI Engineer/Knowledge Mining/About",
+    "AI/Knowledge Mining/About": {
+      "id": "AI/Knowledge Mining/About",
       "title": "About",
       "description": "",
       "sidebar": "tutorialSidebar"
     },
-    "AI Engineer/Natural Language Processing (NLP)/About": {
-      "id": "AI Engineer/Natural Language Processing (NLP)/About",
+    "AI/Natural Language Processing (NLP)/About": {
+      "id": "AI/Natural Language Processing (NLP)/About",
       "title": "About",
       "description": "",
       "sidebar": "tutorialSidebar"
     },
-    "AI Engineer/roadmap": {
-      "id": "AI Engineer/roadmap",
+    "AI/roadmap": {
+      "id": "AI/roadmap",
       "title": "AI and Data Scientist Roadmap",
       "description": "From Roadmap.sh",
       "sidebar": "tutorialSidebar"
@@ -497,6 +535,12 @@
       "id": "Udacity Courses/About",
       "title": "About Udacity",
       "description": "https://www.udacity.com/",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/AI Engineer using Microsoft Azure/course_1": {
+      "id": "Udacity Courses/AI Engineer using Microsoft Azure/course_1",
+      "title": "Project: Automated Passenger Boarding Kiosk",
+      "description": "",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/AI Engineer using Microsoft Azure/course-outline": {

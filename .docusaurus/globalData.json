@@ -16,38 +16,43 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI Engineer/AI",
-              "path": "/AI Engineer/AI",
+              "id": "AI/AI",
+              "path": "/AI/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI Engineer/Computer Vision/custom-form-recognizer-model",
-              "path": "/AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "id": "AI/AI Engineer/Getting Started/prepare",
+              "path": "/AI/AI Engineer/Getting Started/prepare",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI Engineer/Computer Vision/face-api",
-              "path": "/AI Engineer/Computer Vision/face-api",
+              "id": "AI/Computer Vision/custom-form-recognizer-model",
+              "path": "/AI/Computer Vision/custom-form-recognizer-model",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-              "path": "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "id": "AI/Computer Vision/face-api",
+              "path": "/AI/Computer Vision/face-api",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI Engineer/Knowledge Mining/About",
-              "path": "/AI Engineer/Knowledge Mining/About",
+              "id": "AI/Computer Vision/prebuilt-form-recognizer-models",
+              "path": "/AI/Computer Vision/prebuilt-form-recognizer-models",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI Engineer/Natural Language Processing (NLP)/About",
-              "path": "/AI Engineer/Natural Language Processing (NLP)/About",
+              "id": "AI/Knowledge Mining/About",
+              "path": "/AI/Knowledge Mining/About",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI Engineer/roadmap",
-              "path": "/AI Engineer/roadmap",
+              "id": "AI/Natural Language Processing (NLP)/About",
+              "path": "/AI/Natural Language Processing (NLP)/About",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "AI/roadmap",
+              "path": "/AI/roadmap",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -136,6 +141,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "Udacity Courses/AI Engineer using Microsoft Azure/course_1",
+              "path": "/Udacity Courses/AI Engineer using Microsoft Azure/course_1",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
               "path": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
               "sidebar": "tutorialSidebar"
@@ -196,8 +206,8 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/udacity-learning-path",
-              "path": "/category/udacity-learning-path",
+              "id": "/category/udacity-learning-projects",
+              "path": "/category/udacity-learning-projects",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -218,6 +228,16 @@
             {
               "id": "/category/ai--ml",
               "path": "/category/ai--ml",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/ai-engineer-using-azure-services",
+              "path": "/category/ai-engineer-using-azure-services",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/get-started-with-azure-ai-services",
+              "path": "/category/get-started-with-azure-ai-services",
               "sidebar": "tutorialSidebar"
             },
             {

@@ -127,50 +127,58 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-e52": {
+  "/-eba": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-88a": {
+  "/-e52": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-a4f": {
+  "/-cd8": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
-  "/AI Engineer/AI-621": {
+  "/AI/-dde": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-engineer-a-icb-9-956"
+    "content": "content---ai-65-f-4d5"
   },
-  "/AI Engineer/Computer Vision/custom-form-recognizer-model-3ba": {
+  "/AI/AI Engineer/Getting Started/prepare-fdc": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-engineer-computer-vision-custom-form-recognizer-modelf-6-a-8e2"
+    "content": "content---ai-ai-engineer-getting-started-preparedcc-888"
   },
-  "/AI Engineer/Computer Vision/face-api-317": {
+  "/AI/Computer Vision/custom-form-recognizer-model-399": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-engineer-computer-vision-face-api-686-0d1"
+    "content": "content---ai-computer-vision-custom-form-recognizer-modeld-43-d1c"
   },
-  "/AI Engineer/Computer Vision/prebuilt-form-recognizer-models-5c0": {
+  "/AI/Computer Vision/face-api-a78": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-engineer-computer-vision-prebuilt-form-recognizer-models-311-c48"
+    "content": "content---ai-computer-vision-face-api-3-dd-514"
   },
-  "/AI Engineer/Knowledge Mining/About-09d": {
+  "/AI/Computer Vision/prebuilt-form-recognizer-models-7f8": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-engineer-knowledge-mining-about-874-b0b"
+    "content": "content---ai-computer-vision-prebuilt-form-recognizer-modelsbeb-2b4"
   },
-  "/AI Engineer/Natural Language Processing (NLP)/About-732": {
+  "/AI/Knowledge Mining/About-9c9": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-engineer-natural-language-processing-nlp-about-50-c-900"
+    "content": "content---ai-knowledge-mining-aboutcd-2-e68"
   },
-  "/AI Engineer/roadmap-88a": {
+  "/AI/Natural Language Processing (NLP)/About-dcf": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-engineer-roadmap-7-d-5-a1c"
+    "content": "content---ai-natural-language-processing-nlp-about-067-5e0"
+  },
+  "/AI/roadmap-d78": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-roadmapee-9-8d8"
   },
   "/category/ai--ml-d80": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-ai-ml-7-d-6-2e2"
+  },
+  "/category/ai-engineer-using-azure-services-1a6": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-ai-engineer-using-azure-servicesf-0-e-31c"
   },
   "/category/ai-engineer-using-microsoft-azure-bbb": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -192,6 +200,10 @@
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-dynamics-365-business-central-16-b-c62"
   },
+  "/category/get-started-with-azure-ai-services-2c6": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-get-started-with-azure-ai-servicesdcb-fa0"
+  },
   "/category/intermediate-python-422": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-intermediate-python-48-b-ff2"
@@ -208,9 +220,9 @@
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-python-5-c-9-c7a"
   },
-  "/category/udacity-learning-path-cb7": {
+  "/category/udacity-learning-projects-808": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
-    "categoryGeneratedIndex": "categoryGeneratedIndex---category-udacity-learning-path-013-e17"
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-udacity-learning-projects-009-11e"
   },
   "/CV-93e": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -279,6 +291,10 @@
   "/Udacity Courses/About-3f5": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-about-9-fd-0ac"
+  },
+  "/Udacity Courses/AI Engineer using Microsoft Azure/course_1-3f4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-ai-engineer-using-microsoft-azure-course-1580-020"
   },
   "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline-923": {
     "__comp": "__comp---theme-doc-item-178-a40",
