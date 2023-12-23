@@ -73,7 +73,7 @@ export default {
           "items": [
             {
               "label": "Tutorial",
-              "href": "https://blogs.quanglnt.info/"
+              "href": "https://quanglnt.info/"
             }
           ]
         },
@@ -82,15 +82,15 @@ export default {
           "items": [
             {
               "label": "Stack Overflow",
-              "href": "https://stackoverflow.com/questions/tagged/docusaurus"
+              "href": "#"
             },
             {
               "label": "Discord",
-              "href": "https://discordapp.com/invite/docusaurus"
+              "href": "#"
             },
             {
               "label": "Twitter",
-              "href": "https://twitter.com/docusaurus"
+              "href": "#"
             }
           ]
         },
@@ -103,12 +103,12 @@ export default {
             },
             {
               "label": "GitHub",
-              "href": "https://github.com/facebook/docusaurus"
+              "href": "https://github.com/quanglenhutthanh"
             }
           ]
         }
       ],
-      "copyright": "Copyright © 2023 My Project, Inc. Built with Docusaurus."
+      "copyright": "Copyright © 2023"
     },
     "prism": {
       "theme": {
