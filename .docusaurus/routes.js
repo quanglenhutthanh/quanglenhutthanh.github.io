@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'ba4'),
+    component: ComponentCreator('/', '0c1'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'b6b'),
+        component: ComponentCreator('/', '062'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '466'),
+            component: ComponentCreator('/', '685'),
             routes: [
               {
                 path: '/AI/',
@@ -132,8 +132,8 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI/Natural Language Processing (NLP)/About',
-                component: ComponentCreator('/AI/Natural Language Processing (NLP)/About', 'dcf'),
+                path: '/AI/Natural Language Processing/About',
+                component: ComponentCreator('/AI/Natural Language Processing/About', '2fd'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

@@ -227,13 +227,13 @@
               }
             },
             {
-              "id": "AI/Natural Language Processing (NLP)/About",
+              "id": "AI/Natural Language Processing/About",
               "title": "Natural Language Processing",
               "description": "Natural language processing (NLP) is a common AI problem in which software must be able to work with text or speech in the natural language form that a human user would write or speak. Within the broader area of NLP, natural language understanding (NLU) deals with the problem of determining semantic meaning from natural language - usually by using a trained language model.",
-              "source": "@site/docs/AI/Natural Language Processing (NLP)/About.md",
-              "sourceDirName": "AI/Natural Language Processing (NLP)",
-              "slug": "/AI/Natural Language Processing (NLP)/About",
-              "permalink": "/AI/Natural Language Processing (NLP)/About",
+              "source": "@site/docs/AI/Natural Language Processing/About.md",
+              "sourceDirName": "AI/Natural Language Processing",
+              "slug": "/AI/Natural Language Processing/About",
+              "permalink": "/AI/Natural Language Processing/About",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -1319,7 +1319,7 @@
                     "items": [
                       {
                         "type": "doc",
-                        "id": "AI/Natural Language Processing (NLP)/About",
+                        "id": "AI/Natural Language Processing/About",
                         "label": "Natural Language Processing"
                       }
                     ],

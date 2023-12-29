@@ -350,8 +350,8 @@
               {
                 "type": "link",
                 "label": "Natural Language Processing",
-                "href": "/AI/Natural Language Processing (NLP)/About",
-                "docId": "AI/Natural Language Processing (NLP)/About",
+                "href": "/AI/Natural Language Processing/About",
+                "docId": "AI/Natural Language Processing/About",
                 "unlisted": false
               }
             ],
@@ -427,8 +427,8 @@
       "description": "All organizations rely on information to make decisions, answer questions, and function efficiently. The problem for most organizations is not a lack of information, but the challenge of finding and extracting the information from the massive set of documents, databases, and other sources in which the information is stored.",
       "sidebar": "tutorialSidebar"
     },
-    "AI/Natural Language Processing (NLP)/About": {
-      "id": "AI/Natural Language Processing (NLP)/About",
+    "AI/Natural Language Processing/About": {
+      "id": "AI/Natural Language Processing/About",
       "title": "Natural Language Processing",
       "description": "Natural language processing (NLP) is a common AI problem in which software must be able to work with text or speech in the natural language form that a human user would write or speak. Within the broader area of NLP, natural language understanding (NLU) deals with the problem of determining semantic meaning from natural language - usually by using a trained language model.",
       "sidebar": "tutorialSidebar"
