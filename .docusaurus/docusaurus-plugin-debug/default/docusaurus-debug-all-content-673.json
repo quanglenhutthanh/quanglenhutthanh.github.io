@@ -137,7 +137,7 @@
               "sidebarPosition": 20,
               "frontMatter": {
                 "sidebar_position": 20,
-                "sidebar_label": "Prebuilt Form Recognizer Models"
+                "sidebar_label": "Custom Form Recognizer Models"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -168,7 +168,7 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Prebuilt Form Recognizer Models",
+                "title": "Custom Form Recognizer Models",
                 "permalink": "/AI/Computer Vision/custom-form-recognizer-model"
               },
               "next": {
@@ -199,7 +199,7 @@
                 "permalink": "/category/computer-vision"
               },
               "next": {
-                "title": "Prebuilt Form Recognizer Models",
+                "title": "Custom Form Recognizer Models",
                 "permalink": "/AI/Computer Vision/custom-form-recognizer-model"
               }
             },
@@ -1297,7 +1297,7 @@
                       {
                         "type": "doc",
                         "id": "AI/Computer Vision/custom-form-recognizer-model",
-                        "label": "Prebuilt Form Recognizer Models"
+                        "label": "Custom Form Recognizer Models"
                       },
                       {
                         "type": "doc",

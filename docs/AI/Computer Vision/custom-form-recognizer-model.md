@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-sidebar_label : "Prebuilt Form Recognizer Models"
+sidebar_label : "Custom Form Recognizer Models"
 ---
 
 # Custom Form Recognizer Model 

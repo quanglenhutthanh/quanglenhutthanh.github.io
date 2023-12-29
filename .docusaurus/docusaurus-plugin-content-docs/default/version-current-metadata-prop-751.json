@@ -326,7 +326,7 @@
               },
               {
                 "type": "link",
-                "label": "Prebuilt Form Recognizer Models",
+                "label": "Custom Form Recognizer Models",
                 "href": "/AI/Computer Vision/custom-form-recognizer-model",
                 "docId": "AI/Computer Vision/custom-form-recognizer-model",
                 "unlisted": false
