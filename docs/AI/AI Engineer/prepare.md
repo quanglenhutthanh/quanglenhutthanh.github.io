@@ -7,6 +7,8 @@ sidebar_label : "Prepare to develop AI solutions on Azure"
 
 Start a journey to become an AI Engineer
 
+Artificial intelligence (AI) engineers are responsible for developing, programming and training the complex networks of algorithms that make up AI so that they can function like a human brain. This role requires combined expertise in software development, programming, data science and data engineering. Though this career is related to data engineering, AI engineers are rarely required to write the code that develops scalable data sharing. Instead, artificial intelligence developers locate and pull data from a variety of sources, create, develop and test machine learning models and then utilize application program interface (API) calls or embedded code to build and implement AI applications.
+
 As an aspiring Azure AI Engineer, you should understand core concepts and principles of AI development, and the capabilities of Azure services used in AI solutions.
 
 # Understand considerations for AI Engineers

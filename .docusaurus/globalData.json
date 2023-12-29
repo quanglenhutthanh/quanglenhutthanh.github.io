@@ -21,13 +21,13 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI/AI Engineer/Getting Started/consume",
-              "path": "/AI/AI Engineer/Getting Started/consume",
+              "id": "AI/AI Engineer/consume",
+              "path": "/AI/AI Engineer/consume",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "AI/AI Engineer/Getting Started/prepare",
-              "path": "/AI/AI Engineer/Getting Started/prepare",
+              "id": "AI/AI Engineer/prepare",
+              "path": "/AI/AI Engineer/prepare",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -241,18 +241,13 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/get-started-with-azure-ai-services",
-              "path": "/category/get-started-with-azure-ai-services",
-              "sidebar": "tutorialSidebar"
-            },
-            {
               "id": "/category/computer-vision",
               "path": "/category/computer-vision",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/natural-language-processing-nlp",
-              "path": "/category/natural-language-processing-nlp",
+              "id": "/category/natural-language-processing",
+              "path": "/category/natural-language-processing",
               "sidebar": "tutorialSidebar"
             },
             {

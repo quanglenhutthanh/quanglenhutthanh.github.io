@@ -295,27 +295,18 @@
             "collapsed": true,
             "items": [
               {
-                "type": "category",
-                "label": "Get started with Azure AI Services",
-                "collapsible": true,
-                "collapsed": true,
-                "items": [
-                  {
-                    "type": "link",
-                    "label": "Prepare to develop AI solutions on Azure",
-                    "href": "/AI/AI Engineer/Getting Started/prepare",
-                    "docId": "AI/AI Engineer/Getting Started/prepare",
-                    "unlisted": false
-                  },
-                  {
-                    "type": "link",
-                    "label": "Create and consume Azure AI services",
-                    "href": "/AI/AI Engineer/Getting Started/consume",
-                    "docId": "AI/AI Engineer/Getting Started/consume",
-                    "unlisted": false
-                  }
-                ],
-                "href": "/category/get-started-with-azure-ai-services"
+                "type": "link",
+                "label": "Prepare to develop AI solutions on Azure",
+                "href": "/AI/AI Engineer/prepare",
+                "docId": "AI/AI Engineer/prepare",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Create and consume Azure AI services",
+                "href": "/AI/AI Engineer/consume",
+                "docId": "AI/AI Engineer/consume",
+                "unlisted": false
               }
             ],
             "href": "/category/ai-engineer-using-azure-services"
@@ -352,7 +343,7 @@
           },
           {
             "type": "category",
-            "label": "Natural Language Processing (NLP)",
+            "label": "Natural Language Processing",
             "collapsible": true,
             "collapsed": true,
             "items": [
@@ -364,7 +355,7 @@
                 "unlisted": false
               }
             ],
-            "href": "/category/natural-language-processing-nlp"
+            "href": "/category/natural-language-processing"
           },
           {
             "type": "category",
@@ -400,14 +391,14 @@
       "description": "AI, Artificial Intelligence is a branch of computer science focused on creating systems that can perform tasks that would require human intelligence. These tasks range from understanding natural language, making decisions, and learning from experience.",
       "sidebar": "tutorialSidebar"
     },
-    "AI/AI Engineer/Getting Started/consume": {
-      "id": "AI/AI Engineer/Getting Started/consume",
+    "AI/AI Engineer/consume": {
+      "id": "AI/AI Engineer/consume",
       "title": "Introduction",
       "description": "Azure AI services are cloud-based services that encapsulate AI capabilities. Rather than a single product, you should think of AI services as a set of individual services that you can use as building blocks to compose sophisticated, intelligent applications.",
       "sidebar": "tutorialSidebar"
     },
-    "AI/AI Engineer/Getting Started/prepare": {
-      "id": "AI/AI Engineer/Getting Started/prepare",
+    "AI/AI Engineer/prepare": {
+      "id": "AI/AI Engineer/prepare",
       "title": "Introduction",
       "description": "Start a journey to become an AI Engineer",
       "sidebar": "tutorialSidebar"
@@ -438,8 +429,8 @@
     },
     "AI/Natural Language Processing (NLP)/About": {
       "id": "AI/Natural Language Processing (NLP)/About",
-      "title": "About",
-      "description": "",
+      "title": "Natural Language Processing",
+      "description": "Natural language processing (NLP) is a common AI problem in which software must be able to work with text or speech in the natural language form that a human user would write or speak. Within the broader area of NLP, natural language understanding (NLU) deals with the problem of determining semantic meaning from natural language - usually by using a trained language model.",
       "sidebar": "tutorialSidebar"
     },
     "AI/roadmap": {

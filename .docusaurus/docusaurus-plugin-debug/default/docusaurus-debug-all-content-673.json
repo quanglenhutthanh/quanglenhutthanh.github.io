@@ -69,13 +69,13 @@
               }
             },
             {
-              "id": "AI/AI Engineer/Getting Started/consume",
+              "id": "AI/AI Engineer/consume",
               "title": "Introduction",
               "description": "Azure AI services are cloud-based services that encapsulate AI capabilities. Rather than a single product, you should think of AI services as a set of individual services that you can use as building blocks to compose sophisticated, intelligent applications.",
-              "source": "@site/docs/AI/AI Engineer/Getting Started/consume.md",
-              "sourceDirName": "AI/AI Engineer/Getting Started",
-              "slug": "/AI/AI Engineer/Getting Started/consume",
-              "permalink": "/AI/AI Engineer/Getting Started/consume",
+              "source": "@site/docs/AI/AI Engineer/consume.md",
+              "sourceDirName": "AI/AI Engineer",
+              "slug": "/AI/AI Engineer/consume",
+              "permalink": "/AI/AI Engineer/consume",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -88,7 +88,7 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Prepare to develop AI solutions on Azure",
-                "permalink": "/AI/AI Engineer/Getting Started/prepare"
+                "permalink": "/AI/AI Engineer/prepare"
               },
               "next": {
                 "title": "Computer Vision",
@@ -96,13 +96,13 @@
               }
             },
             {
-              "id": "AI/AI Engineer/Getting Started/prepare",
+              "id": "AI/AI Engineer/prepare",
               "title": "Introduction",
               "description": "Start a journey to become an AI Engineer",
-              "source": "@site/docs/AI/AI Engineer/Getting Started/prepare.md",
-              "sourceDirName": "AI/AI Engineer/Getting Started",
-              "slug": "/AI/AI Engineer/Getting Started/prepare",
-              "permalink": "/AI/AI Engineer/Getting Started/prepare",
+              "source": "@site/docs/AI/AI Engineer/prepare.md",
+              "sourceDirName": "AI/AI Engineer",
+              "slug": "/AI/AI Engineer/prepare",
+              "permalink": "/AI/AI Engineer/prepare",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -114,12 +114,12 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Get started with Azure AI Services",
-                "permalink": "/category/get-started-with-azure-ai-services"
+                "title": "AI Engineer using Azure Services",
+                "permalink": "/category/ai-engineer-using-azure-services"
               },
               "next": {
                 "title": "Create and consume Azure AI services",
-                "permalink": "/AI/AI Engineer/Getting Started/consume"
+                "permalink": "/AI/AI Engineer/consume"
               }
             },
             {
@@ -172,8 +172,8 @@
                 "permalink": "/AI/Computer Vision/custom-form-recognizer-model"
               },
               "next": {
-                "title": "Natural Language Processing (NLP)",
-                "permalink": "/category/natural-language-processing-nlp"
+                "title": "Natural Language Processing",
+                "permalink": "/category/natural-language-processing"
               }
             },
             {
@@ -228,8 +228,8 @@
             },
             {
               "id": "AI/Natural Language Processing (NLP)/About",
-              "title": "About",
-              "description": "",
+              "title": "Natural Language Processing",
+              "description": "Natural language processing (NLP) is a common AI problem in which software must be able to work with text or speech in the natural language form that a human user would write or speak. Within the broader area of NLP, natural language understanding (NLU) deals with the problem of determining semantic meaning from natural language - usually by using a trained language model.",
               "source": "@site/docs/AI/Natural Language Processing (NLP)/About.md",
               "sourceDirName": "AI/Natural Language Processing (NLP)",
               "slug": "/AI/Natural Language Processing (NLP)/About",
@@ -245,8 +245,8 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Natural Language Processing (NLP)",
-                "permalink": "/category/natural-language-processing-nlp"
+                "title": "Natural Language Processing",
+                "permalink": "/category/natural-language-processing"
               },
               "next": {
                 "title": "Knowledge Mining",
@@ -1267,27 +1267,14 @@
                     "collapsed": true,
                     "items": [
                       {
-                        "type": "category",
-                        "label": "Get started with Azure AI Services",
-                        "collapsible": true,
-                        "collapsed": true,
-                        "items": [
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Getting Started/prepare",
-                            "label": "Prepare to develop AI solutions on Azure"
-                          },
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Getting Started/consume",
-                            "label": "Create and consume Azure AI services"
-                          }
-                        ],
-                        "link": {
-                          "type": "generated-index",
-                          "slug": "/category/get-started-with-azure-ai-services",
-                          "permalink": "/category/get-started-with-azure-ai-services"
-                        }
+                        "type": "doc",
+                        "id": "AI/AI Engineer/prepare",
+                        "label": "Prepare to develop AI solutions on Azure"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "AI/AI Engineer/consume",
+                        "label": "Create and consume Azure AI services"
                       }
                     ],
                     "link": {
@@ -1326,7 +1313,7 @@
                   },
                   {
                     "type": "category",
-                    "label": "Natural Language Processing (NLP)",
+                    "label": "Natural Language Processing",
                     "collapsible": true,
                     "collapsed": true,
                     "items": [
@@ -1338,8 +1325,8 @@
                     ],
                     "link": {
                       "type": "generated-index",
-                      "slug": "/category/natural-language-processing-nlp",
-                      "permalink": "/category/natural-language-processing-nlp"
+                      "slug": "/category/natural-language-processing",
+                      "permalink": "/category/natural-language-processing"
                     }
                   },
                   {

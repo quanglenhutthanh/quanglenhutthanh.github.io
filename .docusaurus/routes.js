@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '376'),
+    component: ComponentCreator('/', 'ba4'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '778'),
+        component: ComponentCreator('/', 'b6b'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', 'f97'),
+            component: ComponentCreator('/', '466'),
             routes: [
               {
                 path: '/AI/',
@@ -96,14 +96,14 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI/AI Engineer/Getting Started/consume',
-                component: ComponentCreator('/AI/AI Engineer/Getting Started/consume', 'f2c'),
+                path: '/AI/AI Engineer/consume',
+                component: ComponentCreator('/AI/AI Engineer/consume', 'e03'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/AI/AI Engineer/Getting Started/prepare',
-                component: ComponentCreator('/AI/AI Engineer/Getting Started/prepare', 'fdc'),
+                path: '/AI/AI Engineer/prepare',
+                component: ComponentCreator('/AI/AI Engineer/prepare', 'c0b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -186,12 +186,6 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/category/get-started-with-azure-ai-services',
-                component: ComponentCreator('/category/get-started-with-azure-ai-services', '2c6'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
                 path: '/category/intermediate-python',
                 component: ComponentCreator('/category/intermediate-python', '422'),
                 exact: true,
@@ -204,8 +198,8 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/category/natural-language-processing-nlp',
-                component: ComponentCreator('/category/natural-language-processing-nlp', '88c'),
+                path: '/category/natural-language-processing',
+                component: ComponentCreator('/category/natural-language-processing', '561'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

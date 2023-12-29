@@ -127,30 +127,30 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-376": {
+  "/-ba4": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-778": {
+  "/-b6b": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-f97": {
+  "/-466": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/AI/-dde": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---ai-65-f-4d5"
   },
-  "/AI/AI Engineer/Getting Started/consume-f2c": {
+  "/AI/AI Engineer/consume-e03": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-ai-engineer-getting-started-consume-6-ff-52a"
+    "content": "content---ai-ai-engineer-consumef-36-671"
   },
-  "/AI/AI Engineer/Getting Started/prepare-fdc": {
+  "/AI/AI Engineer/prepare-c0b": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-ai-engineer-getting-started-preparedcc-888"
+    "content": "content---ai-ai-engineer-prepareb-60-645"
   },
   "/AI/Computer Vision/custom-form-recognizer-model-399": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -204,10 +204,6 @@
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-dynamics-365-business-central-16-b-c62"
   },
-  "/category/get-started-with-azure-ai-services-2c6": {
-    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
-    "categoryGeneratedIndex": "categoryGeneratedIndex---category-get-started-with-azure-ai-servicesdcb-fa0"
-  },
   "/category/intermediate-python-422": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-intermediate-python-48-b-ff2"
@@ -216,9 +212,9 @@
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-knowledge-miningea-8-384"
   },
-  "/category/natural-language-processing-nlp-88c": {
+  "/category/natural-language-processing-561": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
-    "categoryGeneratedIndex": "categoryGeneratedIndex---category-natural-language-processing-nlpcc-2-eb9"
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-natural-language-processing-41-d-042"
   },
   "/category/python-06c": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
