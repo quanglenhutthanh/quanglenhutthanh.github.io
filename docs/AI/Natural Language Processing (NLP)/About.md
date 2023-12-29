@@ -15,7 +15,7 @@ You will be able to:
  - Train, test, publish, and review a
    model.
 
-# Prebuilt capabilities of the Azure AI Language service
+# Capabilities of the Azure AI Language service
 
 Azure AI Language service features fall into two categories: Pre-configured features, and Learned features. Learned features require building and training a model to correctly predict appropriate labels, which is covered in upcoming units of this module.
 
