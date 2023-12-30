@@ -127,22 +127,26 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-0c1": {
+  "/-2c1": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-062": {
+  "/-0ed": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-685": {
+  "/-b53": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/AI/-dde": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---ai-65-f-4d5"
+  },
+  "/AI/AI Engineer/ai-102-9ca": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-ai-engineer-ai-1024-eb-018"
   },
   "/AI/AI Engineer/consume-e03": {
     "__comp": "__comp---theme-doc-item-178-a40",

@@ -307,6 +307,13 @@
                 "href": "/AI/AI Engineer/consume",
                 "docId": "AI/AI Engineer/consume",
                 "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Study guide for Exam AI-102",
+                "href": "/AI/AI Engineer/ai-102",
+                "docId": "AI/AI Engineer/ai-102",
+                "unlisted": false
               }
             ],
             "href": "/category/ai-engineer-using-azure-services"
@@ -389,6 +396,12 @@
       "id": "AI/AI",
       "title": "What is AI",
       "description": "AI, Artificial Intelligence is a branch of computer science focused on creating systems that can perform tasks that would require human intelligence. These tasks range from understanding natural language, making decisions, and learning from experience.",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI/AI Engineer/ai-102": {
+      "id": "AI/AI Engineer/ai-102",
+      "title": "Study guide for Exam AI-102: Designing and Implementing a Microsoft Azure AI Solution",
+      "description": "Skills measured as of October 31, 2023",
       "sidebar": "tutorialSidebar"
     },
     "AI/AI Engineer/consume": {

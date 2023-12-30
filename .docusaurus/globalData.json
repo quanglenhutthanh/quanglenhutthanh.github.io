@@ -21,6 +21,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "AI/AI Engineer/ai-102",
+              "path": "/AI/AI Engineer/ai-102",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "AI/AI Engineer/consume",
               "path": "/AI/AI Engineer/consume",
               "sidebar": "tutorialSidebar"

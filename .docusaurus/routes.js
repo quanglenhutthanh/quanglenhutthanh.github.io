@@ -79,19 +79,25 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '0c1'),
+    component: ComponentCreator('/', '2c1'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '062'),
+        component: ComponentCreator('/', '0ed'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '685'),
+            component: ComponentCreator('/', 'b53'),
             routes: [
               {
                 path: '/AI/',
                 component: ComponentCreator('/AI/', 'dde'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/AI Engineer/ai-102',
+                component: ComponentCreator('/AI/AI Engineer/ai-102', '9ca'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

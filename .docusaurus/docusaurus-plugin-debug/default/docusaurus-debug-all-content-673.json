@@ -69,6 +69,33 @@
               }
             },
             {
+              "id": "AI/AI Engineer/ai-102",
+              "title": "Study guide for Exam AI-102: Designing and Implementing a Microsoft Azure AI Solution",
+              "description": "Skills measured as of October 31, 2023",
+              "source": "@site/docs/AI/AI Engineer/ai-102.md",
+              "sourceDirName": "AI/AI Engineer",
+              "slug": "/AI/AI Engineer/ai-102",
+              "permalink": "/AI/AI Engineer/ai-102",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 30,
+              "frontMatter": {
+                "sidebar_position": 30,
+                "sidebar_label": "Study guide for Exam AI-102"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Create and consume Azure AI services",
+                "permalink": "/AI/AI Engineer/consume"
+              },
+              "next": {
+                "title": "Computer Vision",
+                "permalink": "/category/computer-vision"
+              }
+            },
+            {
               "id": "AI/AI Engineer/consume",
               "title": "Introduction",
               "description": "Azure AI services are cloud-based services that encapsulate AI capabilities. Rather than a single product, you should think of AI services as a set of individual services that you can use as building blocks to compose sophisticated, intelligent applications.",
@@ -91,8 +118,8 @@
                 "permalink": "/AI/AI Engineer/prepare"
               },
               "next": {
-                "title": "Computer Vision",
-                "permalink": "/category/computer-vision"
+                "title": "Study guide for Exam AI-102",
+                "permalink": "/AI/AI Engineer/ai-102"
               }
             },
             {
@@ -1275,6 +1302,11 @@
                         "type": "doc",
                         "id": "AI/AI Engineer/consume",
                         "label": "Create and consume Azure AI services"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "AI/AI Engineer/ai-102",
+                        "label": "Study guide for Exam AI-102"
                       }
                     ],
                     "link": {
