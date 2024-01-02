@@ -61,6 +61,16 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "AI/Natural Language Processing/Azure AI Language service",
+              "path": "/AI/Natural Language Processing/Azure AI Language service",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "AI/Natural Language Processing/Azure AI Speech service",
+              "path": "/AI/Natural Language Processing/Azure AI Speech service",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "AI/roadmap",
               "path": "/AI/roadmap",
               "sidebar": "tutorialSidebar"

@@ -276,6 +276,56 @@
                 "permalink": "/category/natural-language-processing"
               },
               "next": {
+                "title": "Azure AI Language Service",
+                "permalink": "/AI/Natural Language Processing/Azure AI Language service"
+              }
+            },
+            {
+              "id": "AI/Natural Language Processing/Azure AI Language service",
+              "title": "Process and translate text with Azure AI Services",
+              "description": "The Azure AI Language service is designed to help you extract information from text. It provides functionality that you can use for:",
+              "source": "@site/docs/AI/Natural Language Processing/Azure AI Language service.md",
+              "sourceDirName": "AI/Natural Language Processing",
+              "slug": "/AI/Natural Language Processing/Azure AI Language service",
+              "permalink": "/AI/Natural Language Processing/Azure AI Language service",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Azure AI Language Service"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Natural Language Processing",
+                "permalink": "/AI/Natural Language Processing/About"
+              },
+              "next": {
+                "title": "Azure AI Speech service",
+                "permalink": "/AI/Natural Language Processing/Azure AI Speech service"
+              }
+            },
+            {
+              "id": "AI/Natural Language Processing/Azure AI Speech service",
+              "title": "Azure AI Speech service",
+              "description": "Created by: thanh quang le nhut",
+              "source": "@site/docs/AI/Natural Language Processing/Azure AI Speech service.md",
+              "sourceDirName": "AI/Natural Language Processing",
+              "slug": "/AI/Natural Language Processing/Azure AI Speech service",
+              "permalink": "/AI/Natural Language Processing/Azure AI Speech service",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Azure AI Language Service",
+                "permalink": "/AI/Natural Language Processing/Azure AI Language service"
+              },
+              "next": {
                 "title": "Knowledge Mining",
                 "permalink": "/category/knowledge-mining"
               }
@@ -1353,6 +1403,15 @@
                         "type": "doc",
                         "id": "AI/Natural Language Processing/About",
                         "label": "Natural Language Processing"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "AI/Natural Language Processing/Azure AI Language service",
+                        "label": "Azure AI Language Service"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "AI/Natural Language Processing/Azure AI Speech service"
                       }
                     ],
                     "link": {

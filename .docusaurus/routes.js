@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '2c1'),
+    component: ComponentCreator('/', '8ef'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '0ed'),
+        component: ComponentCreator('/', 'c3b'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', 'b53'),
+            component: ComponentCreator('/', '4f6'),
             routes: [
               {
                 path: '/AI/',
@@ -140,6 +140,18 @@ export default [
               {
                 path: '/AI/Natural Language Processing/About',
                 component: ComponentCreator('/AI/Natural Language Processing/About', '2fd'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/Natural Language Processing/Azure AI Language service',
+                component: ComponentCreator('/AI/Natural Language Processing/Azure AI Language service', '705'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/Natural Language Processing/Azure AI Speech service',
+                component: ComponentCreator('/AI/Natural Language Processing/Azure AI Speech service', 'dcf'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

@@ -108,7 +108,7 @@ export default {
           ]
         }
       ],
-      "copyright": "Copyright © 2023"
+      "copyright": "Copyright © 2024"
     },
     "prism": {
       "theme": {

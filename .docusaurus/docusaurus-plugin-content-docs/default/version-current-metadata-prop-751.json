@@ -360,6 +360,20 @@
                 "href": "/AI/Natural Language Processing/About",
                 "docId": "AI/Natural Language Processing/About",
                 "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Azure AI Language Service",
+                "href": "/AI/Natural Language Processing/Azure AI Language service",
+                "docId": "AI/Natural Language Processing/Azure AI Language service",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Azure AI Speech service",
+                "href": "/AI/Natural Language Processing/Azure AI Speech service",
+                "docId": "AI/Natural Language Processing/Azure AI Speech service",
+                "unlisted": false
               }
             ],
             "href": "/category/natural-language-processing"
@@ -444,6 +458,18 @@
       "id": "AI/Natural Language Processing/About",
       "title": "Natural Language Processing",
       "description": "Natural language processing (NLP) is a common AI problem in which software must be able to work with text or speech in the natural language form that a human user would write or speak. Within the broader area of NLP, natural language understanding (NLU) deals with the problem of determining semantic meaning from natural language - usually by using a trained language model.",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI/Natural Language Processing/Azure AI Language service": {
+      "id": "AI/Natural Language Processing/Azure AI Language service",
+      "title": "Process and translate text with Azure AI Services",
+      "description": "The Azure AI Language service is designed to help you extract information from text. It provides functionality that you can use for:",
+      "sidebar": "tutorialSidebar"
+    },
+    "AI/Natural Language Processing/Azure AI Speech service": {
+      "id": "AI/Natural Language Processing/Azure AI Speech service",
+      "title": "Azure AI Speech service",
+      "description": "Created by: thanh quang le nhut",
       "sidebar": "tutorialSidebar"
     },
     "AI/roadmap": {
