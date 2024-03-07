@@ -81,3 +81,5 @@ sidebar_label : "Curriculum Vitae"
 
 **[Intermediate Python](https://graduation.udacity.com/confirm/e/77128002-10a3-11ee-8ebc-1fdc62667747)**
 
+**[AI Engineer using Microsoft Azure](https://www.udacity.com/certificate/e/a1ffa830-794e-11ee-9b67-afe41c9a767e)**
+
