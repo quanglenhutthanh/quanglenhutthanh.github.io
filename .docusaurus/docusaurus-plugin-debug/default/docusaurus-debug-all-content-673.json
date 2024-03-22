@@ -359,7 +359,7 @@
             },
             {
               "id": "CV",
-              "title": "Hi",
+              "title": "CV",
               "description": "INFORMATION",
               "source": "@site/docs/CV.md",
               "sourceDirName": ".",
@@ -434,8 +434,8 @@
                 "permalink": "/Dynamics 365 Business Central/About"
               },
               "next": {
-                "title": "History",
-                "permalink": "/Dynamics 365 Business Central/history"
+                "title": "Development",
+                "permalink": "/category/development"
               }
             },
             {
@@ -457,18 +457,18 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Development Overview",
-                "permalink": "/Dynamics 365 Business Central/Development/overview"
+                "title": "Development",
+                "permalink": "/category/development"
               },
               "next": {
-                "title": "Getting Started",
-                "permalink": "/Dynamics 365 Business Central/Development/getting-started"
+                "title": "Discover the logical database and its objects",
+                "permalink": "/Dynamics 365 Business Central/Development/objects"
               }
             },
             {
               "id": "Dynamics 365 Business Central/Development/getting-started",
-              "title": "Getting Started",
-              "description": "Steps to set up a sandbox environment and Visual Studio Code",
+              "title": "Get started with Visual Studio Code",
+              "description": "Install Visual Studio Code",
               "source": "@site/docs/Dynamics 365 Business Central/Development/getting-started.md",
               "sourceDirName": "Dynamics 365 Business Central/Development",
               "slug": "/Dynamics 365 Business Central/Development/getting-started",
@@ -477,15 +477,15 @@
               "unlisted": false,
               "tags": [],
               "version": "current",
-              "sidebarPosition": 20,
+              "sidebarPosition": 100,
               "frontMatter": {
-                "sidebar_position": 20,
-                "sidebar_label": "Getting Started"
+                "sidebar_position": 100,
+                "sidebar_label": "Get started with Visual Studio Code"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Customize Business Central",
-                "permalink": "/Dynamics 365 Business Central/Development/customize"
+                "title": "Discover the logical database and its objects",
+                "permalink": "/Dynamics 365 Business Central/Development/objects"
               },
               "next": {
                 "title": "Working with translation files",
@@ -493,30 +493,30 @@
               }
             },
             {
-              "id": "Dynamics 365 Business Central/Development/overview",
-              "title": "overview",
-              "description": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/",
-              "source": "@site/docs/Dynamics 365 Business Central/Development/overview.md",
+              "id": "Dynamics 365 Business Central/Development/objects",
+              "title": "Discover the logical database and its objects",
+              "description": "Dynamics 365 Business Central is built, like many other cloud applications, on top of a database. This database doesn't only contain the data (like customers, vendors, products, and so on.); it also contains every object that is used in the application. When you request customer data, this data is displayed as a page on the screen with a certain structure.",
+              "source": "@site/docs/Dynamics 365 Business Central/Development/objects.md",
               "sourceDirName": "Dynamics 365 Business Central/Development",
-              "slug": "/Dynamics 365 Business Central/Development/overview",
-              "permalink": "/Dynamics 365 Business Central/Development/overview",
+              "slug": "/Dynamics 365 Business Central/Development/objects",
+              "permalink": "/Dynamics 365 Business Central/Development/objects",
               "draft": false,
               "unlisted": false,
               "tags": [],
               "version": "current",
-              "sidebarPosition": 10,
+              "sidebarPosition": 20,
               "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Development Overview"
+                "sidebar_position": 20,
+                "sidebar_label": "Discover the logical database and its objects"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Development",
-                "permalink": "/category/development"
-              },
-              "next": {
                 "title": "Customize Business Central",
                 "permalink": "/Dynamics 365 Business Central/Development/customize"
+              },
+              "next": {
+                "title": "Get started with Visual Studio Code",
+                "permalink": "/Dynamics 365 Business Central/Development/getting-started"
               }
             },
             {
@@ -531,46 +531,19 @@
               "unlisted": false,
               "tags": [],
               "version": "current",
-              "sidebarPosition": 30,
+              "sidebarPosition": 400,
               "frontMatter": {
-                "sidebar_position": 30,
+                "sidebar_position": 400,
                 "sidebar_label": "Working with translation files"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Getting Started",
+                "title": "Get started with Visual Studio Code",
                 "permalink": "/Dynamics 365 Business Central/Development/getting-started"
               },
               "next": {
                 "title": "Python",
                 "permalink": "/category/python"
-              }
-            },
-            {
-              "id": "Dynamics 365 Business Central/history",
-              "title": "From Navision to Microsoft Dynamics 365 Business Central",
-              "description": "Navision, a Danish software company founded in 1984, created an ERP (Enterprise Resource Planning) solution known as Navision Financials. This platform offered comprehensive financial and operational management for businesses. Over time, Navision evolved its product lineup, incorporating functionalities beyond finance, like supply chain management and CRM, becoming known as Navision Attain.",
-              "source": "@site/docs/Dynamics 365 Business Central/history.md",
-              "sourceDirName": "Dynamics 365 Business Central",
-              "slug": "/Dynamics 365 Business Central/history",
-              "permalink": "/Dynamics 365 Business Central/history",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 6,
-              "frontMatter": {
-                "sidebar_position": 6,
-                "sidebar_label": "History"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Architecture",
-                "permalink": "/Dynamics 365 Business Central/architecture"
-              },
-              "next": {
-                "title": "Development",
-                "permalink": "/category/development"
               }
             },
             {
@@ -1122,11 +1095,6 @@
                     "label": "Architecture"
                   },
                   {
-                    "type": "doc",
-                    "id": "Dynamics 365 Business Central/history",
-                    "label": "History"
-                  },
-                  {
                     "type": "category",
                     "label": "Development",
                     "collapsible": true,
@@ -1134,18 +1102,18 @@
                     "items": [
                       {
                         "type": "doc",
-                        "id": "Dynamics 365 Business Central/Development/overview",
-                        "label": "Development Overview"
-                      },
-                      {
-                        "type": "doc",
                         "id": "Dynamics 365 Business Central/Development/customize",
                         "label": "Customize Business Central"
                       },
                       {
                         "type": "doc",
+                        "id": "Dynamics 365 Business Central/Development/objects",
+                        "label": "Discover the logical database and its objects"
+                      },
+                      {
+                        "type": "doc",
                         "id": "Dynamics 365 Business Central/Development/getting-started",
-                        "label": "Getting Started"
+                        "label": "Get started with Visual Studio Code"
                       },
                       {
                         "type": "doc",

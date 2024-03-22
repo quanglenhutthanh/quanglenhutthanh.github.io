@@ -1,5 +1,5 @@
 ---
-sidebar_position: 30
+sidebar_position: 400
 sidebar_label : "Working with translation files"
 ---
 # Working with translation files

@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '8ef'),
+    component: ComponentCreator('/', '7b4'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'c3b'),
+        component: ComponentCreator('/', '7c2'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '4f6'),
+            component: ComponentCreator('/', '4e6'),
             routes: [
               {
                 path: '/AI/',
@@ -264,20 +264,14 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/Dynamics 365 Business Central/Development/overview',
-                component: ComponentCreator('/Dynamics 365 Business Central/Development/overview', '5d0'),
+                path: '/Dynamics 365 Business Central/Development/objects',
+                component: ComponentCreator('/Dynamics 365 Business Central/Development/objects', '92b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/Dynamics 365 Business Central/Development/translation-files',
                 component: ComponentCreator('/Dynamics 365 Business Central/Development/translation-files', '887'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Dynamics 365 Business Central/history',
-                component: ComponentCreator('/Dynamics 365 Business Central/history', '1e9'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

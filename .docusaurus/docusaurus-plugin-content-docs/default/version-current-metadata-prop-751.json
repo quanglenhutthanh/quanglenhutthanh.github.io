@@ -51,25 +51,11 @@
             "unlisted": false
           },
           {
-            "type": "link",
-            "label": "History",
-            "href": "/Dynamics 365 Business Central/history",
-            "docId": "Dynamics 365 Business Central/history",
-            "unlisted": false
-          },
-          {
             "type": "category",
             "label": "Development",
             "collapsible": true,
             "collapsed": true,
             "items": [
-              {
-                "type": "link",
-                "label": "Development Overview",
-                "href": "/Dynamics 365 Business Central/Development/overview",
-                "docId": "Dynamics 365 Business Central/Development/overview",
-                "unlisted": false
-              },
               {
                 "type": "link",
                 "label": "Customize Business Central",
@@ -79,7 +65,14 @@
               },
               {
                 "type": "link",
-                "label": "Getting Started",
+                "label": "Discover the logical database and its objects",
+                "href": "/Dynamics 365 Business Central/Development/objects",
+                "docId": "Dynamics 365 Business Central/Development/objects",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Get started with Visual Studio Code",
                 "href": "/Dynamics 365 Business Central/Development/getting-started",
                 "docId": "Dynamics 365 Business Central/Development/getting-started",
                 "unlisted": false
@@ -480,7 +473,7 @@
     },
     "CV": {
       "id": "CV",
-      "title": "Hi",
+      "title": "CV",
       "description": "INFORMATION",
       "sidebar": "tutorialSidebar"
     },
@@ -504,26 +497,20 @@
     },
     "Dynamics 365 Business Central/Development/getting-started": {
       "id": "Dynamics 365 Business Central/Development/getting-started",
-      "title": "Getting Started",
-      "description": "Steps to set up a sandbox environment and Visual Studio Code",
+      "title": "Get started with Visual Studio Code",
+      "description": "Install Visual Studio Code",
       "sidebar": "tutorialSidebar"
     },
-    "Dynamics 365 Business Central/Development/overview": {
-      "id": "Dynamics 365 Business Central/Development/overview",
-      "title": "overview",
-      "description": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/",
+    "Dynamics 365 Business Central/Development/objects": {
+      "id": "Dynamics 365 Business Central/Development/objects",
+      "title": "Discover the logical database and its objects",
+      "description": "Dynamics 365 Business Central is built, like many other cloud applications, on top of a database. This database doesn't only contain the data (like customers, vendors, products, and so on.); it also contains every object that is used in the application. When you request customer data, this data is displayed as a page on the screen with a certain structure.",
       "sidebar": "tutorialSidebar"
     },
     "Dynamics 365 Business Central/Development/translation-files": {
       "id": "Dynamics 365 Business Central/Development/translation-files",
       "title": "Working with translation files",
       "description": "Dynamics 365 Business Central is multi-language enabled, which means you can display the User Interface in different languages. In Dynamics 365 Business Central, this is done by using XLIFF file, which is a standardized format used computer-based translations.",
-      "sidebar": "tutorialSidebar"
-    },
-    "Dynamics 365 Business Central/history": {
-      "id": "Dynamics 365 Business Central/history",
-      "title": "From Navision to Microsoft Dynamics 365 Business Central",
-      "description": "Navision, a Danish software company founded in 1984, created an ERP (Enterprise Resource Planning) solution known as Navision Financials. This platform offered comprehensive financial and operational management for businesses. Over time, Navision evolved its product lineup, incorporating functionalities beyond finance, like supply chain management and CRM, becoming known as Navision Attain.",
       "sidebar": "tutorialSidebar"
     },
     "intro": {

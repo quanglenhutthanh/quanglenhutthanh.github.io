@@ -17,3 +17,8 @@ With Visual Studio Code and AL language extension for Microsoft Dynamics 365 Bus
 ## Programming in AL
 
 **The AL (Application Language)** is the programming language designed for developing extensions and customization for Microsoft Dynamics 365 Business Central.
+
+
+https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/
+https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/readiness/readiness-customizing-tenants
+

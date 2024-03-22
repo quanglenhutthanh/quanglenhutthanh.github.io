@@ -101,18 +101,13 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "Dynamics 365 Business Central/Development/overview",
-              "path": "/Dynamics 365 Business Central/Development/overview",
+              "id": "Dynamics 365 Business Central/Development/objects",
+              "path": "/Dynamics 365 Business Central/Development/objects",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "Dynamics 365 Business Central/Development/translation-files",
               "path": "/Dynamics 365 Business Central/Development/translation-files",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Dynamics 365 Business Central/history",
-              "path": "/Dynamics 365 Business Central/history",
               "sidebar": "tutorialSidebar"
             },
             {

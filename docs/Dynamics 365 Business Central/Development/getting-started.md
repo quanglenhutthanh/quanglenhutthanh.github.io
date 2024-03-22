@@ -1,27 +1,25 @@
 ---
-sidebar_position: 20
-sidebar_label : "Getting Started"
+sidebar_position: 100
+sidebar_label : "Get started with Visual Studio Code"
 ---
-# Getting Started
-## Steps to set up a sandbox environment and Visual Studio Code
+# Get started with Visual Studio Code
+## Install Visual Studio Code
 
-To start writing extensions for Dynamics 365 Business Central, you’ll need a Business Central tenant, Visual Studio Code, and the AL language extension for Microsoft Dynamics 365 Business Central.
+Microsoft uses Visual Studio Code as the development environment for Business Central. Visual Studio Code was launched in April 2015 and is a free and open-source code editor. Visual Studio Code is different from the code editor Visual Studio, which is used for creating, building, and deploying large Microsoft .NET solutions.
 
-1.	Sign up and create Sandbox Environments.
+Visual Studio Code can be installed on Windows, Linux, and macOS. You can download and install [Download here](https://code.visualstudio.com/Download)
 
-[Container-based sandbox.](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-get-started-container-sandbox)
+## Install the AL language extension in Visual Studio Code
 
-[Information about sandbox](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-sandbox-overview)
+When you develop applications for Microsoft Dynamics 365 Business Central with Visual Studio Code, you must install the application language extension. The easiest way to install the extension is through the Visual Studio Code Marketplace.
 
-[Sign up for Microsoft Dynamics 365 Business Central](https://signup.microsoft.com/get-started/signup?sku=6a4a1628-9b9a-424d-bed5-4118f0ede3fd&ru=https%3a%2f%2fbusinesscentral.dynamics.com%2fSandbox%2f%3fredirectedFromSignup%3d1&products=6a4a1628-9b9a-424d-bed5-4118f0ede3fd&brandingId=28b276fb-d2a0-4379-a7c0-57dce33da0f9&ali=1)
+1. Select the Extensions tab, which is the fifth tab on the Activity Bar on the left side of the Visual Studio Code application, or you can use the **Ctrl+Shift+X** keyboard shortcut.
 
-2.	Download Visual Studio Code.
-Visual Studio Code is a cross-platform editor that you will you for coding and debugging.
-[Download here](https://code.visualstudio.com/Download)
+2. Enter AL Language in the Search Extensions in Marketplace field.
 
-3.	Download AL Language extension for Microsoft Dynamics 365 Business Central.
-This extension will help with full support for formatting, syntax highlighting, and rich IntelliSense.
- 
+3. Select the green Install button to install the AL Language Extension.
+
+![image](img/visual-studio-code-al-language-extension-ssm.png) 
 
 4.	Create new extension from Visual Studio Code.
 Press the **Ctrl + Shift + P** shortcut key, select **AL:Go!** (or press the Alt+A, Alt+L).

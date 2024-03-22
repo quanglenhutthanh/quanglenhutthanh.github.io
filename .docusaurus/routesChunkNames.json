@@ -127,17 +127,17 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-8ef": {
+  "/-7b4": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-c3b": {
+  "/-7c2": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-4f6": {
+  "/-4e6": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/AI/-dde": {
@@ -256,17 +256,13 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-development-getting-startedaf-5-b79"
   },
-  "/Dynamics 365 Business Central/Development/overview-5d0": {
+  "/Dynamics 365 Business Central/Development/objects-92b": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---dynamics-365-business-central-development-overviewad-7-e62"
+    "content": "content---dynamics-365-business-central-development-objects-8-d-1-751"
   },
   "/Dynamics 365 Business Central/Development/translation-files-887": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---dynamics-365-business-central-development-translation-files-94-a-0da"
-  },
-  "/Dynamics 365 Business Central/history-1e9": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---dynamics-365-business-central-history-205-072"
   },
   "/intro-283": {
     "__comp": "__comp---theme-doc-item-178-a40",
