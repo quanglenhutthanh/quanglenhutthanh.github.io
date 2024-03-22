@@ -1,7 +1,7 @@
 {
   "id": "About",
-  "title": "About",
-  "description": "img",
+  "title": "Welcome!!!",
+  "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
   "source": "@site/docs/About.md",
   "sourceDirName": ".",
   "slug": "/",
