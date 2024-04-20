@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '7b4'),
+    component: ComponentCreator('/', '052'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '7c2'),
+        component: ComponentCreator('/', 'ff2'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '4e6'),
+            component: ComponentCreator('/', '89a'),
             routes: [
               {
                 path: '/AI/',
@@ -224,6 +224,12 @@ export default [
               {
                 path: '/category/python',
                 component: ComponentCreator('/category/python', '06c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/category/react',
+                component: ComponentCreator('/category/react', 'e1c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -386,6 +392,12 @@ export default [
               {
                 path: '/Udacity Courses/Intermediate Python/skills',
                 component: ComponentCreator('/Udacity Courses/Intermediate Python/skills', '941'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/React/course-outline',
+                component: ComponentCreator('/Udacity Courses/React/course-outline', 'df8'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

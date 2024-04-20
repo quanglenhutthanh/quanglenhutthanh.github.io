@@ -206,6 +206,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "Udacity Courses/React/course-outline",
+              "path": "/Udacity Courses/React/course-outline",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "/category/dynamics-365-business-central",
               "path": "/category/dynamics-365-business-central",
               "sidebar": "tutorialSidebar"
@@ -228,6 +233,11 @@
             {
               "id": "/category/intermediate-python",
               "path": "/category/intermediate-python",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/react",
+              "path": "/category/react",
               "sidebar": "tutorialSidebar"
             },
             {

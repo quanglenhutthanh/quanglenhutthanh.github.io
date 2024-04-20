@@ -127,17 +127,17 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-7b4": {
+  "/-052": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-7c2": {
+  "/-ff2": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-4e6": {
+  "/-89a": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/AI/-dde": {
@@ -231,6 +231,10 @@
   "/category/python-06c": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-python-5-c-9-c7a"
+  },
+  "/category/react-e1c": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-react-8-f-6-fc5"
   },
   "/category/udacity-learning-projects-808": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -339,6 +343,10 @@
   "/Udacity Courses/Intermediate Python/skills-941": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-intermediate-python-skillsbbe-ccb"
+  },
+  "/Udacity Courses/React/course-outline-df8": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-react-course-outline-67-d-08d"
   },
   "/-d17": {
     "__comp": "__comp---theme-doc-item-178-a40",
