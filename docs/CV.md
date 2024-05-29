@@ -43,6 +43,7 @@ sidebar_label : "Curriculum Vitae"
 - Intermediate-level proficiency in Python.
 - Proficient in utilizing Jupyter Notebook and proficient in working with popular Python libraries, including pandas, matplotlib, and seaborn, for data analysis and visualization.
 - Skilled in developing dynamic and responsive web applications using Angular and React.
+- Data Analysis and Visualization with Microsoft Power BI.
 
 ### Leadership:
 - Proficient in guiding teams to meet project deadlines while providing mentorship and support to team members
