@@ -96,6 +96,87 @@
               }
             },
             {
+              "id": "AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "title": "Custom Form Recognizer Model",
+              "description": "Sometimes, the prebuilt models are not sufficient to extract information from you unique documents with particular layout of information. In this case, you should develop your own custom Form Recognizer model to meet your unique business requirements.",
+              "source": "@site/docs/AI/AI Engineer/Computer Vision/custom-form-recognizer-model.md",
+              "sourceDirName": "AI/AI Engineer/Computer Vision",
+              "slug": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "permalink": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 20,
+              "frontMatter": {
+                "sidebar_position": 20,
+                "sidebar_label": "Custom Form Recognizer Models"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Prebuilt Form Recognizer Models",
+                "permalink": "/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models"
+              },
+              "next": {
+                "title": "Azure Face Service",
+                "permalink": "/AI/AI Engineer/Computer Vision/face-api"
+              }
+            },
+            {
+              "id": "AI/AI Engineer/Computer Vision/face-api",
+              "title": "Azure AI Face",
+              "description": "The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as identification, touchless access control, and face blurring for privacy.",
+              "source": "@site/docs/AI/AI Engineer/Computer Vision/face-api.md",
+              "sourceDirName": "AI/AI Engineer/Computer Vision",
+              "slug": "/AI/AI Engineer/Computer Vision/face-api",
+              "permalink": "/AI/AI Engineer/Computer Vision/face-api",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 30,
+              "frontMatter": {
+                "sidebar_position": 30,
+                "sidebar_label": "Azure Face Service"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Custom Form Recognizer Models",
+                "permalink": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model"
+              },
+              "next": {
+                "title": "Natural Language Processing",
+                "permalink": "/category/natural-language-processing"
+              }
+            },
+            {
+              "id": "AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "title": "Prebuilt Form Recognizer Models",
+              "description": "This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.",
+              "source": "@site/docs/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models.md",
+              "sourceDirName": "AI/AI Engineer/Computer Vision",
+              "slug": "/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "permalink": "/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Prebuilt Form Recognizer Models"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Computer Vision",
+                "permalink": "/category/computer-vision"
+              },
+              "next": {
+                "title": "Custom Form Recognizer Models",
+                "permalink": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model"
+              }
+            },
+            {
               "id": "AI/AI Engineer/consume",
               "title": "Introduction",
               "description": "Azure AI services are cloud-based services that encapsulate AI capabilities. Rather than a single product, you should think of AI services as a set of individual services that you can use as building blocks to compose sophisticated, intelligent applications.",
@@ -123,6 +204,106 @@
               }
             },
             {
+              "id": "AI/AI Engineer/Knowledge Mining/About",
+              "title": "Introduction",
+              "description": "All organizations rely on information to make decisions, answer questions, and function efficiently. The problem for most organizations is not a lack of information, but the challenge of finding and extracting the information from the massive set of documents, databases, and other sources in which the information is stored.",
+              "source": "@site/docs/AI/AI Engineer/Knowledge Mining/About.md",
+              "sourceDirName": "AI/AI Engineer/Knowledge Mining",
+              "slug": "/AI/AI Engineer/Knowledge Mining/About",
+              "permalink": "/AI/AI Engineer/Knowledge Mining/About",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1,
+                "sidebar_label": "Implement knowledge mining with Azure AI Search"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Knowledge Mining",
+                "permalink": "/category/knowledge-mining"
+              }
+            },
+            {
+              "id": "AI/AI Engineer/Natural Language Processing/About",
+              "title": "Natural Language Processing",
+              "description": "Natural language processing (NLP) is a common AI problem in which software must be able to work with text or speech in the natural language form that a human user would write or speak. Within the broader area of NLP, natural language understanding (NLU) deals with the problem of determining semantic meaning from natural language - usually by using a trained language model.",
+              "source": "@site/docs/AI/AI Engineer/Natural Language Processing/About.md",
+              "sourceDirName": "AI/AI Engineer/Natural Language Processing",
+              "slug": "/AI/AI Engineer/Natural Language Processing/About",
+              "permalink": "/AI/AI Engineer/Natural Language Processing/About",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1,
+                "sidebar_label": "Natural Language Processing"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Natural Language Processing",
+                "permalink": "/category/natural-language-processing"
+              },
+              "next": {
+                "title": "Azure AI Language Service",
+                "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service"
+              }
+            },
+            {
+              "id": "AI/AI Engineer/Natural Language Processing/Azure AI Language service",
+              "title": "Process and translate text with Azure AI Services",
+              "description": "The Azure AI Language service is designed to help you extract information from text. It provides functionality that you can use for:",
+              "source": "@site/docs/AI/AI Engineer/Natural Language Processing/Azure AI Language service.md",
+              "sourceDirName": "AI/AI Engineer/Natural Language Processing",
+              "slug": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service",
+              "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Azure AI Language Service"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Natural Language Processing",
+                "permalink": "/AI/AI Engineer/Natural Language Processing/About"
+              },
+              "next": {
+                "title": "Azure AI Speech service",
+                "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Speech service"
+              }
+            },
+            {
+              "id": "AI/AI Engineer/Natural Language Processing/Azure AI Speech service",
+              "title": "Azure AI Speech service",
+              "description": "Created by: thanh quang le nhut",
+              "source": "@site/docs/AI/AI Engineer/Natural Language Processing/Azure AI Speech service.md",
+              "sourceDirName": "AI/AI Engineer/Natural Language Processing",
+              "slug": "/AI/AI Engineer/Natural Language Processing/Azure AI Speech service",
+              "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Speech service",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Azure AI Language Service",
+                "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service"
+              },
+              "next": {
+                "title": "Knowledge Mining",
+                "permalink": "/category/knowledge-mining"
+              }
+            },
+            {
               "id": "AI/AI Engineer/prepare",
               "title": "Introduction",
               "description": "Start a journey to become an AI Engineer",
@@ -147,187 +328,6 @@
               "next": {
                 "title": "Create and consume Azure AI services",
                 "permalink": "/AI/AI Engineer/consume"
-              }
-            },
-            {
-              "id": "AI/Computer Vision/custom-form-recognizer-model",
-              "title": "Custom Form Recognizer Model",
-              "description": "Sometimes, the prebuilt models are not sufficient to extract information from you unique documents with particular layout of information. In this case, you should develop your own custom Form Recognizer model to meet your unique business requirements.",
-              "source": "@site/docs/AI/Computer Vision/custom-form-recognizer-model.md",
-              "sourceDirName": "AI/Computer Vision",
-              "slug": "/AI/Computer Vision/custom-form-recognizer-model",
-              "permalink": "/AI/Computer Vision/custom-form-recognizer-model",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 20,
-              "frontMatter": {
-                "sidebar_position": 20,
-                "sidebar_label": "Custom Form Recognizer Models"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Prebuilt Form Recognizer Models",
-                "permalink": "/AI/Computer Vision/prebuilt-form-recognizer-models"
-              },
-              "next": {
-                "title": "Azure Face Service",
-                "permalink": "/AI/Computer Vision/face-api"
-              }
-            },
-            {
-              "id": "AI/Computer Vision/face-api",
-              "title": "Azure AI Face",
-              "description": "The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as identification, touchless access control, and face blurring for privacy.",
-              "source": "@site/docs/AI/Computer Vision/face-api.md",
-              "sourceDirName": "AI/Computer Vision",
-              "slug": "/AI/Computer Vision/face-api",
-              "permalink": "/AI/Computer Vision/face-api",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 30,
-              "frontMatter": {
-                "sidebar_position": 30,
-                "sidebar_label": "Azure Face Service"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Custom Form Recognizer Models",
-                "permalink": "/AI/Computer Vision/custom-form-recognizer-model"
-              },
-              "next": {
-                "title": "Natural Language Processing",
-                "permalink": "/category/natural-language-processing"
-              }
-            },
-            {
-              "id": "AI/Computer Vision/prebuilt-form-recognizer-models",
-              "title": "Prebuilt Form Recognizer Models",
-              "description": "This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.",
-              "source": "@site/docs/AI/Computer Vision/prebuilt-form-recognizer-models.md",
-              "sourceDirName": "AI/Computer Vision",
-              "slug": "/AI/Computer Vision/prebuilt-form-recognizer-models",
-              "permalink": "/AI/Computer Vision/prebuilt-form-recognizer-models",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Prebuilt Form Recognizer Models"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Computer Vision",
-                "permalink": "/category/computer-vision"
-              },
-              "next": {
-                "title": "Custom Form Recognizer Models",
-                "permalink": "/AI/Computer Vision/custom-form-recognizer-model"
-              }
-            },
-            {
-              "id": "AI/Knowledge Mining/About",
-              "title": "Introduction",
-              "description": "All organizations rely on information to make decisions, answer questions, and function efficiently. The problem for most organizations is not a lack of information, but the challenge of finding and extracting the information from the massive set of documents, databases, and other sources in which the information is stored.",
-              "source": "@site/docs/AI/Knowledge Mining/About.md",
-              "sourceDirName": "AI/Knowledge Mining",
-              "slug": "/AI/Knowledge Mining/About",
-              "permalink": "/AI/Knowledge Mining/About",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1,
-                "sidebar_label": "Implement knowledge mining with Azure AI Search"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Knowledge Mining",
-                "permalink": "/category/knowledge-mining"
-              }
-            },
-            {
-              "id": "AI/Natural Language Processing/About",
-              "title": "Natural Language Processing",
-              "description": "Natural language processing (NLP) is a common AI problem in which software must be able to work with text or speech in the natural language form that a human user would write or speak. Within the broader area of NLP, natural language understanding (NLU) deals with the problem of determining semantic meaning from natural language - usually by using a trained language model.",
-              "source": "@site/docs/AI/Natural Language Processing/About.md",
-              "sourceDirName": "AI/Natural Language Processing",
-              "slug": "/AI/Natural Language Processing/About",
-              "permalink": "/AI/Natural Language Processing/About",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1,
-                "sidebar_label": "Natural Language Processing"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Natural Language Processing",
-                "permalink": "/category/natural-language-processing"
-              },
-              "next": {
-                "title": "Azure AI Language Service",
-                "permalink": "/AI/Natural Language Processing/Azure AI Language service"
-              }
-            },
-            {
-              "id": "AI/Natural Language Processing/Azure AI Language service",
-              "title": "Process and translate text with Azure AI Services",
-              "description": "The Azure AI Language service is designed to help you extract information from text. It provides functionality that you can use for:",
-              "source": "@site/docs/AI/Natural Language Processing/Azure AI Language service.md",
-              "sourceDirName": "AI/Natural Language Processing",
-              "slug": "/AI/Natural Language Processing/Azure AI Language service",
-              "permalink": "/AI/Natural Language Processing/Azure AI Language service",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Azure AI Language Service"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Natural Language Processing",
-                "permalink": "/AI/Natural Language Processing/About"
-              },
-              "next": {
-                "title": "Azure AI Speech service",
-                "permalink": "/AI/Natural Language Processing/Azure AI Speech service"
-              }
-            },
-            {
-              "id": "AI/Natural Language Processing/Azure AI Speech service",
-              "title": "Azure AI Speech service",
-              "description": "Created by: thanh quang le nhut",
-              "source": "@site/docs/AI/Natural Language Processing/Azure AI Speech service.md",
-              "sourceDirName": "AI/Natural Language Processing",
-              "slug": "/AI/Natural Language Processing/Azure AI Speech service",
-              "permalink": "/AI/Natural Language Processing/Azure AI Speech service",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "frontMatter": {},
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Azure AI Language Service",
-                "permalink": "/AI/Natural Language Processing/Azure AI Language service"
-              },
-              "next": {
-                "title": "Knowledge Mining",
-                "permalink": "/category/knowledge-mining"
               }
             },
             {
@@ -1001,8 +1001,8 @@
                 "permalink": "/Udacity Courses/Intermediate Python/near-earth-objects"
               },
               "next": {
-                "title": "Data Analyst",
-                "permalink": "/category/data-analyst"
+                "title": "React",
+                "permalink": "/category/react"
               }
             },
             {
@@ -1057,6 +1057,33 @@
               "next": {
                 "title": "Project: Exploring Near-Earth Objects",
                 "permalink": "/Udacity Courses/Intermediate Python/near-earth-objects"
+              }
+            },
+            {
+              "id": "Udacity Courses/React/course-outline",
+              "title": "React (nd019)",
+              "description": "Course Link",
+              "source": "@site/docs/Udacity Courses/React/course-outline.md",
+              "sourceDirName": "Udacity Courses/React",
+              "slug": "/Udacity Courses/React/course-outline",
+              "permalink": "/Udacity Courses/React/course-outline",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Course Outline"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "React",
+                "permalink": "/category/react"
+              },
+              "next": {
+                "title": "Data Analyst",
+                "permalink": "/category/data-analyst"
               }
             }
           ],
@@ -1228,6 +1255,24 @@
                   },
                   {
                     "type": "category",
+                    "label": "React",
+                    "collapsible": true,
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/React/course-outline",
+                        "label": "Course Outline"
+                      }
+                    ],
+                    "link": {
+                      "type": "generated-index",
+                      "slug": "/category/react",
+                      "permalink": "/category/react"
+                    }
+                  },
+                  {
+                    "type": "category",
                     "label": "Data Analyst",
                     "collapsible": true,
                     "collapsed": true,
@@ -1325,85 +1370,85 @@
                         "type": "doc",
                         "id": "AI/AI Engineer/ai-102",
                         "label": "Study guide for Exam AI-102"
+                      },
+                      {
+                        "type": "category",
+                        "label": "Computer Vision",
+                        "collapsible": true,
+                        "collapsed": true,
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
+                            "label": "Prebuilt Form Recognizer Models"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
+                            "label": "Custom Form Recognizer Models"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "AI/AI Engineer/Computer Vision/face-api",
+                            "label": "Azure Face Service"
+                          }
+                        ],
+                        "link": {
+                          "type": "generated-index",
+                          "slug": "/category/computer-vision",
+                          "permalink": "/category/computer-vision"
+                        }
+                      },
+                      {
+                        "type": "category",
+                        "label": "Natural Language Processing",
+                        "collapsible": true,
+                        "collapsed": true,
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "AI/AI Engineer/Natural Language Processing/About",
+                            "label": "Natural Language Processing"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "AI/AI Engineer/Natural Language Processing/Azure AI Language service",
+                            "label": "Azure AI Language Service"
+                          },
+                          {
+                            "type": "doc",
+                            "id": "AI/AI Engineer/Natural Language Processing/Azure AI Speech service"
+                          }
+                        ],
+                        "link": {
+                          "type": "generated-index",
+                          "slug": "/category/natural-language-processing",
+                          "permalink": "/category/natural-language-processing"
+                        }
+                      },
+                      {
+                        "type": "category",
+                        "label": "Knowledge Mining",
+                        "collapsible": true,
+                        "collapsed": true,
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "AI/AI Engineer/Knowledge Mining/About",
+                            "label": "Implement knowledge mining with Azure AI Search"
+                          }
+                        ],
+                        "link": {
+                          "type": "generated-index",
+                          "slug": "/category/knowledge-mining",
+                          "permalink": "/category/knowledge-mining"
+                        }
                       }
                     ],
                     "link": {
                       "type": "generated-index",
                       "slug": "/category/ai-engineer-using-azure-services",
                       "permalink": "/category/ai-engineer-using-azure-services"
-                    }
-                  },
-                  {
-                    "type": "category",
-                    "label": "Computer Vision",
-                    "collapsible": true,
-                    "collapsed": true,
-                    "items": [
-                      {
-                        "type": "doc",
-                        "id": "AI/Computer Vision/prebuilt-form-recognizer-models",
-                        "label": "Prebuilt Form Recognizer Models"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "AI/Computer Vision/custom-form-recognizer-model",
-                        "label": "Custom Form Recognizer Models"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "AI/Computer Vision/face-api",
-                        "label": "Azure Face Service"
-                      }
-                    ],
-                    "link": {
-                      "type": "generated-index",
-                      "slug": "/category/computer-vision",
-                      "permalink": "/category/computer-vision"
-                    }
-                  },
-                  {
-                    "type": "category",
-                    "label": "Natural Language Processing",
-                    "collapsible": true,
-                    "collapsed": true,
-                    "items": [
-                      {
-                        "type": "doc",
-                        "id": "AI/Natural Language Processing/About",
-                        "label": "Natural Language Processing"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "AI/Natural Language Processing/Azure AI Language service",
-                        "label": "Azure AI Language Service"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "AI/Natural Language Processing/Azure AI Speech service"
-                      }
-                    ],
-                    "link": {
-                      "type": "generated-index",
-                      "slug": "/category/natural-language-processing",
-                      "permalink": "/category/natural-language-processing"
-                    }
-                  },
-                  {
-                    "type": "category",
-                    "label": "Knowledge Mining",
-                    "collapsible": true,
-                    "collapsed": true,
-                    "items": [
-                      {
-                        "type": "doc",
-                        "id": "AI/Knowledge Mining/About",
-                        "label": "Implement knowledge mining with Azure AI Search"
-                      }
-                    ],
-                    "link": {
-                      "type": "generated-index",
-                      "slug": "/category/knowledge-mining",
-                      "permalink": "/category/knowledge-mining"
                     }
                   }
                 ],

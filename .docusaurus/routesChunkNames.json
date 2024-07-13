@@ -127,17 +127,17 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-052": {
+  "/-80b": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-ff2": {
+  "/-b48": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-89a": {
+  "/-676": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/AI/-dde": {
@@ -148,41 +148,41 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---ai-ai-engineer-ai-1024-eb-018"
   },
+  "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model-d6b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-ai-engineer-computer-vision-custom-form-recognizer-modelc-36-cdb"
+  },
+  "/AI/AI Engineer/Computer Vision/face-api-600": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-ai-engineer-computer-vision-face-api-542-ce2"
+  },
+  "/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models-af2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-ai-engineer-computer-vision-prebuilt-form-recognizer-modelsa-4-a-d5c"
+  },
   "/AI/AI Engineer/consume-e03": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---ai-ai-engineer-consumef-36-671"
   },
+  "/AI/AI Engineer/Knowledge Mining/About-c0c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-ai-engineer-knowledge-mining-about-767-956"
+  },
+  "/AI/AI Engineer/Natural Language Processing/About-2ba": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-ai-engineer-natural-language-processing-abouta-71-60c"
+  },
+  "/AI/AI Engineer/Natural Language Processing/Azure AI Language service-9bf": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-ai-engineer-natural-language-processing-azure-ai-language-service-415-a1c"
+  },
+  "/AI/AI Engineer/Natural Language Processing/Azure AI Speech service-377": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-ai-engineer-natural-language-processing-azure-ai-speech-serviceceb-d5b"
+  },
   "/AI/AI Engineer/prepare-c0b": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---ai-ai-engineer-prepareb-60-645"
-  },
-  "/AI/Computer Vision/custom-form-recognizer-model-399": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-computer-vision-custom-form-recognizer-modeld-43-d1c"
-  },
-  "/AI/Computer Vision/face-api-a78": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-computer-vision-face-api-3-dd-514"
-  },
-  "/AI/Computer Vision/prebuilt-form-recognizer-models-7f8": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-computer-vision-prebuilt-form-recognizer-modelsbeb-2b4"
-  },
-  "/AI/Knowledge Mining/About-9c9": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-knowledge-mining-aboutcd-2-e68"
-  },
-  "/AI/Natural Language Processing/About-2fd": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-natural-language-processing-aboutd-76-bd9"
-  },
-  "/AI/Natural Language Processing/Azure AI Language service-705": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-natural-language-processing-azure-ai-language-servicebf-5-6e3"
-  },
-  "/AI/Natural Language Processing/Azure AI Speech service-dcf": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---ai-natural-language-processing-azure-ai-speech-serviced-79-2c6"
   },
   "/AI/roadmap-d78": {
     "__comp": "__comp---theme-doc-item-178-a40",

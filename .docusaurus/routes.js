@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '052'),
+    component: ComponentCreator('/', '80b'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'ff2'),
+        component: ComponentCreator('/', 'b48'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '89a'),
+            component: ComponentCreator('/', '676'),
             routes: [
               {
                 path: '/AI/',
@@ -102,56 +102,56 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/AI/AI Engineer/Computer Vision/custom-form-recognizer-model',
+                component: ComponentCreator('/AI/AI Engineer/Computer Vision/custom-form-recognizer-model', 'd6b'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/AI Engineer/Computer Vision/face-api',
+                component: ComponentCreator('/AI/AI Engineer/Computer Vision/face-api', '600'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models',
+                component: ComponentCreator('/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models', 'af2'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/AI/AI Engineer/consume',
                 component: ComponentCreator('/AI/AI Engineer/consume', 'e03'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/AI/AI Engineer/Knowledge Mining/About',
+                component: ComponentCreator('/AI/AI Engineer/Knowledge Mining/About', 'c0c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/AI Engineer/Natural Language Processing/About',
+                component: ComponentCreator('/AI/AI Engineer/Natural Language Processing/About', '2ba'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/AI Engineer/Natural Language Processing/Azure AI Language service',
+                component: ComponentCreator('/AI/AI Engineer/Natural Language Processing/Azure AI Language service', '9bf'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/AI/AI Engineer/Natural Language Processing/Azure AI Speech service',
+                component: ComponentCreator('/AI/AI Engineer/Natural Language Processing/Azure AI Speech service', '377'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/AI/AI Engineer/prepare',
                 component: ComponentCreator('/AI/AI Engineer/prepare', 'c0b'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/Computer Vision/custom-form-recognizer-model',
-                component: ComponentCreator('/AI/Computer Vision/custom-form-recognizer-model', '399'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/Computer Vision/face-api',
-                component: ComponentCreator('/AI/Computer Vision/face-api', 'a78'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/Computer Vision/prebuilt-form-recognizer-models',
-                component: ComponentCreator('/AI/Computer Vision/prebuilt-form-recognizer-models', '7f8'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/Knowledge Mining/About',
-                component: ComponentCreator('/AI/Knowledge Mining/About', '9c9'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/Natural Language Processing/About',
-                component: ComponentCreator('/AI/Natural Language Processing/About', '2fd'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/Natural Language Processing/Azure AI Language service',
-                component: ComponentCreator('/AI/Natural Language Processing/Azure AI Language service', '705'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/Natural Language Processing/Azure AI Speech service',
-                component: ComponentCreator('/AI/Natural Language Processing/Azure AI Speech service', 'dcf'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

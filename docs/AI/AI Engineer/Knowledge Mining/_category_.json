@@ -1,6 +1,6 @@
 {
     "label":"Knowledge Mining",
-    "position":30,
+    "position":130,
     "link": {
         "type": "generated-index"
       }
