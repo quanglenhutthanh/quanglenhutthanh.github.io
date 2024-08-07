@@ -75,10 +75,11 @@ sidebar_label : "Curriculum Vitae"
 </p>
 
 ### Udacity
-<p>
-**[Data Analyst Udacity Nanodegree](https://graduation.udacity.com/confirm/e/1c042f58-3b4b-11ee-a078-23181cb66dfb)**
-**[Intermediate Python Udacity Nanodegree](https://graduation.udacity.com/confirm/e/77128002-10a3-11ee-8ebc-1fdc62667747)**
-**[AI Engineer using Microsoft Azure Udacity Nanodegree](https://www.udacity.com/certificate/e/a1ffa830-794e-11ee-9b67-afe41c9a767e)**
-**[React Udacity Nanodegree](https://www.udacity.com/certificate/e/66575d7a-ab9c-11ee-966a-4b60ef25aece)**
-</p>
+[Data Analyst Udacity Nanodegree](https://graduation.udacity.com/confirm/e/1c042f58-3b4b-11ee-a078-23181cb66dfb)
+  
+[Intermediate Python Udacity Nanodegree](https://graduation.udacity.com/confirm/e/77128002-10a3-11ee-8ebc-1fdc62667747)
+
+[AI Engineer using Microsoft Azure Udacity Nanodegree](https://www.udacity.com/certificate/e/a1ffa830-794e-11ee-9b67-afe41c9a767e)
+
+[React Udacity Nanodegree](https://www.udacity.com/certificate/e/66575d7a-ab9c-11ee-966a-4b60ef25aece)
 
