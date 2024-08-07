@@ -11,7 +11,7 @@ This site isn’t just about showcasing my expertise; it’s a personal journey.
 
 It’s a tool for personal growth and self-improvement. Writing, I believe, is a powerful way to refine thinking and analytical skills, and I invite you to join me on this intellectual adventure.
 
-![img](img/Welcome.png)
+Currently, I am diving into the fascinating world of Artificial Intelligence and Machine Learning. This new endeavor is part of my continuous journey towards personal growth and self-improvement. I believe that writing is a powerful tool to refine my thinking and analytical skills.
 
 > **[How I create my website.](intro.md)**
 
