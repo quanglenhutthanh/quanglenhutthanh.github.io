@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksrc=self.webpackChunksrc||[]).push([[3946],{3163:e=>{e.exports=JSON.parse('{"title":"AI & ML","slug":"/category/ai--ml","permalink":"/category/ai--ml","navigation":{"previous":{"title":"Flask","permalink":"/Archive/Python/flask"},"next":{"title":"The Age of AI","permalink":"/Archive/AI/"}}}')}}]);
