@@ -127,17 +127,17 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-80b": {
+  "/-b15": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-b48": {
+  "/-ca9": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-676": {
+  "/-d88": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/AI/-dde": {
@@ -187,6 +187,58 @@
   "/AI/roadmap-d78": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---ai-roadmapee-9-8d8"
+  },
+  "/Archive/Dynamics 365 Business Central/About-fe4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-dynamics-365-business-central-about-5-b-0-c95"
+  },
+  "/Archive/Dynamics 365 Business Central/architecture-3e1": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-dynamics-365-business-central-architecture-633-998"
+  },
+  "/Archive/Dynamics 365 Business Central/Development/customize-19b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-dynamics-365-business-central-development-customized-59-ec4"
+  },
+  "/Archive/Dynamics 365 Business Central/Development/getting-started-3cd": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-dynamics-365-business-central-development-getting-started-9-f-8-9fa"
+  },
+  "/Archive/Dynamics 365 Business Central/Development/objects-103": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-dynamics-365-business-central-development-objects-119-30b"
+  },
+  "/Archive/Dynamics 365 Business Central/Development/translation-files-cb0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-dynamics-365-business-central-development-translation-files-9-f-5-0e8"
+  },
+  "/Archive/Python/About-c29": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-python-aboutc-61-53d"
+  },
+  "/Archive/Python/file-i-o-503": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-python-file-i-oe-2-d-0b8"
+  },
+  "/Archive/Python/flask-f53": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-python-flask-0-cc-4f5"
+  },
+  "/Archive/Python/numpy-72e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-python-numpy-65-e-444"
+  },
+  "/Archive/Python/oop-f94": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-python-oop-9-f-4-439"
+  },
+  "/Archive/Python/pandas-573": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-python-pandas-3-a-3-593"
+  },
+  "/Archive/Python/roadmap-dc5": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---archive-python-roadmap-50-d-70b"
   },
   "/category/ai--ml-d80": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -244,61 +296,9 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---cv-3-ec-abf"
   },
-  "/Dynamics 365 Business Central/About-d5d": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---dynamics-365-business-central-aboutc-21-0a7"
-  },
-  "/Dynamics 365 Business Central/architecture-490": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---dynamics-365-business-central-architecture-79-b-ebe"
-  },
-  "/Dynamics 365 Business Central/Development/customize-cbb": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---dynamics-365-business-central-development-customizec-30-e4e"
-  },
-  "/Dynamics 365 Business Central/Development/getting-started-277": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---dynamics-365-business-central-development-getting-startedaf-5-b79"
-  },
-  "/Dynamics 365 Business Central/Development/objects-92b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---dynamics-365-business-central-development-objects-8-d-1-751"
-  },
-  "/Dynamics 365 Business Central/Development/translation-files-887": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---dynamics-365-business-central-development-translation-files-94-a-0da"
-  },
   "/intro-283": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---intro-0-e-3-7b8"
-  },
-  "/Python/About-913": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---python-aboutcb-9-86a"
-  },
-  "/Python/file-i-o-7b4": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---python-file-i-o-16-c-ac2"
-  },
-  "/Python/flask-e35": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---python-flask-073-81d"
-  },
-  "/Python/numpy-2ee": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---python-numpyda-2-5a8"
-  },
-  "/Python/oop-f59": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---python-oopfba-8e3"
-  },
-  "/Python/pandas-5d6": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---python-pandasf-13-d83"
-  },
-  "/Python/roadmap-2e1": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---python-roadmap-6-c-6-967"
   },
   "/Udacity Courses/About-3f5": {
     "__comp": "__comp---theme-doc-item-178-a40",

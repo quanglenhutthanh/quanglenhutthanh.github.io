@@ -1,7 +1,7 @@
 ---
 slug: /
 sidebar_position: 1
-sidebar_label : "About"
+sidebar_label : "Home"
 ---
 # Welcome!!!
 

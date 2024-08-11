@@ -11,14 +11,14 @@
     "tutorialSidebar": [
       {
         "type": "link",
-        "label": "About",
+        "label": "Home",
         "href": "/",
         "docId": "About",
         "unlisted": false
       },
       {
         "type": "link",
-        "label": "How I create my site",
+        "label": "About me",
         "href": "/intro",
         "docId": "intro",
         "unlisted": false
@@ -29,124 +29,6 @@
         "href": "/CV",
         "docId": "CV",
         "unlisted": false
-      },
-      {
-        "type": "category",
-        "label": "Dynamics 365 Business Central",
-        "collapsible": true,
-        "collapsed": true,
-        "items": [
-          {
-            "type": "link",
-            "label": "About",
-            "href": "/Dynamics 365 Business Central/About",
-            "docId": "Dynamics 365 Business Central/About",
-            "unlisted": false
-          },
-          {
-            "type": "link",
-            "label": "Architecture",
-            "href": "/Dynamics 365 Business Central/architecture",
-            "docId": "Dynamics 365 Business Central/architecture",
-            "unlisted": false
-          },
-          {
-            "type": "category",
-            "label": "Development",
-            "collapsible": true,
-            "collapsed": true,
-            "items": [
-              {
-                "type": "link",
-                "label": "Customize Business Central",
-                "href": "/Dynamics 365 Business Central/Development/customize",
-                "docId": "Dynamics 365 Business Central/Development/customize",
-                "unlisted": false
-              },
-              {
-                "type": "link",
-                "label": "Discover the logical database and its objects",
-                "href": "/Dynamics 365 Business Central/Development/objects",
-                "docId": "Dynamics 365 Business Central/Development/objects",
-                "unlisted": false
-              },
-              {
-                "type": "link",
-                "label": "Get started with Visual Studio Code",
-                "href": "/Dynamics 365 Business Central/Development/getting-started",
-                "docId": "Dynamics 365 Business Central/Development/getting-started",
-                "unlisted": false
-              },
-              {
-                "type": "link",
-                "label": "Working with translation files",
-                "href": "/Dynamics 365 Business Central/Development/translation-files",
-                "docId": "Dynamics 365 Business Central/Development/translation-files",
-                "unlisted": false
-              }
-            ],
-            "href": "/category/development"
-          }
-        ],
-        "href": "/category/dynamics-365-business-central"
-      },
-      {
-        "type": "category",
-        "label": "Python",
-        "collapsible": true,
-        "collapsed": true,
-        "items": [
-          {
-            "type": "link",
-            "label": "About",
-            "href": "/Python/About",
-            "docId": "Python/About",
-            "unlisted": false
-          },
-          {
-            "type": "link",
-            "label": "Python Roadmap",
-            "href": "/Python/roadmap",
-            "docId": "Python/roadmap",
-            "unlisted": false
-          },
-          {
-            "type": "link",
-            "label": "Object-Oriented Programming",
-            "href": "/Python/oop",
-            "docId": "Python/oop",
-            "unlisted": false
-          },
-          {
-            "type": "link",
-            "label": "File I/O",
-            "href": "/Python/file-i-o",
-            "docId": "Python/file-i-o",
-            "unlisted": false
-          },
-          {
-            "type": "link",
-            "label": "Pandas",
-            "href": "/Python/pandas",
-            "docId": "Python/pandas",
-            "unlisted": false
-          },
-          {
-            "type": "link",
-            "label": "NumPy",
-            "href": "/Python/numpy",
-            "docId": "Python/numpy",
-            "unlisted": false
-          },
-          {
-            "type": "link",
-            "label": "Flask",
-            "href": "/Python/flask",
-            "docId": "Python/flask",
-            "unlisted": false
-          }
-        ],
-        "href": "/category/python"
       },
       {
         "type": "category",
@@ -405,6 +287,132 @@
           }
         ],
         "href": "/category/ai--ml"
+      },
+      {
+        "type": "category",
+        "label": "Archive",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "category",
+            "label": "Dynamics 365 Business Central",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "About",
+                "href": "/Archive/Dynamics 365 Business Central/About",
+                "docId": "Archive/Dynamics 365 Business Central/About",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Architecture",
+                "href": "/Archive/Dynamics 365 Business Central/architecture",
+                "docId": "Archive/Dynamics 365 Business Central/architecture",
+                "unlisted": false
+              },
+              {
+                "type": "category",
+                "label": "Development",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "link",
+                    "label": "Customize Business Central",
+                    "href": "/Archive/Dynamics 365 Business Central/Development/customize",
+                    "docId": "Archive/Dynamics 365 Business Central/Development/customize",
+                    "unlisted": false
+                  },
+                  {
+                    "type": "link",
+                    "label": "Discover the logical database and its objects",
+                    "href": "/Archive/Dynamics 365 Business Central/Development/objects",
+                    "docId": "Archive/Dynamics 365 Business Central/Development/objects",
+                    "unlisted": false
+                  },
+                  {
+                    "type": "link",
+                    "label": "Get started with Visual Studio Code",
+                    "href": "/Archive/Dynamics 365 Business Central/Development/getting-started",
+                    "docId": "Archive/Dynamics 365 Business Central/Development/getting-started",
+                    "unlisted": false
+                  },
+                  {
+                    "type": "link",
+                    "label": "Working with translation files",
+                    "href": "/Archive/Dynamics 365 Business Central/Development/translation-files",
+                    "docId": "Archive/Dynamics 365 Business Central/Development/translation-files",
+                    "unlisted": false
+                  }
+                ],
+                "href": "/category/development"
+              }
+            ],
+            "href": "/category/dynamics-365-business-central"
+          },
+          {
+            "type": "category",
+            "label": "Python",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "About",
+                "href": "/Archive/Python/About",
+                "docId": "Archive/Python/About",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Python Roadmap",
+                "href": "/Archive/Python/roadmap",
+                "docId": "Archive/Python/roadmap",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Object-Oriented Programming",
+                "href": "/Archive/Python/oop",
+                "docId": "Archive/Python/oop",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "File I/O",
+                "href": "/Archive/Python/file-i-o",
+                "docId": "Archive/Python/file-i-o",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Pandas",
+                "href": "/Archive/Python/pandas",
+                "docId": "Archive/Python/pandas",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "NumPy",
+                "href": "/Archive/Python/numpy",
+                "docId": "Archive/Python/numpy",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Flask",
+                "href": "/Archive/Python/flask",
+                "docId": "Archive/Python/flask",
+                "unlisted": false
+              }
+            ],
+            "href": "/category/python"
+          }
+        ]
       }
     ]
   },
@@ -487,94 +495,94 @@
       "description": "From Roadmap.sh",
       "sidebar": "tutorialSidebar"
     },
+    "Archive/Dynamics 365 Business Central/About": {
+      "id": "Archive/Dynamics 365 Business Central/About",
+      "title": "Microsoft Dynamics 365 Business Central",
+      "description": "https://dynamics.microsoft.com/en-us/business-central/overview/",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Dynamics 365 Business Central/architecture": {
+      "id": "Archive/Dynamics 365 Business Central/architecture",
+      "title": "Microsoft Dynamics 365 Business Central Architecture",
+      "description": "Architecture",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Dynamics 365 Business Central/Development/customize": {
+      "id": "Archive/Dynamics 365 Business Central/Development/customize",
+      "title": "Customize Business Central",
+      "description": "Every business is unique. In addition to the core functionalities of Sales, Purchase, and Inventory Management, Microsoft Dynamics 365 Business Central also offers tools that enable you to build fully customized functionality to adapt to your company's specific business requirements.",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Dynamics 365 Business Central/Development/getting-started": {
+      "id": "Archive/Dynamics 365 Business Central/Development/getting-started",
+      "title": "Get started with Visual Studio Code",
+      "description": "Install Visual Studio Code",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Dynamics 365 Business Central/Development/objects": {
+      "id": "Archive/Dynamics 365 Business Central/Development/objects",
+      "title": "Discover the logical database and its objects",
+      "description": "Dynamics 365 Business Central is built, like many other cloud applications, on top of a database. This database doesn't only contain the data (like customers, vendors, products, and so on.); it also contains every object that is used in the application. When you request customer data, this data is displayed as a page on the screen with a certain structure.",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Dynamics 365 Business Central/Development/translation-files": {
+      "id": "Archive/Dynamics 365 Business Central/Development/translation-files",
+      "title": "Working with translation files",
+      "description": "Dynamics 365 Business Central is multi-language enabled, which means you can display the User Interface in different languages. In Dynamics 365 Business Central, this is done by using XLIFF file, which is a standardized format used computer-based translations.",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Python/About": {
+      "id": "Archive/Python/About",
+      "title": "About",
+      "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Python/file-i-o": {
+      "id": "Archive/Python/file-i-o",
+      "title": "File I/O",
+      "description": "What we're doing",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Python/flask": {
+      "id": "Archive/Python/flask",
+      "title": "Flask",
+      "description": "Flask",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Python/numpy": {
+      "id": "Archive/Python/numpy",
+      "title": "Introduction",
+      "description": "NumPy",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Python/oop": {
+      "id": "Archive/Python/oop",
+      "title": "Object-Oriented Programming",
+      "description": "OOP",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Python/pandas": {
+      "id": "Archive/Python/pandas",
+      "title": "Introduction",
+      "description": "NumPy",
+      "sidebar": "tutorialSidebar"
+    },
+    "Archive/Python/roadmap": {
+      "id": "Archive/Python/roadmap",
+      "title": "Python Roadmap",
+      "description": "From Roadmap.sh",
+      "sidebar": "tutorialSidebar"
+    },
     "CV": {
       "id": "CV",
       "title": "CV",
       "description": "INFORMATION",
       "sidebar": "tutorialSidebar"
     },
-    "Dynamics 365 Business Central/About": {
-      "id": "Dynamics 365 Business Central/About",
-      "title": "Microsoft Dynamics 365 Business Central",
-      "description": "https://dynamics.microsoft.com/en-us/business-central/overview/",
-      "sidebar": "tutorialSidebar"
-    },
-    "Dynamics 365 Business Central/architecture": {
-      "id": "Dynamics 365 Business Central/architecture",
-      "title": "Microsoft Dynamics 365 Business Central Architecture",
-      "description": "Architecture",
-      "sidebar": "tutorialSidebar"
-    },
-    "Dynamics 365 Business Central/Development/customize": {
-      "id": "Dynamics 365 Business Central/Development/customize",
-      "title": "Customize Business Central",
-      "description": "Every business is unique. In addition to the core functionalities of Sales, Purchase, and Inventory Management, Microsoft Dynamics 365 Business Central also offers tools that enable you to build fully customized functionality to adapt to your company's specific business requirements.",
-      "sidebar": "tutorialSidebar"
-    },
-    "Dynamics 365 Business Central/Development/getting-started": {
-      "id": "Dynamics 365 Business Central/Development/getting-started",
-      "title": "Get started with Visual Studio Code",
-      "description": "Install Visual Studio Code",
-      "sidebar": "tutorialSidebar"
-    },
-    "Dynamics 365 Business Central/Development/objects": {
-      "id": "Dynamics 365 Business Central/Development/objects",
-      "title": "Discover the logical database and its objects",
-      "description": "Dynamics 365 Business Central is built, like many other cloud applications, on top of a database. This database doesn't only contain the data (like customers, vendors, products, and so on.); it also contains every object that is used in the application. When you request customer data, this data is displayed as a page on the screen with a certain structure.",
-      "sidebar": "tutorialSidebar"
-    },
-    "Dynamics 365 Business Central/Development/translation-files": {
-      "id": "Dynamics 365 Business Central/Development/translation-files",
-      "title": "Working with translation files",
-      "description": "Dynamics 365 Business Central is multi-language enabled, which means you can display the User Interface in different languages. In Dynamics 365 Business Central, this is done by using XLIFF file, which is a standardized format used computer-based translations.",
-      "sidebar": "tutorialSidebar"
-    },
     "intro": {
       "id": "intro",
-      "title": "How I create this page",
-      "description": "I've chosen Docusaurus to build my website specifically for documentation purposes. Docusaurus is an open-source tool tailored for creating and managing documentation websites. Its user-friendly interface allows for swift and straightforward site creation. You can easily and quickly set up your site by following the instructions outlined here//docusaurus.io/docs.",
-      "sidebar": "tutorialSidebar"
-    },
-    "Python/About": {
-      "id": "Python/About",
-      "title": "About",
-      "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
-      "sidebar": "tutorialSidebar"
-    },
-    "Python/file-i-o": {
-      "id": "Python/file-i-o",
-      "title": "File I/O",
-      "description": "What we're doing",
-      "sidebar": "tutorialSidebar"
-    },
-    "Python/flask": {
-      "id": "Python/flask",
-      "title": "Flask",
-      "description": "Flask",
-      "sidebar": "tutorialSidebar"
-    },
-    "Python/numpy": {
-      "id": "Python/numpy",
-      "title": "Introduction",
-      "description": "NumPy",
-      "sidebar": "tutorialSidebar"
-    },
-    "Python/oop": {
-      "id": "Python/oop",
-      "title": "Object-Oriented Programming",
-      "description": "OOP",
-      "sidebar": "tutorialSidebar"
-    },
-    "Python/pandas": {
-      "id": "Python/pandas",
-      "title": "Introduction",
-      "description": "NumPy",
-      "sidebar": "tutorialSidebar"
-    },
-    "Python/roadmap": {
-      "id": "Python/roadmap",
-      "title": "Python Roadmap",
-      "description": "From Roadmap.sh",
+      "title": "About me",
+      "description": "With 8 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/About": {

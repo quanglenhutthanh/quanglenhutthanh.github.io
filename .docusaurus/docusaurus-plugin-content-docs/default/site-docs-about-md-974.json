@@ -14,11 +14,11 @@
   "frontMatter": {
     "slug": "/",
     "sidebar_position": 1,
-    "sidebar_label": "About"
+    "sidebar_label": "Home"
   },
   "sidebar": "tutorialSidebar",
   "next": {
-    "title": "How I create my site",
+    "title": "About me",
     "permalink": "/intro"
   }
 }

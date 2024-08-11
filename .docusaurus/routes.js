@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '80b'),
+    component: ComponentCreator('/', 'b15'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'b48'),
+        component: ComponentCreator('/', 'ca9'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '676'),
+            component: ComponentCreator('/', 'd88'),
             routes: [
               {
                 path: '/AI/',
@@ -158,6 +158,84 @@ export default [
               {
                 path: '/AI/roadmap',
                 component: ComponentCreator('/AI/roadmap', 'd78'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Dynamics 365 Business Central/About',
+                component: ComponentCreator('/Archive/Dynamics 365 Business Central/About', 'fe4'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Dynamics 365 Business Central/architecture',
+                component: ComponentCreator('/Archive/Dynamics 365 Business Central/architecture', '3e1'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Dynamics 365 Business Central/Development/customize',
+                component: ComponentCreator('/Archive/Dynamics 365 Business Central/Development/customize', '19b'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Dynamics 365 Business Central/Development/getting-started',
+                component: ComponentCreator('/Archive/Dynamics 365 Business Central/Development/getting-started', '3cd'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Dynamics 365 Business Central/Development/objects',
+                component: ComponentCreator('/Archive/Dynamics 365 Business Central/Development/objects', '103'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Dynamics 365 Business Central/Development/translation-files',
+                component: ComponentCreator('/Archive/Dynamics 365 Business Central/Development/translation-files', 'cb0'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Python/About',
+                component: ComponentCreator('/Archive/Python/About', 'c29'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Python/file-i-o',
+                component: ComponentCreator('/Archive/Python/file-i-o', '503'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Python/flask',
+                component: ComponentCreator('/Archive/Python/flask', 'f53'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Python/numpy',
+                component: ComponentCreator('/Archive/Python/numpy', '72e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Python/oop',
+                component: ComponentCreator('/Archive/Python/oop', 'f94'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Python/pandas',
+                component: ComponentCreator('/Archive/Python/pandas', '573'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Archive/Python/roadmap',
+                component: ComponentCreator('/Archive/Python/roadmap', 'dc5'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -246,86 +324,8 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/Dynamics 365 Business Central/About',
-                component: ComponentCreator('/Dynamics 365 Business Central/About', 'd5d'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Dynamics 365 Business Central/architecture',
-                component: ComponentCreator('/Dynamics 365 Business Central/architecture', '490'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Dynamics 365 Business Central/Development/customize',
-                component: ComponentCreator('/Dynamics 365 Business Central/Development/customize', 'cbb'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Dynamics 365 Business Central/Development/getting-started',
-                component: ComponentCreator('/Dynamics 365 Business Central/Development/getting-started', '277'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Dynamics 365 Business Central/Development/objects',
-                component: ComponentCreator('/Dynamics 365 Business Central/Development/objects', '92b'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Dynamics 365 Business Central/Development/translation-files',
-                component: ComponentCreator('/Dynamics 365 Business Central/Development/translation-files', '887'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
                 path: '/intro',
                 component: ComponentCreator('/intro', '283'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Python/About',
-                component: ComponentCreator('/Python/About', '913'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Python/file-i-o',
-                component: ComponentCreator('/Python/file-i-o', '7b4'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Python/flask',
-                component: ComponentCreator('/Python/flask', 'e35'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Python/numpy',
-                component: ComponentCreator('/Python/numpy', '2ee'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Python/oop',
-                component: ComponentCreator('/Python/oop', 'f59'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Python/pandas',
-                component: ComponentCreator('/Python/pandas', '5d6'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Python/roadmap',
-                component: ComponentCreator('/Python/roadmap', '2e1'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

@@ -17,11 +17,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "How I create my site",
+    "title": "About me",
     "permalink": "/intro"
   },
   "next": {
-    "title": "Dynamics 365 Business Central",
-    "permalink": "/category/dynamics-365-business-central"
+    "title": "Udacity Learning Projects",
+    "permalink": "/category/udacity-learning-projects"
   }
 }
