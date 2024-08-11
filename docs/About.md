@@ -13,6 +13,6 @@ This site isn’t just about showcasing my expertise; it’s a personal journey.
 
 It’s a tool for personal growth and self-improvement. Writing, I believe, is a powerful way to refine thinking and analytical skills, and I invite you to join me on this intellectual adventure.
 
-> **[How I create my website.](intro.md)**
+> **[About me](intro.md)**
 
 
