@@ -1,24 +1,23 @@
 {
   "id": "About",
-  "title": "Welcome!!!",
+  "title": "About",
   "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
   "source": "@site/docs/About.md",
   "sourceDirName": ".",
-  "slug": "/",
-  "permalink": "/",
+  "slug": "/About",
+  "permalink": "/About",
   "draft": false,
   "unlisted": false,
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
-    "slug": "/",
     "sidebar_position": 1,
     "sidebar_label": "Home"
   },
   "sidebar": "tutorialSidebar",
   "next": {
     "title": "About me",
-    "permalink": "/intro"
+    "permalink": "/"
   }
 }

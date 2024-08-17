@@ -4,22 +4,19 @@
   "description": "With 8 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).",
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
-  "slug": "/intro",
-  "permalink": "/intro",
+  "slug": "/",
+  "permalink": "/",
   "draft": false,
   "unlisted": false,
   "tags": [],
   "version": "current",
   "sidebarPosition": 5,
   "frontMatter": {
+    "slug": "/",
     "sidebar_position": 5,
     "sidebar_label": "About me"
   },
   "sidebar": "tutorialSidebar",
-  "previous": {
-    "title": "Home",
-    "permalink": "/"
-  },
   "next": {
     "title": "Curriculum Vitae",
     "permalink": "/CV"

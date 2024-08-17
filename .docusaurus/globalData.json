@@ -8,136 +8,11 @@
           "label": "Next",
           "isLast": true,
           "path": "/",
-          "mainDocId": "About",
+          "mainDocId": "intro",
           "docs": [
             {
-              "id": "About",
-              "path": "/",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI",
-              "path": "/AI/",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/ai-102",
-              "path": "/AI/AI Engineer/ai-102",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
-              "path": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/Computer Vision/face-api",
-              "path": "/AI/AI Engineer/Computer Vision/face-api",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-              "path": "/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/consume",
-              "path": "/AI/AI Engineer/consume",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/Knowledge Mining/About",
-              "path": "/AI/AI Engineer/Knowledge Mining/About",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/Natural Language Processing/About",
-              "path": "/AI/AI Engineer/Natural Language Processing/About",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/Natural Language Processing/Azure AI Language service",
-              "path": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/Natural Language Processing/Azure AI Speech service",
-              "path": "/AI/AI Engineer/Natural Language Processing/Azure AI Speech service",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/AI Engineer/prepare",
-              "path": "/AI/AI Engineer/prepare",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "AI/roadmap",
-              "path": "/AI/roadmap",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/About",
-              "path": "/Archive/Dynamics 365 Business Central/About",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/architecture",
-              "path": "/Archive/Dynamics 365 Business Central/architecture",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/Development/customize",
-              "path": "/Archive/Dynamics 365 Business Central/Development/customize",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/Development/getting-started",
-              "path": "/Archive/Dynamics 365 Business Central/Development/getting-started",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/Development/objects",
-              "path": "/Archive/Dynamics 365 Business Central/Development/objects",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/Development/translation-files",
-              "path": "/Archive/Dynamics 365 Business Central/Development/translation-files",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Python/About",
-              "path": "/Archive/Python/About",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Python/file-i-o",
-              "path": "/Archive/Python/file-i-o",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Python/flask",
-              "path": "/Archive/Python/flask",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Python/numpy",
-              "path": "/Archive/Python/numpy",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Python/oop",
-              "path": "/Archive/Python/oop",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Python/pandas",
-              "path": "/Archive/Python/pandas",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "Archive/Python/roadmap",
-              "path": "/Archive/Python/roadmap",
+              "id": "certificates",
+              "path": "/certificates",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -147,7 +22,7 @@
             },
             {
               "id": "intro",
-              "path": "/intro",
+              "path": "/",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -211,8 +86,8 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/udacity-learning-projects",
-              "path": "/category/udacity-learning-projects",
+              "id": "/category/udacity-learning",
+              "path": "/category/udacity-learning",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -234,46 +109,6 @@
               "id": "/category/ai-engineer-using-microsoft-azure",
               "path": "/category/ai-engineer-using-microsoft-azure",
               "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/ai--ml",
-              "path": "/category/ai--ml",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/ai-engineer-using-azure-services",
-              "path": "/category/ai-engineer-using-azure-services",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/computer-vision",
-              "path": "/category/computer-vision",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/natural-language-processing",
-              "path": "/category/natural-language-processing",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/knowledge-mining",
-              "path": "/category/knowledge-mining",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/dynamics-365-business-central",
-              "path": "/category/dynamics-365-business-central",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/development",
-              "path": "/category/development",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/python",
-              "path": "/category/python",
-              "sidebar": "tutorialSidebar"
             }
           ],
           "draftIds": [],
@@ -281,7 +116,7 @@
             "tutorialSidebar": {
               "link": {
                 "path": "/",
-                "label": "Home"
+                "label": "About me"
               }
             }
           }

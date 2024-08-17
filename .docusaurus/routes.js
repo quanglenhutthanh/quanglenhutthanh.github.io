@@ -79,187 +79,19 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'b15'),
+    component: ComponentCreator('/', '1e5'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'ca9'),
+        component: ComponentCreator('/', 'a87'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', 'd88'),
+            component: ComponentCreator('/', '0fd'),
             routes: [
-              {
-                path: '/AI/',
-                component: ComponentCreator('/AI/', 'dde'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/ai-102',
-                component: ComponentCreator('/AI/AI Engineer/ai-102', '9ca'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/Computer Vision/custom-form-recognizer-model',
-                component: ComponentCreator('/AI/AI Engineer/Computer Vision/custom-form-recognizer-model', 'd6b'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/Computer Vision/face-api',
-                component: ComponentCreator('/AI/AI Engineer/Computer Vision/face-api', '600'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models',
-                component: ComponentCreator('/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models', 'af2'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/consume',
-                component: ComponentCreator('/AI/AI Engineer/consume', 'e03'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/Knowledge Mining/About',
-                component: ComponentCreator('/AI/AI Engineer/Knowledge Mining/About', 'c0c'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/Natural Language Processing/About',
-                component: ComponentCreator('/AI/AI Engineer/Natural Language Processing/About', '2ba'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/Natural Language Processing/Azure AI Language service',
-                component: ComponentCreator('/AI/AI Engineer/Natural Language Processing/Azure AI Language service', '9bf'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/Natural Language Processing/Azure AI Speech service',
-                component: ComponentCreator('/AI/AI Engineer/Natural Language Processing/Azure AI Speech service', '377'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/AI Engineer/prepare',
-                component: ComponentCreator('/AI/AI Engineer/prepare', 'c0b'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/AI/roadmap',
-                component: ComponentCreator('/AI/roadmap', 'd78'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Dynamics 365 Business Central/About',
-                component: ComponentCreator('/Archive/Dynamics 365 Business Central/About', 'fe4'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Dynamics 365 Business Central/architecture',
-                component: ComponentCreator('/Archive/Dynamics 365 Business Central/architecture', '3e1'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Dynamics 365 Business Central/Development/customize',
-                component: ComponentCreator('/Archive/Dynamics 365 Business Central/Development/customize', '19b'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Dynamics 365 Business Central/Development/getting-started',
-                component: ComponentCreator('/Archive/Dynamics 365 Business Central/Development/getting-started', '3cd'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Dynamics 365 Business Central/Development/objects',
-                component: ComponentCreator('/Archive/Dynamics 365 Business Central/Development/objects', '103'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Dynamics 365 Business Central/Development/translation-files',
-                component: ComponentCreator('/Archive/Dynamics 365 Business Central/Development/translation-files', 'cb0'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Python/About',
-                component: ComponentCreator('/Archive/Python/About', 'c29'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Python/file-i-o',
-                component: ComponentCreator('/Archive/Python/file-i-o', '503'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Python/flask',
-                component: ComponentCreator('/Archive/Python/flask', 'f53'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Python/numpy',
-                component: ComponentCreator('/Archive/Python/numpy', '72e'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Python/oop',
-                component: ComponentCreator('/Archive/Python/oop', 'f94'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Python/pandas',
-                component: ComponentCreator('/Archive/Python/pandas', '573'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Archive/Python/roadmap',
-                component: ComponentCreator('/Archive/Python/roadmap', 'dc5'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/category/ai--ml',
-                component: ComponentCreator('/category/ai--ml', 'd80'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/category/ai-engineer-using-azure-services',
-                component: ComponentCreator('/category/ai-engineer-using-azure-services', '1a6'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
               {
                 path: '/category/ai-engineer-using-microsoft-azure',
                 component: ComponentCreator('/category/ai-engineer-using-microsoft-azure', 'bbb'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/category/computer-vision',
-                component: ComponentCreator('/category/computer-vision', '6c3'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -270,38 +102,8 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/category/development',
-                component: ComponentCreator('/category/development', '74a'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/category/dynamics-365-business-central',
-                component: ComponentCreator('/category/dynamics-365-business-central', '94a'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
                 path: '/category/intermediate-python',
                 component: ComponentCreator('/category/intermediate-python', '422'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/category/knowledge-mining',
-                component: ComponentCreator('/category/knowledge-mining', '647'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/category/natural-language-processing',
-                component: ComponentCreator('/category/natural-language-processing', '561'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/category/python',
-                component: ComponentCreator('/category/python', '06c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -312,20 +114,20 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/category/udacity-learning-projects',
-                component: ComponentCreator('/category/udacity-learning-projects', '808'),
+                path: '/category/udacity-learning',
+                component: ComponentCreator('/category/udacity-learning', '5ec'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/certificates',
+                component: ComponentCreator('/certificates', 'c0f'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
                 path: '/CV',
                 component: ComponentCreator('/CV', '93e'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/intro',
-                component: ComponentCreator('/intro', '283'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -403,7 +205,7 @@ export default [
               },
               {
                 path: '/',
-                component: ComponentCreator('/', 'd17'),
+                component: ComponentCreator('/', '96c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }

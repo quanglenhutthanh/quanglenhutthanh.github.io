@@ -9,3 +9,10 @@
   height: 200px;
   width: 200px;
 }
+
+h1 { font-size: 2rem !important; }
+h2 { font-size: 1.5rem !important; }
+
+p {
+  line-height: 1.5; /* This is a multiplier of the font size */
+}

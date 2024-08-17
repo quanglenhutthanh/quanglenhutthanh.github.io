@@ -18,10 +18,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "About me",
-    "permalink": "/intro"
+    "permalink": "/"
   },
   "next": {
-    "title": "Udacity Learning Projects",
-    "permalink": "/category/udacity-learning-projects"
+    "title": "Udacity Learning",
+    "permalink": "/category/udacity-learning"
   }
 }

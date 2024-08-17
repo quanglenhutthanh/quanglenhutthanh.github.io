@@ -18,91 +18,13 @@
           "contentPathLocalized": "E:\\_LEARNING\\site\\src\\i18n\\en\\docusaurus-plugin-content-docs\\current",
           "docs": [
             {
-              "id": "About",
-              "title": "Welcome!!!",
-              "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
-              "source": "@site/docs/About.md",
+              "id": "certificates",
+              "title": "certificates",
+              "description": "I wanted to share my personal journey in the world of data, through self-learning. It is very nice to celebrate the achievements made and the certificates obtained that reflect my growth and progress in this exciting field",
+              "source": "@site/docs/certificates.md",
               "sourceDirName": ".",
-              "slug": "/",
-              "permalink": "/",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "slug": "/",
-                "sidebar_position": 1,
-                "sidebar_label": "Home"
-              },
-              "sidebar": "tutorialSidebar",
-              "next": {
-                "title": "About me",
-                "permalink": "/intro"
-              }
-            },
-            {
-              "id": "AI/AI",
-              "title": "What is AI",
-              "description": "AI, Artificial Intelligence is a branch of computer science focused on creating systems that can perform tasks that would require human intelligence. These tasks range from understanding natural language, making decisions, and learning from experience.",
-              "source": "@site/docs/AI/AI.md",
-              "sourceDirName": "AI",
-              "slug": "/AI/",
-              "permalink": "/AI/",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1,
-                "sidebar_label": "The Age of AI"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "AI & ML",
-                "permalink": "/category/ai--ml"
-              },
-              "next": {
-                "title": "AI and Data Scientist Roadmap",
-                "permalink": "/AI/roadmap"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/ai-102",
-              "title": "Study guide for Exam AI-102: Designing and Implementing a Microsoft Azure AI Solution",
-              "description": "Skills measured as of October 31, 2023",
-              "source": "@site/docs/AI/AI Engineer/ai-102.md",
-              "sourceDirName": "AI/AI Engineer",
-              "slug": "/AI/AI Engineer/ai-102",
-              "permalink": "/AI/AI Engineer/ai-102",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 30,
-              "frontMatter": {
-                "sidebar_position": 30,
-                "sidebar_label": "Study guide for Exam AI-102"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Create and consume Azure AI services",
-                "permalink": "/AI/AI Engineer/consume"
-              },
-              "next": {
-                "title": "Computer Vision",
-                "permalink": "/category/computer-vision"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
-              "title": "Custom Form Recognizer Model",
-              "description": "Sometimes, the prebuilt models are not sufficient to extract information from you unique documents with particular layout of information. In this case, you should develop your own custom Form Recognizer model to meet your unique business requirements.",
-              "source": "@site/docs/AI/AI Engineer/Computer Vision/custom-form-recognizer-model.md",
-              "sourceDirName": "AI/AI Engineer/Computer Vision",
-              "slug": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
-              "permalink": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
+              "slug": "/certificates",
+              "permalink": "/certificates",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -110,602 +32,12 @@
               "sidebarPosition": 20,
               "frontMatter": {
                 "sidebar_position": 20,
-                "sidebar_label": "Custom Form Recognizer Models"
+                "sidebar_label": "Certificates"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Prebuilt Form Recognizer Models",
-                "permalink": "/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models"
-              },
-              "next": {
-                "title": "Azure Face Service",
-                "permalink": "/AI/AI Engineer/Computer Vision/face-api"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/Computer Vision/face-api",
-              "title": "Azure AI Face",
-              "description": "The Azure AI Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as identification, touchless access control, and face blurring for privacy.",
-              "source": "@site/docs/AI/AI Engineer/Computer Vision/face-api.md",
-              "sourceDirName": "AI/AI Engineer/Computer Vision",
-              "slug": "/AI/AI Engineer/Computer Vision/face-api",
-              "permalink": "/AI/AI Engineer/Computer Vision/face-api",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 30,
-              "frontMatter": {
-                "sidebar_position": 30,
-                "sidebar_label": "Azure Face Service"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Custom Form Recognizer Models",
-                "permalink": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model"
-              },
-              "next": {
-                "title": "Natural Language Processing",
-                "permalink": "/category/natural-language-processing"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-              "title": "Prebuilt Form Recognizer Models",
-              "description": "This demo demonstrates how to use the Azure Form Recognizer Python SDK to extract information from digital documents using the prebuilt Form Recognizer model.",
-              "source": "@site/docs/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models.md",
-              "sourceDirName": "AI/AI Engineer/Computer Vision",
-              "slug": "/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-              "permalink": "/AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Prebuilt Form Recognizer Models"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Computer Vision",
-                "permalink": "/category/computer-vision"
-              },
-              "next": {
-                "title": "Custom Form Recognizer Models",
-                "permalink": "/AI/AI Engineer/Computer Vision/custom-form-recognizer-model"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/consume",
-              "title": "Introduction",
-              "description": "Azure AI services are cloud-based services that encapsulate AI capabilities. Rather than a single product, you should think of AI services as a set of individual services that you can use as building blocks to compose sophisticated, intelligent applications.",
-              "source": "@site/docs/AI/AI Engineer/consume.md",
-              "sourceDirName": "AI/AI Engineer",
-              "slug": "/AI/AI Engineer/consume",
-              "permalink": "/AI/AI Engineer/consume",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 20,
-              "frontMatter": {
-                "sidebar_position": 20,
-                "sidebar_label": "Create and consume Azure AI services"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Prepare to develop AI solutions on Azure",
-                "permalink": "/AI/AI Engineer/prepare"
-              },
-              "next": {
-                "title": "Study guide for Exam AI-102",
-                "permalink": "/AI/AI Engineer/ai-102"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/Knowledge Mining/About",
-              "title": "Introduction",
-              "description": "All organizations rely on information to make decisions, answer questions, and function efficiently. The problem for most organizations is not a lack of information, but the challenge of finding and extracting the information from the massive set of documents, databases, and other sources in which the information is stored.",
-              "source": "@site/docs/AI/AI Engineer/Knowledge Mining/About.md",
-              "sourceDirName": "AI/AI Engineer/Knowledge Mining",
-              "slug": "/AI/AI Engineer/Knowledge Mining/About",
-              "permalink": "/AI/AI Engineer/Knowledge Mining/About",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1,
-                "sidebar_label": "Implement knowledge mining with Azure AI Search"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Knowledge Mining",
-                "permalink": "/category/knowledge-mining"
-              },
-              "next": {
-                "title": "Dynamics 365 Business Central",
-                "permalink": "/category/dynamics-365-business-central"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/Natural Language Processing/About",
-              "title": "Natural Language Processing",
-              "description": "Natural language processing (NLP) is a common AI problem in which software must be able to work with text or speech in the natural language form that a human user would write or speak. Within the broader area of NLP, natural language understanding (NLU) deals with the problem of determining semantic meaning from natural language - usually by using a trained language model.",
-              "source": "@site/docs/AI/AI Engineer/Natural Language Processing/About.md",
-              "sourceDirName": "AI/AI Engineer/Natural Language Processing",
-              "slug": "/AI/AI Engineer/Natural Language Processing/About",
-              "permalink": "/AI/AI Engineer/Natural Language Processing/About",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1,
-                "sidebar_label": "Natural Language Processing"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Natural Language Processing",
-                "permalink": "/category/natural-language-processing"
-              },
-              "next": {
-                "title": "Azure AI Language Service",
-                "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/Natural Language Processing/Azure AI Language service",
-              "title": "Process and translate text with Azure AI Services",
-              "description": "The Azure AI Language service is designed to help you extract information from text. It provides functionality that you can use for:",
-              "source": "@site/docs/AI/AI Engineer/Natural Language Processing/Azure AI Language service.md",
-              "sourceDirName": "AI/AI Engineer/Natural Language Processing",
-              "slug": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service",
-              "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Azure AI Language Service"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Natural Language Processing",
-                "permalink": "/AI/AI Engineer/Natural Language Processing/About"
-              },
-              "next": {
-                "title": "Azure AI Speech service",
-                "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Speech service"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/Natural Language Processing/Azure AI Speech service",
-              "title": "Azure AI Speech service",
-              "description": "Created by: thanh quang le nhut",
-              "source": "@site/docs/AI/AI Engineer/Natural Language Processing/Azure AI Speech service.md",
-              "sourceDirName": "AI/AI Engineer/Natural Language Processing",
-              "slug": "/AI/AI Engineer/Natural Language Processing/Azure AI Speech service",
-              "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Speech service",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "frontMatter": {},
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Azure AI Language Service",
-                "permalink": "/AI/AI Engineer/Natural Language Processing/Azure AI Language service"
-              },
-              "next": {
-                "title": "Knowledge Mining",
-                "permalink": "/category/knowledge-mining"
-              }
-            },
-            {
-              "id": "AI/AI Engineer/prepare",
-              "title": "Introduction",
-              "description": "Start a journey to become an AI Engineer",
-              "source": "@site/docs/AI/AI Engineer/prepare.md",
-              "sourceDirName": "AI/AI Engineer",
-              "slug": "/AI/AI Engineer/prepare",
-              "permalink": "/AI/AI Engineer/prepare",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Prepare to develop AI solutions on Azure"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "AI Engineer using Azure Services",
-                "permalink": "/category/ai-engineer-using-azure-services"
-              },
-              "next": {
-                "title": "Create and consume Azure AI services",
-                "permalink": "/AI/AI Engineer/consume"
-              }
-            },
-            {
-              "id": "AI/roadmap",
-              "title": "AI and Data Scientist Roadmap",
-              "description": "From Roadmap.sh",
-              "source": "@site/docs/AI/roadmap.md",
-              "sourceDirName": "AI",
-              "slug": "/AI/roadmap",
-              "permalink": "/AI/roadmap",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 5,
-              "frontMatter": {
-                "sidebar_position": 5,
-                "sidebar_label": "AI and Data Scientist Roadmap"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "The Age of AI",
-                "permalink": "/AI/"
-              },
-              "next": {
-                "title": "AI Engineer using Azure Services",
-                "permalink": "/category/ai-engineer-using-azure-services"
-              }
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/About",
-              "title": "Microsoft Dynamics 365 Business Central",
-              "description": "https://dynamics.microsoft.com/en-us/business-central/overview/",
-              "source": "@site/docs/Archive/Dynamics 365 Business Central/About.md",
-              "sourceDirName": "Archive/Dynamics 365 Business Central",
-              "slug": "/Archive/Dynamics 365 Business Central/About",
-              "permalink": "/Archive/Dynamics 365 Business Central/About",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1,
-                "sidebar_label": "About"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Dynamics 365 Business Central",
-                "permalink": "/category/dynamics-365-business-central"
-              },
-              "next": {
-                "title": "Architecture",
-                "permalink": "/Archive/Dynamics 365 Business Central/architecture"
-              }
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/architecture",
-              "title": "Microsoft Dynamics 365 Business Central Architecture",
-              "description": "Architecture",
-              "source": "@site/docs/Archive/Dynamics 365 Business Central/architecture.md",
-              "sourceDirName": "Archive/Dynamics 365 Business Central",
-              "slug": "/Archive/Dynamics 365 Business Central/architecture",
-              "permalink": "/Archive/Dynamics 365 Business Central/architecture",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 5,
-              "frontMatter": {
-                "sidebar_position": 5,
-                "sidebar_label": "Architecture"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "About",
-                "permalink": "/Archive/Dynamics 365 Business Central/About"
-              },
-              "next": {
-                "title": "Development",
-                "permalink": "/category/development"
-              }
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/Development/customize",
-              "title": "Customize Business Central",
-              "description": "Every business is unique. In addition to the core functionalities of Sales, Purchase, and Inventory Management, Microsoft Dynamics 365 Business Central also offers tools that enable you to build fully customized functionality to adapt to your company's specific business requirements.",
-              "source": "@site/docs/Archive/Dynamics 365 Business Central/Development/customize.md",
-              "sourceDirName": "Archive/Dynamics 365 Business Central/Development",
-              "slug": "/Archive/Dynamics 365 Business Central/Development/customize",
-              "permalink": "/Archive/Dynamics 365 Business Central/Development/customize",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 15,
-              "frontMatter": {
-                "sidebar_position": 15,
-                "sidebar_label": "Customize Business Central"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Development",
-                "permalink": "/category/development"
-              },
-              "next": {
-                "title": "Discover the logical database and its objects",
-                "permalink": "/Archive/Dynamics 365 Business Central/Development/objects"
-              }
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/Development/getting-started",
-              "title": "Get started with Visual Studio Code",
-              "description": "Install Visual Studio Code",
-              "source": "@site/docs/Archive/Dynamics 365 Business Central/Development/getting-started.md",
-              "sourceDirName": "Archive/Dynamics 365 Business Central/Development",
-              "slug": "/Archive/Dynamics 365 Business Central/Development/getting-started",
-              "permalink": "/Archive/Dynamics 365 Business Central/Development/getting-started",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 100,
-              "frontMatter": {
-                "sidebar_position": 100,
-                "sidebar_label": "Get started with Visual Studio Code"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Discover the logical database and its objects",
-                "permalink": "/Archive/Dynamics 365 Business Central/Development/objects"
-              },
-              "next": {
-                "title": "Working with translation files",
-                "permalink": "/Archive/Dynamics 365 Business Central/Development/translation-files"
-              }
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/Development/objects",
-              "title": "Discover the logical database and its objects",
-              "description": "Dynamics 365 Business Central is built, like many other cloud applications, on top of a database. This database doesn't only contain the data (like customers, vendors, products, and so on.); it also contains every object that is used in the application. When you request customer data, this data is displayed as a page on the screen with a certain structure.",
-              "source": "@site/docs/Archive/Dynamics 365 Business Central/Development/objects.md",
-              "sourceDirName": "Archive/Dynamics 365 Business Central/Development",
-              "slug": "/Archive/Dynamics 365 Business Central/Development/objects",
-              "permalink": "/Archive/Dynamics 365 Business Central/Development/objects",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 20,
-              "frontMatter": {
-                "sidebar_position": 20,
-                "sidebar_label": "Discover the logical database and its objects"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Customize Business Central",
-                "permalink": "/Archive/Dynamics 365 Business Central/Development/customize"
-              },
-              "next": {
-                "title": "Get started with Visual Studio Code",
-                "permalink": "/Archive/Dynamics 365 Business Central/Development/getting-started"
-              }
-            },
-            {
-              "id": "Archive/Dynamics 365 Business Central/Development/translation-files",
-              "title": "Working with translation files",
-              "description": "Dynamics 365 Business Central is multi-language enabled, which means you can display the User Interface in different languages. In Dynamics 365 Business Central, this is done by using XLIFF file, which is a standardized format used computer-based translations.",
-              "source": "@site/docs/Archive/Dynamics 365 Business Central/Development/translation-files.md",
-              "sourceDirName": "Archive/Dynamics 365 Business Central/Development",
-              "slug": "/Archive/Dynamics 365 Business Central/Development/translation-files",
-              "permalink": "/Archive/Dynamics 365 Business Central/Development/translation-files",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 400,
-              "frontMatter": {
-                "sidebar_position": 400,
-                "sidebar_label": "Working with translation files"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Get started with Visual Studio Code",
-                "permalink": "/Archive/Dynamics 365 Business Central/Development/getting-started"
-              },
-              "next": {
-                "title": "Python",
-                "permalink": "/category/python"
-              }
-            },
-            {
-              "id": "Archive/Python/About",
-              "title": "About",
-              "description": "Python is a high-level, versatile programming language known for its simplicity and readability. Created by Guido van Rossum, it emphasizes clean code and readability, making it popular among beginners and professionals alike. Here are some key aspects:",
-              "source": "@site/docs/Archive/Python/About.md",
-              "sourceDirName": "Archive/Python",
-              "slug": "/Archive/Python/About",
-              "permalink": "/Archive/Python/About",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1,
-                "sidebar_label": "About"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Python",
-                "permalink": "/category/python"
-              },
-              "next": {
-                "title": "Python Roadmap",
-                "permalink": "/Archive/Python/roadmap"
-              }
-            },
-            {
-              "id": "Archive/Python/file-i-o",
-              "title": "File I/O",
-              "description": "What we're doing",
-              "source": "@site/docs/Archive/Python/file-i-o.md",
-              "sourceDirName": "Archive/Python",
-              "slug": "/Archive/Python/file-i-o",
-              "permalink": "/Archive/Python/file-i-o",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 20,
-              "frontMatter": {
-                "sidebar_position": 20,
-                "sidebar_label": "File I/O"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Object-Oriented Programming",
-                "permalink": "/Archive/Python/oop"
-              },
-              "next": {
-                "title": "Pandas",
-                "permalink": "/Archive/Python/pandas"
-              }
-            },
-            {
-              "id": "Archive/Python/flask",
-              "title": "Flask",
-              "description": "Flask",
-              "source": "@site/docs/Archive/Python/flask.md",
-              "sourceDirName": "Archive/Python",
-              "slug": "/Archive/Python/flask",
-              "permalink": "/Archive/Python/flask",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 50,
-              "frontMatter": {
-                "sidebar_position": 50,
-                "sidebar_label": "Flask"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "NumPy",
-                "permalink": "/Archive/Python/numpy"
-              }
-            },
-            {
-              "id": "Archive/Python/numpy",
-              "title": "Introduction",
-              "description": "NumPy",
-              "source": "@site/docs/Archive/Python/numpy.md",
-              "sourceDirName": "Archive/Python",
-              "slug": "/Archive/Python/numpy",
-              "permalink": "/Archive/Python/numpy",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 40,
-              "frontMatter": {
-                "sidebar_position": 40,
-                "sidebar_label": "NumPy"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Pandas",
-                "permalink": "/Archive/Python/pandas"
-              },
-              "next": {
-                "title": "Flask",
-                "permalink": "/Archive/Python/flask"
-              }
-            },
-            {
-              "id": "Archive/Python/oop",
-              "title": "Object-Oriented Programming",
-              "description": "OOP",
-              "source": "@site/docs/Archive/Python/oop.md",
-              "sourceDirName": "Archive/Python",
-              "slug": "/Archive/Python/oop",
-              "permalink": "/Archive/Python/oop",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Object-Oriented Programming"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Python Roadmap",
-                "permalink": "/Archive/Python/roadmap"
-              },
-              "next": {
-                "title": "File I/O",
-                "permalink": "/Archive/Python/file-i-o"
-              }
-            },
-            {
-              "id": "Archive/Python/pandas",
-              "title": "Introduction",
-              "description": "NumPy",
-              "source": "@site/docs/Archive/Python/pandas.md",
-              "sourceDirName": "Archive/Python",
-              "slug": "/Archive/Python/pandas",
-              "permalink": "/Archive/Python/pandas",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 30,
-              "frontMatter": {
-                "sidebar_position": 30,
-                "sidebar_label": "Pandas"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "File I/O",
-                "permalink": "/Archive/Python/file-i-o"
-              },
-              "next": {
-                "title": "NumPy",
-                "permalink": "/Archive/Python/numpy"
-              }
-            },
-            {
-              "id": "Archive/Python/roadmap",
-              "title": "Python Roadmap",
-              "description": "From Roadmap.sh",
-              "source": "@site/docs/Archive/Python/roadmap.md",
-              "sourceDirName": "Archive/Python",
-              "slug": "/Archive/Python/roadmap",
-              "permalink": "/Archive/Python/roadmap",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 5,
-              "frontMatter": {
-                "sidebar_position": 5,
-                "sidebar_label": "Python Roadmap"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "About",
-                "permalink": "/Archive/Python/About"
-              },
-              "next": {
-                "title": "Object-Oriented Programming",
-                "permalink": "/Archive/Python/oop"
+                "title": "Project: Automated Passenger Boarding Kiosk",
+                "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/course_1"
               }
             },
             {
@@ -728,11 +60,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "About me",
-                "permalink": "/intro"
+                "permalink": "/"
               },
               "next": {
-                "title": "Udacity Learning Projects",
-                "permalink": "/category/udacity-learning-projects"
+                "title": "Udacity Learning",
+                "permalink": "/category/udacity-learning"
               }
             },
             {
@@ -741,22 +73,19 @@
               "description": "With 8 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).",
               "source": "@site/docs/intro.md",
               "sourceDirName": ".",
-              "slug": "/intro",
-              "permalink": "/intro",
+              "slug": "/",
+              "permalink": "/",
               "draft": false,
               "unlisted": false,
               "tags": [],
               "version": "current",
               "sidebarPosition": 5,
               "frontMatter": {
+                "slug": "/",
                 "sidebar_position": 5,
                 "sidebar_label": "About me"
               },
               "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Home",
-                "permalink": "/"
-              },
               "next": {
                 "title": "Curriculum Vitae",
                 "permalink": "/CV"
@@ -781,8 +110,8 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Udacity Learning Projects",
-                "permalink": "/category/udacity-learning-projects"
+                "title": "Udacity Learning",
+                "permalink": "/category/udacity-learning"
               },
               "next": {
                 "title": "Intermediate Python",
@@ -812,8 +141,8 @@
                 "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/skills"
               },
               "next": {
-                "title": "AI & ML",
-                "permalink": "/category/ai--ml"
+                "title": "Certificates",
+                "permalink": "/certificates"
               }
             },
             {
@@ -1092,11 +421,6 @@
             "tutorialSidebar": [
               {
                 "type": "doc",
-                "id": "About",
-                "label": "Home"
-              },
-              {
-                "type": "doc",
                 "id": "intro",
                 "label": "About me"
               },
@@ -1107,7 +431,7 @@
               },
               {
                 "type": "category",
-                "label": "Udacity Learning Projects",
+                "label": "Udacity Learning",
                 "collapsible": true,
                 "collapsed": true,
                 "items": [
@@ -1226,245 +550,14 @@
                 ],
                 "link": {
                   "type": "generated-index",
-                  "slug": "/category/udacity-learning-projects",
-                  "permalink": "/category/udacity-learning-projects"
+                  "slug": "/category/udacity-learning",
+                  "permalink": "/category/udacity-learning"
                 }
               },
               {
-                "type": "category",
-                "label": "AI & ML",
-                "collapsible": true,
-                "collapsed": true,
-                "items": [
-                  {
-                    "type": "doc",
-                    "id": "AI/AI",
-                    "label": "The Age of AI"
-                  },
-                  {
-                    "type": "doc",
-                    "id": "AI/roadmap",
-                    "label": "AI and Data Scientist Roadmap"
-                  },
-                  {
-                    "type": "category",
-                    "label": "AI Engineer using Azure Services",
-                    "collapsible": true,
-                    "collapsed": true,
-                    "items": [
-                      {
-                        "type": "doc",
-                        "id": "AI/AI Engineer/prepare",
-                        "label": "Prepare to develop AI solutions on Azure"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "AI/AI Engineer/consume",
-                        "label": "Create and consume Azure AI services"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "AI/AI Engineer/ai-102",
-                        "label": "Study guide for Exam AI-102"
-                      },
-                      {
-                        "type": "category",
-                        "label": "Computer Vision",
-                        "collapsible": true,
-                        "collapsed": true,
-                        "items": [
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Computer Vision/prebuilt-form-recognizer-models",
-                            "label": "Prebuilt Form Recognizer Models"
-                          },
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Computer Vision/custom-form-recognizer-model",
-                            "label": "Custom Form Recognizer Models"
-                          },
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Computer Vision/face-api",
-                            "label": "Azure Face Service"
-                          }
-                        ],
-                        "link": {
-                          "type": "generated-index",
-                          "slug": "/category/computer-vision",
-                          "permalink": "/category/computer-vision"
-                        }
-                      },
-                      {
-                        "type": "category",
-                        "label": "Natural Language Processing",
-                        "collapsible": true,
-                        "collapsed": true,
-                        "items": [
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Natural Language Processing/About",
-                            "label": "Natural Language Processing"
-                          },
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Natural Language Processing/Azure AI Language service",
-                            "label": "Azure AI Language Service"
-                          },
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Natural Language Processing/Azure AI Speech service"
-                          }
-                        ],
-                        "link": {
-                          "type": "generated-index",
-                          "slug": "/category/natural-language-processing",
-                          "permalink": "/category/natural-language-processing"
-                        }
-                      },
-                      {
-                        "type": "category",
-                        "label": "Knowledge Mining",
-                        "collapsible": true,
-                        "collapsed": true,
-                        "items": [
-                          {
-                            "type": "doc",
-                            "id": "AI/AI Engineer/Knowledge Mining/About",
-                            "label": "Implement knowledge mining with Azure AI Search"
-                          }
-                        ],
-                        "link": {
-                          "type": "generated-index",
-                          "slug": "/category/knowledge-mining",
-                          "permalink": "/category/knowledge-mining"
-                        }
-                      }
-                    ],
-                    "link": {
-                      "type": "generated-index",
-                      "slug": "/category/ai-engineer-using-azure-services",
-                      "permalink": "/category/ai-engineer-using-azure-services"
-                    }
-                  }
-                ],
-                "link": {
-                  "type": "generated-index",
-                  "slug": "/category/ai--ml",
-                  "permalink": "/category/ai--ml"
-                }
-              },
-              {
-                "type": "category",
-                "label": "Archive",
-                "collapsible": true,
-                "collapsed": true,
-                "items": [
-                  {
-                    "type": "category",
-                    "label": "Dynamics 365 Business Central",
-                    "collapsible": true,
-                    "collapsed": true,
-                    "items": [
-                      {
-                        "type": "doc",
-                        "id": "Archive/Dynamics 365 Business Central/About",
-                        "label": "About"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "Archive/Dynamics 365 Business Central/architecture",
-                        "label": "Architecture"
-                      },
-                      {
-                        "type": "category",
-                        "label": "Development",
-                        "collapsible": true,
-                        "collapsed": true,
-                        "items": [
-                          {
-                            "type": "doc",
-                            "id": "Archive/Dynamics 365 Business Central/Development/customize",
-                            "label": "Customize Business Central"
-                          },
-                          {
-                            "type": "doc",
-                            "id": "Archive/Dynamics 365 Business Central/Development/objects",
-                            "label": "Discover the logical database and its objects"
-                          },
-                          {
-                            "type": "doc",
-                            "id": "Archive/Dynamics 365 Business Central/Development/getting-started",
-                            "label": "Get started with Visual Studio Code"
-                          },
-                          {
-                            "type": "doc",
-                            "id": "Archive/Dynamics 365 Business Central/Development/translation-files",
-                            "label": "Working with translation files"
-                          }
-                        ],
-                        "link": {
-                          "type": "generated-index",
-                          "slug": "/category/development",
-                          "permalink": "/category/development"
-                        }
-                      }
-                    ],
-                    "link": {
-                      "type": "generated-index",
-                      "slug": "/category/dynamics-365-business-central",
-                      "permalink": "/category/dynamics-365-business-central"
-                    }
-                  },
-                  {
-                    "type": "category",
-                    "label": "Python",
-                    "collapsible": true,
-                    "collapsed": true,
-                    "items": [
-                      {
-                        "type": "doc",
-                        "id": "Archive/Python/About",
-                        "label": "About"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "Archive/Python/roadmap",
-                        "label": "Python Roadmap"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "Archive/Python/oop",
-                        "label": "Object-Oriented Programming"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "Archive/Python/file-i-o",
-                        "label": "File I/O"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "Archive/Python/pandas",
-                        "label": "Pandas"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "Archive/Python/numpy",
-                        "label": "NumPy"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "Archive/Python/flask",
-                        "label": "Flask"
-                      }
-                    ],
-                    "link": {
-                      "type": "generated-index",
-                      "slug": "/category/python",
-                      "permalink": "/category/python"
-                    }
-                  }
-                ]
+                "type": "doc",
+                "id": "certificates",
+                "label": "Certificates"
               }
             ]
           }
