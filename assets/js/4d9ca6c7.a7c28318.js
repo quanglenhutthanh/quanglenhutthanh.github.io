@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksrc=self.webpackChunksrc||[]).push([[5934],{3861:e=>{e.exports=JSON.parse('{"title":"Projects","slug":"/category/projects","permalink":"/category/projects","navigation":{"previous":{"title":"About me","permalink":"/About"},"next":{"title":"Intermediate Python","permalink":"/category/intermediate-python"}}}')}}]);
