@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'fc2'),
+    component: ComponentCreator('/', '2a2'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '035'),
+        component: ComponentCreator('/', '8ca'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '0e5'),
+            component: ComponentCreator('/', '23f'),
             routes: [
               {
                 path: '/About',
@@ -114,26 +114,20 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/category/projects',
+                component: ComponentCreator('/category/projects', '573'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/category/react',
                 component: ComponentCreator('/category/react', 'e1c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/category/udacity-learning',
-                component: ComponentCreator('/category/udacity-learning', '5ec'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
                 path: '/certificates',
                 component: ComponentCreator('/certificates', 'c0f'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/Udacity Courses/About',
-                component: ComponentCreator('/Udacity Courses/About', '3f5'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

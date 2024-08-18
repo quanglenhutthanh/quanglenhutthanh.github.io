@@ -40,8 +40,8 @@
                 "permalink": "/"
               },
               "next": {
-                "title": "Udacity Learning",
-                "permalink": "/category/udacity-learning"
+                "title": "Projects",
+                "permalink": "/category/projects"
               }
             },
             {
@@ -89,33 +89,6 @@
               "next": {
                 "title": "About me",
                 "permalink": "/About"
-              }
-            },
-            {
-              "id": "Udacity Courses/About",
-              "title": "About Udacity",
-              "description": "https://www.udacity.com/",
-              "source": "@site/docs/Udacity Courses/About.md",
-              "sourceDirName": "Udacity Courses",
-              "slug": "/Udacity Courses/About",
-              "permalink": "/Udacity Courses/About",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "About Udacity"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Udacity Learning",
-                "permalink": "/category/udacity-learning"
-              },
-              "next": {
-                "title": "Intermediate Python",
-                "permalink": "/category/intermediate-python"
               }
             },
             {
@@ -431,15 +404,10 @@
               },
               {
                 "type": "category",
-                "label": "Udacity Learning",
+                "label": "Projects",
                 "collapsible": true,
                 "collapsed": true,
                 "items": [
-                  {
-                    "type": "doc",
-                    "id": "Udacity Courses/About",
-                    "label": "About Udacity"
-                  },
                   {
                     "type": "category",
                     "label": "Intermediate Python",
@@ -550,8 +518,8 @@
                 ],
                 "link": {
                   "type": "generated-index",
-                  "slug": "/category/udacity-learning",
-                  "permalink": "/category/udacity-learning"
+                  "slug": "/category/projects",
+                  "permalink": "/category/projects"
                 }
               },
               {

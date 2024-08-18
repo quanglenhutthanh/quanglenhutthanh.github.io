@@ -127,17 +127,17 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-fc2": {
+  "/-2a2": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-035": {
+  "/-8ca": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-0e5": {
+  "/-23f": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/About-7c3": {
@@ -156,21 +156,17 @@
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-intermediate-python-48-b-ff2"
   },
+  "/category/projects-573": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-projects-4-d-9-b46"
+  },
   "/category/react-e1c": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-react-8-f-6-fc5"
   },
-  "/category/udacity-learning-5ec": {
-    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
-    "categoryGeneratedIndex": "categoryGeneratedIndex---category-udacity-learningdee-879"
-  },
   "/certificates-c0f": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---certificates-273-4e1"
-  },
-  "/Udacity Courses/About-3f5": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---udacity-courses-about-9-fd-0ac"
   },
   "/Udacity Courses/AI Engineer using Microsoft Azure/course_1-3f4": {
     "__comp": "__comp---theme-doc-item-178-a40",

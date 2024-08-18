@@ -26,11 +26,6 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "Udacity Courses/About",
-              "path": "/Udacity Courses/About",
-              "sidebar": "tutorialSidebar"
-            },
-            {
               "id": "Udacity Courses/AI Engineer using Microsoft Azure/course_1",
               "path": "/Udacity Courses/AI Engineer using Microsoft Azure/course_1",
               "sidebar": "tutorialSidebar"
@@ -86,8 +81,8 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/udacity-learning",
-              "path": "/category/udacity-learning",
+              "id": "/category/projects",
+              "path": "/category/projects",
               "sidebar": "tutorialSidebar"
             },
             {

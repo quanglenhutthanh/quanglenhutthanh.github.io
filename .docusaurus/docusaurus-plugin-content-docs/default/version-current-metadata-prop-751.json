@@ -25,17 +25,10 @@
       },
       {
         "type": "category",
-        "label": "Udacity Learning",
+        "label": "Projects",
         "collapsible": true,
         "collapsed": true,
         "items": [
-          {
-            "type": "link",
-            "label": "About Udacity",
-            "href": "/Udacity Courses/About",
-            "docId": "Udacity Courses/About",
-            "unlisted": false
-          },
           {
             "type": "category",
             "label": "Intermediate Python",
@@ -150,7 +143,7 @@
             "href": "/category/ai-engineer-using-microsoft-azure"
           }
         ],
-        "href": "/category/udacity-learning"
+        "href": "/category/projects"
       },
       {
         "type": "link",
@@ -178,12 +171,6 @@
       "id": "Home",
       "title": "Hi there!",
       "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
-      "sidebar": "tutorialSidebar"
-    },
-    "Udacity Courses/About": {
-      "id": "Udacity Courses/About",
-      "title": "About Udacity",
-      "description": "https://www.udacity.com/",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/AI Engineer using Microsoft Azure/course_1": {
