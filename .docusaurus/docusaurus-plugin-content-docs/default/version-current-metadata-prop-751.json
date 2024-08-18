@@ -11,16 +11,16 @@
     "tutorialSidebar": [
       {
         "type": "link",
-        "label": "About me",
+        "label": "Home",
         "href": "/",
-        "docId": "intro",
+        "docId": "Home",
         "unlisted": false
       },
       {
         "type": "link",
-        "label": "Curriculum Vitae",
-        "href": "/CV",
-        "docId": "CV",
+        "label": "About me",
+        "href": "/About",
+        "docId": "About",
         "unlisted": false
       },
       {
@@ -162,22 +162,22 @@
     ]
   },
   "docs": {
+    "About": {
+      "id": "About",
+      "title": "About me",
+      "description": "With 10 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).",
+      "sidebar": "tutorialSidebar"
+    },
     "certificates": {
       "id": "certificates",
       "title": "certificates",
       "description": "I wanted to share my personal journey in the world of data, through self-learning. It is very nice to celebrate the achievements made and the certificates obtained that reflect my growth and progress in this exciting field",
       "sidebar": "tutorialSidebar"
     },
-    "CV": {
-      "id": "CV",
-      "title": "CV",
-      "description": "INFORMATION",
-      "sidebar": "tutorialSidebar"
-    },
-    "intro": {
-      "id": "intro",
-      "title": "About me",
-      "description": "With 8 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).",
+    "Home": {
+      "id": "Home",
+      "title": "Hi there!",
+      "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/About": {

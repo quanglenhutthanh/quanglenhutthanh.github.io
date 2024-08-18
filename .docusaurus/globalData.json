@@ -8,20 +8,20 @@
           "label": "Next",
           "isLast": true,
           "path": "/",
-          "mainDocId": "intro",
+          "mainDocId": "Home",
           "docs": [
+            {
+              "id": "About",
+              "path": "/About",
+              "sidebar": "tutorialSidebar"
+            },
             {
               "id": "certificates",
               "path": "/certificates",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "CV",
-              "path": "/CV",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "intro",
+              "id": "Home",
               "path": "/",
               "sidebar": "tutorialSidebar"
             },
@@ -116,7 +116,7 @@
             "tutorialSidebar": {
               "link": {
                 "path": "/",
-                "label": "About me"
+                "label": "Home"
               }
             }
           }

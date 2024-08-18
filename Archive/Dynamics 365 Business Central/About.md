@@ -2,6 +2,15 @@
 sidebar_position: 1
 sidebar_label : "About"
 ---
+# About
+
+With 10 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).
+
+Recognizing the growing importance of artificial intelligence and machine learning in the technology landscape, I have embarked on a dedicated learning journey to expand my expertise in these areas.
+
+
+
+
 
 # Microsoft Dynamics 365 Business Central
 

@@ -1,7 +1,7 @@
 {
   "id": "About",
-  "title": "About",
-  "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
+  "title": "About me",
+  "description": "With 10 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).",
   "source": "@site/docs/About.md",
   "sourceDirName": ".",
   "slug": "/About",
@@ -10,14 +10,18 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 1,
+  "sidebarPosition": 5,
   "frontMatter": {
-    "sidebar_position": 1,
-    "sidebar_label": "Home"
+    "sidebar_position": 5,
+    "sidebar_label": "About me"
   },
   "sidebar": "tutorialSidebar",
-  "next": {
-    "title": "About me",
+  "previous": {
+    "title": "Home",
     "permalink": "/"
+  },
+  "next": {
+    "title": "Udacity Learning",
+    "permalink": "/category/udacity-learning"
   }
 }

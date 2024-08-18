@@ -79,16 +79,22 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '1e5'),
+    component: ComponentCreator('/', 'fc2'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', 'a87'),
+        component: ComponentCreator('/', '035'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '0fd'),
+            component: ComponentCreator('/', '0e5'),
             routes: [
+              {
+                path: '/About',
+                component: ComponentCreator('/About', '7c3'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
               {
                 path: '/category/ai-engineer-using-microsoft-azure',
                 component: ComponentCreator('/category/ai-engineer-using-microsoft-azure', 'bbb'),
@@ -122,12 +128,6 @@ export default [
               {
                 path: '/certificates',
                 component: ComponentCreator('/certificates', 'c0f'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/CV',
-                component: ComponentCreator('/CV', '93e'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -205,7 +205,7 @@ export default [
               },
               {
                 path: '/',
-                component: ComponentCreator('/', '96c'),
+                component: ComponentCreator('/', '7dd'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }

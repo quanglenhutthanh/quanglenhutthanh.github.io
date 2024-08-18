@@ -18,6 +18,33 @@
           "contentPathLocalized": "E:\\_LEARNING\\site\\src\\i18n\\en\\docusaurus-plugin-content-docs\\current",
           "docs": [
             {
+              "id": "About",
+              "title": "About me",
+              "description": "With 10 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).",
+              "source": "@site/docs/About.md",
+              "sourceDirName": ".",
+              "slug": "/About",
+              "permalink": "/About",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "sidebar_position": 5,
+                "sidebar_label": "About me"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Home",
+                "permalink": "/"
+              },
+              "next": {
+                "title": "Udacity Learning",
+                "permalink": "/category/udacity-learning"
+              }
+            },
+            {
               "id": "certificates",
               "title": "certificates",
               "description": "I wanted to share my personal journey in the world of data, through self-learning. It is very nice to celebrate the achievements made and the certificates obtained that reflect my growth and progress in this exciting field",
@@ -41,37 +68,10 @@
               }
             },
             {
-              "id": "CV",
-              "title": "CV",
-              "description": "INFORMATION",
-              "source": "@site/docs/CV.md",
-              "sourceDirName": ".",
-              "slug": "/CV",
-              "permalink": "/CV",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Curriculum Vitae"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "About me",
-                "permalink": "/"
-              },
-              "next": {
-                "title": "Udacity Learning",
-                "permalink": "/category/udacity-learning"
-              }
-            },
-            {
-              "id": "intro",
-              "title": "About me",
-              "description": "With 8 years of experience in software development, my journey in the tech world has been deeply intertwined with Microsoft Dynamics 365 Business Central and Dynamics NAV. Over the years, I've honed my skills as a Technical Consultant, gaining in-depth knowledge and hands-on experience in various aspects of ERP systems, particularly in Distribution Management Systems (DMS).",
-              "source": "@site/docs/intro.md",
+              "id": "Home",
+              "title": "Hi there!",
+              "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
+              "source": "@site/docs/Home.md",
               "sourceDirName": ".",
               "slug": "/",
               "permalink": "/",
@@ -79,16 +79,16 @@
               "unlisted": false,
               "tags": [],
               "version": "current",
-              "sidebarPosition": 5,
+              "sidebarPosition": 1,
               "frontMatter": {
                 "slug": "/",
-                "sidebar_position": 5,
-                "sidebar_label": "About me"
+                "sidebar_position": 1,
+                "sidebar_label": "Home"
               },
               "sidebar": "tutorialSidebar",
               "next": {
-                "title": "Curriculum Vitae",
-                "permalink": "/CV"
+                "title": "About me",
+                "permalink": "/About"
               }
             },
             {
@@ -421,13 +421,13 @@
             "tutorialSidebar": [
               {
                 "type": "doc",
-                "id": "intro",
-                "label": "About me"
+                "id": "Home",
+                "label": "Home"
               },
               {
                 "type": "doc",
-                "id": "CV",
-                "label": "Curriculum Vitae"
+                "id": "About",
+                "label": "About me"
               },
               {
                 "type": "category",

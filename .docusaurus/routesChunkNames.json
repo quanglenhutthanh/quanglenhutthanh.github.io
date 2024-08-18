@@ -127,18 +127,22 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-1e5": {
+  "/-fc2": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-a87": {
+  "/-035": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-0fd": {
+  "/-0e5": {
     "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/About-7c3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---974-3c6"
   },
   "/category/ai-engineer-using-microsoft-azure-bbb": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -162,11 +166,7 @@
   },
   "/certificates-c0f": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---273-2a1"
-  },
-  "/CV-93e": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---cv-3-ec-abf"
+    "content": "content---certificates-273-4e1"
   },
   "/Udacity Courses/About-3f5": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -216,8 +216,8 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-react-course-outline-67-d-08d"
   },
-  "/-96c": {
+  "/-7dd": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---0-e-3-279"
+    "content": "content---187-0a8"
   }
 }
