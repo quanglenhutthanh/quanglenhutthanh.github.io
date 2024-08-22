@@ -6,7 +6,7 @@ sidebar_label : "Home"
 # Hi there!
 
 
-I am **Quang**. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.
+I am **Quang**. I live in Vietnam. I am a software developer with 10 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.
 
 Currently, I am diving into the fascinating world of Artificial Intelligence and Machine Learning. This new endeavor is part of my continuous journey towards personal growth and self-improvement. I believe that writing is a powerful tool to refine my thinking and analytical skills.
 

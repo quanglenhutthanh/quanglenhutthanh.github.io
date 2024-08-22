@@ -63,14 +63,14 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Project: Automated Passenger Boarding Kiosk",
-                "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/course_1"
+                "title": "About",
+                "permalink": "/Udacity Courses/Natural Language Processing/about"
               }
             },
             {
               "id": "Home",
               "title": "Hi there!",
-              "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
+              "description": "I am Quang. I live in Vietnam. I am a software developer with 10 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
               "source": "@site/docs/Home.md",
               "sourceDirName": ".",
               "slug": "/",
@@ -89,6 +89,33 @@
               "next": {
                 "title": "About me",
                 "permalink": "/About"
+              }
+            },
+            {
+              "id": "Udacity Courses/AI Engineer using Microsoft Azure/about",
+              "title": "AI Engineer using Microsoft Azure (nd073)",
+              "description": "Course Link",
+              "source": "@site/docs/Udacity Courses/AI Engineer using Microsoft Azure/about.md",
+              "sourceDirName": "Udacity Courses/AI Engineer using Microsoft Azure",
+              "slug": "/Udacity Courses/AI Engineer using Microsoft Azure/about",
+              "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/about",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Course Outline"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "AI Engineer using Microsoft Azure",
+                "permalink": "/category/ai-engineer-using-microsoft-azure"
+              },
+              "next": {
+                "title": "Nanodegree Skills",
+                "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/skills"
               }
             },
             {
@@ -114,35 +141,8 @@
                 "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/skills"
               },
               "next": {
-                "title": "Certificates",
-                "permalink": "/certificates"
-              }
-            },
-            {
-              "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
-              "title": "AI Engineer using Microsoft Azure (nd073)",
-              "description": "Course Link",
-              "source": "@site/docs/Udacity Courses/AI Engineer using Microsoft Azure/course-outline.md",
-              "sourceDirName": "Udacity Courses/AI Engineer using Microsoft Azure",
-              "slug": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
-              "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
-              "draft": false,
-              "unlisted": false,
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 10,
-              "frontMatter": {
-                "sidebar_position": 10,
-                "sidebar_label": "Course Outline"
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "AI Engineer using Microsoft Azure",
-                "permalink": "/category/ai-engineer-using-microsoft-azure"
-              },
-              "next": {
-                "title": "Nanodegree Skills",
-                "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/skills"
+                "title": "Natural Language Processing",
+                "permalink": "/category/natural-language-processing"
               }
             },
             {
@@ -165,7 +165,7 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Course Outline",
-                "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline"
+                "permalink": "/Udacity Courses/AI Engineer using Microsoft Azure/about"
               },
               "next": {
                 "title": "Project: Automated Passenger Boarding Kiosk",
@@ -173,13 +173,13 @@
               }
             },
             {
-              "id": "Udacity Courses/Data Analyst/course-outline",
+              "id": "Udacity Courses/Data Analyst/about",
               "title": "Data Analyst (nd002)",
               "description": "Course Link",
-              "source": "@site/docs/Udacity Courses/Data Analyst/course-outline.md",
+              "source": "@site/docs/Udacity Courses/Data Analyst/about.md",
               "sourceDirName": "Udacity Courses/Data Analyst",
-              "slug": "/Udacity Courses/Data Analyst/course-outline",
-              "permalink": "/Udacity Courses/Data Analyst/course-outline",
+              "slug": "/Udacity Courses/Data Analyst/about",
+              "permalink": "/Udacity Courses/Data Analyst/about",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -187,7 +187,7 @@
               "sidebarPosition": 10,
               "frontMatter": {
                 "sidebar_position": 10,
-                "sidebar_label": "Course Outline"
+                "sidebar_label": "About"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -195,7 +195,7 @@
                 "permalink": "/category/data-analyst"
               },
               "next": {
-                "title": "Nanodegree Skills",
+                "title": "Skills",
                 "permalink": "/Udacity Courses/Data Analyst/skills"
               }
             },
@@ -218,7 +218,7 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Nanodegree Skills",
+                "title": "Skills",
                 "permalink": "/Udacity Courses/Data Analyst/skills"
               },
               "next": {
@@ -241,12 +241,12 @@
               "sidebarPosition": 15,
               "frontMatter": {
                 "sidebar_position": 15,
-                "sidebar_label": "Nanodegree Skills"
+                "sidebar_label": "Skills"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Course Outline",
-                "permalink": "/Udacity Courses/Data Analyst/course-outline"
+                "title": "About",
+                "permalink": "/Udacity Courses/Data Analyst/about"
               },
               "next": {
                 "title": "Project: Investigate a dataset",
@@ -254,13 +254,13 @@
               }
             },
             {
-              "id": "Udacity Courses/Intermediate Python/course-outline",
+              "id": "Udacity Courses/Intermediate Python/about",
               "title": "Intermediate Python (nd303)",
               "description": "Course Link",
-              "source": "@site/docs/Udacity Courses/Intermediate Python/course-outline.md",
+              "source": "@site/docs/Udacity Courses/Intermediate Python/about.md",
               "sourceDirName": "Udacity Courses/Intermediate Python",
-              "slug": "/Udacity Courses/Intermediate Python/course-outline",
-              "permalink": "/Udacity Courses/Intermediate Python/course-outline",
+              "slug": "/Udacity Courses/Intermediate Python/about",
+              "permalink": "/Udacity Courses/Intermediate Python/about",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -268,7 +268,7 @@
               "sidebarPosition": 10,
               "frontMatter": {
                 "sidebar_position": 10,
-                "sidebar_label": "Course Outline"
+                "sidebar_label": "About"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -353,8 +353,8 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Course Outline",
-                "permalink": "/Udacity Courses/Intermediate Python/course-outline"
+                "title": "About",
+                "permalink": "/Udacity Courses/Intermediate Python/about"
               },
               "next": {
                 "title": "Project: Exploring Near-Earth Objects",
@@ -362,13 +362,13 @@
               }
             },
             {
-              "id": "Udacity Courses/React/course-outline",
-              "title": "React (nd019)",
-              "description": "Course Link",
-              "source": "@site/docs/Udacity Courses/React/course-outline.md",
-              "sourceDirName": "Udacity Courses/React",
-              "slug": "/Udacity Courses/React/course-outline",
-              "permalink": "/Udacity Courses/React/course-outline",
+              "id": "Udacity Courses/Natural Language Processing/about",
+              "title": "Natural Language Processing",
+              "description": "",
+              "source": "@site/docs/Udacity Courses/Natural Language Processing/about.md",
+              "sourceDirName": "Udacity Courses/Natural Language Processing",
+              "slug": "/Udacity Courses/Natural Language Processing/about",
+              "permalink": "/Udacity Courses/Natural Language Processing/about",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -376,7 +376,34 @@
               "sidebarPosition": 10,
               "frontMatter": {
                 "sidebar_position": 10,
-                "sidebar_label": "Course Outline"
+                "sidebar_label": "About"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Natural Language Processing",
+                "permalink": "/category/natural-language-processing"
+              },
+              "next": {
+                "title": "Certificates",
+                "permalink": "/certificates"
+              }
+            },
+            {
+              "id": "Udacity Courses/React/about",
+              "title": "React (nd019)",
+              "description": "Course Link",
+              "source": "@site/docs/Udacity Courses/React/about.md",
+              "sourceDirName": "Udacity Courses/React",
+              "slug": "/Udacity Courses/React/about",
+              "permalink": "/Udacity Courses/React/about",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "About"
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -384,8 +411,62 @@
                 "permalink": "/category/react"
               },
               "next": {
+                "title": "Project: My Reads",
+                "permalink": "/Udacity Courses/React/my-reads"
+              }
+            },
+            {
+              "id": "Udacity Courses/React/employee-polls",
+              "title": "Introduction",
+              "description": "Employee Polls is web app that lets an employee create polls for coworkers. The process goes like this “Would you rather [option A] or [option B] ?”. Answering \"neither\" or \"both\" is not possible.",
+              "source": "@site/docs/Udacity Courses/React/employee-polls.md",
+              "sourceDirName": "Udacity Courses/React",
+              "slug": "/Udacity Courses/React/employee-polls",
+              "permalink": "/Udacity Courses/React/employee-polls",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 20,
+              "frontMatter": {
+                "sidebar_position": 20,
+                "sidebar_label": "Project: Employee Polls"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Project: My Reads",
+                "permalink": "/Udacity Courses/React/my-reads"
+              },
+              "next": {
                 "title": "Data Analyst",
                 "permalink": "/category/data-analyst"
+              }
+            },
+            {
+              "id": "Udacity Courses/React/my-reads",
+              "title": "Introduction",
+              "description": "MyReads is a bookshelf app that allow you to select and categorize books you have read, are currently reading, or want to read.",
+              "source": "@site/docs/Udacity Courses/React/my-reads.md",
+              "sourceDirName": "Udacity Courses/React",
+              "slug": "/Udacity Courses/React/my-reads",
+              "permalink": "/Udacity Courses/React/my-reads",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10,
+                "sidebar_label": "Project: My Reads"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "About",
+                "permalink": "/Udacity Courses/React/about"
+              },
+              "next": {
+                "title": "Project: Employee Polls",
+                "permalink": "/Udacity Courses/React/employee-polls"
               }
             }
           ],
@@ -416,8 +497,8 @@
                     "items": [
                       {
                         "type": "doc",
-                        "id": "Udacity Courses/Intermediate Python/course-outline",
-                        "label": "Course Outline"
+                        "id": "Udacity Courses/Intermediate Python/about",
+                        "label": "About"
                       },
                       {
                         "type": "doc",
@@ -449,8 +530,18 @@
                     "items": [
                       {
                         "type": "doc",
-                        "id": "Udacity Courses/React/course-outline",
-                        "label": "Course Outline"
+                        "id": "Udacity Courses/React/about",
+                        "label": "About"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/React/my-reads",
+                        "label": "Project: My Reads"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/React/employee-polls",
+                        "label": "Project: Employee Polls"
                       }
                     ],
                     "link": {
@@ -467,13 +558,13 @@
                     "items": [
                       {
                         "type": "doc",
-                        "id": "Udacity Courses/Data Analyst/course-outline",
-                        "label": "Course Outline"
+                        "id": "Udacity Courses/Data Analyst/about",
+                        "label": "About"
                       },
                       {
                         "type": "doc",
                         "id": "Udacity Courses/Data Analyst/skills",
-                        "label": "Nanodegree Skills"
+                        "label": "Skills"
                       },
                       {
                         "type": "doc",
@@ -495,7 +586,7 @@
                     "items": [
                       {
                         "type": "doc",
-                        "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+                        "id": "Udacity Courses/AI Engineer using Microsoft Azure/about",
                         "label": "Course Outline"
                       },
                       {
@@ -513,6 +604,24 @@
                       "type": "generated-index",
                       "slug": "/category/ai-engineer-using-microsoft-azure",
                       "permalink": "/category/ai-engineer-using-microsoft-azure"
+                    }
+                  },
+                  {
+                    "type": "category",
+                    "label": "Natural Language Processing",
+                    "collapsible": true,
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Natural Language Processing/about",
+                        "label": "About"
+                      }
+                    ],
+                    "link": {
+                      "type": "generated-index",
+                      "slug": "/category/natural-language-processing",
+                      "permalink": "/category/natural-language-processing"
                     }
                   }
                 ],

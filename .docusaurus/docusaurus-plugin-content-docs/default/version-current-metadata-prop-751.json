@@ -37,9 +37,9 @@
             "items": [
               {
                 "type": "link",
-                "label": "Course Outline",
-                "href": "/Udacity Courses/Intermediate Python/course-outline",
-                "docId": "Udacity Courses/Intermediate Python/course-outline",
+                "label": "About",
+                "href": "/Udacity Courses/Intermediate Python/about",
+                "docId": "Udacity Courses/Intermediate Python/about",
                 "unlisted": false
               },
               {
@@ -74,9 +74,23 @@
             "items": [
               {
                 "type": "link",
-                "label": "Course Outline",
-                "href": "/Udacity Courses/React/course-outline",
-                "docId": "Udacity Courses/React/course-outline",
+                "label": "About",
+                "href": "/Udacity Courses/React/about",
+                "docId": "Udacity Courses/React/about",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Project: My Reads",
+                "href": "/Udacity Courses/React/my-reads",
+                "docId": "Udacity Courses/React/my-reads",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Project: Employee Polls",
+                "href": "/Udacity Courses/React/employee-polls",
+                "docId": "Udacity Courses/React/employee-polls",
                 "unlisted": false
               }
             ],
@@ -90,14 +104,14 @@
             "items": [
               {
                 "type": "link",
-                "label": "Course Outline",
-                "href": "/Udacity Courses/Data Analyst/course-outline",
-                "docId": "Udacity Courses/Data Analyst/course-outline",
+                "label": "About",
+                "href": "/Udacity Courses/Data Analyst/about",
+                "docId": "Udacity Courses/Data Analyst/about",
                 "unlisted": false
               },
               {
                 "type": "link",
-                "label": "Nanodegree Skills",
+                "label": "Skills",
                 "href": "/Udacity Courses/Data Analyst/skills",
                 "docId": "Udacity Courses/Data Analyst/skills",
                 "unlisted": false
@@ -121,8 +135,8 @@
               {
                 "type": "link",
                 "label": "Course Outline",
-                "href": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
-                "docId": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+                "href": "/Udacity Courses/AI Engineer using Microsoft Azure/about",
+                "docId": "Udacity Courses/AI Engineer using Microsoft Azure/about",
                 "unlisted": false
               },
               {
@@ -141,6 +155,22 @@
               }
             ],
             "href": "/category/ai-engineer-using-microsoft-azure"
+          },
+          {
+            "type": "category",
+            "label": "Natural Language Processing",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "About",
+                "href": "/Udacity Courses/Natural Language Processing/about",
+                "docId": "Udacity Courses/Natural Language Processing/about",
+                "unlisted": false
+              }
+            ],
+            "href": "/category/natural-language-processing"
           }
         ],
         "href": "/category/projects"
@@ -170,7 +200,13 @@
     "Home": {
       "id": "Home",
       "title": "Hi there!",
-      "description": "I am Quang. I live in Vietnam. I am a software developer with 8 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
+      "description": "I am Quang. I live in Vietnam. I am a software developer with 10 years experience. I working on Microsoft Dynamics 365 Business Central | Dynamics NAV Technical Consultant.",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/AI Engineer using Microsoft Azure/about": {
+      "id": "Udacity Courses/AI Engineer using Microsoft Azure/about",
+      "title": "AI Engineer using Microsoft Azure (nd073)",
+      "description": "Course Link",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/AI Engineer using Microsoft Azure/course_1": {
@@ -179,20 +215,14 @@
       "description": "",
       "sidebar": "tutorialSidebar"
     },
-    "Udacity Courses/AI Engineer using Microsoft Azure/course-outline": {
-      "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
-      "title": "AI Engineer using Microsoft Azure (nd073)",
-      "description": "Course Link",
-      "sidebar": "tutorialSidebar"
-    },
     "Udacity Courses/AI Engineer using Microsoft Azure/skills": {
       "id": "Udacity Courses/AI Engineer using Microsoft Azure/skills",
       "title": "Nanodegree Skills",
       "description": "Building Computer Vision Solutions with Azure",
       "sidebar": "tutorialSidebar"
     },
-    "Udacity Courses/Data Analyst/course-outline": {
-      "id": "Udacity Courses/Data Analyst/course-outline",
+    "Udacity Courses/Data Analyst/about": {
+      "id": "Udacity Courses/Data Analyst/about",
       "title": "Data Analyst (nd002)",
       "description": "Course Link",
       "sidebar": "tutorialSidebar"
@@ -209,8 +239,8 @@
       "description": "Introduction to Data Analysis with Pandas and NumPy",
       "sidebar": "tutorialSidebar"
     },
-    "Udacity Courses/Intermediate Python/course-outline": {
-      "id": "Udacity Courses/Intermediate Python/course-outline",
+    "Udacity Courses/Intermediate Python/about": {
+      "id": "Udacity Courses/Intermediate Python/about",
       "title": "Intermediate Python (nd303)",
       "description": "Course Link",
       "sidebar": "tutorialSidebar"
@@ -233,10 +263,28 @@
       "description": "Advanced Python Techniques",
       "sidebar": "tutorialSidebar"
     },
-    "Udacity Courses/React/course-outline": {
-      "id": "Udacity Courses/React/course-outline",
+    "Udacity Courses/Natural Language Processing/about": {
+      "id": "Udacity Courses/Natural Language Processing/about",
+      "title": "Natural Language Processing",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/React/about": {
+      "id": "Udacity Courses/React/about",
       "title": "React (nd019)",
       "description": "Course Link",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/React/employee-polls": {
+      "id": "Udacity Courses/React/employee-polls",
+      "title": "Introduction",
+      "description": "Employee Polls is web app that lets an employee create polls for coworkers. The process goes like this “Would you rather [option A] or [option B] ?”. Answering \"neither\" or \"both\" is not possible.",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/React/my-reads": {
+      "id": "Udacity Courses/React/my-reads",
+      "title": "Introduction",
+      "description": "MyReads is a bookshelf app that allow you to select and categorize books you have read, are currently reading, or want to read.",
       "sidebar": "tutorialSidebar"
     }
   }

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 15
-sidebar_label : "Nanodegree Skills"
+sidebar_label : "Skills"
 ---
 # Nanodegree Skills
 

@@ -26,13 +26,13 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "Udacity Courses/AI Engineer using Microsoft Azure/course_1",
-              "path": "/Udacity Courses/AI Engineer using Microsoft Azure/course_1",
+              "id": "Udacity Courses/AI Engineer using Microsoft Azure/about",
+              "path": "/Udacity Courses/AI Engineer using Microsoft Azure/about",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
-              "path": "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline",
+              "id": "Udacity Courses/AI Engineer using Microsoft Azure/course_1",
+              "path": "/Udacity Courses/AI Engineer using Microsoft Azure/course_1",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -41,8 +41,8 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "Udacity Courses/Data Analyst/course-outline",
-              "path": "/Udacity Courses/Data Analyst/course-outline",
+              "id": "Udacity Courses/Data Analyst/about",
+              "path": "/Udacity Courses/Data Analyst/about",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -56,8 +56,8 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "Udacity Courses/Intermediate Python/course-outline",
-              "path": "/Udacity Courses/Intermediate Python/course-outline",
+              "id": "Udacity Courses/Intermediate Python/about",
+              "path": "/Udacity Courses/Intermediate Python/about",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -76,8 +76,23 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "Udacity Courses/React/course-outline",
-              "path": "/Udacity Courses/React/course-outline",
+              "id": "Udacity Courses/Natural Language Processing/about",
+              "path": "/Udacity Courses/Natural Language Processing/about",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Udacity Courses/React/about",
+              "path": "/Udacity Courses/React/about",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Udacity Courses/React/employee-polls",
+              "path": "/Udacity Courses/React/employee-polls",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Udacity Courses/React/my-reads",
+              "path": "/Udacity Courses/React/my-reads",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -103,6 +118,11 @@
             {
               "id": "/category/ai-engineer-using-microsoft-azure",
               "path": "/category/ai-engineer-using-microsoft-azure",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/natural-language-processing",
+              "path": "/category/natural-language-processing",
               "sidebar": "tutorialSidebar"
             }
           ],

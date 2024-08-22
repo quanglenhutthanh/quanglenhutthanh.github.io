@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-sidebar_label : "Course Outline"
+sidebar_label : "About"
 ---
 # Data Analyst (nd002)
 

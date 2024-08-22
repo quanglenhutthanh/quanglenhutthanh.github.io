@@ -127,22 +127,22 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/-2a2": {
+  "/-c81": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---256-a45"
     }
   },
-  "/-8ca": {
+  "/-565": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---935-fcf"
   },
-  "/-23f": {
+  "/-1a0": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/About-7c3": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---974-3c6"
+    "content": "content---about-974-fc8"
   },
   "/category/ai-engineer-using-microsoft-azure-bbb": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -156,6 +156,10 @@
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-intermediate-python-48-b-ff2"
   },
+  "/category/natural-language-processing-561": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "categoryGeneratedIndex": "categoryGeneratedIndex---category-natural-language-processing-41-d-042"
+  },
   "/category/projects-573": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "categoryGeneratedIndex": "categoryGeneratedIndex---category-projects-4-d-9-b46"
@@ -168,21 +172,21 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---certificates-273-4e1"
   },
+  "/Udacity Courses/AI Engineer using Microsoft Azure/about-fe8": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-ai-engineer-using-microsoft-azure-about-11-a-48c"
+  },
   "/Udacity Courses/AI Engineer using Microsoft Azure/course_1-3f4": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-ai-engineer-using-microsoft-azure-course-1580-020"
-  },
-  "/Udacity Courses/AI Engineer using Microsoft Azure/course-outline-923": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---udacity-courses-ai-engineer-using-microsoft-azure-course-outline-349-9d7"
   },
   "/Udacity Courses/AI Engineer using Microsoft Azure/skills-ad9": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-ai-engineer-using-microsoft-azure-skills-76-d-01d"
   },
-  "/Udacity Courses/Data Analyst/course-outline-48f": {
+  "/Udacity Courses/Data Analyst/about-793": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---udacity-courses-data-analyst-course-outlinea-8-d-7cd"
+    "content": "content---udacity-courses-data-analyst-abouted-8-a17"
   },
   "/Udacity Courses/Data Analyst/investigate-dataset-0ab": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -192,9 +196,9 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-data-analyst-skillsdd-9-36a"
   },
-  "/Udacity Courses/Intermediate Python/course-outline-081": {
+  "/Udacity Courses/Intermediate Python/about-a6d": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---udacity-courses-intermediate-python-course-outlinefea-c91"
+    "content": "content---udacity-courses-intermediate-python-about-26-f-f21"
   },
   "/Udacity Courses/Intermediate Python/meme-generator-a67": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -208,9 +212,21 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---udacity-courses-intermediate-python-skillsbbe-ccb"
   },
-  "/Udacity Courses/React/course-outline-df8": {
+  "/Udacity Courses/Natural Language Processing/about-da4": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---udacity-courses-react-course-outline-67-d-08d"
+    "content": "content---udacity-courses-natural-language-processing-about-0-c-2-6b5"
+  },
+  "/Udacity Courses/React/about-1fa": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-react-about-434-0f8"
+  },
+  "/Udacity Courses/React/employee-polls-a83": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-react-employee-pollsc-1-e-3bf"
+  },
+  "/Udacity Courses/React/my-reads-3bc": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---udacity-courses-react-my-readsd-6-e-bc5"
   },
   "/-7dd": {
     "__comp": "__comp---theme-doc-item-178-a40",

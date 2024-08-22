@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', '2a2'),
+    component: ComponentCreator('/', 'c81'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '8ca'),
+        component: ComponentCreator('/', '565'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '23f'),
+            component: ComponentCreator('/', '1a0'),
             routes: [
               {
                 path: '/About',
@@ -114,6 +114,12 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/category/natural-language-processing',
+                component: ComponentCreator('/category/natural-language-processing', '561'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/category/projects',
                 component: ComponentCreator('/category/projects', '573'),
                 exact: true,
@@ -132,14 +138,14 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/Udacity Courses/AI Engineer using Microsoft Azure/course_1',
-                component: ComponentCreator('/Udacity Courses/AI Engineer using Microsoft Azure/course_1', '3f4'),
+                path: '/Udacity Courses/AI Engineer using Microsoft Azure/about',
+                component: ComponentCreator('/Udacity Courses/AI Engineer using Microsoft Azure/about', 'fe8'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/Udacity Courses/AI Engineer using Microsoft Azure/course-outline',
-                component: ComponentCreator('/Udacity Courses/AI Engineer using Microsoft Azure/course-outline', '923'),
+                path: '/Udacity Courses/AI Engineer using Microsoft Azure/course_1',
+                component: ComponentCreator('/Udacity Courses/AI Engineer using Microsoft Azure/course_1', '3f4'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -150,8 +156,8 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/Udacity Courses/Data Analyst/course-outline',
-                component: ComponentCreator('/Udacity Courses/Data Analyst/course-outline', '48f'),
+                path: '/Udacity Courses/Data Analyst/about',
+                component: ComponentCreator('/Udacity Courses/Data Analyst/about', '793'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -168,8 +174,8 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/Udacity Courses/Intermediate Python/course-outline',
-                component: ComponentCreator('/Udacity Courses/Intermediate Python/course-outline', '081'),
+                path: '/Udacity Courses/Intermediate Python/about',
+                component: ComponentCreator('/Udacity Courses/Intermediate Python/about', 'a6d'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -192,8 +198,26 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/Udacity Courses/React/course-outline',
-                component: ComponentCreator('/Udacity Courses/React/course-outline', 'df8'),
+                path: '/Udacity Courses/Natural Language Processing/about',
+                component: ComponentCreator('/Udacity Courses/Natural Language Processing/about', 'da4'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/React/about',
+                component: ComponentCreator('/Udacity Courses/React/about', '1fa'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/React/employee-polls',
+                component: ComponentCreator('/Udacity Courses/React/employee-polls', 'a83'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/React/my-reads',
+                component: ComponentCreator('/Udacity Courses/React/my-reads', '3bc'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

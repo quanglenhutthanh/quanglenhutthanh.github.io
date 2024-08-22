@@ -6,7 +6,7 @@ sidebar_label : "Project: Meme Generator"
 
 The project for this course is a meme generator, an application you'll write in Python that will pair random images with random quotes.
 
-Source Code: https://github.com/quanglenhutthanh/Meme-Generator
+Source Code: https://github.com/quanglenhutthanh/Udacity-Projects/tree/main/Intermediate%20Python/Near-Earth_Project
 
 ## Overview
 

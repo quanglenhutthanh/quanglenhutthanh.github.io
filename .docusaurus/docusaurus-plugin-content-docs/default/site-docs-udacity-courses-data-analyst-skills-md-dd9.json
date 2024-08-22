@@ -13,12 +13,12 @@
   "sidebarPosition": 15,
   "frontMatter": {
     "sidebar_position": 15,
-    "sidebar_label": "Nanodegree Skills"
+    "sidebar_label": "Skills"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Course Outline",
-    "permalink": "/Udacity Courses/Data Analyst/course-outline"
+    "title": "About",
+    "permalink": "/Udacity Courses/Data Analyst/about"
   },
   "next": {
     "title": "Project: Investigate a dataset",

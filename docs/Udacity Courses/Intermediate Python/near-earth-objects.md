@@ -7,7 +7,7 @@ sidebar_label : "Project: Exploring Near-Earth Objects"
 
 In this project, you'll use Python - and the skills we've developed throughout this course - to search for and explore close approaches of near-Earth objects (NEOs), using data from NASA/JPL's Center for Near-Earth Object Studies.
 
-Source code: https://github.com/quanglenhutthanh/Near-Earth_Project
+Source code: https://github.com/quanglenhutthanh/Udacity-Projects/tree/main/Intermediate%20Python/Near-Earth_Project
 
 ## Overview
 
