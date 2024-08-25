@@ -63,8 +63,8 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "About",
-                "permalink": "/Udacity Courses/Natural Language Processing/about"
+                "title": "Project: Part of Speech Tagging",
+                "permalink": "/Udacity Courses/Natural Language Processing/part_of_speech_tagging"
               }
             },
             {
@@ -364,7 +364,7 @@
             {
               "id": "Udacity Courses/Natural Language Processing/about",
               "title": "Natural Language Processing",
-              "description": "",
+              "description": "Natural Language Processing (NLP) is a branch of artificial intelligence that focuses on the interaction between computers and humans through natural language.",
               "source": "@site/docs/Udacity Courses/Natural Language Processing/about.md",
               "sourceDirName": "Udacity Courses/Natural Language Processing",
               "slug": "/Udacity Courses/Natural Language Processing/about",
@@ -382,6 +382,33 @@
               "previous": {
                 "title": "Natural Language Processing",
                 "permalink": "/category/natural-language-processing"
+              },
+              "next": {
+                "title": "Project: Part of Speech Tagging",
+                "permalink": "/Udacity Courses/Natural Language Processing/part_of_speech_tagging"
+              }
+            },
+            {
+              "id": "Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+              "title": "Introduction",
+              "description": "In this project, you'll build a hidden Markov model for part of speech tagging with a universal tagset. Using the Pomegranate library to build a hidden Markov model for part of speech tagging with a universal tagset. Hidden Markov models have been able to achieve >96% tag accuracy with larger tagsets on realistic text corpora. Hidden Markov models have also been used for speech recognition and speech generation, machine translation, gene recognition for bioinformatics, and human gesture recognition for computer vision, and more.",
+              "source": "@site/docs/Udacity Courses/Natural Language Processing/part_of_speech_tagging.md",
+              "sourceDirName": "Udacity Courses/Natural Language Processing",
+              "slug": "/Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+              "permalink": "/Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 20,
+              "frontMatter": {
+                "sidebar_position": 20,
+                "sidebar_label": "Project: Part of Speech Tagging"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "About",
+                "permalink": "/Udacity Courses/Natural Language Processing/about"
               },
               "next": {
                 "title": "Certificates",
@@ -616,6 +643,11 @@
                         "type": "doc",
                         "id": "Udacity Courses/Natural Language Processing/about",
                         "label": "About"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+                        "label": "Project: Part of Speech Tagging"
                       }
                     ],
                     "link": {

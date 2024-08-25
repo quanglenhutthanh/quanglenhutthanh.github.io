@@ -81,6 +81,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+              "path": "/Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "Udacity Courses/React/about",
               "path": "/Udacity Courses/React/about",
               "sidebar": "tutorialSidebar"

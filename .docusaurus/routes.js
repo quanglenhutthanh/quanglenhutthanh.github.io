@@ -79,15 +79,15 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'c81'),
+    component: ComponentCreator('/', 'cfc'),
     routes: [
       {
         path: '/',
-        component: ComponentCreator('/', '565'),
+        component: ComponentCreator('/', '3ec'),
         routes: [
           {
             path: '/',
-            component: ComponentCreator('/', '1a0'),
+            component: ComponentCreator('/', '498'),
             routes: [
               {
                 path: '/About',
@@ -200,6 +200,12 @@ export default [
               {
                 path: '/Udacity Courses/Natural Language Processing/about',
                 component: ComponentCreator('/Udacity Courses/Natural Language Processing/about', 'da4'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/Udacity Courses/Natural Language Processing/part_of_speech_tagging',
+                component: ComponentCreator('/Udacity Courses/Natural Language Processing/part_of_speech_tagging', '8bb'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

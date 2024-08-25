@@ -168,6 +168,13 @@
                 "href": "/Udacity Courses/Natural Language Processing/about",
                 "docId": "Udacity Courses/Natural Language Processing/about",
                 "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Project: Part of Speech Tagging",
+                "href": "/Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+                "docId": "Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+                "unlisted": false
               }
             ],
             "href": "/category/natural-language-processing"
@@ -266,7 +273,13 @@
     "Udacity Courses/Natural Language Processing/about": {
       "id": "Udacity Courses/Natural Language Processing/about",
       "title": "Natural Language Processing",
-      "description": "",
+      "description": "Natural Language Processing (NLP) is a branch of artificial intelligence that focuses on the interaction between computers and humans through natural language.",
+      "sidebar": "tutorialSidebar"
+    },
+    "Udacity Courses/Natural Language Processing/part_of_speech_tagging": {
+      "id": "Udacity Courses/Natural Language Processing/part_of_speech_tagging",
+      "title": "Introduction",
+      "description": "In this project, you'll build a hidden Markov model for part of speech tagging with a universal tagset. Using the Pomegranate library to build a hidden Markov model for part of speech tagging with a universal tagset. Hidden Markov models have been able to achieve >96% tag accuracy with larger tagsets on realistic text corpora. Hidden Markov models have also been used for speech recognition and speech generation, machine translation, gene recognition for bioinformatics, and human gesture recognition for computer vision, and more.",
       "sidebar": "tutorialSidebar"
     },
     "Udacity Courses/React/about": {
