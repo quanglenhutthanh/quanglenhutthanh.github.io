@@ -27,3 +27,4 @@ I wanted to share my personal journey in the world of data, through self-learnin
 - [Data Analysis and Visualization with Microsoft Power BI](https://www.udacity.com/certificate/e/4371ab8e-0147-11ef-a7c0-2f17752380ff)
 - [AI Engineer using Microsoft Azure](https://www.udacity.com/certificate/e/a1ffa830-794e-11ee-9b67-afe41c9a767e)
 - [Natural Language Processing](https://www.udacity.com/certificate/e/eba67948-329c-11ef-a528-53cb125ad6af)
+- [AI Programming with Python](https://www.udacity.com/certificate/e/10eaf352-5861-11ef-ad99-bb076f1b5ada)
