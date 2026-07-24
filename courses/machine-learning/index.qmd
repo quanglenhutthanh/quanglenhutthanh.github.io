@@ -1,0 +1,32 @@
+---
+title: "Machine Learning"
+subtitle: "Foundations & Ensemble Methods"
+subject: "machine-learning"
+type: subject
+term: "Spring 2024"
+tags: [machine-learning, ensemble]
+listing:
+  - id: lectures
+    contents: "lectures/*.md"
+    type: table
+    fields: [lecture_no, title, status, tags]
+    sort: "lecture_no asc"
+    field-display-names:
+      lecture_no: "#"
+      title: "Lecture"
+      status: "Status"
+      tags: "Tags"
+---
+
+## Về môn học
+
+Nền tảng ML: hồi quy, cây quyết định, ensemble methods, xử lý distribution shift.
+
+## Lectures
+
+:::{#lectures}
+:::
+
+## References
+
+Xem [danh sách paper & link](references.qmd).

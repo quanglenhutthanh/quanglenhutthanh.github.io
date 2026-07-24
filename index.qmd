@@ -1,0 +1,29 @@
+---
+title: "Le Nhut Thanh Quang"
+subtitle: "Dynamics 365 Business Central Developer · AI Enthusiast & Researcher"
+about:
+  template: trestles
+  image: assets/avatar.png
+  image-shape: rounded
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/lenhutthanhquang
+    - icon: envelope
+      text: Email
+      href: mailto:you@example.com
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/example
+---
+
+Hi — my professional home base is **Microsoft Dynamics 365 Business Central / Navision** development, and I'm currently pursuing a Master's degree in AI-oriented software engineering. Outside of that, AI is where my curiosity lives: I spend much of my free time studying and researching it.
+
+This site has two parts: a personal introduction (CV, experience) and a **knowledge base** collecting what I learn, both course by course in my Master's program and through my own self-study.
+
+### Areas of interest
+
+- **Microsoft Dynamics 365 Business Central / Navision** — ERP development, customization, integrations
+- **AI/ML** — self-directed study and research, from foundations to applied projects
+
+👉 See the [knowledge base by subject](courses/index.qmd) or the [full CV](about.qmd).

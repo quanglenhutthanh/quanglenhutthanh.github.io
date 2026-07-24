@@ -1,0 +1,9 @@
+---
+title: "About / CV"
+toc: true
+---
+
+## Introduction
+
+Microsoft Dynamics 365 Business Central / Navision developer by trade, currently completing a Master's degree in AI-oriented software engineering. AI is where my passion lies — I actively study and research it, with a growing focus on computer vision (both classical CV and deep learning).
+

@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Le Nhut Thanh Quang"
+  description: "Portfolio & knowledge base — AI master's coursework"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: courses/index.qmd
+        text: Knowledge
+    right:
+      - icon: github
+        href: https://github.com/lenhutthanhquang
+        aria-label: GitHub
+  page-footer:
+    center: "Built with Quarto · © 2026"
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.css
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: katex
+    grid:
+      content-mode: standard
