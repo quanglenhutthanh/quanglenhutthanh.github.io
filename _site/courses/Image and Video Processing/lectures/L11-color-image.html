@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-11-01">
+
+<title>Color Image Processing – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About / CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-11-color-image-processing" id="toc-lecture-11-color-image-processing" class="nav-link active" data-scroll-target="#lecture-11-color-image-processing">Lecture 11 – Color Image Processing</a>
+  <ul class="collapse">
+  <li><a href="#psychophysics-of-color-cơ-sở-tâm-vật-lý-của-màu" id="toc-psychophysics-of-color-cơ-sở-tâm-vật-lý-của-màu" class="nav-link" data-scroll-target="#psychophysics-of-color-cơ-sở-tâm-vật-lý-của-màu">11.1 Psychophysics of Color (Cơ sở tâm-vật lý của màu)</a>
+  <ul class="collapse">
+  <li><a href="#khái-niệm-cơ-bản" id="toc-khái-niệm-cơ-bản" class="nav-link" data-scroll-target="#khái-niệm-cơ-bản">11.1.1 Khái niệm cơ bản</a></li>
+  <li><a href="#cie-xyz-chromaticity-diagram" id="toc-cie-xyz-chromaticity-diagram" class="nav-link" data-scroll-target="#cie-xyz-chromaticity-diagram">11.1.2 CIE XYZ Chromaticity Diagram</a></li>
+  <li><a href="#perceptually-uniform-color-spaces" id="toc-perceptually-uniform-color-spaces" class="nav-link" data-scroll-target="#perceptually-uniform-color-spaces">11.1.3 Perceptually Uniform Color Spaces</a></li>
+  <li><a href="#icc-profiles" id="toc-icc-profiles" class="nav-link" data-scroll-target="#icc-profiles">11.1.4 ICC Profiles</a></li>
+  </ul></li>
+  <li><a href="#color-models" id="toc-color-models" class="nav-link" data-scroll-target="#color-models">11.2 Color Models</a>
+  <ul class="collapse">
+  <li><a href="#rgb" id="toc-rgb" class="nav-link" data-scroll-target="#rgb">11.2.1 RGB</a></li>
+  <li><a href="#cmy-và-cmyk" id="toc-cmy-và-cmyk" class="nav-link" data-scroll-target="#cmy-và-cmyk">11.2.2 CMY và CMYK</a></li>
+  <li><a href="#hsv" id="toc-hsv" class="nav-link" data-scroll-target="#hsv">11.2.3 HSV</a></li>
+  <li><a href="#yiq-ntsc" id="toc-yiq-ntsc" class="nav-link" data-scroll-target="#yiq-ntsc">11.2.4 YIQ (NTSC)</a></li>
+  <li><a href="#ycbcr" id="toc-ycbcr" class="nav-link" data-scroll-target="#ycbcr">11.2.5 YCbCr</a></li>
+  </ul></li>
+  <li><a href="#biểu-diễn-ảnh-màu-trong-matlab" id="toc-biểu-diễn-ảnh-màu-trong-matlab" class="nav-link" data-scroll-target="#biểu-diễn-ảnh-màu-trong-matlab">11.3 Biểu diễn ảnh màu trong MATLAB</a>
+  <ul class="collapse">
+  <li><a href="#rgb-images" id="toc-rgb-images" class="nav-link" data-scroll-target="#rgb-images">11.3.1 RGB images</a></li>
+  <li><a href="#indexed-images" id="toc-indexed-images" class="nav-link" data-scroll-target="#indexed-images">11.3.2 Indexed images</a></li>
+  </ul></li>
+  <li><a href="#pseudocolor-image-processing" id="toc-pseudocolor-image-processing" class="nav-link" data-scroll-target="#pseudocolor-image-processing">11.4 Pseudocolor Image Processing</a>
+  <ul class="collapse">
+  <li><a href="#intensity-density-slicing" id="toc-intensity-density-slicing" class="nav-link" data-scroll-target="#intensity-density-slicing">11.4.1 Intensity (Density) Slicing</a></li>
+  </ul></li>
+  <li><a href="#tutorial-pseudocolor-image-processing" id="toc-tutorial-pseudocolor-image-processing" class="nav-link" data-scroll-target="#tutorial-pseudocolor-image-processing">11.6 Tutorial: Pseudocolor Image Processing</a></li>
+  <li><a href="#tutorial-full-color-image-processing" id="toc-tutorial-full-color-image-processing" class="nav-link" data-scroll-target="#tutorial-full-color-image-processing">11.7 Tutorial: Full-Color Image Processing</a></li>
+  <li><a href="#what-have-we-learned-tóm-tắt" id="toc-what-have-we-learned-tóm-tắt" class="nav-link" data-scroll-target="#what-have-we-learned-tóm-tắt">What have we learned? (Tóm tắt)</a></li>
+  <li><a href="#bài-tập-problems" id="toc-bài-tập-problems" class="nav-link" data-scroll-target="#bài-tập-problems">Bài tập (Problems)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Color Image Processing</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 1, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-11-color-image-processing" class="level1">
+<h1>Lecture 11 – Color Image Processing</h1>
+<blockquote class="blockquote">
+<p>Nội dung chính: khái niệm &amp; thuật ngữ về <strong>cảm nhận màu</strong>, các <strong>color model</strong>, cách biểu diễn ảnh màu trong MATLAB, <strong>pseudo-color</strong> vs <strong>full-color processing</strong>, và cách mở rộng kỹ thuật xử lý ảnh xám sang ảnh màu.</p>
+</blockquote>
+<hr>
+<section id="psychophysics-of-color-cơ-sở-tâm-vật-lý-của-màu" class="level2">
+<h2 class="anchored" data-anchor-id="psychophysics-of-color-cơ-sở-tâm-vật-lý-của-màu">11.1 Psychophysics of Color (Cơ sở tâm-vật lý của màu)</h2>
+<p>Cảm nhận màu là hiện tượng <strong>tâm-vật lý (psychophysical)</strong>, kết hợp hai thành phần:</p>
+<ol type="1">
+<li><strong>Tính chất vật lý của nguồn sáng</strong> — thường mô tả bằng phân bố công suất phổ (<em>spectral power distribution, SPD</em>) — và của <strong>bề mặt</strong> (khả năng hấp thụ / phản xạ).</li>
+<li><strong>Khía cạnh sinh lý &amp; tâm lý</strong> của hệ thị giác người (<em>human visual system, HVS</em>).</li>
+</ol>
+<section id="khái-niệm-cơ-bản" class="level3">
+<h3 class="anchored" data-anchor-id="khái-niệm-cơ-bản">11.1.1 Khái niệm cơ bản</h3>
+<ul>
+<li>Cảm nhận màu bắt đầu từ <strong>nguồn sáng chromatic</strong>, phát bức xạ điện từ bước sóng <strong>≈ 400–700 nm</strong>. Ánh sáng phản xạ từ bề mặt vật thể tới mắt → tạo cảm giác màu.</li>
+<li>Vật phản xạ <strong>đều</strong> mọi bước sóng → thấy <strong>trắng</strong>; hấp thụ hầu hết ánh sáng → thấy <strong>đen</strong>.</li>
+<li>Các mức xám giữa trắng và đen thuần → gọi là <strong>achromatic</strong>. Vật có tính chọn lọc bước sóng cao hơn → <strong>chromatic</strong> (gắn với một tên màu). VD: vật hấp thụ mạnh vùng <strong>565–590 nm</strong> → thấy vàng.</li>
+</ul>
+<p><strong>Ba đại lượng mô tả nguồn sáng chromatic:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Đại lượng</th>
+<th>Ý nghĩa</th>
+<th>Đơn vị</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Intensity / Radiance</strong></td>
+<td>tổng năng lượng phát ra từ nguồn</td>
+<td>watt (W)</td>
+</tr>
+<tr class="even">
+<td><strong>Luminance</strong></td>
+<td>lượng thông tin quan sát viên cảm nhận; công suất bức xạ có trọng số theo độ nhạy phổ của HVS</td>
+<td>lumen (lm)</td>
+</tr>
+<tr class="odd">
+<td><strong>Brightness</strong></td>
+<td>cảm nhận chủ quan về cường độ sáng (achromatic)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tế bào cảm thụ ở võng mạc:</strong> <em>rods</em> và <em>cones</em>. - <strong>Rods</strong>: không mã hoá màu, nhạy ở mức sáng thấp → nhìn trong tối. - <strong>Cones</strong>: chịu trách nhiệm cảm nhận màu, hoạt động ở điều kiện sáng. Có 3 loại theo bước sóng đỉnh: <strong>L (≈ 610 nm)</strong>, <strong>M (≈ 560 nm)</strong>, <strong>S (≈ 430 nm)</strong>.</p>
+<blockquote class="blockquote">
+<p>Thuyết ba màu (<em>trichromatic</em>) của Thomas Young (1802) tiên đoán tồn tại 3 loại cone trước khi xác nhận được bằng thực nghiệm.</p>
+</blockquote>
+<p><strong>Màu thứ cấp (cộng ánh sáng, additive):</strong> <span class="math display">\text{magenta} = \text{red} + \text{blue}, \quad \text{cyan} = \text{blue} + \text{green}, \quad \text{yellow} = \text{green} + \text{red}</span></p>
+<p><strong>Ánh sáng vs sắc tố (pigment):</strong> - Với <strong>sắc tố/sơn</strong>: sơ cấp = <em>magenta, cyan, yellow</em>; thứ cấp = <em>red, green, blue</em>. - Với <strong>ánh sáng</strong>: màu định nghĩa theo phần phổ <strong>phát ra</strong>; với sắc tố: theo phần phổ <strong>hấp thụ</strong>. - Trộn cả 3 sơ cấp <strong>ánh sáng</strong> → <strong>trắng</strong>; trộn cả 3 sơ cấp <strong>sơn</strong> → <strong>đen</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Color metamers</strong>: các tổ hợp màu sơ cấp (vd red + green) được HVS cảm nhận thành một màu khác (vd yellow) mà lẽ ra do một bước sóng đơn (≈ 580 nm) tạo ra. → không phải mọi màu nhìn thấy đều tạo được bằng cách trộn 3 sơ cấp.</p>
+</blockquote>
+</section>
+<section id="cie-xyz-chromaticity-diagram" class="level3">
+<h3 class="anchored" data-anchor-id="cie-xyz-chromaticity-diagram">11.1.2 CIE XYZ Chromaticity Diagram</h3>
+<ul>
+<li>Thí nghiệm color matching (cuối 1920s): chỉnh lượng R, G, B ở patch này để khớp màu ở patch kia. Xuất hiện <strong>giá trị âm</strong> của R, G → phải cộng thêm sáng vào patch còn lại để khớp hoàn hảo.</li>
+<li>Lượng 3 sơ cấp cần để khớp một màu test = <strong>tristimulus values</strong>.</li>
+</ul>
+<p>Mô hình <strong>CIE XYZ (CIE 1931)</strong>. Quan hệ tuyến tính XYZ ↔︎ RGB:</p>
+<p><span class="math display">
+\begin{bmatrix} X \\ Y \\ Z \end{bmatrix} =
+\begin{bmatrix}
+0.431 &amp; 0.342 &amp; 0.178 \\
+0.222 &amp; 0.707 &amp; 0.071 \\
+0.020 &amp; 0.130 &amp; 0.939
+\end{bmatrix}
+\begin{bmatrix} R \\ G \\ B \end{bmatrix}
+</span></p>
+<p><span class="math display">
+\begin{bmatrix} R \\ G \\ B \end{bmatrix} =
+\begin{bmatrix}
+3.063 &amp; -1.393 &amp; -0.476 \\
+-0.969 &amp; 1.876 &amp; 0.042 \\
+0.068 &amp; -0.229 &amp; 1.069
+\end{bmatrix}
+\begin{bmatrix} X \\ Y \\ Z \end{bmatrix}
+</span></p>
+<ul>
+<li><strong>Y</strong> ↔︎ độ sáng (brightness). Toạ độ chromaticity chuẩn hoá:</li>
+</ul>
+<p><span class="math display">x = \frac{X}{X+Y+Z}, \quad y = \frac{Y}{X+Y+Z}, \quad z = \frac{Z}{X+Y+Z}</span></p>
+<ul>
+<li><strong>Chromaticity diagram</strong>: biên hình móng ngựa = <em>spectral locus</em> (các bước sóng nhìn thấy). <strong>Line of purples</strong> nối hai đầu phổ → tím là <strong>màu phi phổ (nonspectral)</strong> (cần trộn bước sóng ngắn + dài). Trắng thuần ở tâm.</li>
+<li><strong>Gamut</strong>: tam giác trong = dải màu mà một thiết bị vật lý tái tạo được. Gamut càng lớn → khả năng tái tạo màu càng tốt (khác nhau giữa CRT, máy in, phim).</li>
+</ul>
+</section>
+<section id="perceptually-uniform-color-spaces" class="level3">
+<h3 class="anchored" data-anchor-id="perceptually-uniform-color-spaces">11.1.3 Perceptually Uniform Color Spaces</h3>
+<ul>
+<li>Hạn chế của CIE XYZ: <strong>khoảng cách trên mặt phẳng <span class="math inline">xy</span> không tương ứng với mức khác biệt màu</strong> mà mắt cảm nhận (MacAdam, đầu 1940s).</li>
+<li><strong>MacAdam ellipses</strong>: các vùng trên biểu đồ chromaticity mà mọi màu bên trong <strong>không phân biệt được</strong> với màu ở tâm ellipse → động lực cho các không gian màu <em>đều về cảm nhận</em> (CIELAB, CIELUV).</li>
+</ul>
+<p><strong>MATLAB (IPT):</strong> chuyển đổi không gian màu qua <code>makecform</code> (tạo cấu trúc biến đổi) rồi <code>applycform</code>.</p>
+<p>Bảng hàm CIE XYZ / CIELAB tiêu biểu: <code>xyz2double</code>, <code>xyz2uint16</code>, <code>lab2double</code>, <code>lab2uint16</code>, <code>lab2uint8</code>, <code>whitepoint</code> (trả vector XYZ chuẩn hoá sao cho Y = 1).</p>
+</section>
+<section id="icc-profiles" class="level3">
+<h3 class="anchored" data-anchor-id="icc-profiles">11.1.4 ICC Profiles</h3>
+<ul>
+<li><strong>ICC profile</strong> (<em>International Color Consortium</em>): mô tả chuẩn hoá một thiết bị màu vào/ra hoặc một không gian màu; định nghĩa ánh xạ giữa không gian màu thiết bị và <strong>PCS</strong> (<em>profile connection space</em>) — là <strong>CIELAB</strong> hoặc <strong>CIEXYZ</strong>.</li>
+<li>Hàm IPT: <code>iccread</code>, <code>iccfind</code>, <code>iccroot</code>, <code>iccwrite</code>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="color-models" class="level2">
+<h2 class="anchored" data-anchor-id="color-models">11.2 Color Models</h2>
+<blockquote class="blockquote">
+<p><strong>Color model</strong> (= color space / color system): đặc tả một hệ toạ độ và một không gian con, trong đó mỗi màu là một điểm.</p>
+</blockquote>
+<section id="rgb" class="level3">
+<h3 class="anchored" data-anchor-id="rgb">11.2.1 RGB</h3>
+<ul>
+<li>Dựa trên hệ toạ độ Cartesian, 3 trục R, G, B, thường chuẩn hoá về [0, 1]. 8 đỉnh khối lập phương = 3 sơ cấp + 3 thứ cấp + trắng + đen.</li>
+<li>Biểu diễn hex: mỗi thành phần 00–FF (0–255). VD đỏ thuần = <code>FF0000</code>.</li>
+<li><strong>Pixel depth</strong>: số bit/pixel. Điển hình <strong>24 bit</strong> = 3 mặt phẳng × 8 bit → hơn 16 triệu màu.</li>
+</ul>
+<p><strong>8 đỉnh khối RGB:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Màu</th>
+<th>R</th>
+<th>G</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Black</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Blue</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Green</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Cyan</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Red</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Magenta</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Yellow</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>White</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cmy-và-cmyk" class="level3">
+<h3 class="anchored" data-anchor-id="cmy-và-cmyk">11.2.2 CMY và CMYK</h3>
+<ul>
+<li>CMY dựa trên 3 sơ cấp sắc tố (cyan, magenta, yellow) — dùng cho máy in, mỗi sơ cấp ≈ một hộp mực. Trộn 3 sơ cấp cho ra đen “đục” → thêm màu thứ 4 <strong>K (blacK)</strong> → <strong>CMYK</strong>.</li>
+<li>Chuyển RGB → CMY:</li>
+</ul>
+<p><span class="math display">
+\begin{bmatrix} C \\ M \\ Y \end{bmatrix} =
+\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} -
+\begin{bmatrix} R \\ G \\ B \end{bmatrix}
+</span></p>
+</section>
+<section id="hsv" class="level3">
+<h3 class="anchored" data-anchor-id="hsv">11.2.3 HSV</h3>
+<ul>
+<li>RGB/CMYK tiện cho hiển thị/in nhưng <strong>không khớp cách con người mô tả màu</strong>. Con người nghĩ theo <strong>hue, saturation, lightness</strong>:
+<ul>
+<li><strong>Hue</strong>: loại màu / tông (thường = “tên màu”).</li>
+<li><strong>Saturation</strong>: độ tinh khiết (bị pha trắng bao nhiêu).</li>
+<li><strong>Lightness / Value</strong>: cường độ sáng.</li>
+</ul></li>
+<li>HSV (còn gọi HSB) = nhìn khối RGB <strong>dọc theo đường chéo chính</strong> (trục xám) → bảng màu lục giác. Di chuyển dọc trục → V giảm từ 1 (trắng) về 0 (đen).
+<ul>
+<li><strong>Hue</strong> = góc so với gốc (trục đỏ là 0° theo quy ước).</li>
+<li><strong>Saturation</strong> = khoảng cách tới trục (càng xa càng bão hoà).</li>
+</ul></li>
+<li>Biểu diễn 3D: hình nón lục giác (hexcone), hình trụ, hoặc hình nón đáy tròn.</li>
+<li><strong>Ưu điểm chính</strong>: tách được thành phần <strong>intensity/value</strong> khỏi <strong>chromaticity</strong> (hue + saturation) → yêu cầu của nhiều thuật toán xử lý ảnh màu.</li>
+</ul>
+</section>
+<section id="yiq-ntsc" class="level3">
+<h3 class="anchored" data-anchor-id="yiq-ntsc">11.2.4 YIQ (NTSC)</h3>
+<ul>
+<li>Chuẩn TV analog Mỹ. Ưu điểm: <strong>tách nội dung xám khỏi dữ liệu màu</strong> (để tương thích ngược với TV đen-trắng). 3 thành phần: <strong>Y</strong> (luminance) + <strong>I, Q</strong> (hai tín hiệu chênh lệch màu).</li>
+</ul>
+<p><span class="math display">
+\begin{bmatrix} Y \\ I \\ Q \end{bmatrix} =
+\begin{bmatrix}
+0.299 &amp; 0.587 &amp; 0.114 \\
+0.596 &amp; -0.274 &amp; -0.322 \\
+0.211 &amp; -0.523 &amp; 0.312
+\end{bmatrix}
+\begin{bmatrix} R \\ G \\ B \end{bmatrix}
+</span></p>
+</section>
+<section id="ycbcr" class="level3">
+<h3 class="anchored" data-anchor-id="ycbcr">11.2.5 YCbCr</h3>
+<ul>
+<li><strong>Biểu diễn màu phổ biến nhất cho video số.</strong> Y = luminance; <strong>Cb</strong> = chênh lệch thành phần blue so với giá trị tham chiếu; <strong>Cr</strong> = chênh lệch thành phần red.</li>
+</ul>
+<p><span class="math display">
+\begin{bmatrix} Y \\ C_b \\ C_r \end{bmatrix} =
+\begin{bmatrix}
+0.299 &amp; 0.587 &amp; 0.114 \\
+-0.169 &amp; -0.331 &amp; 0.500 \\
+0.500 &amp; -0.419 &amp; -0.081
+\end{bmatrix}
+\begin{bmatrix} R \\ G \\ B \end{bmatrix}
+</span></p>
+<hr>
+</section>
+</section>
+<section id="biểu-diễn-ảnh-màu-trong-matlab" class="level2">
+<h2 class="anchored" data-anchor-id="biểu-diễn-ảnh-màu-trong-matlab">11.3 Biểu diễn ảnh màu trong MATLAB</h2>
+<p>Ảnh màu thường ở dạng <strong>RGB (24 bpp)</strong> hoặc <strong>indexed</strong> (dùng palette/color map, thường 256 màu). Độc lập với định dạng file (dù GIF thường indexed, JPEG thường không).</p>
+<section id="rgb-images" class="level3">
+<h3 class="anchored" data-anchor-id="rgb-images">11.3.1 RGB images</h3>
+<ul>
+<li>Ảnh RGB = mảng 3D kích thước <strong>M × N × 3</strong> (M, N = cao, rộng; 3 = số kênh màu). Mỗi mảng M × N = một <strong>component image</strong> (R, G, hoặc B).</li>
+<li>Dải giá trị theo kiểu dữ liệu: <code>double</code> → [0.0, 1.0]; <code>uint8</code> → [0, 255]; <code>uint16</code> → [0, 65535].</li>
+<li>Bit depth điển hình 24 bpp → <span class="math inline">(2^8)^3 = 16{,}777{,}216</span> màu.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">I</span> <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'peppers.png'</span>)<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">size</span>(<span class="va">I</span>)     <span class="co">% 384 x 512 x 3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">class</span>(<span class="va">I</span>)    <span class="co">% uint8</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>        <span class="va">title</span>(<span class="ss">'Color image (RGB)'</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>(<span class="op">:,:,</span><span class="fl">1</span>))<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Red component'</span>)<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>(<span class="op">:,:,</span><span class="fl">2</span>))<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Green component'</span>)<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>(<span class="op">:,:,</span><span class="fl">3</span>))<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Blue component'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="indexed-images" class="level3">
+<h3 class="anchored" data-anchor-id="indexed-images">11.3.2 Indexed images</h3>
+<ul>
+<li>Ảnh indexed = ma trận số nguyên <strong>X</strong>, mỗi số trỏ tới một hàng RGB trong ma trận phụ <strong>map</strong> (color map). <code>map</code> là ma trận <strong>M × 3</strong> kiểu <code>double</code>, mỗi phần tử trong [0.0, 1.0], mỗi hàng = (R, G, B).</li>
+<li>Cơ chế trỏ: nếu X là <code>uint8</code>/<code>uint16</code> → giá trị 0 trỏ hàng 1, giá trị 1 trỏ hàng 2, … Nếu X là <code>double</code> → giá trị ≤ 1.0 trỏ hàng 1, …</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">load</span> <span class="va">clown</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">size</span>(<span class="va">X</span>)     <span class="co">% 200 x 300   |  class(X)  -&gt; double</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">size</span>(<span class="va">map</span>)   <span class="co">% 81 x 3      |  class(map)-&gt; double</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">imshow</span>(<span class="va">X</span><span class="op">,</span><span class="va">map</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Color (Indexed)'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Các color map dựng sẵn</strong> (gọi bằng <code>colormap</code>): <code>hsv, hot, gray, bone, copper, pink, white, flag, lines, colorcube, vga, jet, prism, cool, autumn, spring, winter, summer</code>. Có thể tự tạo map: mảng <code>double</code> kích thước M × 3, giá trị trong [0.0, 1.0].</p>
+<p><strong>Hàm thao tác ảnh indexed:</strong> - <code>imapprox</code> — xấp xỉ bằng ảnh ít màu hơn. - <code>rgb2ind</code> / <code>ind2rgb</code> — chuyển RGB ↔︎ indexed. - <code>rgb2gray</code> / <code>ind2gray</code> — chuyển sang xám. - <code>dither</code> — tạo ảnh indexed từ RGB bằng dithering. - <code>grayslice</code> — tạo ảnh indexed từ ảnh xám bằng thresholding (dùng cho pseudocolor). - <code>gray2ind</code> — chuyển ảnh xám sang indexed <em>nhưng vẫn đơn sắc</em> (chỉ đổi cách lưu dữ liệu, khác <code>grayslice</code>).</p>
+<hr>
+</section>
+</section>
+<section id="pseudocolor-image-processing" class="level2">
+<h2 class="anchored" data-anchor-id="pseudocolor-image-processing">11.4 Pseudocolor Image Processing</h2>
+<ul>
+<li><strong>Mục đích</strong>: tăng cường ảnh đơn sắc để mắt người xem dễ hơn. Lý do: biến thiên mức xám tinh vi có thể che khuất vùng quan trọng (vd khối u trong ảnh y khoa).</li>
+<li>Mắt người phân biệt <strong>hàng ngàn</strong> sắc màu &amp; cường độ, nhưng chỉ <strong>&lt; 100</strong> mức xám → thay xám bằng màu giúp phát hiện chi tiết tốt hơn.</li>
+<li>Giải pháp điển hình: <strong>LUT (color lookup table)</strong> ánh xạ ~256 mức xám → một số màu (thường ít hơn). Để dễ nhìn, màu tương phản nên nằm ở các hàng liên tiếp trong LUT.</li>
+<li>“<strong>Pseudo</strong>” nhấn mạnh: màu gán <strong>không tương ứng</strong> với màu thật trong ảnh gốc.</li>
+</ul>
+<section id="intensity-density-slicing" class="level3">
+<h3 class="anchored" data-anchor-id="intensity-density-slicing">11.4.1 Intensity (Density) Slicing</h3>
+<ul>
+<li>Kỹ thuật pseudocolor <strong>đơn giản nhất &amp; phổ biến nhất</strong>.</li>
+<li>Xem ảnh đơn sắc như mặt 3D (mức xám theo toạ độ không gian) → đặt các <strong>mặt phẳng cắt song song</strong> với mặt phẳng ảnh (xy). Mỗi mặt cắt hàm 3D → chia thành các khoảng mức xám; mỗi bên mặt phẳng gán một màu.</li>
+<li>1 mặt cắt tại <span class="math inline">f(x,y) = l_i</span> → 2 khoảng; tổng quát <strong>M mặt phẳng → M + 1 khoảng</strong> (màu <span class="math inline">c_1, c_2, \dots</span>).</li>
+</ul>
+<p><strong>MATLAB:</strong> dùng <code>grayslice</code>. VD 16 mức với các color map <code>summer</code>, <code>hsv</code>, <code>jet</code>.</p>
+<hr>
+</section>
+</section>
+<section id="tutorial-pseudocolor-image-processing" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-pseudocolor-image-processing">11.6 Tutorial: Pseudocolor Image Processing</h2>
+<p><strong>Mục tiêu:</strong> hiển thị ảnh xám bằng pseudocolor; dùng <code>grayslice</code>; tự định số màu của color map.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Ảnh gradient</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">I</span> <span class="op">=</span> <span class="va">repmat</span>(<span class="va">uint8</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">255</span>)<span class="op">,</span> <span class="fl">256</span><span class="op">,</span> <span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span><span class="op">,</span> <span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">subimage</span>(<span class="va">I</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">% Slice thành 16 khoảng đều</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">I2</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">I</span><span class="op">,</span> <span class="fl">16</span>)<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">subimage</span>(<span class="va">I2</span><span class="op">,</span> <span class="va">colormap</span>(<span class="va">winter</span>(<span class="fl">16</span>)))<span class="op">,</span> <span class="op">...</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Pseudo-colored with "winter" colormap'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">% Slice thành các khoảng KHÔNG đều</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">levels</span> <span class="op">=</span> [<span class="fl">0.25</span><span class="op">*</span><span class="fl">255</span><span class="op">,</span> <span class="fl">0.75</span><span class="op">*</span><span class="fl">255</span><span class="op">,</span> <span class="fl">0.9</span><span class="op">*</span><span class="fl">255</span>]<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="va">I3</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">I</span><span class="op">,</span> <span class="va">levels</span>)<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span><span class="op">,</span> <span class="va">imshow</span>(<span class="va">I3</span><span class="op">,</span> <span class="va">spring</span>(<span class="fl">4</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">% Áp dụng lên ảnh có ý nghĩa</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="va">I</span>  <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'mri.jpg'</span>)<span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="va">I2</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">I</span><span class="op">,</span> <span class="fl">16</span>)<span class="op">;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">subimage</span>(<span class="va">I2</span><span class="op">,</span> <span class="va">colormap</span>(<span class="va">jet</span>(<span class="fl">16</span>)))<span class="op">,</span> <span class="op">...</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">title</span>(<span class="ss">'Pseudo-colored with "jet" colormap'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Câu hỏi tự kiểm tra:</strong> - Q1. Vì sao dùng <code>subimage</code> thay vì <code>imshow</code> để hiển thị? - Q2. Số 16 trong <code>grayslice(I,16)</code> nghĩa là gì? (số khoảng cắt) - Q3. Số 16 trong <code>colormap(winter(16))</code> nghĩa là gì? (số màu trong map) - Q4. Nếu ảnh gốc ở dải [0.0, 1.0] thì code đổi thế nào? (<code>levels</code> cũng phải ở [0,1]) - Q5. Nếu không chỉ định số màu, MATLAB lấy bao nhiêu màu cho color map?</p>
+<hr>
+</section>
+<section id="tutorial-full-color-image-processing" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-full-color-image-processing">11.7 Tutorial: Full-Color Image Processing</h2>
+<p><strong>Mục tiêu:</strong> chuyển đổi không gian màu (<code>rgb2hsv</code>, <code>hsv2rgb</code>) và lọc ảnh màu; so sánh smoothing/sharpening trên RGB vs HSV.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">% RGB -&gt; HSV, xem các thành phần</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">I</span>    <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'onion.png'</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">Ihsv</span> <span class="op">=</span> <span class="va">rgb2hsv</span>(<span class="va">I</span>)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">% Ihsv(:,:,1)=Hue, (:,:,2)=Saturation, (:,:,3)=Value</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">% So sánh grayscale vs Value</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">Igray</span> <span class="op">=</span> <span class="va">rgb2gray</span>(<span class="va">I</span>)<span class="op">;</span>   <span class="co">% gần giống thành phần Value</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">% Smoothing trên RGB: lọc từng kênh rồi ghép lại</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="va">fn</span> <span class="op">=</span> <span class="va">fspecial</span>(<span class="ss">'average'</span>)<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="va">I2</span>(<span class="op">:,:,</span><span class="fl">1</span>) <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">I</span>(<span class="op">:,:,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">fn</span>)<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="va">I2</span>(<span class="op">:,:,</span><span class="fl">2</span>) <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">I</span>(<span class="op">:,:,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">fn</span>)<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="va">I2</span>(<span class="op">:,:,</span><span class="fl">3</span>) <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">I</span>(<span class="op">:,:,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">fn</span>)<span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">% Smoothing trên HSV: lọc cả 3 thành phần, rồi hsv2rgb để hiển thị</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="va">Ihsv2</span>(<span class="op">:,:,</span><span class="fl">1</span>) <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">Ihsv</span>(<span class="op">:,:,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">fn</span>)<span class="op">;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="va">Ihsv2</span>(<span class="op">:,:,</span><span class="fl">2</span>) <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">Ihsv</span>(<span class="op">:,:,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">fn</span>)<span class="op">;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="va">Ihsv2</span>(<span class="op">:,:,</span><span class="fl">3</span>) <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">Ihsv</span>(<span class="op">:,:,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">fn</span>)<span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="va">imshow</span>(<span class="va">hsv2rgb</span>(<span class="va">Ihsv2</span>))<span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">% Chỉ lọc thành phần Value (giữ Hue, Saturation)</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="va">Ihsv3</span>(<span class="op">:,:,</span>[<span class="fl">1</span> <span class="fl">2</span>]) <span class="op">=</span> <span class="va">Ihsv</span>(<span class="op">:,:,</span>[<span class="fl">1</span> <span class="fl">2</span>])<span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="va">Ihsv3</span>(<span class="op">:,:,</span><span class="fl">3</span>)     <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">Ihsv</span>(<span class="op">:,:,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">fn</span>)<span class="op">;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="va">imshow</span>(<span class="va">hsv2rgb</span>(<span class="va">Ihsv3</span>))<span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">% Sharpening HSV: laplacian trên Value rồi trừ</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="va">fn2</span> <span class="op">=</span> <span class="va">fspecial</span>(<span class="ss">'laplacian'</span><span class="op">,</span> <span class="fl">0</span>)<span class="op">;</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="va">Ihsv4</span>(<span class="op">:,:,</span>[<span class="fl">1</span> <span class="fl">2</span>]) <span class="op">=</span> <span class="va">Ihsv</span>(<span class="op">:,:,</span>[<span class="fl">1</span> <span class="fl">2</span>])<span class="op">;</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="va">Ihsv4</span>(<span class="op">:,:,</span><span class="fl">3</span>)     <span class="op">=</span> <span class="va">imsubtract</span>(<span class="va">Ihsv</span>(<span class="op">:,:,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imfilter</span>(<span class="va">Ihsv</span>(<span class="op">:,:,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">fn2</span>))<span class="op">;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="va">imshow</span>(<span class="va">hsv2rgb</span>(<span class="va">Ihsv4</span>))<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Ý chính rút ra:</strong> - Thành phần <strong>Value</strong> của HSV ≈ ảnh grayscale; Hue/Saturation khó “đọc” bằng mắt. - Với RGB, làm mượt = lọc <strong>từng kênh</strong> rồi ghép. - Với HSV, thường <strong>chỉ lọc Value</strong> là hợp lý (lọc cả Hue/Saturation dễ làm hỏng màu).</p>
+<hr>
+</section>
+<section id="what-have-we-learned-tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="what-have-we-learned-tóm-tắt">What have we learned? (Tóm tắt)</h2>
+<p><strong>Color models phổ biến &amp; công dụng:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Dùng cho</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RGB, CMY(K)</td>
+<td>hiển thị &amp; in ấn</td>
+</tr>
+<tr class="even">
+<td>YIQ, YCbCr</td>
+<td>truyền hình &amp; video</td>
+</tr>
+<tr class="odd">
+<td>XYZ</td>
+<td>chuẩn hoá màu</td>
+</tr>
+<tr class="even">
+<td>CIELAB, CIELUV</td>
+<td>đều về cảm nhận (perceptual uniformity)</td>
+</tr>
+<tr class="odd">
+<td>HSV, HSI, HSL</td>
+<td>mô tả trực quan thuộc tính màu</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Ảnh màu trong MATLAB: <strong>M × N × 3</strong> (RGB) hoặc <strong>M × N chỉ số</strong> trỏ palette (~256×3) = <strong>indexed</strong>.</li>
+<li><strong>Pseudocolor</strong>: gán màu theo <em>diễn giải dữ liệu</em>, không phải màu thật. <strong>Full-color</strong>: xử lý pixel của ảnh có màu tương ứng cảnh thật.</li>
+<li>Nhiều kỹ thuật ảnh đơn sắc (edge detection, histogram equalization…) mở rộng được sang ảnh màu; thành công phụ thuộc <strong>chọn color model</strong>.</li>
+</ul>
+<hr>
+</section>
+<section id="bài-tập-problems" class="level2">
+<h2 class="anchored" data-anchor-id="bài-tập-problems">Bài tập (Problems)</h2>
+<ol type="1">
+<li>Dùng hàm <code>patch</code> hiển thị khối RGB (Figure 11.9).</li>
+<li>Viết code cộng hai ảnh RGB cùng kích thước — kết quả có như mong đợi?</li>
+<li>Sai gì trong <code>[X,map]=imread('canoe.tif'); X = X + 20;</code> khi muốn làm sáng ảnh indexed? Sửa lại. <em>(Gợi ý: cộng vào chỉ số X là sai — phải chỉnh <code>map</code>, hoặc chuyển sang RGB trước.)</em></li>
+<li>Chứng minh intensity slicing là trường hợp riêng của phương pháp dùng hàm biến đổi; vẽ hàm biến đổi bậc thang cho R, G, B khi ảnh 256 mức được chia 4 màu, mỗi khoảng rộng 64 mức.</li>
+<li>Dùng hàm <code>edge</code>, tính &amp; hiển thị biên ảnh màu cho: (a) RGB cộng biên các kênh, (b) RGB OR các kênh, (c) YIQ cộng, (d) YIQ OR.</li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

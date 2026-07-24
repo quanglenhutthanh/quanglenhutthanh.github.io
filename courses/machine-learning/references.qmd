@@ -1,0 +1,12 @@
+---
+title: "References – Machine Learning"
+subject: "machine-learning"
+type: reference
+tags: [references]
+---
+
+| Title | Type | Link | Status |
+|---|---|---|---|
+| XGBoost: A Scalable Tree Boosting System | paper | <https://arxiv.org/abs/1603.02754> | done |
+
+: Status = todo · reading · done

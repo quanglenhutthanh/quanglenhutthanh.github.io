@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-08-30">
+
+<title>Image Processing Basics – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Knowledge</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-2-image-processing-basics" id="toc-lecture-2-image-processing-basics" class="nav-link active" data-scroll-target="#lecture-2-image-processing-basics">Lecture 2 – Image Processing Basics</a>
+  <ul class="collapse">
+  <li><a href="#digital-image-representation" id="toc-digital-image-representation" class="nav-link" data-scroll-target="#digital-image-representation">2.1 Digital Image Representation</a>
+  <ul class="collapse">
+  <li><a href="#binary-1-bit-images" id="toc-binary-1-bit-images" class="nav-link" data-scroll-target="#binary-1-bit-images">2.1.1 Binary (1-bit) Images</a></li>
+  <li><a href="#gray-level-8-bit-images" id="toc-gray-level-8-bit-images" class="nav-link" data-scroll-target="#gray-level-8-bit-images">2.1.2 Gray-Level (8-bit) Images</a></li>
+  <li><a href="#color-images" id="toc-color-images" class="nav-link" data-scroll-target="#color-images">2.1.3 Color Images</a></li>
+  <li><a href="#compression" id="toc-compression" class="nav-link" data-scroll-target="#compression">2.1.4 Compression</a></li>
+  </ul></li>
+  <li><a href="#image-file-formats" id="toc-image-file-formats" class="nav-link" data-scroll-target="#image-file-formats">2.2 Image File Formats</a></li>
+  <li><a href="#basic-terminology" id="toc-basic-terminology" class="nav-link" data-scroll-target="#basic-terminology">2.3 Basic Terminology</a></li>
+  <li><a href="#overview-of-image-processing-operations" id="toc-overview-of-image-processing-operations" class="nav-link" data-scroll-target="#overview-of-image-processing-operations">2.4 Overview of Image Processing Operations</a>
+  <ul class="collapse">
+  <li><a href="#global-point-operations" id="toc-global-point-operations" class="nav-link" data-scroll-target="#global-point-operations">2.4.1 Global (Point) Operations</a></li>
+  <li><a href="#neighborhood-oriented-operations" id="toc-neighborhood-oriented-operations" class="nav-link" data-scroll-target="#neighborhood-oriented-operations">2.4.2 Neighborhood-Oriented Operations</a></li>
+  <li><a href="#operations-combining-multiple-images" id="toc-operations-combining-multiple-images" class="nav-link" data-scroll-target="#operations-combining-multiple-images">2.4.3 Operations Combining Multiple Images</a></li>
+  <li><a href="#operations-in-a-transformation-domain" id="toc-operations-in-a-transformation-domain" class="nav-link" data-scroll-target="#operations-in-a-transformation-domain">2.4.4 Operations in a Transformation Domain</a></li>
+  <li><a href="#image-registration" id="toc-image-registration" class="nav-link" data-scroll-target="#image-registration">2.4.5 Image Registration</a></li>
+  </ul></li>
+  <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Image Processing Basics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-2-image-processing-basics" class="level1">
+<h1>Lecture 2 – Image Processing Basics</h1>
+<blockquote class="blockquote">
+<p>How is a digital image represented and stored in memory? What are the main types of digital image representation, and the most common file formats used to store them? This lecture builds the vocabulary the rest of the course relies on: the image as a 2D function <span class="math inline">f(x,y)</span>, the four basic image types (binary, gray-level, RGB, indexed), the terminology of pixel neighborhoods, adjacency, connectivity and distance, and a first overview of how image processing operations — point, neighborhood, multi-image, and transform-domain — act on pixel values.</p>
+</blockquote>
+<hr>
+<section id="digital-image-representation" class="level2">
+<h2 class="anchored" data-anchor-id="digital-image-representation">2.1 Digital Image Representation</h2>
+<p>A digital image — whether it results from sampling and quantizing an analog image (e.g., a photograph digitized by a scanner or camera sensor) or is created directly in digital form (e.g., a rendered graphic) — can always be represented as a two-dimensional matrix of real numbers. Throughout the course we adopt the convention <span class="math inline">f(x,y)</span> to denote a monochrome image of size <span class="math inline">M \times N</span>, where <span class="math inline">x</span> is the row index (ranging from <span class="math inline">0</span> to <span class="math inline">M-1</span>) and <span class="math inline">y</span> is the column index (ranging from <span class="math inline">0</span> to <span class="math inline">N-1</span>):</p>
+<p><span class="math display">
+f(x,y) = \begin{bmatrix}
+f(0,0) &amp; f(0,1) &amp; \cdots &amp; f(0,N-1) \\
+f(1,0) &amp; f(1,1) &amp; \cdots &amp; f(1,N-1) \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+f(M-1,0) &amp; f(M-1,1) &amp; \cdots &amp; f(M-1,N-1)
+\end{bmatrix}
+</span></p>
+<p>The value of <span class="math inline">f</span> at a given pixel of coordinates <span class="math inline">(x_0, y_0)</span>, written <span class="math inline">f(x_0, y_0)</span>, is called the <strong>intensity</strong> or <strong>gray level</strong> of the image at that pixel. The range that a pixel intensity can take depends on the data type and convention used:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>numpy dtype</th>
+<th>Typical range</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>np.float64</code>/<code>np.float32</code></td>
+<td><span class="math inline">[0.0, 1.0]</span> (by convention)</td>
+<td><span class="math inline">0.0</span> = black, <span class="math inline">1.0</span> = white</td>
+</tr>
+<tr class="even">
+<td><code>np.uint8</code></td>
+<td><span class="math inline">[0, 255]</span></td>
+<td><span class="math inline">0</span> = black, <span class="math inline">255</span> = white</td>
+</tr>
+<tr class="odd">
+<td><code>np.uint16</code></td>
+<td><span class="math inline">[0, 65535]</span></td>
+<td><span class="math inline">0</span> = black, <span class="math inline">65535</span> = white</td>
+</tr>
+</tbody>
+</table>
+<p>One convenient fact worth flagging early: numpy (and OpenCV) use <strong>0-based</strong> array indexing (<code>I[0,0]</code> is the first pixel) — this matches the mathematical convention <span class="math inline">f(x,y)</span> used in textbooks and in these notes exactly, unlike MATLAB’s 1-based indexing, so no offset needs to be tracked when translating formulas into code.</p>
+<p>Monochrome images are, at their core, just 2D numpy arrays. Because numpy treats arrays as a first-class, built-in data type — and OpenCV operates directly on them — it is particularly convenient for manipulating images without resorting to explicit loops or low-level array bookkeeping.</p>
+<p>More generally, digital images can be encoded in two fundamentally different ways:</p>
+<ul>
+<li><strong>Raster (bitmap) representation</strong> — the image is stored as one or more 2D arrays of pixels. This is the format used by cameras, scanners, and the vast majority of image processing algorithms.</li>
+<li><strong>Vector representation</strong> — the image is stored as a series of drawing commands (lines, curves, fills) rather than as pixel values.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Bitmap (raster)</th>
+<th>Vector</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Storage</td>
+<td>2D array(s) of pixel values</td>
+<td>List of drawing primitives</td>
+</tr>
+<tr class="even">
+<td>Quality / display speed</td>
+<td>High, direct</td>
+<td>Needs rasterization before display</td>
+</tr>
+<tr class="odd">
+<td>Memory footprint</td>
+<td>Larger, size-dependent</td>
+<td>Smaller, resolution-independent</td>
+</tr>
+<tr class="even">
+<td>Resizing</td>
+<td>May introduce artifacts (blur, blockiness)</td>
+<td>Resizes/scales without artifacts</td>
+</tr>
+<tr class="odd">
+<td>Typical use</td>
+<td>Photographs, scanned documents</td>
+<td>Logos, technical drawings, fonts</td>
+</tr>
+</tbody>
+</table>
+<p>Image processing, as covered in this course, works almost exclusively with <strong>bitmap</strong> representations.</p>
+<section id="binary-1-bit-images" class="level3">
+<h3 class="anchored" data-anchor-id="binary-1-bit-images">2.1.1 Binary (1-bit) Images</h3>
+<p>Binary images are encoded as a 2D array using <strong>1 bit per pixel</strong>, where, by (loose) convention, a <span class="math inline">0</span> means “black” and a <span class="math inline">1</span> means “white” — though the opposite convention is also seen, so there is no universal agreement. Their chief advantage is a very small footprint, which makes them well suited to images containing simple graphics, text, or line art (e.g., scanned fax pages, document masks, binarized segmentation masks).</p>
+</section>
+<section id="gray-level-8-bit-images" class="level3">
+<h3 class="anchored" data-anchor-id="gray-level-8-bit-images">2.1.2 Gray-Level (8-bit) Images</h3>
+<p>Gray-level (also called <strong>monochrome</strong>) images are likewise encoded as a 2D array of pixels, but typically using <strong>8 bits per pixel</strong>. A pixel value of <span class="math inline">0</span> corresponds to black, <span class="math inline">255</span> to white, and every intermediate value is a shade of gray. Eight bits give <span class="math inline">256</span> discrete gray levels — a number that comfortably exceeds what the human visual system can reliably distinguish under normal viewing conditions, which is why 8-bit gray-level images are the de facto standard for monochrome imaging.</p>
+</section>
+<section id="color-images" class="level3">
+<h3 class="anchored" data-anchor-id="color-images">2.1.3 Color Images</h3>
+<p>Representing color is more complex and varied than representing intensity alone. The two most common representations are:</p>
+<ul>
+<li><strong>RGB (24-bit) representation</strong> — each pixel is described by three values, one for each of the red (R), green (G), and blue (B) channels. Concretely, a color image can be thought of as <strong>three 2D arrays of the same size</strong>, stacked together, one per channel. Each array element holds an 8-bit value in <span class="math inline">[0, 255]</span> indicating the amount of that primary at that point. Combining the three 8-bit channels into a single 24-bit number yields <span class="math inline">2^{24} = 16{,}777{,}216</span> (about 16 million, “16M”) possible color combinations.</li>
+<li><strong>Indexed representation</strong> — a single 2D array of the same size as the image stores not color values directly, but <strong>indices (pointers)</strong> into a color palette, or lookup table (LUT).</li>
+</ul>
+<p>Indexed color exists mainly for backward compatibility with older display hardware that could not simultaneously render 16 million colors. The solution — devised before 24-bit color displays and video cards were widely available — was to store, alongside the index array, a <strong>color map</strong> (a fixed-size list of colors, usually up to 256) and let each pixel simply point to a row of that map rather than carry a full 24-bit value.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>RGB (24-bit)</th>
+<th>Indexed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Storage</td>
+<td>3 arrays × 8 bits/pixel</td>
+<td>1 array of indices + a color map (≤ 256 entries)</td>
+</tr>
+<tr class="even">
+<td>Color range</td>
+<td>Up to ~16.7M simultaneous colors</td>
+<td>Limited to the size of the color map</td>
+</tr>
+<tr class="odd">
+<td>Typical use</td>
+<td>Photographs, natural images</td>
+<td>GIF images, palette-limited displays, simple graphics</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="compression" class="level3">
+<h3 class="anchored" data-anchor-id="compression">2.1.4 Compression</h3>
+<p>Raw (uncompressed) image representations require a large amount of storage space, and proportionally long transmission times when uploading or downloading files. For this reason, most image file formats apply some form of compression. Compression methods fall into two broad categories:</p>
+<ul>
+<li><strong>Lossy</strong> — a tolerable degree of visual-quality degradation is accepted in exchange for a much smaller file.</li>
+<li><strong>Lossless</strong> — the image is recovered at full, bit-exact quality after decompression.</li>
+</ul>
+<p>The overall outcome of compressing an image — how much storage is saved (often reported as a <strong>compression ratio</strong> or in <strong>bits per pixel, bpp</strong>) and how much quality is lost in the lossy case — depends on the technique, the file format, the chosen options (e.g., the “quality” slider in JPEG), and the actual content of the image being compressed.</p>
+<hr>
+</section>
+</section>
+<section id="image-file-formats" class="level2">
+<h2 class="anchored" data-anchor-id="image-file-formats">2.2 Image File Formats</h2>
+<p>Most bitmap image file formats consist of a <strong>file header</strong> followed by (often compressed) pixel data. The header stores metadata about the image — height, width, number of bands (channels), number of bits per pixel, and signature bytes that identify the file type so that readers can recognize the format.</p>
+<p>The simplest possible formats are <strong>BIN</strong> and the <strong>PPM family</strong>:</p>
+<ul>
+<li><strong>BIN</strong> — the raw pixel data with no header at all; the reader must already know the image dimensions and pixel type out of band.</li>
+<li><strong>PPM and its variants</strong> — PBM (binary images), PGM (grayscale images), PPM (color images), and PNM (a generic name covering any of the above). These are widely used in image processing research because their simplicity makes them trivial to parse, and most free format-conversion tools support them.</li>
+</ul>
+<p>Beyond these research-oriented formats, the file formats most commonly encountered in everyday practice are <strong>BMP, GIF, JPEG, TIFF, and PNG</strong>, each trading off compression scheme, color depth support, and lossy/lossless behavior differently (e.g., JPEG is lossy and RGB-oriented; GIF is lossless but limited to an indexed 256-color palette; PNG is lossless and supports both RGB and indexed color; TIFF is a flexible container that can hold either compressed or uncompressed data). In Python, <code>cv2.imread</code>/<code>cv2.imwrite</code> (or <code>PIL.Image.open</code>/<code>.save</code>) handle reading from, and writing to, most of these formats and their variants/options transparently.</p>
+<hr>
+</section>
+<section id="basic-terminology" class="level2">
+<h2 class="anchored" data-anchor-id="basic-terminology">2.3 Basic Terminology</h2>
+<p>This section introduces the vocabulary of <strong>image topology</strong> — the study of fundamental structural properties of an image (usually a binary image), typically investigated with the help of morphological operators. Typical questions in this space: how many separate objects does the image contain? How many disconnected regions? How many holes does a given object have?</p>
+<p><strong>Neighborhood.</strong> The pixels surrounding a given pixel form its neighborhood — conceptually a small matrix, usually centered on the reference pixel. Most neighborhoods used in image processing algorithms are small square arrays with an odd side length (3×3, 5×5, …), so that a well-defined center pixel exists.</p>
+<p>In the specific context of image topology, “neighborhood” takes on a more precise, discrete meaning. For a reference pixel <span class="math inline">p</span>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Neighborhood</th>
+<th>Pixels included</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>4-neighborhood</strong>, <span class="math inline">N_4(p)</span></td>
+<td>The pixel above, below, to the left, and to the right of <span class="math inline">p</span></td>
+</tr>
+<tr class="even">
+<td><strong>Diagonal neighborhood</strong>, <span class="math inline">N_D(p)</span></td>
+<td>The four diagonal pixels of <span class="math inline">p</span> (belong to <span class="math inline">N_8(p)</span> but not <span class="math inline">N_4(p)</span>)</td>
+</tr>
+<tr class="odd">
+<td><strong>8-neighborhood</strong>, <span class="math inline">N_8(p)</span></td>
+<td><span class="math inline">N_4(p) \cup N_D(p)</span> — all eight immediate neighbors of <span class="math inline">p</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Adjacency.</strong> Two pixels <span class="math inline">p</span> and <span class="math inline">q</span> are <strong>4-adjacent</strong> if they are 4-neighbors of each other, and <strong>8-adjacent</strong> if they are 8-neighbors of each other. A third notion, <strong>mixed adjacency</strong> (or <strong>m-adjacency</strong>), is sometimes introduced specifically to eliminate the ambiguities — redundant or multiple paths — that can arise when plain 8-adjacency is used to trace connected regions.</p>
+<p><strong>Paths.</strong> A <strong>4-path</strong> between pixels <span class="math inline">p</span> and <span class="math inline">q</span> is a sequence of pixels, starting at <span class="math inline">p</span> and ending at <span class="math inline">q</span>, such that every pixel in the sequence is 4-adjacent to its predecessor. An <strong>8-path</strong> is defined analogously, requiring 8-adjacency between consecutive pixels.</p>
+<p><strong>Connectivity.</strong> If a 4-path exists between <span class="math inline">p</span> and <span class="math inline">q</span>, the two pixels are said to be <strong>4-connected</strong>; if an 8-path exists between them, they are <strong>8-connected</strong>.</p>
+<p><strong>Components.</strong> A maximal set of pixels that are pairwise connected to each other is called a <strong>component</strong>: a <strong>4-component</strong> if connectivity is defined via 4-adjacency, or an <strong>8-component</strong> if via 8-adjacency. Components are typically labeled (and optionally pseudo-colored for visualization) in a unique way, producing a <strong>labeled image</strong> <span class="math inline">L(x,y)</span> whose pixel values are symbols from a chosen alphabet — usually just the integer index of the component that pixel belongs to.</p>
+<p>The choice of connectivity rule is not a mere technicality — it changes the answer. A classic illustration (<code>cv2.connectedComponents(image, connectivity=8)</code> vs.&nbsp;<code>connectivity=4</code> on a simple test pattern) shows the number of connected components varying from <strong>2</strong> components when using <strong>8-connectivity</strong> to <strong>3</strong> components when using <strong>4-connectivity</strong> on the very same binary image — because two diagonally touching regions count as connected under 8-connectivity but not under 4-connectivity.</p>
+<p><strong>Distances between pixels.</strong> Many image processing applications require measuring the distance between two pixels. Given <span class="math inline">p = (x_0, y_0)</span> and <span class="math inline">q = (x_1, y_1)</span>, the three most common distance measures are:</p>
+<p><span class="math display">
+D_e(p,q) = \sqrt{(x_1 - x_0)^2 + (y_1 - y_0)^2} \qquad \text{(Euclidean distance)}
+</span></p>
+<p><span class="math display">
+D_4(p,q) = |x_1 - x_0| + |y_1 - y_0| \qquad \text{(city-block / Manhattan distance)}
+</span></p>
+<p><span class="math display">
+D_8(p,q) = \max\big(|x_1 - x_0|,\ |y_1 - y_0|\big) \qquad \text{(chessboard distance)}
+</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Distance</th>
+<th>Also known as</th>
+<th>Shape of equidistant contour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">D_e</span></td>
+<td>Euclidean</td>
+<td>Circle</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">D_4</span></td>
+<td>City-block, Manhattan</td>
+<td>Diamond (rotated square)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">D_8</span></td>
+<td>Chessboard</td>
+<td>Square</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">D_4</span> measures distance as if only 4-connected moves were allowed (like a rook restricted to one step at a time along rows/columns), while <span class="math inline">D_8</span> measures distance as if diagonal moves were free (like a king on a chessboard, where a diagonal step counts the same as a horizontal/vertical one).</p>
+<hr>
+</section>
+<section id="overview-of-image-processing-operations" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-image-processing-operations">2.4 Overview of Image Processing Operations</h2>
+<p>Image processing operations can be organized along two broad axes: operations performed directly on pixel values (<strong>spatial domain</strong>) and operations performed after transforming the image into another representation (<strong>transform domain</strong>).</p>
+<p><strong>Operations in the spatial domain</strong> perform arithmetic and/or logical calculations directly on the original pixel values. They subdivide further into three categories:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Also known as</th>
+<th>Resulting pixel depends on</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Global operations</strong></td>
+<td>Point operations</td>
+<td>Only the pixel’s own original value</td>
+</tr>
+<tr class="even">
+<td><strong>Neighborhood-oriented operations</strong></td>
+<td>Local / area operations</td>
+<td>The pixel’s original value <strong>and</strong> its neighbors’ values</td>
+</tr>
+<tr class="odd">
+<td><strong>Operations combining multiple images</strong></td>
+<td>—</td>
+<td>The corresponding pixels of two (or more) input images</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Operations in a transform domain</strong> first apply a mathematical transformation to the image — such as the Fourier Transform (FT) or the Discrete Cosine Transform (DCT) — and the actual processing algorithm operates on the transformed coefficients rather than on the original pixel grid.</p>
+<section id="global-point-operations" class="level3">
+<h3 class="anchored" data-anchor-id="global-point-operations">2.4.1 Global (Point) Operations</h3>
+<p>Point operations apply the <strong>same</strong> transformation function to every pixel, regardless of that pixel’s location or the values of its neighbors. In the spatial domain this is written as</p>
+<p><span class="math display">
+g(x,y) = T\big[f(x,y)\big]
+</span></p>
+<p>where <span class="math inline">g(x,y)</span> is the processed (output) image, <span class="math inline">f(x,y)</span> is the original (input) image, and <span class="math inline">T</span> is an operator acting on <span class="math inline">f</span>. Because the actual pixel coordinates play no role in how <span class="math inline">T</span> transforms the value, a shorthand notation is commonly used instead:</p>
+<p><span class="math display">
+s = T(r)
+</span></p>
+<p>where <span class="math inline">r</span> is the original gray level and <span class="math inline">s</span> is the resulting gray level after the transformation. A simple example is halving the overall intensity of an image, i.e., <span class="math inline">s = r/2</span> — a linear, monotonically increasing point transformation that darkens every pixel by the same proportion, independent of where it sits in the image.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global (point) operation example: halve the intensity of every pixel</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>I  <span class="op">=</span> cv2.imread(<span class="st">'cameraman.tif'</span>, cv2.IMREAD_GRAYSCALE)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>I2 <span class="op">=</span> (I <span class="op">/</span> <span class="dv">2</span>).astype(I.dtype)   <span class="co"># s = r / 2, applied identically to every pixel</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].imshow(I, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span>  axes[<span class="dv">0</span>].set_title(<span class="st">'Original'</span>)<span class="op">;</span>                    axes[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].imshow(I2, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_title(<span class="st">'Halved intensity (s = r/2)'</span>)<span class="op">;</span>  axes[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="neighborhood-oriented-operations" class="level3">
+<h3 class="anchored" data-anchor-id="neighborhood-oriented-operations">2.4.2 Neighborhood-Oriented Operations</h3>
+<p>Neighborhood-oriented (local, or area) operations compute the resulting value at coordinates <span class="math inline">(x,y)</span> as a function of the pixel’s original value <strong>and</strong> the values of (some of) its neighbors — most typically via a <strong>convolution</strong> operation.</p>
+<p>Convolving a source image with a small 2D array — variously called a <strong>window</strong>, <strong>template</strong>, <strong>mask</strong>, or <strong>kernel</strong> — produces a destination image in which each output pixel depends on the corresponding input pixel and its neighbors. The convolution mask determines <em>which</em> neighbors participate and the <em>relative weight</em> given to each.</p>
+<p>Masks are most commonly <span class="math inline">3 \times 3</span>. Each of the nine mask coefficients (<span class="math inline">W_1, \dots, W_9</span>) is a weight:</p>
+<p><span class="math display">
+\text{Mask} = \begin{bmatrix} W_1 &amp; W_2 &amp; W_3 \\ W_4 &amp; W_5 &amp; W_6 \\ W_7 &amp; W_8 &amp; W_9 \end{bmatrix}
+</span></p>
+<p>The mask can be visualized as a small window overlaid on the image, used to compute one output pixel at a time; as each pixel is processed, the window slides to the next position and the computation repeats until every pixel of the source image has been visited.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Neighborhood-oriented operation example: 3x3 averaging (smoothing) filter</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>I  <span class="op">=</span> cv2.imread(<span class="st">'cameraman.tif'</span>, cv2.IMREAD_GRAYSCALE)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>I2 <span class="op">=</span> cv2.blur(I, (<span class="dv">3</span>, <span class="dv">3</span>))   <span class="co"># 3x3 mask with W1..W9 all equal to 1/9</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].imshow(I, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span>  axes[<span class="dv">0</span>].set_title(<span class="st">'Original'</span>)<span class="op">;</span>                              axes[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].imshow(I2, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_title(<span class="st">'3x3 averaging (neighborhood operation)'</span>)<span class="op">;</span> axes[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="operations-combining-multiple-images" class="level3">
+<h3 class="anchored" data-anchor-id="operations-combining-multiple-images">2.4.3 Operations Combining Multiple Images</h3>
+<p>Many applications combine two images pixel-by-pixel, via an arithmetic or logical operator, to produce a third image <span class="math inline">Z</span>:</p>
+<p><span class="math display">
+X \; \mathit{op}_n \; Y = Z
+</span></p>
+<p>where <span class="math inline">X</span> and <span class="math inline">Y</span> may be images (arrays) or scalars, <span class="math inline">Z</span> is necessarily an array, and <span class="math inline">\mathit{op}_n</span> is a binary mathematical operator (<span class="math inline">+, -, \times, /</span>) or logical operator (AND, OR, XOR).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combining two images pixel-by-pixel</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cv2.imread(<span class="st">'image1.tif'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> cv2.imread(<span class="st">'image2.tif'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Zadd <span class="op">=</span> cv2.add(X, Y)          <span class="co"># X + Y  (e.g., blending / double exposure)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Zsub <span class="op">=</span> cv2.subtract(X, Y)     <span class="co"># X - Y  (e.g., background subtraction, change detection)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Zand <span class="op">=</span> cv2.bitwise_and(X, Y)  <span class="co"># X AND Y (logical masking)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Typical uses include image blending (weighted addition), background subtraction (subtracting a reference frame to isolate moving objects), and masking (logical AND/OR with a binary mask to select a region of interest).</p>
+</section>
+<section id="operations-in-a-transformation-domain" class="level3">
+<h3 class="anchored" data-anchor-id="operations-in-a-transformation-domain">2.4.4 Operations in a Transformation Domain</h3>
+<p>A <strong>transform</strong> is a mathematical tool that converts one set of values into another set of values, giving a new way of representing the same underlying information. In image processing, the original pixel grid is referred to as the <strong>spatial domain</strong>, and the result of applying a transform is said to lie in the <strong>transform domain</strong>.</p>
+<p>The motivation for using mathematical transforms is that certain tasks are best carried out not directly in the spatial domain, but by: (1) transforming the input image, (2) applying selected algorithms to the transformed coefficients, and (3) applying the inverse transform to bring the result back into the spatial domain. The Fourier Transform, for instance, exposes an image’s frequency content, making operations like low-pass (blurring) or high-pass (edge-enhancing) filtering a matter of simply attenuating or amplifying the appropriate frequency components before inverting the transform. The DCT plays an analogous role and is, notably, the backbone of JPEG compression.</p>
+</section>
+<section id="image-registration" class="level3">
+<h3 class="anchored" data-anchor-id="image-registration">2.4.5 Image Registration</h3>
+<p>Image registration is the process of geometrically aligning two or more images of the same scene — acquired, for example, from different viewpoints, at different times, or with different sensors — into a single, common coordinate system. It typically involves estimating a spatial transformation (translation, rotation, scaling, or a more general warp) that maps corresponding features in one image onto their counterparts in the other. Registration is a prerequisite for many downstream tasks, such as change detection over time, multi-sensor (e.g., visible + infrared) fusion, and building panoramas or mosaics from overlapping frames.</p>
+<hr>
+</section>
+</section>
+<section id="what-have-we-learned" class="level2">
+<h2 class="anchored" data-anchor-id="what-have-we-learned">What have we learned?</h2>
+<ul>
+<li>Digital images can be encoded in two fundamentally different ways: <strong>bitmap (raster)</strong> representations, which use one or more 2D arrays of pixels (picture elements), and <strong>vector</strong> representations, which use a series of drawing commands.</li>
+<li><strong>Binary images</strong> are encoded as a 2D array using 1 bit per pixel, where — usually, but not always — <span class="math inline">0</span> means “black” and <span class="math inline">1</span> means “white.”</li>
+<li><strong>Gray-level (monochrome) images</strong> are encoded as a 2D array using 8 bits per pixel, where <span class="math inline">0</span> usually means “black,” <span class="math inline">255</span> means “white,” and intermediate values are shades of gray.</li>
+<li>The two most common ways of storing <strong>color image</strong> contents are <strong>RGB</strong> representation — each pixel described by a 24-bit number combining its red, green, and blue components — and <strong>indexed</strong> representation, where a 2D array of indices points into a color palette (lookup table).</li>
+<li>Some of the most popular image file formats in use today are <strong>BMP, GIF, JPEG, TIFF, and PNG</strong>. Python’s <code>cv2.imread</code>/<code>cv2.imwrite</code> (and <code>PIL.Image</code>) support most of these formats and their variants/options.</li>
+<li><strong>Image topology</strong> is the branch of image processing concerned with fundamental image properties — such as the number of connected components and the number of holes in an object — expressed through concepts like <strong>adjacency</strong> and <strong>connectivity</strong> (4- vs.&nbsp;8-neighborhoods, 4- vs.&nbsp;8-paths, 4- vs.&nbsp;8-components).</li>
+<li><strong>Distances between pixels</strong> are commonly measured with the Euclidean (<span class="math inline">D_e</span>), city-block (<span class="math inline">D_4</span>), or chessboard (<span class="math inline">D_8</span>) metrics, each corresponding to a different notion of “closeness” and a different equidistant contour shape (circle, diamond, square).</li>
+<li>Image processing operations split into two big families: <strong>spatial-domain</strong> techniques — further divided into <strong>point (global)</strong> operations, <strong>neighborhood-oriented (local/area)</strong> operations, and <strong>operations combining multiple images</strong> — and <strong>transform-domain</strong> techniques, which process the image after applying a mathematical transform such as the FT or DCT.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

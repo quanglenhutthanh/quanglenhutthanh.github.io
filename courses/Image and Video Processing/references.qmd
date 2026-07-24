@@ -1,0 +1,16 @@
+---
+title: "References – Computer Vision"
+subject: "computer-vision"
+type: reference
+tags: [references, papers, links]
+---
+
+Paper và tài liệu tham khảo — **chỉ link, không host file**. Ghi chú chi tiết để trong Notion.
+
+| Title | Type | Link | Liên quan | Status |
+|---|---|---|---|---|
+| Digital Image Processing (Gonzalez & Woods) | book | — | nền tảng cả môn | reading |
+| ResNet — He et al. 2015 | paper | <https://arxiv.org/abs/1512.03385> | deep features | done |
+| ImageNet Classification (AlexNet) | paper | <https://papers.nips.cc/paper/4824> | CNN cơ bản | done |
+
+: Status = todo · reading · done

@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-09-13">
+
+<title>Image Sensing and Acquisition – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About / CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-4-image-sensing-and-acquisition" id="toc-lecture-4-image-sensing-and-acquisition" class="nav-link active" data-scroll-target="#lecture-4-image-sensing-and-acquisition">Lecture 4 – Image Sensing and Acquisition</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">4.1 Introduction</a></li>
+  <li><a href="#light-color-and-the-electromagnetic-spectrum" id="toc-light-color-and-the-electromagnetic-spectrum" class="nav-link" data-scroll-target="#light-color-and-the-electromagnetic-spectrum">4.2 Light, Color, and the Electromagnetic Spectrum</a>
+  <ul class="collapse">
+  <li><a href="#light-and-the-electromagnetic-spectrum" id="toc-light-and-the-electromagnetic-spectrum" class="nav-link" data-scroll-target="#light-and-the-electromagnetic-spectrum">4.2.1 Light and the Electromagnetic Spectrum</a></li>
+  <li><a href="#brightness-discrimination-experiment" id="toc-brightness-discrimination-experiment" class="nav-link" data-scroll-target="#brightness-discrimination-experiment">4.2.2 Brightness Discrimination Experiment</a></li>
+  <li><a href="#types-of-images" id="toc-types-of-images" class="nav-link" data-scroll-target="#types-of-images">4.2.3 Types of Images</a></li>
+  <li><a href="#light-and-color-perception" id="toc-light-and-color-perception" class="nav-link" data-scroll-target="#light-and-color-perception">4.2.4 Light and Color Perception</a></li>
+  <li><a href="#color-encoding-and-representation" id="toc-color-encoding-and-representation" class="nav-link" data-scroll-target="#color-encoding-and-representation">4.2.5 Color Encoding and Representation</a></li>
+  </ul></li>
+  <li><a href="#image-acquisition" id="toc-image-acquisition" class="nav-link" data-scroll-target="#image-acquisition">4.3 Image Acquisition</a>
+  <ul class="collapse">
+  <li><a href="#image-sensors" id="toc-image-sensors" class="nav-link" data-scroll-target="#image-sensors">4.3.1 Image Sensors</a></li>
+  <li><a href="#camera-optics" id="toc-camera-optics" class="nav-link" data-scroll-target="#camera-optics">4.3.2 Camera Optics</a></li>
+  </ul></li>
+  <li><a href="#image-digitization" id="toc-image-digitization" class="nav-link" data-scroll-target="#image-digitization">4.4 Image Digitization</a>
+  <ul class="collapse">
+  <li><a href="#sampling" id="toc-sampling" class="nav-link" data-scroll-target="#sampling">4.4.1 Sampling</a></li>
+  <li><a href="#quantization" id="toc-quantization" class="nav-link" data-scroll-target="#quantization">4.4.2 Quantization</a></li>
+  <li><a href="#spatial-and-gray-level-resolution" id="toc-spatial-and-gray-level-resolution" class="nav-link" data-scroll-target="#spatial-and-gray-level-resolution">4.4.3 Spatial and Gray-Level Resolution</a></li>
+  </ul></li>
+  <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
+  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Image Sensing and Acquisition</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 13, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-4-image-sensing-and-acquisition" class="level1">
+<h1>Lecture 4 – Image Sensing and Acquisition</h1>
+<blockquote class="blockquote">
+<p>This lecture walks through the physical pipeline that turns a real-world 3D scene into a 2D digital image. We start with light itself — its wave/particle nature, the electromagnetic spectrum, and how humans perceive brightness, hue, and saturation — then look at how contemporary image sensors (CCD and CMOS) and camera optics convert reflected energy into electrical signals. Finally, we cover the two operations that make an image <em>digital</em>: sampling (choosing how many points to measure) and quantization (choosing how many amplitude levels to assign), and how the sampling rate and the number of gray levels jointly determine image quality and file size.</p>
+</blockquote>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">4.1 Introduction</h2>
+<p>An image is a two-dimensional representation of a three-dimensional real-world object or scene, and producing one always requires a light source (or some other form of electromagnetic energy) illuminating that scene. A <em>digital</em> image, specifically, represents that 2D projection using a finite number of pixels, each holding a finite-precision value.</p>
+<p>This lecture covers the full chain that gets us from “a scene bathed in light” to “a digital image stored as an array of numbers”:</p>
+<ol type="1">
+<li>The physics of image formation — light reflecting off (or emitted by, or transmitted through) an object or scene.</li>
+<li>The sensors used to capture that reflected/emitted/transmitted energy and turn it into an electrical signal.</li>
+<li>The technical choices involved in digitizing that signal: how many samples to take (spatial resolution) and how many quantization levels to use (gray-level/color resolution).</li>
+</ol>
+</section>
+<section id="light-color-and-the-electromagnetic-spectrum" class="level2">
+<h2 class="anchored" data-anchor-id="light-color-and-the-electromagnetic-spectrum">4.2 Light, Color, and the Electromagnetic Spectrum</h2>
+<p>Light — or, more generally, electromagnetic (EM) radiation — is the essential ingredient that lets an image be created, captured, and perceived in the first place. Before talking about sensors and digitization, it is worth grounding the discussion in the physics of light and how humans perceive it.</p>
+<section id="light-and-the-electromagnetic-spectrum" class="level3">
+<h3 class="anchored" data-anchor-id="light-and-the-electromagnetic-spectrum">4.2.1 Light and the Electromagnetic Spectrum</h3>
+<p>Light can be described either as an electromagnetic wave or as a stream of particles called <strong>photons</strong>. A photon is a tiny packet of vibrating electromagnetic energy characterized by its wavelength or, equivalently, its frequency. Wavelength (<span class="math inline">\lambda</span>) and frequency (<span class="math inline">f</span>) are related through the velocity at which the wave travels:</p>
+<p><span class="math display">
+\lambda = \frac{v}{f}
+</span></p>
+<p>where <span class="math inline">v</span> is usually approximated by the speed of light, <span class="math inline">c \approx 2.998 \times 10^{8}\ \text{m/s}</span>.</p>
+<p>The human visual system (HVS) is sensitive only to a narrow slice of this spectrum — wavelengths roughly between <strong>400 nm and 700 nm</strong> (violet to red). This visible band sits between radio waves (1 m or longer) at one extreme and gamma rays (0.01 nm or shorter) at the other. Even though a great deal of image processing research deals with images captured outside the visible range (infrared, X-ray, radio astronomy, and so on), this course focuses on images formed with visible light. Light is the imaging community’s energy source of choice because it is safe, inexpensive, easy to steer and shape with conventional optics, easy to detect with cheap sensors, and straightforward to process with standard electronics.</p>
+</section>
+<section id="brightness-discrimination-experiment" class="level3">
+<h3 class="anchored" data-anchor-id="brightness-discrimination-experiment">4.2.2 Brightness Discrimination Experiment</h3>
+<p>Human sensitivity to changes in brightness is not unlimited. The classical brightness-discrimination experiment measures the smallest change in luminance <span class="math inline">\Delta I</span> that an observer can detect against a background luminance <span class="math inline">I</span>. This ratio is nearly constant over a wide range of intensities and is known as the <strong>Weber fraction</strong> (or <strong>Weber’s Law</strong>):</p>
+<p><span class="math display">
+\frac{\Delta I}{I} \approx 1\%\text{–}2\%
+</span></p>
+<p>where <span class="math inline">I</span> is luminance, measured in <span class="math inline">\text{cd/m}^2</span>. In practice this means the HVS is a <em>relative</em>, not absolute, brightness detector: whether a change in intensity is noticeable depends on how bright the surrounding region already is, not just on the absolute size of the change. This fact underlies why 8-bit (256-level) quantization is usually “enough” for typical viewing conditions — it later motivates the choice of gray-level resolution discussed in Section 4.4.3.</p>
+</section>
+<section id="types-of-images" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-images">4.2.3 Types of Images</h3>
+<p>Images can be grouped into three categories, depending on the interaction between the radiation source, the object’s properties, and the position of the sensor relative to both:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>How the image is formed</th>
+<th>Typical information extracted</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Reflection images</strong></td>
+<td>Radiation (ambient or artificial) bounces off the surface of an object</td>
+<td>Surface properties: shape, color, texture</td>
+<td>Everyday photographs, most of what we perceive visually</td>
+</tr>
+<tr class="even">
+<td><strong>Emission images</strong></td>
+<td>The object itself is self-luminous</td>
+<td>Presence/intensity of a self-emitting source</td>
+<td>Stars, light bulbs, thermal/infrared imagery</td>
+</tr>
+<tr class="odd">
+<td><strong>Absorption images</strong></td>
+<td>Radiation passes <em>through</em> an object, attenuated along the way</td>
+<td>Internal structure of the object</td>
+<td>X-ray images</td>
+</tr>
+</tbody>
+</table>
+<p>Most consumer and computer-vision imagery is of the reflection type, which is why the rest of this lecture (sensors, optics, digitization) is framed around light reflected from a scene.</p>
+</section>
+<section id="light-and-color-perception" class="level3">
+<h3 class="anchored" data-anchor-id="light-and-color-perception">4.2.4 Light and Color Perception</h3>
+<p>Colors perceived by humans depend on the nature of the light reflected by an object, which is itself a function of (a) the spectral properties of the illuminating light source and (b) the object’s own absorption and reflectance properties.</p>
+<p>Historically, Sir Isaac Newton demonstrated that a beam of sunlight passing through a prism decomposes into a continuous spectrum, from red at one end to violet at the other. This gave fundamental insight into the <em>physical</em> nature of light — but, importantly, Newton also noted that “colors” are not a property of the light itself but rather an effect of light on the visual system. Color is, in that sense, a perceptual phenomenon layered on top of a physical one.</p>
+<p>The physical power carried by a light source is expressed by its <strong>spectral power distribution (SPD)</strong> — how much radiant power the source emits at each wavelength. Different physical sources have very different SPDs (sunlight, tungsten bulbs, LEDs, mercury-arc lamps, helium–neon lasers), and this directly shapes how we perceive them: tungsten bulbs read as “warm”/yellowish, while a helium–neon laser produces an extremely pure, saturated red.</p>
+</section>
+<section id="color-encoding-and-representation" class="level3">
+<h3 class="anchored" data-anchor-id="color-encoding-and-representation">4.2.5 Color Encoding and Representation</h3>
+<p>Color can be encoded numerically using three components together with appropriate spectral weighting functions. <strong>Colorimetry</strong> is the branch of science concerned with the quantitative study of color perception — specifically, with representing color using <em>tristimulus values</em> (three numbers) from which the perceived color can be reconstructed. The simplest and most common scheme in cameras and displays is to encode each pixel’s color using its red (R), green (G), and blue (B) components.</p>
+<p>Independently of the RGB encoding used in hardware, human color perception is commonly described along three perceptual axes:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Brightness</strong></td>
+<td>The subjective perception of (achromatic) luminous intensity — how much light an area appears to emit</td>
+</tr>
+<tr class="even">
+<td><strong>Hue</strong></td>
+<td>The attribute that makes an area appear similar to one of red, yellow, green, or blue (or a mixture of two); spectrally, associated with the SPD’s dominant wavelength</td>
+</tr>
+<tr class="odd">
+<td><strong>Saturation</strong></td>
+<td>The colorfulness of an area relative to its own brightness — essentially how “white” or “pure” the light is. Spectrally, the more the SPD is concentrated at a single wavelength, the more saturated the color; adding white light (power spread across all wavelengths) desaturates a color</td>
+</tr>
+</tbody>
+</table>
+<p>These three perceptual attributes (brightness, hue, saturation) reappear later in the course as the basis for perceptually oriented color spaces such as HSV/HSI, in contrast to the hardware-oriented RGB encoding introduced above.</p>
+</section>
+</section>
+<section id="image-acquisition" class="level2">
+<h2 class="anchored" data-anchor-id="image-acquisition">4.3 Image Acquisition</h2>
+<p>Image acquisition has two main building blocks: the <strong>image sensor</strong>, which converts incoming EM energy into an electrical signal, and the <strong>optics</strong> (lens system) that focuses the scene onto that sensor.</p>
+<section id="image-sensors" class="level3">
+<h3 class="anchored" data-anchor-id="image-sensors">4.3.1 Image Sensors</h3>
+<p>The job of an image sensor is to convert EM energy into an electrical signal that can subsequently be processed, displayed, or interpreted as an image. Exactly how this conversion happens depends heavily on the underlying technology.</p>
+<p><strong>CCD sensors.</strong> Two of the most common, relatively inexpensive image-acquisition devices are the digital camera and the flatbed scanner. Cameras typically use 2D (area) CCD (charge-coupled device) sensors, while scanners typically use a 1D (line) CCD that physically moves across the document as each row is scanned. A CCD is built as an array of light-sensitive cells called <strong>photosites</strong>, fabricated in silicon; each photosite produces a voltage proportional to the intensity of the light striking it.</p>
+<p>A saturated photosite can overflow and corrupt its neighbors — a defect known as <strong>blooming</strong>, which appears as bright vertical or horizontal streaks radiating from an overexposed region.</p>
+<p>The <strong>nominal resolution</strong> of a CCD sensor is defined as the size of the scene element that maps to a single pixel on the image plane. For example, if a 20 cm × 20 cm sheet of paper is imaged into a 500 × 500 digital image, the nominal resolution is:</p>
+<p><span class="math display">
+\frac{20\ \text{cm}}{500\ \text{px}} = 0.04\ \text{cm per pixel}
+</span></p>
+<p>Related to this is the <strong>field of view (FOV)</strong> — a measure of how much of the scene the sensor can “see,” e.g.&nbsp;10 cm × 10 cm. Because the physical FOV changes with the distance to the scene, it is often more useful to describe it as an <strong>angular field of view</strong> (e.g.&nbsp;55º × 40º), which is independent of scene distance. A CCD camera is sometimes connected to a <strong>frame buffer</strong> — a computer board with fast-access memory (on the order of 0.1 ms per image) dedicated to holding captured frames.</p>
+<p><strong>Color from a single CCD.</strong> In single-CCD cameras, color is obtained by covering the photosite array with a mosaic of red, green, and blue filters, most commonly arranged in a <strong>Bayer pattern</strong>. Under this scheme each pixel physically records only <em>one</em> of the three primary colors; a <strong>demosaicing</strong> algorithm is then used to interpolate the missing two color values at every pixel, producing a full RGB image. Demosaicing can run inside the camera itself (before the image is saved, e.g.&nbsp;as a JPEG) or afterward, on a separate computer working from the raw sensor output. More expensive camera designs avoid the interpolation step altogether by using <strong>three separate CCDs</strong> — one per primary color — combined with an optical beam splitter that sends the same image simultaneously to all three sensors.</p>
+<p><strong>CMOS sensors.</strong> CMOS is the main alternative to CCD technology. Its main advantages are lower manufacturing cost and lower power consumption; its main drawback is higher susceptibility to noise, which limits performance at low illumination levels. CMOS sensors first appeared in low-end devices such as webcams but have since found their way into far more sophisticated cameras — for instance the Panavision HDMAX 35 mm video camera — with the Foveon X3 sensor being a notable recent example of the technology.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>CCD</th>
+<th>CMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cost / power</td>
+<td>More expensive, higher power draw</td>
+<td>Cheaper, lower power draw</td>
+</tr>
+<tr class="even">
+<td>Noise / low-light performance</td>
+<td>Better</td>
+<td>Worse (more noise-prone)</td>
+</tr>
+<tr class="odd">
+<td>Typical use</td>
+<td>High-end cameras, scanners</td>
+<td>Webcams, and increasingly high-end cameras</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="camera-optics" class="level3">
+<h3 class="anchored" data-anchor-id="camera-optics">4.3.2 Camera Optics</h3>
+<p>A camera lens focuses part of the scene onto the image sensor. Two of its most important properties are magnifying power and light-gathering capacity. Magnifying power is captured by the <strong>magnification factor</strong> <span class="math inline">m</span>, the ratio between image size and object size:</p>
+<p><span class="math display">
+m = \frac{v}{u}
+</span></p>
+<p>where <span class="math inline">u</span> is the distance from the object to the lens, and <span class="math inline">v</span> is the distance from the lens to the image plane.</p>
+<p>Lenses are not perfect and may introduce <strong>aberrations</strong> — distortions that degrade image quality. Two commonly cited geometric distortions are <strong>pincushion distortion</strong> (straight lines bow inward toward the center) and <strong>barrel distortion</strong> (straight lines bow outward from the center).</p>
+<p><strong>MATLAB note.</strong> The MATLAB Image Acquisition Toolbox (IAT) extends MATLAB with functions for acquiring images directly from hardware — anything from professional frame grabbers to USB webcams — via <em>hardware device adaptors</em> that talk to each device through its native driver.</p>
+</section>
+</section>
+<section id="image-digitization" class="level2">
+<h2 class="anchored" data-anchor-id="image-digitization">4.4 Image Digitization</h2>
+<p>The digitization stage is the bridge between the analog physical world, from which a scene is originally acquired, and the digital representation that computer algorithms expect for processing, storage, or transmission.</p>
+<p>Digitization consists of two distinct operations:</p>
+<ul>
+<li><strong>Sampling</strong> — in time or in space.</li>
+<li><strong>Quantization</strong> — in amplitude.</li>
+</ul>
+<p>These two steps can in principle happen in either order, but in practice sampling is almost always performed first, followed by quantization. Sampling selects a finite number of points within an interval; quantization then assigns each of those points an amplitude value drawn from a finite set of possible values. The end result of digitizing an image is a <strong>pixel array</strong> — a rectangular matrix of picture elements whose values encode intensity (for monochrome images) or color components (for color images).</p>
+<p>For consumer cameras and camcorders it is common to describe the size of the pixel array as the product of its horizontal and vertical pixel counts, expressed in <strong>megapixels (Mpx)</strong>. Over time, digitization has moved progressively closer to the camera hardware itself, to the point where standalone “video capture cards” or “frame grabbers” have become comparatively rare — most of that work now happens on-chip, inside the camera.</p>
+<section id="sampling" class="level3">
+<h3 class="anchored" data-anchor-id="sampling">4.4.1 Sampling</h3>
+<p>Sampling is the process of measuring the value of a 2D function at discrete intervals along the <span class="math inline">x</span> and <span class="math inline">y</span> dimensions. A system with equal horizontal and vertical sampling densities is said to use <strong>square sampling</strong>; several imaging and video systems instead use <strong>nonsquare sampling</strong>, where the horizontal and vertical sample pitch differ.</p>
+<p>Two parameters govern how an image is sampled:</p>
+<ol type="1">
+<li><strong>Sampling rate</strong> — the number of samples taken across the width and height of the image. Choosing an appropriate sampling rate is critical to image quality; too low a rate produces <strong>aliasing</strong>.</li>
+<li><strong>Sampling pattern</strong> — the physical arrangement of the samples. A rectangular grid, with pixels aligned into rows and columns, is overwhelmingly the most common arrangement, though other lattices are possible (e.g.&nbsp;hexagonal or log-polar sampling).</li>
+</ol>
+<p>The theoretical backbone here is the <strong>Nyquist criterion</strong>: if a signal is sampled at a rate lower than twice its highest frequency component, there will not be enough samples to reconstruct the original signal correctly. This failure mode — <strong>undersampling</strong>, or <strong>aliasing</strong> — is exactly why choosing a sufficient sampling rate matters so much for image quality. Intuitively (illustrated for a 1D signal): sampling is equivalent to multiplying the analog signal by a train of narrow sampling impulses; with enough samples the original signal can be faithfully reconstructed, but the same number of samples that suffices for a lower-frequency signal is insufficient once the signal’s frequency content increases — the reconstruction then aliases into a different (typically lower, spurious) frequency.</p>
+</section>
+<section id="quantization" class="level3">
+<h3 class="anchored" data-anchor-id="quantization">4.4.2 Quantization</h3>
+<p>Quantization is the process of replacing a continuously varying function with a discrete set of quantization levels. For images, the function being quantized is the intensity function <span class="math inline">f(x, y)</span>, and the quantization levels are commonly called <strong>gray levels</strong>. It is standard to adopt <span class="math inline">N</span> quantization levels, where <span class="math inline">N</span> is an integral power of two:</p>
+<p><span class="math display">
+N = 2^{n}
+</span></p>
+<p>with <span class="math inline">n</span> the number of bits used to encode each pixel value. The most common case, <span class="math inline">n = 8</span> (<span class="math inline">N = 2^{8} = 256</span> levels), represents each pixel as an unsigned byte ranging from 0 (black) to 255 (white).</p>
+<p>Image quantization can be thought of as a many-to-one mapping: groups of pixels whose original values fall within a given range are all mapped to a single representative gray level. <strong>Uniform quantization</strong> — the simplest and most common scheme — divides the input gray-level range into <span class="math inline">N</span> equal-width intervals. For example, reducing an 8-bit image (256 levels) down to 4 levels using uniform quantization means dividing the 0–255 range into 4 intervals of length 64 each (0–63 → level 0, 64–127 → level 1, and so on).</p>
+</section>
+<section id="spatial-and-gray-level-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-and-gray-level-resolution">4.4.3 Spatial and Gray-Level Resolution</h3>
+<p><strong>Spatial resolution</strong> expresses the density of pixels in an image: the higher the spatial resolution, the more pixels are used to represent the image within a given physical size. It is commonly quantified in dots per inch (<strong>dpi</strong>).</p>
+<p><strong>Gray-level resolution</strong> refers to the smallest change in intensity that the human visual system can discern. As noted in Section 4.2.2, the Weber fraction places a practical limit on how many distinguishable gray levels are actually useful to a human observer. Using 8 bits per pixel (256 levels) for monochrome images is a good compromise between subjective visual quality and practical implementation — each pixel value fits neatly into a single byte. Higher-end imaging applications may need more than 8 bits per channel, and several file formats support this (e.g., 12-bit RAW, 16-bit TIFF).</p>
+<p>Reducing either type of resolution degrades image quality, but in visually distinct ways:</p>
+<ul>
+<li><strong>Reducing spatial resolution</strong> (fewer samples) makes fine detail disappear and, at the extreme, produces a blocky/checkerboard appearance as individual large pixels become visible.</li>
+<li><strong>Reducing gray-level resolution</strong> (fewer quantization levels) causes smooth intensity gradients to break up into visible bands — an effect known as <strong>false contouring</strong>, where the eye perceives sharp, artificial edges (“contours”) along what was originally a smooth ramp of intensity, because too few levels are available to represent the gradual change.</li>
+</ul>
+<p><strong>MATLAB note.</strong> Requantizing an image in MATLAB can be done with the <code>grayslice</code> function, which maps an image’s intensity values into a specified number of gray levels:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">I1</span> <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'nature.jpg'</span>)<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">Iplus</span> <span class="op">=</span> <span class="va">im2uint8</span>(<span class="va">rgb2gray</span>(<span class="va">I1</span>))<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">I2</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">Iplus</span><span class="op">,</span> <span class="fl">128</span>)<span class="op">;</span> <span class="va">figure</span><span class="op">,</span> <span class="va">imshow</span>(<span class="va">I2</span><span class="op">,</span> <span class="va">gray</span>(<span class="fl">128</span>))<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">I3</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">Iplus</span><span class="op">,</span> <span class="fl">64</span>)<span class="op">;</span>  <span class="va">figure</span><span class="op">,</span> <span class="va">imshow</span>(<span class="va">I3</span><span class="op">,</span> <span class="va">gray</span>(<span class="fl">64</span>))<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">I4</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">Iplus</span><span class="op">,</span> <span class="fl">32</span>)<span class="op">;</span>  <span class="va">figure</span><span class="op">,</span> <span class="va">imshow</span>(<span class="va">I4</span><span class="op">,</span> <span class="va">gray</span>(<span class="fl">32</span>))<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">I5</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">Iplus</span><span class="op">,</span> <span class="fl">16</span>)<span class="op">;</span>  <span class="va">figure</span><span class="op">,</span> <span class="va">imshow</span>(<span class="va">I5</span><span class="op">,</span> <span class="va">gray</span>(<span class="fl">16</span>))<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">I6</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">Iplus</span><span class="op">,</span> <span class="fl">8</span>)<span class="op">;</span>   <span class="va">figure</span><span class="op">,</span> <span class="va">imshow</span>(<span class="va">I6</span><span class="op">,</span> <span class="va">gray</span>(<span class="fl">8</span>))<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">I7</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">Iplus</span><span class="op">,</span> <span class="fl">4</span>)<span class="op">;</span>   <span class="va">figure</span><span class="op">,</span> <span class="va">imshow</span>(<span class="va">I7</span><span class="op">,</span> <span class="va">gray</span>(<span class="fl">4</span>))<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">I8</span> <span class="op">=</span> <span class="va">grayslice</span>(<span class="va">Iplus</span><span class="op">,</span> <span class="fl">2</span>)<span class="op">;</span>   <span class="va">figure</span><span class="op">,</span> <span class="va">imshow</span>(<span class="va">I8</span><span class="op">,</span> <span class="va">gray</span>(<span class="fl">2</span>))<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Running this on a 480 × 640, 256-gray-level image and progressively requantizing it down to 128, 64, 32, 16, 8, 4, and finally 2 gray levels makes the false-contouring effect increasingly visible: the image still “reads” correctly at 128 or 64 levels, starts showing visible banding around 16–8 levels, and at 2 levels degenerates into a stark black-and-white silhouette of the original scene.</p>
+<p>Separately, <strong>(re-)sampling</strong> an image in MATLAB (i.e., changing its spatial resolution) is handled by the <code>imresize</code> function.</p>
+</section>
+</section>
+<section id="what-have-we-learned" class="level2">
+<h2 class="anchored" data-anchor-id="what-have-we-learned">What have we learned?</h2>
+<ul>
+<li>Images are formed through the interaction of a radiation source (typically visible light), the properties of the objects/surfaces in the scene, and the relative position and characteristics of the image sensor.</li>
+<li>Based on the type of that interaction, images fall into three categories: <strong>reflection images</strong>, <strong>emission images</strong>, and <strong>absorption images</strong>.</li>
+<li>Contemporary image sensors are built primarily on <strong>CCD</strong> or <strong>CMOS</strong> solid-state technology. A CCD is an array of light-sensitive “photosites,” each producing a voltage proportional to incident light intensity; these cells are arranged in a 1D or 2D array that a computer can read sequentially.</li>
+<li><strong>Image digitization</strong> is the process of sampling a continuous image in space and quantizing the resulting amplitude values so that they fall within a finite range.</li>
+<li>The main parameters that determine how “faithful” a digitized image is (and how large its file size is) are the <strong>total number of pixels</strong> (spatial resolution) and the <strong>maximum number of gray levels/colors per pixel</strong> (gray-level resolution).</li>
+<li><strong>Sampling</strong> measures a function’s value at discrete intervals; in MATLAB, <code>imresize</code> handles resampling.</li>
+<li><strong>Quantization</strong> replaces a continuous amplitude range with a discrete set of levels; in MATLAB, <code>grayslice</code> handles requantization.</li>
+</ul>
+</section>
+<section id="problems" class="level2">
+<h2 class="anchored" data-anchor-id="problems">Problems</h2>
+<p><strong>Problem 1.</strong> Experiment with a scanner’s dpi setting and scan the same material (e.g., a photograph) several times at different settings but the same file format. Compare the resulting file size and perceived quality for each scan. <em>(Expect file size to grow roughly with the square of the dpi setting for a fixed physical scan area, while perceived quality gains diminish once the dpi exceeds what the printed/original material can actually resolve.)</em></p>
+<p><strong>Problem 2.</strong> Repeat Problem 1, but this time keep the scanner settings fixed and vary only the file format used to save the result. Are there significant differences in file size? What about subjective quality? <em>(Expect large differences in size between uncompressed formats like BMP/TIFF and compressed formats like JPEG, with JPEG’s lossy compression trading some subjective quality — especially around edges — for a much smaller file.)</em></p>
+<p><strong>Problem 3.</strong> Assume a monochrome image with <span class="math inline">1024 \times 1024</span> pixels and 256 gray levels.</p>
+<ol type="a">
+<li>Calculate the total file size (in bytes), assuming a 32-byte header (containing basic information such as image width and height) and no compression.</li>
+</ol>
+<p><span class="math display">
+1024 \times 1024 \times 1\ \text{byte} + 32\ \text{bytes} = 1{,}048{,}576 + 32 = 1{,}048{,}608\ \text{bytes}
+</span></p>
+<ol start="2" type="a">
+<li>Suppose the original image is subsampled by a factor of 2 in both dimensions. Calculate the new file size, assuming the header size is unchanged.</li>
+</ol>
+<p><span class="math display">
+512 \times 512 \times 1\ \text{byte} + 32\ \text{bytes} = 262{,}144 + 32 = 262{,}176\ \text{bytes}
+</span></p>
+<ol start="3" type="a">
+<li>Suppose the original (<span class="math inline">1024 \times 1024</span>) image is instead requantized so that 2 pixels are packed per byte. Calculate the new file size, again assuming the header size is unchanged.</li>
+</ol>
+<p><span class="math display">
+\frac{1024 \times 1024}{2}\ \text{bytes} + 32\ \text{bytes} = 524{,}288 + 32 = 524{,}320\ \text{bytes}
+</span></p>
+<ol start="4" type="a">
+<li>How many gray levels does the image in part (c) have?</li>
+</ol>
+<p>Packing 2 pixels per byte means each pixel uses 4 bits, so:</p>
+<p><span class="math display">
+N = 2^{4} = 16\ \text{gray levels}
+</span></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

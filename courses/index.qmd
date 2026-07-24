@@ -1,0 +1,19 @@
+---
+title: "My Knowledge Base"
+subtitle: ""
+listing:
+  contents:
+    - "*/index.qmd"
+  type: grid
+  fields: [title]
+  sort: "title asc"
+  image-placeholder: assets/course-placeholder.png
+---
+
+Notes rewritten from lecture slides and other material I've studied.
+
+Each course includes:
+
+- lectures
+- labs (Jupyter notebooks)
+- references (research papers and useful links)

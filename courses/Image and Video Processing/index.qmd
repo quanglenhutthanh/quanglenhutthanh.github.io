@@ -1,0 +1,45 @@
+---
+title: "Image and Video Processing"
+subtitle: "Digital Image and Video Processing"
+subject: "Image and Video Processing"
+type: subject
+instructor: "Dr. Nguyen Ngoc Truong Minh"
+term: "Fall 2024"
+tags: [image-processing]
+listing:
+  - id: lectures
+    contents: "lectures/*.md"
+    type: table
+    fields: [lecture_no, title, status, tags]
+    sort: "lecture_no asc"
+    field-display-names:
+      lecture_no: "#"
+      title: "Lecture"
+      status: "Status"
+      tags: "Tags"
+---
+
+## Introduction
+
+The course combines image and video processing to demonstrate the most important image and video techniques and algorithms.
+
+## Lectures
+
+:::{#lectures}
+:::
+
+## Labs
+
+- [`Session_01.ipynb`](labs/Session_01.ipynb) — Image Representation.
+- [`Session_02.ipynb`](labs/Session_02.ipynb) — Point Operations.
+- [`Session_03.ipynb`](labs/Session_03.ipynb) — Gray-level Transformation.
+- [`Session_04.ipynb`](labs/Session_04.ipynb) — Histogram and Histogram Equalization.
+- [`Session_05.ipynb`](labs/Session_05.ipynb) — Image Restoration.
+- [`Session_06.ipynb`](labs/Session_06.ipynb) — Image Restoration (Sharpening) and Morphology.
+- [`Session_07.ipynb`](labs/Session_07.ipynb) — Image Segmentation.
+- [`Session_08.ipynb`](labs/Session_08.ipynb) — Edge Detection.
+- [`Session_09.ipynb`](labs/Session_09.ipynb) — Key-point Detection.
+
+## References
+
+Xem [danh sách paper & link](references.qmd).
