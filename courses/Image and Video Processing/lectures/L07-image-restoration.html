@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-10-04">
+
+<title>Image Restoration – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5aa9d1a5694636ef1dbfb6c6cf45d57d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Knowledge</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-7-image-restoration" id="toc-lecture-7-image-restoration" class="nav-link active" data-scroll-target="#lecture-7-image-restoration">Lecture 7 – Image Restoration</a>
+  <ul class="collapse">
+  <li><a href="#modeling-of-the-image-degradation-and-restoration-problem" id="toc-modeling-of-the-image-degradation-and-restoration-problem" class="nav-link" data-scroll-target="#modeling-of-the-image-degradation-and-restoration-problem">7.1 Modeling of the Image Degradation and Restoration Problem</a></li>
+  <li><a href="#noise-and-noise-models" id="toc-noise-and-noise-models" class="nav-link" data-scroll-target="#noise-and-noise-models">7.2 Noise and Noise Models</a>
+  <ul class="collapse">
+  <li><a href="#selected-noise-probability-density-functions" id="toc-selected-noise-probability-density-functions" class="nav-link" data-scroll-target="#selected-noise-probability-density-functions">7.2.1 Selected Noise Probability Density Functions</a></li>
+  <li><a href="#noise-estimation" id="toc-noise-estimation" class="nav-link" data-scroll-target="#noise-estimation">7.2.2 Noise Estimation</a></li>
+  </ul></li>
+  <li><a href="#noise-reduction-using-spatial-domain-techniques" id="toc-noise-reduction-using-spatial-domain-techniques" class="nav-link" data-scroll-target="#noise-reduction-using-spatial-domain-techniques">7.3 Noise Reduction Using Spatial-Domain Techniques</a>
+  <ul class="collapse">
+  <li><a href="#mean-filters" id="toc-mean-filters" class="nav-link" data-scroll-target="#mean-filters">7.3.1 Mean Filters</a></li>
+  <li><a href="#order-statistic-filters" id="toc-order-statistic-filters" class="nav-link" data-scroll-target="#order-statistic-filters">7.3.2 Order-Statistic Filters</a></li>
+  <li><a href="#adaptive-filters" id="toc-adaptive-filters" class="nav-link" data-scroll-target="#adaptive-filters">7.3.3 Adaptive Filters</a></li>
+  </ul></li>
+  <li><a href="#noise-reduction-using-frequency-domain-techniques" id="toc-noise-reduction-using-frequency-domain-techniques" class="nav-link" data-scroll-target="#noise-reduction-using-frequency-domain-techniques">7.4 Noise Reduction Using Frequency-Domain Techniques</a>
+  <ul class="collapse">
+  <li><a href="#periodic-noise" id="toc-periodic-noise" class="nav-link" data-scroll-target="#periodic-noise">7.4.1 Periodic Noise</a></li>
+  <li><a href="#band-reject-filter" id="toc-band-reject-filter" class="nav-link" data-scroll-target="#band-reject-filter">7.4.2 Band-Reject Filter</a></li>
+  <li><a href="#band-pass-filter" id="toc-band-pass-filter" class="nav-link" data-scroll-target="#band-pass-filter">7.4.3 Band-Pass Filter</a></li>
+  </ul></li>
+  <li><a href="#image-deblurring-techniques" id="toc-image-deblurring-techniques" class="nav-link" data-scroll-target="#image-deblurring-techniques">7.5 Image Deblurring Techniques</a></li>
+  <li><a href="#wiener-filtering" id="toc-wiener-filtering" class="nav-link" data-scroll-target="#wiener-filtering">7.6 Wiener Filtering</a></li>
+  <li><a href="#tutorial-noise-reduction-using-spatial-domain-techniques" id="toc-tutorial-noise-reduction-using-spatial-domain-techniques" class="nav-link" data-scroll-target="#tutorial-noise-reduction-using-spatial-domain-techniques">7.7 Tutorial: Noise Reduction Using Spatial-Domain Techniques</a>
+  <ul class="collapse">
+  <li><a href="#arithmetic-mean-filter" id="toc-arithmetic-mean-filter" class="nav-link" data-scroll-target="#arithmetic-mean-filter">Arithmetic mean filter</a></li>
+  <li><a href="#contraharmonic-mean-filter" id="toc-contraharmonic-mean-filter" class="nav-link" data-scroll-target="#contraharmonic-mean-filter">Contraharmonic mean filter</a></li>
+  <li><a href="#harmonic-mean-filter" id="toc-harmonic-mean-filter" class="nav-link" data-scroll-target="#harmonic-mean-filter">Harmonic mean filter</a></li>
+  <li><a href="#geometric-mean-filter" id="toc-geometric-mean-filter" class="nav-link" data-scroll-target="#geometric-mean-filter">Geometric mean filter</a></li>
+  <li><a href="#order-statistic-filters-1" id="toc-order-statistic-filters-1" class="nav-link" data-scroll-target="#order-statistic-filters-1">Order-statistic filters</a></li>
+  <li><a href="#alpha-trimmed-mean-filter" id="toc-alpha-trimmed-mean-filter" class="nav-link" data-scroll-target="#alpha-trimmed-mean-filter">Alpha-trimmed mean filter</a></li>
+  </ul></li>
+  <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Image Restoration</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 4, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-7-image-restoration" class="level1">
+<h1>Lecture 7 – Image Restoration</h1>
+<blockquote class="blockquote">
+<p>Main content: the image degradation/restoration model, the main probability density functions used to describe noise and how to estimate them from a histogram, spatial-domain noise reduction (mean filters and order-statistic filters, plus a brief look at adaptive filters), frequency-domain reduction of periodic noise (band-reject, band-pass, and notch filters), and deblurring of linear, position-invariant degradations using inverse filtering and Wiener filtering.</p>
+</blockquote>
+<hr>
+<section id="modeling-of-the-image-degradation-and-restoration-problem" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-of-the-image-degradation-and-restoration-problem">7.1 Modeling of the Image Degradation and Restoration Problem</h2>
+<p>Image restoration deals with images that have been subject to some <strong>quality degradation</strong> — blurring caused by lack of focus or camera motion, atmospheric disturbance, or geometric distortion from imperfect lenses — and that may additionally have been contaminated by <strong>additive noise</strong>. Unlike image <em>enhancement</em> (Lectures 5 and 6), which improves an image’s appearance without modeling the degradation itself, restoration techniques try to <strong>reverse a mathematically modeled degradation process</strong> to recover an image as close as possible to the original.</p>
+<p>The degradation model has three components:</p>
+<ul>
+<li><span class="math inline">f(x,y)</span> — the original (unknown) image.</li>
+<li><span class="math inline">h(x,y)</span> — the degradation function (e.g., blur kernel), applied as a convolution.</li>
+<li><span class="math inline">n(x,y)</span> — additive noise, independent of the degradation.</li>
+</ul>
+<p>The degraded image <span class="math inline">g(x,y)</span>, which is the actual input available to a restoration algorithm, is given by</p>
+<p><span class="math display">g(x,y) = f(x,y) * h(x,y) + n(x,y)</span></p>
+<p>where <span class="math inline">*</span> denotes convolution. By the convolution theorem, this becomes a simple product in the frequency domain:</p>
+<p><span class="math display">G(u,v) = F(u,v)H(u,v) + N(u,v)</span></p>
+<p>A restoration filter tries to invert this process, producing a restored image <span class="math inline">r(x,y)</span>, interpreted as an estimate <span class="math inline">\hat{f}(x,y)</span> of the original image. Designing a restoration filter typically follows three steps:</p>
+<ol type="1">
+<li>Collect knowledge about the degradation process (e.g., from examples of degraded images, or from knowledge of the acquisition process).</li>
+<li>Use that knowledge to build a mathematical degradation model.</li>
+<li>Derive the inverse of the degradation process and implement it as a filter.</li>
+</ol>
+<p>Restoration filters are, by construction, specific to the type of degradation they were designed for, and they can operate either in the spatial domain (typically for noise-only degradation) or in the frequency domain (typically for blur or periodic noise).</p>
+<hr>
+</section>
+<section id="noise-and-noise-models" class="level2">
+<h2 class="anchored" data-anchor-id="noise-and-noise-models">7.2 Noise and Noise Models</h2>
+<p><strong>Noise</strong> is any undesired artifact contaminating an image. It can originate from many sources — thermal noise in the acquisition sensor, periodic interference in a transmission channel carrying an image from a remote sensor to a base station, and so on. Because noise is essentially unpredictable, it is modeled statistically: treated as a <strong>random variable</strong> whose probability density function (PDF), or empirically its histogram, describes how its values are distributed across the range of gray levels. Some noise patterns can also be characterized in the frequency domain, through their spectrum (this is especially useful for periodic noise, covered in Section 7.4).</p>
+<p>Studying noise models serves three purposes: (1) describing the main noise types mathematically and graphically, (2) recognizing that different noise types call for different reduction techniques, and (3) introducing the problem of estimating noise parameters from a real, degraded image.</p>
+<section id="selected-noise-probability-density-functions" class="level3">
+<h3 class="anchored" data-anchor-id="selected-noise-probability-density-functions">7.2.1 Selected Noise Probability Density Functions</h3>
+<p><strong>Gaussian noise.</strong> The PDF of a Gaussian random variable <span class="math inline">z</span> is</p>
+<p><span class="math display">p_g(z) = \frac{1}{\sqrt{2\pi}\,\sigma}\, e^{-(z-\bar{z})^2/2\sigma^2}</span></p>
+<p>where <span class="math inline">z</span> is the gray level, <span class="math inline">\bar{z}</span> is its mean, and <span class="math inline">\sigma</span> is its standard deviation (<span class="math inline">\sigma^2</span> is the variance). Gaussian noise is the most common model for sensor/electronic noise, is fully symmetric around the mean, and is the noise type best suited to being reduced by simple averaging.</p>
+<p><strong>Impulse (salt-and-pepper) noise.</strong> The PDF of bipolar impulse noise is</p>
+<p><span class="math display">p_{sp}(z) = \begin{cases} P_p &amp; \text{for } z = p \\ P_s &amp; \text{for } z = s \\ 0 &amp; \text{otherwise} \end{cases}</span></p>
+<p>where <span class="math inline">P_p</span> and <span class="math inline">P_s</span> are the probabilities of a pixel taking the value <span class="math inline">p</span> (pepper, typically the darkest gray level) or <span class="math inline">s</span> (salt, typically the brightest). Unlike Gaussian noise, which perturbs every pixel by a small amount, salt-and-pepper noise corrupts a fraction of pixels outright, replacing them with extreme values.</p>
+<p><strong>Uniform noise.</strong> The histogram of uniform noise is</p>
+<p><span class="math display">p_u(z) = \begin{cases} \dfrac{1}{b-a} &amp; \text{if } a \le z \le b \\ 0 &amp; \text{otherwise} \end{cases}</span></p>
+<p>with <span class="math inline">0 \le a &lt; b</span>. Its mean and variance are</p>
+<p><span class="math display">\bar{z} = \frac{a+b}{2}, \qquad \sigma^2 = \frac{(b-a)^2}{12}</span></p>
+<p><strong>Rayleigh noise.</strong> The PDF is</p>
+<p><span class="math display">p_r(z) = \begin{cases} \dfrac{2}{b}(z-a)\, e^{-(z-a)^2/b} &amp; \text{for } z \ge a \\ 0 &amp; \text{for } z &lt; a \end{cases}</span></p>
+<p>with <span class="math inline">a \ge 0</span>, <span class="math inline">0 &lt; a &lt; b</span>. Its mean and variance are</p>
+<p><span class="math display">\bar{z} = a + \sqrt{\pi b / 4}, \qquad \sigma^2 = \frac{b(4-\pi)}{4}</span></p>
+<p>Note the characteristic asymmetric (right-skewed) shape, which distinguishes it visually from the Gaussian PDF.</p>
+<p><strong>Gamma (Erlang) noise.</strong> The histogram is</p>
+<p><span class="math display">p_E(z) = \begin{cases} \dfrac{a^b z^{b-1}}{(b-1)!}\, e^{-az} &amp; \text{for } z \ge 0 \\ 0 &amp; \text{for } z &lt; 0 \end{cases}</span></p>
+<p>where <span class="math inline">a &gt; 0</span> and <span class="math inline">b</span> is a positive integer. Its mean and variance are</p>
+<p><span class="math display">\bar{z} = \frac{b}{a}, \qquad \sigma^2 = \frac{b}{a^2}</span></p>
+<p><strong>Exponential noise.</strong> A special case of the Erlang PDF with <span class="math inline">b = 1</span>:</p>
+<p><span class="math display">p_{exp}(z) = \begin{cases} a\, e^{-az} &amp; \text{for } z \ge 0 \\ 0 &amp; \text{for } z &lt; 0 \end{cases}</span></p>
+<p>with mean and variance</p>
+<p><span class="math display">\bar{z} = \frac{1}{a}, \qquad \sigma^2 = \frac{1}{a^2}</span></p>
+<p><strong>Summary of the six PDFs:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Noise type</th>
+<th>Parameters</th>
+<th>Mean</th>
+<th>Variance</th>
+<th>Typical shape</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gaussian</td>
+<td><span class="math inline">\bar{z}, \sigma</span></td>
+<td><span class="math inline">\bar{z}</span></td>
+<td><span class="math inline">\sigma^2</span></td>
+<td>symmetric bell curve</td>
+</tr>
+<tr class="even">
+<td>Salt-and-pepper (impulse)</td>
+<td><span class="math inline">P_p, P_s</span></td>
+<td>—</td>
+<td>—</td>
+<td>two spikes at extreme values</td>
+</tr>
+<tr class="odd">
+<td>Uniform</td>
+<td><span class="math inline">a, b</span></td>
+<td><span class="math inline">(a+b)/2</span></td>
+<td><span class="math inline">(b-a)^2/12</span></td>
+<td>flat rectangle</td>
+</tr>
+<tr class="even">
+<td>Rayleigh</td>
+<td><span class="math inline">a, b</span></td>
+<td><span class="math inline">a+\sqrt{\pi b/4}</span></td>
+<td><span class="math inline">b(4-\pi)/4</span></td>
+<td>right-skewed, starts at <span class="math inline">a</span></td>
+</tr>
+<tr class="odd">
+<td>Gamma (Erlang)</td>
+<td><span class="math inline">a, b</span></td>
+<td><span class="math inline">b/a</span></td>
+<td><span class="math inline">b/a^2</span></td>
+<td>right-skewed, controlled by order <span class="math inline">b</span></td>
+</tr>
+<tr class="even">
+<td>Exponential</td>
+<td><span class="math inline">a</span></td>
+<td><span class="math inline">1/a</span></td>
+<td><span class="math inline">1/a^2</span></td>
+<td>monotonically decreasing, Erlang with <span class="math inline">b=1</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 7.1.</strong> Applying each of these noise types to a simple two-gray-level test image and inspecting the resulting histograms makes the theoretical shapes concrete: the Gaussian-corrupted image shows a bell-shaped spread around each original gray level, the exponential and Rayleigh cases show the expected skew, salt-and-pepper produces sharp isolated spikes at the extremes, gamma noise shows a broader skewed lobe, and uniform noise produces a flat-topped spread.</p>
+</section>
+<section id="noise-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="noise-estimation">7.2.2 Noise Estimation</h3>
+<p>Before designing a noise-reduction filter, it is generally necessary to <strong>estimate which noise model applies</strong> and what its parameters are. When the noise mainly originates in the acquisition sensor, the standard approach is to capture dedicated test images consisting of large homogeneous gray-level patches and inspect the resulting histograms directly.</p>
+<p>When such controlled test images are not available, a practical alternative is to <strong>crop a large, visually homogeneous region</strong> from an already-acquired image and examine its histogram. This matters because the histogram of the <em>whole</em> image (which mixes many different true gray levels plus noise) rarely gives a clean read on the noise type, while the histogram of a homogeneous patch — where all pixels should ideally share one true gray level — isolates the noise distribution cleanly.</p>
+<p><strong>Example 7.2.</strong> Adding noise to an image drastically changes its overall histogram, but that overall histogram alone is not a reliable indicator of the noise type. Cropping a homogeneous rectangular patch from the noisy image and plotting <em>its</em> histogram, however, can reveal the underlying distribution clearly (e.g., a bell shape indicating Gaussian noise).</p>
+<p><strong>In MATLAB:</strong> the function <code>imnoise</code> adds synthetic noise to an image. It supports Gaussian and salt-and-pepper additive noise, as well as speckle multiplicative noise, but it does <strong>not</strong> natively support Rayleigh, uniform, Erlang, or exponential noise (these would need to be implemented manually, as posed in Problem 1 below).</p>
+<hr>
+</section>
+</section>
+<section id="noise-reduction-using-spatial-domain-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="noise-reduction-using-spatial-domain-techniques">7.3 Noise Reduction Using Spatial-Domain Techniques</h2>
+<p>Noise-reduction filters assume that the <em>only</em> degradation present is additive noise (no blurring, i.e., <span class="math inline">h(x,y)</span> is effectively an identity/delta function):</p>
+<p><span class="math display">g(x,y) = f(x,y) + n(x,y), \qquad G(u,v) = F(u,v) + N(u,v)</span></p>
+<p>There are three families of spatial-domain noise-reduction filters: <strong>mean filters</strong> (7.3.1), <strong>order-statistic filters</strong> (7.3.2), and <strong>adaptive filters</strong> (7.3.3).</p>
+<section id="mean-filters" class="level3">
+<h3 class="anchored" data-anchor-id="mean-filters">7.3.1 Mean Filters</h3>
+<p><strong>Arithmetic mean filter.</strong> Also called the averaging filter. It slides an <span class="math inline">m \times n</span> window <span class="math inline">W</span> over the noisy image <span class="math inline">g</span>, replacing the center pixel with the average of all pixel values inside the window:</p>
+<p><span class="math display">\hat{f}(x,y) = \frac{1}{mn} \sum_{(r,c)\in W} g(r,c)</span></p>
+<p>It reduces noise at the cost of a blurring proportional to the window size, and works best on Gaussian, uniform, or Erlang noise.</p>
+<p><strong>Geometric mean filter.</strong> A variant primarily used on Gaussian noise, known to preserve image detail better than the arithmetic mean filter:</p>
+<p><span class="math display">\hat{f}(x,y) = \left[ \prod_{(r,c)\in W} g(r,c) \right]^{1/mn}</span></p>
+<p><strong>Harmonic mean filter.</strong> Useful for Gaussian or salt noise; it fails on pepper noise (dark/zero-valued pixels dominate the sum and are not filtered out):</p>
+<p><span class="math display">\hat{f}(x,y) = \frac{mn}{\displaystyle\sum_{(r,c)\in W} 1/g(r,c)}</span></p>
+<p><strong>Contraharmonic mean filter.</strong> Designed specifically for salt-<em>or</em>-pepper noise (not both at once). Negative order <span class="math inline">R</span> removes salt noise; positive <span class="math inline">R</span> removes pepper noise:</p>
+<p><span class="math display">\hat{f}(x,y) = \frac{\displaystyle\sum_{(r,c)\in W} g(r,c)^{R+1}}{\displaystyle\sum_{(r,c)\in W} g(r,c)^{R}}</span></p>
+<p><strong>Comparison of the four mean filters:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Filter</th>
+<th>Formula core</th>
+<th>Best suited for</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arithmetic</td>
+<td>average</td>
+<td>Gaussian, uniform, Erlang</td>
+<td>uniform blurring, proportional to window size</td>
+</tr>
+<tr class="even">
+<td>Geometric</td>
+<td>product<span class="math inline">^{1/mn}</span></td>
+<td>Gaussian</td>
+<td>better detail preservation than arithmetic mean</td>
+</tr>
+<tr class="odd">
+<td>Harmonic</td>
+<td><span class="math inline">mn / \sum(1/g)</span></td>
+<td>Gaussian, salt</td>
+<td>fails on pepper (dark pixels)</td>
+</tr>
+<tr class="even">
+<td>Contraharmonic</td>
+<td>ratio of power sums, order <span class="math inline">R</span></td>
+<td>salt (<span class="math inline">R&lt;0</span>) or pepper (<span class="math inline">R&gt;0</span>)</td>
+<td>wrong sign of <span class="math inline">R</span> makes the noise worse</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 7.3 (Gaussian noise, zero mean, variance 0.01).</strong> All four filters reduce noise relative to the unfiltered noisy image. The geometric and harmonic mean filters tend to darken the result (more dark pixels appear) compared with the arithmetic mean. Increasing the window size from 3×3 to 5×5 removes more noise but introduces significantly more blur — the classic noise/blur trade-off inherent to averaging filters.</p>
+<p><strong>Example 7.4 (salt-and-pepper noise).</strong> Here the arithmetic mean filter is the only one of the four that gives an acceptable result. The geometric and harmonic mean filters perform very poorly on the pepper component. The contraharmonic filter confirms the expected behavior: with <span class="math inline">R=0.5</span> it removes pepper noise but leaves salt noise (or amplifies it), and with <span class="math inline">R=-0.5</span> the opposite happens. This experiment underscores why contraharmonic filtering requires knowing in advance <em>which</em> of the two noise polarities is present.</p>
+</section>
+<section id="order-statistic-filters" class="level3">
+<h3 class="anchored" data-anchor-id="order-statistic-filters">7.3.2 Order-Statistic Filters</h3>
+<p>Order-statistic filters (also called rank filters) operate on a neighborhood by <strong>sorting</strong> the pixel values it contains and computing a function of the sorted (ranked) sequence. They are computationally more expensive than mean filters but perform markedly better in the presence of salt-and-pepper noise, because they can discard outlier values entirely rather than averaging them in.</p>
+<p><strong>Median filter.</strong> The most widely used rank filter. It replaces the reference pixel with the median value of the ordered set of pixels within window <span class="math inline">W</span> (if <span class="math inline">mn</span> is even, the average of the two middle values is used):</p>
+<p><span class="math display">\hat{f}(x,y) = \operatorname{median}\{\, g(r,c) \mid (r,c) \in W \,\}</span></p>
+<p><strong>Min and max filters.</strong> The min filter (0th percentile filter) replaces the reference pixel with the smallest value in the window; it is effective against <strong>salt</strong> noise:</p>
+<p><span class="math display">\hat{f}(x,y) = \min\{\, g(r,c) \mid (r,c) \in W \,\}</span></p>
+<p>The max filter (100th percentile filter) replaces it with the largest value; it is effective against <strong>pepper</strong> noise:</p>
+<p><span class="math display">\hat{f}(x,y) = \max\{\, g(r,c) \mid (r,c) \in W \,\}</span></p>
+<p><strong>Midpoint filter.</strong> Averages the maximum and minimum values in the window, combining order statistics with averaging. Useful for Gaussian and uniform noise:</p>
+<p><span class="math display">\hat{f}(x,y) = \frac{1}{2}\Big[ \max\{\, g(r,c) \mid (r,c)\in W \,\} + \min\{\, g(r,c) \mid (r,c)\in W \,\} \Big]</span></p>
+<p><strong>Alpha-trimmed mean filter.</strong> Sorts the pixel values in the window, discards the <span class="math inline">D</span> lowest and <span class="math inline">D</span> highest values, and averages the remaining <span class="math inline">mn - 2D</span> values:</p>
+<p><span class="math display">\hat{f}(x,y) = \frac{1}{mn - 2D} \sum_{(r,c)\in W} g(r,c)</span></p>
+<p>where <span class="math inline">D</span> can range from <span class="math inline">0</span> to <span class="math inline">(mn-1)/2</span>. It nicely bridges the two other filter families: at <span class="math inline">D = 0</span> it is exactly the arithmetic mean filter; at <span class="math inline">D = (mn-1)/2</span> it is exactly the median filter. This makes it useful when an image is corrupted by <strong>more than one</strong> noise type simultaneously (e.g., both salt-and-pepper, best handled by the median, and Gaussian, best handled by the arithmetic mean).</p>
+<p><strong>Example 7.5 (salt-and-pepper noise).</strong> The median filter clearly outperforms the arithmetic mean filter of the same window size. The midpoint filter is actually counterproductive here: because it averages the extreme min/max values in each window, it spreads the effect of a single noisy pixel to its neighbors, making the noise worse rather than better — a good illustration that filter choice must match noise type.</p>
+<p><strong>In MATLAB:</strong> general sliding-window neighborhood operations are implemented via <code>nlfilter</code> or <code>colfilt</code>, both of which accept a user-defined function (linear or nonlinear) to apply to each window; <code>colfilt</code> is considerably faster than <code>nlfilter</code> for large images. For rank filters specifically, <code>ordfilt2</code> makes it easy to build min, max, and median filters by choosing which rank (index after sorting) to keep. Because the median filter is so common, IPT also provides the dedicated function <code>medfilt2</code>.</p>
+</section>
+<section id="adaptive-filters" class="level3">
+<h3 class="anchored" data-anchor-id="adaptive-filters">7.3.3 Adaptive Filters</h3>
+<p>Adaptive filters change their behavior depending on the statistics of the local neighborhood currently being processed, rather than applying a fixed operation everywhere. A classical application is <strong>edge-preserving smoothing</strong>: applying a low-pass filter selectively so as to minimize the edge-blurring effect that a standard (non-adaptive) LPF would otherwise cause. Many variants of adaptive filters exist in the literature for noise reduction and restoration, trading off implementation complexity against restoration quality.</p>
+<hr>
+</section>
+</section>
+<section id="noise-reduction-using-frequency-domain-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="noise-reduction-using-frequency-domain-techniques">7.4 Noise Reduction Using Frequency-Domain Techniques</h2>
+<section id="periodic-noise" class="level3">
+<h3 class="anchored" data-anchor-id="periodic-noise">7.4.1 Periodic Noise</h3>
+<p>Periodic noise typically arises from <strong>electrical or electromechanical interference</strong> during image acquisition (e.g., an improperly grounded or shielded sensor circuit picking up a sinusoidal signal). Because it is periodic in the spatial domain, it appears as a small number of concentrated, bright impulse-like points in the Fourier spectrum — one pair of impulses per sinusoidal interference source, symmetric about the origin. This structure makes periodic noise a natural target for frequency-domain filtering rather than spatial-domain filtering: the noise is compact and localized in frequency, even though it is spread across the whole image in the spatial domain.</p>
+<p><strong>Example 7.6.</strong> An image corrupted by periodic noise, its noise-only component, and its Fourier spectrum together illustrate this: the spectrum shows several bright dot pairs, each pair corresponding to one sinusoidal interference frequency superimposed on the image.</p>
+</section>
+<section id="band-reject-filter" class="level3">
+<h3 class="anchored" data-anchor-id="band-reject-filter">7.4.2 Band-Reject Filter</h3>
+<p>A band-reject filter attenuates frequencies within a chosen annular band (the stopband) while leaving all other frequencies unaffected (or amplified by some gain). The ideal band-reject filter is</p>
+<p><span class="math display">H_{br}(u,v) = \begin{cases} 1 &amp; \text{if } D(u,v) &lt; D_0 - \dfrac{W}{2} \\[4pt] 0 &amp; \text{if } D_0 - \dfrac{W}{2} \le D(u,v) \le D_0 + \dfrac{W}{2} \\[4pt] 1 &amp; \text{if } D(u,v) &gt; D_0 + \dfrac{W}{2} \end{cases}</span></p>
+<p>where <span class="math inline">D(u,v)</span> is the distance from the origin of the (centered) frequency spectrum, <span class="math inline">D_0</span> is the radius of the band, and <span class="math inline">W</span> is its width.</p>
+<p>The Butterworth band-reject filter of order <span class="math inline">n</span> is</p>
+<p><span class="math display">H_{br}(u,v) = \frac{1}{1 + \left[ \dfrac{D(u,v)\,W}{D^2(u,v) - D_0^2} \right]^{2n}}</span></p>
+<p>and the Gaussian band-reject filter is</p>
+<p><span class="math display">H_{br}(u,v) = 1 - e^{-\frac{1}{2}\left[\frac{D^2(u,v)-D_0^2}{D(u,v)\,W}\right]^2}</span></p>
+<p>As with low-pass filtering, the ideal filter’s sharp cutoff between passband and stopband produces ringing artifacts in the spatial domain; the Butterworth and Gaussian variants trade a softer transition for reduced ringing.</p>
+<p><strong>Example 7.7.</strong> An ideal band-reject filter with <span class="math inline">D_0 = 32</span> and <span class="math inline">W = 6</span> successfully removes periodic noise from a test image, but the restored image shows a visible ringing artifact due to the abrupt transition of the ideal filter’s transfer function.</p>
+</section>
+<section id="band-pass-filter" class="level3">
+<h3 class="anchored" data-anchor-id="band-pass-filter">7.4.3 Band-Pass Filter</h3>
+<p>A band-pass filter does the opposite of a band-reject filter — it preserves frequencies inside its passband while attenuating everything else. It can be obtained directly from the band-reject filter’s transfer function:</p>
+<p><span class="math display">H_{bp}(u,v) = 1 - H_{br}(u,v)</span></p>
+<p><strong>Ideal band-pass filter:</strong></p>
+<p><span class="math display">H_{bp}(u,v) = \begin{cases} 0 &amp; \text{if } D(u,v) &lt; D_0 - \dfrac{W}{2} \\[4pt] 1 &amp; \text{if } D_0 - \dfrac{W}{2} \le D(u,v) \le D_0 + \dfrac{W}{2} \\[4pt] 0 &amp; \text{if } D(u,v) &gt; D_0 + \dfrac{W}{2} \end{cases}</span></p>
+<p><strong>Butterworth band-pass filter (order <span class="math inline">n</span>):</strong></p>
+<p><span class="math display">H_{bp}(u,v) = \frac{\left[ \dfrac{D(u,v)\,W}{D^2(u,v) - D_0^2} \right]^{2n}}{1 + \left[ \dfrac{D(u,v)\,W}{D^2(u,v) - D_0^2} \right]^{2n}}</span></p>
+<p><strong>Gaussian band-pass filter:</strong></p>
+<p><span class="math display">H_{bp}(u,v) = e^{-\frac{1}{2}\left[\frac{D^2(u,v)-D_0^2}{D(u,v)\,W}\right]^2}</span></p>
+<p>Band-reject filters are used to <em>remove</em> periodic interference concentrated at specific frequencies; band-pass filters are used in the complementary situation, where the frequencies of interest (e.g., the periodic pattern itself, for analysis purposes) are the ones to keep. A closely related tool not detailed further here is the <strong>notch filter</strong>, which rejects (or passes) small, localized regions of the spectrum centered at specific <span class="math inline">(u_0, v_0)</span> coordinates rather than a full circular band — this is the natural choice when the noise impulses are isolated points rather than a whole ring, and it is the subject of Problem 7 below.</p>
+<hr>
+</section>
+</section>
+<section id="image-deblurring-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="image-deblurring-techniques">7.5 Image Deblurring Techniques</h2>
+<p>Deblurring addresses the complementary case: an image degraded mainly by <strong>blurring</strong> (camera motion, poor focus) rather than noise. The simplest deblurring technique, <strong>inverse filtering</strong>, operates in the frequency domain and assumes there is no significant noise in the degraded image, i.e., <span class="math inline">N(u,v) \approx 0</span>:</p>
+<p><span class="math display">G(u,v) = F(u,v)H(u,v)</span></p>
+<p>which can be inverted directly:</p>
+<p><span class="math display">F(u,v) = \frac{G(u,v)}{H(u,v)} = G(u,v)\, \frac{1}{H(u,v)}</span></p>
+<p>The term <span class="math inline">1/H(u,v)</span> is the Fourier transform of the restoration filter, denoted <span class="math inline">R_{inv}(u,v)</span>. In practice, naive inverse filtering is rarely usable: wherever <span class="math inline">H(u,v)</span> is very small (or zero), the division by <span class="math inline">H(u,v)</span> amplifies whatever residual noise is present to the point of dominating the result, even when that noise was negligible to begin with. Two common remedies exist:</p>
+<ol type="1">
+<li><p><strong>Low-pass the division.</strong> Multiply the naive inverse result by a low-pass transfer function <span class="math inline">L(u,v)</span>, restricting the correction to frequencies below a chosen restoration cutoff:</p>
+<p><span class="math display">F(u,v) = \frac{G(u,v)}{H(u,v)}\, L(u,v)</span></p>
+<p>Within the filter’s passband the gain is set to a desired positive value (usually 1); within the stopband the gain is zero. An ideal LPF’s sharp transition tends to cause ringing, so smoother filters (e.g., a high-order Butterworth LPF) are often preferred.</p></li>
+<li><p><strong>Constrained division.</strong> Choose a threshold <span class="math inline">T</span>; only perform the division where <span class="math inline">H(u,v)</span> is not too small, otherwise leave the frequency component untouched:</p>
+<p><span class="math display">F(u,v) = \begin{cases} \dfrac{G(u,v)}{H(u,v)} &amp; \text{if } |H(u,v)| \ge T \\[6pt] G(u,v) &amp; \text{otherwise} \end{cases}</span></p></li>
+</ol>
+<p><strong>Example 7.8.</strong> Applying naive inverse filtering to a blurry image yields a completely unacceptable result, dominated by noise amplified from divisions by near-zero values of <span class="math inline">H(u,v)</span>. Applying a 10th-order Butterworth LPF to the division (at two different cutoff frequencies) produces a much cleaner restored image, with the trade-off that a lower cutoff sacrifices some sharpness in exchange for less amplified noise. Constrained division, at two different thresholds <span class="math inline">T</span>, achieves a comparable trade-off directly. Motion deblurring — restoring an image blurred by relative motion between sensor and scene, e.g., simulated in MATLAB with <code>fspecial('motion',10,0)</code> for a 10-pixel horizontal displacement — is treated as a special case of the same inverse-filtering approach.</p>
+<hr>
+</section>
+<section id="wiener-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="wiener-filtering">7.6 Wiener Filtering</h2>
+<p>The <strong>Wiener filter</strong>, developed by Norbert Wiener in 1942, addresses the general (and realistic) case where the degraded image contains <strong>both</strong> blurring and noise — the worst-case scenario in the degradation model of Section 7.1. Unlike inverse filtering, it does not assume noise is negligible.</p>
+<p>The Wiener filter is derived by modeling the restoration error statistically and minimizing it in a <strong>minimum mean square error (MMSE)</strong> sense: given the original image <span class="math inline">f(x,y)</span> and the restored image <span class="math inline">r(x,y)</span>, the sum of squared pixel-wise differences is used as a figure of merit — smaller values indicate better restoration — and the filter is designed to minimize the <em>expected</em> value of this quantity.</p>
+<p>The transfer function of the Wiener filter is</p>
+<p><span class="math display">R(u,v) = \frac{1}{H(u,v)}\, \frac{|H(u,v)|^2}{|H(u,v)|^2 + K}\, G(u,v)</span></p>
+<p>where <span class="math inline">H(u,v)</span> is the degradation function and <span class="math inline">K</span> is a constant that approximates the noise-to-signal power ratio (i.e., it stands in for the noise level relative to the signal). Note that as <span class="math inline">K \to 0</span>, the Wiener filter reduces to the plain inverse filter <span class="math inline">G(u,v)/H(u,v)</span>; larger <span class="math inline">K</span> increasingly favors noise suppression over sharpness.</p>
+<p><strong>In MATLAB:</strong> <code>deconvwnr</code> implements Wiener-filter-based deblurring.</p>
+<p><strong>Example 7.9.</strong> For an image degraded by both blur and noise, plain inverse filtering (even with a 10th-order Butterworth LPF limiting the restoration to frequencies below cutoff 50) leaves visible artifacts. Applying the Wiener filter with different values of <span class="math inline">K</span> demonstrates the fundamental trade-off: higher <span class="math inline">K</span> improves noise suppression but at the cost of less aggressive deblurring, while lower <span class="math inline">K</span> deblurs more aggressively but lets more noise through. When the degradation involves blurring <strong>without</strong> noise, the Wiener filter can still be used and performs best at low <span class="math inline">K</span> — but even then the result is somewhat less crisp than what plain inverse filtering achieves in the noise-free case, since the Wiener filter is inherently a compromise designed for the noisy scenario.</p>
+<p><strong>Other MATLAB deblurring functions:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>deconvwnr</code></td>
+<td>Wiener filter</td>
+</tr>
+<tr class="even">
+<td><code>deconvreg</code></td>
+<td>Regularized filter (constrained least squares)</td>
+</tr>
+<tr class="odd">
+<td><code>deconvlucy</code></td>
+<td>Lucy–Richardson iterative method</td>
+</tr>
+<tr class="even">
+<td><code>deconvblind</code></td>
+<td>Blind deconvolution (degradation function unknown, estimated jointly with the image)</td>
+</tr>
+</tbody>
+</table>
+<p>The mathematical formulation and parameter tuning of <code>deconvreg</code>, <code>deconvlucy</code>, and <code>deconvblind</code> go beyond what is covered in this lecture; consult the MATLAB documentation and demos for details.</p>
+<hr>
+</section>
+<section id="tutorial-noise-reduction-using-spatial-domain-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-noise-reduction-using-spatial-domain-techniques">7.7 Tutorial: Noise Reduction Using Spatial-Domain Techniques</h2>
+<p><strong>Goal:</strong> practice implementing spatial-domain noise-reduction filters directly in MATLAB.</p>
+<p><strong>Objectives:</strong> implement the arithmetic mean filter and its variants (contraharmonic, harmonic, geometric mean), and implement order-statistic filtering (median, min, max, midpoint, alpha-trimmed mean).</p>
+<section id="arithmetic-mean-filter" class="level3">
+<h3 class="anchored" data-anchor-id="arithmetic-mean-filter">Arithmetic mean filter</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 1. Load the image, add Gaussian noise, display before/after</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">I</span>  <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'eight.tif'</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">In</span> <span class="op">=</span> <span class="va">imnoise</span>(<span class="va">I</span><span class="op">,</span><span class="ss">'gaussian'</span><span class="op">,</span><span class="fl">0</span><span class="op">,</span><span class="fl">0.001</span>)<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span><span class="op">,</span> <span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>  <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">In</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Noisy Image'</span>)<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">% 2. Apply an averaging filter with the default 3x3 kernel</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">f1</span> <span class="op">=</span> <span class="va">fspecial</span>(<span class="ss">'average'</span>)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">I_blur1</span> <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">In</span><span class="op">,</span><span class="va">f1</span>)<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_blur1</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Averaging with default kernel size'</span>)<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">% 3. Apply an averaging filter with a 5x5 kernel</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="va">f2</span> <span class="op">=</span> <span class="va">fspecial</span>(<span class="ss">'average'</span><span class="op">,</span>[<span class="fl">5</span> <span class="fl">5</span>])<span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="va">I_blur2</span> <span class="op">=</span> <span class="va">imfilter</span>(<span class="va">In</span><span class="op">,</span><span class="va">f2</span>)<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_blur2</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Averaging with 5x5 kernel'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Question 1: What is the general effect of the arithmetic mean filter?</em> <em>Question 2: How does the size of the kernel affect the resulting image?</em></p>
+</section>
+<section id="contraharmonic-mean-filter" class="level3">
+<h3 class="anchored" data-anchor-id="contraharmonic-mean-filter">Contraharmonic mean filter</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 5. Load noisy versions of the image (salt-only, pepper-only)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">I_salt</span>   <span class="op">=</span> <span class="va">im2double</span>(<span class="va">imread</span>(<span class="ss">'eight_salt.tif'</span>))<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">I_pepper</span> <span class="op">=</span> <span class="va">im2double</span>(<span class="va">imread</span>(<span class="ss">'eight_pepper.tif'</span>))<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>        <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_salt</span>)<span class="op">,</span>   <span class="va">title</span>(<span class="ss">'Salt Noise'</span>)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_pepper</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Pepper Noise'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The contraharmonic function requires <code>double</code>-class images, hence the <code>im2double</code> conversion above.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 6. Filter the salt-noise image with r = -1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">I_fix1</span> <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">I_salt</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>]<span class="op">,@</span><span class="va">c_harmonic</span><span class="op">,-</span><span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_fix1</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Salt Removed, r = -1'</span>)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">% 7. Filter the pepper-noise image with r = 1</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">I_fix2</span> <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">I_pepper</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>]<span class="op">,@</span><span class="va">c_harmonic</span><span class="op">,</span><span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">6</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_fix2</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Pepper Removed, r = 1'</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">% 8. Use the wrong sign for r on the pepper-noise image</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="va">I_bad</span> <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">I_pepper</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>]<span class="op">,@</span><span class="va">c_harmonic</span><span class="op">,-</span><span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_bad</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Using wrong sign for r'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>c_harmonic</code> is a user-defined function taking the current window matrix (implicitly passed by <code>nlfilter</code>) plus the order <code>r</code>, supplied after the function handle in the <code>nlfilter</code> call.</p>
+<p><em>Question 3: What is the effect of using the wrong sign when filtering with the contraharmonic mean filter?</em></p>
+</section>
+<section id="harmonic-mean-filter" class="level3">
+<h3 class="anchored" data-anchor-id="harmonic-mean-filter">Harmonic mean filter</h3>
+<p>The harmonic mean filter is good for salt and Gaussian noise, but fails on pepper noise.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 10. Filter the salt-noise image with the harmonic filter</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">I_fix4</span> <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">I_salt</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>]<span class="op">,@</span><span class="va">harmonic</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>        <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_salt</span>)<span class="op">,</span>   <span class="va">title</span>(<span class="ss">'Salt Noise'</span>)<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_pepper</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Pepper Noise'</span>)<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_fix4</span>)<span class="op">,</span>   <span class="va">title</span>(<span class="ss">'Harmonic Filtered (salt)'</span>)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">% 11. Filter the pepper-noise image and display the (poor) result</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="va">I_bad2</span> <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">I_pepper</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>]<span class="op">,@</span><span class="va">harmonic</span>)<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">6</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_bad2</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Harmonic Filtered (pepper)'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Question 4: Why does the harmonic mean filter fail for images with pepper noise?</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 12. Filter the Gaussian-noise image with the harmonic mean filter</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">In_d</span>   <span class="op">=</span> <span class="va">im2double</span>(<span class="va">In</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">I_fix5</span> <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">In_d</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>]<span class="op">,@</span><span class="va">harmonic</span>)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>      <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">In_d</span>)<span class="op">,</span>   <span class="va">title</span>(<span class="ss">'Image w/ Gaussian Noise'</span>)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_fix5</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Filtered w/ Harmonic Mean'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Question 5: How does the size of the window affect the output image?</em></p>
+</section>
+<section id="geometric-mean-filter" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-mean-filter">Geometric mean filter</h3>
+<p>The geometric mean filter preserves detail better than the arithmetic mean and works best on Gaussian noise.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 14. Geometric mean filter on the Gaussian-noise image</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">I_fix6</span> <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">In_d</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>]<span class="op">,@</span><span class="va">geometric</span>)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>      <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">In_d</span>)<span class="op">,</span>   <span class="va">title</span>(<span class="ss">'Gaussian Noise'</span>)<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_fix6</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Geometric Mean Filtered'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Question 6: Filter the salt-and-pepper noise images with the geometric mean filter. How does the filter perform?</em></p>
+</section>
+<section id="order-statistic-filters-1" class="level3">
+<h3 class="anchored" data-anchor-id="order-statistic-filters-1">Order-statistic filters</h3>
+<p>The median filter — the most popular order-statistic filter — is available directly as <code>medfilt2</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 16-17. Median filtering of salt-and-pepper noise</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">I</span>     <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'coins.png'</span>)<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">I_snp</span> <span class="op">=</span> <span class="va">imnoise</span>(<span class="va">I</span><span class="op">,</span><span class="ss">'salt &amp; pepper'</span>)<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>     <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_snp</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Salt &amp; Pepper Noise'</span>)<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="va">I_filt</span> <span class="op">=</span> <span class="va">medfilt2</span>(<span class="va">I_snp</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>])<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_filt</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Filtered Image'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Question 7: How does the size of the window affect the output image?</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 18. Median filter applied to Gaussian noise instead</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">I_g</span>     <span class="op">=</span> <span class="va">imnoise</span>(<span class="va">I</span><span class="op">,</span><span class="ss">'gaussian'</span>)<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">I_filt2</span> <span class="op">=</span> <span class="va">medfilt2</span>(<span class="va">I_g</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>])<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>      <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_g</span>)<span class="op">,</span>    <span class="va">title</span>(<span class="ss">'Gaussian Noise'</span>)<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_filt2</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Filtered'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Question 8: Why does the median filter work well on salt-and-pepper noise but not on Gaussian noise?</em></p>
+<p><code>ordfilt2</code> implements general order-statistic operations: the second argument selects which rank (index after sorting) is kept, and the third argument (a matrix of 0/1) defines the window shape and which positions participate in the ordering.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 20. Min filter (rank 1 of 9) on salt-noise image</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">I_s</span> <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'eight_salt.tif'</span>)<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="va">I2</span>  <span class="op">=</span> <span class="va">ordfilt2</span>(<span class="va">I_s</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="va">ones</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">3</span>))<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_s</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Salt Noise'</span>)<span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I2</span>)<span class="op">,</span>  <span class="va">title</span>(<span class="ss">'Min Filter'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Question 9: Why would this filter not work on pepper noise?</em> (A 3×3 all-ones mask uses all 9 window values for ordering; e.g.&nbsp;restricting the mask to only the top row would use only the top three values.)</p>
+<p><em>Question 10: Implement the median filter using <code>ordfilt2</code>.</em> (For a 3×3 window, this is rank 5 of 9: <code>ordfilt2(I, 5, ones(3,3))</code>.)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 21. Max filter (rank 9 of 9) on pepper-noise image</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">I_p</span> <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'eight_pepper.tif'</span>)<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="va">I3</span>  <span class="op">=</span> <span class="va">ordfilt2</span>(<span class="va">I_p</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="va">ones</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">3</span>))<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_p</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Pepper Noise'</span>)<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I3</span>)<span class="op">,</span>  <span class="va">title</span>(<span class="ss">'Max Filter'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 22. Midpoint filter on Gaussian noise</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="va">I</span>   <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'coins.png'</span>)<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="va">I_g</span> <span class="op">=</span> <span class="va">imnoise</span>(<span class="va">I</span><span class="op">,</span><span class="ss">'gaussian'</span><span class="op">,</span><span class="fl">0</span><span class="op">,</span><span class="fl">0.001</span>)<span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="va">midpoint</span> <span class="op">=</span> <span class="va">inline</span>(<span class="ss">'0.5 * (max(x(:)) + min(x(:)))'</span>)<span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="va">I_filt</span>   <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">I_g</span><span class="op">,</span>[<span class="fl">3</span> <span class="fl">3</span>]<span class="op">,</span><span class="va">midpoint</span>)<span class="op">;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_g</span>)<span class="op">,</span>   <span class="va">title</span>(<span class="ss">'Gaussian Noise'</span>)<span class="op">;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_filt</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Midpoint Filter'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="alpha-trimmed-mean-filter" class="level3">
+<h3 class="anchored" data-anchor-id="alpha-trimmed-mean-filter">Alpha-trimmed mean filter</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">% 24. Image with both salt-and-pepper AND Gaussian noise</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="va">I</span>   <span class="op">=</span> <span class="va">imread</span>(<span class="ss">'cameraman.tif'</span>)<span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="va">Id</span>  <span class="op">=</span> <span class="va">im2double</span>(<span class="va">I</span>)<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="va">In</span>  <span class="op">=</span> <span class="va">imnoise</span>(<span class="va">Id</span><span class="op">,</span><span class="ss">'salt &amp; pepper'</span>)<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="va">In2</span> <span class="op">=</span> <span class="va">imnoise</span>(<span class="va">In</span><span class="op">,</span><span class="ss">'gaussian'</span>)<span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">% 25. Alpha-trimmed mean filter, 5x5 window, D = 6</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="va">I_filt</span> <span class="op">=</span> <span class="va">nlfilter</span>(<span class="va">In2</span><span class="op">,</span>[<span class="fl">5</span> <span class="fl">5</span>]<span class="op">,@</span><span class="va">atmean</span><span class="op">,</span><span class="fl">6</span>)<span class="op">;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="va">figure</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">1</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I</span>)<span class="op">,</span>      <span class="va">title</span>(<span class="ss">'Original Image'</span>)<span class="op">;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">In2</span>)<span class="op">,</span>    <span class="va">title</span>(<span class="ss">'S&amp;P and Gaussian Noise'</span>)<span class="op">;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="va">subplot</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">imshow</span>(<span class="va">I_filt</span>)<span class="op">,</span> <span class="va">title</span>(<span class="ss">'Alpha Trimmed Mean'</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Question 11: When filtering an image with both types of noise, how does the alpha-trimmed mean filter compare to the arithmetic mean filter?</em> (It should do noticeably better, since it can discard the salt-and-pepper outliers before averaging out the remaining Gaussian noise — exactly the scenario it was designed for.)</p>
+<hr>
+</section>
+</section>
+<section id="what-have-we-learned" class="level2">
+<h2 class="anchored" data-anchor-id="what-have-we-learned">What have we learned?</h2>
+<ul>
+<li>In image processing, <strong>noise</strong> describes deviations from a pixel’s expected (true) value. When these are offsets, the noise is <strong>additive</strong>; when the true value is rescaled, the noise is <strong>multiplicative</strong>.</li>
+<li>Noise is usually modeled statistically, independent of its physical cause. Common PDFs are Gaussian, exponential, uniform, and gamma (Erlang), plus the special impulsive case of salt-and-pepper noise.</li>
+<li><strong>Gaussian noise</strong> (zero-mean, additive, symmetric) and <strong>salt-and-pepper noise</strong> (impulsive, additive) are the two most common noise types encountered in practice.</li>
+<li>The most common spatial-domain noise-removal techniques are the <strong>mean filter</strong>, the <strong>median filter</strong>, and their variants and combinations (geometric, harmonic, contraharmonic mean filters; min, max, midpoint, alpha-trimmed mean filters).</li>
+<li>The most common frequency-domain noise-removal techniques are <strong>low-pass, band-pass, band-reject, and notch filters</strong> — particularly effective against periodic noise, which concentrates in a small set of frequencies.</li>
+<li><strong>Blurring</strong> is loss of sharpness, caused by poor focusing, relative motion between sensor and scene, or other factors. Deblurring techniques apply <strong>inverse filtering</strong> to “undo” a known (or estimated) degradation function.</li>
+<li>The best-known deblurring approach that also handles noise gracefully is the <strong>Wiener filter</strong>, implemented in MATLAB by <code>deconvwnr</code>; naive inverse filtering, by contrast, is only usable when noise is negligible, and even then needs to be tempered with a low-pass constraint or a constrained-division threshold to avoid amplifying near-zero values of <span class="math inline">H(u,v)</span>.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

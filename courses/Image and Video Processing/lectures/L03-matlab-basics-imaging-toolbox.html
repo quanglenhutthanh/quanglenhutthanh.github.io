@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-09-06">
+
+<title>Python and OpenCV Basics for Image Processing – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5aa9d1a5694636ef1dbfb6c6cf45d57d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Knowledge</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-3-python-and-opencv-basics-for-image-processing" id="toc-lecture-3-python-and-opencv-basics-for-image-processing" class="nav-link active" data-scroll-target="#lecture-3-python-and-opencv-basics-for-image-processing">Lecture 3 – Python and OpenCV Basics for Image Processing</a>
+  <ul class="collapse">
+  <li><a href="#introduction-to-python-and-opencv" id="toc-introduction-to-python-and-opencv" class="nav-link" data-scroll-target="#introduction-to-python-and-opencv">3.1 Introduction to Python and OpenCV</a></li>
+  <li><a href="#basic-elements-of-python-for-image-work" id="toc-basic-elements-of-python-for-image-work" class="nav-link" data-scroll-target="#basic-elements-of-python-for-image-work">3.2 Basic Elements of Python for Image Work</a>
+  <ul class="collapse">
+  <li><a href="#data-types-numpy-dtypes" id="toc-data-types-numpy-dtypes" class="nav-link" data-scroll-target="#data-types-numpy-dtypes">3.2.1 Data types (numpy dtypes)</a></li>
+  <li><a href="#standard-arrays" id="toc-standard-arrays" class="nav-link" data-scroll-target="#standard-arrays">3.2.2 Standard arrays</a></li>
+  <li><a href="#array-and-matrix-arithmetic-operators" id="toc-array-and-matrix-arithmetic-operators" class="nav-link" data-scroll-target="#array-and-matrix-arithmetic-operators">3.2.3 Array and matrix arithmetic operators</a></li>
+  <li><a href="#specialized-matrix-operations" id="toc-specialized-matrix-operations" class="nav-link" data-scroll-target="#specialized-matrix-operations">3.2.4 Specialized matrix operations</a></li>
+  <li><a href="#specialized-arithmetic-functions-supported-by-opencv" id="toc-specialized-arithmetic-functions-supported-by-opencv" class="nav-link" data-scroll-target="#specialized-arithmetic-functions-supported-by-opencv">3.2.5 Specialized arithmetic functions supported by OpenCV</a></li>
+  <li><a href="#relational-and-logical-operators" id="toc-relational-and-logical-operators" class="nav-link" data-scroll-target="#relational-and-logical-operators">3.2.6 Relational and logical operators</a></li>
+  </ul></li>
+  <li><a href="#opencv-an-overview" id="toc-opencv-an-overview" class="nav-link" data-scroll-target="#opencv-an-overview">3.3 OpenCV: An Overview</a></li>
+  <li><a href="#essential-functions-and-features" id="toc-essential-functions-and-features" class="nav-link" data-scroll-target="#essential-functions-and-features">3.4 Essential Functions and Features</a>
+  <ul class="collapse">
+  <li><a href="#displaying-information-about-an-image-file-pil.image.open" id="toc-displaying-information-about-an-image-file-pil.image.open" class="nav-link" data-scroll-target="#displaying-information-about-an-image-file-pil.image.open">3.4.1 Displaying information about an image file — <code>PIL.Image.open</code></a></li>
+  <li><a href="#reading-an-image-file-cv2.imread" id="toc-reading-an-image-file-cv2.imread" class="nav-link" data-scroll-target="#reading-an-image-file-cv2.imread">3.4.2 Reading an image file — <code>cv2.imread</code></a></li>
+  <li><a href="#data-types-and-data-conversions" id="toc-data-types-and-data-conversions" class="nav-link" data-scroll-target="#data-types-and-data-conversions">3.4.3 Data types and data conversions</a></li>
+  <li><a href="#worked-example-typecasting-vs.-proper-conversion" id="toc-worked-example-typecasting-vs.-proper-conversion" class="nav-link" data-scroll-target="#worked-example-typecasting-vs.-proper-conversion">3.4.4 Worked example: typecasting vs.&nbsp;proper conversion</a></li>
+  <li><a href="#converting-between-color-spaces-and-palette-indexed-images" id="toc-converting-between-color-spaces-and-palette-indexed-images" class="nav-link" data-scroll-target="#converting-between-color-spaces-and-palette-indexed-images">3.4.5 Converting between color spaces and palette (indexed) images</a></li>
+  </ul></li>
+  <li><a href="#displaying-the-contents-of-an-image" id="toc-displaying-the-contents-of-an-image" class="nav-link" data-scroll-target="#displaying-the-contents-of-an-image">3.5 Displaying the Contents of an Image</a></li>
+  <li><a href="#exploring-the-contents-of-an-image" id="toc-exploring-the-contents-of-an-image" class="nav-link" data-scroll-target="#exploring-the-contents-of-an-image">3.6 Exploring the Contents of an Image</a></li>
+  <li><a href="#writing-the-resulting-image-onto-a-file" id="toc-writing-the-resulting-image-onto-a-file" class="nav-link" data-scroll-target="#writing-the-resulting-image-onto-a-file">3.7 Writing the Resulting Image onto a File</a></li>
+  <li><a href="#tutorial-basic-image-manipulation" id="toc-tutorial-basic-image-manipulation" class="nav-link" data-scroll-target="#tutorial-basic-image-manipulation">3.8 Tutorial: Basic Image Manipulation</a></li>
+  <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python and OpenCV Basics for Image Processing</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 6, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-3-python-and-opencv-basics-for-image-processing" class="level1">
+<h1>Lecture 3 – Python and OpenCV Basics for Image Processing</h1>
+<blockquote class="blockquote">
+<p>Core content: why Python + OpenCV is the tool combination used throughout this course, the basic building blocks (numpy arrays, dtypes, operators), an overview of OpenCV, the essential functions for reading, displaying, exploring, and writing images, and a hands-on tutorial that ties everything together. Special emphasis is placed on <strong>numpy dtypes and their value ranges</strong>, since misunderstanding them is one of the most common sources of bugs in image processing code.</p>
+</blockquote>
+<hr>
+<section id="introduction-to-python-and-opencv" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-python-and-opencv">3.1 Introduction to Python and OpenCV</h2>
+<p><strong>Python</strong>, together with <strong>numpy</strong> (array/matrix support) and <strong>OpenCV</strong> (<code>opencv-python</code>, the <code>cv2</code> module), is a data analysis, prototyping, and image processing stack with strong visualization support (via <code>matplotlib</code>) and a large ecosystem of specialized libraries. It has become extremely popular with engineers, researchers, and industry practitioners for two main reasons:</p>
+<ul>
+<li><strong>Rich, specialized libraries.</strong> Functionality is packaged into focused libraries covering many application areas — from deep learning (<code>pytorch</code>, <code>tensorflow</code>), to data analysis (<code>pandas</code>), to image processing (<code>opencv-python</code>, <code>scikit-image</code>, <code>Pillow</code>), all interoperating through the common <code>numpy</code> array.</li>
+<li><strong>Extensive, freely available documentation.</strong> Python, numpy, and OpenCV all ship extensive online documentation, docstrings accessible via <code>help()</code>, and a huge body of community examples — and unlike MATLAB, the entire stack is free and open source.</li>
+</ul>
+<p>A few structural facts about this stack matter a great deal for image processing work:</p>
+<ul>
+<li><strong>The basic data type is the numpy array (<code>ndarray</code>).</strong> Arrays do not need to be dimensioned ahead of time — shapes are inferred and can grow/change dynamically. Even a single scalar can be represented as a 0-dimensional array.</li>
+<li>Python provides a <strong>REPL / Jupyter notebook</strong> workflow with an interpreter, a large library of numerical and string manipulation functions, 2D/3D plotting (<code>matplotlib</code>), and the ability to build GUIs. Because the language is interpreted rather than compiled, there is no compile step — this shortens the edit-run cycle considerably, which is why the Python/Jupyter workflow is well suited to fast prototyping, the same role MATLAB traditionally played.</li>
+</ul>
+</section>
+<section id="basic-elements-of-python-for-image-work" class="level2">
+<h2 class="anchored" data-anchor-id="basic-elements-of-python-for-image-work">3.2 Basic Elements of Python for Image Work</h2>
+<section id="data-types-numpy-dtypes" class="level3">
+<h3 class="anchored" data-anchor-id="data-types-numpy-dtypes">3.2.1 Data types (numpy dtypes)</h3>
+<p>Every numpy array has a <strong>dtype</strong>, and image processing code is only correct when the dtype (and its associated value range) is handled deliberately.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>numpy dtype</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>np.uint8</code></td>
+<td>8-bit unsigned integers (1 byte per element) — the default dtype OpenCV uses when reading images</td>
+</tr>
+<tr class="even">
+<td><code>np.uint16</code></td>
+<td>16-bit unsigned integers (2 bytes per element)</td>
+</tr>
+<tr class="odd">
+<td><code>np.uint32</code></td>
+<td>32-bit unsigned integers (4 bytes per element)</td>
+</tr>
+<tr class="even">
+<td><code>np.int8</code></td>
+<td>8-bit signed integers (1 byte per element)</td>
+</tr>
+<tr class="odd">
+<td><code>np.int16</code></td>
+<td>16-bit signed integers (2 bytes per element)</td>
+</tr>
+<tr class="even">
+<td><code>np.int32</code></td>
+<td>32-bit signed integers (4 bytes per element)</td>
+</tr>
+<tr class="odd">
+<td><code>np.float32</code> (single)</td>
+<td>single-precision floating-point numbers (4 bytes per element)</td>
+</tr>
+<tr class="even">
+<td><code>np.float64</code> (double)</td>
+<td>double-precision floating-point numbers (8 bytes per element)</td>
+</tr>
+<tr class="odd">
+<td><code>np.bool_</code></td>
+<td>values are <code>True</code>/<code>False</code> (1 byte per element)</td>
+</tr>
+<tr class="even">
+<td><code>str</code></td>
+<td>Python’s native text type (not stored per-pixel)</td>
+</tr>
+</tbody>
+</table>
+<p>Unless created from image data, a plain numpy array of numbers defaults to <code>np.float64</code> — Python’s native <code>float</code> — mirroring MATLAB’s default <code>double</code>. Conversion between dtypes — <strong>typecasting</strong>, via <code>.astype(...)</code> — is possible and often necessary; we will see below that typecasting an image is <em>not</em> the same thing as properly converting it (the range of values matters just as much as the dtype).</p>
+<p>Numpy arrays are indexed using a <strong>0-based convention</strong> — the opposite of MATLAB: <code>a[0]</code> refers to the <em>first</em> element of a one-dimensional array <code>a</code>, and <code>f[0, 0]</code> refers to the first element of a two-dimensional array — e.g., the top-left pixel of a grayscale image <code>f</code>. The colon operator (<code>:</code>) provides the same kind of powerful slicing (selecting whole rows, columns, or “flattening” an entire array via <code>.ravel()</code>/<code>.flatten()</code>).</p>
+</section>
+<section id="standard-arrays" class="level3">
+<h3 class="anchored" data-anchor-id="standard-arrays">3.2.2 Standard arrays</h3>
+<p>Numpy ships with a number of built-in functions for generating standard arrays, which are constantly used to set up test images, masks, and filters:</p>
+<ul>
+<li><code>np.zeros((m, n))</code> — an <em>m × n</em> array of zeros.</li>
+<li><code>np.ones((m, n))</code> — an <em>m × n</em> array of ones.</li>
+<li><code>np.ones((m, n), dtype=bool)</code> — an <em>m × n</em> array of <code>True</code>.</li>
+<li><code>np.zeros((m, n), dtype=bool)</code> — an <em>m × n</em> array of <code>False</code>.</li>
+<li><code>np.eye(n)</code> — the <em>n × n</em> identity matrix.</li>
+<li><code>np.random.rand(m, n)</code> — an <em>m × n</em> array of pseudorandom numbers uniformly distributed in [0, 1].</li>
+<li><code>np.random.randn(m, n)</code> — an <em>m × n</em> array of pseudorandom numbers following a normal (Gaussian) distribution with mean 0 and variance 1.</li>
+</ul>
+<p>(numpy has no direct built-in equivalent of MATLAB’s <code>magic(m)</code> — magic squares are rarely needed for image work, so it is safely omitted here.)</p>
+</section>
+<section id="array-and-matrix-arithmetic-operators" class="level3">
+<h3 class="anchored" data-anchor-id="array-and-matrix-arithmetic-operators">3.2.3 Array and matrix arithmetic operators</h3>
+<p>Numpy, unlike MATLAB, defaults to <strong>element-by-element (array)</strong> semantics for its arithmetic operators — this is the opposite convention from MATLAB and a common source of bugs when porting code between the two.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Name</th>
+<th>numpy function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>+</code></td>
+<td>Element-wise addition</td>
+<td><code>np.add(a, b)</code></td>
+</tr>
+<tr class="even">
+<td><code>-</code></td>
+<td>Element-wise subtraction</td>
+<td><code>np.subtract(a, b)</code></td>
+</tr>
+<tr class="odd">
+<td><code>*</code></td>
+<td>Element-wise multiplication</td>
+<td><code>np.multiply(a, b)</code></td>
+</tr>
+<tr class="even">
+<td><code>@</code></td>
+<td>Matrix multiplication</td>
+<td><code>np.matmul(a, b)</code> (or <code>a.dot(b)</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>/</code></td>
+<td>Element-wise division</td>
+<td><code>np.divide(a, b)</code></td>
+</tr>
+<tr class="even">
+<td><code>**</code></td>
+<td>Element-wise power</td>
+<td><code>np.power(a, b)</code></td>
+</tr>
+<tr class="odd">
+<td><code>.T</code></td>
+<td>Array/matrix transpose</td>
+<td><code>np.transpose(a)</code></td>
+</tr>
+<tr class="even">
+<td><code>.conj().T</code></td>
+<td>Complex conjugate transpose</td>
+<td><code>np.conjugate(a).T</code></td>
+</tr>
+<tr class="odd">
+<td><code>+</code> (unary)</td>
+<td>Unary plus</td>
+<td><code>np.positive(a)</code></td>
+</tr>
+<tr class="even">
+<td><code>-</code> (unary)</td>
+<td>Unary minus</td>
+<td><code>np.negative(a)</code></td>
+</tr>
+<tr class="odd">
+<td><code>:</code></td>
+<td>Slicing</td>
+<td><code>a[start:stop:step]</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>*</code> and <code>/</code> on two numpy arrays are <strong>already element-wise</strong> — exactly what you want for pixel-wise operations on images — whereas <code>@</code> (or <code>np.matmul</code>) invokes true linear-algebra matrix multiplication. There is no separate “dotted” operator family to remember, but the flip side is that reused MATLAB habits (<code>*</code> meaning matrix multiply) will silently do the wrong thing in numpy.</p>
+</section>
+<section id="specialized-matrix-operations" class="level3">
+<h3 class="anchored" data-anchor-id="specialized-matrix-operations">3.2.4 Specialized matrix operations</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>numpy operator or function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Array/matrix transpose</td>
+<td><code>.T</code> attribute</td>
+</tr>
+<tr class="even">
+<td>Inversion</td>
+<td><code>np.linalg.inv(a)</code></td>
+</tr>
+<tr class="odd">
+<td>Matrix determinant</td>
+<td><code>np.linalg.det(a)</code></td>
+</tr>
+<tr class="even">
+<td>Flip up and down</td>
+<td><code>np.flipud(a)</code></td>
+</tr>
+<tr class="odd">
+<td>Flip left and right</td>
+<td><code>np.fliplr(a)</code></td>
+</tr>
+<tr class="even">
+<td>Array rotation</td>
+<td><code>np.rot90(a)</code></td>
+</tr>
+<tr class="odd">
+<td>Array reshape</td>
+<td><code>a.reshape(...)</code></td>
+</tr>
+<tr class="even">
+<td>Sum of the diagonal elements</td>
+<td><code>np.trace(a)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specialized-arithmetic-functions-supported-by-opencv" class="level3">
+<h3 class="anchored" data-anchor-id="specialized-arithmetic-functions-supported-by-opencv">3.2.5 Specialized arithmetic functions supported by OpenCV</h3>
+<p>Plain numpy arithmetic on <code>uint8</code> image arrays does <strong>not</strong> saturate/clip the way image data usually requires — <code>np.uint8(250) + np.uint8(10)</code> silently <strong>wraps around</strong> to 4 rather than clipping to 255. Because of this, OpenCV ships dedicated arithmetic functions that handle images correctly by saturating instead of wrapping:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cv2.add(a, b)</code></td>
+<td>Adds two images, or adds a constant to an image (saturates instead of wrapping)</td>
+</tr>
+<tr class="even">
+<td><code>cv2.subtract(a, b)</code></td>
+<td>Subtracts two images, or subtracts a constant from an image (clips at 0 instead of wrapping)</td>
+</tr>
+<tr class="odd">
+<td><code>cv2.multiply(a, b)</code></td>
+<td>Multiplies two images (element-by-element), or multiplies an image by a constant</td>
+</tr>
+<tr class="even">
+<td><code>cv2.divide(a, b)</code></td>
+<td>Divides one image by another (element-by-element), or by a constant</td>
+</tr>
+<tr class="odd">
+<td><code>cv2.absdiff(a, b)</code></td>
+<td>Computes the absolute difference between two images</td>
+</tr>
+<tr class="even">
+<td><code>cv2.bitwise_not(a)</code></td>
+<td>Complements (inverts) an image</td>
+</tr>
+<tr class="odd">
+<td><code>cv2.addWeighted(a, alpha, b, beta, gamma)</code></td>
+<td>Computes a weighted linear combination <code>a*alpha + b*beta + gamma</code> of two images</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="relational-and-logical-operators" class="level3">
+<h3 class="anchored" data-anchor-id="relational-and-logical-operators">3.2.6 Relational and logical operators</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>Less than</td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>Less than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>Greater than</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>Greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>==</code></td>
+<td>Equal to</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>Not equal to</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&amp;</code></td>
+<td>Element-wise AND</td>
+</tr>
+<tr class="even">
+<td><code>\|</code></td>
+<td>Element-wise OR</td>
+</tr>
+<tr class="odd">
+<td><code>~</code></td>
+<td>Element-wise NOT</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>np.logical_xor(a, b)</code></td>
+<td>Exclusive-or (XOR) between two operands</td>
+</tr>
+<tr class="even">
+<td><code>np.all(a)</code></td>
+<td>Returns <code>True</code> if all elements are nonzero (accepts an <code>axis</code> argument; with none, reduces over the <em>whole</em> array, unlike MATLAB’s column-wise default)</td>
+</tr>
+<tr class="odd">
+<td><code>np.any(a)</code></td>
+<td>Returns <code>True</code> if any element is nonzero (same <code>axis</code> behavior as <code>np.all</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Relational operators applied to arrays return a <code>bool</code> array of the same shape — this is the mechanism behind thresholding operations, where <code>f &gt; 128</code> produces a binary mask directly, exactly as in MATLAB. Note that <code>&amp;</code>/<code>\|</code>/<code>~</code> on numpy arrays require <strong>parentheses</strong> around each comparison (e.g.&nbsp;<code>(f &gt; 50) &amp; (f &lt; 200)</code>), since Python’s operator precedence would otherwise bind them incorrectly.</p>
+</section>
+</section>
+<section id="opencv-an-overview" class="level2">
+<h2 class="anchored" data-anchor-id="opencv-an-overview">3.3 OpenCV: An Overview</h2>
+<p><strong>OpenCV</strong> (Open Source Computer Vision Library, imported as <code>cv2</code>) is a library that extends numpy’s base array capability with specialized signal and image processing operations. It covers, among others:</p>
+<ul>
+<li>Spatial transformations</li>
+<li>Image analysis and enhancement</li>
+<li>Neighborhood and block operations (filtering)</li>
+<li>Linear filtering and filter design</li>
+<li>Mathematical transforms (DFT, DCT)</li>
+<li>Deblurring / restoration</li>
+<li>Morphological operations</li>
+<li>Color image processing</li>
+</ul>
+<p>OpenCV rarely works alone: <code>numpy</code> provides the underlying array math, <code>matplotlib</code> is the usual choice for plotting and (in notebooks) for image display, <code>Pillow</code> (<code>PIL</code>) fills in format/metadata gaps OpenCV doesn’t cover (e.g.&nbsp;palette images), and <code>scikit-image</code> supplies some higher-level algorithms not present in OpenCV core.</p>
+<p>The remainder of this lecture walks through the essential, everyday functions for reading, converting, displaying, exploring, and writing images.</p>
+</section>
+<section id="essential-functions-and-features" class="level2">
+<h2 class="anchored" data-anchor-id="essential-functions-and-features">3.4 Essential Functions and Features</h2>
+<section id="displaying-information-about-an-image-file-pil.image.open" class="level3">
+<h3 class="anchored" data-anchor-id="displaying-information-about-an-image-file-pil.image.open">3.4.1 Displaying information about an image file — <code>PIL.Image.open</code></h3>
+<p>Before even reading pixel data, <code>PIL.Image.open</code> (Pillow) lazily opens a file and lets you inspect its metadata without decoding the whole image into memory — the closest Python equivalent of MATLAB’s <code>imfinfo</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> Image.<span class="bu">open</span>(<span class="st">'maxresdefault.jpg'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Format: </span><span class="sc">{</span>img<span class="sc">.</span><span class="bu">format</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Size: </span><span class="sc">{</span>img<span class="sc">.</span>size<span class="sc">}</span><span class="ss">"</span>)   <span class="co"># (width, height)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mode: </span><span class="sc">{</span>img<span class="sc">.</span>mode<span class="sc">}</span><span class="ss">"</span>)   <span class="co"># e.g. 'RGB'</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"File size: </span><span class="sc">{</span>os<span class="sc">.</span>path<span class="sc">.</span>getsize(<span class="st">'maxresdefault.jpg'</span>)<span class="sc">}</span><span class="ss"> bytes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>Format: JPEG
+Size: (1280, 720)
+Mode: RGB
+File size: 201014</code></pre>
+<p>From this single call we already learn the image’s dimensions (1280×720) and that it is stored as a truecolor (<code>RGB</code>) JPEG. <code>cv2.imread</code>, by contrast, always decodes the full pixel data immediately — there is no metadata-only OpenCV equivalent.</p>
+</section>
+<section id="reading-an-image-file-cv2.imread" class="level3">
+<h3 class="anchored" data-anchor-id="reading-an-image-file-cv2.imread">3.4.2 Reading an image file — <code>cv2.imread</code></h3>
+<p><code>cv2.imread</code> reads image files of virtually any common format, located anywhere on disk. Two details matter that have no MATLAB parallel:</p>
+<ul>
+<li><strong>Channel order.</strong> <code>cv2.imread</code> returns color images as <strong>BGR</strong>, not RGB — a very common source of bugs when combining OpenCV with <code>matplotlib</code> or <code>Pillow</code>, both of which expect RGB.</li>
+<li><strong>No separate “indexed image” return.</strong> Unlike MATLAB’s <code>imread</code>, which returns an index array + color map for palette-based files, OpenCV has no concept of indexed images — it always expands palette-based formats (indexed PNG/TIFF/GIF) into full RGB/BGR pixel data on read. If you need the raw indexed representation, use Pillow instead (§3.4.5).</li>
+</ul>
+<p>The read mode is controlled by a flag: <code>cv2.IMREAD_COLOR</code> (default, 3-channel BGR), <code>cv2.IMREAD_GRAYSCALE</code> (force single channel), or <code>cv2.IMREAD_UNCHANGED</code> (preserve alpha/original channel count).</p>
+</section>
+<section id="data-types-and-data-conversions" class="level3">
+<h3 class="anchored" data-anchor-id="data-types-and-data-conversions">3.4.3 Data types and data conversions</h3>
+<p>The most common numpy dtypes used for images are:</p>
+<ul>
+<li><strong><code>np.uint8</code></strong> — 1 byte per pixel, values in the range <strong>[0, 255]</strong>. What <code>cv2.imread</code> returns by default.</li>
+<li><strong><code>np.float64</code>/<code>np.float32</code></strong> — 8/4 bytes per pixel, values <em>conventionally</em> normalized to <strong>[0.0, 1.0]</strong> — but numpy does not enforce this range the way MATLAB’s <code>double</code>-image convention implicitly assumes it either.</li>
+<li><strong><code>np.bool_</code></strong> — 1 byte per pixel, representing <code>True</code> (white) or <code>False</code> (black).</li>
+</ul>
+<p>Once an image has been read into a variable, it is good practice to check its dtype (<code>img.dtype</code>) and its range of values (<code>img.min()</code>, <code>img.max()</code>) — this tells you how pixel data is represented and what range of values is legal.</p>
+<p>Numpy allows straightforward dtype conversion (typecasting) via <code>.astype(...)</code>, e.g.&nbsp;<code>img.astype(np.uint8)</code>, but plain typecasting <strong>does not handle the range problem</strong> and is usually not what you want when working with images — worse, casting an out-of-range float to <code>uint8</code> <strong>wraps around</strong> rather than clipping (see the worked example below). OpenCV has no dedicated <code>im2uint8</code>-style conversion functions; the equivalent range-aware conversions are usually written explicitly:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Python equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>uint8</code> [0,255] → normalized <code>float64</code> [0,1]</td>
+<td><code>img.astype(np.float64) / 255.0</code></td>
+</tr>
+<tr class="even">
+<td>normalized <code>float64</code> [0,1] → <code>uint8</code> [0,255]</td>
+<td><code>np.clip(img * 255, 0, 255).astype(np.uint8)</code></td>
+</tr>
+<tr class="odd">
+<td>rescale any range to [0,1] (like <code>mat2gray</code>)</td>
+<td><code>(img - img.min()) / (img.max() - img.min())</code>, or <code>cv2.normalize(img, None, 0, 1, cv2.NORM_MINMAX)</code></td>
+</tr>
+<tr class="even">
+<td>threshold a normalized image to binary (like <code>im2bw</code>)</td>
+<td><code>binary = img &gt; threshold</code></td>
+</tr>
+</tbody>
+</table>
+<p>The input to any of the manual conversions above can come from <code>bool</code>, <code>uint8</code>, <code>uint16</code>, <code>int16</code>, <code>float32</code>, or <code>float64</code> arrays.</p>
+</section>
+<section id="worked-example-typecasting-vs.-proper-conversion" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example-typecasting-vs.-proper-conversion">3.4.4 Worked example: typecasting vs.&nbsp;proper conversion</h3>
+<p>The difference between plain typecasting and a range-aware conversion is best shown with a small worked example. Consider a 2×2 <code>float64</code> array:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="op">-</span><span class="fl">8.0</span>, <span class="fl">4.0</span>],</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>              [ <span class="fl">0.0</span>, <span class="fl">0.5</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Plain typecasting</strong> does <em>not</em> clip out-of-range values the way MATLAB does — it <strong>wraps around</strong> using integer overflow rules, which can silently produce a very different (and misleading) result:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> B <span class="op">=</span> A.astype(np.uint8)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> B</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>array([[<span class="dv">248</span>,   <span class="dv">4</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>       [  <span class="dv">0</span>,   <span class="dv">0</span>]], dtype<span class="op">=</span>uint8)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here <code>-8.0</code> did not clip to <code>0</code> — it wrapped around to <code>248</code> (i.e.&nbsp;<code>256 - 8</code>), and <code>0.5</code> truncated to <code>0</code> rather than rounding. This is a real, easy-to-hit bug: <strong>numpy’s <code>.astype()</code> is closer in spirit to a raw C-style cast than to any of MATLAB’s <code>im2*</code> functions.</strong></p>
+<p>A <strong>proper, clipping conversion</strong> — the behavior <code>im2uint8</code> provides in MATLAB — must be written explicitly, assuming the input is a normalized <code>double</code> image in [0.0, 1.0]: anything ≤ 0 clips to 0, anything ≥ 1 clips to 255, and 0.5 maps to the midrange point 128:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> C <span class="op">=</span> np.clip(A <span class="op">*</span> <span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">255</span>).astype(np.uint8)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> C</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>array([[  <span class="dv">0</span>, <span class="dv">255</span>],</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       [  <span class="dv">0</span>, <span class="dv">128</span>]], dtype<span class="op">=</span>uint8)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Min-max rescaling</strong> — the behavior <code>mat2gray</code> provides — does something different again: since <code>A</code> is already floating-point, there is no dtype conversion to perform, only a <strong>range</strong> conversion. The smallest value (−8.0) maps to 0.0, the largest value (4.0) maps to 1.0, and everything in between is linearly rescaled:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> D <span class="op">=</span> (A <span class="op">-</span> A.<span class="bu">min</span>()) <span class="op">/</span> (A.<span class="bu">max</span>() <span class="op">-</span> A.<span class="bu">min</span>())</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> D</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>array([[<span class="fl">0.</span>        , <span class="fl">1.</span>        ],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       [<span class="fl">0.66666667</span>, <span class="fl">0.70833333</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finally, <strong>thresholding</strong> — the behavior <code>im2bw</code> provides — turns a normalized array into a binary (<code>bool</code>) result. Applying a threshold of 0.4 to <code>D</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> E <span class="op">=</span> D <span class="op">&gt;</span> <span class="fl">0.4</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> E</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>array([[<span class="va">False</span>,  <span class="va">True</span>],</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       [ <span class="va">True</span>,  <span class="va">True</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Every value greater than 0.4 becomes <code>True</code>; everything else becomes <code>False</code>. Because this comparison implicitly assumes <code>D</code> is already a normalized array, applying <code>A &gt; 0.4</code> directly to the un-normalized <code>A</code> would run without error, but the result would not be meaningful — a clear illustration of why understanding dtypes and value ranges matters just as much in Python as in MATLAB.</p>
+</section>
+<section id="converting-between-color-spaces-and-palette-indexed-images" class="level3">
+<h3 class="anchored" data-anchor-id="converting-between-color-spaces-and-palette-indexed-images">3.4.5 Converting between color spaces and palette (indexed) images</h3>
+<p>OpenCV provides <code>cv2.cvtColor</code> for converting between color representations:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Call</th>
+<th>Converts</th>
+<th>Into</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</code></td>
+<td>A BGR (truecolor) image</td>
+<td>Its grayscale equivalent</td>
+</tr>
+<tr class="even">
+<td><code>cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)</code></td>
+<td>A grayscale image</td>
+<td>A 3-channel BGR image (channel replicated, not re-colorized)</td>
+</tr>
+<tr class="odd">
+<td><code>cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</code></td>
+<td>A BGR image</td>
+<td>Its RGB equivalent (needed before handing an OpenCV image to <code>matplotlib</code>/<code>Pillow</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>For <strong>palette (indexed)</strong> images — which OpenCV cannot represent — use Pillow instead, which preserves the raw index + palette structure MATLAB’s <code>imread</code> exposes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> Image.<span class="bu">open</span>(<span class="st">'trees.tif'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(im.mode)              <span class="co"># 'P' means palette (indexed) image</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>palette <span class="op">=</span> im.getpalette()   <span class="co"># flat [R,G,B, R,G,B, ...] list — analogous to MATLAB's `map`</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>X_rgb <span class="op">=</span> np.array(im.convert(<span class="st">'RGB'</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>X_gray <span class="op">=</span> np.array(im.convert(<span class="st">'L'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>cv2.applyColorMap(img, cv2.COLORMAP_JET)</code> is a related but different tool — it maps grayscale <em>intensity</em> onto a fixed color lookup table (pseudocoloring) rather than exposing a genuine index/palette pair; pseudocolor mapping is covered in more depth in the color-image lecture.</p>
+</section>
+</section>
+<section id="displaying-the-contents-of-an-image" class="level2">
+<h2 class="anchored" data-anchor-id="displaying-the-contents-of-an-image">3.5 Displaying the Contents of an Image</h2>
+<p>Two libraries cover image display, each with a different purpose:</p>
+<ul>
+<li><strong><code>cv2.imshow(winname, img)</code></strong> — opens a native GUI window; expects BGR order; must be paired with <code>cv2.waitKey()</code> to actually render and stay open.</li>
+<li><strong><code>matplotlib.pyplot.imshow(img)</code></strong> — the usual choice inside Jupyter notebooks; expects <strong>RGB</strong> order (convert BGR images first with <code>cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</code>), and needs <code>cmap='gray'</code> for single-channel images or they render through a default color map (<code>viridis</code>) instead of true grayscale.</li>
+</ul>
+<p><strong>Example 3.3.</strong> The following code opens an image file and displays it with different <code>imshow</code> options:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> cv2.imread(<span class="st">'nature.jpg'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>gray <span class="op">=</span> cv2.cvtColor(I, cv2.COLOR_BGR2GRAY)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.imshow(gray, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.imshow(gray, cmap<span class="op">=</span><span class="st">'gray'</span>, vmin<span class="op">=</span>gray.<span class="bu">min</span>(), vmax<span class="op">=</span>gray.<span class="bu">max</span>())</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.imshow(gray, cmap<span class="op">=</span><span class="st">'gray'</span>, vmin<span class="op">=</span><span class="dv">100</span>, vmax<span class="op">=</span><span class="dv">160</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first call displays the grayscale image using matplotlib’s default intensity scaling. The second call explicitly scales the display range to the image’s own min/max — <code>matplotlib</code>’s <code>vmin</code>/<code>vmax</code> play exactly the role of MATLAB’s <code>imshow(I, [])</code>. The third call specifies an explicit display range <code>vmin=100, vmax=160</code>: any value at or below 100 is displayed as black, and any value at or above 160 is displayed as white — a quick way to enhance contrast in a narrow band of gray levels without modifying the underlying pixel data.</p>
+</section>
+<section id="exploring-the-contents-of-an-image" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-contents-of-an-image">3.6 Exploring the Contents of an Image</h2>
+<p>Beyond simply displaying an image, practitioners frequently need to inspect its pixel contents more closely. Unlike MATLAB, no single tool ships with OpenCV/matplotlib that combines everything <code>imtool</code> offers (Pixel Region, Image Information, and Adjust Contrast in one window). The closest equivalents are assembled from a few smaller pieces:</p>
+<ul>
+<li><strong>Colorbar + hover readout.</strong> <code>plt.colorbar()</code> next to an <code>imshow</code> gives a static intensity legend; in an interactive matplotlib backend (or <code>%matplotlib widget</code> in Jupyter), hovering over the image shows the live <code>(x, y)</code> coordinate and pixel value in the toolbar.</li>
+<li><strong><code>cv2.setMouseCallback</code></strong> — attach a click handler to an OpenCV window to read out pixel values interactively, the direct equivalent of <code>impixel</code>:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>RGB <span class="op">=</span> cv2.imread(<span class="st">'peppers.png'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_click(event, x, y, flags, param):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> event <span class="op">==</span> cv2.EVENT_LBUTTONDOWN:</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"(x=</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">, y=</span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">) -&gt; BGR </span><span class="sc">{</span>RGB[y, x]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>cv2.imshow(<span class="st">'peppers'</span>, RGB)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>cv2.setMouseCallback(<span class="st">'peppers'</span>, on_click)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>cv2.waitKey(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note the index order: the callback reports <code>(x, y)</code> — i.e.&nbsp;<code>(column, row)</code> — but array indexing is <code>RGB[row, col]</code>, i.e.&nbsp;<code>RGB[y, x]</code>. Mixing these up is a very common bug.</p>
+<ul>
+<li><strong>Manual line profile</strong> (the <code>improfile</code> equivalent) — sample pixel values along a line by interpolating coordinates and indexing directly:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> profile_line(img, p1, p2, num<span class="op">=</span><span class="dv">200</span>):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    r1, c1 <span class="op">=</span> p1</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    r2, c2 <span class="op">=</span> p2</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> np.linspace(r1, r2, num).astype(<span class="bu">int</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    cols <span class="op">=</span> np.linspace(c1, c2, num).astype(<span class="bu">int</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> img[rows, cols]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For a full standalone interactive viewer (playing the role of <code>imtool</code>), external tools such as <strong>napari</strong> or <strong>ImageJ/Fiji</strong> are the common choices outside the OpenCV/matplotlib stack.</p>
+</section>
+<section id="writing-the-resulting-image-onto-a-file" class="level2">
+<h2 class="anchored" data-anchor-id="writing-the-resulting-image-onto-a-file">3.7 Writing the Resulting Image onto a File</h2>
+<p><code>cv2.imwrite</code> writes the contents of an image array to disk in one of the popular graphics file formats. When the destination format uses lossy compression (e.g., JPEG), <code>cv2.imwrite</code> accepts an encoder parameter list that trades off subjective image quality against file size:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> cv2.imread(<span class="st">'nature.jpg'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>cv2.imwrite(<span class="st">'naturedefault.jpg'</span>, I)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>cv2.imwrite(<span class="st">'nature05.jpg'</span>, I, [cv2.IMWRITE_JPEG_QUALITY, <span class="dv">5</span>])</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>cv2.imwrite(<span class="st">'nature95.jpg'</span>, I, [cv2.IMWRITE_JPEG_QUALITY, <span class="dv">95</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A quality value of 5 produces a small, heavily compressed (visibly degraded) file; a quality value of 95 produces a much larger file that is nearly indistinguishable from the original.</p>
+</section>
+<section id="tutorial-basic-image-manipulation" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-basic-image-manipulation">3.8 Tutorial: Basic Image Manipulation</h2>
+<p><strong>Goal.</strong> Explore basic image manipulation techniques using Python, numpy, OpenCV, and Pillow.</p>
+<p><strong>Objectives.</strong></p>
+<ul>
+<li>Explore the different image representations supported by OpenCV and Pillow.</li>
+<li>Learn how to read images in Python.</li>
+<li>Explore image conversion (dtype, range, color space).</li>
+<li>Learn how to display images.</li>
+<li>Learn how to write images to disk.</li>
+</ul>
+<p><strong>Step 1.</strong> Load the image <code>coins.png</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> cv2.imread(<span class="st">'coins.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Question 1.</strong> What is the <code>dtype</code> and <code>shape</code> of <code>I</code>? What does each dimension of <code>shape</code> correspond to? <strong>Question 2.</strong> In a Jupyter notebook, why does typing just <code>I</code> on its own line print (part of) the array’s contents, while <code>I = cv2.imread(...)</code> does not? (Hint: think about what a bare expression vs.&nbsp;an assignment does at a REPL prompt.)</p>
+</blockquote>
+<p>Truecolor and grayscale images can both be read with <code>cv2.imread</code> exactly as above. Palette (<strong>indexed</strong>) images, however, need Pillow — OpenCV silently expands them to full RGB/BGR on read, discarding the index + palette structure.</p>
+<p><strong>Step 2.</strong> Load the image <code>trees.tif</code>, which is stored as an indexed (palette) image, using Pillow:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> Image.<span class="bu">open</span>(<span class="st">'trees.tif'</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(im.mode)   <span class="co"># 'P' = palette (indexed)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Question 3.</strong> What does <code>im.mode == 'P'</code> tell you about how the file stores its pixels? What does <code>im.getpalette()</code> return?</p>
+</blockquote>
+<p>Some operations require converting an image from one representation to another — for instance, applying image adjustments directly to a palette image’s index values would not give meaningful results, since the calculations would operate on palette indices rather than actual RGB values.</p>
+<p><strong>Step 3.</strong> Convert the indexed image to an RGB array <code>X_rgb</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>X_rgb <span class="op">=</span> np.array(im.convert(<span class="st">'RGB'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Question 4.</strong> How many dimensions does <code>X_rgb</code> have, and what are their sizes?</p>
+</blockquote>
+<p><strong>Step 4.</strong> Convert the same indexed image to a grayscale array:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X_gray <span class="op">=</span> np.array(im.convert(<span class="st">'L'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Question 5.</strong> What <code>dtype</code> is <code>X_gray</code>?</p>
+</blockquote>
+<p><strong>Step 5.</strong> Verify that the new grayscale array’s pixel values fall within [0, 255]:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>X_gray.<span class="bu">max</span>(), X_gray.<span class="bu">min</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Question 6.</strong> In MATLAB, this same check requires the colon operator (<code>X_gray(:)</code>) to force <code>max</code>/<code>min</code> to reduce over the <em>whole</em> array instead of column-wise. Do we need anything similar in numpy? Why or why not?</p>
+</blockquote>
+<p>(<code>np.ndarray.max()</code>/<code>.min()</code> reduce over the <em>entire</em> array by default — the opposite default from MATLAB’s <code>max</code>/<code>min</code>, which operate column-wise unless you pass <code>A(:)</code>. This is one case where numpy’s default is actually the more convenient one for this particular check.)</p>
+<p><strong>Step 6.</strong> Convert <code>X_gray</code> to normalized <code>float64</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>X_gray_dbl <span class="op">=</span> X_gray.astype(np.float64) <span class="op">/</span> <span class="fl">255.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Question 7.</strong> What is the range of values for <code>X_gray_dbl</code>?</p>
+</blockquote>
+<p>(Dividing by 255 normalizes a <code>uint8</code> input into the [0.0, 1.0] range expected of a normalized floating-point image — so a value of 255 becomes 1.0, not literally 255.0. The same idea extends to converting toward <code>uint16</code>/<code>int16</code>: going from a wider integer dtype down to a narrower one <strong>quantizes</strong> the value range, an inherently lossy step.)</p>
+<p><strong>Step 7.</strong> Display the <code>coins.png</code> image (already loaded in <code>I</code>) with a pixel-value colorbar readout:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>gray <span class="op">=</span> cv2.cvtColor(I, cv2.COLOR_BGR2GRAY)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.imshow(gray, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plt.colorbar(label<span class="op">=</span><span class="st">'Gray level'</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Step 8.</strong> Display two images side by side using <code>plt.subplots</code> — the RGB-converted <code>trees</code> image (<code>X_rgb</code>) and the grayscale <code>coins</code> image:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].imshow(gray, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].imshow(X_rgb)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Note.</strong> In MATLAB, mixing an indexed image and an intensity image in the same figure via <code>subplot</code> is a classic gotcha: a MATLAB figure has only <strong>one</strong> shared color map, so displaying the <code>trees</code> color map in one subplot silently recolors every other subplot sharing that figure — which is exactly why the original MATLAB tutorial needs <code>subimage</code>/manual RGB conversion as a workaround. This problem <strong>does not exist in matplotlib</strong>: each <code>imshow</code> call carries its own independent color mapping, so plain <code>subplots</code> is always safe here — no <code>subimage</code>-style workaround is needed.</p>
+</blockquote>
+<p><strong>Step 9.</strong> Use a mouse callback to interactively explore pixel values in an image, the direct equivalent of MATLAB’s <code>impixel</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>RGB <span class="op">=</span> cv2.imread(<span class="st">'peppers.png'</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> []</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_click(event, x, y, flags, param):</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> event <span class="op">==</span> cv2.EVENT_LBUTTONDOWN:</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        points.append((x, y, <span class="bu">tuple</span>(RGB[y, x])))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"(x=</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">, y=</span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">) -&gt; BGR </span><span class="sc">{</span>RGB[y, x]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>cv2.imshow(<span class="st">'peppers'</span>, RGB)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>cv2.setMouseCallback(<span class="st">'peppers'</span>, on_click)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>cv2.waitKey(<span class="dv">0</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>cv2.destroyAllWindows()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Question 8.</strong> The callback receives <code>(x, y)</code>, but pixel lookup uses <code>RGB[y, x]</code>. Why the swap — what do <code>x</code>/<code>y</code> and <code>row</code>/<code>col</code> each refer to, and why don’t they line up directly?</p>
+</blockquote>
+<p>(<code>x</code>/<code>y</code> are <em>display</em> coordinates — horizontal/vertical position on screen, i.e.&nbsp;column/row — while numpy indexes arrays as <code>[row, col]</code>. So <code>x</code> corresponds to the column index and <code>y</code> to the row index: <code>RGB[y, x]</code>, not <code>RGB[x, y]</code>. Mixing these up is one of the most common bugs when porting pixel-coordinate code between display libraries and array indexing.)</p>
+<p>A manual line-sampling function (§3.6) complements this by reading intensity values <em>along a line or path</em>, rather than at isolated points.</p>
+<p><strong>Step 10.</strong> Explore a line profile across <code>coins.png</code> (loaded in <code>I</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>r1, c1, r2, c2 <span class="op">=</span> <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">201</span>, <span class="dv">286</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>overlay <span class="op">=</span> I.copy()</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>cv2.line(overlay, (c1, r1), (c2, r2), (<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>), <span class="dv">2</span>)  <span class="co"># cv2.line takes (x, y) = (col, row)</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="bu">int</span>(np.hypot(r2 <span class="op">-</span> r1, c2 <span class="op">-</span> c1))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> np.linspace(r1, r2, num).astype(<span class="bu">int</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> np.linspace(c1, c2, num).astype(<span class="bu">int</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> gray[rows, cols]</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>plt.plot(profile)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Gray level'</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This overlays a green line on the displayed image to show where the profile is taken, then plots the gray-level values sampled along that line in a separate figure. Note again that <code>cv2.line</code> takes its endpoints as <code>(x, y)</code> pairs, the reverse of the <code>(row, col)</code> order used for array indexing above.</p>
+<p><strong>Step 11.</strong> Use <code>cv2.imwrite</code> to save two of the modified images to disk — one in JPEG format, one in PNG format:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cv2.imwrite(<span class="st">'rgb_trees.jpg'</span>, cv2.cvtColor(X_rgb, cv2.COLOR_RGB2BGR))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>cv2.imwrite(<span class="st">'gray_trees.png'</span>, X_gray)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(<code>cv2.imwrite</code> expects BGR channel order, so an array that was assembled in RGB — like <code>X_rgb</code> from Pillow — must be converted back with <code>cv2.cvtColor(..., cv2.COLOR_RGB2BGR)</code> before saving; forgetting this swaps the red and blue channels in the saved file.)</p>
+</section>
+<section id="what-have-we-learned" class="level2">
+<h2 class="anchored" data-anchor-id="what-have-we-learned">What have we learned?</h2>
+<ul>
+<li><code>cv2.imread</code> opens and reads image files in most popular formats, but returns color images in <strong>BGR</strong> order and has no concept of indexed (palette) images — use <code>Pillow</code> (<code>PIL.Image</code>) when you need the raw index + palette structure.</li>
+<li>The most common dtypes for images are <strong><code>np.uint8</code></strong> (1 byte/pixel, [0, 255]) and <strong><code>np.float64</code>/<code>np.float32</code></strong> (conventionally [0.0, 1.0], though numpy does not enforce this), plus <strong><code>np.bool_</code></strong> for binary images.</li>
+<li>Dtype compatibility is a prerequisite for image processing algorithms to work correctly. Plain typecasting (<code>.astype(...)</code>) does <em>not</em> clip or rescale — it can silently <strong>wrap around</strong> for out-of-range values — so range-aware conversions (dividing/multiplying by 255, <code>np.clip</code>, min-max rescaling) must be written explicitly, since OpenCV ships no <code>im2uint8</code>-style helpers.</li>
+<li>A solid understanding of dtypes and pixel value ranges is essential to writing correct image processing code — ignoring this can silently corrupt intermediate results, set incorrect thresholds, or produce other subtle bugs.</li>
+<li><code>matplotlib.pyplot.imshow</code> (with <code>cmap='gray'</code> and <code>vmin</code>/<code>vmax</code> for scaled display) is the usual choice for image display in notebooks; <code>cv2.imshow</code> opens a native GUI window. Unlike MATLAB figures, each matplotlib <code>imshow</code> call has its own independent color mapping, so mixing indexed and grayscale images in the same figure is safe without any <code>subimage</code>-style workaround.</li>
+<li><code>cv2.imwrite</code> is the function for saving processed image results back to a file, with optional format-specific parameters (e.g., JPEG quality via <code>cv2.IMWRITE_JPEG_QUALITY</code>) — remember it expects BGR channel order.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
