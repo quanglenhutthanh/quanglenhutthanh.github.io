@@ -9,6 +9,7 @@
   {
     "listing": "/courses/machine-learning/index.html",
     "items": [
+      "/courses/machine-learning/lectures/L01-gradient-descent.html",
       "/courses/machine-learning/lectures/L06-ensemble.html",
       "/courses/machine-learning/lectures/L07-distribution-shift.html"
     ]
