@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -176,11 +176,11 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About / CV</span></a>
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../courses/index.html"> 
-<span class="menu-text">Courses</span></a>
+<span class="menu-text">Knowledge</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -234,7 +234,6 @@ window.Quarto = {
   <li><a href="#tutorial-pseudocolor-image-processing" id="toc-tutorial-pseudocolor-image-processing" class="nav-link" data-scroll-target="#tutorial-pseudocolor-image-processing">11.6 Tutorial: Pseudocolor Image Processing</a></li>
   <li><a href="#tutorial-full-color-image-processing" id="toc-tutorial-full-color-image-processing" class="nav-link" data-scroll-target="#tutorial-full-color-image-processing">11.7 Tutorial: Full-Color Image Processing</a></li>
   <li><a href="#what-have-we-learned-tóm-tắt" id="toc-what-have-we-learned-tóm-tắt" class="nav-link" data-scroll-target="#what-have-we-learned-tóm-tắt">What have we learned? (Tóm tắt)</a></li>
-  <li><a href="#bài-tập-problems" id="toc-bài-tập-problems" class="nav-link" data-scroll-target="#bài-tập-problems">Bài tập (Problems)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -668,17 +667,6 @@ window.Quarto = {
 <li><strong>Pseudocolor</strong>: gán màu theo <em>diễn giải dữ liệu</em>, không phải màu thật. <strong>Full-color</strong>: xử lý pixel của ảnh có màu tương ứng cảnh thật.</li>
 <li>Nhiều kỹ thuật ảnh đơn sắc (edge detection, histogram equalization…) mở rộng được sang ảnh màu; thành công phụ thuộc <strong>chọn color model</strong>.</li>
 </ul>
-<hr>
-</section>
-<section id="bài-tập-problems" class="level2">
-<h2 class="anchored" data-anchor-id="bài-tập-problems">Bài tập (Problems)</h2>
-<ol type="1">
-<li>Dùng hàm <code>patch</code> hiển thị khối RGB (Figure 11.9).</li>
-<li>Viết code cộng hai ảnh RGB cùng kích thước — kết quả có như mong đợi?</li>
-<li>Sai gì trong <code>[X,map]=imread('canoe.tif'); X = X + 20;</code> khi muốn làm sáng ảnh indexed? Sửa lại. <em>(Gợi ý: cộng vào chỉ số X là sai — phải chỉnh <code>map</code>, hoặc chuyển sang RGB trước.)</em></li>
-<li>Chứng minh intensity slicing là trường hợp riêng của phương pháp dùng hàm biến đổi; vẽ hàm biến đổi bậc thang cho R, G, B khi ảnh 256 mức được chia 4 màu, mỗi khoảng rộng 64 mức.</li>
-<li>Dùng hàm <code>edge</code>, tính &amp; hiển thị biên ảnh màu cho: (a) RGB cộng biên các kênh, (b) RGB OR các kênh, (c) YIQ cộng, (d) YIQ OR.</li>
-</ol>
 
 
 </section>

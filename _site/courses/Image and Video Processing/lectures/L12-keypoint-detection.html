@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -141,11 +141,11 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About / CV</span></a>
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../courses/index.html"> 
-<span class="menu-text">Courses</span></a>
+<span class="menu-text">Knowledge</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -191,7 +191,6 @@ window.Quarto = {
   </ul></li>
   <li><a href="#comparing-the-four-detectors" id="toc-comparing-the-four-detectors" class="nav-link" data-scroll-target="#comparing-the-four-detectors">12.5 Comparing the Four Detectors</a></li>
   <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
-  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -487,19 +486,6 @@ C = \det(\mathbf{M}) - k\cdot\big(\text{trace}(\mathbf{M})\big)^2 = \lambda_1\la
 <li><strong>FAST</strong> replaces convolution with a fast segment test on a 16-pixel Bresenham circle around each candidate pixel (needing <span class="math inline">n=9</span> contiguous pixels uniformly brighter or darker than the center), with early-rejection and machine-learned comparison ordering making it fast enough for <strong>real-time keypoint detection and tracking on mobile devices</strong>.</li>
 <li>All four detectors follow the same conceptual pipeline (response → threshold → local extrema → strongest-<span class="math inline">N</span> keypoints); they differ mainly in what local property they measure and how expensive that measurement is, which drives the accuracy/speed trade-off in practice.</li>
 </ul>
-<hr>
-</section>
-<section id="problems" class="level2">
-<h2 class="anchored" data-anchor-id="problems">Problems</h2>
-<ol type="1">
-<li>Explain why an edge point has ambiguous localization along its own direction, while a corner point does not. Relate your answer to the shape of the iso-sensitivity ellipse of the structure matrix <span class="math inline">\mathbf{M}</span> at each type of point.</li>
-<li>Show that the Harris cornerness score can be written purely in terms of the entries of <span class="math inline">\mathbf{M}</span> (i.e.&nbsp;without computing eigenvalues explicitly), using <span class="math inline">\det(\mathbf{M}) = M_{11}M_{22}-M_{12}^2</span> and <span class="math inline">\text{trace}(\mathbf{M}) = M_{11}+M_{22}</span>.</li>
-<li>For the Harris response <span class="math inline">C = \lambda_1\lambda_2 - k(\lambda_1+\lambda_2)^2</span>, find the ratio <span class="math inline">\lambda_2/\lambda_1</span> (with <span class="math inline">\lambda_1 \ge \lambda_2</span>) at which <span class="math inline">C=0</span>, as a function of <span class="math inline">k</span>. Use it to explain, quantitatively, why a larger <span class="math inline">k</span> makes the detector more conservative (i.e.&nbsp;classifies more points as “edge” rather than “corner”).</li>
-<li>Why is the Harris detector invariant to a uniform brightness shift <span class="math inline">f \to f + c</span> but not invariant to a uniform contrast scaling <span class="math inline">f \to \alpha f</span>? (Hint: think about how <span class="math inline">f_x</span>, <span class="math inline">f_y</span>, and therefore <span class="math inline">\mathbf{M}</span>, transform under each operation.)</li>
-<li>Explain, in your own words, why the Harris detector loses repeatability under image scaling even though it is invariant to rotation and shift. What design change would you propose to make a Harris-style detector scale-invariant?</li>
-<li>For the FAST test with <span class="math inline">n=9</span> out of 16 circle pixels, describe the high-speed rejection test using pixels {1,5,9,13} and prove that if fewer than 3 of these 4 pixels are brighter (or darker) than <span class="math inline">p+\theta</span> (or <span class="math inline">p-\theta</span>), then no contiguous arc of length 9 can exist among the full 16.</li>
-<li>Give one application (from Section 12.1) that most needs <strong>scale invariance</strong> and one that can tolerate a detector that is <strong>not</strong> scale-invariant. Justify your choices in terms of how the images are typically captured in each application.</li>
-</ol>
 
 
 </section>

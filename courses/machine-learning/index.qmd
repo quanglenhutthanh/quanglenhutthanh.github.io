@@ -27,6 +27,13 @@ Nền tảng ML: hồi quy, cây quyết định, ensemble methods, xử lý dis
 :::{#lectures}
 :::
 
+## Labs
+
+- [`LinearReg.ipynb`](labs/LinearReg.ipynb) — Linear Regression.
+- [`Logistic_Reg.ipynb`](labs/Logistic_Reg.ipynb) — Logistic Regression.
+- [`Decision_Tree.ipynb`](labs/Decision_Tree.ipynb) — Decision Tree.
+- [`NN.ipynb`](labs/NN.ipynb) — Neural Network.
+
 ## References
 
 Xem [danh sách paper & link](references.qmd).

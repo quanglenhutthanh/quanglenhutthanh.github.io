@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -176,11 +176,11 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About / CV</span></a>
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../courses/index.html"> 
-<span class="menu-text">Courses</span></a>
+<span class="menu-text">Knowledge</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -237,7 +237,6 @@ window.Quarto = {
   <li><a href="#alpha-trimmed-mean-filter" id="toc-alpha-trimmed-mean-filter" class="nav-link" data-scroll-target="#alpha-trimmed-mean-filter">Alpha-trimmed mean filter</a></li>
   </ul></li>
   <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
-  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -735,18 +734,6 @@ window.Quarto = {
 <li><strong>Blurring</strong> is loss of sharpness, caused by poor focusing, relative motion between sensor and scene, or other factors. Deblurring techniques apply <strong>inverse filtering</strong> to “undo” a known (or estimated) degradation function.</li>
 <li>The best-known deblurring approach that also handles noise gracefully is the <strong>Wiener filter</strong>, implemented in MATLAB by <code>deconvwnr</code>; naive inverse filtering, by contrast, is only usable when noise is negligible, and even then needs to be tempered with a low-pass constraint or a constrained-division threshold to avoid amplifying near-zero values of <span class="math inline">H(u,v)</span>.</li>
 </ul>
-<hr>
-</section>
-<section id="problems" class="level2">
-<h2 class="anchored" data-anchor-id="problems">Problems</h2>
-<p><strong>Problem 1.</strong> Write a modified/expanded version of <code>imnoise</code> that supports noise types it does not natively provide — Rayleigh, Erlang, uniform, and exponential.</p>
-<p><strong>Problem 2.</strong> What is the effect on an image of applying a contraharmonic mean filter with: (a) <span class="math inline">R = 0</span> (b) <span class="math inline">R = -1</span></p>
-<p><strong>Problem 3.</strong> Write a MATLAB function implementing an ideal band-reject filter of radius <span class="math inline">D_0</span> and width <span class="math inline">W</span>, and use it to reduce periodic noise in a noisy input image.</p>
-<p><strong>Problem 4.</strong> Write a MATLAB function implementing a Butterworth band-reject filter of order <span class="math inline">n</span>, radius <span class="math inline">D_0</span>, and width <span class="math inline">W</span>, and use it to reduce periodic noise in a noisy input image.</p>
-<p><strong>Problem 5.</strong> Write a MATLAB function implementing an ideal band-pass filter of radius <span class="math inline">D_0</span> and width <span class="math inline">W</span>.</p>
-<p><strong>Problem 6.</strong> Write a MATLAB function implementing a Butterworth band-pass filter of order <span class="math inline">n</span>, radius <span class="math inline">D_0</span>, and width <span class="math inline">W</span>.</p>
-<p><strong>Problem 7.</strong> Write a MATLAB function implementing a Gaussian notch-reject filter of radius <span class="math inline">D_0</span>, centered at <span class="math inline">(u_0, v_0)</span>, and use it to reduce periodic noise in a noisy input image.</p>
-<p><strong>Problem 8.</strong> Write a MATLAB function implementing a <strong>range filter</strong>, whose output is the difference between the maximum and minimum gray levels in a neighborhood centered on a pixel. Test it, then answer: (a) Is the range filter linear or nonlinear? Explain. (b) What can it be used for?</p>
 
 
 </section>
