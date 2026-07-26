@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -176,11 +176,11 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About / CV</span></a>
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../courses/index.html"> 
-<span class="menu-text">Courses</span></a>
+<span class="menu-text">Knowledge</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -239,7 +239,6 @@ window.Quarto = {
   <li><a href="#tutorial-binary-morphological-image-processing" id="toc-tutorial-binary-morphological-image-processing" class="nav-link" data-scroll-target="#tutorial-binary-morphological-image-processing">8.8 Tutorial: Binary Morphological Image Processing</a></li>
   <li><a href="#tutorial-basic-morphological-algorithms" id="toc-tutorial-basic-morphological-algorithms" class="nav-link" data-scroll-target="#tutorial-basic-morphological-algorithms">8.9 Tutorial: Basic Morphological Algorithms</a></li>
   <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
-  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -819,14 +818,6 @@ window.Quarto = {
 <li>Grayscale morphology extends dilation and erosion to intensity images via local max/min under the SE’s footprint, and reuses the same formulas for opening/closing; the <strong>top-hat</strong> and <strong>bottom-hat</strong> transforms subtract out the opened/closed image to isolate small bright/dark detail, useful for shading correction and contrast enhancement.</li>
 <li>Morphological filtering — opening followed by closing with the same SE — is an effective way to remove impulse (salt-and-pepper) noise from binary and grayscale images, at the cost of some edge rounding that grows with SE size.</li>
 </ul>
-</section>
-<section id="problems" class="level2">
-<h2 class="anchored" data-anchor-id="problems">Problems</h2>
-<p><strong>Problem 8.1.</strong> Use <code>strel</code> and <code>getsequence</code> to create SEs of different shape and size, and inspect their decomposed structuring elements.</p>
-<p><strong>Problem 8.2.</strong> Write a MATLAB script (or function) that extracts the connected components of a binary image, displays the results using a different color for each component, and overlays a cross-shaped marker on top of each component’s center of gravity.</p>
-<p><strong>Problem 8.3.</strong> How many connected components would <code>bwlabel</code> find if given the <em>negative</em> (white/black swapped) of a binary image as input? Explain why swapping foreground and background can change the connected-component count so dramatically.</p>
-<hr>
-<p><em>End of Lecture 8. Next: Lecture 9 — Edge Detection.</em></p>
 
 
 </section>

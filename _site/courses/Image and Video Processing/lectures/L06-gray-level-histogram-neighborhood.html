@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -176,11 +176,11 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About / CV</span></a>
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../courses/index.html"> 
-<span class="menu-text">Courses</span></a>
+<span class="menu-text">Knowledge</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -240,7 +240,6 @@ window.Quarto = {
   <li><a href="#worked-example-continuing-the-eight-level-histogram" id="toc-worked-example-continuing-the-eight-level-histogram" class="nav-link" data-scroll-target="#worked-example-continuing-the-eight-level-histogram">Worked example (continuing the eight-level histogram)</a></li>
   </ul></li>
   <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
-  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -632,17 +631,6 @@ window.Quarto = {
 <li><strong>Direct histogram specification / matching</strong> generalizes equalization by allowing an arbitrary target histogram to be specified; it is implemented as a three-step process (equalize source, equalize target, invert the target’s cdf) and is available in MATLAB through an alternate <code>histeq(I, h)</code> call signature.</li>
 <li>Despite being introduced as a lecture on gray-level transformations <em>and</em> neighborhood processing, this deck in practice covers only the point-processing and histogram half of that scope; correlation/convolution and spatial (neighborhood) filters are addressed separately.</li>
 </ul>
-</section>
-<section id="problems" class="level2">
-<h2 class="anchored" data-anchor-id="problems">Problems</h2>
-<p><strong>Problem 1.</strong> Write a MATLAB function that performs a piecewise-linear brightness-and-contrast adjustment on monochrome images using the generic linear form of equation (6.3). It should take a monochrome image and the coefficients <span class="math inline">c</span> (slope) and <span class="math inline">b</span> (offset) as arguments.</p>
-<p><strong>Problem 2.</strong> Write a MATLAB function that performs a simple version of the image <strong>solarization</strong> technique (also known as the Sabatier effect) — a point transformation that leaves every pixel brighter than a threshold <span class="math inline">T</span> untouched, while replacing every pixel darker than <span class="math inline">T</span> with its negative.</p>
-<p><strong>Problem 3.</strong> Write a MATLAB function that performs a point transformation replacing each pixel value of a <code>uint8</code> input image with the <strong>square</strong> of its original value, then answer:</p>
-<ol type="1">
-<li>Do you need to explicitly clamp the results so they stay within range? Why (or why not)?</li>
-<li>Is the resulting image brighter or darker than the original? Explain.</li>
-</ol>
-<p><strong>Problem 4.</strong> Repeat Problem 3, this time for an input image of class <code>double</code>. Does your answer to either question change, and why?</p>
 
 
 </section>

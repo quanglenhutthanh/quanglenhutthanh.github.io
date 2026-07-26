@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -176,11 +176,11 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About / CV</span></a>
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../courses/index.html"> 
-<span class="menu-text">Courses</span></a>
+<span class="menu-text">Knowledge</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -245,7 +245,6 @@ window.Quarto = {
   <li><a href="#robinson-implemented-from-scratch" id="toc-robinson-implemented-from-scratch" class="nav-link" data-scroll-target="#robinson-implemented-from-scratch">Robinson (implemented from scratch)</a></li>
   </ul></li>
   <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
-  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -809,14 +808,6 @@ r_4 &amp;= \begin{bmatrix}2&amp;1&amp;0\\1&amp;0&amp;-1\\0&amp;-1&amp;-2\end{bma
 <li>Raw edge detection output is typically fragmented. An <strong>edge linking</strong> stage postprocesses these results, eliminating spurious points and bridging gaps, to produce cleaner edges suitable for later edge-based segmentation.</li>
 <li>The <strong>Hough transform</strong> is the standard technique for finding long, straight edges (line segments) among a set of raw edge detection results, and it generalizes (with the appropriate parameterization) to other simple shapes such as circles.</li>
 </ul>
-</section>
-<section id="problems" class="level2">
-<h2 class="anchored" data-anchor-id="problems">Problems</h2>
-<ol type="1">
-<li>Write a MATLAB script that generates a test image containing an <em>ideal</em> (step) edge, and plot the intensity profile along a horizontal line through the image together with its first and second derivatives.</li>
-<li>Repeat Problem 1, but for a <em>ramp</em> edge instead of an ideal step edge.</li>
-<li>Show that the LoG edge detector can be implemented directly with <code>fspecial</code> and <code>imfilter</code> (instead of relying on <code>edge</code>), and give a reason why this manual implementation might sometimes be preferable.</li>
-</ol>
 
 
 </section>

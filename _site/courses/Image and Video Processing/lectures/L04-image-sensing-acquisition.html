@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f24889ebebc570d0cf05277ffb43bbcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -176,11 +176,11 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About / CV</span></a>
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../courses/index.html"> 
-<span class="menu-text">Courses</span></a>
+<span class="menu-text">Knowledge</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -228,7 +228,6 @@ window.Quarto = {
   <li><a href="#spatial-and-gray-level-resolution" id="toc-spatial-and-gray-level-resolution" class="nav-link" data-scroll-target="#spatial-and-gray-level-resolution">4.4.3 Spatial and Gray-Level Resolution</a></li>
   </ul></li>
   <li><a href="#what-have-we-learned" id="toc-what-have-we-learned" class="nav-link" data-scroll-target="#what-have-we-learned">What have we learned?</a></li>
-  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -498,37 +497,6 @@ N = 2^{n}
 <li><strong>Sampling</strong> measures a function’s value at discrete intervals; in MATLAB, <code>imresize</code> handles resampling.</li>
 <li><strong>Quantization</strong> replaces a continuous amplitude range with a discrete set of levels; in MATLAB, <code>grayslice</code> handles requantization.</li>
 </ul>
-</section>
-<section id="problems" class="level2">
-<h2 class="anchored" data-anchor-id="problems">Problems</h2>
-<p><strong>Problem 1.</strong> Experiment with a scanner’s dpi setting and scan the same material (e.g., a photograph) several times at different settings but the same file format. Compare the resulting file size and perceived quality for each scan. <em>(Expect file size to grow roughly with the square of the dpi setting for a fixed physical scan area, while perceived quality gains diminish once the dpi exceeds what the printed/original material can actually resolve.)</em></p>
-<p><strong>Problem 2.</strong> Repeat Problem 1, but this time keep the scanner settings fixed and vary only the file format used to save the result. Are there significant differences in file size? What about subjective quality? <em>(Expect large differences in size between uncompressed formats like BMP/TIFF and compressed formats like JPEG, with JPEG’s lossy compression trading some subjective quality — especially around edges — for a much smaller file.)</em></p>
-<p><strong>Problem 3.</strong> Assume a monochrome image with <span class="math inline">1024 \times 1024</span> pixels and 256 gray levels.</p>
-<ol type="a">
-<li>Calculate the total file size (in bytes), assuming a 32-byte header (containing basic information such as image width and height) and no compression.</li>
-</ol>
-<p><span class="math display">
-1024 \times 1024 \times 1\ \text{byte} + 32\ \text{bytes} = 1{,}048{,}576 + 32 = 1{,}048{,}608\ \text{bytes}
-</span></p>
-<ol start="2" type="a">
-<li>Suppose the original image is subsampled by a factor of 2 in both dimensions. Calculate the new file size, assuming the header size is unchanged.</li>
-</ol>
-<p><span class="math display">
-512 \times 512 \times 1\ \text{byte} + 32\ \text{bytes} = 262{,}144 + 32 = 262{,}176\ \text{bytes}
-</span></p>
-<ol start="3" type="a">
-<li>Suppose the original (<span class="math inline">1024 \times 1024</span>) image is instead requantized so that 2 pixels are packed per byte. Calculate the new file size, again assuming the header size is unchanged.</li>
-</ol>
-<p><span class="math display">
-\frac{1024 \times 1024}{2}\ \text{bytes} + 32\ \text{bytes} = 524{,}288 + 32 = 524{,}320\ \text{bytes}
-</span></p>
-<ol start="4" type="a">
-<li>How many gray levels does the image in part (c) have?</li>
-</ol>
-<p>Packing 2 pixels per byte means each pixel uses 4 bits, so:</p>
-<p><span class="math display">
-N = 2^{4} = 16\ \text{gray levels}
-</span></p>
 
 
 </section>
