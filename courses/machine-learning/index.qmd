@@ -18,9 +18,11 @@ listing:
       tags: "Tags"
 ---
 
-## Về môn học
+## Introduction
 
-Nền tảng ML: hồi quy, cây quyết định, ensemble methods, xử lý distribution shift.
+Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. The later part covers practical deployment concerns, particularly detecting and handling distribution shift.
+
+Theory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch.
 
 ## Lectures
 

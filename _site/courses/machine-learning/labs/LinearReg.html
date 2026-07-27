@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>linearreg – Le Nhut Thanh Quang</title>
+<title>Ghi chú – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -160,12 +160,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ghi chú</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<div id="cell-0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1781946931950,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:309,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="81a468cd-faca-472a-f308-0976690ec6ba" data-execution_count="4">
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Cài đặt <strong>Linear Regression</strong> từ đầu (không dùng sklearn), huấn luyện bằng gradient descent:</p>
+<ul>
+<li><code>predict(X) = X·w + b</code></li>
+<li>Gradient của MSE theo <code>w</code>, <code>b</code> (trung bình trên toàn bộ batch)</li>
+<li>Learning rate decay theo epoch: <code>lr = lr0 / (1 + decay_rate * epoch)</code></li>
+<li>Trực quan hóa đường hồi quy qua các epoch để thấy quá trình hội tụ</li>
+</ul>
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1781946931950,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:309,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="81a468cd-faca-472a-f308-0976690ec6ba" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>

@@ -9,7 +9,7 @@ tags: [gradient-descent, optimization, backpropagation]
 date: 2026-07-26
 ---
 
-# Lecture 1 – Gradient Descent
+# Gradient Descent
 
 ## 1. Ý tưởng cốt lõi: quả bóng lăn xuống đồi
 

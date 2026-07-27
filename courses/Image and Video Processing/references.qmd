@@ -9,8 +9,7 @@ Paper và tài liệu tham khảo — **chỉ link, không host file**. Ghi chú
 
 | Title | Type | Link | Liên quan | Status |
 |---|---|---|---|---|
-| Digital Image Processing (Gonzalez & Woods) | book | — | nền tảng cả môn | reading |
-| ResNet — He et al. 2015 | paper | <https://arxiv.org/abs/1512.03385> | deep features | done |
-| ImageNet Classification (AlexNet) | paper | <https://papers.nips.cc/paper/4824> | CNN cơ bản | done |
+| Digital Image Processing (Gonzalez & Woods) | book | — |  | reading |
+
 
 : Status = todo · reading · done

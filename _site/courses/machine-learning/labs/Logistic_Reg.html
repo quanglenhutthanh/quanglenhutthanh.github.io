@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>logistic_reg – Le Nhut Thanh Quang</title>
+<title>Ghi chú – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -160,16 +160,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ghi chú</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<div id="cell-0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782010387185,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:4,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-execution_count="1">
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<ul>
+<li>Khảo sát <code>log1p(x)</code> và <code>ln(x)</code> trên <code>[0, 1]</code> để hiểu hành vi của log gần 0 (lý do cross-entropy cần epsilon để tránh <code>log(0)</code>).</li>
+<li><strong>Binary Logistic Regression</strong> cài đặt từ đầu: sigmoid, binary cross-entropy, gradient descent, dừng sớm khi độ lớn gradient &lt; <code>epsilon</code>; trực quan hóa decision boundary và cost/gradient theo iteration.</li>
+<li><strong>Multi-class Logistic Regression</strong> (softmax regression): one-hot encode nhãn, softmax ổn định số học (trừ max trước khi exp), categorical cross-entropy, learning rate decay theo bậc thang; trực quan hóa decision regions qua các mốc huấn luyện và confusion matrix.</li>
+</ul>
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782010387185,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:4,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782010387995,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:450,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="a0cbdcee-ef9c-4a90-8643-2c127e01d41b" data-execution_count="2">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782010387995,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:450,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="a0cbdcee-ef9c-4a90-8643-2c127e01d41b" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate x values from a small positive number up to 1 to avoid log(0)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">400</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -194,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You requested <code>log base e</code>, which is the natural logarithm, usually written as <code>ln(x)</code> or <code>log(x)</code>. It’s important to remember that <code>log(0)</code> is undefined, so when plotting <code>log(x)</code> within the range [0, 1], we must start <code>x</code> from a very small positive number to avoid errors and visualize its behavior as it approaches zero.</p>
-<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782010437636,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:189,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="f8a56532-8dd9-45ee-81a2-76f2cb927e12" data-execution_count="3">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782010437636,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:189,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="f8a56532-8dd9-45ee-81a2-76f2cb927e12" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate x values from a very small positive number (e.g., 1e-9) up to 1</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x_ln <span class="op">=</span> np.linspace(<span class="fl">1e-9</span>, <span class="dv">1</span>, <span class="dv">400</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -219,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782014455709,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:1810,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="c25363a5-e221-4033-8367-38ace6bd989e" data-execution_count="5">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782014455709,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:1810,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="c25363a5-e221-4033-8367-38ace6bd989e" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -506,7 +527,7 @@ Plotting 11 decision boundaries on a single plot:</code></pre>
 Final training accuracy: 98.50%</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024858819,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:7118,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="72a29011-7c0b-4106-e04f-bc240711b816" data-execution_count="18">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024858819,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:7118,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="72a29011-7c0b-4106-e04f-bc240711b816" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -838,7 +859,7 @@ Final training accuracy (Multi-Class): 99.00%</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782025818579,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:8100,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="3af3fb40-d83f-4176-f900-c28ace9953d7" data-execution_count="19">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782025818579,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:8100,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="3af3fb40-d83f-4176-f900-c28ace9953d7" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confusion matrix</span></span>
@@ -873,39 +894,39 @@ Confusion Matrix (Multi-Class):
 </div>
 </div>
 </div>
-<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782023971221,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:12,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="46a186d0-06e5-4d45-df53-0d48e970f5ea" data-execution_count="7">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782023971221,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:12,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="46a186d0-06e5-4d45-df53-0d48e970f5ea" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X_multi[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>array([-1.60262868, -2.11061144])</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024230003,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:52,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="ccddbbbe-2b67-47d4-9bce-38ab90b3fbca" data-execution_count="13">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024230003,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:52,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="ccddbbbe-2b67-47d4-9bce-38ab90b3fbca" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_multi[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>np.int64(0)</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024032649,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:14,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="df01e760-9b5d-4b42-ab13-7c7ce30b6275" data-execution_count="8">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024032649,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:14,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="df01e760-9b5d-4b42-ab13-7c7ce30b6275" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>X_multi.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>(300, 2)</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024088387,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:45,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="b663e822-d179-447e-a30b-8d369484f530" data-execution_count="10">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024088387,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:45,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="b663e822-d179-447e-a30b-8d369484f530" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mclr_model.weights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>array([[-1.04258849,  2.4672815 , -1.42469301],
        [-2.7849625 ,  0.97322799,  1.81173451]])</code></pre>
 </div>
 </div>
-<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024057875,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:11,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="95083066-0828-4e1f-9055-3b839b26546e" data-execution_count="9">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024057875,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:11,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="95083066-0828-4e1f-9055-3b839b26546e" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.dot(X_multi[<span class="dv">0</span>,:], mclr_model.weights) <span class="op">+</span> mclr_model.bias</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>array([ 7.81224451, -5.39231954, -2.41992496])</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024206046,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:12,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="535e6aba-963f-4dcc-e22a-5a3c60882b58" data-execution_count="12">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782024206046,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:12,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="535e6aba-963f-4dcc-e22a-5a3c60882b58" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mclr_model.softmax(z.reshape(<span class="dv">1</span>,<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>array([[9.99962166e-01, 1.84210451e-06, 3.59922363e-05]])</code></pre>

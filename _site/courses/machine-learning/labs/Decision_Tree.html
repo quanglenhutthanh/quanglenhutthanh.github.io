@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>decision_tree – Le Nhut Thanh Quang</title>
+<title>Ghi chú – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -160,12 +160,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ghi chú</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<div id="cell-0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782621283409,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:40,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="b79191fd-ca61-410a-8e03-f66b61d197ab" data-execution_count="9">
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Bộ dữ liệu phân loại giả lập (<code>make_classification</code>, 4 lớp) dùng để so sánh các kỹ thuật:</p>
+<ul>
+<li><strong>Learning curve</strong> của <code>DecisionTreeClassifier</code> — theo dõi score train/CV theo kích thước tập huấn luyện để nhận biết underfit/overfit.</li>
+<li><strong>K-Fold vs Stratified K-Fold</strong> — so sánh độ ổn định của accuracy giữa hai chiến lược CV.</li>
+<li><strong>Grid Search vs Random Search</strong> — tìm <code>max_depth</code>/<code>criterion</code> tốt nhất cho Decision Tree, rồi mở rộng sang Random Forest (<code>n_estimators</code>, <code>min_samples_leaf</code>).</li>
+<li>So sánh Decision Tree (dễ overfit, train acc = 1.0) với Random Forest (test acc cao hơn nhờ bagging nhiều cây).</li>
+</ul>
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782621283409,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:40,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="b79191fd-ca61-410a-8e03-f66b61d197ab" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
@@ -186,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Kích thước tập kiểm tra: (150, 10)</code></pre>
 </div>
 </div>
-<div id="cell-1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782621726212,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:3053,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="aba7646e-b4b1-412e-ef8d-c0d440ce8673" data-execution_count="16">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782621726212,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:3053,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="aba7646e-b4b1-412e-ef8d-c0d440ce8673" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Khởi tạo mô hình cây quyết định</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>estimator <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">42</span>, criterion<span class="op">=</span><span class="st">'gini'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -230,13 +253,13 @@ Kích thước tập kiểm tra: (150, 10)</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782621015974,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:3,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="d3e3609d-38b7-4eac-a0f2-5319e7b46e08" data-execution_count="5">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782621015974,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:3,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="d3e3609d-38b7-4eac-a0f2-5319e7b46e08" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Unique classes in y: </span><span class="sc">{</span>np<span class="sc">.</span>unique(y)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unique classes in y: [0 1 2 3]</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782621940272,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:186,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="b69d627d-e591-43ad-c45c-23bb25c48171" data-execution_count="17">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782621940272,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:186,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="b69d627d-e591-43ad-c45c-23bb25c48171" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> KFold, StratifiedKFold, cross_val_score</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. So sánh K-fold và Stratified K-fold</span></span>
@@ -282,7 +305,7 @@ Stratified K-Fold Cross-Validation Accuracy: 0.8040 (+/- 0.0307)</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782636057709,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:150,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="3c3fcfb5-fb0f-452c-d3b7-b4e046ef82cb" data-execution_count="32">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782636057709,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:150,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="3c3fcfb5-fb0f-452c-d3b7-b4e046ef82cb" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Huấn luyện mô hình Logistic Regression ---"</span>)</span>
@@ -305,7 +328,7 @@ Stratified K-Fold Cross-Validation Accuracy: 0.8040 (+/- 0.0307)</code></pre>
   warnings.warn(</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782623172424,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:962,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="476c9e60-52c4-4988-b668-f96fa05c728e" data-execution_count="23">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782623172424,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:962,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="476c9e60-52c4-4988-b668-f96fa05c728e" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV, RandomizedSearchCV</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> randint</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -384,7 +407,7 @@ Random Search tìm thấy tham số tốt nhất: {'max_depth': 10, 'criterion':
 Độ chính xác trên tập kiểm tra (Random Search): 0.7533</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635109673,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:18,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="58af4730-153c-4338-900a-914c17f07b57" data-execution_count="27">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635109673,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:18,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="58af4730-153c-4338-900a-914c17f07b57" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>estimator <span class="op">=</span> DecisionTreeClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>estimator.fit(X_train, y_train)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(estimator.score(X_test, y_test))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -392,13 +415,13 @@ Random Search tìm thấy tham số tốt nhất: {'max_depth': 10, 'criterion':
 <pre><code>0.8133333333333334</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635152999,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:33,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="e8d0a3f3-b73e-4b5a-d691-efdf5c593fbc" data-execution_count="28">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635152999,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:33,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="e8d0a3f3-b73e-4b5a-d691-efdf5c593fbc" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>estimator.score(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>1.0</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635004262,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:2171,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="f584b066-14a3-46ff-af04-4b197cd7076d" data-execution_count="25">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635004262,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:2171,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="f584b066-14a3-46ff-af04-4b197cd7076d" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the Random Forest Classifier</span></span>
@@ -414,13 +437,13 @@ Random Search tìm thấy tham số tốt nhất: {'max_depth': 10, 'criterion':
 <pre><code>Accuracy of Random Forest Classifier on the test set: 0.8400</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635182164,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:33,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="a914285d-4690-49e1-8cb2-8134ffc8f673" data-execution_count="30">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635182164,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:33,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="a914285d-4690-49e1-8cb2-8134ffc8f673" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rf_classifier.score(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>1.0</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635344785,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:124770,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="2a5b1dbe-fe6b-4456-8670-9e971d7a76c3" data-execution_count="31">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1782635344785,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:124770,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="2a5b1dbe-fe6b-4456-8670-9e971d7a76c3" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV, RandomizedSearchCV</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> randint</span>
