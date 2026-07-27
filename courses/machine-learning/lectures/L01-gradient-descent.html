@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,13 +13,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -43,10 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-5aa9d1a5694636ef1dbfb6c6cf45d57d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lecture-1-gradient-descent" id="toc-lecture-1-gradient-descent" class="nav-link active" data-scroll-target="#lecture-1-gradient-descent">Lecture 1 – Gradient Descent</a>
+  <li><a href="#gradient-descent" id="toc-gradient-descent" class="nav-link active" data-scroll-target="#gradient-descent">Gradient Descent</a>
   <ul class="collapse">
   <li><a href="#ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi" id="toc-ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi" class="nav-link" data-scroll-target="#ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi">1. Ý tưởng cốt lõi: quả bóng lăn xuống đồi</a></li>
   <li><a href="#vì-sao-machine-learning-cần-cái-này" id="toc-vì-sao-machine-learning-cần-cái-này" class="nav-link" data-scroll-target="#vì-sao-machine-learning-cần-cái-này">2. Vì sao Machine Learning cần cái này</a></li>
@@ -176,8 +173,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="lecture-1-gradient-descent" class="level1">
-<h1>Lecture 1 – Gradient Descent</h1>
+<section id="gradient-descent" class="level1">
+<h1>Gradient Descent</h1>
 <section id="ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi" class="level2">
 <h2 class="anchored" data-anchor-id="ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi">1. Ý tưởng cốt lõi: quả bóng lăn xuống đồi</h2>
 <p>Tưởng tượng bạn đang đứng trên một ngọn đồi, mắt bịt kín, và nhiệm vụ là đi xuống điểm thấp nhất. Bạn không thấy toàn cảnh ngọn đồi, chỉ cảm nhận được mặt đất dưới chân đang dốc theo hướng nào. Chiến lược hợp lý nhất: ở mỗi bước, cảm nhận hướng dốc xuống nhiều nhất, bước một bước theo hướng đó, rồi lặp lại.</p>
@@ -487,7 +484,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

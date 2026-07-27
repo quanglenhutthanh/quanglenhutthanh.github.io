@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-07-26">
 
-<title>Ghi chú – Le Nhut Thanh Quang</title>
+<title>Gradient Descent – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,41 +26,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -159,15 +125,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gradient-descent" id="toc-gradient-descent" class="nav-link active" data-scroll-target="#gradient-descent">Gradient Descent</a>
+  <ul class="collapse">
+  <li><a href="#ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi" id="toc-ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi" class="nav-link" data-scroll-target="#ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi">1. Ý tưởng cốt lõi: quả bóng lăn xuống đồi</a></li>
+  <li><a href="#vì-sao-machine-learning-cần-cái-này" id="toc-vì-sao-machine-learning-cần-cái-này" class="nav-link" data-scroll-target="#vì-sao-machine-learning-cần-cái-này">2. Vì sao Machine Learning cần cái này</a></li>
+  <li><a href="#gradient-là-gì" id="toc-gradient-là-gì" class="nav-link" data-scroll-target="#gradient-là-gì">3. Gradient là gì</a></li>
+  <li><a href="#vì-sao-phải-lấy-dấu-ngược-lại" id="toc-vì-sao-phải-lấy-dấu-ngược-lại" class="nav-link" data-scroll-target="#vì-sao-phải-lấy-dấu-ngược-lại">4. Vì sao phải “lấy dấu ngược lại”</a></li>
+  <li><a href="#công-thức-cập-nhật-tham-số" id="toc-công-thức-cập-nhật-tham-số" class="nav-link" data-scroll-target="#công-thức-cập-nhật-tham-số">5. Công thức cập nhật tham số</a></li>
+  <li><a href="#ví-dụ-số-cụ-thể-từng-bước-một" id="toc-ví-dụ-số-cụ-thể-từng-bước-một" class="nav-link" data-scroll-target="#ví-dụ-số-cụ-thể-từng-bước-một">6. Ví dụ số cụ thể, từng bước một</a></li>
+  <li><a href="#learning-rate-quan-trọng-thế-nào" id="toc-learning-rate-quan-trọng-thế-nào" class="nav-link" data-scroll-target="#learning-rate-quan-trọng-thế-nào">7. Learning rate quan trọng thế nào</a></li>
+  <li><a href="#khi-có-nhiều-hơn-một-tham-số" id="toc-khi-có-nhiều-hơn-một-tham-số" class="nav-link" data-scroll-target="#khi-có-nhiều-hơn-một-tham-số">8. Khi có nhiều hơn một tham số</a></li>
+  <li><a href="#các-biến-thể-phổ-biến-của-gradient-descent" id="toc-các-biến-thể-phổ-biến-của-gradient-descent" class="nav-link" data-scroll-target="#các-biến-thể-phổ-biến-của-gradient-descent">9. Các biến thể phổ biến của Gradient Descent</a></li>
+  <li><a href="#các-phiên-bản-cải-tiến-nghe-qua-để-không-bỡ-ngỡ" id="toc-các-phiên-bản-cải-tiến-nghe-qua-để-không-bỡ-ngỡ" class="nav-link" data-scroll-target="#các-phiên-bản-cải-tiến-nghe-qua-để-không-bỡ-ngỡ">10. Các phiên bản cải tiến (nghe qua để không bỡ ngỡ)</a></li>
+  <li><a href="#những-hiểu-lầm-lỗi-thường-gặp" id="toc-những-hiểu-lầm-lỗi-thường-gặp" class="nav-link" data-scroll-target="#những-hiểu-lầm-lỗi-thường-gặp">11. Những hiểu lầm / lỗi thường gặp</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">12. Tóm tắt</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ghi chú</h1>
+<h1 class="title">Gradient Descent</h1>
 </div>
 
 
@@ -175,6 +161,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 26, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -184,107 +176,242 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Cài đặt <strong>Linear Regression</strong> từ đầu (không dùng sklearn), huấn luyện bằng gradient descent:</p>
+<section id="gradient-descent" class="level1">
+<h1>Gradient Descent</h1>
+<section id="ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi" class="level2">
+<h2 class="anchored" data-anchor-id="ý-tưởng-cốt-lõi-quả-bóng-lăn-xuống-đồi">1. Ý tưởng cốt lõi: quả bóng lăn xuống đồi</h2>
+<p>Tưởng tượng bạn đang đứng trên một ngọn đồi, mắt bịt kín, và nhiệm vụ là đi xuống điểm thấp nhất. Bạn không thấy toàn cảnh ngọn đồi, chỉ cảm nhận được mặt đất dưới chân đang dốc theo hướng nào. Chiến lược hợp lý nhất: ở mỗi bước, cảm nhận hướng dốc xuống nhiều nhất, bước một bước theo hướng đó, rồi lặp lại.</p>
+<p>Đó chính xác là Gradient Descent. Trong Machine Learning / Deep Learning:</p>
 <ul>
-<li><code>predict(X) = X·w + b</code></li>
-<li>Gradient của MSE theo <code>w</code>, <code>b</code> (trung bình trên toàn bộ batch)</li>
-<li>Learning rate decay theo epoch: <code>lr = lr0 / (1 + decay_rate * epoch)</code></li>
-<li>Trực quan hóa đường hồi quy qua các epoch để thấy quá trình hội tụ</li>
+<li>“Ngọn đồi” là hàm loss (hàm mất mát) — đo model đang dự đoán sai bao nhiêu.</li>
+<li>“Vị trí đang đứng” là bộ tham số hiện tại của model (weights, bias).</li>
+<li>“Cảm nhận độ dốc” là tính gradient (đạo hàm) của loss theo từng tham số.</li>
+<li>“Bước xuống dốc” là cập nhật tham số theo hướng ngược với gradient.</li>
 </ul>
-<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1781946931950,&quot;user_tz&quot;:-420,&quot;elapsed&quot;:309,&quot;user&quot;:{&quot;displayName&quot;:&quot;Dũng Cao Tiến&quot;,&quot;userId&quot;:&quot;06247964663880430803&quot;}}}" data-outputid="81a468cd-faca-472a-f308-0976690ec6ba" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LinearRegression:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, learning_rate<span class="op">=</span><span class="fl">0.01</span>, decay_rate<span class="op">=</span><span class="fl">0.01</span>, epochs<span class="op">=</span><span class="dv">100</span>):</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lr <span class="op">=</span> learning_rate</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.decay_rate <span class="op">=</span> decay_rate</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.epochs <span class="op">=</span> epochs</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weights <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bias <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.dot(X, <span class="va">self</span>.weights) <span class="op">+</span> <span class="va">self</span>.bias</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compute_gradients(<span class="va">self</span>, X, y, y_pred):</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        n_samples <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        dw <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> n_samples) <span class="op">*</span> np.dot(X.T, (y_pred <span class="op">-</span> y))</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        db <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> n_samples) <span class="op">*</span> np.<span class="bu">sum</span>(y_pred <span class="op">-</span> y)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> dw, db</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        n_samples, n_features <span class="op">=</span> X.shape</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weights <span class="op">=</span> np.zeros(n_features)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bias <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        current_lr <span class="op">=</span> <span class="va">self</span>.lr</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Khởi tạo biểu đồ duy nhất</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        plt.scatter(X, y, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Vẽ đường tại Epoch 0 (Lúc mới khởi tạo)</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        y_init <span class="op">=</span> <span class="va">self</span>.predict(X)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        plt.plot(X, y_init, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="st">'Initial (Epoch 0)'</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        colors <span class="op">=</span> plt.cm.jet(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="va">self</span>.epochs <span class="op">//</span> <span class="dv">10</span>))</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        color_idx <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.epochs):</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            y_pred <span class="op">=</span> <span class="va">self</span>.predict(X)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            dw, db <span class="op">=</span> <span class="va">self</span>.compute_gradients(X, y, y_pred)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.weights <span class="op">-=</span> current_lr <span class="op">*</span> dw</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.bias <span class="op">-=</span> current_lr <span class="op">*</span> db</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            current_lr <span class="op">=</span> <span class="va">self</span>.lr <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> <span class="va">self</span>.decay_rate <span class="op">*</span> epoch))</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (epoch <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> np.mean((y_pred <span class="op">-</span> y)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f'Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">, Loss: </span><span class="sc">{</span>loss<span class="sc">:.4f}</span><span class="ss">, LR: </span><span class="sc">{</span>current_lr<span class="sc">:.6f}</span><span class="ss">'</span>)</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Vẽ đường dự đoán hiện tại</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>                plt.plot(X, y_pred, color<span class="op">=</span>colors[color_idx], alpha<span class="op">=</span><span class="fl">0.6</span>,</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>                         label<span class="op">=</span><span class="ss">f'Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span> <span class="cf">if</span> (epoch<span class="op">+</span><span class="dv">1</span>) <span class="op">%</span> <span class="dv">20</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> epoch<span class="op">==</span><span class="dv">9</span> <span class="cf">else</span> <span class="st">""</span>)</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>                color_idx <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'Convergence of Linear Regression (Including Initial State)'</span>)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'X'</span>)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'y'</span>)</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        plt.legend()</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.random.rand(<span class="dv">100</span>, <span class="dv">1</span>)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> X.flatten() <span class="op">+</span> np.random.randn(<span class="dv">100</span>)</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LinearRegression(learning_rate<span class="op">=</span><span class="fl">0.1</span>, decay_rate<span class="op">=</span><span class="fl">0.05</span>, epochs<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    model.fit(X, y)</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Final Weights: </span><span class="sc">{</span>model<span class="sc">.</span>weights[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">, Bias: </span><span class="sc">{</span>model<span class="sc">.</span>bias<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Epoch 10, Loss: 1.8469, LR: 0.068966
-Epoch 20, Loss: 1.1692, LR: 0.051282
-Epoch 30, Loss: 1.1257, LR: 0.040816
-Epoch 40, Loss: 1.1081, LR: 0.033898
-Epoch 50, Loss: 1.0957, LR: 0.028986
-Epoch 60, Loss: 1.0858, LR: 0.025316
-Epoch 70, Loss: 1.0778, LR: 0.022472
-Epoch 80, Loss: 1.0710, LR: 0.020202
-Epoch 90, Loss: 1.0652, LR: 0.018349
-Epoch 100, Loss: 1.0601, LR: 0.016807</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="LinearReg_files/figure-html/cell-2-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Final Weights: 3.4033, Bias: 3.3166</code></pre>
-</div>
-</div>
+<p>Mục tiêu: tìm bộ tham số làm loss nhỏ nhất, tức model dự đoán càng gần đúng càng tốt.</p>
+<p>Minh họa dạng ASCII của một hàm loss đơn giản (hình chữ U, giống cái bát):</p>
+<pre><code>loss
+ 25 |*                                 *
+    | *                               *
+ 16 |   *                           *
+    |     *                       *
+  9 |        *                 *
+    |           *           *
+  4 |               *   *
+    |                 *
+  0 +------------------+------------------ x (tham số)
+   -5        -2.5       0       2.5       5</code></pre>
+<p>Đáy bát (x = 0) là nơi loss thấp nhất — đích cần tới. Nếu bạn đứng ở x = 4.3 (bên phải), quả bóng cần lăn sang trái. Nếu bạn ở x = -4.3, bóng cần lăn sang phải. Gradient Descent chính là quy tắc toán học cho bóng biết nên lăn về hướng nào, và bao xa mỗi bước.</p>
+</section>
+<section id="vì-sao-machine-learning-cần-cái-này" class="level2">
+<h2 class="anchored" data-anchor-id="vì-sao-machine-learning-cần-cái-này">2. Vì sao Machine Learning cần cái này</h2>
+<p>Khi train một model, mục tiêu luôn là: tìm bộ tham số làm hàm loss nhỏ nhất. Với model đơn giản (vài tham số) đôi khi có thể giải trực tiếp bằng đại số. Nhưng deep learning có thể có hàng triệu đến hàng tỷ tham số — không cách nào giải trực tiếp được. Gradient Descent là phương pháp lặp: đoán một điểm bắt đầu, rồi liên tục điều chỉnh dần dần để loss giảm xuống, cho tới khi gần như không giảm thêm được nữa (hội tụ).</p>
+</section>
+<section id="gradient-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-là-gì">3. Gradient là gì</h2>
+<p>Gradient (đạo hàm) tại một điểm cho biết hai thứ:</p>
+<ol type="1">
+<li>Hướng: nếu đi tiếp theo hướng dương của tham số, loss sẽ tăng hay giảm.</li>
+<li>Độ lớn: dốc bao nhiêu — dốc càng đứng, gradient càng lớn (giá trị tuyệt đối lớn); gần đáy, mặt đất gần như phẳng, gradient tiến về 0.</li>
+</ol>
+<p>Ví dụ với hàm loss đơn giản L(x) = x², đạo hàm là L’(x) = 2x.</p>
+<ul>
+<li>Tại x = 4.3: gradient = 2 × 4.3 = 8.6 (dương lớn) → đang ở chỗ dốc, bên phải đáy.</li>
+<li>Tại x = 0.5: gradient = 1.0 (dương nhỏ) → gần đáy hơn, dốc thoải hơn.</li>
+<li>Tại x = 0: gradient = 0 → đáy, hết dốc, đây là điểm dừng lý tưởng.</li>
+</ul>
+</section>
+<section id="vì-sao-phải-lấy-dấu-ngược-lại" class="level2">
+<h2 class="anchored" data-anchor-id="vì-sao-phải-lấy-dấu-ngược-lại">4. Vì sao phải “lấy dấu ngược lại”</h2>
+<p>Đây là điểm rất hay gây nhầm lẫn. Gradient chỉ hướng làm loss <strong>tăng</strong> nhanh nhất (hướng đi lên dốc), không phải hướng xuống. Muốn loss giảm, phải đi ngược chiều gradient — vì vậy công thức cập nhật luôn có dấu trừ.</p>
+<p>Xét lại ví dụ L(x) = x²:</p>
+<ul>
+<li>Ở x = 4.3 (bên phải đáy): gradient = +8.6 (dương). Dấu dương nghĩa là “nếu x tăng thêm, loss sẽ tăng”. Vậy để loss giảm, phải giảm x. Công thức x_mới = x − lr × gradient = 4.3 − lr × 8.6 → x giảm xuống. Đúng hướng cần đi.</li>
+<li>Ở x = -4.3 (bên trái đáy): gradient = -8.6 (âm). Dấu âm nghĩa là “nếu x giảm thêm, loss sẽ tăng”, suy ra tăng x thì loss giảm. Công thức x_mới = x − lr × gradient = -4.3 − lr × (-8.6) = -4.3 + lr × 8.6 → x tăng lên. Cũng đúng hướng cần đi.</li>
+</ul>
+<p>Quy tắc gọn: gradient dương → trừ (đi xuống bên trái); gradient âm → cộng (đi xuống bên phải). Dấu trừ trong công thức chính là bước “đảo ngược” từ hướng đi lên (gradient) sang hướng đi xuống (thứ mình thực sự muốn).</p>
+</section>
+<section id="công-thức-cập-nhật-tham-số" class="level2">
+<h2 class="anchored" data-anchor-id="công-thức-cập-nhật-tham-số">5. Công thức cập nhật tham số</h2>
+<pre><code>x_mới = x_cũ − learning_rate × gradient(x_cũ)</code></pre>
+<p>Ba thành phần:</p>
+<ul>
+<li><code>x_cũ</code>: giá trị tham số hiện tại (điểm đang đứng trên đồi).</li>
+<li><code>gradient(x_cũ)</code>: độ dốc tại điểm đó, cho biết hướng và độ lớn của “hướng lên dốc”.</li>
+<li><code>learning_rate</code> (tốc độ học, viết tắt <code>lr</code>): một số dương nhỏ, quyết định mỗi bước đi xa bao nhiêu.</li>
+</ul>
+<p>Lặp lại công thức này nhiều lần (nhiều “iteration” hay “epoch”), x sẽ tiến dần về điểm loss nhỏ nhất.</p>
+</section>
+<section id="ví-dụ-số-cụ-thể-từng-bước-một" class="level2">
+<h2 class="anchored" data-anchor-id="ví-dụ-số-cụ-thể-từng-bước-một">6. Ví dụ số cụ thể, từng bước một</h2>
+<p>Dùng L(x) = x², bắt đầu tại x = 4.3, learning rate = 0.1:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bước</th>
+<th>x (trước)</th>
+<th>gradient = 2x</th>
+<th>x_mới = x − 0.1×gradient</th>
+<th>loss = x²</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>4.30</td>
+<td>8.60</td>
+<td>4.30 − 0.86 = 3.44</td>
+<td>18.49</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>3.44</td>
+<td>6.88</td>
+<td>3.44 − 0.688 = 2.75</td>
+<td>11.83</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2.75</td>
+<td>5.50</td>
+<td>2.75 − 0.55 = 2.20</td>
+<td>7.56</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2.20</td>
+<td>4.40</td>
+<td>2.20 − 0.44 = 1.76</td>
+<td>4.84</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1.76</td>
+<td>3.52</td>
+<td>1.76 − 0.352 = 1.41</td>
+<td>3.10</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>1.41</td>
+<td>2.82</td>
+<td>1.41 − 0.282 = 1.13</td>
+<td>1.98</td>
+</tr>
+</tbody>
+</table>
+<p>Nhận xét: x càng gần 0, gradient càng nhỏ, bước đi càng ngắn lại một cách tự nhiên — giống như quả bóng chậm dần khi gần tới đáy phẳng. Loss giảm dần đều ở mỗi bước. Nếu tiếp tục lặp, x sẽ tiệm cận 0 (nhưng không bao giờ chạm đúng 0 tuyệt đối, chỉ tiến rất gần).</p>
+</section>
+<section id="learning-rate-quan-trọng-thế-nào" class="level2">
+<h2 class="anchored" data-anchor-id="learning-rate-quan-trọng-thế-nào">7. Learning rate quan trọng thế nào</h2>
+<p>Learning rate là “độ dài mỗi bước chân”. Đây là một trong những nguyên nhân gây confuse nhiều nhất khi mới học, vì cùng một công thức nhưng chọn số khác nhau cho ra kết quả hoàn toàn khác:</p>
+<p><strong>Learning rate quá nhỏ</strong> (ví dụ 0.001–0.01): mỗi bước nhích rất ít. Model vẫn hội tụ đúng hướng, nhưng cực kỳ chậm — train rất lâu mới đạt loss thấp, tốn thời gian và tài nguyên.</p>
+<p><strong>Learning rate vừa phải</strong> (ví dụ 0.05–0.5 với hàm này): bước đi đủ dài để tiến nhanh, nhưng không dài tới mức nhảy quá đà. Bóng lăn mượt xuống đáy, hội tụ nhanh và ổn định — đây là vùng lý tưởng.</p>
+<p><strong>Learning rate quá lớn</strong> (ví dụ trên 1.0 với hàm này): mỗi bước nhảy vọt qua bên kia đáy, xa hơn cả vị trí ban đầu. Loss không giảm mà dao động rồi tăng vọt (diverge). Đây chính là nguyên nhân phổ biến khi thấy loss trong lúc train “nổ” thành NaN hoặc tăng vọt thay vì giảm.</p>
+<p>Ví dụ minh họa bằng số, cùng x₀ = 4.3:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Learning rate</th>
+<th>x sau bước 1</th>
+<th>x sau bước 2</th>
+<th>Xu hướng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.01</td>
+<td>4.21</td>
+<td>4.13</td>
+<td>Hội tụ, nhưng rất chậm</td>
+</tr>
+<tr class="even">
+<td>0.1</td>
+<td>3.44</td>
+<td>2.75</td>
+<td>Hội tụ nhanh, ổn định</td>
+</tr>
+<tr class="odd">
+<td>0.5</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>Chạm đáy ngay lập tức (trường hợp đặc biệt của hàm này)</td>
+</tr>
+<tr class="even">
+<td>1.1</td>
+<td>-0.86</td>
+<td>1.89</td>
+<td>Dao động, biên độ tăng dần → phân kỳ (diverge)</td>
+</tr>
+</tbody>
+</table>
+<p>Trong thực tế, việc chọn learning rate phù hợp (và các kỹ thuật tự động điều chỉnh nó) là một trong những phần quan trọng nhất khi train model.</p>
+</section>
+<section id="khi-có-nhiều-hơn-một-tham-số" class="level2">
+<h2 class="anchored" data-anchor-id="khi-có-nhiều-hơn-một-tham-số">8. Khi có nhiều hơn một tham số</h2>
+<p>Ví dụ trên chỉ có 1 tham số x, nhưng model thật có thể có hàng triệu tham số (weights, bias của từng layer). Nguyên lý không đổi, chỉ mở rộng:</p>
+<ul>
+<li>Thay vì một con số gradient, ta có một <strong>vector gradient</strong>, mỗi phần tử là đạo hàm riêng phần (partial derivative) của loss theo từng tham số.</li>
+<li>Mỗi tham số được cập nhật độc lập theo cùng công thức: <code>tham_số_mới = tham_số_cũ − lr × gradient_riêng_của_tham_số_đó</code>.</li>
+<li>Trong deep learning, việc tính gradient cho hàng triệu tham số cùng lúc được thực hiện hiệu quả bằng thuật toán <strong>backpropagation</strong> (lan truyền ngược) — về bản chất vẫn chỉ là áp dụng liên tiếp quy tắc đạo hàm chuỗi (chain rule), không có gì khác với ví dụ 1 chiều ở trên.</li>
+</ul>
+<p>Hình dung: thay vì quả bóng lăn trên một đường cong (2D), giờ nó lăn trên một mặt nhiều chiều (không thể vẽ ra nhưng toán học vẫn hoạt động y hệt).</p>
+</section>
+<section id="các-biến-thể-phổ-biến-của-gradient-descent" class="level2">
+<h2 class="anchored" data-anchor-id="các-biến-thể-phổ-biến-của-gradient-descent">9. Các biến thể phổ biến của Gradient Descent</h2>
+<ul>
+<li><strong>Batch Gradient Descent</strong>: tính gradient dựa trên toàn bộ tập dữ liệu training rồi mới cập nhật tham số một lần. Chính xác nhưng chậm và tốn bộ nhớ nếu dữ liệu lớn.</li>
+<li><strong>Stochastic Gradient Descent (SGD)</strong>: cập nhật tham số sau mỗi một mẫu dữ liệu. Nhanh hơn, nhưng đường đi “lồi lõm”, nhiễu hơn vì mỗi mẫu cho một ước lượng gradient không hoàn hảo.</li>
+<li><strong>Mini-batch Gradient Descent</strong>: thỏa hiệp giữa hai cái trên — tính gradient trên một nhóm nhỏ mẫu (ví dụ 32, 64, 128 mẫu) mỗi lần cập nhật. Đây là cách phổ biến nhất trong thực tế deep learning hiện nay.</li>
+</ul>
+</section>
+<section id="các-phiên-bản-cải-tiến-nghe-qua-để-không-bỡ-ngỡ" class="level2">
+<h2 class="anchored" data-anchor-id="các-phiên-bản-cải-tiến-nghe-qua-để-không-bỡ-ngỡ">10. Các phiên bản cải tiến (nghe qua để không bỡ ngỡ)</h2>
+<p>Gradient Descent cơ bản (còn gọi “vanilla”) có nhược điểm: dễ bị kẹt ở vùng gần như phẳng, dễ dao động nếu bề mặt loss lởm chởm. Vài cải tiến thường gặp:</p>
+<ul>
+<li><strong>Momentum</strong>: giữ lại một phần “đà” từ bước trước, giống như quả bóng có quán tính thật, giúp vượt qua các đoạn gần phẳng nhanh hơn và bớt dao động.</li>
+<li><strong>RMSProp / Adagrad</strong>: tự động điều chỉnh learning rate cho từng tham số riêng biệt, dựa trên lịch sử độ lớn gradient của tham số đó.</li>
+<li><strong>Adam</strong>: kết hợp ý tưởng của Momentum và RMSProp, hiện là optimizer mặc định phổ biến nhất trong deep learning vì hội tụ nhanh và khá ổn định mà không cần tinh chỉnh learning rate quá kỹ.</li>
+</ul>
+<p>Tất cả các biến thể này vẫn dựa trên nguyên lý gốc: đi ngược hướng gradient để giảm loss — chúng chỉ thông minh hơn ở chỗ <em>đi bao xa</em> và <em>đi theo hướng nào chính xác</em> ở mỗi bước.</p>
+</section>
+<section id="những-hiểu-lầm-lỗi-thường-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="những-hiểu-lầm-lỗi-thường-gặp">11. Những hiểu lầm / lỗi thường gặp</h2>
+<ul>
+<li><strong>Nhầm rằng gradient chỉ hướng đi xuống</strong>: sai — gradient chỉ hướng đi lên (dốc tăng nhanh nhất). Đó là lý do công thức phải có dấu trừ (xem mục 4).</li>
+<li><strong>Loss tăng vọt hoặc thành NaN khi train</strong>: dấu hiệu kinh điển của learning rate quá lớn — bước nhảy quá đà liên tục, giống ví dụ lr = 1.1 ở mục 7.</li>
+<li><strong>Local minima (cực tiểu cục bộ)</strong>: nếu bề mặt loss không phải hình chữ U đơn giản mà có nhiều “hố nhỏ”, quả bóng có thể kẹt ở một hố không phải là hố sâu nhất toàn cục. Trong thực tế deep learning với rất nhiều tham số, vấn đề này ít nghiêm trọng hơn tưởng tượng, và các biến thể như Momentum, SGD (nhờ nhiễu) giúp thoát khỏi các hố nông.</li>
+<li><strong>Learning rate cố định suốt quá trình train là chưa tối ưu</strong>: nhiều pipeline thực tế giảm dần learning rate theo thời gian (learning rate schedule / decay) — bước đi dài lúc đầu để tiến nhanh, ngắn dần về sau để “hạ cánh” chính xác gần đáy.</li>
+<li><strong>Không chuẩn hóa (normalize) dữ liệu đầu vào</strong>: nếu các đặc trưng (feature) có thang đo chênh lệch quá lớn, bề mặt loss sẽ bị méo (giống một thung lũng dài và hẹp thay vì cái bát tròn), khiến Gradient Descent zic-zac chậm chạp thay vì đi thẳng tới đáy.</li>
+</ul>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">12. Tóm tắt</h2>
+<ul>
+<li>Gradient Descent = phương pháp lặp, đi từng bước ngược hướng gradient để giảm dần hàm loss.</li>
+<li>Gradient chỉ hướng dốc lên; phải lấy dấu ngược lại để đi xuống — đó là lý do có dấu trừ trong công thức.</li>
+<li>Công thức lõi: <code>tham_số_mới = tham_số_cũ − learning_rate × gradient</code>.</li>
+<li>Learning rate quá nhỏ → chậm; vừa phải → hội tụ tốt; quá lớn → dao động hoặc phân kỳ.</li>
+<li>Với model thật (nhiều tham số), nguyên lý giống hệt, chỉ là làm đồng thời trên vector gradient, tính bằng backpropagation.</li>
+<li>Batch / SGD / Mini-batch là cách chia dữ liệu khi tính gradient; Momentum / RMSProp / Adam là các cách làm bước đi thông minh hơn.</li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
