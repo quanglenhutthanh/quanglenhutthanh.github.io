@@ -1,5 +1,5 @@
 ---
-title: "My Knowledge Base"
+title: "My Learning Space"
 subtitle: ""
 listing:
   contents:
@@ -14,6 +14,6 @@ Notes rewritten from lecture slides and other material I've studied.
 
 Each course includes:
 
-- lectures
+- topics
 - labs (Jupyter notebooks)
 - references (research papers and useful links)

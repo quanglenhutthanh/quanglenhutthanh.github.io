@@ -3,7 +3,7 @@ title: "Le Nhut Thanh Quang"
 subtitle: "Dynamics 365 Business Central Developer · AI Enthusiast & Researcher"
 about:
   template: trestles
-  image: assets/avatar.png
+  image: assets/avatar.jpg
   image-shape: rounded
   links:
     - icon: github
@@ -17,13 +17,13 @@ about:
       href: https://linkedin.com/in/example
 ---
 
-Hi — my professional home base is **Microsoft Dynamics 365 Business Central / Navision** development, and I'm currently pursuing a Master's degree in AI-oriented software engineering. Outside of that, AI is where my curiosity lives: I spend much of my free time studying and researching it.
+Hi — my professional home base is **Microsoft Dynamics 365 Business Central / Navision** development. Alongside that, I'm pursuing a Master's degree in AI-oriented software engineering, and AI is where my curiosity truly lives: I spend much of my free time studying and researching it.
 
-This site has two parts: a personal introduction (CV, experience) and a **knowledge base** collecting what I learn, both course by course in my Master's program and through my own self-study.
+This site has two parts: a personal introduction (CV, experience) and a **learning space** collecting what I learn, both course by course in my Master's program and through my own self-study.
 
 ### Areas of interest
 
-- **Microsoft Dynamics 365 Business Central / Navision** — ERP development, customization, integrations
-- **AI/ML** — self-directed study and research, from foundations to applied projects
+- **Microsoft Dynamics 365 Business Central / Navision** — ERP development, customization, and integrations, built through hands-on project work in professional settings
+- **AI/ML** — self-directed study and research spanning foundations to applied projects, now structured around a Master's program in AI-oriented software engineering, with a growing focus on computer vision (both classical CV and deep learning)
 
-👉 See the [knowledge base by subject](courses/index.qmd) or the [full CV](about.qmd).
+👉 See the [learning space by subject](courses/index.qmd) or the [full CV](about.qmd).

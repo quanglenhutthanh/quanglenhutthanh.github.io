@@ -13,7 +13,7 @@ listing:
     sort: "lecture_no asc"
     field-display-names:
       lecture_no: "#"
-      title: "Lecture"
+      title: "Topic"
       status: "Status"
       tags: "Tags"
 ---
@@ -24,7 +24,7 @@ Foundations to advanced techniques in Machine Learning. Starts with Gradient Des
 
 Theory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch.
 
-## Lectures
+## Topics
 
 :::{#lectures}
 :::

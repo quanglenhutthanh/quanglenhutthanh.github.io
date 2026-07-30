@@ -12,7 +12,7 @@ website:
       - href: about.qmd
         text: About
       - href: courses/index.qmd
-        text: Knowledge
+        text: Learning Space
     right:
       - icon: github
         href: https://github.com/lenhutthanhquang
