@@ -2,9 +2,9 @@
   {
     "objectID": "courses/index.html",
     "href": "courses/index.html",
-    "title": "My Knowledge Base",
+    "title": "My Learning Space",
     "section": "",
-    "text": "Notes rewritten from lecture slides and other material I’ve studied.\nEach course includes:\n\nlectures\nlabs (Jupyter notebooks)\nreferences (research papers and useful links)\n\n\n\n\n\n\n\n\n\n\n\n\nImage and Video Processing\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\n\nNo matching items"
+    "text": "Notes rewritten from lecture slides and other material I’ve studied.\nEach course includes:\n\ntopics\nlabs (Jupyter notebooks)\nreferences (research papers and useful links)\n\n\n\n\n\n\n\n\n\n\n\n\nImage and Video Processing\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/Image and Video Processing/labs/Session_05.html",
@@ -420,11 +420,11 @@
     "text": "Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. The later part covers practical deployment concerns, particularly detecting and handling distribution shift.\nTheory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch."
   },
   {
-    "objectID": "courses/machine-learning/index.html#lectures",
-    "href": "courses/machine-learning/index.html#lectures",
+    "objectID": "courses/machine-learning/index.html#topics",
+    "href": "courses/machine-learning/index.html#topics",
     "title": "Machine Learning",
-    "section": "Lectures",
-    "text": "Lectures\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Lecture\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nLecture\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nGradient Descent\n\n\ndone\n\n\ngradient-descent, optimization, backpropagation\n\n\n\n\n\n\nNo matching items"
+    "section": "Topics",
+    "text": "Topics\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nTopic\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nGradient Descent\n\n\ndone\n\n\ngradient-descent, optimization, backpropagation\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/machine-learning/index.html#labs",
@@ -466,21 +466,21 @@
     "href": "about.html",
     "title": "About / CV",
     "section": "",
-    "text": "Microsoft Dynamics 365 Business Central / Navision developer by trade, currently completing a Master’s degree in AI-oriented software engineering. AI is where my passion lies — I actively study and research it, with a growing focus on computer vision (both classical CV and deep learning)."
+    "text": "Microsoft Dynamics 365 Business Central / Navision developer by trade. I’m currently pursuing a Master’s degree in AI-oriented software engineering, and AI is where my passion truly lies — I actively study and research it, with a growing focus on computer vision (both classical CV and deep learning)."
   },
   {
     "objectID": "about.html#introduction",
     "href": "about.html#introduction",
     "title": "About / CV",
     "section": "",
-    "text": "Microsoft Dynamics 365 Business Central / Navision developer by trade, currently completing a Master’s degree in AI-oriented software engineering. AI is where my passion lies — I actively study and research it, with a growing focus on computer vision (both classical CV and deep learning)."
+    "text": "Microsoft Dynamics 365 Business Central / Navision developer by trade. I’m currently pursuing a Master’s degree in AI-oriented software engineering, and AI is where my passion truly lies — I actively study and research it, with a growing focus on computer vision (both classical CV and deep learning)."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Le Nhut Thanh Quang",
     "section": "",
-    "text": "Hi — my professional home base is Microsoft Dynamics 365 Business Central / Navision development, and I’m currently pursuing a Master’s degree in AI-oriented software engineering. Outside of that, AI is where my curiosity lives: I spend much of my free time studying and researching it.\nThis site has two parts: a personal introduction (CV, experience) and a knowledge base collecting what I learn, both course by course in my Master’s program and through my own self-study.\n\nAreas of interest\n\nMicrosoft Dynamics 365 Business Central / Navision — ERP development, customization, integrations\nAI/ML — self-directed study and research, from foundations to applied projects\n\n👉 See the knowledge base by subject or the full CV."
+    "text": "Hi — my professional home base is Microsoft Dynamics 365 Business Central / Navision development. Alongside that, I’m pursuing a Master’s degree in AI-oriented software engineering, and AI is where my curiosity truly lives: I spend much of my free time studying and researching it.\nThis site has two parts: a personal introduction (CV, experience) and a learning space collecting what I learn, both course by course in my Master’s program and through my own self-study.\n\nAreas of interest\n\nMicrosoft Dynamics 365 Business Central / Navision — ERP development, customization, and integrations, built through hands-on project work in professional settings\nAI/ML — self-directed study and research spanning foundations to applied projects, now structured around a Master’s program in AI-oriented software engineering, with a growing focus on computer vision (both classical CV and deep learning)\n\n👉 See the learning space by subject or the full CV."
   },
   {
     "objectID": "courses/machine-learning/lectures/Gradient-descent.html",
@@ -1029,11 +1029,11 @@
     "text": "The course combines image and video processing to demonstrate the most important image and video techniques and algorithms."
   },
   {
-    "objectID": "courses/Image and Video Processing/index.html#lectures",
-    "href": "courses/Image and Video Processing/index.html#lectures",
+    "objectID": "courses/Image and Video Processing/index.html#topics",
+    "href": "courses/Image and Video Processing/index.html#topics",
     "title": "Image and Video Processing",
-    "section": "Lectures",
-    "text": "Lectures\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Lecture\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nLecture\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nIntroduction and Overview\n\n\ndone\n\n\nintroduction, image-processing, applications, human-visual-system, machine-vision-system\n\n\n\n\n\n\n2\n\n\nImage Processing Basics\n\n\ndone\n\n\nsampling, quantization, pixel-relationships, image-types, resolution\n\n\n\n\n\n\n3\n\n\nPython and OpenCV Basics for Image Processing\n\n\ndone\n\n\npython, opencv, numpy, matplotlib, image-basics, data-types\n\n\n\n\n\n\n4\n\n\nImage Sensing and Acquisition\n\n\ndone\n\n\nimage-sensors, acquisition, sampling, quantization, resolution\n\n\n\n\n\n\n5\n\n\nArithmetic, Logic, and Geometric Operations\n\n\ndone\n\n\narithmetic-operations, logic-operations, geometric-transformations, interpolation, matlab\n\n\n\n\n\n\n6\n\n\nGray-Level Transformations, Histogram and Neighborhood Processing\n\n\ndone\n\n\ngray-level-transformation, histogram-equalization, spatial-filtering, neighborhood-processing, matlab\n\n\n\n\n\n\n7\n\n\nImage Restoration\n\n\ndone\n\n\nimage-restoration, noise-models, wiener-filter, inverse-filtering, order-statistic-filters\n\n\n\n\n\n\n8\n\n\nMorphological Image Processing\n\n\ndone\n\n\nmorphology, erosion, dilation, opening, closing, structuring-element\n\n\n\n\n\n\n9\n\n\nEdge Detection\n\n\ndone\n\n\nedge-detection, sobel, prewitt, canny, laplacian-of-gaussian\n\n\n\n\n\n\n10\n\n\nImage Segmentation\n\n\ndone\n\n\nsegmentation, thresholding, region-growing, watershed, hough-transform\n\n\n\n\n\n\n11\n\n\nColor Image Processing\n\n\ndone\n\n\ncolor, hsv, cie-xyz, rgb, cmyk, ycbcr, pseudocolor, matlab\n\n\n\n\n\n\n12\n\n\nKey-point Detection\n\n\ndone\n\n\nkeypoint-detection, harris-corner, sift, fast, feature-detection\n\n\n\n\n\n\nNo matching items"
+    "section": "Topics",
+    "text": "Topics\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nTopic\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nIntroduction and Overview\n\n\ndone\n\n\nintroduction, image-processing, applications, human-visual-system, machine-vision-system\n\n\n\n\n\n\n2\n\n\nImage Processing Basics\n\n\ndone\n\n\nsampling, quantization, pixel-relationships, image-types, resolution\n\n\n\n\n\n\n3\n\n\nPython and OpenCV Basics for Image Processing\n\n\ndone\n\n\npython, opencv, numpy, matplotlib, image-basics, data-types\n\n\n\n\n\n\n4\n\n\nImage Sensing and Acquisition\n\n\ndone\n\n\nimage-sensors, acquisition, sampling, quantization, resolution\n\n\n\n\n\n\n5\n\n\nArithmetic, Logic, and Geometric Operations\n\n\ndone\n\n\narithmetic-operations, logic-operations, geometric-transformations, interpolation, matlab\n\n\n\n\n\n\n6\n\n\nGray-Level Transformations, Histogram and Neighborhood Processing\n\n\ndone\n\n\ngray-level-transformation, histogram-equalization, spatial-filtering, neighborhood-processing, matlab\n\n\n\n\n\n\n7\n\n\nImage Restoration\n\n\ndone\n\n\nimage-restoration, noise-models, wiener-filter, inverse-filtering, order-statistic-filters\n\n\n\n\n\n\n8\n\n\nMorphological Image Processing\n\n\ndone\n\n\nmorphology, erosion, dilation, opening, closing, structuring-element\n\n\n\n\n\n\n9\n\n\nEdge Detection\n\n\ndone\n\n\nedge-detection, sobel, prewitt, canny, laplacian-of-gaussian\n\n\n\n\n\n\n10\n\n\nImage Segmentation\n\n\ndone\n\n\nsegmentation, thresholding, region-growing, watershed, hough-transform\n\n\n\n\n\n\n11\n\n\nColor Image Processing\n\n\ndone\n\n\ncolor, hsv, cie-xyz, rgb, cmyk, ycbcr, pseudocolor, matlab\n\n\n\n\n\n\n12\n\n\nKey-point Detection\n\n\ndone\n\n\nkeypoint-detection, harris-corner, sift, fast, feature-detection\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/Image and Video Processing/index.html#labs",
