@@ -1,19 +1,5 @@
 [
   {
-    "listing": "/courses/index.html",
-    "items": [
-      "/courses/Image and Video Processing/index.html",
-      "/courses/machine-learning/index.html"
-    ]
-  },
-  {
-    "listing": "/courses/computer-vision/index.html",
-    "items": [
-      "/courses/computer-vision/lectures/L11-color-image.html",
-      "/courses/computer-vision/lectures/L12-image-compression.html"
-    ]
-  },
-  {
     "listing": "/courses/machine-learning/index.html",
     "items": [
       "/courses/machine-learning/lectures/Gradient-descent.html"
@@ -34,6 +20,13 @@
       "/courses/Image and Video Processing/lectures/L10-image-segmentation.html",
       "/courses/Image and Video Processing/lectures/L11-color-image.html",
       "/courses/Image and Video Processing/lectures/L12-keypoint-detection.html"
+    ]
+  },
+  {
+    "listing": "/courses/index.html",
+    "items": [
+      "/courses/Image and Video Processing/index.html",
+      "/courses/machine-learning/index.html"
     ]
   }
 ]

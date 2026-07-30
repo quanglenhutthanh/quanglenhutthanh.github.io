@@ -14,7 +14,7 @@ listing:
     sort: "lecture_no asc"
     field-display-names:
       lecture_no: "#"
-      title: "Lecture"
+      title: "Topic"
       status: "Status"
       tags: "Tags"
 ---
@@ -23,7 +23,7 @@ listing:
 
 The course combines image and video processing to demonstrate the most important image and video techniques and algorithms.
 
-## Lectures
+## Topics
 
 :::{#lectures}
 :::
