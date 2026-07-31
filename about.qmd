@@ -5,5 +5,28 @@ toc: true
 
 ## Introduction
 
-Microsoft Dynamics 365 Business Central / Navision developer by trade. I'm currently pursuing a Master's degree in AI-oriented software engineering, and AI is where my passion truly lies — I actively study and research it, with a growing focus on computer vision (both classical CV and deep learning).
+Microsoft Dynamics 365 Business Central / Navision (on-premise) specialist by trade, with 10 years of experience across the full project lifecycle. I'm currently pursuing a Master's degree in Software Engineering oriented toward AI applications, and AI is where my passion truly lies — I actively study and research it, with a growing focus on computer vision (both classical CV and deep learning).
+
+## Experience
+
+**Microsoft Dynamics 365 Business Central / Navision (on-premise) — 10 years**
+
+Progressed through the full ERP project lifecycle, from hands-on implementation to technical leadership:
+
+- **Implementer** — initial rollout and configuration
+- **Developer** — customization and extension development
+- **Technical Lead** — guiding implementation and development teams
+- **Consultant** — advising on solution design and business processes
+- **Technical Support** — post-go-live troubleshooting and maintenance
+- **PM Assistant** — supporting project management and delivery
+
+## Education
+
+- **Master's in Software Engineering (AI-oriented)** — in progress
+- **Bachelor's in Software Engineering** — Saigon University (SGU)
+
+## Skills
+
+- **D365 Business Central / Navision (on-premise)** — implementation, customization/development, technical leadership, consulting, technical support, and project management assistance
+- **AI/ML** — self-directed research and study, with a growing focus on computer vision (classical CV and deep learning)
 

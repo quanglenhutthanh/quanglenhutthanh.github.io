@@ -11,9 +11,3 @@ listing:
 ---
 
 Notes rewritten from lecture slides and other material I've studied.
-
-Each course includes:
-
-- topics
-- labs (Jupyter notebooks)
-- references (research papers and useful links)
