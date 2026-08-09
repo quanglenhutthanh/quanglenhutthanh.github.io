@@ -1,8 +1,14 @@
 [
   {
-    "listing": "/courses/machine-learning/index.html",
+    "listing": "/courses/Deep Learning/index.html",
+    "items": []
+  },
+  {
+    "listing": "/courses/index.html",
     "items": [
-      "/courses/machine-learning/lectures/Gradient-descent.html"
+      "/courses/Deep Learning/index.html",
+      "/courses/Image and Video Processing/index.html",
+      "/courses/machine-learning/index.html"
     ]
   },
   {
@@ -23,10 +29,9 @@
     ]
   },
   {
-    "listing": "/courses/index.html",
+    "listing": "/courses/machine-learning/index.html",
     "items": [
-      "/courses/Image and Video Processing/index.html",
-      "/courses/machine-learning/index.html"
+      "/courses/machine-learning/lectures/Gradient-descent.html"
     ]
   }
 ]

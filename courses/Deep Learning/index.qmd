@@ -1,0 +1,40 @@
+---
+title: "Deep Learning"
+subtitle: "Neural Networks, CNN, RNN, Attention và LLM"
+subject: "Deep Learning"
+type: subject
+term: "Spring 2026"
+tags: [deep-learning, cnn, rnn, attention, llm]
+listing:
+  - id: lectures
+    contents: "lectures/*.md"
+    type: table
+    fields: [lecture_no, title, status, tags]
+    sort: "lecture_no asc"
+    field-display-names:
+      lecture_no: "#"
+      title: "Topic"
+      status: "Status"
+      tags: "Tags"
+---
+
+## Introduction
+
+Khoá học đi từ nền tảng mạng nơ-ron (Dense, CNN) đến các kiến trúc hiện đại cho xử lý ảnh và văn bản: CNN cho phân loại ảnh, RNN cho văn bản tuần tự, cơ chế Attention (Query/Key/Value), pre-trained language model (BERT/RoBERTa/PhoBERT) theo hướng pre-train → fine-tune, prompting với LLM (Llama, Chain-of-Thought, zero-shot), và object detection với Faster R-CNN.
+
+Lý thuyết được thực hành qua các lab trên Google Colab (xem Labs bên dưới), từ huấn luyện CNN/RNN từ đầu đến fine-tune model pretrained và suy luận zero-shot với LLM.
+
+## Topics
+
+:::{#lectures}
+:::
+
+## Labs
+
+- [`MNIST-CNN-Dense.ipynb`](labs/MNIST-CNN-Dense.ipynb) — Dense network và CNN cơ bản trên MNIST.
+- [`CNN_Waste_Classification.ipynb`](labs/CNN_Waste_Classification.ipynb) — CNN từ đầu cho phân loại ảnh rác (Organic/Recyclable).
+- [`RNN_Text_Classification_Keras_IMDB.ipynb`](labs/RNN_Text_Classification_Keras_IMDB.ipynb) — Simple RNN cho phân loại cảm xúc review phim IMDB.
+- [`01_Attention_IMDB_Sentence_Classification.ipynb`](labs/01_Attention_IMDB_Sentence_Classification.ipynb) — Attention (Q/K/V, Scaled Dot-Product) với BiLSTM cho phân loại câu IMDB.
+- [`02_Pretrained_Language_Model_PhoBERT_Vietnamese_Sentiment.ipynb`](labs/02_Pretrained_Language_Model_PhoBERT_Vietnamese_Sentiment.ipynb) — Pre-training → fine-tuning; fine-tune PhoBERT cho phân loại cảm xúc tiếng Việt.
+- [`04_Llama_CoT_IMDB_ZeroShot_Evaluation.ipynb`](labs/04_Llama_CoT_IMDB_ZeroShot_Evaluation.ipynb) — Llama 3.2 1B Instruct, Direct vs Chain-of-Thought prompting, zero-shot trên IMDB.
+- [`FSB_Faster_RCNN_Torchvision_PennFudan_2026.ipynb`](labs/FSB_Faster_RCNN_Torchvision_PennFudan_2026.ipynb) — Object Detection: fine-tune Faster R-CNN (torchvision) trên Penn–Fudan Pedestrian.
