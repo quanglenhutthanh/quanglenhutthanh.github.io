@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>Deep Learning – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -85,9 +85,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author"],
+      searchColumns: [],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -206,7 +206,6 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
   <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -215,8 +214,8 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">Deep Learning</h1>
+<p class="subtitle lead">Neural Networks, CNN, RNN, Attention và LLM</p>
 </div>
 
 
@@ -235,68 +234,28 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. The later part covers practical deployment concerns, particularly detecting and handling distribution shift.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch.</p>
+<p>Khoá học đi từ nền tảng mạng nơ-ron (Dense, CNN) đến các kiến trúc hiện đại cho xử lý ảnh và văn bản: CNN cho phân loại ảnh, RNN cho văn bản tuần tự, cơ chế Attention (Query/Key/Value), pre-trained language model (BERT/RoBERTa/PhoBERT) theo hướng pre-train → fine-tune, prompting với LLM (Llama, Chain-of-Thought, zero-shot), và object detection với Faster R-CNN.</p>
+<p>Lý thuyết được thực hành qua các lab trên Google Colab (xem Labs bên dưới), từ huấn luyện CNN/RNN từ đầu đến fine-tune model pretrained và suy luận zero-shot với LLM.</p>
 </section>
 <section id="topics" class="level2">
 <h2 class="anchored" data-anchor-id="topics">Topics</h2>
 <div id="listing-lectures" class="quarto-listing quarto-listing-container-table">
 <div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-lectures-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-lectures'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Topic
-      </option>
-    </select>
-  </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<table class="quarto-listing-table table">
+<table class="quarto-listing-table table caption-top">
 <thead>
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Tags
-</th>
-
+<tr class="header">
+<th data-quarto-table-cell-role="th">#</th>
+<th data-quarto-table-cell-role="th">Topic</th>
+<th data-quarto-table-cell-role="th">Status</th>
+<th data-quarto-table-cell-role="th">Tags</th>
 </tr>
 </thead>
 <tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1785024000000" data-listing-file-modified-sort="1786287542871" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2316" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="Gradient-descent.md">
-<td>
-<span class="listing-lecture_no">1</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/Gradient-descent.html" class="title listing-title">Gradient Descent</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
-</td>
-
-</tr>
-
 </tbody>
 </table>
 <div class="listing-no-matching d-none">No matching items</div>
@@ -305,15 +264,14 @@ Tags
 <section id="labs" class="level2">
 <h2 class="anchored" data-anchor-id="labs">Labs</h2>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
+<li><a href="../../courses/Deep Learning/labs/MNIST-CNN-Dense.html"><code>MNIST-CNN-Dense.ipynb</code></a> — Dense network và CNN cơ bản trên MNIST.</li>
+<li><a href="../../courses/Deep Learning/labs/CNN_Waste_Classification.html"><code>CNN_Waste_Classification.ipynb</code></a> — CNN từ đầu cho phân loại ảnh rác (Organic/Recyclable).</li>
+<li><a href="../../courses/Deep Learning/labs/RNN_Text_Classification_Keras_IMDB.html"><code>RNN_Text_Classification_Keras_IMDB.ipynb</code></a> — Simple RNN cho phân loại cảm xúc review phim IMDB.</li>
+<li><a href="../../courses/Deep Learning/labs/01_Attention_IMDB_Sentence_Classification.html"><code>01_Attention_IMDB_Sentence_Classification.ipynb</code></a> — Attention (Q/K/V, Scaled Dot-Product) với BiLSTM cho phân loại câu IMDB.</li>
+<li><a href="../../courses/Deep Learning/labs/02_Pretrained_Language_Model_PhoBERT_Vietnamese_Sentiment.html"><code>02_Pretrained_Language_Model_PhoBERT_Vietnamese_Sentiment.ipynb</code></a> — Pre-training → fine-tuning; fine-tune PhoBERT cho phân loại cảm xúc tiếng Việt.</li>
+<li><a href="../../courses/Deep Learning/labs/04_Llama_CoT_IMDB_ZeroShot_Evaluation.html"><code>04_Llama_CoT_IMDB_ZeroShot_Evaluation.ipynb</code></a> — Llama 3.2 1B Instruct, Direct vs Chain-of-Thought prompting, zero-shot trên IMDB.</li>
+<li><a href="../../courses/Deep Learning/labs/FSB_Faster_RCNN_Torchvision_PennFudan_2026.html"><code>FSB_Faster_RCNN_Torchvision_PennFudan_2026.ipynb</code></a> — Object Detection: fine-tune Faster R-CNN (torchvision) trên Penn–Fudan Pedestrian.</li>
 </ul>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
 
 
 

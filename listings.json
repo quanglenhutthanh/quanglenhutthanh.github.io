@@ -2,6 +2,7 @@
   {
     "listing": "/courses/index.html",
     "items": [
+      "/courses/Deep Learning/index.html",
       "/courses/Image and Video Processing/index.html",
       "/courses/machine-learning/index.html"
     ]
@@ -11,6 +12,10 @@
     "items": [
       "/courses/machine-learning/lectures/Gradient-descent.html"
     ]
+  },
+  {
+    "listing": "/courses/Deep Learning/index.html",
+    "items": []
   },
   {
     "listing": "/courses/Image and Video Processing/index.html",
