@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-08-30">
 
-<title>ROC-AUC, PR-AUC, F1 – Le Nhut Thanh Quang</title>
+<title>Data Leakage &amp; Kiểm định theo thời gian – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -130,24 +165,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#roc-auc-pr-auc-f1" id="toc-roc-auc-pr-auc-f1" class="nav-link active" data-scroll-target="#roc-auc-pr-auc-f1">ROC-AUC · PR-AUC · F1</a>
+  <li><a href="#data-leakage-kiểm-định-theo-thời-gian" id="toc-data-leakage-kiểm-định-theo-thời-gian" class="nav-link active" data-scroll-target="#data-leakage-kiểm-định-theo-thời-gian">Data Leakage &amp; Kiểm định theo thời gian</a>
   <ul class="collapse">
-  <li><a href="#nguồn-của-mọi-thứ-confusion-matrix" id="toc-nguồn-của-mọi-thứ-confusion-matrix" class="nav-link" data-scroll-target="#nguồn-của-mọi-thứ-confusion-matrix">1. Nguồn của mọi thứ — Confusion Matrix</a></li>
-  <li><a href="#bốn-tỷ-lệ-nền" id="toc-bốn-tỷ-lệ-nền" class="nav-link" data-scroll-target="#bốn-tỷ-lệ-nền">2. Bốn tỷ lệ nền</a>
+  <li><a href="#hai-họ-leakage" id="toc-hai-họ-leakage" class="nav-link" data-scroll-target="#hai-họ-leakage">1. Hai họ leakage</a>
   <ul class="collapse">
-  <li><a href="#recall-tpr" id="toc-recall-tpr" class="nav-link" data-scroll-target="#recall-tpr">Recall = TPR</a></li>
-  <li><a href="#precision" id="toc-precision" class="nav-link" data-scroll-target="#precision">Precision</a></li>
-  <li><a href="#fpr" id="toc-fpr" class="nav-link" data-scroll-target="#fpr">FPR</a></li>
-  <li><a href="#điểm-neo-để-nhớ" id="toc-điểm-neo-để-nhớ" class="nav-link" data-scroll-target="#điểm-neo-để-nhớ">Điểm neo để nhớ</a></li>
+  <li><a href="#target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" id="toc-target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" class="nav-link" data-scroll-target="#target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn">1.1. Target leakage — feature chứa thông tin từ tương lai / từ nhãn</a></li>
+  <li><a href="#traintest-contamination-preprocessing-nhìn-thấy-tập-test" id="toc-traintest-contamination-preprocessing-nhìn-thấy-tập-test" class="nav-link" data-scroll-target="#traintest-contamination-preprocessing-nhìn-thấy-tập-test">1.2. Train–test contamination — preprocessing “nhìn thấy” tập test</a></li>
   </ul></li>
-  <li><a href="#f1-cân-bằng-precision-recall-tại-một-ngưỡng" id="toc-f1-cân-bằng-precision-recall-tại-một-ngưỡng" class="nav-link" data-scroll-target="#f1-cân-bằng-precision-recall-tại-một-ngưỡng">3. F1 — cân bằng Precision &amp; Recall tại một ngưỡng</a></li>
-  <li><a href="#ba-câu-diễn-giải-nên-thuộc-lòng" id="toc-ba-câu-diễn-giải-nên-thuộc-lòng" class="nav-link" data-scroll-target="#ba-câu-diễn-giải-nên-thuộc-lòng">4. Ba câu diễn giải (nên thuộc lòng)</a></li>
-  <li><a href="#cùng-dữ-liệu-ba-góc-nhìn" id="toc-cùng-dữ-liệu-ba-góc-nhìn" class="nav-link" data-scroll-target="#cùng-dữ-liệu-ba-góc-nhìn">5. Cùng dữ liệu, ba góc nhìn</a></li>
-  <li><a href="#vì-sao-roc-pr" id="toc-vì-sao-roc-pr" class="nav-link" data-scroll-target="#vì-sao-roc-pr">6. Vì sao ROC ≠ PR</a></li>
-  <li><a href="#đọc-thế-nào-là-tốt-xấu" id="toc-đọc-thế-nào-là-tốt-xấu" class="nav-link" data-scroll-target="#đọc-thế-nào-là-tốt-xấu">7. Đọc thế nào là tốt / xấu</a></li>
-  <li><a href="#chọn-metric-nào-khi-nào" id="toc-chọn-metric-nào-khi-nào" class="nav-link" data-scroll-target="#chọn-metric-nào-khi-nào">8. Chọn metric nào khi nào</a></li>
-  <li><a href="#những-hiểu-lầm-thường-gặp" id="toc-những-hiểu-lầm-thường-gặp" class="nav-link" data-scroll-target="#những-hiểu-lầm-thường-gặp">9. Những hiểu lầm thường gặp</a></li>
-  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">10. Tóm tắt</a></li>
+  <li><a href="#quy-tắc-chống-leakage-rút-từ-2-lab" id="toc-quy-tắc-chống-leakage-rút-từ-2-lab" class="nav-link" data-scroll-target="#quy-tắc-chống-leakage-rút-từ-2-lab">2. Quy tắc chống leakage (rút từ 2 lab)</a>
+  <ul class="collapse">
+  <li><a href="#fit-trên-train-transform-cả-hai" id="toc-fit-trên-train-transform-cả-hai" class="nav-link" data-scroll-target="#fit-trên-train-transform-cả-hai">2.1. Fit trên TRAIN, transform cả hai</a></li>
+  <li><a href="#impute-bằng-thống-kê-train-only" id="toc-impute-bằng-thống-kê-train-only" class="nav-link" data-scroll-target="#impute-bằng-thống-kê-train-only">2.2. Impute bằng thống kê train-only</a></li>
+  <li><a href="#feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" id="toc-feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" class="nav-link" data-scroll-target="#feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán">2.3. Feature <em>as-of</em> — chỉ dùng dữ liệu trước thời điểm dự đoán</a></li>
+  <li><a href="#split-theo-thời-gian-không-random" id="toc-split-theo-thời-gian-không-random" class="nav-link" data-scroll-target="#split-theo-thời-gian-không-random">2.4. Split theo thời gian, không random</a></li>
+  <li><a href="#đồng-bộ-cột-sau-one-hot" id="toc-đồng-bộ-cột-sau-one-hot" class="nav-link" data-scroll-target="#đồng-bộ-cột-sau-one-hot">2.5. Đồng bộ cột sau one-hot</a></li>
+  <li><a href="#resample-chọn-ngưỡng-bên-trong-cv" id="toc-resample-chọn-ngưỡng-bên-trong-cv" class="nav-link" data-scroll-target="#resample-chọn-ngưỡng-bên-trong-cv">2.6. Resample / chọn ngưỡng bên trong CV</a></li>
+  </ul></li>
+  <li><a href="#cross-validation-cho-đúng" id="toc-cross-validation-cho-đúng" class="nav-link" data-scroll-target="#cross-validation-cho-đúng">3. Cross-validation cho đúng</a></li>
+  <li><a href="#pattern-an-toàn-sklearn-pipeline" id="toc-pattern-an-toàn-sklearn-pipeline" class="nav-link" data-scroll-target="#pattern-an-toàn-sklearn-pipeline">4. Pattern an toàn: sklearn Pipeline</a></li>
+  <li><a href="#checklist-trước-khi-tin-vào-một-con-số-offline" id="toc-checklist-trước-khi-tin-vào-một-con-số-offline" class="nav-link" data-scroll-target="#checklist-trước-khi-tin-vào-một-con-số-offline">5. Checklist trước khi tin vào một con số offline</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">6. Tóm tắt</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -157,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ROC-AUC, PR-AUC, F1</h1>
+<h1 class="title">Data Leakage &amp; Kiểm định theo thời gian</h1>
 </div>
 
 
@@ -180,198 +217,148 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="roc-auc-pr-auc-f1" class="level1">
-<h1>ROC-AUC · PR-AUC · F1</h1>
-<p>Cả ba metric này đều sinh ra từ đúng <strong>bốn con số của confusion matrix</strong> — chúng chỉ tổ hợp bốn con số đó theo cách khác nhau, và mỗi cách trả lời một câu hỏi riêng. Hiểu rõ “cách tổ hợp” là hiểu vì sao trên cùng một model, ba metric có thể kể ba câu chuyện rất khác nhau.</p>
-<section id="nguồn-của-mọi-thứ-confusion-matrix" class="level2">
-<h2 class="anchored" data-anchor-id="nguồn-của-mọi-thứ-confusion-matrix">1. Nguồn của mọi thứ — Confusion Matrix</h2>
-<p>Với bài toán phân loại nhị phân, mỗi dự đoán rơi vào một trong bốn ô:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th>Thực tế Dương</th>
-<th>Thực tế Âm</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Dự đoán Dương</strong></td>
-<td>TP (bắt đúng)</td>
-<td>FP (báo nhầm)</td>
-</tr>
-<tr class="even">
-<td><strong>Dự đoán Âm</strong></td>
-<td>FN (bỏ sót)</td>
-<td>TN (loại đúng)</td>
-</tr>
-</tbody>
-</table>
+<section id="data-leakage-kiểm-định-theo-thời-gian" class="level1">
+<h1>Data Leakage &amp; Kiểm định theo thời gian</h1>
+<p><strong>Data leakage (rò rỉ dữ liệu)</strong> = thông tin mà model <em>sẽ không có</em> lúc dự đoán thật lại lọt vào lúc train hoặc lúc đánh giá. Hậu quả kinh điển: metric offline đẹp lộng lẫy, deploy xong tụt thẳng đứng. Leakage là lỗi phổ biến nhất và tốn kém nhất trong một dự án ML thực tế — nó không báo lỗi, không crash, chỉ âm thầm cho ta một con số sai.</p>
+<p>Hai lab capstone của môn (<a href="../../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist</code></a>, <a href="../../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC</code></a>) dành phần lớn công sức để <em>chặn</em> leakage — note này rút ra các nguyên tắc chung.</p>
+<section id="hai-họ-leakage" class="level2">
+<h2 class="anchored" data-anchor-id="hai-họ-leakage">1. Hai họ leakage</h2>
+<section id="target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" class="level3">
+<h3 class="anchored" data-anchor-id="target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn">1.1. Target leakage — feature chứa thông tin từ tương lai / từ nhãn</h3>
+<p>Một feature được tính bằng dữ liệu chỉ tồn tại <em>sau</em> thời điểm dự đoán, hoặc suy ra (một phần) từ chính nhãn.</p>
+<p>Ví dụ:</p>
 <ul>
-<li><strong>TP</strong> (True Positive): ca dương, model nói dương → đúng.</li>
-<li><strong>FP</strong> (False Positive): ca âm, model nói dương → báo nhầm (false alarm).</li>
-<li><strong>FN</strong> (False Negative): ca dương, model nói âm → bỏ sót (miss).</li>
-<li><strong>TN</strong> (True Negative): ca âm, model nói âm → đúng.</li>
+<li>Dự đoán khách churn, nhưng feature <code>số_cuộc_gọi_hỗ_trợ</code> lại tính cả các cuộc gọi <em>sau</em> ngày churn.</li>
+<li>Dự đoán đơn hàng gian lận, feature <code>đã_hoàn_tiền</code> — chỉ có giá trị vì giao dịch đã bị phát hiện gian lận.</li>
+<li>Dự đoán bệnh, feature <code>loại_thuốc_đang_dùng</code> — thuốc được kê <em>vì</em> đã có chẩn đoán.</li>
 </ul>
-<p><strong>Quy tắc mẫu số:</strong> mỗi “rate” chia cho cả một <em>hàng thật</em> của nó (toàn bộ ca dương thật, hoặc toàn bộ ca âm thật). Nhờ chia cho hằng số này mà TPR và FPR bền vững khi lớp bị mất cân bằng.</p>
+<p>Dấu hiệu nghi ngờ: một feature “tốt bất thường” (coefficient hoặc importance áp đảo), AUC gần 1.0 một cách vô lý.</p>
 </section>
-<section id="bốn-tỷ-lệ-nền" class="level2">
-<h2 class="anchored" data-anchor-id="bốn-tỷ-lệ-nền">2. Bốn tỷ lệ nền</h2>
-<p>Bốn tỷ lệ dưới đây là “nguyên liệu” để dựng ROC và PR. Lưu ý Recall và TPR là <strong>cùng một con số</strong>, chỉ khác tên gọi theo ngành.</p>
-<section id="recall-tpr" class="level3">
-<h3 class="anchored" data-anchor-id="recall-tpr">Recall = TPR</h3>
-<pre><code>Recall = TPR = TP / (TP + FN)</code></pre>
-<p>Trong tất cả các ca <strong>dương thật</strong>, model bắt được bao nhiêu phần. Mẫu số <code>TP + FN</code> = tổng số ca dương thật (hằng số, không đổi khi ta chỉnh ngưỡng). Machine learning quen gọi là <strong>Recall</strong>; thống kê / ROC quen gọi là <strong>TPR</strong> (True Positive Rate) và dùng nó cặp với FPR.</p>
-</section>
-<section id="precision" class="level3">
-<h3 class="anchored" data-anchor-id="precision">Precision</h3>
-<pre><code>Precision = TP / (TP + FP)</code></pre>
-<p>Trong tất cả các ca model <strong>báo dương</strong>, bao nhiêu phần là đúng. Đây là “độ tin khi model báo dương”. Mẫu số <code>TP + FP</code> = tổng số lần báo-dương — con số này <em>thay đổi</em> theo ngưỡng và theo tỷ lệ lớp.</p>
-</section>
-<section id="fpr" class="level3">
-<h3 class="anchored" data-anchor-id="fpr">FPR</h3>
-<pre><code>FPR = FP / (FP + TN)</code></pre>
-<p>Trong tất cả các ca <strong>âm thật</strong>, bao nhiêu phần bị báo nhầm thành dương. Mẫu số <code>FP + TN</code> = tổng số ca âm thật (hằng số). FPR là “cặp đôi” của TPR trong không gian ROC.</p>
-</section>
-<section id="điểm-neo-để-nhớ" class="level3">
-<h3 class="anchored" data-anchor-id="điểm-neo-để-nhớ">Điểm neo để nhớ</h3>
-<p>Recall, TPR, Precision đều lấy <strong>TP ở tử số</strong>; chỉ FPR lấy <strong>FP ở tử số</strong>. Recall và TPR y hệt nhau, chỉ khác tên. Khác biệt cốt lõi Precision ↔︎ TPR nằm ở <strong>mẫu số</strong>: Precision chia cho <em>pool báo-dương cục bộ</em>, TPR chia cho <em>toàn bộ lớp âm</em> (hằng số).</p>
-</section>
-</section>
-<section id="f1-cân-bằng-precision-recall-tại-một-ngưỡng" class="level2">
-<h2 class="anchored" data-anchor-id="f1-cân-bằng-precision-recall-tại-một-ngưỡng">3. F1 — cân bằng Precision &amp; Recall tại một ngưỡng</h2>
-<pre><code>F1 = 2 · (P · R) / (P + R)</code></pre>
-<p>F1 là <strong>trung bình điều hòa</strong> (harmonic mean) của Precision và Recall, chứ không phải trung bình cộng. Hệ quả: F1 bị kéo về phía con số nhỏ hơn — chỉ cần P hoặc R thấp là F1 sập, không thể “ăn gian” bằng cách đẩy một vế lên thật cao.</p>
-<p>Ví dụ lệch cực đại: P = 1.0, R = 0.0 - Trung bình cộng → 0.50 (nghe ổn nhưng vô nghĩa) - Trung bình điều hòa → 0.00 (đúng bản chất: model này vô dụng)</p>
-<p>F1 <strong>bỏ qua TN</strong> → nó tập trung hoàn toàn vào lớp dương, nhờ vậy chống được cái bẫy “accuracy cao giả tạo” khi dữ liệu mất cân bằng (đoán toàn bộ là âm vẫn được accuracy 99% nhưng F1 = 0).</p>
-<p><strong>Quan trọng:</strong> F1 được tính tại <strong>một ngưỡng cụ thể</strong>. Đổi ngưỡng → P, R đổi → F1 đổi. Ngược lại, ROC-AUC và PR-AUC tổng hợp trên <em>mọi</em> ngưỡng.</p>
-</section>
-<section id="ba-câu-diễn-giải-nên-thuộc-lòng" class="level2">
-<h2 class="anchored" data-anchor-id="ba-câu-diễn-giải-nên-thuộc-lòng">4. Ba câu diễn giải (nên thuộc lòng)</h2>
+<section id="traintest-contamination-preprocessing-nhìn-thấy-tập-test" class="level3">
+<h3 class="anchored" data-anchor-id="traintest-contamination-preprocessing-nhìn-thấy-tập-test">1.2. Train–test contamination — preprocessing “nhìn thấy” tập test</h3>
+<p>Bất kỳ phép biến đổi nào <em>học tham số từ dữ liệu</em> mà được fit trên toàn bộ dataset trước khi split:</p>
 <ul>
-<li><strong>ROC-AUC — xếp hạng.</strong> Bốc ngẫu nhiên một cặp (một ca dương, một ca âm) → ROC-AUC là <em>xác suất model chấm điểm ca dương cao hơn ca âm</em>. Không phụ thuộc ngưỡng. 0.5 = đoán bừa, 1.0 = hoàn hảo.</li>
-<li><strong>PR-AUC — độ tinh khiết.</strong> Nhìn từ mỗi mức điểm trở lên: nhóm điểm cao đó có “sạch” (ít lẫn ca âm) không? Lấy trung bình trên mọi mức. Trả lời: <em>khi model kêu to, có tin được không, và tin được bao nhiêu?</em></li>
-<li><strong>F1 — điểm vận hành.</strong> Tại một ngưỡng đã chốt để đem deploy, Precision và Recall có cân bằng và cùng cao không? Đây là con số bạn thật sự “sống cùng” khi hệ thống chạy thật.</li>
+<li><code>StandardScaler</code> / <code>MinMaxScaler</code> fit trên cả train + test → mean/std đã “nếm” test.</li>
+<li>Impute missing bằng median của cả dataset.</li>
+<li><code>SelectKBest</code> / feature selection chạy trên toàn bộ dữ liệu.</li>
+<li>Target encoding, PCA, <code>fit_transform</code> của bất cứ thứ gì trên full data.</li>
+<li>SMOTE / oversampling trước khi split → bản sao của một mẫu nằm cả ở train lẫn validation.</li>
 </ul>
 </section>
-<section id="cùng-dữ-liệu-ba-góc-nhìn" class="level2">
-<h2 class="anchored" data-anchor-id="cùng-dữ-liệu-ba-góc-nhìn">5. Cùng dữ liệu, ba góc nhìn</h2>
-<p>Với cùng một tập dự đoán, ta có thể vẽ:</p>
-<ul>
-<li><strong>Đường ROC</strong>: trục ngang FPR, trục dọc TPR. Quét ngưỡng từ cao xuống thấp, mỗi ngưỡng cho một điểm (FPR, TPR). Đường là hàm bậc thang: gặp một ca dương → bước <em>lên</em>, gặp một ca âm → bước <em>sang phải</em>. AUC = diện tích dưới đường này.</li>
-<li><strong>Đường PR</strong>: trục ngang Recall, trục dọc Precision. Cũng quét ngưỡng, nhưng đường “nhấp nhô” chứ không đơn điệu — vì Precision có thể tụt rồi lại lên khi thêm một TP.</li>
-<li><strong>Đường F1 theo ngưỡng</strong>: F1 thường có <em>đỉnh</em> tại một ngưỡng tối ưu nào đó — đây chính là ý nghĩa của việc đi tìm <code>best_threshold</code> thay vì cứng nhắc dùng 0.5.</li>
-</ul>
-<p>Ví dụ minh họa (8 mẫu): cùng một model có thể ra ROC-AUC ≈ 0.81, PR-AUC ≈ 0.85, F1 max ≈ 0.80 tại ngưỡng ≈ 0.4.</p>
 </section>
-<section id="vì-sao-roc-pr" class="level2">
-<h2 class="anchored" data-anchor-id="vì-sao-roc-pr">6. Vì sao ROC ≠ PR</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th>Trục ngang</th>
-<th>Trục dọc</th>
-<th>Góc “đẹp”</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ROC</td>
-<td>FPR (thấp → bên trái)</td>
-<td>TPR (cao → lên trên)</td>
-<td>trên–trái</td>
-</tr>
-<tr class="even">
-<td>PR</td>
-<td>Recall (cao → phải)</td>
-<td>Precision (cao → lên)</td>
-<td>trên–phải</td>
-</tr>
-</tbody>
-</table>
-<p>Chính <strong>mẫu số</strong> quyết định tất cả:</p>
-<ul>
-<li><strong>ROC</strong>: FP được chia cho <em>toàn bộ lớp âm N</em> (một hằng số khổng lồ khi lớp âm áp đảo). Mỗi FP chỉ đẩy FPR lên <code>1/N</code> → đường ROC vẫn “trông đẹp” dù model sai nhiều.</li>
-<li><strong>PR</strong>: FP được chia cho <em>pool báo-dương cục bộ</em> (nhỏ). Thêm vài FP là Precision tụt ngay → đường PR phản ánh “sự thật” khắc nghiệt hơn.</li>
-</ul>
-<p>Hệ quả: với dữ liệu mất cân bằng nặng (ví dụ 5% dương), cùng một model có thể cho <strong>ROC-AUC = 0.74 nhưng PR-AUC chỉ = 0.15</strong>. ROC-AUC <em>bất biến</em> với tỷ lệ lớp; PR-AUC thì <em>không</em>. Khi lớp dương hiếm và ta quan tâm chất lượng cảnh báo dương → <strong>dùng PR-AUC</strong>.</p>
+<section id="quy-tắc-chống-leakage-rút-từ-2-lab" class="level2">
+<h2 class="anchored" data-anchor-id="quy-tắc-chống-leakage-rút-từ-2-lab">2. Quy tắc chống leakage (rút từ 2 lab)</h2>
+<section id="fit-trên-train-transform-cả-hai" class="level3">
+<h3 class="anchored" data-anchor-id="fit-trên-train-transform-cả-hai">2.1. Fit trên TRAIN, transform cả hai</h3>
+<p>Mọi transformer có trạng thái đều fit <strong>chỉ trên train</strong>, rồi <code>.transform()</code> áp lên test:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler().fit(X_train[NUM])      <span class="co"># chỉ nhìn train</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>X_train[NUM] <span class="op">=</span> scaler.transform(X_train[NUM])</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X_test[NUM]  <span class="op">=</span> scaler.transform(X_test[NUM])      <span class="co"># dùng thống kê của train</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Kiểm chứng nhanh: sau scale, <code>X_train</code> có mean ≈ 0; <code>X_test</code> <strong>lệch khỏi 0</strong> — đúng như mong đợi (và nếu có distribution shift, độ lệch này chính là bằng chứng shift, xem <a href="../../../courses/machine-learning/lectures/L03-data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a>).</p>
 </section>
-<section id="đọc-thế-nào-là-tốt-xấu" class="level2">
-<h2 class="anchored" data-anchor-id="đọc-thế-nào-là-tốt-xấu">7. Đọc thế nào là tốt / xấu</h2>
-<p>F1 và PR-AUC <strong>không có mốc phổ quát</strong>. Chỉ ROC-AUC có baseline cố định 0.5. Baseline của F1 và PR-AUC <em>trôi theo prevalence</em> (tỷ lệ lớp dương) — nên đừng bao giờ so hai giá trị này giữa hai tập có tỷ lệ lớp khác nhau.</p>
+<section id="impute-bằng-thống-kê-train-only" class="level3">
+<h3 class="anchored" data-anchor-id="impute-bằng-thống-kê-train-only">2.2. Impute bằng thống kê train-only</h3>
+<p>Median/mean để điền khuyết phải tính trên <strong>tập train</strong>, kể cả khi việc điền diễn ra trước bước split trong code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cutoff <span class="op">=</span> df[<span class="st">'order_date'</span>].quantile(<span class="fl">0.8</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>train_median <span class="op">=</span> df.loc[df[<span class="st">'order_date'</span>] <span class="op">&lt;=</span> cutoff, <span class="st">'col'</span>].median()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'col'</span>] <span class="op">=</span> df[<span class="st">'col'</span>].fillna(train_median)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" class="level3">
+<h3 class="anchored" data-anchor-id="feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán">2.3. Feature <em>as-of</em> — chỉ dùng dữ liệu trước thời điểm dự đoán</h3>
+<p>Với dữ liệu có trục thời gian, mọi feature tổng hợp (đếm, trung bình tích luỹ, RFM…) phải lọc <strong>strict</strong> <code>event_date &lt; prediction_date</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">'before'</span>] <span class="op">=</span> merged[<span class="st">'ticket_date'</span>] <span class="op">&lt;</span> merged[<span class="st">'order_date'</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>agg <span class="op">=</span> merged[merged[<span class="st">'before'</span>]].groupby(<span class="st">'order_id'</span>).agg(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Rồi chốt bằng <strong>leakage guard</strong> — một assertion nổ ngay nếu lọt mẫu vi phạm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>leaked <span class="op">=</span> merged[merged[<span class="st">'before'</span>]]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (leaked[<span class="st">'ticket_date'</span>] <span class="op">&lt;</span> leaked[<span class="st">'order_date'</span>]).<span class="bu">all</span>(), <span class="st">'Leakage detected!'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="split-theo-thời-gian-không-random" class="level3">
+<h3 class="anchored" data-anchor-id="split-theo-thời-gian-không-random">2.4. Split theo thời gian, không random</h3>
+<p>Dữ liệu sinh theo thời gian (đơn hàng, log cảm biến, giao dịch) → <strong>train = phần cũ, test = phần mới</strong> (ví dụ oldest 80% / newest 20%). Random split trộn tương lai vào train, cho metric lạc quan và giấu mất distribution shift.</p>
+</section>
+<section id="đồng-bộ-cột-sau-one-hot" class="level3">
+<h3 class="anchored" data-anchor-id="đồng-bộ-cột-sau-one-hot">2.5. Đồng bộ cột sau one-hot</h3>
+<p><code>get_dummies</code> trên train và test độc lập có thể ra tập cột khác nhau (một hạng mục chỉ xuất hiện ở một bên). Căn lại theo train:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>test_cat <span class="op">=</span> pd.get_dummies(test[CAT]).reindex(columns<span class="op">=</span>train_cat.columns, fill_value<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Với NaN trong biến phân loại: <code>get_dummies(dummy_na=True)</code> coi NaN là một hạng mục riêng — không mất thông tin, không cần impute.</p>
+</section>
+<section id="resample-chọn-ngưỡng-bên-trong-cv" class="level3">
+<h3 class="anchored" data-anchor-id="resample-chọn-ngưỡng-bên-trong-cv">2.6. Resample / chọn ngưỡng bên trong CV</h3>
+<ul>
+<li>SMOTE, undersampling: đặt <strong>trong</strong> pipeline CV, chỉ tác động lên các fold train.</li>
+<li>Chọn <code>best_threshold</code> cho F1: tính trên <strong>out-of-fold predictions của tập train</strong>, không bao giờ trên test. <code>argmax</code> trên một lần chia dao động mạnh → trung bình ngưỡng qua nhiều seed.</li>
+</ul>
+</section>
+</section>
+<section id="cross-validation-cho-đúng" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation-cho-đúng">3. Cross-validation cho đúng</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 15%">
-<col style="width: 19%">
-<col style="width: 17%">
-<col style="width: 39%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Metric</th>
-<th>Phụ thuộc ngưỡng?</th>
-<th>Baseline “vô dụng”</th>
-<th>Nhạy với prevalence?</th>
-<th>Trả lời câu hỏi</th>
+<th>Loại dữ liệu</th>
+<th>Chiến lược</th>
+<th>Lý do</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>ROC-AUC</td>
-<td>Không (mọi ngưỡng)</td>
-<td>0.5 (cố định)</td>
-<td>Không</td>
-<td>Xếp hạng ca dương trên ca âm có giỏi không?</td>
+<td>I.I.D., phân loại</td>
+<td><strong>StratifiedKFold</strong> (shuffle)</td>
+<td>Giữ tỷ lệ lớp trong mỗi fold — quan trọng khi imbalance</td>
 </tr>
 <tr class="even">
-<td>PR-AUC</td>
-<td>Không (mọi ngưỡng)</td>
-<td>= prevalence</td>
-<td>Có</td>
-<td>Nhóm điểm cao có “sạch” không?</td>
+<td>Có trục thời gian</td>
+<td><strong>TimeSeriesSplit</strong> / walk-forward</td>
+<td>Fold train luôn <em>trước</em> fold validation về thời gian</td>
 </tr>
 <tr class="odd">
-<td>F1</td>
-<td>Có (một ngưỡng)</td>
-<td>2·prev / (1 + prev)</td>
-<td>Có</td>
-<td>Tại điểm vận hành, cân bằng P–R có tốt không?</td>
+<td>Có nhóm (nhiều dòng / 1 khách)</td>
+<td><strong>GroupKFold</strong></td>
+<td>Không để cùng một khách nằm cả train lẫn validation</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Quy tắc vàng:</strong> đừng hỏi “0.6 là tốt hay xấu?” theo số tuyệt đối. Hỏi: <em>“cao hơn baseline / majority trên CÙNG tập này bao nhiêu?”</em> — prevalence 50% thì F1 baseline đã là 0.667; prevalence 1% thì baseline chỉ 0.02.</p>
+<p><strong>Out-of-fold (OOF) predictions</strong>: <code>cross_val_predict</code> cho mỗi mẫu train một dự đoán được tạo bởi model <em>không</em> nhìn thấy nó. Dùng OOF để: chọn ngưỡng, hiệu chỉnh xác suất, stacking — tất cả mà không đụng test.</p>
+<p><strong>Đánh giá drift classifier / bất kỳ meta-model nào cũng phải bằng OOF</strong> — đánh giá in-sample cho AUC lạc quan giả.</p>
 </section>
-<section id="chọn-metric-nào-khi-nào" class="level2">
-<h2 class="anchored" data-anchor-id="chọn-metric-nào-khi-nào">8. Chọn metric nào khi nào</h2>
-<ul>
-<li><strong>Lớp cân bằng, cần một con số so sánh model:</strong> ROC-AUC là mặc định hợp lý.</li>
-<li><strong>Lớp dương hiếm (gian lận, bệnh hiếm, anomaly), quan tâm chất lượng cảnh báo:</strong> PR-AUC.</li>
-<li><strong>Đã chốt ngưỡng, cần báo cáo hiệu năng vận hành thực tế:</strong> F1 (hoặc precision/recall riêng lẻ nếu chi phí FP và FN lệch nhau — khi đó cân nhắc F-beta).</li>
-<li><strong>Chi phí FP ≠ chi phí FN rõ rệt:</strong> đừng dừng ở F1; xét thẳng precision–recall theo yêu cầu nghiệp vụ, hoặc dùng cost-sensitive threshold.</li>
-</ul>
+<section id="pattern-an-toàn-sklearn-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-an-toàn-sklearn-pipeline">4. Pattern an toàn: sklearn Pipeline</h2>
+<p>Gói toàn bộ preprocessing + model vào một <code>Pipeline</code>; khi truyền vào <code>cross_val_score</code> / <code>RandomizedSearchCV</code>, mỗi fold tự fit lại preprocessing <strong>chỉ trên phần train của fold đó</strong> — leakage bị chặn theo cấu trúc, không phải nhờ kỷ luật thủ công.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'scale'</span>, StandardScaler()),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'clf'</span>, LogisticRegression(class_weight<span class="op">=</span><span class="st">'balanced'</span>)),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(pipe, X_train, y_train, cv<span class="op">=</span>StratifiedKFold(<span class="dv">5</span>), scoring<span class="op">=</span><span class="st">'average_precision'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Việc fit thủ công một scaler chung (như §2.1) chấp nhận được khi ranh giới train/test là <strong>một mốc thời gian cố định</strong> và bạn cần cùng một không gian feature cho nhiều model — nhưng với CV lồng nhau thì Pipeline là chuẩn.</p>
 </section>
-<section id="những-hiểu-lầm-thường-gặp" class="level2">
-<h2 class="anchored" data-anchor-id="những-hiểu-lầm-thường-gặp">9. Những hiểu lầm thường gặp</h2>
-<ul>
-<li><strong>“ROC-AUC cao nghĩa là model tốt để deploy”:</strong> không hẳn. ROC-AUC chỉ nói khả năng <em>xếp hạng</em>. Với lớp mất cân bằng, ROC-AUC 0.9 vẫn có thể đi kèm PR-AUC thấp và precision tệ tại mọi ngưỡng dùng được.</li>
-<li><strong>So F1 giữa hai dataset khác prevalence:</strong> vô nghĩa, vì baseline F1 khác nhau.</li>
-<li><strong>Nghĩ Precision và Recall đối xứng nhau:</strong> không. Recall có mẫu số hằng số (toàn lớp dương), Precision có mẫu số thay đổi (pool báo-dương). Đó là gốc rễ mọi khác biệt ROC ↔︎ PR.</li>
-<li><strong>Dùng ngưỡng 0.5 mặc định rồi báo F1:</strong> F1 phụ thuộc ngưỡng; nên quét ngưỡng để tìm đỉnh F1 (hoặc chọn ngưỡng theo ràng buộc nghiệp vụ) trước khi báo cáo.</li>
-<li><strong>Recall ≠ TPR:</strong> sai — chúng là <strong>cùng một con số</strong>, chỉ khác tên gọi.</li>
+<section id="checklist-trước-khi-tin-vào-một-con-số-offline" class="level2">
+<h2 class="anchored" data-anchor-id="checklist-trước-khi-tin-vào-một-con-số-offline">5. Checklist trước khi tin vào một con số offline</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Có feature nào tính từ dữ liệu <em>sau</em> thời điểm dự đoán không?</label></li>
+<li><label><input type="checkbox">Có feature nào là hệ quả của nhãn (chỉ tồn tại vì sự kiện đã xảy ra) không?</label></li>
+<li><label><input type="checkbox">Scaler / imputer / encoder / feature-selector có fit <strong>chỉ trên train</strong> không?</label></li>
+<li><label><input type="checkbox">Impute dùng thống kê train-only?</label></li>
+<li><label><input type="checkbox">Dữ liệu thời gian → split theo thời gian, CV là TimeSeriesSplit?</label></li>
+<li><label><input type="checkbox">Nhiều dòng / một thực thể → GroupKFold?</label></li>
+<li><label><input type="checkbox">Resampling và chọn ngưỡng nằm <strong>trong</strong> CV / trên OOF train?</label></li>
+<li><label><input type="checkbox">Nhãn được định nghĩa <strong>trước</strong> khi làm feature, với horizon rule rõ ràng (xem <a href="../../../courses/machine-learning/lectures/L03-data-imbalance-shift.html">L03</a> Phần C)?</label></li>
+<li><label><input type="checkbox">Có feature nào “tốt bất thường” khiến AUC gần 1.0 không? → nghi leakage.</label></li>
 </ul>
 </section>
 <section id="tóm-tắt" class="level2">
-<h2 class="anchored" data-anchor-id="tóm-tắt">10. Tóm tắt</h2>
+<h2 class="anchored" data-anchor-id="tóm-tắt">6. Tóm tắt</h2>
 <ul>
-<li>Bốn số TP/FP/FN/TN là gốc; mọi metric chỉ là cách tổ hợp khác nhau.</li>
-<li>Recall = TPR = TP/(TP+FN); Precision = TP/(TP+FP); FPR = FP/(FP+TN).</li>
-<li><strong>ROC-AUC</strong> = xác suất xếp đúng một cặp dương–âm; baseline cố định 0.5; bất biến với tỷ lệ lớp.</li>
-<li><strong>PR-AUC</strong> = độ “tinh khiết” trung bình của các nhóm điểm cao; baseline = prevalence; nhạy với tỷ lệ lớp → ưu tiên khi lớp dương hiếm.</li>
-<li><strong>F1</strong> = trung bình điều hòa của P và R tại <strong>một ngưỡng</strong>; bỏ qua TN; baseline = 2·prev/(1+prev).</li>
-<li>Khác biệt ROC ↔︎ PR nằm ở mẫu số của FP: toàn lớp âm (hằng số) so với pool báo-dương (cục bộ).</li>
-<li>Luôn đọc metric tương đối so với baseline trên <em>cùng</em> tập dữ liệu, đừng đọc theo số tuyệt đối.</li>
+<li><strong>Target leakage</strong>: feature chứa thông tin tương lai hoặc suy từ nhãn → xoá feature.</li>
+<li><strong>Contamination</strong>: preprocessing fit trên full data → fit chỉ trên train.</li>
+<li>Dữ liệu thời gian: <strong>as-of features</strong> + <strong>split theo thời gian</strong> + <strong>leakage guard assertion</strong>.</li>
+<li>CV: Stratified (imbalance), TimeSeries (thời gian), Group (nhóm); dùng <strong>OOF</strong> để chọn ngưỡng / hiệu chỉnh / đánh giá meta-model.</li>
+<li><strong>Pipeline</strong> đóng gói preprocessing + model → chặn leakage theo cấu trúc.</li>
+<li>Metric offline chỉ đáng tin sau khi đã qua checklist ở §5.</li>
 </ul>
 
 

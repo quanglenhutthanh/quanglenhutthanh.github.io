@@ -1,45 +1,48 @@
 [
   {
-    "listing": "/courses/index.html",
+    "listing": "/courses/frontier-transformation-engineer/index.html",
     "items": [
-      "/courses/Deep Learning/index.html",
-      "/courses/Frontier Transformation Engineer/index.html",
-      "/courses/Image and Video Processing/index.html",
-      "/courses/machine-learning/index.html"
-    ]
-  },
-  {
-    "listing": "/courses/Image and Video Processing/index.html",
-    "items": [
-      "/courses/Image and Video Processing/lectures/L01-introduction-overview.html",
-      "/courses/Image and Video Processing/lectures/L02-image-processing-basics.html",
-      "/courses/Image and Video Processing/lectures/L03-matlab-basics-imaging-toolbox.html",
-      "/courses/Image and Video Processing/lectures/L04-image-sensing-acquisition.html",
-      "/courses/Image and Video Processing/lectures/L05-arithmetic-logic-geometric-operations.html",
-      "/courses/Image and Video Processing/lectures/L06-gray-level-histogram-neighborhood.html",
-      "/courses/Image and Video Processing/lectures/L07-image-restoration.html",
-      "/courses/Image and Video Processing/lectures/L08-morphological-processing.html",
-      "/courses/Image and Video Processing/lectures/L09-edge-detection.html",
-      "/courses/Image and Video Processing/lectures/L10-image-segmentation.html",
-      "/courses/Image and Video Processing/lectures/L11-color-image.html",
-      "/courses/Image and Video Processing/lectures/L12-keypoint-detection.html"
-    ]
-  },
-  {
-    "listing": "/courses/Frontier Transformation Engineer/index.html",
-    "items": [
-      "/courses/Frontier Transformation Engineer/lectures/L01-program-overview.html"
+      "/courses/frontier-transformation-engineer/lectures/L01-program-overview.html"
     ]
   },
   {
     "listing": "/courses/machine-learning/index.html",
     "items": [
-      "/courses/machine-learning/lectures/Gradient-descent.html",
-      "/courses/machine-learning/lectures/Classification-metrics.html"
+      "/courses/machine-learning/lectures/L01-gradient-descent.html",
+      "/courses/machine-learning/lectures/L02-classification-metrics.html",
+      "/courses/machine-learning/lectures/L03-data-imbalance-shift.html",
+      "/courses/machine-learning/lectures/L04-data-leakage-validation.html",
+      "/courses/machine-learning/lectures/L05-loss-functions.html"
     ]
   },
   {
-    "listing": "/courses/Deep Learning/index.html",
+    "listing": "/courses/deep-learning/index.html",
     "items": []
+  },
+  {
+    "listing": "/courses/index.html",
+    "items": [
+      "/courses/deep-learning/index.html",
+      "/courses/frontier-transformation-engineer/index.html",
+      "/courses/image-and-video-processing/index.html",
+      "/courses/machine-learning/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/image-and-video-processing/index.html",
+    "items": [
+      "/courses/image-and-video-processing/lectures/L01-introduction-overview.html",
+      "/courses/image-and-video-processing/lectures/L02-image-processing-basics.html",
+      "/courses/image-and-video-processing/lectures/L03-matlab-basics-imaging-toolbox.html",
+      "/courses/image-and-video-processing/lectures/L04-image-sensing-acquisition.html",
+      "/courses/image-and-video-processing/lectures/L05-arithmetic-logic-geometric-operations.html",
+      "/courses/image-and-video-processing/lectures/L06-gray-level-histogram-neighborhood.html",
+      "/courses/image-and-video-processing/lectures/L07-image-restoration.html",
+      "/courses/image-and-video-processing/lectures/L08-morphological-processing.html",
+      "/courses/image-and-video-processing/lectures/L09-edge-detection.html",
+      "/courses/image-and-video-processing/lectures/L10-image-segmentation.html",
+      "/courses/image-and-video-processing/lectures/L11-color-image.html",
+      "/courses/image-and-video-processing/lectures/L12-keypoint-detection.html"
+    ]
   }
 ]

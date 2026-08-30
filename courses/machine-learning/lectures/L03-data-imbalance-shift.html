@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-08-30">
+
+<title>Class Imbalance &amp; Distribution Shift – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#class-imbalance-distribution-shift" id="toc-class-imbalance-distribution-shift" class="nav-link active" data-scroll-target="#class-imbalance-distribution-shift">Class Imbalance &amp; Distribution Shift</a>
+  <ul class="collapse">
+  <li><a href="#phần-a-class-imbalance" id="toc-phần-a-class-imbalance" class="nav-link" data-scroll-target="#phần-a-class-imbalance">Phần A — Class Imbalance</a>
+  <ul class="collapse">
+  <li><a href="#a.1.-vấn-đề-là-gì" id="toc-a.1.-vấn-đề-là-gì" class="nav-link" data-scroll-target="#a.1.-vấn-đề-là-gì">A.1. Vấn đề là gì</a></li>
+  <li><a href="#a.2.-vì-sao-model-học-kém-trên-lớp-hiếm" id="toc-a.2.-vì-sao-model-học-kém-trên-lớp-hiếm" class="nav-link" data-scroll-target="#a.2.-vì-sao-model-học-kém-trên-lớp-hiếm">A.2. Vì sao model học kém trên lớp hiếm</a></li>
+  <li><a href="#a.3.-bốn-nhóm-cách-xử-lý" id="toc-a.3.-bốn-nhóm-cách-xử-lý" class="nav-link" data-scroll-target="#a.3.-bốn-nhóm-cách-xử-lý">A.3. Bốn nhóm cách xử lý</a></li>
+  <li><a href="#a.4.-thứ-tự-nên-làm" id="toc-a.4.-thứ-tự-nên-làm" class="nav-link" data-scroll-target="#a.4.-thứ-tự-nên-làm">A.4. Thứ tự nên làm</a></li>
+  <li><a href="#a.5.-bẫy-thường-gặp" id="toc-a.5.-bẫy-thường-gặp" class="nav-link" data-scroll-target="#a.5.-bẫy-thường-gặp">A.5. Bẫy thường gặp</a></li>
+  </ul></li>
+  <li><a href="#phần-b-distribution-shift" id="toc-phần-b-distribution-shift" class="nav-link" data-scroll-target="#phần-b-distribution-shift">Phần B — Distribution Shift</a>
+  <ul class="collapse">
+  <li><a href="#b.1.-vấn-đề-là-gì" id="toc-b.1.-vấn-đề-là-gì" class="nav-link" data-scroll-target="#b.1.-vấn-đề-là-gì">B.1. Vấn đề là gì</a></li>
+  <li><a href="#b.2.-phân-loại-shift-rất-nên-thuộc" id="toc-b.2.-phân-loại-shift-rất-nên-thuộc" class="nav-link" data-scroll-target="#b.2.-phân-loại-shift-rất-nên-thuộc">B.2. Phân loại shift (rất nên thuộc)</a></li>
+  <li><a href="#b.3.-phát-hiện-không-có-nhãn-làm-liên-tục" id="toc-b.3.-phát-hiện-không-có-nhãn-làm-liên-tục" class="nav-link" data-scroll-target="#b.3.-phát-hiện-không-có-nhãn-làm-liên-tục">B.3. Phát hiện — không có nhãn (làm liên tục)</a></li>
+  <li><a href="#b.4.-phát-hiện-có-nhãn-khi-nhãn-về" id="toc-b.4.-phát-hiện-có-nhãn-khi-nhãn-về" class="nav-link" data-scroll-target="#b.4.-phát-hiện-có-nhãn-khi-nhãn-về">B.4. Phát hiện — có nhãn (khi nhãn về)</a></li>
+  <li><a href="#b.5.-xử-lý" id="toc-b.5.-xử-lý" class="nav-link" data-scroll-target="#b.5.-xử-lý">B.5. Xử lý</a></li>
+  <li><a href="#b.6.-bộ-công-cụ-xử-lý-shift-trong-thực-tế" id="toc-b.6.-bộ-công-cụ-xử-lý-shift-trong-thực-tế" class="nav-link" data-scroll-target="#b.6.-bộ-công-cụ-xử-lý-shift-trong-thực-tế">B.6. Bộ công cụ xử lý shift trong thực tế</a></li>
+  <li><a href="#b.7.-bẫy-thường-gặp" id="toc-b.7.-bẫy-thường-gặp" class="nav-link" data-scroll-target="#b.7.-bẫy-thường-gặp">B.7. Bẫy thường gặp</a></li>
+  </ul></li>
+  <li><a href="#phần-c-censoring-thiết-kế-nhãn-label-design" id="toc-phần-c-censoring-thiết-kế-nhãn-label-design" class="nav-link" data-scroll-target="#phần-c-censoring-thiết-kế-nhãn-label-design">Phần C — Censoring &amp; thiết kế nhãn (label design)</a>
+  <ul class="collapse">
+  <li><a href="#c.1.-right-censoring-là-gì" id="toc-c.1.-right-censoring-là-gì" class="nav-link" data-scroll-target="#c.1.-right-censoring-là-gì">C.1. Right-censoring là gì</a></li>
+  <li><a href="#c.2.-vì-sao-nó-phá-đánh-giá" id="toc-c.2.-vì-sao-nó-phá-đánh-giá" class="nav-link" data-scroll-target="#c.2.-vì-sao-nó-phá-đánh-giá">C.2. Vì sao nó phá đánh giá</a></li>
+  <li><a href="#c.3.-observation-horizon-rule-ba-trường-hợp" id="toc-c.3.-observation-horizon-rule-ba-trường-hợp" class="nav-link" data-scroll-target="#c.3.-observation-horizon-rule-ba-trường-hợp">C.3. Observation-horizon rule — ba trường hợp</a></li>
+  <li><a href="#c.4.-nguyên-tắc-chung" id="toc-c.4.-nguyên-tắc-chung" class="nav-link" data-scroll-target="#c.4.-nguyên-tắc-chung">C.4. Nguyên tắc chung</a></li>
+  </ul></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">Tóm tắt</a></li>
+  <li><a href="#bài-lab-liên-quan" id="toc-bài-lab-liên-quan" class="nav-link" data-scroll-target="#bài-lab-liên-quan">Bài lab liên quan</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class Imbalance &amp; Distribution Shift</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="class-imbalance-distribution-shift" class="level1">
+<h1>Class Imbalance &amp; Distribution Shift</h1>
+<p>Hai vấn đề này đều thuộc nhóm <strong>“dữ liệu không như ta ngầm giả định”</strong>. Model học được gì, đánh giá ra sao, deploy có bền không — tất cả phụ thuộc vào một giả định thầm lặng: <em>dữ liệu train, dữ liệu test và dữ liệu production đến từ cùng một phân phối, và các lớp xuất hiện với tần suất “hợp lý”</em>. Khi giả định này vỡ, model vẫn chạy, vẫn cho ra số, nhưng số đó lừa ta.</p>
+<ul>
+<li><strong>Class imbalance</strong>: phân phối <em>nhãn</em> lệch — một lớp áp đảo về số lượng ngay trong tập train.</li>
+<li><strong>Distribution shift</strong>: phân phối <em>thay đổi theo thời gian / theo môi trường</em> — train khác test, hoặc hôm nay khác hôm qua.</li>
+</ul>
+<hr>
+<section id="phần-a-class-imbalance" class="level2">
+<h2 class="anchored" data-anchor-id="phần-a-class-imbalance">Phần A — Class Imbalance</h2>
+<section id="a.1.-vấn-đề-là-gì" class="level3">
+<h3 class="anchored" data-anchor-id="a.1.-vấn-đề-là-gì">A.1. Vấn đề là gì</h3>
+<p>Bài toán nhị phân với 99% lớp âm, 1% lớp dương (gian lận thẻ, bệnh hiếm, lỗi thiết bị, click quảng cáo…). Một model “ngu” đoán <strong>tất cả là âm</strong> đạt ngay:</p>
+<ul>
+<li>Accuracy = 99%</li>
+<li>Recall lớp dương = 0%</li>
+<li>Hoàn toàn vô dụng, nhưng nhìn qua metric thì “đẹp”</li>
+</ul>
+<p>Imbalance không phải lúc nào cũng là vấn đề. Nó thành vấn đề khi <strong>lớp hiếm chính là lớp ta quan tâm</strong>, và khi thuật toán / loss / metric bị lớp đa số kéo đi.</p>
+</section>
+<section id="a.2.-vì-sao-model-học-kém-trên-lớp-hiếm" class="level3">
+<h3 class="anchored" data-anchor-id="a.2.-vì-sao-model-học-kém-trên-lớp-hiếm">A.2. Vì sao model học kém trên lớp hiếm</h3>
+<ol type="1">
+<li><strong>Loss bị lớp đa số chi phối.</strong> Cross-entropy tính trung bình trên toàn bộ mẫu. 99% gradient đến từ lớp âm → optimizer dành gần hết “sức” để tối ưu lớp âm, lớp dương gần như bị làm ngơ. Nghiệm tối ưu loss trung bình ≠ nghiệm ta muốn.</li>
+<li><strong>Thiếu tín hiệu.</strong> 1% của 10 000 mẫu = 100 mẫu dương. Không đủ để học được ranh giới phức tạp; model dễ overfit vài mẫu dương hoặc bỏ qua chúng như nhiễu.</li>
+<li><strong>Ranh giới quyết định bị đẩy lệch.</strong> Với ngưỡng mặc định 0.5, xác suất hậu nghiệm bị “kéo” về phía lớp đa số → gần như không mẫu nào vượt 0.5.</li>
+</ol>
+</section>
+<section id="a.3.-bốn-nhóm-cách-xử-lý" class="level3">
+<h3 class="anchored" data-anchor-id="a.3.-bốn-nhóm-cách-xử-lý">A.3. Bốn nhóm cách xử lý</h3>
+<section id="đổi-metric-bắt-buộc-làm-trước-tiên" class="level4">
+<h4 class="anchored" data-anchor-id="đổi-metric-bắt-buộc-làm-trước-tiên">(1) Đổi metric — bắt buộc, làm trước tiên</h4>
+<p>Trước khi đụng vào data hay model, <strong>bỏ accuracy</strong>. Xem <a href="../../../courses/machine-learning/lectures/L02-classification-metrics.html">ROC-AUC · PR-AUC · F1</a>:</p>
+<ul>
+<li>Lớp dương hiếm, quan tâm chất lượng cảnh báo → <strong>PR-AUC</strong>, precision/recall theo yêu cầu nghiệp vụ.</li>
+<li>Cần một số so sánh model, không phụ thuộc ngưỡng → <strong>ROC-AUC</strong> (nhưng nhớ ROC-AUC lạc quan hơn thực tế khi lớp lệch nặng).</li>
+<li>Báo cáo vận hành → <strong>F1</strong> hoặc <strong>F-beta</strong> (beta &gt; 1 nếu bỏ sót đắt hơn báo nhầm).</li>
+<li>Luôn đọc metric <strong>so với baseline trên cùng tập</strong>, không đọc số tuyệt đối.</li>
+</ul>
+</section>
+<section id="resampling-cân-lại-dữ-liệu" class="level4">
+<h4 class="anchored" data-anchor-id="resampling-cân-lại-dữ-liệu">(2) Resampling — cân lại dữ liệu</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 30%">
+<col style="width: 19%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cách</th>
+<th>Làm gì</th>
+<th>Ưu</th>
+<th>Nhược</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Random undersampling</strong></td>
+<td>Bỏ bớt mẫu lớp đa số</td>
+<td>Nhanh, train nhẹ</td>
+<td>Vứt thông tin; dễ mất mẫu biên quan trọng</td>
+</tr>
+<tr class="even">
+<td><strong>Random oversampling</strong></td>
+<td>Nhân bản mẫu lớp thiểu số</td>
+<td>Không mất data</td>
+<td>Overfit vì lặp y hệt; không tạo thông tin mới</td>
+</tr>
+<tr class="odd">
+<td><strong>SMOTE</strong></td>
+<td>Nội suy mẫu dương mới giữa các mẫu dương lân cận</td>
+<td>Tạo mẫu “mới”, giảm overfit so với nhân bản</td>
+<td>Có thể tạo mẫu ảo trong vùng lớp âm → nhiễu; kém khi nhiều chiều / dữ liệu phân loại</td>
+</tr>
+<tr class="even">
+<td><strong>SMOTE biến thể</strong> (Borderline-SMOTE, ADASYN)</td>
+<td>Tập trung sinh mẫu gần ranh giới</td>
+<td>Đánh vào vùng khó</td>
+<td>Nhạy nhiễu, phức tạp hơn</td>
+</tr>
+<tr class="odd">
+<td><strong>Undersampling thông minh</strong> (Tomek links, ENN)</td>
+<td>Bỏ mẫu đa số nằm sát ranh giới / bị nhiễu</td>
+<td>Làm sạch ranh giới</td>
+<td>Chỉ giảm nhẹ độ lệch</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nguyên tắc sống còn:</strong> chỉ resample trên <strong>tập train</strong>, và làm <strong>bên trong</strong> vòng cross-validation. Resample rồi mới split → mẫu ảo/bản sao rò rỉ sang validation → metric ảo cao.</p>
+<p>Tập validation / test phải giữ <strong>tỷ lệ lớp thật của production</strong> để đánh giá trung thực.</p>
+</section>
+<section id="cost-sensitive-learning-đổi-loss-thay-vì-đổi-data" class="level4">
+<h4 class="anchored" data-anchor-id="cost-sensitive-learning-đổi-loss-thay-vì-đổi-data">(3) Cost-sensitive learning — đổi loss thay vì đổi data</h4>
+<ul>
+<li><strong>Class weight</strong>: nhân trọng số lớp thiểu số trong loss (ví dụ <code>class_weight="balanced"</code> trong sklearn: trọng số ∝ nghịch đảo tần suất lớp). Về mặt hiệu quả gần tương đương oversampling nhưng không phình dữ liệu.</li>
+<li><strong>Focal loss</strong>: hạ trọng số các mẫu “dễ” (model đã tự tin đoán đúng), dồn gradient vào mẫu khó — sinh ra cho object detection, hữu ích khi lệch cực nặng.</li>
+<li>Ưu điểm chung: không đụng phân phối dữ liệu, dễ tinh chỉnh, không tạo mẫu ảo.</li>
+<li><strong>Khi vừa có imbalance vừa có distribution shift</strong>, <code>class_weight</code> thường <strong>ổn định hơn SMOTE</strong>: SMOTE nội suy mẫu mới từ phân phối <em>train</em>, dễ khuếch đại những vùng đặc trưng vốn đã không khớp với production. Class weight chỉ chỉnh trọng số, không đẻ ra mẫu ảo trong vùng lệch.</li>
+</ul>
+</section>
+<section id="threshold-moving-chỉnh-sau-khi-train" class="level4">
+<h4 class="anchored" data-anchor-id="threshold-moving-chỉnh-sau-khi-train">(4) Threshold moving — chỉnh sau khi train</h4>
+<p>Model vẫn train bình thường; chỉ <strong>chọn lại ngưỡng</strong> thay vì cứng nhắc 0.5:</p>
+<ul>
+<li>Quét ngưỡng trên tập validation, chọn điểm tối ưu theo tiêu chí nghiệp vụ (đỉnh F1, hoặc recall ≥ 0.9 với precision cao nhất có thể, hoặc điểm tối thiểu hoá cost kỳ vọng <code>cost = c_FP·FP + c_FN·FN</code>).</li>
+<li>Rẻ, không cần train lại, không làm méo xác suất. Thường nên thử <strong>trước</strong> khi resample.</li>
+</ul>
+</section>
+</section>
+<section id="a.4.-thứ-tự-nên-làm" class="level3">
+<h3 class="anchored" data-anchor-id="a.4.-thứ-tự-nên-làm">A.4. Thứ tự nên làm</h3>
+<ol type="1">
+<li>Đổi metric (PR-AUC / F1 / recall-tại-precision).</li>
+<li>Thử <strong>class weight</strong> + <strong>threshold moving</strong> — rẻ, thường đủ.</li>
+<li>Nếu chưa đủ: thêm <strong>SMOTE / undersampling</strong> trong CV.</li>
+<li>Thu thập thêm dữ liệu lớp hiếm nếu có thể — luôn tốt hơn mọi thủ thuật.</li>
+<li>Nếu lớp dương cực hiếm (&lt; 0.1%) và “bất thường” hơn là “một lớp”: cân nhắc <strong>anomaly detection</strong> thay vì phân loại có giám sát.</li>
+</ol>
+</section>
+<section id="a.5.-bẫy-thường-gặp" class="level3">
+<h3 class="anchored" data-anchor-id="a.5.-bẫy-thường-gặp">A.5. Bẫy thường gặp</h3>
+<ul>
+<li>Resample cả tập rồi mới split → rò rỉ, metric ảo.</li>
+<li>Đánh giá trên tập đã bị cân bằng nhân tạo → không phản ánh production.</li>
+<li>Báo accuracy trên dữ liệu lệch.</li>
+<li>Oversampling bằng nhân bản rồi ngạc nhiên vì overfit.</li>
+<li>Dùng SMOTE với đặc trưng phân loại / nhiều chiều mà không xử lý khoảng cách cho đúng.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="phần-b-distribution-shift" class="level2">
+<h2 class="anchored" data-anchor-id="phần-b-distribution-shift">Phần B — Distribution Shift</h2>
+<section id="b.1.-vấn-đề-là-gì" class="level3">
+<h3 class="anchored" data-anchor-id="b.1.-vấn-đề-là-gì">B.1. Vấn đề là gì</h3>
+<p>Giả định nền của học có giám sát: dữ liệu train và dữ liệu tương lai <strong>i.i.d. từ cùng phân phối</strong> <code>P(X, Y)</code>. Thực tế phân phối trôi:</p>
+<ul>
+<li>Hành vi người dùng đổi, mùa vụ, lạm phát, đối thủ ra sản phẩm mới.</li>
+<li>Cảm biến xuống cấp, đổi nhà cung cấp dữ liệu, đổi pipeline thu thập.</li>
+<li>Model được deploy và <strong>chính nó làm thay đổi hành vi</strong> (ví dụ model gợi ý làm người dùng click khác đi).</li>
+</ul>
+<p>Hệ quả: model không “hỏng” đột ngột, nó <strong>thoái hoá âm thầm</strong> — metric offline vẫn đẹp (vì test set cũ), metric online tụt dần.</p>
+</section>
+<section id="b.2.-phân-loại-shift-rất-nên-thuộc" class="level3">
+<h3 class="anchored" data-anchor-id="b.2.-phân-loại-shift-rất-nên-thuộc">B.2. Phân loại shift (rất nên thuộc)</h3>
+<p>Phân tích <code>P(X, Y) = P(Y|X) · P(X) = P(X|Y) · P(Y)</code>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 25%">
+<col style="width: 44%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Loại</th>
+<th>Cái gì đổi</th>
+<th>Cái gì giữ nguyên</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Covariate shift</strong></td>
+<td><code>P(X)</code> — phân phối đầu vào</td>
+<td><code>P(Y\|X)</code> — quy luật nhãn theo input</td>
+<td>Model tín dụng train ở nhóm khách trẻ, nay áp lên nhóm khách già; quan hệ “thu nhập → khả năng trả nợ” không đổi</td>
+</tr>
+<tr class="even">
+<td><strong>Label / prior shift</strong></td>
+<td><code>P(Y)</code> — tỷ lệ lớp</td>
+<td><code>P(X\|Y)</code> — đặc trưng của từng lớp</td>
+<td>Tỷ lệ gian lận tăng gấp đôi sau kỳ nghỉ lễ; “gian lận trông thế nào” không đổi</td>
+</tr>
+<tr class="odd">
+<td><strong>Concept drift</strong></td>
+<td><code>P(Y\|X)</code> — chính quy luật ánh xạ</td>
+<td>(thường <code>P(X)</code> giữ nguyên)</td>
+<td>“Email thế nào là spam” thay đổi khi spammer đổi chiến thuật; cùng một email giờ có nhãn khác</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Covariate shift</strong>: nguy hiểm ở vùng input model chưa từng thấy; có thể chữa bằng reweight/thu thập thêm mà <strong>không cần nhãn mới</strong>.</li>
+<li><strong>Label shift</strong>: chữa được bằng <strong>hiệu chỉnh lại prior / ngưỡng</strong> nếu ước lượng được <code>P(Y)</code> mới.</li>
+<li><strong>Concept drift</strong>: nặng nhất — <strong>bắt buộc phải có nhãn mới</strong> và <strong>train lại</strong>; không thủ thuật nào cứu được vì quy luật đã đổi.</li>
+</ul>
+<p>Thêm: <strong>train–serving skew</strong> — không phải shift theo thời gian mà là lệch <em>do lỗi kỹ thuật</em>: feature tính khác nhau giữa lúc train (batch, có future data) và lúc serve (online). Rất phổ biến, và giống hệt shift khi nhìn từ metric.</p>
+</section>
+<section id="b.3.-phát-hiện-không-có-nhãn-làm-liên-tục" class="level3">
+<h3 class="anchored" data-anchor-id="b.3.-phát-hiện-không-có-nhãn-làm-liên-tục">B.3. Phát hiện — không có nhãn (làm liên tục)</h3>
+<p>Nhãn thật thường đến trễ (có khi hàng tháng). Nên phải giám sát bằng thứ có ngay:</p>
+<p><strong>Giám sát đầu vào (mỗi feature + đầu ra dự đoán):</strong></p>
+<ul>
+<li><strong>PSI (Population Stability Index)</strong>: chia feature thành bins theo phân phối train, so tần suất production vs train. <code>PSI = Σ (p_prod − p_train) · ln(p_prod / p_train)</code> Quy ước thô: <code>&lt; 0.1</code> ổn · <code>0.1–0.25</code> cần chú ý · <code>&gt; 0.25</code> shift rõ.</li>
+<li><strong>KS test</strong> (biến liên tục), <strong>Chi-square</strong> (biến phân loại): so hai phân phối, cho p-value. Nhược: với data lớn, khác biệt nhỏ vô hại cũng “significant” → nên nhìn effect size, không chỉ p-value.</li>
+<li><strong>KL / JS divergence</strong>, <strong>Wasserstein distance</strong>: khoảng cách phân phối, dùng khi cần một con số theo dõi theo thời gian.</li>
+<li><strong>Giám sát chính <code>P(ŷ)</code></strong>: phân phối điểm dự đoán của model dịch chuyển là dấu hiệu sớm và rẻ nhất.</li>
+</ul>
+<p><strong>Domain classifier (mẹo hay cho covariate shift):</strong> gán nhãn <code>0</code> cho mẫu train, <code>1</code> cho mẫu production, train một classifier phân biệt hai nguồn. Nếu nó phân biệt được (AUC ≫ 0.5) → hai phân phối khác nhau; feature importance của nó chỉ ra <strong>feature nào trôi</strong>.</p>
+<p><strong>Giám sát hệ quả gián tiếp:</strong> tỷ lệ lỗi downstream, số lần con người can thiệp/override, khiếu nại người dùng, tỷ lệ rơi vào “vùng không chắc” của model.</p>
+</section>
+<section id="b.4.-phát-hiện-có-nhãn-khi-nhãn-về" class="level3">
+<h3 class="anchored" data-anchor-id="b.4.-phát-hiện-có-nhãn-khi-nhãn-về">B.4. Phát hiện — có nhãn (khi nhãn về)</h3>
+<ul>
+<li>Theo dõi <strong>metric theo cửa sổ thời gian</strong> (rolling weekly PR-AUC / accuracy), đặt cảnh báo khi tụt quá ngưỡng.</li>
+<li><strong>Backtest</strong> định kỳ trên dữ liệu gần nhất có nhãn.</li>
+<li>So sánh <strong>calibration</strong> (reliability diagram): model từng calibrated nay lệch → dấu hiệu label/concept shift.</li>
+</ul>
+</section>
+<section id="b.5.-xử-lý" class="level3">
+<h3 class="anchored" data-anchor-id="b.5.-xử-lý">B.5. Xử lý</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tình huống</th>
+<th>Cách xử lý</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Covariate shift nhẹ, biết vùng nào lệch</td>
+<td><strong>Importance weighting</strong>: cân lại mẫu train theo <code>w(x) = p_prod(x) / p_train(x)</code> (ước lượng từ domain classifier) rồi train lại</td>
+</tr>
+<tr class="even">
+<td>Covariate shift do thiếu vùng dữ liệu</td>
+<td>Thu thập / gán nhãn thêm ở vùng đó; augment</td>
+</tr>
+<tr class="odd">
+<td>Label shift, ước lượng được <code>P(Y)</code> mới</td>
+<td>Hiệu chỉnh lại xác suất hậu nghiệm / dịch ngưỡng theo prior mới (không cần train lại)</td>
+</tr>
+<tr class="even">
+<td>Concept drift</td>
+<td><strong>Train lại với dữ liệu mới có nhãn</strong>; không có đường tắt</td>
+</tr>
+<tr class="odd">
+<td>Shift liên tục, chậm</td>
+<td><strong>Retrain định kỳ</strong> (theo lịch) hoặc <strong>online / incremental learning</strong>; dùng cửa sổ trượt, hạ trọng số dữ liệu cũ</td>
+</tr>
+<tr class="even">
+<td>Shift đột ngột (điểm gãy)</td>
+<td><strong>Trigger-based retrain</strong>: pipeline tự train lại khi PSI / drift metric / performance vượt ngưỡng</td>
+</tr>
+<tr class="odd">
+<td>Train–serving skew</td>
+<td>Sửa <strong>feature pipeline</strong>, không phải model: dùng chung một đường tính feature cho train và serve (feature store); test parity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phòng hơn chống:</strong></p>
+<ul>
+<li>Model đơn giản, ít feature “mong manh” → bền hơn với shift.</li>
+<li>Feature bền (ít phụ thuộc thời điểm) thay vì feature dễ trôi.</li>
+<li>Có sẵn <strong>pipeline retrain tự động</strong> + <strong>CI cho data</strong> ngay từ đầu.</li>
+<li>Ghi log đầy đủ input/output ở production để sau này backtest và gán nhãn được.</li>
+</ul>
+</section>
+<section id="b.6.-bộ-công-cụ-xử-lý-shift-trong-thực-tế" class="level3">
+<h3 class="anchored" data-anchor-id="b.6.-bộ-công-cụ-xử-lý-shift-trong-thực-tế">B.6. Bộ công cụ xử lý shift trong thực tế</h3>
+<p>Đây là quy trình cụ thể, minh hoạ bằng bài lab <strong>CNC</strong> (train = dây chuyền A, test = dây chuyền B nóng hơn, tải khác — covariate shift thuần).</p>
+<p><strong>1. Định lượng shift từng feature — PSI + KS.</strong> Tính PSI cho <em>mọi</em> feature số (kể cả feature tự tạo), phân loại <code>&lt; 0.1 / 0.1–0.25 / &gt; 0.25</code>. Với <code>n</code> lớn, KS p-value gần như luôn ≈ 0 → <strong>PSI là thước đo độ lớn đáng tin hơn p-value</strong>. Kết quả CNC: nhóm nhiệt độ PSI 0.3–1.1 (shift mạnh), độ mòn dao và các feature cơ học PSI &lt; 0.05 (ổn định).</p>
+<p><strong>2. Drift classifier — tìm “thủ phạm”.</strong> Gán <code>0</code> cho mẫu train, <code>1</code> cho mẫu test, train classifier phân biệt hai nguồn, <strong>đánh giá bằng CV out-of-fold</strong> (tránh AUC lạc quan giả).</p>
+<ul>
+<li>AUC ≈ 0.5 → hai phân phối trùng nhau, không shift.</li>
+<li>AUC ≫ 0.5 (CNC: ≈ 0.83) → shift thật, không phải nhiễu.</li>
+<li><strong>Feature importance của drift classifier</strong> = xếp hạng feature trôi nhiều nhất; nên <strong>nhất quán với PSI</strong>. SHAP bổ sung <em>chiều</em> trôi (nhiệt độ cao → đẩy về phía “là test”).</li>
+<li>Bọc <code>CalibratedClassifierCV</code> để xác suất drift dùng lại được ở bước 3.</li>
+</ul>
+<p><strong>3. Importance reweighting (density-ratio).</strong> Cân lại mẫu train theo <code>w(x) = p_test(x) / p_train(x)</code>, suy trực tiếp từ xác suất drift classifier: <code>w = s/(1−s) · (n_train/n_test)</code> với <code>s = P(là test | x)</code>. Rồi train lại model với <code>sample_weight=w</code>.</p>
+<ul>
+<li><strong>Clip đuôi</strong> (ví dụ về phân vị 1–99%) và <strong>chuẩn hoá</strong> <code>w</code> về trung bình 1, nếu không vài mẫu chiếm hết trọng số.</li>
+<li>Theo dõi <strong>Effective Sample Size</strong> <code>ESS = (Σw)² / Σw²</code>. ESS tụt sâu (CNC: còn ~20%) nghĩa là reweighting đang vứt phần lớn dữ liệu hiệu dụng → phương sai tăng.</li>
+<li><strong>Chỉ giúp khi covariate shift + train KHÔNG phủ đủ vùng của test.</strong> Với covariate shift thuần mà train đã phủ đủ (như CNC), <code>P(Y|X)</code> không đổi nên reweighting <strong>không sửa được thiên lệch nào, chỉ thêm phương sai</strong> — AUC-PR còn tụt nhẹ. Luôn so trước/sau, đừng mặc định áp dụng.</li>
+</ul>
+<p><strong>4. Threshold calibration.</strong> Chọn lại ngưỡng quyết định trên <strong>OOF của tập train</strong> (không đụng test), lấy điểm tối đa F1 hoặc điểm tối thiểu hoá cost. <code>argmax</code> trên một lần chia CV dao động mạnh → <strong>trung bình ngưỡng qua nhiều seed</strong> để giảm phương sai. Rẻ, an toàn, không cần train lại — CNC: F1 0.757 → 0.771. <strong>Gần như luôn nên làm.</strong></p>
+<p><strong>5. Feature engineering kháng shift.</strong> Feature phái sinh mã hoá <strong>cơ chế / quy luật vật lý</strong> (tỉ số, hiệu, tích của biến gốc) thường <strong>ổn định giữa các domain</strong> hơn biến thô: ở CNC, <code>công_suất = mômen × tốc_độ_góc</code> và <code>Δnhiệt = nhiệt_quy_trình − nhiệt_môi_trường</code> có PSI &lt; 0.05 dù các biến thành phần shift mạnh. Ưu tiên loại feature này → model tổng quát hoá sang domain mới tốt hơn. Nguyên tắc nhận feature: <strong>vừa cải thiện CV, vừa không phá tính kháng shift</strong> (loại feature cải thiện CV nhưng PSI cao).</p>
+<p><strong>6. Kết luận chiến lược.</strong> Với covariate shift thuần: <strong>feature kháng shift + threshold calibration</strong> là đủ và hiệu quả nhất; reweighting nên <em>thử và đo</em> nhưng thường không áp dụng. Giá trị lâu dài của pipeline shift là <strong>giám sát khi deploy</strong> — tính PSI định kỳ trên dữ liệu mới; nếu shift tiến hoá thành concept drift thì cảnh báo, gán nhãn, train lại.</p>
+</section>
+<section id="b.7.-bẫy-thường-gặp" class="level3">
+<h3 class="anchored" data-anchor-id="b.7.-bẫy-thường-gặp">B.7. Bẫy thường gặp</h3>
+<ul>
+<li>Chỉ đánh giá offline trên test set cũ, không giám sát online → phát hiện shift qua… khiếu nại khách hàng.</li>
+<li>Nhìn p-value của test thống kê trên data lớn rồi báo động giả liên tục.</li>
+<li>Nhầm train–serving skew (lỗi kỹ thuật, sửa được ngay) với concept drift (phải retrain).</li>
+<li>Retrain mù khi nhãn chưa thực sự về đủ → học nhiễu.</li>
+<li>Giám sát accuracy tổng thể mà bỏ qua shift <em>trong một phân khúc</em> (một nhóm user, một vùng địa lý) đủ sức làm hỏng trải nghiệm nhóm đó.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="phần-c-censoring-thiết-kế-nhãn-label-design" class="level2">
+<h2 class="anchored" data-anchor-id="phần-c-censoring-thiết-kế-nhãn-label-design">Phần C — Censoring &amp; thiết kế nhãn (label design)</h2>
+<p>Một dạng “dữ liệu không như giả định” ít được nhắc nhưng rất hay gặp ở bài toán <strong>dự đoán một sự kiện trong tương lai</strong> (khách hàng có quay lại mua trong 45 ngày không? thiết bị có hỏng trong ca tới không?). Minh hoạ bằng lab <strong>PharmaDist</strong> (dự đoán nhà thuốc đặt hàng lại trong 45 ngày).</p>
+<section id="c.1.-right-censoring-là-gì" class="level3">
+<h3 class="anchored" data-anchor-id="c.1.-right-censoring-là-gì">C.1. Right-censoring là gì</h3>
+<p>Dữ liệu kết thúc tại một mốc cố định <code>SNAP = max(ngày)</code>. Sau <code>SNAP</code> ta không biết gì.</p>
+<p>Với một đơn hàng đặt <strong>11 ngày trước <code>SNAP</code></strong> và <strong>chưa</strong> thấy đơn tiếp theo: gán nhãn <code>0</code> (“sẽ không đặt lại trong 45 ngày”) là <strong>đoán mò</strong> — cửa sổ 45 ngày còn chưa trôi hết, nhà thuốc hoàn toàn có thể đặt lại vào tuần sau. Những đơn “bị quan sát thiếu” này đều là các đơn <strong>gần đây nhất</strong>.</p>
+</section>
+<section id="c.2.-vì-sao-nó-phá-đánh-giá" class="level3">
+<h3 class="anchored" data-anchor-id="c.2.-vì-sao-nó-phá-đánh-giá">C.2. Vì sao nó phá đánh giá</h3>
+<p>Split theo thời gian đẩy 20% <strong>mới nhất</strong> vào test. Nếu gán <code>0</code> cho mọi đơn chưa thấy tái đặt, ta <strong>gán sai <code>0</code> một cách hệ thống cho chính tập test</strong> → tỷ lệ dương của test bị bóp méo, metric test không còn tin được. Đây là một <strong>bias do censoring</strong>, không phải xu hướng thật.</p>
+</section>
+<section id="c.3.-observation-horizon-rule-ba-trường-hợp" class="level3">
+<h3 class="anchored" data-anchor-id="c.3.-observation-horizon-rule-ba-trường-hợp">C.3. Observation-horizon rule — ba trường hợp</h3>
+<p>Đặt <code>H</code> = độ dài cửa sổ dự đoán (ví dụ 45 ngày):</p>
+<ol type="1">
+<li><strong>Đã thấy sự kiện trong <code>≤ H</code> → nhãn 1.</strong> Chắc chắn, bất kể gần <code>SNAP</code> cỡ nào.</li>
+<li><strong>Chưa thấy sự kiện VÀ cửa sổ đã trôi hết</strong> (<code>ngày ≤ SNAP − H</code>) <strong>→ nhãn 0.</strong> Chắc chắn “không”.</li>
+<li><strong>Chưa thấy sự kiện VÀ cửa sổ chưa trôi hết</strong> (<code>ngày &gt; SNAP − H</code>) <strong>→ NaN, loại khỏi cả train lẫn test.</strong> Không biết thì không đoán.</li>
+</ol>
+<p>Quy tắc này giữ <strong>định nghĩa nhãn giống hệt nhau ở mọi thời điểm</strong> → phân phối nhãn ổn định giữa train và test, model được đánh giá công bằng. Ở PharmaDist, sau khi áp rule, tỷ lệ dương train/test còn lệch nhẹ (28% vs 49%) nhưng đó là <strong>xu hướng thật</strong> (đơn gần đây được tái đặt nhanh hơn), không phải artefact.</p>
+</section>
+<section id="c.4.-nguyên-tắc-chung" class="level3">
+<h3 class="anchored" data-anchor-id="c.4.-nguyên-tắc-chung">C.4. Nguyên tắc chung</h3>
+<ul>
+<li><strong>Định nghĩa nhãn TRƯỚC khi làm feature</strong>, để ranh giới quá khứ–tương lai rõ ràng.</li>
+<li>Đơn vị quan sát cuối cùng của mỗi thực thể (đơn cuối của mỗi nhà thuốc) không có “sự kiện tiếp theo” → <strong>censored</strong>, loại khỏi bài toán hồi quy “bao lâu nữa”.</li>
+<li>Muốn tận dụng cả mẫu bị censor thay vì vứt đi → <strong>survival analysis</strong> (Cox proportional hazards, Kaplan–Meier).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">Tóm tắt</h2>
+<p><strong>Class imbalance</strong> — phân phối nhãn lệch trong train:</p>
+<ul>
+<li>Bỏ accuracy trước tiên; dùng PR-AUC / F1 / recall-tại-precision, đọc so với baseline.</li>
+<li>Rẻ trước: class weight + threshold moving. Nặng hơn: SMOTE / undersampling <strong>trong</strong> CV, chỉ trên train.</li>
+<li>Test / validation giữ tỷ lệ lớp thật của production.</li>
+<li>Nhiều dữ liệu lớp hiếm &gt; mọi thủ thuật resample.</li>
+</ul>
+<p><strong>Distribution shift</strong> — phân phối đổi giữa train / test / thời gian:</p>
+<ul>
+<li>Ba loại: <strong>covariate</strong> (<code>P(X)</code> đổi), <strong>label</strong> (<code>P(Y)</code> đổi), <strong>concept</strong> (<code>P(Y|X)</code> đổi — nặng nhất, phải retrain).</li>
+<li>Phát hiện không cần nhãn: PSI, KS / Chi-square, divergence, giám sát <code>P(ŷ)</code>, domain/drift classifier.</li>
+<li>Phát hiện có nhãn: metric theo cửa sổ, backtest, calibration.</li>
+<li>Xử lý (chi tiết ở B.6): threshold calibration (rẻ, gần như luôn làm) + feature engineering kháng shift; importance reweighting chỉ khi covariate shift + train không phủ đủ test (theo dõi ESS); hiệu chỉnh prior (label shift); retrain (concept drift).</li>
+</ul>
+<p><strong>Censoring &amp; label design</strong> — bài toán dự đoán sự kiện tương lai:</p>
+<ul>
+<li>Gán <code>0</code> cho mẫu mà cửa sổ dự đoán chưa trôi hết = đoán mò → bias hệ thống lên tập test mới nhất.</li>
+<li><strong>Observation-horizon rule</strong>: nhãn 1 nếu đã thấy sự kiện; nhãn 0 chỉ khi cửa sổ đã trôi hết; còn lại NaN, loại bỏ.</li>
+<li>Định nghĩa nhãn trước khi làm feature; muốn giữ mẫu censored → survival analysis.</li>
+</ul>
+</section>
+<section id="bài-lab-liên-quan" class="level2">
+<h2 class="anchored" data-anchor-id="bài-lab-liên-quan">Bài lab liên quan</h2>
+<ul>
+<li><a href="../../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist_Reorder_Timing.ipynb</code></a> — dữ liệu bẩn 7 bảng, observation-horizon rule (Phần C), feature <em>as-of</em> chống rò rỉ, split theo thời gian.</li>
+<li><a href="../../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC_Failure_Distribution_Shift.ipynb</code></a> — toàn bộ bộ công cụ ở Phần B.6: PSI/KS, drift classifier, importance reweighting + ESS, threshold calibration, feature cơ học kháng shift.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
