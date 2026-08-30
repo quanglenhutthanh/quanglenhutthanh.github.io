@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-28">
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>Tổng quan chương trình &amp; lộ trình 3 milestone – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,25 +30,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,79 +74,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lectures .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lectures'] = new List('listing-lectures', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -158,7 +85,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
@@ -169,15 +96,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../courses/index.html"> 
+    <a class="nav-link" href="../../../courses/index.html"> 
 <span class="menu-text">Learning Space</span></a>
   </li>  
 </ul>
@@ -203,10 +130,20 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#tổng-quan-chương-trình-lộ-trình-3-milestone" id="toc-tổng-quan-chương-trình-lộ-trình-3-milestone" class="nav-link active" data-scroll-target="#tổng-quan-chương-trình-lộ-trình-3-milestone">Tổng quan chương trình &amp; lộ trình 3 milestone</a>
+  <ul class="collapse">
+  <li><a href="#chương-trình-là-gì" id="toc-chương-trình-là-gì" class="nav-link" data-scroll-target="#chương-trình-là-gì">1. Chương trình là gì</a></li>
+  <li><a href="#ba-milestone" id="toc-ba-milestone" class="nav-link" data-scroll-target="#ba-milestone">2. Ba milestone</a>
+  <ul class="collapse">
+  <li><a href="#milestone-1-certifications-3-chứng-chỉ" id="toc-milestone-1-certifications-3-chứng-chỉ" class="nav-link" data-scroll-target="#milestone-1-certifications-3-chứng-chỉ">Milestone 1 — Certifications (3 chứng chỉ)</a></li>
+  <li><a href="#milestone-2-project-ready-assessments-5-khoá-cần-80" id="toc-milestone-2-project-ready-assessments-5-khoá-cần-80" class="nav-link" data-scroll-target="#milestone-2-project-ready-assessments-5-khoá-cần-80">Milestone 2 — Project Ready + Assessments (5 khoá, cần ≥ 80%)</a></li>
+  <li><a href="#milestone-3-frontier-coe-hypervelocity-engineering" id="toc-milestone-3-frontier-coe-hypervelocity-engineering" class="nav-link" data-scroll-target="#milestone-3-frontier-coe-hypervelocity-engineering">Milestone 3 — Frontier CoE &amp; Hypervelocity Engineering</a></li>
+  </ul></li>
+  <li><a href="#công-nghệ-chính-sẽ-gặp" id="toc-công-nghệ-chính-sẽ-gặp" class="nav-link" data-scroll-target="#công-nghệ-chính-sẽ-gặp">3. Công nghệ chính sẽ gặp</a></li>
+  <li><a href="#thứ-tự-học-đề-xuất-nháp" id="toc-thứ-tự-học-đề-xuất-nháp" class="nav-link" data-scroll-target="#thứ-tự-học-đề-xuất-nháp">4. Thứ tự học đề xuất (nháp)</a></li>
+  <li><a href="#câu-hỏi-cần-trả-lời-khi-học-xong" id="toc-câu-hỏi-cần-trả-lời-khi-học-xong" class="nav-link" data-scroll-target="#câu-hỏi-cần-trả-lời-khi-học-xong">5. Câu hỏi cần trả lời khi học xong</a></li>
+  <li><a href="#liên-kết" id="toc-liên-kết" class="nav-link" data-scroll-target="#liên-kết">6. Liên kết</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -215,8 +152,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">Tổng quan chương trình &amp; lộ trình 3 milestone</h1>
 </div>
 
 
@@ -224,6 +160,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 28, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -233,106 +175,182 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical deployment concerns, particularly detecting and handling distribution shift.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch.</p>
-</section>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<div id="listing-lectures" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-lectures-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-lectures'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Topic
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Tags
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1785024000000" data-listing-file-modified-sort="1788079941999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2316" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="Gradient-descent.md">
-<td>
-<span class="listing-lecture_no">1</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/Gradient-descent.html" class="title listing-title">Gradient Descent</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788079941998" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1879" data-listing-title-sort="ROC-AUC, PR-AUC, F1" data-listing-filename-sort="Classification-metrics.md">
-<td>
-<span class="listing-lecture_no">2</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/Classification-metrics.html" class="title listing-title">ROC-AUC, PR-AUC, F1</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">metrics, classification, roc-auc, pr-auc, f1, confusion-matrix</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-</section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
+<section id="tổng-quan-chương-trình-lộ-trình-3-milestone" class="level1">
+<h1>Tổng quan chương trình &amp; lộ trình 3 milestone</h1>
+<blockquote class="blockquote">
+<p>Ghi chú khởi động: chương trình này gồm những gì, thứ tự nên học, và các mốc bắt buộc để lấy badge. Các phần chi tiết từng khoá sẽ tách thành topic riêng (L02, L03, …).</p>
+</blockquote>
+<section id="chương-trình-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="chương-trình-là-gì">1. Chương trình là gì</h2>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
+<li>Tên: <strong>Frontier Transformation Engineer</strong> (Microsoft — Skill Up with Level Up).</li>
+<li>Mục tiêu: trang bị năng lực AI để biến tổ chức thành <strong>Frontier Firm</strong> — doanh nghiệp vận hành với con người + AI agent làm việc song song.</li>
+<li>Quy mô: ~<strong>86 giờ</strong>, <strong>11 khoá</strong>, học tự do theo nhịp cá nhân.</li>
+<li>Đầu ra: <strong>Frontier Transformation Engineer Badge</strong> sau khi hoàn thành 3 milestone.</li>
+<li>Đối tượng: Solution Engineer, AI Engineer, Cloud Engineer, Solution Architect, Technical Consultant.</li>
 </ul>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
+<section id="ba-milestone" class="level2">
+<h2 class="anchored" data-anchor-id="ba-milestone">2. Ba milestone</h2>
+<section id="milestone-1-certifications-3-chứng-chỉ" class="level3">
+<h3 class="anchored" data-anchor-id="milestone-1-certifications-3-chứng-chỉ">Milestone 1 — Certifications (3 chứng chỉ)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mã</th>
+<th>Tên</th>
+<th>Thời lượng</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GH-300</td>
+<td>GitHub Copilot</td>
+<td>10h</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>AI-102 / AI-103</td>
+<td>Develop AI apps and agents on Azure</td>
+<td>10h</td>
+<td>AI-102 được chấp nhận thay thế</td>
+</tr>
+<tr class="odd">
+<td>AB-100</td>
+<td>Agentic AI Business Solutions Architect</td>
+<td>10h</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="milestone-2-project-ready-assessments-5-khoá-cần-80" class="level3">
+<h3 class="anchored" data-anchor-id="milestone-2-project-ready-assessments-5-khoá-cần-80">Milestone 2 — Project Ready + Assessments (5 khoá, cần ≥ 80%)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Khoá</th>
+<th>Thời lượng</th>
+<th>Lab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Activate organizational intelligence with Microsoft IQ</td>
+<td>1h</td>
+<td>–</td>
+</tr>
+<tr class="even">
+<td>Build Frontier Firm productivity with Work IQ, Copilot &amp; agents</td>
+<td>15h</td>
+<td>có</td>
+</tr>
+<tr class="odd">
+<td>Accelerate Agentic AI</td>
+<td>15h</td>
+<td>có</td>
+</tr>
+<tr class="even">
+<td>Microsoft Fabric IQ &amp; Data Agents</td>
+<td>8h</td>
+<td>có</td>
+</tr>
+<tr class="odd">
+<td>Implement Agent 365 to observe, govern, and secure AI apps</td>
+<td>12h</td>
+<td>có</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="milestone-3-frontier-coe-hypervelocity-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="milestone-3-frontier-coe-hypervelocity-engineering">Milestone 3 — Frontier CoE &amp; Hypervelocity Engineering</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nội dung</th>
+<th>Thời lượng</th>
+<th>Bắt buộc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Create AI Center of Excellence</td>
+<td>2h</td>
+<td>tuỳ chọn</td>
+</tr>
+<tr class="even">
+<td>Hypervelocity Engineering Framework</td>
+<td>1.5h</td>
+<td><strong>bắt buộc</strong> (có assessment)</td>
+</tr>
+<tr class="odd">
+<td>Industry Expertise for building AI agents</td>
+<td>1h</td>
+<td>tuỳ chọn</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="công-nghệ-chính-sẽ-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="công-nghệ-chính-sẽ-gặp">3. Công nghệ chính sẽ gặp</h2>
+<ul>
+<li><strong>GitHub Copilot</strong> — lập trình hỗ trợ AI.</li>
+<li><strong>Azure AI / AI Foundry</strong> — build AI apps và agent.</li>
+<li><strong>Microsoft IQ / Work IQ</strong> — lớp “trí tuệ tổ chức” trên dữ liệu Microsoft 365.</li>
+<li><strong>Agentic AI</strong> — thiết kế, điều phối multi-agent.</li>
+<li><strong>Microsoft Fabric IQ &amp; Data Agents</strong> — agent truy vấn dữ liệu doanh nghiệp.</li>
+<li><strong>Agent 365</strong> — quan sát (observe), quản trị (govern), bảo mật (secure) agent ở quy mô tổ chức.</li>
+</ul>
+</section>
+<section id="thứ-tự-học-đề-xuất-nháp" class="level2">
+<h2 class="anchored" data-anchor-id="thứ-tự-học-đề-xuất-nháp">4. Thứ tự học đề xuất (nháp)</h2>
+<ol type="1">
+<li>GH-300 (Copilot) — nhẹ, làm quen trước.</li>
+<li>Microsoft IQ (1h) — khái niệm nền cho các khoá sau.</li>
+<li>AI-102/AI-103 — nền tảng Azure AI.</li>
+<li>Accelerate Agentic AI + AB-100 — phần agentic, học gần nhau cho liền mạch.</li>
+<li>Fabric IQ &amp; Data Agents.</li>
+<li>Agent 365 — governance, học sau khi đã hiểu agent.</li>
+<li>Hypervelocity Engineering Framework — chốt Milestone 3.</li>
+</ol>
+</section>
+<section id="câu-hỏi-cần-trả-lời-khi-học-xong" class="level2">
+<h2 class="anchored" data-anchor-id="câu-hỏi-cần-trả-lời-khi-học-xong">5. Câu hỏi cần trả lời khi học xong</h2>
+<ul>
+<li>“Frontier Firm” khác doanh nghiệp dùng AI thông thường ở điểm nào?</li>
+<li>Khi nào dùng Copilot extension vs.&nbsp;custom agent vs.&nbsp;multi-agent orchestration?</li>
+<li>Work IQ lấy ngữ cảnh từ đâu, ranh giới bảo mật/permission ra sao?</li>
+<li>Agent 365 giải quyết vấn đề gì mà nền tảng agent cơ bản không lo được?</li>
+<li>Hypervelocity Engineering Framework gồm những vòng lặp / vai trò nào?</li>
+</ul>
+</section>
+<section id="liên-kết" class="level2">
+<h2 class="anchored" data-anchor-id="liên-kết">6. Liên kết</h2>
+<ul>
+<li>Trang chương trình: <a href="https://skillupwithlevelup.com/frontier" class="uri">https://skillupwithlevelup.com/frontier</a></li>
+</ul>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->

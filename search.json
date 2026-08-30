@@ -46,7 +46,7 @@
     "href": "courses/index.html",
     "title": "My Learning Space",
     "section": "",
-    "text": "Notes rewritten from lecture slides and other material I’ve studied.\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\n\n\nImage and Video Processing\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\n\nNo matching items"
+    "text": "Notes rewritten from lecture slides and other material I’ve studied.\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\n\n\nFrontier Transformation Engineer\n\n\n\n\n\n\n\n\n\nImage and Video Processing\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/Deep Learning/labs/RNN_Text_Classification_Keras_IMDB.html",
@@ -922,6 +922,76 @@
     "title": "Ghi chú",
     "section": "",
     "text": "Cài đặt Linear Regression từ đầu (không dùng sklearn), huấn luyện bằng gradient descent:\n\npredict(X) = X·w + b\nGradient của MSE theo w, b (trung bình trên toàn bộ batch)\nLearning rate decay theo epoch: lr = lr0 / (1 + decay_rate * epoch)\nTrực quan hóa đường hồi quy qua các epoch để thấy quá trình hội tụ\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nclass LinearRegression:\n    def __init__(self, learning_rate=0.01, decay_rate=0.01, epochs=100):\n        self.lr = learning_rate\n        self.decay_rate = decay_rate\n        self.epochs = epochs\n        self.weights = None\n        self.bias = None\n\n    def predict(self, X):\n        return np.dot(X, self.weights) + self.bias\n\n    def compute_gradients(self, X, y, y_pred):\n        n_samples = X.shape[0]\n        dw = (1 / n_samples) * np.dot(X.T, (y_pred - y))\n        db = (1 / n_samples) * np.sum(y_pred - y)\n        return dw, db\n\n    def fit(self, X, y):\n        n_samples, n_features = X.shape\n        self.weights = np.zeros(n_features)\n        self.bias = 0\n        current_lr = self.lr\n\n        # Khởi tạo biểu đồ duy nhất\n        plt.figure(figsize=(10, 6))\n        plt.scatter(X, y, color='blue', alpha=0.3, label='Data Points')\n\n        # Vẽ đường tại Epoch 0 (Lúc mới khởi tạo)\n        y_init = self.predict(X)\n        plt.plot(X, y_init, color='black', linestyle='--', alpha=0.8, label='Initial (Epoch 0)')\n\n        colors = plt.cm.jet(np.linspace(0, 1, self.epochs // 10))\n        color_idx = 0\n\n        for epoch in range(self.epochs):\n            y_pred = self.predict(X)\n            dw, db = self.compute_gradients(X, y, y_pred)\n\n            self.weights -= current_lr * dw\n            self.bias -= current_lr * db\n\n            current_lr = self.lr * (1.0 / (1.0 + self.decay_rate * epoch))\n\n            if (epoch + 1) % 10 == 0:\n                loss = np.mean((y_pred - y)**2)\n                print(f'Epoch {epoch+1}, Loss: {loss:.4f}, LR: {current_lr:.6f}')\n\n                # Vẽ đường dự đoán hiện tại\n                plt.plot(X, y_pred, color=colors[color_idx], alpha=0.6,\n                         label=f'Epoch {epoch+1}' if (epoch+1) % 20 == 0 or epoch==9 else \"\")\n                color_idx += 1\n\n        plt.title('Convergence of Linear Regression (Including Initial State)')\n        plt.xlabel('X')\n        plt.ylabel('y')\n        plt.legend()\n        plt.show()\n\nif __name__ == '__main__':\n    X = 2 * np.random.rand(100, 1)\n    y = 4 + 3 * X.flatten() + np.random.randn(100)\n\n    model = LinearRegression(learning_rate=0.1, decay_rate=0.05, epochs=100)\n    model.fit(X, y)\n    print(f'Final Weights: {model.weights[0]:.4f}, Bias: {model.bias:.4f}')\n\nEpoch 10, Loss: 1.8469, LR: 0.068966\nEpoch 20, Loss: 1.1692, LR: 0.051282\nEpoch 30, Loss: 1.1257, LR: 0.040816\nEpoch 40, Loss: 1.1081, LR: 0.033898\nEpoch 50, Loss: 1.0957, LR: 0.028986\nEpoch 60, Loss: 1.0858, LR: 0.025316\nEpoch 70, Loss: 1.0778, LR: 0.022472\nEpoch 80, Loss: 1.0710, LR: 0.020202\nEpoch 90, Loss: 1.0652, LR: 0.018349\nEpoch 100, Loss: 1.0601, LR: 0.016807\n\n\n\n\n\n\n\n\n\nFinal Weights: 3.4033, Bias: 3.3166"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "Ghi chú khởi động: chương trình này gồm những gì, thứ tự nên học, và các mốc bắt buộc để lấy badge. Các phần chi tiết từng khoá sẽ tách thành topic riêng (L02, L03, …).\n\n\n\n\nTên: Frontier Transformation Engineer (Microsoft — Skill Up with Level Up).\nMục tiêu: trang bị năng lực AI để biến tổ chức thành Frontier Firm — doanh nghiệp vận hành với con người + AI agent làm việc song song.\nQuy mô: ~86 giờ, 11 khoá, học tự do theo nhịp cá nhân.\nĐầu ra: Frontier Transformation Engineer Badge sau khi hoàn thành 3 milestone.\nĐối tượng: Solution Engineer, AI Engineer, Cloud Engineer, Solution Architect, Technical Consultant.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMã\nTên\nThời lượng\nGhi chú\n\n\n\n\nGH-300\nGitHub Copilot\n10h\n\n\n\nAI-102 / AI-103\nDevelop AI apps and agents on Azure\n10h\nAI-102 được chấp nhận thay thế\n\n\nAB-100\nAgentic AI Business Solutions Architect\n10h\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKhoá\nThời lượng\nLab\n\n\n\n\nActivate organizational intelligence with Microsoft IQ\n1h\n–\n\n\nBuild Frontier Firm productivity with Work IQ, Copilot & agents\n15h\ncó\n\n\nAccelerate Agentic AI\n15h\ncó\n\n\nMicrosoft Fabric IQ & Data Agents\n8h\ncó\n\n\nImplement Agent 365 to observe, govern, and secure AI apps\n12h\ncó\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNội dung\nThời lượng\nBắt buộc\n\n\n\n\nCreate AI Center of Excellence\n2h\ntuỳ chọn\n\n\nHypervelocity Engineering Framework\n1.5h\nbắt buộc (có assessment)\n\n\nIndustry Expertise for building AI agents\n1h\ntuỳ chọn\n\n\n\n\n\n\n\n\nGitHub Copilot — lập trình hỗ trợ AI.\nAzure AI / AI Foundry — build AI apps và agent.\nMicrosoft IQ / Work IQ — lớp “trí tuệ tổ chức” trên dữ liệu Microsoft 365.\nAgentic AI — thiết kế, điều phối multi-agent.\nMicrosoft Fabric IQ & Data Agents — agent truy vấn dữ liệu doanh nghiệp.\nAgent 365 — quan sát (observe), quản trị (govern), bảo mật (secure) agent ở quy mô tổ chức.\n\n\n\n\n\nGH-300 (Copilot) — nhẹ, làm quen trước.\nMicrosoft IQ (1h) — khái niệm nền cho các khoá sau.\nAI-102/AI-103 — nền tảng Azure AI.\nAccelerate Agentic AI + AB-100 — phần agentic, học gần nhau cho liền mạch.\nFabric IQ & Data Agents.\nAgent 365 — governance, học sau khi đã hiểu agent.\nHypervelocity Engineering Framework — chốt Milestone 3.\n\n\n\n\n\n“Frontier Firm” khác doanh nghiệp dùng AI thông thường ở điểm nào?\nKhi nào dùng Copilot extension vs. custom agent vs. multi-agent orchestration?\nWork IQ lấy ngữ cảnh từ đâu, ranh giới bảo mật/permission ra sao?\nAgent 365 giải quyết vấn đề gì mà nền tảng agent cơ bản không lo được?\nHypervelocity Engineering Framework gồm những vòng lặp / vai trò nào?\n\n\n\n\n\nTrang chương trình: https://skillupwithlevelup.com/frontier"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#chương-trình-là-gì",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#chương-trình-là-gì",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "Tên: Frontier Transformation Engineer (Microsoft — Skill Up with Level Up).\nMục tiêu: trang bị năng lực AI để biến tổ chức thành Frontier Firm — doanh nghiệp vận hành với con người + AI agent làm việc song song.\nQuy mô: ~86 giờ, 11 khoá, học tự do theo nhịp cá nhân.\nĐầu ra: Frontier Transformation Engineer Badge sau khi hoàn thành 3 milestone.\nĐối tượng: Solution Engineer, AI Engineer, Cloud Engineer, Solution Architect, Technical Consultant."
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#ba-milestone",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#ba-milestone",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "Mã\nTên\nThời lượng\nGhi chú\n\n\n\n\nGH-300\nGitHub Copilot\n10h\n\n\n\nAI-102 / AI-103\nDevelop AI apps and agents on Azure\n10h\nAI-102 được chấp nhận thay thế\n\n\nAB-100\nAgentic AI Business Solutions Architect\n10h\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKhoá\nThời lượng\nLab\n\n\n\n\nActivate organizational intelligence with Microsoft IQ\n1h\n–\n\n\nBuild Frontier Firm productivity with Work IQ, Copilot & agents\n15h\ncó\n\n\nAccelerate Agentic AI\n15h\ncó\n\n\nMicrosoft Fabric IQ & Data Agents\n8h\ncó\n\n\nImplement Agent 365 to observe, govern, and secure AI apps\n12h\ncó\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNội dung\nThời lượng\nBắt buộc\n\n\n\n\nCreate AI Center of Excellence\n2h\ntuỳ chọn\n\n\nHypervelocity Engineering Framework\n1.5h\nbắt buộc (có assessment)\n\n\nIndustry Expertise for building AI agents\n1h\ntuỳ chọn"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#công-nghệ-chính-sẽ-gặp",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#công-nghệ-chính-sẽ-gặp",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "GitHub Copilot — lập trình hỗ trợ AI.\nAzure AI / AI Foundry — build AI apps và agent.\nMicrosoft IQ / Work IQ — lớp “trí tuệ tổ chức” trên dữ liệu Microsoft 365.\nAgentic AI — thiết kế, điều phối multi-agent.\nMicrosoft Fabric IQ & Data Agents — agent truy vấn dữ liệu doanh nghiệp.\nAgent 365 — quan sát (observe), quản trị (govern), bảo mật (secure) agent ở quy mô tổ chức."
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#thứ-tự-học-đề-xuất-nháp",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#thứ-tự-học-đề-xuất-nháp",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "GH-300 (Copilot) — nhẹ, làm quen trước.\nMicrosoft IQ (1h) — khái niệm nền cho các khoá sau.\nAI-102/AI-103 — nền tảng Azure AI.\nAccelerate Agentic AI + AB-100 — phần agentic, học gần nhau cho liền mạch.\nFabric IQ & Data Agents.\nAgent 365 — governance, học sau khi đã hiểu agent.\nHypervelocity Engineering Framework — chốt Milestone 3."
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#câu-hỏi-cần-trả-lời-khi-học-xong",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#câu-hỏi-cần-trả-lời-khi-học-xong",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "“Frontier Firm” khác doanh nghiệp dùng AI thông thường ở điểm nào?\nKhi nào dùng Copilot extension vs. custom agent vs. multi-agent orchestration?\nWork IQ lấy ngữ cảnh từ đâu, ranh giới bảo mật/permission ra sao?\nAgent 365 giải quyết vấn đề gì mà nền tảng agent cơ bản không lo được?\nHypervelocity Engineering Framework gồm những vòng lặp / vai trò nào?"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#liên-kết",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#liên-kết",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "Trang chương trình: https://skillupwithlevelup.com/frontier"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/index.html",
+    "href": "courses/Frontier Transformation Engineer/index.html",
+    "title": "Frontier Transformation Engineer",
+    "section": "",
+    "text": "Lộ trình học của Microsoft (“Skill Up with Level Up”) giúp kỹ sư kỹ thuật xây dựng năng lực về AI để đưa tổ chức trở thành Frontier Firm. Khoảng 86 giờ, 11 khoá, chia thành 3 milestone: (1) ba chứng chỉ nền tảng (GitHub Copilot, AI apps & agents trên Azure, Agentic AI Business Solutions Architect); (2) năm khoá thực hành có lab và assessment ≥ 80% (Microsoft IQ, Work IQ + Copilot + agents, Accelerate Agentic AI, Fabric IQ & Data Agents, Agent 365); (3) Hypervelocity Engineering Framework. Kết thúc nhận Frontier Transformation Engineer Badge.\nNguồn: https://skillupwithlevelup.com/frontier"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/index.html#introduction",
+    "href": "courses/Frontier Transformation Engineer/index.html#introduction",
+    "title": "Frontier Transformation Engineer",
+    "section": "",
+    "text": "Lộ trình học của Microsoft (“Skill Up with Level Up”) giúp kỹ sư kỹ thuật xây dựng năng lực về AI để đưa tổ chức trở thành Frontier Firm. Khoảng 86 giờ, 11 khoá, chia thành 3 milestone: (1) ba chứng chỉ nền tảng (GitHub Copilot, AI apps & agents trên Azure, Agentic AI Business Solutions Architect); (2) năm khoá thực hành có lab và assessment ≥ 80% (Microsoft IQ, Work IQ + Copilot + agents, Accelerate Agentic AI, Fabric IQ & Data Agents, Agent 365); (3) Hypervelocity Engineering Framework. Kết thúc nhận Frontier Transformation Engineer Badge.\nNguồn: https://skillupwithlevelup.com/frontier"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/index.html#topics",
+    "href": "courses/Frontier Transformation Engineer/index.html#topics",
+    "title": "Frontier Transformation Engineer",
+    "section": "Topics",
+    "text": "Topics\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nTopic\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nTổng quan chương trình & lộ trình 3 milestone\n\n\nreading\n\n\noverview, roadmap, milestones, certification, frontier-firm\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/machine-learning/labs/Decision_Tree.html",

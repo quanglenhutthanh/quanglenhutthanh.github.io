@@ -3,6 +3,7 @@
     "listing": "/courses/index.html",
     "items": [
       "/courses/Deep Learning/index.html",
+      "/courses/Frontier Transformation Engineer/index.html",
       "/courses/Image and Video Processing/index.html",
       "/courses/machine-learning/index.html"
     ]
@@ -22,6 +23,12 @@
       "/courses/Image and Video Processing/lectures/L10-image-segmentation.html",
       "/courses/Image and Video Processing/lectures/L11-color-image.html",
       "/courses/Image and Video Processing/lectures/L12-keypoint-detection.html"
+    ]
+  },
+  {
+    "listing": "/courses/Frontier Transformation Engineer/index.html",
+    "items": [
+      "/courses/Frontier Transformation Engineer/lectures/L01-program-overview.html"
     ]
   },
   {
