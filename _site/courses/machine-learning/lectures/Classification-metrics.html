@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-30">
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>ROC-AUC, PR-AUC, F1 – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5b686b87bea976dca95c15af45343899.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,79 +71,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lectures .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lectures'] = new List('listing-lectures', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -155,7 +82,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
@@ -166,15 +93,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../courses/index.html"> 
+    <a class="nav-link" href="../../../courses/index.html"> 
 <span class="menu-text">Learning Space</span></a>
   </li>  
 </ul>
@@ -200,10 +127,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#roc-auc-pr-auc-f1" id="toc-roc-auc-pr-auc-f1" class="nav-link active" data-scroll-target="#roc-auc-pr-auc-f1">ROC-AUC · PR-AUC · F1</a>
+  <ul class="collapse">
+  <li><a href="#nguồn-của-mọi-thứ-confusion-matrix" id="toc-nguồn-của-mọi-thứ-confusion-matrix" class="nav-link" data-scroll-target="#nguồn-của-mọi-thứ-confusion-matrix">1. Nguồn của mọi thứ — Confusion Matrix</a></li>
+  <li><a href="#bốn-tỷ-lệ-nền" id="toc-bốn-tỷ-lệ-nền" class="nav-link" data-scroll-target="#bốn-tỷ-lệ-nền">2. Bốn tỷ lệ nền</a>
+  <ul class="collapse">
+  <li><a href="#recall-tpr" id="toc-recall-tpr" class="nav-link" data-scroll-target="#recall-tpr">Recall = TPR</a></li>
+  <li><a href="#precision" id="toc-precision" class="nav-link" data-scroll-target="#precision">Precision</a></li>
+  <li><a href="#fpr" id="toc-fpr" class="nav-link" data-scroll-target="#fpr">FPR</a></li>
+  <li><a href="#điểm-neo-để-nhớ" id="toc-điểm-neo-để-nhớ" class="nav-link" data-scroll-target="#điểm-neo-để-nhớ">Điểm neo để nhớ</a></li>
+  </ul></li>
+  <li><a href="#f1-cân-bằng-precision-recall-tại-một-ngưỡng" id="toc-f1-cân-bằng-precision-recall-tại-một-ngưỡng" class="nav-link" data-scroll-target="#f1-cân-bằng-precision-recall-tại-một-ngưỡng">3. F1 — cân bằng Precision &amp; Recall tại một ngưỡng</a></li>
+  <li><a href="#ba-câu-diễn-giải-nên-thuộc-lòng" id="toc-ba-câu-diễn-giải-nên-thuộc-lòng" class="nav-link" data-scroll-target="#ba-câu-diễn-giải-nên-thuộc-lòng">4. Ba câu diễn giải (nên thuộc lòng)</a></li>
+  <li><a href="#cùng-dữ-liệu-ba-góc-nhìn" id="toc-cùng-dữ-liệu-ba-góc-nhìn" class="nav-link" data-scroll-target="#cùng-dữ-liệu-ba-góc-nhìn">5. Cùng dữ liệu, ba góc nhìn</a></li>
+  <li><a href="#vì-sao-roc-pr" id="toc-vì-sao-roc-pr" class="nav-link" data-scroll-target="#vì-sao-roc-pr">6. Vì sao ROC ≠ PR</a></li>
+  <li><a href="#đọc-thế-nào-là-tốt-xấu" id="toc-đọc-thế-nào-là-tốt-xấu" class="nav-link" data-scroll-target="#đọc-thế-nào-là-tốt-xấu">7. Đọc thế nào là tốt / xấu</a></li>
+  <li><a href="#chọn-metric-nào-khi-nào" id="toc-chọn-metric-nào-khi-nào" class="nav-link" data-scroll-target="#chọn-metric-nào-khi-nào">8. Chọn metric nào khi nào</a></li>
+  <li><a href="#những-hiểu-lầm-thường-gặp" id="toc-những-hiểu-lầm-thường-gặp" class="nav-link" data-scroll-target="#những-hiểu-lầm-thường-gặp">9. Những hiểu lầm thường gặp</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">10. Tóm tắt</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -212,8 +154,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">ROC-AUC, PR-AUC, F1</h1>
 </div>
 
 
@@ -221,6 +162,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -230,106 +177,202 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical deployment concerns, particularly detecting and handling distribution shift.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch.</p>
-</section>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<div id="listing-lectures" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-lectures-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-lectures'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Topic
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
+<section id="roc-auc-pr-auc-f1" class="level1">
+<h1>ROC-AUC · PR-AUC · F1</h1>
+<p>Cả ba metric này đều sinh ra từ đúng <strong>bốn con số của confusion matrix</strong> — chúng chỉ tổ hợp bốn con số đó theo cách khác nhau, và mỗi cách trả lời một câu hỏi riêng. Hiểu rõ “cách tổ hợp” là hiểu vì sao trên cùng một model, ba metric có thể kể ba câu chuyện rất khác nhau.</p>
+<section id="nguồn-của-mọi-thứ-confusion-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="nguồn-của-mọi-thứ-confusion-matrix">1. Nguồn của mọi thứ — Confusion Matrix</h2>
+<p>Với bài toán phân loại nhị phân, mỗi dự đoán rơi vào một trong bốn ô:</p>
+<table class="caption-top table">
 <thead>
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Tags
-</th>
-
+<tr class="header">
+<th></th>
+<th>Thực tế Dương</th>
+<th>Thực tế Âm</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1784998800000" data-listing-file-modified-sort="1785038152464" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2316" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="Gradient-descent.md">
-<td>
-<span class="listing-lecture_no">1</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/Gradient-descent.html" class="title listing-title">Gradient Descent</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td><strong>Dự đoán Dương</strong></td>
+<td>TP (bắt đúng)</td>
+<td>FP (báo nhầm)</td>
 </tr>
-
-<tr data-index="1" data-listing-date-sort="1788022800000" data-listing-file-modified-sort="1788079689047" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1879" data-listing-title-sort="ROC-AUC, PR-AUC, F1" data-listing-filename-sort="Classification-metrics.md">
-<td>
-<span class="listing-lecture_no">2</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/Classification-metrics.html" class="title listing-title">ROC-AUC, PR-AUC, F1</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">metrics, classification, roc-auc, pr-auc, f1, confusion-matrix</span>
-</td>
-
+<tr class="even">
+<td><strong>Dự đoán Âm</strong></td>
+<td>FN (bỏ sót)</td>
+<td>TN (loại đúng)</td>
 </tr>
-
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-</section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
+<li><strong>TP</strong> (True Positive): ca dương, model nói dương → đúng.</li>
+<li><strong>FP</strong> (False Positive): ca âm, model nói dương → báo nhầm (false alarm).</li>
+<li><strong>FN</strong> (False Negative): ca dương, model nói âm → bỏ sót (miss).</li>
+<li><strong>TN</strong> (True Negative): ca âm, model nói âm → đúng.</li>
+</ul>
+<p><strong>Quy tắc mẫu số:</strong> mỗi “rate” chia cho cả một <em>hàng thật</em> của nó (toàn bộ ca dương thật, hoặc toàn bộ ca âm thật). Nhờ chia cho hằng số này mà TPR và FPR bền vững khi lớp bị mất cân bằng.</p>
+</section>
+<section id="bốn-tỷ-lệ-nền" class="level2">
+<h2 class="anchored" data-anchor-id="bốn-tỷ-lệ-nền">2. Bốn tỷ lệ nền</h2>
+<p>Bốn tỷ lệ dưới đây là “nguyên liệu” để dựng ROC và PR. Lưu ý Recall và TPR là <strong>cùng một con số</strong>, chỉ khác tên gọi theo ngành.</p>
+<section id="recall-tpr" class="level3">
+<h3 class="anchored" data-anchor-id="recall-tpr">Recall = TPR</h3>
+<pre><code>Recall = TPR = TP / (TP + FN)</code></pre>
+<p>Trong tất cả các ca <strong>dương thật</strong>, model bắt được bao nhiêu phần. Mẫu số <code>TP + FN</code> = tổng số ca dương thật (hằng số, không đổi khi ta chỉnh ngưỡng). Machine learning quen gọi là <strong>Recall</strong>; thống kê / ROC quen gọi là <strong>TPR</strong> (True Positive Rate) và dùng nó cặp với FPR.</p>
+</section>
+<section id="precision" class="level3">
+<h3 class="anchored" data-anchor-id="precision">Precision</h3>
+<pre><code>Precision = TP / (TP + FP)</code></pre>
+<p>Trong tất cả các ca model <strong>báo dương</strong>, bao nhiêu phần là đúng. Đây là “độ tin khi model báo dương”. Mẫu số <code>TP + FP</code> = tổng số lần báo-dương — con số này <em>thay đổi</em> theo ngưỡng và theo tỷ lệ lớp.</p>
+</section>
+<section id="fpr" class="level3">
+<h3 class="anchored" data-anchor-id="fpr">FPR</h3>
+<pre><code>FPR = FP / (FP + TN)</code></pre>
+<p>Trong tất cả các ca <strong>âm thật</strong>, bao nhiêu phần bị báo nhầm thành dương. Mẫu số <code>FP + TN</code> = tổng số ca âm thật (hằng số). FPR là “cặp đôi” của TPR trong không gian ROC.</p>
+</section>
+<section id="điểm-neo-để-nhớ" class="level3">
+<h3 class="anchored" data-anchor-id="điểm-neo-để-nhớ">Điểm neo để nhớ</h3>
+<p>Recall, TPR, Precision đều lấy <strong>TP ở tử số</strong>; chỉ FPR lấy <strong>FP ở tử số</strong>. Recall và TPR y hệt nhau, chỉ khác tên. Khác biệt cốt lõi Precision ↔︎ TPR nằm ở <strong>mẫu số</strong>: Precision chia cho <em>pool báo-dương cục bộ</em>, TPR chia cho <em>toàn bộ lớp âm</em> (hằng số).</p>
+</section>
+</section>
+<section id="f1-cân-bằng-precision-recall-tại-một-ngưỡng" class="level2">
+<h2 class="anchored" data-anchor-id="f1-cân-bằng-precision-recall-tại-một-ngưỡng">3. F1 — cân bằng Precision &amp; Recall tại một ngưỡng</h2>
+<pre><code>F1 = 2 · (P · R) / (P + R)</code></pre>
+<p>F1 là <strong>trung bình điều hòa</strong> (harmonic mean) của Precision và Recall, chứ không phải trung bình cộng. Hệ quả: F1 bị kéo về phía con số nhỏ hơn — chỉ cần P hoặc R thấp là F1 sập, không thể “ăn gian” bằng cách đẩy một vế lên thật cao.</p>
+<p>Ví dụ lệch cực đại: P = 1.0, R = 0.0 - Trung bình cộng → 0.50 (nghe ổn nhưng vô nghĩa) - Trung bình điều hòa → 0.00 (đúng bản chất: model này vô dụng)</p>
+<p>F1 <strong>bỏ qua TN</strong> → nó tập trung hoàn toàn vào lớp dương, nhờ vậy chống được cái bẫy “accuracy cao giả tạo” khi dữ liệu mất cân bằng (đoán toàn bộ là âm vẫn được accuracy 99% nhưng F1 = 0).</p>
+<p><strong>Quan trọng:</strong> F1 được tính tại <strong>một ngưỡng cụ thể</strong>. Đổi ngưỡng → P, R đổi → F1 đổi. Ngược lại, ROC-AUC và PR-AUC tổng hợp trên <em>mọi</em> ngưỡng.</p>
+</section>
+<section id="ba-câu-diễn-giải-nên-thuộc-lòng" class="level2">
+<h2 class="anchored" data-anchor-id="ba-câu-diễn-giải-nên-thuộc-lòng">4. Ba câu diễn giải (nên thuộc lòng)</h2>
+<ul>
+<li><strong>ROC-AUC — xếp hạng.</strong> Bốc ngẫu nhiên một cặp (một ca dương, một ca âm) → ROC-AUC là <em>xác suất model chấm điểm ca dương cao hơn ca âm</em>. Không phụ thuộc ngưỡng. 0.5 = đoán bừa, 1.0 = hoàn hảo.</li>
+<li><strong>PR-AUC — độ tinh khiết.</strong> Nhìn từ mỗi mức điểm trở lên: nhóm điểm cao đó có “sạch” (ít lẫn ca âm) không? Lấy trung bình trên mọi mức. Trả lời: <em>khi model kêu to, có tin được không, và tin được bao nhiêu?</em></li>
+<li><strong>F1 — điểm vận hành.</strong> Tại một ngưỡng đã chốt để đem deploy, Precision và Recall có cân bằng và cùng cao không? Đây là con số bạn thật sự “sống cùng” khi hệ thống chạy thật.</li>
 </ul>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
+<section id="cùng-dữ-liệu-ba-góc-nhìn" class="level2">
+<h2 class="anchored" data-anchor-id="cùng-dữ-liệu-ba-góc-nhìn">5. Cùng dữ liệu, ba góc nhìn</h2>
+<p>Với cùng một tập dự đoán, ta có thể vẽ:</p>
+<ul>
+<li><strong>Đường ROC</strong>: trục ngang FPR, trục dọc TPR. Quét ngưỡng từ cao xuống thấp, mỗi ngưỡng cho một điểm (FPR, TPR). Đường là hàm bậc thang: gặp một ca dương → bước <em>lên</em>, gặp một ca âm → bước <em>sang phải</em>. AUC = diện tích dưới đường này.</li>
+<li><strong>Đường PR</strong>: trục ngang Recall, trục dọc Precision. Cũng quét ngưỡng, nhưng đường “nhấp nhô” chứ không đơn điệu — vì Precision có thể tụt rồi lại lên khi thêm một TP.</li>
+<li><strong>Đường F1 theo ngưỡng</strong>: F1 thường có <em>đỉnh</em> tại một ngưỡng tối ưu nào đó — đây chính là ý nghĩa của việc đi tìm <code>best_threshold</code> thay vì cứng nhắc dùng 0.5.</li>
+</ul>
+<p>Ví dụ minh họa (8 mẫu): cùng một model có thể ra ROC-AUC ≈ 0.81, PR-AUC ≈ 0.85, F1 max ≈ 0.80 tại ngưỡng ≈ 0.4.</p>
+</section>
+<section id="vì-sao-roc-pr" class="level2">
+<h2 class="anchored" data-anchor-id="vì-sao-roc-pr">6. Vì sao ROC ≠ PR</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Trục ngang</th>
+<th>Trục dọc</th>
+<th>Góc “đẹp”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ROC</td>
+<td>FPR (thấp → bên trái)</td>
+<td>TPR (cao → lên trên)</td>
+<td>trên–trái</td>
+</tr>
+<tr class="even">
+<td>PR</td>
+<td>Recall (cao → phải)</td>
+<td>Precision (cao → lên)</td>
+<td>trên–phải</td>
+</tr>
+</tbody>
+</table>
+<p>Chính <strong>mẫu số</strong> quyết định tất cả:</p>
+<ul>
+<li><strong>ROC</strong>: FP được chia cho <em>toàn bộ lớp âm N</em> (một hằng số khổng lồ khi lớp âm áp đảo). Mỗi FP chỉ đẩy FPR lên <code>1/N</code> → đường ROC vẫn “trông đẹp” dù model sai nhiều.</li>
+<li><strong>PR</strong>: FP được chia cho <em>pool báo-dương cục bộ</em> (nhỏ). Thêm vài FP là Precision tụt ngay → đường PR phản ánh “sự thật” khắc nghiệt hơn.</li>
+</ul>
+<p>Hệ quả: với dữ liệu mất cân bằng nặng (ví dụ 5% dương), cùng một model có thể cho <strong>ROC-AUC = 0.74 nhưng PR-AUC chỉ = 0.15</strong>. ROC-AUC <em>bất biến</em> với tỷ lệ lớp; PR-AUC thì <em>không</em>. Khi lớp dương hiếm và ta quan tâm chất lượng cảnh báo dương → <strong>dùng PR-AUC</strong>.</p>
+</section>
+<section id="đọc-thế-nào-là-tốt-xấu" class="level2">
+<h2 class="anchored" data-anchor-id="đọc-thế-nào-là-tốt-xấu">7. Đọc thế nào là tốt / xấu</h2>
+<p>F1 và PR-AUC <strong>không có mốc phổ quát</strong>. Chỉ ROC-AUC có baseline cố định 0.5. Baseline của F1 và PR-AUC <em>trôi theo prevalence</em> (tỷ lệ lớp dương) — nên đừng bao giờ so hai giá trị này giữa hai tập có tỷ lệ lớp khác nhau.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 19%">
+<col style="width: 17%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Phụ thuộc ngưỡng?</th>
+<th>Baseline “vô dụng”</th>
+<th>Nhạy với prevalence?</th>
+<th>Trả lời câu hỏi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ROC-AUC</td>
+<td>Không (mọi ngưỡng)</td>
+<td>0.5 (cố định)</td>
+<td>Không</td>
+<td>Xếp hạng ca dương trên ca âm có giỏi không?</td>
+</tr>
+<tr class="even">
+<td>PR-AUC</td>
+<td>Không (mọi ngưỡng)</td>
+<td>= prevalence</td>
+<td>Có</td>
+<td>Nhóm điểm cao có “sạch” không?</td>
+</tr>
+<tr class="odd">
+<td>F1</td>
+<td>Có (một ngưỡng)</td>
+<td>2·prev / (1 + prev)</td>
+<td>Có</td>
+<td>Tại điểm vận hành, cân bằng P–R có tốt không?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quy tắc vàng:</strong> đừng hỏi “0.6 là tốt hay xấu?” theo số tuyệt đối. Hỏi: <em>“cao hơn baseline / majority trên CÙNG tập này bao nhiêu?”</em> — prevalence 50% thì F1 baseline đã là 0.667; prevalence 1% thì baseline chỉ 0.02.</p>
+</section>
+<section id="chọn-metric-nào-khi-nào" class="level2">
+<h2 class="anchored" data-anchor-id="chọn-metric-nào-khi-nào">8. Chọn metric nào khi nào</h2>
+<ul>
+<li><strong>Lớp cân bằng, cần một con số so sánh model:</strong> ROC-AUC là mặc định hợp lý.</li>
+<li><strong>Lớp dương hiếm (gian lận, bệnh hiếm, anomaly), quan tâm chất lượng cảnh báo:</strong> PR-AUC.</li>
+<li><strong>Đã chốt ngưỡng, cần báo cáo hiệu năng vận hành thực tế:</strong> F1 (hoặc precision/recall riêng lẻ nếu chi phí FP và FN lệch nhau — khi đó cân nhắc F-beta).</li>
+<li><strong>Chi phí FP ≠ chi phí FN rõ rệt:</strong> đừng dừng ở F1; xét thẳng precision–recall theo yêu cầu nghiệp vụ, hoặc dùng cost-sensitive threshold.</li>
+</ul>
+</section>
+<section id="những-hiểu-lầm-thường-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="những-hiểu-lầm-thường-gặp">9. Những hiểu lầm thường gặp</h2>
+<ul>
+<li><strong>“ROC-AUC cao nghĩa là model tốt để deploy”:</strong> không hẳn. ROC-AUC chỉ nói khả năng <em>xếp hạng</em>. Với lớp mất cân bằng, ROC-AUC 0.9 vẫn có thể đi kèm PR-AUC thấp và precision tệ tại mọi ngưỡng dùng được.</li>
+<li><strong>So F1 giữa hai dataset khác prevalence:</strong> vô nghĩa, vì baseline F1 khác nhau.</li>
+<li><strong>Nghĩ Precision và Recall đối xứng nhau:</strong> không. Recall có mẫu số hằng số (toàn lớp dương), Precision có mẫu số thay đổi (pool báo-dương). Đó là gốc rễ mọi khác biệt ROC ↔︎ PR.</li>
+<li><strong>Dùng ngưỡng 0.5 mặc định rồi báo F1:</strong> F1 phụ thuộc ngưỡng; nên quét ngưỡng để tìm đỉnh F1 (hoặc chọn ngưỡng theo ràng buộc nghiệp vụ) trước khi báo cáo.</li>
+<li><strong>Recall ≠ TPR:</strong> sai — chúng là <strong>cùng một con số</strong>, chỉ khác tên gọi.</li>
+</ul>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">10. Tóm tắt</h2>
+<ul>
+<li>Bốn số TP/FP/FN/TN là gốc; mọi metric chỉ là cách tổ hợp khác nhau.</li>
+<li>Recall = TPR = TP/(TP+FN); Precision = TP/(TP+FP); FPR = FP/(FP+TN).</li>
+<li><strong>ROC-AUC</strong> = xác suất xếp đúng một cặp dương–âm; baseline cố định 0.5; bất biến với tỷ lệ lớp.</li>
+<li><strong>PR-AUC</strong> = độ “tinh khiết” trung bình của các nhóm điểm cao; baseline = prevalence; nhạy với tỷ lệ lớp → ưu tiên khi lớp dương hiếm.</li>
+<li><strong>F1</strong> = trung bình điều hòa của P và R tại <strong>một ngưỡng</strong>; bỏ qua TN; baseline = 2·prev/(1+prev).</li>
+<li>Khác biệt ROC ↔︎ PR nằm ở mẫu số của FP: toàn lớp âm (hằng số) so với pool báo-dương (cục bộ).</li>
+<li>Luôn đọc metric tương đối so với baseline trên <em>cùng</em> tập dữ liệu, đừng đọc theo số tuyệt đối.</li>
+</ul>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->
