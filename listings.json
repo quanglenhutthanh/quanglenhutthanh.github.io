@@ -8,16 +8,6 @@
     ]
   },
   {
-    "listing": "/courses/machine-learning/index.html",
-    "items": [
-      "/courses/machine-learning/lectures/Gradient-descent.html"
-    ]
-  },
-  {
-    "listing": "/courses/Deep Learning/index.html",
-    "items": []
-  },
-  {
     "listing": "/courses/Image and Video Processing/index.html",
     "items": [
       "/courses/Image and Video Processing/lectures/L01-introduction-overview.html",
@@ -33,5 +23,16 @@
       "/courses/Image and Video Processing/lectures/L11-color-image.html",
       "/courses/Image and Video Processing/lectures/L12-keypoint-detection.html"
     ]
+  },
+  {
+    "listing": "/courses/machine-learning/index.html",
+    "items": [
+      "/courses/machine-learning/lectures/Gradient-descent.html",
+      "/courses/machine-learning/lectures/Classification-metrics.html"
+    ]
+  },
+  {
+    "listing": "/courses/Deep Learning/index.html",
+    "items": []
   }
 ]
