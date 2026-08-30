@@ -1,6 +1,6 @@
 ---
 title: "Introduction and Overview"
-subject: "computer-vision"
+subject: "image-and-video-processing"
 type: lecture
 lecture_no: 1
 status: done

@@ -1,6 +1,6 @@
 ---
 title: "Image Sensing and Acquisition"
-subject: "computer-vision"
+subject: "image-and-video-processing"
 type: lecture
 lecture_no: 4
 status: done

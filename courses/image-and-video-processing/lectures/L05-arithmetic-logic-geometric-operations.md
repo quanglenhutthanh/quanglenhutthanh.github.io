@@ -1,6 +1,6 @@
 ---
 title: "Arithmetic, Logic, and Geometric Operations"
-subject: "computer-vision"
+subject: "image-and-video-processing"
 type: lecture
 lecture_no: 5
 status: done

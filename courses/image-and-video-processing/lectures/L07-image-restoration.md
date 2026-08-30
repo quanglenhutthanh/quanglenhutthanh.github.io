@@ -1,6 +1,6 @@
 ---
 title: "Image Restoration"
-subject: "computer-vision"
+subject: "image-and-video-processing"
 type: lecture
 lecture_no: 7
 status: done

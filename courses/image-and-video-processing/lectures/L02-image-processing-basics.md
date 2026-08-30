@@ -1,6 +1,6 @@
 ---
 title: "Image Processing Basics"
-subject: "computer-vision"
+subject: "image-and-video-processing"
 type: lecture
 lecture_no: 2
 status: done
