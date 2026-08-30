@@ -20,9 +20,9 @@ listing:
 
 ## Introduction
 
-Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical deployment concerns, particularly detecting and handling distribution shift.
+Foundations to advanced techniques in Machine Learning. Starts with the two pieces every model shares — the loss function it minimizes and the Gradient Descent that minimizes it — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical data concerns: class imbalance, distribution shift, and data-leakage-safe validation.
 
-Theory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch.
+Theory is reinforced with hands-on labs (see Labs below): the from-scratch implementations of linear regression, logistic regression, decision trees, and neural networks, plus two end-to-end capstone projects — one on dirty multi-table data with leakage-safe feature engineering, one on predictive maintenance under distribution shift.
 
 ## Topics
 
@@ -35,6 +35,8 @@ Theory is reinforced with hands-on labs (see Labs below), implementing linear re
 - [`Logistic_Reg.ipynb`](labs/Logistic_Reg.ipynb) — Logistic Regression.
 - [`Decision_Tree.ipynb`](labs/Decision_Tree.ipynb) — Decision Tree.
 - [`NN.ipynb`](labs/NN.ipynb) — Neural Network.
+- [`PharmaDist_Reorder_Timing.ipynb`](labs/PharmaDist_Reorder_Timing.ipynb) — Capstone: dự đoán thời điểm đặt hàng lại của nhà thuốc từ 7 bảng dữ liệu bẩn. Làm sạch dữ liệu, thiết kế nhãn theo *observation horizon* (chống censoring bias), feature engineering *as-of* chống rò rỉ, split theo thời gian, Linear/Logistic Regression.
+- [`CNC_Failure_Distribution_Shift.ipynb`](labs/CNC_Failure_Distribution_Shift.ipynb) — Capstone: dự đoán hỏng máy CNC khi train (dây chuyền A) và test (dây chuyền B) lệch phân phối. Phát hiện shift bằng PSI + KS + drift classifier, xử lý bằng importance reweighting & threshold calibration, feature cơ học kháng shift, so sánh 3 mô hình.
 
 ## References
 

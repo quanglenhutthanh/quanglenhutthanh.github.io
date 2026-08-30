@@ -1,6 +1,6 @@
 ---
 title: "Gray-Level Transformations, Histogram and Neighborhood Processing"
-subject: "computer-vision"
+subject: "image-and-video-processing"
 type: lecture
 lecture_no: 6
 status: done

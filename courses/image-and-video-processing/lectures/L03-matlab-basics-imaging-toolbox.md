@@ -1,6 +1,6 @@
 ---
 title: "Python and OpenCV Basics for Image Processing"
-subject: "computer-vision"
+subject: "image-and-video-processing"
 type: lecture
 lecture_no: 3
 status: done

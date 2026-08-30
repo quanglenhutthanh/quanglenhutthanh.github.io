@@ -1,6 +1,6 @@
 ---
 title: "Tổng quan chương trình & lộ trình 3 milestone"
-subject: "Frontier Transformation Engineer"
+subject: "frontier-transformation-engineer"
 type: lecture
 lecture_no: 1
 status: reading

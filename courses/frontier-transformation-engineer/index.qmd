@@ -1,7 +1,7 @@
 ---
 title: "Frontier Transformation Engineer"
 subtitle: "Microsoft AI · Copilot, Agentic AI, Fabric IQ, Agent 365"
-subject: "Frontier Transformation Engineer"
+subject: "frontier-transformation-engineer"
 type: subject
 term: "2026"
 source: "https://skillupwithlevelup.com/frontier"

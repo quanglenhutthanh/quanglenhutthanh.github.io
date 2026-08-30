@@ -1,6 +1,6 @@
 ---
 title: "Morphological Image Processing"
-subject: "computer-vision"
+subject: "image-and-video-processing"
 type: lecture
 lecture_no: 8
 status: done
