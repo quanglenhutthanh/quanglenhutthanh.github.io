@@ -20,7 +20,7 @@ listing:
 
 ## Introduction
 
-Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. The later part covers practical deployment concerns, particularly detecting and handling distribution shift.
+Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical deployment concerns, particularly detecting and handling distribution shift.
 
 Theory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch.
 

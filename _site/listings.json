@@ -7,6 +7,7 @@
     "listing": "/courses/index.html",
     "items": [
       "/courses/Deep Learning/index.html",
+      "/courses/Frontier Transformation Engineer/index.html",
       "/courses/Image and Video Processing/index.html",
       "/courses/machine-learning/index.html"
     ]
@@ -29,9 +30,16 @@
     ]
   },
   {
+    "listing": "/courses/Frontier Transformation Engineer/index.html",
+    "items": [
+      "/courses/Frontier Transformation Engineer/lectures/L01-program-overview.html"
+    ]
+  },
+  {
     "listing": "/courses/machine-learning/index.html",
     "items": [
-      "/courses/machine-learning/lectures/Gradient-descent.html"
+      "/courses/machine-learning/lectures/Gradient-descent.html",
+      "/courses/machine-learning/lectures/Classification-metrics.html"
     ]
   }
 ]

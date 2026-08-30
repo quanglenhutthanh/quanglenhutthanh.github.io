@@ -413,11 +413,60 @@
     "text": "Kết luận\nNo training\n→ Zero-shot Llama\n→ Direct vs CoT\n→ Parse label\n→ Evaluate quality + inference cost\nĐiểm cần kiểm chứng thực nghiệm là: CoT có tăng Accuracy/F1 đủ để bù số token và latency tăng thêm hay không?"
   },
   {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "Ghi chú khởi động: chương trình này gồm những gì, thứ tự nên học, và các mốc bắt buộc để lấy badge. Các phần chi tiết từng khoá sẽ tách thành topic riêng (L02, L03, …).\n\n\n\n\nTên: Frontier Transformation Engineer (Microsoft — Skill Up with Level Up).\nMục tiêu: trang bị năng lực AI để biến tổ chức thành Frontier Firm — doanh nghiệp vận hành với con người + AI agent làm việc song song.\nQuy mô: ~86 giờ, 11 khoá, học tự do theo nhịp cá nhân.\nĐầu ra: Frontier Transformation Engineer Badge sau khi hoàn thành 3 milestone.\nĐối tượng: Solution Engineer, AI Engineer, Cloud Engineer, Solution Architect, Technical Consultant.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMã\nTên\nThời lượng\nGhi chú\n\n\n\n\nGH-300\nGitHub Copilot\n10h\n\n\n\nAI-102 / AI-103\nDevelop AI apps and agents on Azure\n10h\nAI-102 được chấp nhận thay thế\n\n\nAB-100\nAgentic AI Business Solutions Architect\n10h\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKhoá\nThời lượng\nLab\n\n\n\n\nActivate organizational intelligence with Microsoft IQ\n1h\n–\n\n\nBuild Frontier Firm productivity with Work IQ, Copilot & agents\n15h\ncó\n\n\nAccelerate Agentic AI\n15h\ncó\n\n\nMicrosoft Fabric IQ & Data Agents\n8h\ncó\n\n\nImplement Agent 365 to observe, govern, and secure AI apps\n12h\ncó\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNội dung\nThời lượng\nBắt buộc\n\n\n\n\nCreate AI Center of Excellence\n2h\ntuỳ chọn\n\n\nHypervelocity Engineering Framework\n1.5h\nbắt buộc (có assessment)\n\n\nIndustry Expertise for building AI agents\n1h\ntuỳ chọn\n\n\n\n\n\n\n\n\nGitHub Copilot — lập trình hỗ trợ AI.\nAzure AI / AI Foundry — build AI apps và agent.\nMicrosoft IQ / Work IQ — lớp “trí tuệ tổ chức” trên dữ liệu Microsoft 365.\nAgentic AI — thiết kế, điều phối multi-agent.\nMicrosoft Fabric IQ & Data Agents — agent truy vấn dữ liệu doanh nghiệp.\nAgent 365 — quan sát (observe), quản trị (govern), bảo mật (secure) agent ở quy mô tổ chức.\n\n\n\n\n\nGH-300 (Copilot) — nhẹ, làm quen trước.\nMicrosoft IQ (1h) — khái niệm nền cho các khoá sau.\nAI-102/AI-103 — nền tảng Azure AI.\nAccelerate Agentic AI + AB-100 — phần agentic, học gần nhau cho liền mạch.\nFabric IQ & Data Agents.\nAgent 365 — governance, học sau khi đã hiểu agent.\nHypervelocity Engineering Framework — chốt Milestone 3.\n\n\n\n\n\n“Frontier Firm” khác doanh nghiệp dùng AI thông thường ở điểm nào?\nKhi nào dùng Copilot extension vs. custom agent vs. multi-agent orchestration?\nWork IQ lấy ngữ cảnh từ đâu, ranh giới bảo mật/permission ra sao?\nAgent 365 giải quyết vấn đề gì mà nền tảng agent cơ bản không lo được?\nHypervelocity Engineering Framework gồm những vòng lặp / vai trò nào?\n\n\n\n\n\nTrang chương trình: https://skillupwithlevelup.com/frontier"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#chương-trình-là-gì",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#chương-trình-là-gì",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "Tên: Frontier Transformation Engineer (Microsoft — Skill Up with Level Up).\nMục tiêu: trang bị năng lực AI để biến tổ chức thành Frontier Firm — doanh nghiệp vận hành với con người + AI agent làm việc song song.\nQuy mô: ~86 giờ, 11 khoá, học tự do theo nhịp cá nhân.\nĐầu ra: Frontier Transformation Engineer Badge sau khi hoàn thành 3 milestone.\nĐối tượng: Solution Engineer, AI Engineer, Cloud Engineer, Solution Architect, Technical Consultant."
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#ba-milestone",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#ba-milestone",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "Mã\nTên\nThời lượng\nGhi chú\n\n\n\n\nGH-300\nGitHub Copilot\n10h\n\n\n\nAI-102 / AI-103\nDevelop AI apps and agents on Azure\n10h\nAI-102 được chấp nhận thay thế\n\n\nAB-100\nAgentic AI Business Solutions Architect\n10h\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKhoá\nThời lượng\nLab\n\n\n\n\nActivate organizational intelligence with Microsoft IQ\n1h\n–\n\n\nBuild Frontier Firm productivity with Work IQ, Copilot & agents\n15h\ncó\n\n\nAccelerate Agentic AI\n15h\ncó\n\n\nMicrosoft Fabric IQ & Data Agents\n8h\ncó\n\n\nImplement Agent 365 to observe, govern, and secure AI apps\n12h\ncó\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNội dung\nThời lượng\nBắt buộc\n\n\n\n\nCreate AI Center of Excellence\n2h\ntuỳ chọn\n\n\nHypervelocity Engineering Framework\n1.5h\nbắt buộc (có assessment)\n\n\nIndustry Expertise for building AI agents\n1h\ntuỳ chọn"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#công-nghệ-chính-sẽ-gặp",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#công-nghệ-chính-sẽ-gặp",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "GitHub Copilot — lập trình hỗ trợ AI.\nAzure AI / AI Foundry — build AI apps và agent.\nMicrosoft IQ / Work IQ — lớp “trí tuệ tổ chức” trên dữ liệu Microsoft 365.\nAgentic AI — thiết kế, điều phối multi-agent.\nMicrosoft Fabric IQ & Data Agents — agent truy vấn dữ liệu doanh nghiệp.\nAgent 365 — quan sát (observe), quản trị (govern), bảo mật (secure) agent ở quy mô tổ chức."
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#thứ-tự-học-đề-xuất-nháp",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#thứ-tự-học-đề-xuất-nháp",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "GH-300 (Copilot) — nhẹ, làm quen trước.\nMicrosoft IQ (1h) — khái niệm nền cho các khoá sau.\nAI-102/AI-103 — nền tảng Azure AI.\nAccelerate Agentic AI + AB-100 — phần agentic, học gần nhau cho liền mạch.\nFabric IQ & Data Agents.\nAgent 365 — governance, học sau khi đã hiểu agent.\nHypervelocity Engineering Framework — chốt Milestone 3."
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#câu-hỏi-cần-trả-lời-khi-học-xong",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#câu-hỏi-cần-trả-lời-khi-học-xong",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "“Frontier Firm” khác doanh nghiệp dùng AI thông thường ở điểm nào?\nKhi nào dùng Copilot extension vs. custom agent vs. multi-agent orchestration?\nWork IQ lấy ngữ cảnh từ đâu, ranh giới bảo mật/permission ra sao?\nAgent 365 giải quyết vấn đề gì mà nền tảng agent cơ bản không lo được?\nHypervelocity Engineering Framework gồm những vòng lặp / vai trò nào?"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#liên-kết",
+    "href": "courses/Frontier Transformation Engineer/lectures/L01-program-overview.html#liên-kết",
+    "title": "Tổng quan chương trình & lộ trình 3 milestone",
+    "section": "",
+    "text": "Trang chương trình: https://skillupwithlevelup.com/frontier"
+  },
+  {
     "objectID": "courses/index.html",
     "href": "courses/index.html",
     "title": "My Learning Space",
     "section": "",
-    "text": "Notes rewritten from lecture slides and other material I’ve studied.\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\n\n\nImage and Video Processing\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\n\nNo matching items"
+    "text": "Notes rewritten from lecture slides and other material I’ve studied.\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\n\n\nFrontier Transformation Engineer\n\n\n\n\n\n\n\n\n\nImage and Video Processing\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/Image and Video Processing/lectures/L07-image-restoration.html",
@@ -1330,6 +1379,27 @@
     "text": "Paper và tài liệu tham khảo — chỉ link, không host file. Ghi chú chi tiết để trong Notion.\n\nStatus = todo · reading · done\n\n\nTitle\nType\nLink\nLiên quan\nStatus\n\n\n\n\nDigital Image Processing (Gonzalez & Woods)\nbook\n—\n\nreading"
   },
   {
+    "objectID": "courses/Frontier Transformation Engineer/index.html",
+    "href": "courses/Frontier Transformation Engineer/index.html",
+    "title": "Frontier Transformation Engineer",
+    "section": "",
+    "text": "Lộ trình học của Microsoft (“Skill Up with Level Up”) giúp kỹ sư kỹ thuật xây dựng năng lực về AI để đưa tổ chức trở thành Frontier Firm. Khoảng 86 giờ, 11 khoá, chia thành 3 milestone: (1) ba chứng chỉ nền tảng (GitHub Copilot, AI apps & agents trên Azure, Agentic AI Business Solutions Architect); (2) năm khoá thực hành có lab và assessment ≥ 80% (Microsoft IQ, Work IQ + Copilot + agents, Accelerate Agentic AI, Fabric IQ & Data Agents, Agent 365); (3) Hypervelocity Engineering Framework. Kết thúc nhận Frontier Transformation Engineer Badge.\nNguồn: https://skillupwithlevelup.com/frontier"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/index.html#introduction",
+    "href": "courses/Frontier Transformation Engineer/index.html#introduction",
+    "title": "Frontier Transformation Engineer",
+    "section": "",
+    "text": "Lộ trình học của Microsoft (“Skill Up with Level Up”) giúp kỹ sư kỹ thuật xây dựng năng lực về AI để đưa tổ chức trở thành Frontier Firm. Khoảng 86 giờ, 11 khoá, chia thành 3 milestone: (1) ba chứng chỉ nền tảng (GitHub Copilot, AI apps & agents trên Azure, Agentic AI Business Solutions Architect); (2) năm khoá thực hành có lab và assessment ≥ 80% (Microsoft IQ, Work IQ + Copilot + agents, Accelerate Agentic AI, Fabric IQ & Data Agents, Agent 365); (3) Hypervelocity Engineering Framework. Kết thúc nhận Frontier Transformation Engineer Badge.\nNguồn: https://skillupwithlevelup.com/frontier"
+  },
+  {
+    "objectID": "courses/Frontier Transformation Engineer/index.html#topics",
+    "href": "courses/Frontier Transformation Engineer/index.html#topics",
+    "title": "Frontier Transformation Engineer",
+    "section": "Topics",
+    "text": "Topics\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nTopic\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nTổng quan chương trình & lộ trình 3 milestone\n\n\nreading\n\n\noverview, roadmap, milestones, certification, frontier-firm\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "courses/Deep Learning/labs/FSB_Faster_RCNN_Torchvision_PennFudan_2026.html",
     "href": "courses/Deep Learning/labs/FSB_Faster_RCNN_Torchvision_PennFudan_2026.html",
     "title": "Object Detection với Faster R-CNN bằng PyTorch và Torchvision",
@@ -1943,21 +2013,21 @@
     "href": "courses/machine-learning/index.html",
     "title": "Machine Learning",
     "section": "",
-    "text": "Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. The later part covers practical deployment concerns, particularly detecting and handling distribution shift.\nTheory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch."
+    "text": "Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical deployment concerns, particularly detecting and handling distribution shift.\nTheory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch."
   },
   {
     "objectID": "courses/machine-learning/index.html#introduction",
     "href": "courses/machine-learning/index.html#introduction",
     "title": "Machine Learning",
     "section": "",
-    "text": "Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. The later part covers practical deployment concerns, particularly detecting and handling distribution shift.\nTheory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch."
+    "text": "Foundations to advanced techniques in Machine Learning. Starts with Gradient Descent — the core optimization algorithm behind most models, from linear/logistic regression to neural networks — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical deployment concerns, particularly detecting and handling distribution shift.\nTheory is reinforced with hands-on labs (see Labs below), implementing linear regression, logistic regression, decision trees, and neural networks from scratch."
   },
   {
     "objectID": "courses/machine-learning/index.html#topics",
     "href": "courses/machine-learning/index.html#topics",
     "title": "Machine Learning",
     "section": "Topics",
-    "text": "Topics\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nTopic\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nGradient Descent\n\n\ndone\n\n\ngradient-descent, optimization, backpropagation\n\n\n\n\n\n\nNo matching items"
+    "text": "Topics\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nTopic\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nGradient Descent\n\n\ndone\n\n\ngradient-descent, optimization, backpropagation\n\n\n\n\n\n\n2\n\n\nROC-AUC, PR-AUC, F1\n\n\ndone\n\n\nmetrics, classification, roc-auc, pr-auc, f1, confusion-matrix\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/machine-learning/index.html#labs",
@@ -1979,5 +2049,82 @@
     "title": "References – Machine Learning",
     "section": "",
     "text": "Status = todo · reading · done\n\n\nTitle\nType\nLink\nStatus\n\n\n\n\nXGBoost: A Scalable Tree Boosting System\npaper\nhttps://arxiv.org/abs/1603.02754\ndone"
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "Cả ba metric này đều sinh ra từ đúng bốn con số của confusion matrix — chúng chỉ tổ hợp bốn con số đó theo cách khác nhau, và mỗi cách trả lời một câu hỏi riêng. Hiểu rõ “cách tổ hợp” là hiểu vì sao trên cùng một model, ba metric có thể kể ba câu chuyện rất khác nhau.\n\n\nVới bài toán phân loại nhị phân, mỗi dự đoán rơi vào một trong bốn ô:\n\n\n\n\nThực tế Dương\nThực tế Âm\n\n\n\n\nDự đoán Dương\nTP (bắt đúng)\nFP (báo nhầm)\n\n\nDự đoán Âm\nFN (bỏ sót)\nTN (loại đúng)\n\n\n\n\nTP (True Positive): ca dương, model nói dương → đúng.\nFP (False Positive): ca âm, model nói dương → báo nhầm (false alarm).\nFN (False Negative): ca dương, model nói âm → bỏ sót (miss).\nTN (True Negative): ca âm, model nói âm → đúng.\n\nQuy tắc mẫu số: mỗi “rate” chia cho cả một hàng thật của nó (toàn bộ ca dương thật, hoặc toàn bộ ca âm thật). Nhờ chia cho hằng số này mà TPR và FPR bền vững khi lớp bị mất cân bằng.\n\n\n\nBốn tỷ lệ dưới đây là “nguyên liệu” để dựng ROC và PR. Lưu ý Recall và TPR là cùng một con số, chỉ khác tên gọi theo ngành.\n\n\nRecall = TPR = TP / (TP + FN)\nTrong tất cả các ca dương thật, model bắt được bao nhiêu phần. Mẫu số TP + FN = tổng số ca dương thật (hằng số, không đổi khi ta chỉnh ngưỡng). Machine learning quen gọi là Recall; thống kê / ROC quen gọi là TPR (True Positive Rate) và dùng nó cặp với FPR.\n\n\n\nPrecision = TP / (TP + FP)\nTrong tất cả các ca model báo dương, bao nhiêu phần là đúng. Đây là “độ tin khi model báo dương”. Mẫu số TP + FP = tổng số lần báo-dương — con số này thay đổi theo ngưỡng và theo tỷ lệ lớp.\n\n\n\nFPR = FP / (FP + TN)\nTrong tất cả các ca âm thật, bao nhiêu phần bị báo nhầm thành dương. Mẫu số FP + TN = tổng số ca âm thật (hằng số). FPR là “cặp đôi” của TPR trong không gian ROC.\n\n\n\nRecall, TPR, Precision đều lấy TP ở tử số; chỉ FPR lấy FP ở tử số. Recall và TPR y hệt nhau, chỉ khác tên. Khác biệt cốt lõi Precision ↔︎ TPR nằm ở mẫu số: Precision chia cho pool báo-dương cục bộ, TPR chia cho toàn bộ lớp âm (hằng số).\n\n\n\n\nF1 = 2 · (P · R) / (P + R)\nF1 là trung bình điều hòa (harmonic mean) của Precision và Recall, chứ không phải trung bình cộng. Hệ quả: F1 bị kéo về phía con số nhỏ hơn — chỉ cần P hoặc R thấp là F1 sập, không thể “ăn gian” bằng cách đẩy một vế lên thật cao.\nVí dụ lệch cực đại: P = 1.0, R = 0.0 - Trung bình cộng → 0.50 (nghe ổn nhưng vô nghĩa) - Trung bình điều hòa → 0.00 (đúng bản chất: model này vô dụng)\nF1 bỏ qua TN → nó tập trung hoàn toàn vào lớp dương, nhờ vậy chống được cái bẫy “accuracy cao giả tạo” khi dữ liệu mất cân bằng (đoán toàn bộ là âm vẫn được accuracy 99% nhưng F1 = 0).\nQuan trọng: F1 được tính tại một ngưỡng cụ thể. Đổi ngưỡng → P, R đổi → F1 đổi. Ngược lại, ROC-AUC và PR-AUC tổng hợp trên mọi ngưỡng.\n\n\n\n\nROC-AUC — xếp hạng. Bốc ngẫu nhiên một cặp (một ca dương, một ca âm) → ROC-AUC là xác suất model chấm điểm ca dương cao hơn ca âm. Không phụ thuộc ngưỡng. 0.5 = đoán bừa, 1.0 = hoàn hảo.\nPR-AUC — độ tinh khiết. Nhìn từ mỗi mức điểm trở lên: nhóm điểm cao đó có “sạch” (ít lẫn ca âm) không? Lấy trung bình trên mọi mức. Trả lời: khi model kêu to, có tin được không, và tin được bao nhiêu?\nF1 — điểm vận hành. Tại một ngưỡng đã chốt để đem deploy, Precision và Recall có cân bằng và cùng cao không? Đây là con số bạn thật sự “sống cùng” khi hệ thống chạy thật.\n\n\n\n\nVới cùng một tập dự đoán, ta có thể vẽ:\n\nĐường ROC: trục ngang FPR, trục dọc TPR. Quét ngưỡng từ cao xuống thấp, mỗi ngưỡng cho một điểm (FPR, TPR). Đường là hàm bậc thang: gặp một ca dương → bước lên, gặp một ca âm → bước sang phải. AUC = diện tích dưới đường này.\nĐường PR: trục ngang Recall, trục dọc Precision. Cũng quét ngưỡng, nhưng đường “nhấp nhô” chứ không đơn điệu — vì Precision có thể tụt rồi lại lên khi thêm một TP.\nĐường F1 theo ngưỡng: F1 thường có đỉnh tại một ngưỡng tối ưu nào đó — đây chính là ý nghĩa của việc đi tìm best_threshold thay vì cứng nhắc dùng 0.5.\n\nVí dụ minh họa (8 mẫu): cùng một model có thể ra ROC-AUC ≈ 0.81, PR-AUC ≈ 0.85, F1 max ≈ 0.80 tại ngưỡng ≈ 0.4.\n\n\n\n\n\n\n\nTrục ngang\nTrục dọc\nGóc “đẹp”\n\n\n\n\nROC\nFPR (thấp → bên trái)\nTPR (cao → lên trên)\ntrên–trái\n\n\nPR\nRecall (cao → phải)\nPrecision (cao → lên)\ntrên–phải\n\n\n\nChính mẫu số quyết định tất cả:\n\nROC: FP được chia cho toàn bộ lớp âm N (một hằng số khổng lồ khi lớp âm áp đảo). Mỗi FP chỉ đẩy FPR lên 1/N → đường ROC vẫn “trông đẹp” dù model sai nhiều.\nPR: FP được chia cho pool báo-dương cục bộ (nhỏ). Thêm vài FP là Precision tụt ngay → đường PR phản ánh “sự thật” khắc nghiệt hơn.\n\nHệ quả: với dữ liệu mất cân bằng nặng (ví dụ 5% dương), cùng một model có thể cho ROC-AUC = 0.74 nhưng PR-AUC chỉ = 0.15. ROC-AUC bất biến với tỷ lệ lớp; PR-AUC thì không. Khi lớp dương hiếm và ta quan tâm chất lượng cảnh báo dương → dùng PR-AUC.\n\n\n\nF1 và PR-AUC không có mốc phổ quát. Chỉ ROC-AUC có baseline cố định 0.5. Baseline của F1 và PR-AUC trôi theo prevalence (tỷ lệ lớp dương) — nên đừng bao giờ so hai giá trị này giữa hai tập có tỷ lệ lớp khác nhau.\n\n\n\n\n\n\n\n\n\n\nMetric\nPhụ thuộc ngưỡng?\nBaseline “vô dụng”\nNhạy với prevalence?\nTrả lời câu hỏi\n\n\n\n\nROC-AUC\nKhông (mọi ngưỡng)\n0.5 (cố định)\nKhông\nXếp hạng ca dương trên ca âm có giỏi không?\n\n\nPR-AUC\nKhông (mọi ngưỡng)\n= prevalence\nCó\nNhóm điểm cao có “sạch” không?\n\n\nF1\nCó (một ngưỡng)\n2·prev / (1 + prev)\nCó\nTại điểm vận hành, cân bằng P–R có tốt không?\n\n\n\nQuy tắc vàng: đừng hỏi “0.6 là tốt hay xấu?” theo số tuyệt đối. Hỏi: “cao hơn baseline / majority trên CÙNG tập này bao nhiêu?” — prevalence 50% thì F1 baseline đã là 0.667; prevalence 1% thì baseline chỉ 0.02.\n\n\n\n\nLớp cân bằng, cần một con số so sánh model: ROC-AUC là mặc định hợp lý.\nLớp dương hiếm (gian lận, bệnh hiếm, anomaly), quan tâm chất lượng cảnh báo: PR-AUC.\nĐã chốt ngưỡng, cần báo cáo hiệu năng vận hành thực tế: F1 (hoặc precision/recall riêng lẻ nếu chi phí FP và FN lệch nhau — khi đó cân nhắc F-beta).\nChi phí FP ≠ chi phí FN rõ rệt: đừng dừng ở F1; xét thẳng precision–recall theo yêu cầu nghiệp vụ, hoặc dùng cost-sensitive threshold.\n\n\n\n\n\n“ROC-AUC cao nghĩa là model tốt để deploy”: không hẳn. ROC-AUC chỉ nói khả năng xếp hạng. Với lớp mất cân bằng, ROC-AUC 0.9 vẫn có thể đi kèm PR-AUC thấp và precision tệ tại mọi ngưỡng dùng được.\nSo F1 giữa hai dataset khác prevalence: vô nghĩa, vì baseline F1 khác nhau.\nNghĩ Precision và Recall đối xứng nhau: không. Recall có mẫu số hằng số (toàn lớp dương), Precision có mẫu số thay đổi (pool báo-dương). Đó là gốc rễ mọi khác biệt ROC ↔︎ PR.\nDùng ngưỡng 0.5 mặc định rồi báo F1: F1 phụ thuộc ngưỡng; nên quét ngưỡng để tìm đỉnh F1 (hoặc chọn ngưỡng theo ràng buộc nghiệp vụ) trước khi báo cáo.\nRecall ≠ TPR: sai — chúng là cùng một con số, chỉ khác tên gọi.\n\n\n\n\n\nBốn số TP/FP/FN/TN là gốc; mọi metric chỉ là cách tổ hợp khác nhau.\nRecall = TPR = TP/(TP+FN); Precision = TP/(TP+FP); FPR = FP/(FP+TN).\nROC-AUC = xác suất xếp đúng một cặp dương–âm; baseline cố định 0.5; bất biến với tỷ lệ lớp.\nPR-AUC = độ “tinh khiết” trung bình của các nhóm điểm cao; baseline = prevalence; nhạy với tỷ lệ lớp → ưu tiên khi lớp dương hiếm.\nF1 = trung bình điều hòa của P và R tại một ngưỡng; bỏ qua TN; baseline = 2·prev/(1+prev).\nKhác biệt ROC ↔︎ PR nằm ở mẫu số của FP: toàn lớp âm (hằng số) so với pool báo-dương (cục bộ).\nLuôn đọc metric tương đối so với baseline trên cùng tập dữ liệu, đừng đọc theo số tuyệt đối."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#nguồn-của-mọi-thứ-confusion-matrix",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#nguồn-của-mọi-thứ-confusion-matrix",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "Với bài toán phân loại nhị phân, mỗi dự đoán rơi vào một trong bốn ô:\n\n\n\n\nThực tế Dương\nThực tế Âm\n\n\n\n\nDự đoán Dương\nTP (bắt đúng)\nFP (báo nhầm)\n\n\nDự đoán Âm\nFN (bỏ sót)\nTN (loại đúng)\n\n\n\n\nTP (True Positive): ca dương, model nói dương → đúng.\nFP (False Positive): ca âm, model nói dương → báo nhầm (false alarm).\nFN (False Negative): ca dương, model nói âm → bỏ sót (miss).\nTN (True Negative): ca âm, model nói âm → đúng.\n\nQuy tắc mẫu số: mỗi “rate” chia cho cả một hàng thật của nó (toàn bộ ca dương thật, hoặc toàn bộ ca âm thật). Nhờ chia cho hằng số này mà TPR và FPR bền vững khi lớp bị mất cân bằng."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#bốn-tỷ-lệ-nền",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#bốn-tỷ-lệ-nền",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "Bốn tỷ lệ dưới đây là “nguyên liệu” để dựng ROC và PR. Lưu ý Recall và TPR là cùng một con số, chỉ khác tên gọi theo ngành.\n\n\nRecall = TPR = TP / (TP + FN)\nTrong tất cả các ca dương thật, model bắt được bao nhiêu phần. Mẫu số TP + FN = tổng số ca dương thật (hằng số, không đổi khi ta chỉnh ngưỡng). Machine learning quen gọi là Recall; thống kê / ROC quen gọi là TPR (True Positive Rate) và dùng nó cặp với FPR.\n\n\n\nPrecision = TP / (TP + FP)\nTrong tất cả các ca model báo dương, bao nhiêu phần là đúng. Đây là “độ tin khi model báo dương”. Mẫu số TP + FP = tổng số lần báo-dương — con số này thay đổi theo ngưỡng và theo tỷ lệ lớp.\n\n\n\nFPR = FP / (FP + TN)\nTrong tất cả các ca âm thật, bao nhiêu phần bị báo nhầm thành dương. Mẫu số FP + TN = tổng số ca âm thật (hằng số). FPR là “cặp đôi” của TPR trong không gian ROC.\n\n\n\nRecall, TPR, Precision đều lấy TP ở tử số; chỉ FPR lấy FP ở tử số. Recall và TPR y hệt nhau, chỉ khác tên. Khác biệt cốt lõi Precision ↔︎ TPR nằm ở mẫu số: Precision chia cho pool báo-dương cục bộ, TPR chia cho toàn bộ lớp âm (hằng số)."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#f1-cân-bằng-precision-recall-tại-một-ngưỡng",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#f1-cân-bằng-precision-recall-tại-một-ngưỡng",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "F1 = 2 · (P · R) / (P + R)\nF1 là trung bình điều hòa (harmonic mean) của Precision và Recall, chứ không phải trung bình cộng. Hệ quả: F1 bị kéo về phía con số nhỏ hơn — chỉ cần P hoặc R thấp là F1 sập, không thể “ăn gian” bằng cách đẩy một vế lên thật cao.\nVí dụ lệch cực đại: P = 1.0, R = 0.0 - Trung bình cộng → 0.50 (nghe ổn nhưng vô nghĩa) - Trung bình điều hòa → 0.00 (đúng bản chất: model này vô dụng)\nF1 bỏ qua TN → nó tập trung hoàn toàn vào lớp dương, nhờ vậy chống được cái bẫy “accuracy cao giả tạo” khi dữ liệu mất cân bằng (đoán toàn bộ là âm vẫn được accuracy 99% nhưng F1 = 0).\nQuan trọng: F1 được tính tại một ngưỡng cụ thể. Đổi ngưỡng → P, R đổi → F1 đổi. Ngược lại, ROC-AUC và PR-AUC tổng hợp trên mọi ngưỡng."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#ba-câu-diễn-giải-nên-thuộc-lòng",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#ba-câu-diễn-giải-nên-thuộc-lòng",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "ROC-AUC — xếp hạng. Bốc ngẫu nhiên một cặp (một ca dương, một ca âm) → ROC-AUC là xác suất model chấm điểm ca dương cao hơn ca âm. Không phụ thuộc ngưỡng. 0.5 = đoán bừa, 1.0 = hoàn hảo.\nPR-AUC — độ tinh khiết. Nhìn từ mỗi mức điểm trở lên: nhóm điểm cao đó có “sạch” (ít lẫn ca âm) không? Lấy trung bình trên mọi mức. Trả lời: khi model kêu to, có tin được không, và tin được bao nhiêu?\nF1 — điểm vận hành. Tại một ngưỡng đã chốt để đem deploy, Precision và Recall có cân bằng và cùng cao không? Đây là con số bạn thật sự “sống cùng” khi hệ thống chạy thật."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#cùng-dữ-liệu-ba-góc-nhìn",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#cùng-dữ-liệu-ba-góc-nhìn",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "Với cùng một tập dự đoán, ta có thể vẽ:\n\nĐường ROC: trục ngang FPR, trục dọc TPR. Quét ngưỡng từ cao xuống thấp, mỗi ngưỡng cho một điểm (FPR, TPR). Đường là hàm bậc thang: gặp một ca dương → bước lên, gặp một ca âm → bước sang phải. AUC = diện tích dưới đường này.\nĐường PR: trục ngang Recall, trục dọc Precision. Cũng quét ngưỡng, nhưng đường “nhấp nhô” chứ không đơn điệu — vì Precision có thể tụt rồi lại lên khi thêm một TP.\nĐường F1 theo ngưỡng: F1 thường có đỉnh tại một ngưỡng tối ưu nào đó — đây chính là ý nghĩa của việc đi tìm best_threshold thay vì cứng nhắc dùng 0.5.\n\nVí dụ minh họa (8 mẫu): cùng một model có thể ra ROC-AUC ≈ 0.81, PR-AUC ≈ 0.85, F1 max ≈ 0.80 tại ngưỡng ≈ 0.4."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#vì-sao-roc-pr",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#vì-sao-roc-pr",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "Trục ngang\nTrục dọc\nGóc “đẹp”\n\n\n\n\nROC\nFPR (thấp → bên trái)\nTPR (cao → lên trên)\ntrên–trái\n\n\nPR\nRecall (cao → phải)\nPrecision (cao → lên)\ntrên–phải\n\n\n\nChính mẫu số quyết định tất cả:\n\nROC: FP được chia cho toàn bộ lớp âm N (một hằng số khổng lồ khi lớp âm áp đảo). Mỗi FP chỉ đẩy FPR lên 1/N → đường ROC vẫn “trông đẹp” dù model sai nhiều.\nPR: FP được chia cho pool báo-dương cục bộ (nhỏ). Thêm vài FP là Precision tụt ngay → đường PR phản ánh “sự thật” khắc nghiệt hơn.\n\nHệ quả: với dữ liệu mất cân bằng nặng (ví dụ 5% dương), cùng một model có thể cho ROC-AUC = 0.74 nhưng PR-AUC chỉ = 0.15. ROC-AUC bất biến với tỷ lệ lớp; PR-AUC thì không. Khi lớp dương hiếm và ta quan tâm chất lượng cảnh báo dương → dùng PR-AUC."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#đọc-thế-nào-là-tốt-xấu",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#đọc-thế-nào-là-tốt-xấu",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "F1 và PR-AUC không có mốc phổ quát. Chỉ ROC-AUC có baseline cố định 0.5. Baseline của F1 và PR-AUC trôi theo prevalence (tỷ lệ lớp dương) — nên đừng bao giờ so hai giá trị này giữa hai tập có tỷ lệ lớp khác nhau.\n\n\n\n\n\n\n\n\n\n\nMetric\nPhụ thuộc ngưỡng?\nBaseline “vô dụng”\nNhạy với prevalence?\nTrả lời câu hỏi\n\n\n\n\nROC-AUC\nKhông (mọi ngưỡng)\n0.5 (cố định)\nKhông\nXếp hạng ca dương trên ca âm có giỏi không?\n\n\nPR-AUC\nKhông (mọi ngưỡng)\n= prevalence\nCó\nNhóm điểm cao có “sạch” không?\n\n\nF1\nCó (một ngưỡng)\n2·prev / (1 + prev)\nCó\nTại điểm vận hành, cân bằng P–R có tốt không?\n\n\n\nQuy tắc vàng: đừng hỏi “0.6 là tốt hay xấu?” theo số tuyệt đối. Hỏi: “cao hơn baseline / majority trên CÙNG tập này bao nhiêu?” — prevalence 50% thì F1 baseline đã là 0.667; prevalence 1% thì baseline chỉ 0.02."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#chọn-metric-nào-khi-nào",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#chọn-metric-nào-khi-nào",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "Lớp cân bằng, cần một con số so sánh model: ROC-AUC là mặc định hợp lý.\nLớp dương hiếm (gian lận, bệnh hiếm, anomaly), quan tâm chất lượng cảnh báo: PR-AUC.\nĐã chốt ngưỡng, cần báo cáo hiệu năng vận hành thực tế: F1 (hoặc precision/recall riêng lẻ nếu chi phí FP và FN lệch nhau — khi đó cân nhắc F-beta).\nChi phí FP ≠ chi phí FN rõ rệt: đừng dừng ở F1; xét thẳng precision–recall theo yêu cầu nghiệp vụ, hoặc dùng cost-sensitive threshold."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#những-hiểu-lầm-thường-gặp",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#những-hiểu-lầm-thường-gặp",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "“ROC-AUC cao nghĩa là model tốt để deploy”: không hẳn. ROC-AUC chỉ nói khả năng xếp hạng. Với lớp mất cân bằng, ROC-AUC 0.9 vẫn có thể đi kèm PR-AUC thấp và precision tệ tại mọi ngưỡng dùng được.\nSo F1 giữa hai dataset khác prevalence: vô nghĩa, vì baseline F1 khác nhau.\nNghĩ Precision và Recall đối xứng nhau: không. Recall có mẫu số hằng số (toàn lớp dương), Precision có mẫu số thay đổi (pool báo-dương). Đó là gốc rễ mọi khác biệt ROC ↔︎ PR.\nDùng ngưỡng 0.5 mặc định rồi báo F1: F1 phụ thuộc ngưỡng; nên quét ngưỡng để tìm đỉnh F1 (hoặc chọn ngưỡng theo ràng buộc nghiệp vụ) trước khi báo cáo.\nRecall ≠ TPR: sai — chúng là cùng một con số, chỉ khác tên gọi."
+  },
+  {
+    "objectID": "courses/machine-learning/lectures/Classification-metrics.html#tóm-tắt",
+    "href": "courses/machine-learning/lectures/Classification-metrics.html#tóm-tắt",
+    "title": "ROC-AUC, PR-AUC, F1",
+    "section": "",
+    "text": "Bốn số TP/FP/FN/TN là gốc; mọi metric chỉ là cách tổ hợp khác nhau.\nRecall = TPR = TP/(TP+FN); Precision = TP/(TP+FP); FPR = FP/(FP+TN).\nROC-AUC = xác suất xếp đúng một cặp dương–âm; baseline cố định 0.5; bất biến với tỷ lệ lớp.\nPR-AUC = độ “tinh khiết” trung bình của các nhóm điểm cao; baseline = prevalence; nhạy với tỷ lệ lớp → ưu tiên khi lớp dương hiếm.\nF1 = trung bình điều hòa của P và R tại một ngưỡng; bỏ qua TN; baseline = 2·prev/(1+prev).\nKhác biệt ROC ↔︎ PR nằm ở mẫu số của FP: toàn lớp âm (hằng số) so với pool báo-dương (cục bộ).\nLuôn đọc metric tương đối so với baseline trên cùng tập dữ liệu, đừng đọc theo số tuyệt đối."
   }
 ]
