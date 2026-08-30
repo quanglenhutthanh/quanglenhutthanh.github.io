@@ -1,0 +1,31 @@
+---
+title: "Frontier Transformation Engineer"
+subtitle: "Microsoft AI · Copilot, Agentic AI, Fabric IQ, Agent 365"
+subject: "Frontier Transformation Engineer"
+type: subject
+term: "2026"
+source: "https://skillupwithlevelup.com/frontier"
+tags: [copilot, agentic-ai, microsoft-iq, fabric, agent-365, certification]
+listing:
+  - id: lectures
+    contents: "lectures/*.md"
+    type: table
+    fields: [lecture_no, title, status, tags]
+    sort: "lecture_no asc"
+    field-display-names:
+      lecture_no: "#"
+      title: "Topic"
+      status: "Status"
+      tags: "Tags"
+---
+
+## Introduction
+
+Lộ trình học của Microsoft ("Skill Up with Level Up") giúp kỹ sư kỹ thuật xây dựng năng lực về AI để đưa tổ chức trở thành *Frontier Firm*. Khoảng 86 giờ, 11 khoá, chia thành 3 milestone: (1) ba chứng chỉ nền tảng (GitHub Copilot, AI apps & agents trên Azure, Agentic AI Business Solutions Architect); (2) năm khoá thực hành có lab và assessment ≥ 80% (Microsoft IQ, Work IQ + Copilot + agents, Accelerate Agentic AI, Fabric IQ & Data Agents, Agent 365); (3) Hypervelocity Engineering Framework. Kết thúc nhận Frontier Transformation Engineer Badge.
+
+Nguồn: <https://skillupwithlevelup.com/frontier>
+
+## Topics
+
+:::{#lectures}
+:::
