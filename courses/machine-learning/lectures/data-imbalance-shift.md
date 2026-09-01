@@ -40,7 +40,7 @@ Imbalance không phải lúc nào cũng là vấn đề. Nó thành vấn đề 
 
 #### (1) Đổi metric — bắt buộc, làm trước tiên
 
-Trước khi đụng vào data hay model, **bỏ accuracy**. Xem [ROC-AUC · PR-AUC · F1](L02-classification-metrics.md):
+Trước khi đụng vào data hay model, **bỏ accuracy**. Xem [ROC-AUC · PR-AUC · F1](classification-metrics.md):
 
 - Lớp dương hiếm, quan tâm chất lượng cảnh báo → **PR-AUC**, precision/recall theo yêu cầu nghiệp vụ.
 - Cần một số so sánh model, không phụ thuộc ngưỡng → **ROC-AUC** (nhưng nhớ ROC-AUC lạc quan hơn thực tế khi lớp lệch nặng).

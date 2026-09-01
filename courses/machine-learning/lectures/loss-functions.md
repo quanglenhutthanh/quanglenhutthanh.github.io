@@ -11,9 +11,9 @@ date: 2026-08-30
 
 # Loss Functions
 
-Hàm loss là **cầu nối giữa dữ liệu và tối ưu hoá**: nó biến "model dự đoán sai bao nhiêu" thành một con số duy nhất, khả vi, để [Gradient Descent](L01-gradient-descent.md) có cái mà giảm. Chọn sai loss thì dù optimizer chạy hoàn hảo, model vẫn học sai thứ ta cần.
+Hàm loss là **cầu nối giữa dữ liệu và tối ưu hoá**: nó biến "model dự đoán sai bao nhiêu" thành một con số duy nhất, khả vi, để [Gradient Descent](gradient-descent.md) có cái mà giảm. Chọn sai loss thì dù optimizer chạy hoàn hảo, model vẫn học sai thứ ta cần.
 
-Trong [note Gradient Descent](L01-gradient-descent.md), loss được coi như "ngọn đồi" trừu tượng `L(x) = x²`. Note này trả lời: **ngọn đồi đó thực chất là hàm gì, và chọn hàm nào cho bài toán nào.**
+Trong [note Gradient Descent](gradient-descent.md), loss được coi như "ngọn đồi" trừu tượng `L(x) = x²`. Note này trả lời: **ngọn đồi đó thực chất là hàm gì, và chọn hàm nào cho bài toán nào.**
 
 ## 1. Loss ≠ Metric
 
@@ -26,7 +26,7 @@ Hai thứ dễ lẫn:
 | Ví dụ | MSE, cross-entropy, hinge | Accuracy, F1, ROC-AUC, MAE-tính-bằng-ngày |
 | Ai đọc | Chỉ optimizer | Con người, stakeholder |
 
-Nhiều metric (accuracy, F1) có gradient bằng 0 gần như mọi nơi → không tối ưu trực tiếp được. Ta tối ưu một **surrogate loss** trơn (cross-entropy) rồi đo bằng metric thật. Xem [Classification Metrics](L02-classification-metrics.md).
+Nhiều metric (accuracy, F1) có gradient bằng 0 gần như mọi nơi → không tối ưu trực tiếp được. Ta tối ưu một **surrogate loss** trơn (cross-entropy) rồi đo bằng metric thật. Xem [Classification Metrics](classification-metrics.md).
 
 ## 2. Góc nhìn xác suất: loss đến từ đâu
 
@@ -86,7 +86,7 @@ Chỉ phạt khi mẫu nằm trong "lề" (margin) hoặc sai phía. Mẫu đã 
 L = −(1 − p_t)^γ · log(p_t)
 ```
 
-Nhân cross-entropy với `(1 − p_t)^γ`: hạ trọng số các mẫu "dễ" (model đã đoán đúng, tự tin), dồn gradient vào mẫu khó. `γ = 2` phổ biến. Sinh ra cho object detection (nền áp đảo vật thể). Xem thêm cách xử lý mất cân bằng ở [L03](L03-data-imbalance-shift.md).
+Nhân cross-entropy với `(1 − p_t)^γ`: hạ trọng số các mẫu "dễ" (model đã đoán đúng, tự tin), dồn gradient vào mẫu khó. `γ = 2` phổ biến. Sinh ra cho object detection (nền áp đảo vật thể). Xem thêm cách xử lý mất cân bằng ở [Class Imbalance & Distribution Shift](data-imbalance-shift.md).
 
 ### 4.5. Label smoothing
 
@@ -100,7 +100,7 @@ Nhân mỗi số hạng loss với trọng số theo lớp (`w_k ∝ 1/tần_su�
 L = −Σ_i w_{y_i} · [ y_i·log(p_i) + (1−y_i)·log(1−p_i) ]
 ```
 
-Làm lớp thiểu số "nặng cân" ngang lớp đa số trong tổng loss → optimizer không còn bỏ quên nó. Đây là cách xử lý imbalance **ổn định hơn resampling khi có distribution shift** (xem [L03](L03-data-imbalance-shift.md)).
+Làm lớp thiểu số "nặng cân" ngang lớp đa số trong tổng loss → optimizer không còn bỏ quên nó. Đây là cách xử lý imbalance **ổn định hơn resampling khi có distribution shift** (xem [Class Imbalance & Distribution Shift](data-imbalance-shift.md)).
 
 ## 6. Regularization: số hạng cộng thêm vào loss
 
@@ -112,14 +112,14 @@ Làm lớp thiểu số "nặng cân" ngang lớp đa số trong tổng loss →
 | `Σ \|θ_j\|` | **L1 / lasso** | Đẩy một số hệ số về **đúng 0** → chọn feature tự động | Laplace |
 | kết hợp | **Elastic Net** | Vừa co vừa chọn | — |
 
-`λ` cân bằng "khớp dữ liệu" vs "model đơn giản". Chọn `λ` bằng cross-validation (xem [L04](L04-data-leakage-validation.md)).
+`λ` cân bằng "khớp dữ liệu" vs "model đơn giản". Chọn `λ` bằng cross-validation (xem [Data Leakage & Validation](data-leakage-validation.md)).
 
 ## 7. Ổn định số học (đọc kỹ nếu tự code)
 
 - **Đừng feed xác suất vào log** — dùng `p = 0` sẽ ra `log(0) = −∞`. Luôn tính từ **logit**: `binary_cross_entropy_with_logits`, `softmax_cross_entropy_with_logits`. Chúng dùng log-sum-exp ổn định bên trong.
 - Clip xác suất về `[ε, 1−ε]` nếu buộc phải tính từ `p`.
 - Trung bình loss trên batch (`reduction="mean"`) để độ lớn gradient không phụ thuộc batch size.
-- Loss ra `NaN` khi train: thường là learning rate quá lớn (xem [L01](L01-gradient-descent.md)), chia cho 0 trong feature, hoặc `log(0)` như trên.
+- Loss ra `NaN` khi train: thường là learning rate quá lớn (xem [Gradient Descent](gradient-descent.md)), chia cho 0 trong feature, hoặc `log(0)` như trên.
 
 ## 8. Chọn loss nào
 

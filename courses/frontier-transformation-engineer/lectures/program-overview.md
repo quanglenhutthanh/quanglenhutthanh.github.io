@@ -12,6 +12,8 @@ date: 2026-08-28
 # Tổng quan chương trình & lộ trình 3 milestone
 
 > Ghi chú khởi động: chương trình này gồm những gì, thứ tự nên học, và các mốc bắt buộc để lấy badge. Các phần chi tiết từng khoá sẽ tách thành topic riêng (L02, L03, …).
+>
+> **Nội dung chương trình cập nhật đến tháng 9/2026** — số khoá, thời lượng và yêu cầu milestone có thể thay đổi sau mốc này; kiểm tra lại trang chương trình khi học.
 
 ## 1. Chương trình là gì
 
