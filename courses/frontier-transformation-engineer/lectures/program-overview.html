@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-08-30">
+<meta name="dcterms.date" content="2026-08-28">
 
-<title>Data Leakage &amp; Kiểm định theo thời gian – Le Nhut Thanh Quang</title>
+<title>Tổng quan chương trình &amp; lộ trình 3 milestone – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,41 +26,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -165,26 +130,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-leakage-kiểm-định-theo-thời-gian" id="toc-data-leakage-kiểm-định-theo-thời-gian" class="nav-link active" data-scroll-target="#data-leakage-kiểm-định-theo-thời-gian">Data Leakage &amp; Kiểm định theo thời gian</a>
+  <li><a href="#tổng-quan-chương-trình-lộ-trình-3-milestone" id="toc-tổng-quan-chương-trình-lộ-trình-3-milestone" class="nav-link active" data-scroll-target="#tổng-quan-chương-trình-lộ-trình-3-milestone">Tổng quan chương trình &amp; lộ trình 3 milestone</a>
   <ul class="collapse">
-  <li><a href="#hai-họ-leakage" id="toc-hai-họ-leakage" class="nav-link" data-scroll-target="#hai-họ-leakage">1. Hai họ leakage</a>
+  <li><a href="#chương-trình-là-gì" id="toc-chương-trình-là-gì" class="nav-link" data-scroll-target="#chương-trình-là-gì">1. Chương trình là gì</a></li>
+  <li><a href="#ba-milestone" id="toc-ba-milestone" class="nav-link" data-scroll-target="#ba-milestone">2. Ba milestone</a>
   <ul class="collapse">
-  <li><a href="#target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" id="toc-target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" class="nav-link" data-scroll-target="#target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn">1.1. Target leakage — feature chứa thông tin từ tương lai / từ nhãn</a></li>
-  <li><a href="#traintest-contamination-preprocessing-nhìn-thấy-tập-test" id="toc-traintest-contamination-preprocessing-nhìn-thấy-tập-test" class="nav-link" data-scroll-target="#traintest-contamination-preprocessing-nhìn-thấy-tập-test">1.2. Train–test contamination — preprocessing “nhìn thấy” tập test</a></li>
+  <li><a href="#milestone-1-certifications-3-chứng-chỉ" id="toc-milestone-1-certifications-3-chứng-chỉ" class="nav-link" data-scroll-target="#milestone-1-certifications-3-chứng-chỉ">Milestone 1 — Certifications (3 chứng chỉ)</a></li>
+  <li><a href="#milestone-2-project-ready-assessments-5-khoá-cần-80" id="toc-milestone-2-project-ready-assessments-5-khoá-cần-80" class="nav-link" data-scroll-target="#milestone-2-project-ready-assessments-5-khoá-cần-80">Milestone 2 — Project Ready + Assessments (5 khoá, cần ≥ 80%)</a></li>
+  <li><a href="#milestone-3-frontier-coe-hypervelocity-engineering" id="toc-milestone-3-frontier-coe-hypervelocity-engineering" class="nav-link" data-scroll-target="#milestone-3-frontier-coe-hypervelocity-engineering">Milestone 3 — Frontier CoE &amp; Hypervelocity Engineering</a></li>
   </ul></li>
-  <li><a href="#quy-tắc-chống-leakage-rút-từ-2-lab" id="toc-quy-tắc-chống-leakage-rút-từ-2-lab" class="nav-link" data-scroll-target="#quy-tắc-chống-leakage-rút-từ-2-lab">2. Quy tắc chống leakage (rút từ 2 lab)</a>
-  <ul class="collapse">
-  <li><a href="#fit-trên-train-transform-cả-hai" id="toc-fit-trên-train-transform-cả-hai" class="nav-link" data-scroll-target="#fit-trên-train-transform-cả-hai">2.1. Fit trên TRAIN, transform cả hai</a></li>
-  <li><a href="#impute-bằng-thống-kê-train-only" id="toc-impute-bằng-thống-kê-train-only" class="nav-link" data-scroll-target="#impute-bằng-thống-kê-train-only">2.2. Impute bằng thống kê train-only</a></li>
-  <li><a href="#feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" id="toc-feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" class="nav-link" data-scroll-target="#feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán">2.3. Feature <em>as-of</em> — chỉ dùng dữ liệu trước thời điểm dự đoán</a></li>
-  <li><a href="#split-theo-thời-gian-không-random" id="toc-split-theo-thời-gian-không-random" class="nav-link" data-scroll-target="#split-theo-thời-gian-không-random">2.4. Split theo thời gian, không random</a></li>
-  <li><a href="#đồng-bộ-cột-sau-one-hot" id="toc-đồng-bộ-cột-sau-one-hot" class="nav-link" data-scroll-target="#đồng-bộ-cột-sau-one-hot">2.5. Đồng bộ cột sau one-hot</a></li>
-  <li><a href="#resample-chọn-ngưỡng-bên-trong-cv" id="toc-resample-chọn-ngưỡng-bên-trong-cv" class="nav-link" data-scroll-target="#resample-chọn-ngưỡng-bên-trong-cv">2.6. Resample / chọn ngưỡng bên trong CV</a></li>
-  </ul></li>
-  <li><a href="#cross-validation-cho-đúng" id="toc-cross-validation-cho-đúng" class="nav-link" data-scroll-target="#cross-validation-cho-đúng">3. Cross-validation cho đúng</a></li>
-  <li><a href="#pattern-an-toàn-sklearn-pipeline" id="toc-pattern-an-toàn-sklearn-pipeline" class="nav-link" data-scroll-target="#pattern-an-toàn-sklearn-pipeline">4. Pattern an toàn: sklearn Pipeline</a></li>
-  <li><a href="#checklist-trước-khi-tin-vào-một-con-số-offline" id="toc-checklist-trước-khi-tin-vào-một-con-số-offline" class="nav-link" data-scroll-target="#checklist-trước-khi-tin-vào-một-con-số-offline">5. Checklist trước khi tin vào một con số offline</a></li>
-  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">6. Tóm tắt</a></li>
+  <li><a href="#công-nghệ-chính-sẽ-gặp" id="toc-công-nghệ-chính-sẽ-gặp" class="nav-link" data-scroll-target="#công-nghệ-chính-sẽ-gặp">3. Công nghệ chính sẽ gặp</a></li>
+  <li><a href="#thứ-tự-học-đề-xuất-nháp" id="toc-thứ-tự-học-đề-xuất-nháp" class="nav-link" data-scroll-target="#thứ-tự-học-đề-xuất-nháp">4. Thứ tự học đề xuất (nháp)</a></li>
+  <li><a href="#câu-hỏi-cần-trả-lời-khi-học-xong" id="toc-câu-hỏi-cần-trả-lời-khi-học-xong" class="nav-link" data-scroll-target="#câu-hỏi-cần-trả-lời-khi-học-xong">5. Câu hỏi cần trả lời khi học xong</a></li>
+  <li><a href="#liên-kết" id="toc-liên-kết" class="nav-link" data-scroll-target="#liên-kết">6. Liên kết</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -194,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Leakage &amp; Kiểm định theo thời gian</h1>
+<h1 class="title">Tổng quan chương trình &amp; lộ trình 3 milestone</h1>
 </div>
 
 
@@ -205,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 30, 2026</p>
+      <p class="date">August 28, 2026</p>
     </div>
   </div>
   
@@ -217,81 +175,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="data-leakage-kiểm-định-theo-thời-gian" class="level1">
-<h1>Data Leakage &amp; Kiểm định theo thời gian</h1>
-<p><strong>Data leakage (rò rỉ dữ liệu)</strong> = thông tin mà model <em>sẽ không có</em> lúc dự đoán thật lại lọt vào lúc train hoặc lúc đánh giá. Hậu quả kinh điển: metric offline đẹp lộng lẫy, deploy xong tụt thẳng đứng. Leakage là lỗi phổ biến nhất và tốn kém nhất trong một dự án ML thực tế — nó không báo lỗi, không crash, chỉ âm thầm cho ta một con số sai.</p>
-<p>Hai lab capstone của môn (<a href="../../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist</code></a>, <a href="../../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC</code></a>) dành phần lớn công sức để <em>chặn</em> leakage — note này rút ra các nguyên tắc chung.</p>
-<section id="hai-họ-leakage" class="level2">
-<h2 class="anchored" data-anchor-id="hai-họ-leakage">1. Hai họ leakage</h2>
-<section id="target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" class="level3">
-<h3 class="anchored" data-anchor-id="target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn">1.1. Target leakage — feature chứa thông tin từ tương lai / từ nhãn</h3>
-<p>Một feature được tính bằng dữ liệu chỉ tồn tại <em>sau</em> thời điểm dự đoán, hoặc suy ra (một phần) từ chính nhãn.</p>
-<p>Ví dụ:</p>
+<section id="tổng-quan-chương-trình-lộ-trình-3-milestone" class="level1">
+<h1>Tổng quan chương trình &amp; lộ trình 3 milestone</h1>
+<blockquote class="blockquote">
+<p>Ghi chú khởi động: chương trình này gồm những gì, thứ tự nên học, và các mốc bắt buộc để lấy badge. Các phần chi tiết từng khoá sẽ tách thành topic riêng (L02, L03, …).</p>
+<p><strong>Nội dung chương trình cập nhật đến tháng 9/2026</strong> — số khoá, thời lượng và yêu cầu milestone có thể thay đổi sau mốc này; kiểm tra lại trang chương trình khi học.</p>
+</blockquote>
+<section id="chương-trình-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="chương-trình-là-gì">1. Chương trình là gì</h2>
 <ul>
-<li>Dự đoán khách churn, nhưng feature <code>số_cuộc_gọi_hỗ_trợ</code> lại tính cả các cuộc gọi <em>sau</em> ngày churn.</li>
-<li>Dự đoán đơn hàng gian lận, feature <code>đã_hoàn_tiền</code> — chỉ có giá trị vì giao dịch đã bị phát hiện gian lận.</li>
-<li>Dự đoán bệnh, feature <code>loại_thuốc_đang_dùng</code> — thuốc được kê <em>vì</em> đã có chẩn đoán.</li>
-</ul>
-<p>Dấu hiệu nghi ngờ: một feature “tốt bất thường” (coefficient hoặc importance áp đảo), AUC gần 1.0 một cách vô lý.</p>
-</section>
-<section id="traintest-contamination-preprocessing-nhìn-thấy-tập-test" class="level3">
-<h3 class="anchored" data-anchor-id="traintest-contamination-preprocessing-nhìn-thấy-tập-test">1.2. Train–test contamination — preprocessing “nhìn thấy” tập test</h3>
-<p>Bất kỳ phép biến đổi nào <em>học tham số từ dữ liệu</em> mà được fit trên toàn bộ dataset trước khi split:</p>
-<ul>
-<li><code>StandardScaler</code> / <code>MinMaxScaler</code> fit trên cả train + test → mean/std đã “nếm” test.</li>
-<li>Impute missing bằng median của cả dataset.</li>
-<li><code>SelectKBest</code> / feature selection chạy trên toàn bộ dữ liệu.</li>
-<li>Target encoding, PCA, <code>fit_transform</code> của bất cứ thứ gì trên full data.</li>
-<li>SMOTE / oversampling trước khi split → bản sao của một mẫu nằm cả ở train lẫn validation.</li>
+<li>Tên: <strong>Frontier Transformation Engineer</strong> (Microsoft — Skill Up with Level Up).</li>
+<li>Mục tiêu: trang bị năng lực AI để biến tổ chức thành <strong>Frontier Firm</strong> — doanh nghiệp vận hành với con người + AI agent làm việc song song.</li>
+<li>Quy mô: ~<strong>86 giờ</strong>, <strong>11 khoá</strong>, học tự do theo nhịp cá nhân.</li>
+<li>Đầu ra: <strong>Frontier Transformation Engineer Badge</strong> sau khi hoàn thành 3 milestone.</li>
+<li>Đối tượng: Solution Engineer, AI Engineer, Cloud Engineer, Solution Architect, Technical Consultant.</li>
 </ul>
 </section>
+<section id="ba-milestone" class="level2">
+<h2 class="anchored" data-anchor-id="ba-milestone">2. Ba milestone</h2>
+<section id="milestone-1-certifications-3-chứng-chỉ" class="level3">
+<h3 class="anchored" data-anchor-id="milestone-1-certifications-3-chứng-chỉ">Milestone 1 — Certifications (3 chứng chỉ)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mã</th>
+<th>Tên</th>
+<th>Thời lượng</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GH-300</td>
+<td>GitHub Copilot</td>
+<td>10h</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>AI-102 / AI-103</td>
+<td>Develop AI apps and agents on Azure</td>
+<td>10h</td>
+<td>AI-102 được chấp nhận thay thế</td>
+</tr>
+<tr class="odd">
+<td>AB-100</td>
+<td>Agentic AI Business Solutions Architect</td>
+<td>10h</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="quy-tắc-chống-leakage-rút-từ-2-lab" class="level2">
-<h2 class="anchored" data-anchor-id="quy-tắc-chống-leakage-rút-từ-2-lab">2. Quy tắc chống leakage (rút từ 2 lab)</h2>
-<section id="fit-trên-train-transform-cả-hai" class="level3">
-<h3 class="anchored" data-anchor-id="fit-trên-train-transform-cả-hai">2.1. Fit trên TRAIN, transform cả hai</h3>
-<p>Mọi transformer có trạng thái đều fit <strong>chỉ trên train</strong>, rồi <code>.transform()</code> áp lên test:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler().fit(X_train[NUM])      <span class="co"># chỉ nhìn train</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>X_train[NUM] <span class="op">=</span> scaler.transform(X_train[NUM])</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X_test[NUM]  <span class="op">=</span> scaler.transform(X_test[NUM])      <span class="co"># dùng thống kê của train</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Kiểm chứng nhanh: sau scale, <code>X_train</code> có mean ≈ 0; <code>X_test</code> <strong>lệch khỏi 0</strong> — đúng như mong đợi (và nếu có distribution shift, độ lệch này chính là bằng chứng shift, xem <a href="../../../courses/machine-learning/lectures/L03-data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a>).</p>
-</section>
-<section id="impute-bằng-thống-kê-train-only" class="level3">
-<h3 class="anchored" data-anchor-id="impute-bằng-thống-kê-train-only">2.2. Impute bằng thống kê train-only</h3>
-<p>Median/mean để điền khuyết phải tính trên <strong>tập train</strong>, kể cả khi việc điền diễn ra trước bước split trong code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cutoff <span class="op">=</span> df[<span class="st">'order_date'</span>].quantile(<span class="fl">0.8</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>train_median <span class="op">=</span> df.loc[df[<span class="st">'order_date'</span>] <span class="op">&lt;=</span> cutoff, <span class="st">'col'</span>].median()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'col'</span>] <span class="op">=</span> df[<span class="st">'col'</span>].fillna(train_median)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" class="level3">
-<h3 class="anchored" data-anchor-id="feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán">2.3. Feature <em>as-of</em> — chỉ dùng dữ liệu trước thời điểm dự đoán</h3>
-<p>Với dữ liệu có trục thời gian, mọi feature tổng hợp (đếm, trung bình tích luỹ, RFM…) phải lọc <strong>strict</strong> <code>event_date &lt; prediction_date</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">'before'</span>] <span class="op">=</span> merged[<span class="st">'ticket_date'</span>] <span class="op">&lt;</span> merged[<span class="st">'order_date'</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>agg <span class="op">=</span> merged[merged[<span class="st">'before'</span>]].groupby(<span class="st">'order_id'</span>).agg(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Rồi chốt bằng <strong>leakage guard</strong> — một assertion nổ ngay nếu lọt mẫu vi phạm:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>leaked <span class="op">=</span> merged[merged[<span class="st">'before'</span>]]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (leaked[<span class="st">'ticket_date'</span>] <span class="op">&lt;</span> leaked[<span class="st">'order_date'</span>]).<span class="bu">all</span>(), <span class="st">'Leakage detected!'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="split-theo-thời-gian-không-random" class="level3">
-<h3 class="anchored" data-anchor-id="split-theo-thời-gian-không-random">2.4. Split theo thời gian, không random</h3>
-<p>Dữ liệu sinh theo thời gian (đơn hàng, log cảm biến, giao dịch) → <strong>train = phần cũ, test = phần mới</strong> (ví dụ oldest 80% / newest 20%). Random split trộn tương lai vào train, cho metric lạc quan và giấu mất distribution shift.</p>
-</section>
-<section id="đồng-bộ-cột-sau-one-hot" class="level3">
-<h3 class="anchored" data-anchor-id="đồng-bộ-cột-sau-one-hot">2.5. Đồng bộ cột sau one-hot</h3>
-<p><code>get_dummies</code> trên train và test độc lập có thể ra tập cột khác nhau (một hạng mục chỉ xuất hiện ở một bên). Căn lại theo train:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>test_cat <span class="op">=</span> pd.get_dummies(test[CAT]).reindex(columns<span class="op">=</span>train_cat.columns, fill_value<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Với NaN trong biến phân loại: <code>get_dummies(dummy_na=True)</code> coi NaN là một hạng mục riêng — không mất thông tin, không cần impute.</p>
-</section>
-<section id="resample-chọn-ngưỡng-bên-trong-cv" class="level3">
-<h3 class="anchored" data-anchor-id="resample-chọn-ngưỡng-bên-trong-cv">2.6. Resample / chọn ngưỡng bên trong CV</h3>
-<ul>
-<li>SMOTE, undersampling: đặt <strong>trong</strong> pipeline CV, chỉ tác động lên các fold train.</li>
-<li>Chọn <code>best_threshold</code> cho F1: tính trên <strong>out-of-fold predictions của tập train</strong>, không bao giờ trên test. <code>argmax</code> trên một lần chia dao động mạnh → trung bình ngưỡng qua nhiều seed.</li>
-</ul>
-</section>
-</section>
-<section id="cross-validation-cho-đúng" class="level2">
-<h2 class="anchored" data-anchor-id="cross-validation-cho-đúng">3. Cross-validation cho đúng</h2>
+<section id="milestone-2-project-ready-assessments-5-khoá-cần-80" class="level3">
+<h3 class="anchored" data-anchor-id="milestone-2-project-ready-assessments-5-khoá-cần-80">Milestone 2 — Project Ready + Assessments (5 khoá, cần ≥ 80%)</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -300,65 +242,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <thead>
 <tr class="header">
-<th>Loại dữ liệu</th>
-<th>Chiến lược</th>
-<th>Lý do</th>
+<th>Khoá</th>
+<th>Thời lượng</th>
+<th>Lab</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>I.I.D., phân loại</td>
-<td><strong>StratifiedKFold</strong> (shuffle)</td>
-<td>Giữ tỷ lệ lớp trong mỗi fold — quan trọng khi imbalance</td>
+<td>Activate organizational intelligence with Microsoft IQ</td>
+<td>1h</td>
+<td>–</td>
 </tr>
 <tr class="even">
-<td>Có trục thời gian</td>
-<td><strong>TimeSeriesSplit</strong> / walk-forward</td>
-<td>Fold train luôn <em>trước</em> fold validation về thời gian</td>
+<td>Build Frontier Firm productivity with Work IQ, Copilot &amp; agents</td>
+<td>15h</td>
+<td>có</td>
 </tr>
 <tr class="odd">
-<td>Có nhóm (nhiều dòng / 1 khách)</td>
-<td><strong>GroupKFold</strong></td>
-<td>Không để cùng một khách nằm cả train lẫn validation</td>
+<td>Accelerate Agentic AI</td>
+<td>15h</td>
+<td>có</td>
+</tr>
+<tr class="even">
+<td>Microsoft Fabric IQ &amp; Data Agents</td>
+<td>8h</td>
+<td>có</td>
+</tr>
+<tr class="odd">
+<td>Implement Agent 365 to observe, govern, and secure AI apps</td>
+<td>12h</td>
+<td>có</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Out-of-fold (OOF) predictions</strong>: <code>cross_val_predict</code> cho mỗi mẫu train một dự đoán được tạo bởi model <em>không</em> nhìn thấy nó. Dùng OOF để: chọn ngưỡng, hiệu chỉnh xác suất, stacking — tất cả mà không đụng test.</p>
-<p><strong>Đánh giá drift classifier / bất kỳ meta-model nào cũng phải bằng OOF</strong> — đánh giá in-sample cho AUC lạc quan giả.</p>
 </section>
-<section id="pattern-an-toàn-sklearn-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="pattern-an-toàn-sklearn-pipeline">4. Pattern an toàn: sklearn Pipeline</h2>
-<p>Gói toàn bộ preprocessing + model vào một <code>Pipeline</code>; khi truyền vào <code>cross_val_score</code> / <code>RandomizedSearchCV</code>, mỗi fold tự fit lại preprocessing <strong>chỉ trên phần train của fold đó</strong> — leakage bị chặn theo cấu trúc, không phải nhờ kỷ luật thủ công.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> Pipeline([</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'scale'</span>, StandardScaler()),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'clf'</span>, LogisticRegression(class_weight<span class="op">=</span><span class="st">'balanced'</span>)),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(pipe, X_train, y_train, cv<span class="op">=</span>StratifiedKFold(<span class="dv">5</span>), scoring<span class="op">=</span><span class="st">'average_precision'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Việc fit thủ công một scaler chung (như §2.1) chấp nhận được khi ranh giới train/test là <strong>một mốc thời gian cố định</strong> và bạn cần cùng một không gian feature cho nhiều model — nhưng với CV lồng nhau thì Pipeline là chuẩn.</p>
+<section id="milestone-3-frontier-coe-hypervelocity-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="milestone-3-frontier-coe-hypervelocity-engineering">Milestone 3 — Frontier CoE &amp; Hypervelocity Engineering</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nội dung</th>
+<th>Thời lượng</th>
+<th>Bắt buộc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Create AI Center of Excellence</td>
+<td>2h</td>
+<td>tuỳ chọn</td>
+</tr>
+<tr class="even">
+<td>Hypervelocity Engineering Framework</td>
+<td>1.5h</td>
+<td><strong>bắt buộc</strong> (có assessment)</td>
+</tr>
+<tr class="odd">
+<td>Industry Expertise for building AI agents</td>
+<td>1h</td>
+<td>tuỳ chọn</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="checklist-trước-khi-tin-vào-một-con-số-offline" class="level2">
-<h2 class="anchored" data-anchor-id="checklist-trước-khi-tin-vào-một-con-số-offline">5. Checklist trước khi tin vào một con số offline</h2>
-<ul class="task-list">
-<li><label><input type="checkbox">Có feature nào tính từ dữ liệu <em>sau</em> thời điểm dự đoán không?</label></li>
-<li><label><input type="checkbox">Có feature nào là hệ quả của nhãn (chỉ tồn tại vì sự kiện đã xảy ra) không?</label></li>
-<li><label><input type="checkbox">Scaler / imputer / encoder / feature-selector có fit <strong>chỉ trên train</strong> không?</label></li>
-<li><label><input type="checkbox">Impute dùng thống kê train-only?</label></li>
-<li><label><input type="checkbox">Dữ liệu thời gian → split theo thời gian, CV là TimeSeriesSplit?</label></li>
-<li><label><input type="checkbox">Nhiều dòng / một thực thể → GroupKFold?</label></li>
-<li><label><input type="checkbox">Resampling và chọn ngưỡng nằm <strong>trong</strong> CV / trên OOF train?</label></li>
-<li><label><input type="checkbox">Nhãn được định nghĩa <strong>trước</strong> khi làm feature, với horizon rule rõ ràng (xem <a href="../../../courses/machine-learning/lectures/L03-data-imbalance-shift.html">L03</a> Phần C)?</label></li>
-<li><label><input type="checkbox">Có feature nào “tốt bất thường” khiến AUC gần 1.0 không? → nghi leakage.</label></li>
+</section>
+<section id="công-nghệ-chính-sẽ-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="công-nghệ-chính-sẽ-gặp">3. Công nghệ chính sẽ gặp</h2>
+<ul>
+<li><strong>GitHub Copilot</strong> — lập trình hỗ trợ AI.</li>
+<li><strong>Azure AI / AI Foundry</strong> — build AI apps và agent.</li>
+<li><strong>Microsoft IQ / Work IQ</strong> — lớp “trí tuệ tổ chức” trên dữ liệu Microsoft 365.</li>
+<li><strong>Agentic AI</strong> — thiết kế, điều phối multi-agent.</li>
+<li><strong>Microsoft Fabric IQ &amp; Data Agents</strong> — agent truy vấn dữ liệu doanh nghiệp.</li>
+<li><strong>Agent 365</strong> — quan sát (observe), quản trị (govern), bảo mật (secure) agent ở quy mô tổ chức.</li>
 </ul>
 </section>
-<section id="tóm-tắt" class="level2">
-<h2 class="anchored" data-anchor-id="tóm-tắt">6. Tóm tắt</h2>
+<section id="thứ-tự-học-đề-xuất-nháp" class="level2">
+<h2 class="anchored" data-anchor-id="thứ-tự-học-đề-xuất-nháp">4. Thứ tự học đề xuất (nháp)</h2>
+<ol type="1">
+<li>GH-300 (Copilot) — nhẹ, làm quen trước.</li>
+<li>Microsoft IQ (1h) — khái niệm nền cho các khoá sau.</li>
+<li>AI-102/AI-103 — nền tảng Azure AI.</li>
+<li>Accelerate Agentic AI + AB-100 — phần agentic, học gần nhau cho liền mạch.</li>
+<li>Fabric IQ &amp; Data Agents.</li>
+<li>Agent 365 — governance, học sau khi đã hiểu agent.</li>
+<li>Hypervelocity Engineering Framework — chốt Milestone 3.</li>
+</ol>
+</section>
+<section id="câu-hỏi-cần-trả-lời-khi-học-xong" class="level2">
+<h2 class="anchored" data-anchor-id="câu-hỏi-cần-trả-lời-khi-học-xong">5. Câu hỏi cần trả lời khi học xong</h2>
 <ul>
-<li><strong>Target leakage</strong>: feature chứa thông tin tương lai hoặc suy từ nhãn → xoá feature.</li>
-<li><strong>Contamination</strong>: preprocessing fit trên full data → fit chỉ trên train.</li>
-<li>Dữ liệu thời gian: <strong>as-of features</strong> + <strong>split theo thời gian</strong> + <strong>leakage guard assertion</strong>.</li>
-<li>CV: Stratified (imbalance), TimeSeries (thời gian), Group (nhóm); dùng <strong>OOF</strong> để chọn ngưỡng / hiệu chỉnh / đánh giá meta-model.</li>
-<li><strong>Pipeline</strong> đóng gói preprocessing + model → chặn leakage theo cấu trúc.</li>
-<li>Metric offline chỉ đáng tin sau khi đã qua checklist ở §5.</li>
+<li>“Frontier Firm” khác doanh nghiệp dùng AI thông thường ở điểm nào?</li>
+<li>Khi nào dùng Copilot extension vs.&nbsp;custom agent vs.&nbsp;multi-agent orchestration?</li>
+<li>Work IQ lấy ngữ cảnh từ đâu, ranh giới bảo mật/permission ra sao?</li>
+<li>Agent 365 giải quyết vấn đề gì mà nền tảng agent cơ bản không lo được?</li>
+<li>Hypervelocity Engineering Framework gồm những vòng lặp / vai trò nào?</li>
+</ul>
+</section>
+<section id="liên-kết" class="level2">
+<h2 class="anchored" data-anchor-id="liên-kết">6. Liên kết</h2>
+<ul>
+<li>Trang chương trình: <a href="https://skillupwithlevelup.com/frontier" class="uri">https://skillupwithlevelup.com/frontier</a></li>
 </ul>
 
 

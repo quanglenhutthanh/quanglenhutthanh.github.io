@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-08-30">
+<meta name="dcterms.date" content="2026-09-01">
 
-<title>Loss Functions – Le Nhut Thanh Quang</title>
+<title>Azure AI Document Intelligence – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -130,24 +130,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#loss-functions" id="toc-loss-functions" class="nav-link active" data-scroll-target="#loss-functions">Loss Functions</a>
+  <li><a href="#azure-ai-document-intelligence" id="toc-azure-ai-document-intelligence" class="nav-link active" data-scroll-target="#azure-ai-document-intelligence">Azure AI Document Intelligence</a>
   <ul class="collapse">
-  <li><a href="#loss-metric" id="toc-loss-metric" class="nav-link" data-scroll-target="#loss-metric">1. Loss ≠ Metric</a></li>
-  <li><a href="#góc-nhìn-xác-suất-loss-đến-từ-đâu" id="toc-góc-nhìn-xác-suất-loss-đến-từ-đâu" class="nav-link" data-scroll-target="#góc-nhìn-xác-suất-loss-đến-từ-đâu">2. Góc nhìn xác suất: loss đến từ đâu</a></li>
-  <li><a href="#loss-cho-hồi-quy" id="toc-loss-cho-hồi-quy" class="nav-link" data-scroll-target="#loss-cho-hồi-quy">3. Loss cho hồi quy</a></li>
-  <li><a href="#loss-cho-phân-loại" id="toc-loss-cho-phân-loại" class="nav-link" data-scroll-target="#loss-cho-phân-loại">4. Loss cho phân loại</a>
+  <li><a href="#document-intelligence-là-gì" id="toc-document-intelligence-là-gì" class="nav-link" data-scroll-target="#document-intelligence-là-gì">1. Document Intelligence là gì</a></li>
+  <li><a href="#các-nhóm-mô-hình" id="toc-các-nhóm-mô-hình" class="nav-link" data-scroll-target="#các-nhóm-mô-hình">2. Các nhóm mô hình</a>
   <ul class="collapse">
-  <li><a href="#vì-sao-không-dùng-01-loss" id="toc-vì-sao-không-dùng-01-loss" class="nav-link" data-scroll-target="#vì-sao-không-dùng-01-loss">4.1. Vì sao không dùng 0–1 loss</a></li>
-  <li><a href="#cross-entropy-log-loss-mặc-định" id="toc-cross-entropy-log-loss-mặc-định" class="nav-link" data-scroll-target="#cross-entropy-log-loss-mặc-định">4.2. Cross-entropy (log loss) — mặc định</a></li>
-  <li><a href="#hinge-loss-svm" id="toc-hinge-loss-svm" class="nav-link" data-scroll-target="#hinge-loss-svm">4.3. Hinge loss (SVM)</a></li>
-  <li><a href="#focal-loss-cho-imbalance-nặng" id="toc-focal-loss-cho-imbalance-nặng" class="nav-link" data-scroll-target="#focal-loss-cho-imbalance-nặng">4.4. Focal loss — cho imbalance nặng</a></li>
-  <li><a href="#label-smoothing" id="toc-label-smoothing" class="nav-link" data-scroll-target="#label-smoothing">4.5. Label smoothing</a></li>
+  <li><a href="#prebuilt-dùng-ngay-không-cần-train" id="toc-prebuilt-dùng-ngay-không-cần-train" class="nav-link" data-scroll-target="#prebuilt-dùng-ngay-không-cần-train">2.1. Prebuilt – dùng ngay, không cần train</a></li>
+  <li><a href="#custom-tự-train-theo-mẫu-tài-liệu-của-mình" id="toc-custom-tự-train-theo-mẫu-tài-liệu-của-mình" class="nav-link" data-scroll-target="#custom-tự-train-theo-mẫu-tài-liệu-của-mình">2.2. Custom – tự train theo mẫu tài liệu của mình</a></li>
   </ul></li>
-  <li><a href="#class-weighting-trong-loss" id="toc-class-weighting-trong-loss" class="nav-link" data-scroll-target="#class-weighting-trong-loss">5. Class weighting trong loss</a></li>
-  <li><a href="#regularization-số-hạng-cộng-thêm-vào-loss" id="toc-regularization-số-hạng-cộng-thêm-vào-loss" class="nav-link" data-scroll-target="#regularization-số-hạng-cộng-thêm-vào-loss">6. Regularization: số hạng cộng thêm vào loss</a></li>
-  <li><a href="#ổn-định-số-học-đọc-kỹ-nếu-tự-code" id="toc-ổn-định-số-học-đọc-kỹ-nếu-tự-code" class="nav-link" data-scroll-target="#ổn-định-số-học-đọc-kỹ-nếu-tự-code">7. Ổn định số học (đọc kỹ nếu tự code)</a></li>
-  <li><a href="#chọn-loss-nào" id="toc-chọn-loss-nào" class="nav-link" data-scroll-target="#chọn-loss-nào">8. Chọn loss nào</a></li>
-  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">9. Tóm tắt</a></li>
+  <li><a href="#cách-dùng" id="toc-cách-dùng" class="nav-link" data-scroll-target="#cách-dùng">3. Cách dùng</a></li>
+  <li><a href="#tạo-resource-giá" id="toc-tạo-resource-giá" class="nav-link" data-scroll-target="#tạo-resource-giá">4. Tạo resource &amp; giá</a></li>
+  <li><a href="#khi-nào-dùng-gì" id="toc-khi-nào-dùng-gì" class="nav-link" data-scroll-target="#khi-nào-dùng-gì">5. Khi nào dùng gì</a></li>
+  <li><a href="#liên-hệ-với-chương-trình" id="toc-liên-hệ-với-chương-trình" class="nav-link" data-scroll-target="#liên-hệ-với-chương-trình">6. Liên hệ với chương trình</a></li>
+  <li><a href="#câu-hỏi-cần-trả-lời-sau-khi-làm-lab" id="toc-câu-hỏi-cần-trả-lời-sau-khi-làm-lab" class="nav-link" data-scroll-target="#câu-hỏi-cần-trả-lời-sau-khi-làm-lab">7. Câu hỏi cần trả lời sau khi làm lab</a></li>
+  <li><a href="#liên-kết" id="toc-liên-kết" class="nav-link" data-scroll-target="#liên-kết">8. Liên kết</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -157,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Loss Functions</h1>
+<h1 class="title">Azure AI Document Intelligence</h1>
 </div>
 
 
@@ -168,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 30, 2026</p>
+      <p class="date">September 1, 2026</p>
     </div>
   </div>
   
@@ -180,13 +176,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="loss-functions" class="level1">
-<h1>Loss Functions</h1>
-<p>Hàm loss là <strong>cầu nối giữa dữ liệu và tối ưu hoá</strong>: nó biến “model dự đoán sai bao nhiêu” thành một con số duy nhất, khả vi, để <a href="../../../courses/machine-learning/lectures/L01-gradient-descent.html">Gradient Descent</a> có cái mà giảm. Chọn sai loss thì dù optimizer chạy hoàn hảo, model vẫn học sai thứ ta cần.</p>
-<p>Trong <a href="../../../courses/machine-learning/lectures/L01-gradient-descent.html">note Gradient Descent</a>, loss được coi như “ngọn đồi” trừu tượng <code>L(x) = x²</code>. Note này trả lời: <strong>ngọn đồi đó thực chất là hàm gì, và chọn hàm nào cho bài toán nào.</strong></p>
-<section id="loss-metric" class="level2">
-<h2 class="anchored" data-anchor-id="loss-metric">1. Loss ≠ Metric</h2>
-<p>Hai thứ dễ lẫn:</p>
+<section id="azure-ai-document-intelligence" class="level1">
+<h1>Azure AI Document Intelligence</h1>
+<blockquote class="blockquote">
+<p>Ghi chú cho phần <strong>Document Intelligence</strong> trong khoá <strong>AI-103 – Develop AI apps and agents on Azure</strong> (Milestone 1). Tập trung vào <em>dịch vụ là gì, mô hình nào có sẵn, khi nào tự train</em> — không chép lại các bước lab vì nội dung lab của Microsoft có thể đổi.</p>
+<p><strong>Lab thực hành (làm trực tiếp trên trang Microsoft):</strong> <a href="https://microsoftlearning.github.io/mslearn-ai-information-extraction/Instructions/Exercises/03-document-intelligence.html" class="uri">https://microsoftlearning.github.io/mslearn-ai-information-extraction/Instructions/Exercises/03-document-intelligence.html</a></p>
+</blockquote>
+<section id="document-intelligence-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="document-intelligence-là-gì">1. Document Intelligence là gì</h2>
+<p><strong>Azure AI Document Intelligence</strong> (tên cũ: <em>Azure Form Recognizer</em>) là dịch vụ trong nhóm <strong>Azure AI services</strong>, dùng để <strong>trích xuất dữ liệu có cấu trúc từ tài liệu</strong> — text, cặp key–value, bảng, checkbox, chữ ký — bằng cách kết hợp <strong>OCR</strong> với các mô hình học máy hiểu bố cục (layout) và ngữ nghĩa.</p>
+<p>Điểm khác với OCR thuần (Azure AI Vision – Read):</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -196,243 +195,103 @@ ul.task-list li input[type="checkbox"] {
 <thead>
 <tr class="header">
 <th></th>
-<th><strong>Loss</strong></th>
-<th><strong>Metric</strong></th>
+<th>Vision Read (OCR)</th>
+<th>Document Intelligence</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Dùng để</td>
-<td>Tối ưu (optimizer giảm nó)</td>
-<td>Báo cáo / ra quyết định nghiệp vụ</td>
+<td>Đầu ra</td>
+<td>Text + vị trí</td>
+<td>Text + <strong>cấu trúc</strong>: field, bảng, key–value, quan hệ</td>
 </tr>
 <tr class="even">
-<td>Ràng buộc</td>
-<td>Phải <strong>khả vi</strong> (hoặc gần vậy), trơn</td>
-<td>Không cần khả vi</td>
+<td>Hiểu loại tài liệu</td>
+<td>Không</td>
+<td>Có (hoá đơn, biên nhận, CMND/hộ chiếu…)</td>
 </tr>
 <tr class="odd">
-<td>Ví dụ</td>
-<td>MSE, cross-entropy, hinge</td>
-<td>Accuracy, F1, ROC-AUC, MAE-tính-bằng-ngày</td>
-</tr>
-<tr class="even">
-<td>Ai đọc</td>
-<td>Chỉ optimizer</td>
-<td>Con người, stakeholder</td>
+<td>Tuỳ biến</td>
+<td>Không</td>
+<td>Train <strong>custom model</strong> theo mẫu riêng</td>
 </tr>
 </tbody>
 </table>
-<p>Nhiều metric (accuracy, F1) có gradient bằng 0 gần như mọi nơi → không tối ưu trực tiếp được. Ta tối ưu một <strong>surrogate loss</strong> trơn (cross-entropy) rồi đo bằng metric thật. Xem <a href="../../../courses/machine-learning/lectures/L02-classification-metrics.html">Classification Metrics</a>.</p>
+<p>Mỗi phần tử trả về đều kèm <strong>confidence score</strong> và <strong>bounding region / polygon</strong> (toạ độ trên trang) để ứng dụng phía sau quyết định có cần người kiểm tra hay không.</p>
 </section>
-<section id="góc-nhìn-xác-suất-loss-đến-từ-đâu" class="level2">
-<h2 class="anchored" data-anchor-id="góc-nhìn-xác-suất-loss-đến-từ-đâu">2. Góc nhìn xác suất: loss đến từ đâu</h2>
-<p>Hầu hết loss “chuẩn” không phải bịa ra — chúng là <strong>−log-likelihood</strong> của một giả định về nhiễu:</p>
+<section id="các-nhóm-mô-hình" class="level2">
+<h2 class="anchored" data-anchor-id="các-nhóm-mô-hình">2. Các nhóm mô hình</h2>
+<section id="prebuilt-dùng-ngay-không-cần-train" class="level3">
+<h3 class="anchored" data-anchor-id="prebuilt-dùng-ngay-không-cần-train">2.1. Prebuilt – dùng ngay, không cần train</h3>
 <ul>
-<li>Giả định <code>y = f(x) + ε</code> với <code>ε ~ Gaussian</code> → maximum likelihood ⇔ <strong>tối thiểu MSE</strong>.</li>
-<li>Giả định <code>y ~ Bernoulli(p = f(x))</code> → maximum likelihood ⇔ <strong>tối thiểu binary cross-entropy</strong>.</li>
-<li>Giả định <code>y ~ Categorical</code> → <strong>categorical cross-entropy</strong>.</li>
-<li>Giả định nhiễu <code>Laplace</code> (đuôi dày hơn Gaussian) → <strong>MAE</strong>.</li>
-</ul>
-<p>Thêm một <strong>prior</strong> lên tham số rồi lấy MAP thay vì MLE → sinh ra số hạng regularization (mục 6): prior Gaussian → L2, prior Laplace → L1.</p>
-<p>→ “Chọn loss” thực chất là “khai báo bạn tin nhiễu trong dữ liệu trông thế nào”.</p>
-</section>
-<section id="loss-cho-hồi-quy" class="level2">
-<h2 class="anchored" data-anchor-id="loss-cho-hồi-quy">3. Loss cho hồi quy</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Loss</th>
-<th>Công thức (1 mẫu)</th>
-<th>Tính chất</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>MSE / L2</strong></td>
-<td><code>(y − ŷ)²</code></td>
-<td>Phạt lỗi lớn theo bình phương → <strong>rất nhạy outlier</strong>. Gradient <code>∝ (ŷ − y)</code> tuyến tính, trơn khắp nơi. Nghiệm tối ưu = <strong>trung bình</strong> có điều kiện. Mặc định hợp lý khi dữ liệu sạch.</td>
-</tr>
-<tr class="even">
-<td><strong>MAE / L1</strong></td>
-<td><code>\|y − ŷ\|</code></td>
-<td>Phạt tuyến tính → <strong>bền với outlier</strong>. Nghiệm tối ưu = <strong>trung vị</strong> có điều kiện. Gradient hằng số <code>±1</code>, <strong>không khả vi tại 0</strong> → hội tụ chậm/giật khi gần đáy.</td>
-</tr>
-<tr class="odd">
-<td><strong>Huber</strong></td>
-<td><code>½(y−ŷ)²</code> nếu <code>\|y−ŷ\| ≤ δ</code>, ngược lại <code>δ\|y−ŷ\| − ½δ²</code></td>
-<td><strong>Lai MSE + MAE</strong>: bậc hai ở gần 0 (trơn, hội tụ nhanh), tuyến tính ở xa (bền outlier). <code>δ</code> là siêu tham số điều khiển điểm chuyển. Lựa chọn tốt khi có outlier nhưng vẫn muốn gradient trơn.</td>
-</tr>
-<tr class="even">
-<td><strong>Log-cosh</strong></td>
-<td><code>log(cosh(y − ŷ))</code></td>
-<td>Xấp xỉ Huber nhưng khả vi <strong>mọi bậc</strong>, không cần chọn <code>δ</code>.</td>
-</tr>
-<tr class="odd">
-<td><strong>Quantile / pinball</strong></td>
-<td><code>max(q·e, (q−1)·e)</code> với <code>e = y − ŷ</code></td>
-<td>Dự đoán <strong>phân vị thứ <code>q</code></strong> thay vì trung bình. <code>q = 0.9</code> → model đưa ra cận trên; dùng cho dự báo khoảng.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Mẹo thực tế:</strong> target lệch phải mạnh (giá, thời gian chờ, doanh thu) → train trên <code>log1p(y)</code>, dự đoán rồi <code>expm1</code>. Giảm ảnh hưởng đuôi mà không cần đổi loss. (Lab <a href="../../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html">PharmaDist</a> làm đúng vậy cho <code>days_until_next_order</code>.)</p>
-</section>
-<section id="loss-cho-phân-loại" class="level2">
-<h2 class="anchored" data-anchor-id="loss-cho-phân-loại">4. Loss cho phân loại</h2>
-<section id="vì-sao-không-dùng-01-loss" class="level3">
-<h3 class="anchored" data-anchor-id="vì-sao-không-dùng-01-loss">4.1. Vì sao không dùng 0–1 loss</h3>
-<p>0–1 loss (đếm số dự đoán sai) là thứ ta <em>thật sự</em> quan tâm, nhưng nó <strong>bậc thang</strong> — gradient 0 gần như mọi nơi, nhảy bậc tại ranh giới. Optimizer gradient không có tín hiệu để đi. Nên ta thay bằng surrogate trơn.</p>
-</section>
-<section id="cross-entropy-log-loss-mặc-định" class="level3">
-<h3 class="anchored" data-anchor-id="cross-entropy-log-loss-mặc-định">4.2. Cross-entropy (log loss) — mặc định</h3>
-<p>Nhị phân, với <code>p = σ(z)</code> là xác suất dự đoán lớp 1:</p>
-<pre><code>L = −[ y·log(p) + (1−y)·log(1−p) ]</code></pre>
-<ul>
-<li>Phạt <strong>rất nặng</strong> khi model tự tin mà sai (<code>p → 0</code> trong khi <code>y = 1</code> → loss → ∞).</li>
-<li>Gradient theo logit <code>z</code> rút gọn đẹp: <code>∂L/∂z = p − y</code> — chính là “sai số”, tuyến tính, ổn định.</li>
-<li>Đa lớp: <code>L = −Σ_k y_k log(p_k)</code> với <code>p = softmax(z)</code>.</li>
-<li>Tương đương maximum likelihood cho Bernoulli/Categorical (mục 2).</li>
+<li><strong>Read</strong> – OCR: text, ngôn ngữ, hướng chữ.</li>
+<li><strong>Layout</strong> – cấu trúc trang: đoạn văn, bảng, tiêu đề, checkbox, selection mark.</li>
+<li><strong>General Document</strong> <em>(được gộp dần vào Layout)</em> – cặp key–value tổng quát.</li>
+<li><strong>Mô hình theo lĩnh vực</strong>: Invoice (hoá đơn), Receipt (biên nhận), Identity documents (hộ chiếu, bằng lái), Business card, Bank statement, Pay stub, Check, Contract, US Tax (W-2, 1098, 1099), Health insurance card, Mortgage / loan…</li>
 </ul>
 </section>
-<section id="hinge-loss-svm" class="level3">
-<h3 class="anchored" data-anchor-id="hinge-loss-svm">4.3. Hinge loss (SVM)</h3>
-<pre><code>L = max(0, 1 − y·ŷ)   với y ∈ {−1, +1}</code></pre>
-<p>Chỉ phạt khi mẫu nằm trong “lề” (margin) hoặc sai phía. Mẫu đã phân loại đúng và xa ranh giới → loss 0, không đóng góp gradient. Cho ra classifier tối đa hoá margin. Không cho xác suất calibrated như cross-entropy.</p>
-</section>
-<section id="focal-loss-cho-imbalance-nặng" class="level3">
-<h3 class="anchored" data-anchor-id="focal-loss-cho-imbalance-nặng">4.4. Focal loss — cho imbalance nặng</h3>
-<pre><code>L = −(1 − p_t)^γ · log(p_t)</code></pre>
-<p>Nhân cross-entropy với <code>(1 − p_t)^γ</code>: hạ trọng số các mẫu “dễ” (model đã đoán đúng, tự tin), dồn gradient vào mẫu khó. <code>γ = 2</code> phổ biến. Sinh ra cho object detection (nền áp đảo vật thể). Xem thêm cách xử lý mất cân bằng ở <a href="../../../courses/machine-learning/lectures/L03-data-imbalance-shift.html">L03</a>.</p>
-</section>
-<section id="label-smoothing" class="level3">
-<h3 class="anchored" data-anchor-id="label-smoothing">4.5. Label smoothing</h3>
-<p>Thay target cứng <code>1</code> bằng <code>1 − ε</code> (và <code>0</code> bằng <code>ε/(K−1)</code>). Chặn model đẩy logit ra vô cực, cải thiện calibration và khả năng tổng quát hoá. <code>ε = 0.1</code> là mặc định thường dùng.</p>
-</section>
-</section>
-<section id="class-weighting-trong-loss" class="level2">
-<h2 class="anchored" data-anchor-id="class-weighting-trong-loss">5. Class weighting trong loss</h2>
-<p>Nhân mỗi số hạng loss với trọng số theo lớp (<code>w_k ∝ 1/tần_suất_lớp_k</code>, tức <code>class_weight="balanced"</code>):</p>
-<pre><code>L = −Σ_i w_{y_i} · [ y_i·log(p_i) + (1−y_i)·log(1−p_i) ]</code></pre>
-<p>Làm lớp thiểu số “nặng cân” ngang lớp đa số trong tổng loss → optimizer không còn bỏ quên nó. Đây là cách xử lý imbalance <strong>ổn định hơn resampling khi có distribution shift</strong> (xem <a href="../../../courses/machine-learning/lectures/L03-data-imbalance-shift.html">L03</a>).</p>
-</section>
-<section id="regularization-số-hạng-cộng-thêm-vào-loss" class="level2">
-<h2 class="anchored" data-anchor-id="regularization-số-hạng-cộng-thêm-vào-loss">6. Regularization: số hạng cộng thêm vào loss</h2>
-<p><code>L_total = L_data + λ · R(θ)</code></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><code>R(θ)</code></th>
-<th>Tên</th>
-<th>Hiệu ứng</th>
-<th>Prior tương ứng</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Σ θ_j²</code></td>
-<td><strong>L2 / ridge / weight decay</strong></td>
-<td>Co hệ số về gần 0 (không hẳn 0), ổn định, chống overfit</td>
-<td>Gaussian</td>
-</tr>
-<tr class="even">
-<td><code>Σ \|θ_j\|</code></td>
-<td><strong>L1 / lasso</strong></td>
-<td>Đẩy một số hệ số về <strong>đúng 0</strong> → chọn feature tự động</td>
-<td>Laplace</td>
-</tr>
-<tr class="odd">
-<td>kết hợp</td>
-<td><strong>Elastic Net</strong></td>
-<td>Vừa co vừa chọn</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<p><code>λ</code> cân bằng “khớp dữ liệu” vs “model đơn giản”. Chọn <code>λ</code> bằng cross-validation (xem <a href="../../../courses/machine-learning/lectures/L04-data-leakage-validation.html">L04</a>).</p>
-</section>
-<section id="ổn-định-số-học-đọc-kỹ-nếu-tự-code" class="level2">
-<h2 class="anchored" data-anchor-id="ổn-định-số-học-đọc-kỹ-nếu-tự-code">7. Ổn định số học (đọc kỹ nếu tự code)</h2>
+<section id="custom-tự-train-theo-mẫu-tài-liệu-của-mình" class="level3">
+<h3 class="anchored" data-anchor-id="custom-tự-train-theo-mẫu-tài-liệu-của-mình">2.2. Custom – tự train theo mẫu tài liệu của mình</h3>
 <ul>
-<li><strong>Đừng feed xác suất vào log</strong> — dùng <code>p = 0</code> sẽ ra <code>log(0) = −∞</code>. Luôn tính từ <strong>logit</strong>: <code>binary_cross_entropy_with_logits</code>, <code>softmax_cross_entropy_with_logits</code>. Chúng dùng log-sum-exp ổn định bên trong.</li>
-<li>Clip xác suất về <code>[ε, 1−ε]</code> nếu buộc phải tính từ <code>p</code>.</li>
-<li>Trung bình loss trên batch (<code>reduction="mean"</code>) để độ lớn gradient không phụ thuộc batch size.</li>
-<li>Loss ra <code>NaN</code> khi train: thường là learning rate quá lớn (xem <a href="../../../courses/machine-learning/lectures/L01-gradient-descent.html">L01</a>), chia cho 0 trong feature, hoặc <code>log(0)</code> như trên.</li>
+<li><strong>Custom extraction</strong>
+<ul>
+<li><strong>Template model</strong> – tài liệu có bố cục cố định, cần rất ít mẫu (~5 tài liệu), train nhanh.</li>
+<li><strong>Neural model</strong> – tài liệu bố cục thay đổi, chịu được biến thể, cần nhiều dữ liệu hơn, train lâu hơn.</li>
+</ul></li>
+<li><strong>Custom classification</strong> – phân loại tài liệu đầu vào (đây là hợp đồng hay đơn xin nghỉ?) trước khi đưa vào mô hình trích xuất phù hợp.</li>
+<li><strong>Composed model</strong> – gộp nhiều custom model vào một endpoint; dịch vụ tự chọn model con khớp nhất.</li>
+</ul>
+<p>Quy trình train tiêu chuẩn: gom tài liệu mẫu vào <strong>Azure Blob Storage</strong> → gán nhãn field trong <strong>Document Intelligence Studio</strong> (sinh ra file <code>.labels.json</code> / <code>.ocr.json</code>) → train → kiểm thử → lấy <strong>model ID</strong> để gọi từ code.</p>
+</section>
+</section>
+<section id="cách-dùng" class="level2">
+<h2 class="anchored" data-anchor-id="cách-dùng">3. Cách dùng</h2>
+<ul>
+<li><strong>Document Intelligence Studio</strong> (<code>documentintelligence.ai.azure.com</code>) – giao diện web để thử prebuilt model, gán nhãn và train custom model, xem JSON kết quả.</li>
+<li><strong>REST API / SDK</strong> (.NET, Python, JavaScript, Java) – thao tác <code>Analyze</code> chạy <strong>bất đồng bộ</strong>: gửi tài liệu → nhận operation ID → poll đến khi có kết quả JSON.</li>
+<li>Xác thực bằng <strong>endpoint + key</strong> của resource, hoặc <strong>Microsoft Entra ID</strong> (managed identity) cho môi trường production.</li>
 </ul>
 </section>
-<section id="chọn-loss-nào" class="level2">
-<h2 class="anchored" data-anchor-id="chọn-loss-nào">8. Chọn loss nào</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Bài toán</th>
-<th>Loss mặc định</th>
-<th>Đổi khi</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Hồi quy, dữ liệu sạch</td>
-<td>MSE</td>
-<td>—</td>
-</tr>
-<tr class="even">
-<td>Hồi quy, có outlier</td>
-<td>Huber (hoặc MAE)</td>
-<td>outlier nhiều &amp; muốn gradient trơn → Huber</td>
-</tr>
-<tr class="odd">
-<td>Hồi quy, cần khoảng dự báo</td>
-<td>Quantile loss</td>
-<td>—</td>
-</tr>
-<tr class="even">
-<td>Phân loại (nhị phân / đa lớp)</td>
-<td>Cross-entropy (từ logit)</td>
-<td>—</td>
-</tr>
-<tr class="odd">
-<td>Phân loại, lớp hiếm cực nặng</td>
-<td>Focal loss / cross-entropy + class weight</td>
-<td>—</td>
-</tr>
-<tr class="even">
-<td>Cần max-margin, không cần xác suất</td>
-<td>Hinge</td>
-<td>—</td>
-</tr>
-<tr class="odd">
-<td>Overfit</td>
-<td>+ L2; muốn chọn feature → + L1</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="tóm-tắt" class="level2">
-<h2 class="anchored" data-anchor-id="tóm-tắt">9. Tóm tắt</h2>
+<section id="tạo-resource-giá" class="level2">
+<h2 class="anchored" data-anchor-id="tạo-resource-giá">4. Tạo resource &amp; giá</h2>
 <ul>
-<li>Loss = hàm khả vi mà optimizer giảm; <strong>khác metric</strong> (thứ con người đọc). Accuracy/F1 không tối ưu trực tiếp được → dùng surrogate.</li>
-<li>Loss chuẩn = <strong>−log-likelihood</strong> của một giả định nhiễu: Gaussian → MSE, Laplace → MAE, Bernoulli/Categorical → cross-entropy.</li>
-<li>Hồi quy: <strong>MSE</strong> (nhạy outlier, → trung bình) vs <strong>MAE</strong> (bền, → trung vị) vs <strong>Huber</strong> (lai, trơn + bền).</li>
-<li>Phân loại: <strong>cross-entropy</strong> là mặc định; gradient theo logit = <code>p − y</code>. Focal loss / class weight cho imbalance; hinge cho max-margin.</li>
-<li><strong>Regularization</strong> = số hạng cộng vào loss: L2 co hệ số, L1 chọn feature.</li>
-<li>Luôn tính cross-entropy <strong>từ logit</strong>, không từ xác suất, để tránh <code>log(0)</code> và <code>NaN</code>.</li>
+<li>Tạo resource <strong>Document Intelligence</strong> riêng, hoặc dùng <strong>Azure AI services</strong> (multi-service) resource chung.</li>
+<li>Tier: <strong>F0</strong> (free, giới hạn số trang/tháng) và <strong>S0</strong> (trả theo lượng trang, giá khác nhau theo loại mô hình).</li>
+<li>Region phải hỗ trợ dịch vụ; custom model gắn với region nơi train.</li>
+</ul>
+</section>
+<section id="khi-nào-dùng-gì" class="level2">
+<h2 class="anchored" data-anchor-id="khi-nào-dùng-gì">5. Khi nào dùng gì</h2>
+<ul>
+<li>Chỉ cần chữ trên ảnh → <strong>Vision Read</strong>.</li>
+<li>Cần bảng / bố cục / key–value tổng quát, không quan tâm loại tài liệu → <strong>Layout</strong>.</li>
+<li>Tài liệu phổ biến (hoá đơn, biên nhận, giấy tờ tuỳ thân) → <strong>prebuilt theo lĩnh vực</strong>.</li>
+<li>Biểu mẫu nội bộ / mẫu riêng của tổ chức → <strong>custom extraction</strong> (template nếu bố cục cố định, neural nếu đa dạng).</li>
+<li>Nhiều loại tài liệu trộn lẫn trong một luồng → <strong>custom classification</strong> + <strong>composed model</strong>.</li>
+</ul>
+</section>
+<section id="liên-hệ-với-chương-trình" class="level2">
+<h2 class="anchored" data-anchor-id="liên-hệ-với-chương-trình">6. Liên hệ với chương trình</h2>
+<ul>
+<li>Thuộc mảng <strong>information extraction</strong> của AI-103 — cùng nhóm với Azure AI Vision, AI Language, Content Understanding.</li>
+<li>Là khối xây dựng hay gặp cho <strong>agent xử lý tài liệu</strong> và tự động hoá quy trình (RPA): agent nhận file → Document Intelligence bóc field → điền vào hệ thống nghiệp vụ.</li>
+</ul>
+</section>
+<section id="câu-hỏi-cần-trả-lời-sau-khi-làm-lab" class="level2">
+<h2 class="anchored" data-anchor-id="câu-hỏi-cần-trả-lời-sau-khi-làm-lab">7. Câu hỏi cần trả lời sau khi làm lab</h2>
+<ul>
+<li>Kết quả <code>Analyze</code> trả về những trường nào, đọc <code>confidence</code> và <code>boundingRegions</code> ở đâu trong JSON?</li>
+<li>Template model vs.&nbsp;neural model: khác nhau về số mẫu, thời gian train, độ chịu biến thể ra sao?</li>
+<li>Vì sao thao tác analyze là bất đồng bộ, client xử lý polling thế nào?</li>
+<li>Khi nào một field nên bị coi là “cần người duyệt” thay vì tự động chấp nhận?</li>
+</ul>
+</section>
+<section id="liên-kết" class="level2">
+<h2 class="anchored" data-anchor-id="liên-kết">8. Liên kết</h2>
+<ul>
+<li>Lab (Microsoft, có thể đổi): <a href="https://microsoftlearning.github.io/mslearn-ai-information-extraction/Instructions/Exercises/03-document-intelligence.html" class="uri">https://microsoftlearning.github.io/mslearn-ai-information-extraction/Instructions/Exercises/03-document-intelligence.html</a></li>
+<li>Tài liệu chính thức: <a href="https://learn.microsoft.com/azure/ai-services/document-intelligence/" class="uri">https://learn.microsoft.com/azure/ai-services/document-intelligence/</a></li>
+<li>Document Intelligence Studio: <a href="https://documentintelligence.ai.azure.com/" class="uri">https://documentintelligence.ai.azure.com/</a></li>
 </ul>
 
 

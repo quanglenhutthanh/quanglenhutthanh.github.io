@@ -226,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="accuracy-và-vì-sao-nó-đánh-lừa">2. Accuracy — và vì sao nó đánh lừa</h2>
 <pre><code>Accuracy = (TP + TN) / (TP + TN + FP + FN)</code></pre>
 <p>Tỷ lệ dự đoán đúng trên toàn bộ. Trực giác, dễ hiểu — nhưng <strong>sập bẫy khi dữ liệu mất cân bằng</strong>: với 99% lớp âm, model đoán “tất cả là âm” đạt accuracy 99% mà recall lớp dương = 0, hoàn toàn vô dụng. Accuracy gộp chung TP và TN, nên lớp đa số (thường là TN) chi phối con số.</p>
-<p>→ Dùng accuracy chỉ khi hai lớp <strong>cân bằng</strong> và chi phí FP ≈ chi phí FN. Ngoài ra, chuyển sang các metric bên dưới. Xem thêm <a href="../../../courses/machine-learning/lectures/L03-data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a>.</p>
+<p>→ Dùng accuracy chỉ khi hai lớp <strong>cân bằng</strong> và chi phí FP ≈ chi phí FN. Ngoài ra, chuyển sang các metric bên dưới. Xem thêm <a href="../../../courses/machine-learning/lectures/data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a>.</p>
 </section>
 <section id="precision-độ-tin-khi-model-báo-dương" class="level2">
 <h2 class="anchored" data-anchor-id="precision-độ-tin-khi-model-báo-dương">3. Precision — độ tin khi model báo dương</h2>
@@ -413,7 +413,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>“ROC-AUC cao nghĩa là model tốt để deploy”:</strong> không hẳn. ROC-AUC chỉ nói khả năng <em>xếp hạng</em>. Với lớp mất cân bằng, ROC-AUC 0.9 vẫn có thể đi kèm PR-AUC thấp và precision tệ tại mọi ngưỡng dùng được.</li>
 <li><strong>So F1 (hoặc PR-AUC) giữa hai dataset khác prevalence:</strong> vô nghĩa, vì baseline khác nhau.</li>
 <li><strong>Nghĩ Precision và Recall đối xứng nhau:</strong> không. Recall có mẫu số hằng số (toàn lớp dương), Precision có mẫu số thay đổi (pool báo-dương).</li>
-<li><strong>Dùng ngưỡng 0.5 mặc định rồi báo F1:</strong> F1 phụ thuộc ngưỡng; nên quét ngưỡng tìm đỉnh F1 (hoặc chọn theo ràng buộc nghiệp vụ) trên tập validation / OOF train trước khi báo cáo — xem <a href="../../../courses/machine-learning/lectures/L04-data-leakage-validation.html">L04</a>.</li>
+<li><strong>Dùng ngưỡng 0.5 mặc định rồi báo F1:</strong> F1 phụ thuộc ngưỡng; nên quét ngưỡng tìm đỉnh F1 (hoặc chọn theo ràng buộc nghiệp vụ) trên tập validation / OOF train trước khi báo cáo — xem <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">Data Leakage &amp; Validation</a>.</li>
 <li><strong>Recall ≠ TPR:</strong> sai — chúng là <strong>cùng một con số</strong>, chỉ khác tên gọi.</li>
 </ul>
 </section>

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-09-01">
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>Build AI agents với Azure AI Foundry (portal &amp; VS Code) – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,25 +30,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,79 +74,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lectures .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lectures'] = new List('listing-lectures', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -158,7 +85,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
@@ -169,15 +96,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../courses/index.html"> 
+    <a class="nav-link" href="../../../courses/index.html"> 
 <span class="menu-text">Learning Space</span></a>
   </li>  
 </ul>
@@ -203,10 +130,21 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#build-ai-agents-với-azure-ai-foundry-portal-vs-code" id="toc-build-ai-agents-với-azure-ai-foundry-portal-vs-code" class="nav-link active" data-scroll-target="#build-ai-agents-với-azure-ai-foundry-portal-vs-code">Build AI agents với Azure AI Foundry (portal &amp; VS Code)</a>
+  <ul class="collapse">
+  <li><a href="#bối-cảnh-agent-là-gì-trên-azure" id="toc-bối-cảnh-agent-là-gì-trên-azure" class="nav-link" data-scroll-target="#bối-cảnh-agent-là-gì-trên-azure">1. Bối cảnh: agent là gì trên Azure</a></li>
+  <li><a href="#các-thành-phần-chính" id="toc-các-thành-phần-chính" class="nav-link" data-scroll-target="#các-thành-phần-chính">2. Các thành phần chính</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">3. Tools</a></li>
+  <li><a href="#hai-cách-build-nội-dung-lab" id="toc-hai-cách-build-nội-dung-lab" class="nav-link" data-scroll-target="#hai-cách-build-nội-dung-lab">4. Hai cách build (nội dung lab)</a>
+  <ul class="collapse">
+  <li><a href="#azure-ai-foundry-portal" id="toc-azure-ai-foundry-portal" class="nav-link" data-scroll-target="#azure-ai-foundry-portal">4.1. Azure AI Foundry portal</a></li>
+  <li><a href="#vs-code-extension-azure-ai-foundry" id="toc-vs-code-extension-azure-ai-foundry" class="nav-link" data-scroll-target="#vs-code-extension-azure-ai-foundry">4.2. VS Code — extension <strong>Azure AI Foundry</strong></a></li>
+  </ul></li>
+  <li><a href="#vòng-đời-một-lượt-chạy-sdk" id="toc-vòng-đời-một-lượt-chạy-sdk" class="nav-link" data-scroll-target="#vòng-đời-một-lượt-chạy-sdk">5. Vòng đời một lượt chạy (SDK)</a></li>
+  <li><a href="#khi-nào-dùng-gì" id="toc-khi-nào-dùng-gì" class="nav-link" data-scroll-target="#khi-nào-dùng-gì">6. Khi nào dùng gì</a></li>
+  <li><a href="#câu-hỏi-cần-trả-lời-sau-khi-làm-lab" id="toc-câu-hỏi-cần-trả-lời-sau-khi-làm-lab" class="nav-link" data-scroll-target="#câu-hỏi-cần-trả-lời-sau-khi-làm-lab">7. Câu hỏi cần trả lời sau khi làm lab</a></li>
+  <li><a href="#liên-kết" id="toc-liên-kết" class="nav-link" data-scroll-target="#liên-kết">8. Liên kết</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -215,8 +153,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">Build AI agents với Azure AI Foundry (portal &amp; VS Code)</h1>
 </div>
 
 
@@ -224,6 +161,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 1, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -233,156 +176,132 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with the two pieces every model shares — the loss function it minimizes and the Gradient Descent that minimizes it — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical data concerns: class imbalance, distribution shift, and data-leakage-safe validation.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below): the from-scratch implementations of linear regression, logistic regression, decision trees, and neural networks, plus two end-to-end capstone projects — one on dirty multi-table data with leakage-safe feature engineering, one on predictive maintenance under distribution shift.</p>
+<section id="build-ai-agents-với-azure-ai-foundry-portal-vs-code" class="level1">
+<h1>Build AI agents với Azure AI Foundry (portal &amp; VS Code)</h1>
+<blockquote class="blockquote">
+<p>Ghi chú cho phần <strong>build agent</strong> trong mảng agentic của chương trình (AI-102/AI-103 và <em>Accelerate Agentic AI</em>). Tập trung vào <em>kiến trúc agent trên Foundry, các thành phần và tool, hai cách build</em> — không chép lại các bước lab vì nội dung Microsoft có thể đổi.</p>
+<p><strong>Lab thực hành (làm trực tiếp trên trang Microsoft):</strong> <a href="https://microsoftlearning.github.io/mslearn-ai-agents/Instructions/Exercises/01-build-agent-portal-and-vscode.html" class="uri">https://microsoftlearning.github.io/mslearn-ai-agents/Instructions/Exercises/01-build-agent-portal-and-vscode.html</a></p>
+</blockquote>
+<section id="bối-cảnh-agent-là-gì-trên-azure" class="level2">
+<h2 class="anchored" data-anchor-id="bối-cảnh-agent-là-gì-trên-azure">1. Bối cảnh: agent là gì trên Azure</h2>
+<p>Một <strong>AI agent</strong> = <strong>model</strong> (LLM) + <strong>instructions</strong> (vai trò, quy tắc) + <strong>tools</strong> (khả năng hành động / tra cứu) + khả năng giữ <strong>hội thoại có trạng thái</strong>. Khác với gọi model một lần, agent tự lặp: đọc yêu cầu → quyết định gọi tool nào → đọc kết quả → trả lời hoặc gọi tiếp.</p>
+<p>Trên Azure, dịch vụ quản lý để làm việc này là <strong>Azure AI Foundry Agent Service</strong> (tên cũ: <em>Azure AI Agent Service</em>), nằm trong <strong>Azure AI Foundry</strong> — dịch vụ lo phần orchestration, lưu thread, gọi tool, quản lý danh tính, nên không phải tự viết vòng lặp agent.</p>
 </section>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<div id="listing-lectures" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-lectures-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-lectures'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Topic
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
+<section id="các-thành-phần-chính" class="level2">
+<h2 class="anchored" data-anchor-id="các-thành-phần-chính">2. Các thành phần chính</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Tags
-</th>
-
+<tr class="header">
+<th>Khái niệm</th>
+<th>Vai trò</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1785024000000" data-listing-file-modified-sort="1788272785726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2316" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="gradient-descent.md">
-<td>
-<span class="listing-lecture_no">1</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/gradient-descent.html" class="title listing-title">Gradient Descent</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td><strong>Foundry project</strong></td>
+<td>Đơn vị chứa tài nguyên: model deployment, connections, agent, file.</td>
 </tr>
-
-<tr data-index="1" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788272785724" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2455" data-listing-title-sort="Classification Metrics" data-listing-filename-sort="classification-metrics.md">
-<td>
-<span class="listing-lecture_no">2</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/classification-metrics.html" class="title listing-title">Classification Metrics</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">metrics, classification, confusion-matrix, accuracy, precision, recall, roc-auc, pr-auc, f1</span>
-</td>
-
+<tr class="even">
+<td><strong>Model deployment</strong></td>
+<td>Model đã deploy (vd GPT-4o) để agent dùng.</td>
 </tr>
-
-<tr data-index="2" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788272785726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3259" data-listing-title-sort="Class Imbalance &amp; Distribution Shift" data-listing-filename-sort="data-imbalance-shift.md">
-<td>
-<span class="listing-lecture_no">3</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-imbalance-shift.html" class="title listing-title">Class Imbalance &amp; Distribution Shift</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">eda, data, class-imbalance, distribution-shift, resampling, monitoring, drift, censoring, psi, importance-weighting</span>
-</td>
-
+<tr class="odd">
+<td><strong>Agent</strong></td>
+<td>Định nghĩa: model + instructions + danh sách tools.</td>
 </tr>
-
-<tr data-index="3" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788272785726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1120" data-listing-title-sort="Data Leakage &amp; Kiểm định theo thời gian" data-listing-filename-sort="data-leakage-validation.md">
-<td>
-<span class="listing-lecture_no">4</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-leakage-validation.html" class="title listing-title">Data Leakage &amp; Kiểm định theo thời gian</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">data-leakage, validation, cross-validation, time-based-split, feature-engineering, pipeline</span>
-</td>
-
+<tr class="even">
+<td><strong>Thread</strong></td>
+<td>Một phiên hội thoại, lưu lịch sử message.</td>
 </tr>
-
-<tr data-index="4" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788272785726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1340" data-listing-title-sort="Loss Functions" data-listing-filename-sort="loss-functions.md">
-<td>
-<span class="listing-lecture_no">5</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/loss-functions.html" class="title listing-title">Loss Functions</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">loss, mse, mae, huber, cross-entropy, hinge, maximum-likelihood, regularization</span>
-</td>
-
+<tr class="odd">
+<td><strong>Message</strong></td>
+<td>Tin nhắn của user / agent trong thread.</td>
 </tr>
-
+<tr class="even">
+<td><strong>Run</strong></td>
+<td>Một lượt agent xử lý thread; trong run agent có thể thực hiện nhiều bước gọi tool.</td>
+</tr>
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
 </section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
+<section id="tools" class="level2">
+<h2 class="anchored" data-anchor-id="tools">3. Tools</h2>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
-<li><a href="../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist_Reorder_Timing.ipynb</code></a> — Capstone: dự đoán thời điểm đặt hàng lại của nhà thuốc từ 7 bảng dữ liệu bẩn. Làm sạch dữ liệu, thiết kế nhãn theo <em>observation horizon</em> (chống censoring bias), feature engineering <em>as-of</em> chống rò rỉ, split theo thời gian, Linear/Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC_Failure_Distribution_Shift.ipynb</code></a> — Capstone: dự đoán hỏng máy CNC khi train (dây chuyền A) và test (dây chuyền B) lệch phân phối. Phát hiện shift bằng PSI + KS + drift classifier, xử lý bằng importance reweighting &amp; threshold calibration, feature cơ học kháng shift, so sánh 3 mô hình.</li>
+<li><strong>Knowledge (tra cứu ngữ cảnh)</strong>
+<ul>
+<li><strong>File Search</strong> — upload tài liệu, agent truy vấn (vector store do Foundry quản lý).</li>
+<li><strong>Azure AI Search</strong> — nối tới index doanh nghiệp có sẵn.</li>
+<li><strong>Grounding with Bing Search</strong> — trả lời có dẫn nguồn web.</li>
+</ul></li>
+<li><strong>Action (thực thi)</strong>
+<ul>
+<li><strong>Code Interpreter</strong> — chạy Python trong sandbox (tính toán, xử lý file, vẽ biểu đồ).</li>
+<li><strong>Function calling</strong> — gọi hàm do mình định nghĩa (chạy ở phía client).</li>
+<li><strong>OpenAPI 3.0</strong> — gọi REST API ngoài theo spec.</li>
+<li><strong>Azure Functions / Logic Apps</strong> — nối vào workflow và hệ thống nghiệp vụ.</li>
+</ul></li>
 </ul>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
+<section id="hai-cách-build-nội-dung-lab" class="level2">
+<h2 class="anchored" data-anchor-id="hai-cách-build-nội-dung-lab">4. Hai cách build (nội dung lab)</h2>
+<section id="azure-ai-foundry-portal" class="level3">
+<h3 class="anchored" data-anchor-id="azure-ai-foundry-portal">4.1. Azure AI Foundry portal</h3>
+<ol type="1">
+<li>Tạo <strong>Foundry project</strong>, deploy một model.</li>
+<li>Vào <strong>Agents</strong>, tạo agent: đặt tên, viết <strong>instructions</strong>, gắn tool nếu cần.</li>
+<li>Thử ngay trong <strong>Agents playground</strong> — chat, xem agent gọi tool ra sao.</li>
+</ol>
+<p>Ưu điểm: nhanh, không cần code, hợp để thử nghiệm instructions và tool.</p>
+</section>
+<section id="vs-code-extension-azure-ai-foundry" class="level3">
+<h3 class="anchored" data-anchor-id="vs-code-extension-azure-ai-foundry">4.2. VS Code — extension <strong>Azure AI Foundry</strong></h3>
+<ol type="1">
+<li>Cài extension, đăng nhập Azure, chọn subscription + project.</li>
+<li>Xem / tạo / sửa agent, model deployment ngay trong VS Code.</li>
+<li>Sinh code mẫu (Python / C#) dùng <strong><code>azure-ai-projects</code> + <code>azure-ai-agents</code></strong> SDK để chạy agent từ ứng dụng.</li>
+<li>Xác thực bằng <strong>Microsoft Entra ID</strong> (<code>DefaultAzureCredential</code>, <code>az login</code>), không dùng API key.</li>
+</ol>
+<p>Ưu điểm: đưa agent vào source control và pipeline, tích hợp vào app thật.</p>
+</section>
+</section>
+<section id="vòng-đời-một-lượt-chạy-sdk" class="level2">
+<h2 class="anchored" data-anchor-id="vòng-đời-một-lượt-chạy-sdk">5. Vòng đời một lượt chạy (SDK)</h2>
+<pre><code>tạo agent  →  tạo thread  →  thêm message của user  →  tạo run
+          →  poll run đến khi hoàn tất (xử lý tool call nếu là function tool)
+          →  đọc message mới nhất của agent  →  (xoá agent/thread khi xong)</code></pre>
+</section>
+<section id="khi-nào-dùng-gì" class="level2">
+<h2 class="anchored" data-anchor-id="khi-nào-dùng-gì">6. Khi nào dùng gì</h2>
+<ul>
+<li>Prototype instructions / thử tool → <strong>portal playground</strong>.</li>
+<li>Đưa agent vào ứng dụng, cần versioning và CI → <strong>VS Code + SDK</strong>.</li>
+<li>Nhiều agent phối hợp (connected agents / multi-agent orchestration) → vẫn Foundry Agent Service, hoặc thêm framework (<strong>Semantic Kernel</strong>, <strong>AutoGen</strong>) — phần này ở topic sau.</li>
+</ul>
+</section>
+<section id="câu-hỏi-cần-trả-lời-sau-khi-làm-lab" class="level2">
+<h2 class="anchored" data-anchor-id="câu-hỏi-cần-trả-lời-sau-khi-làm-lab">7. Câu hỏi cần trả lời sau khi làm lab</h2>
+<ul>
+<li>Instructions vs.&nbsp;tool: khi nào nên nhét luật vào prompt, khi nào phải là tool?</li>
+<li>Thread / run / message ánh xạ thế nào sang code?</li>
+<li><code>DefaultAzureCredential</code> lấy danh tính từ đâu khi chạy local vs.&nbsp;trên Azure?</li>
+<li>Agent tạo bằng SDK có nên xoá sau mỗi lần chạy không, tại sao?</li>
+<li>File Search khác Azure AI Search ở điểm nào về chi phí và khả năng kiểm soát index?</li>
+</ul>
+</section>
+<section id="liên-kết" class="level2">
+<h2 class="anchored" data-anchor-id="liên-kết">8. Liên kết</h2>
+<ul>
+<li>Lab (Microsoft, có thể đổi): <a href="https://microsoftlearning.github.io/mslearn-ai-agents/Instructions/Exercises/01-build-agent-portal-and-vscode.html" class="uri">https://microsoftlearning.github.io/mslearn-ai-agents/Instructions/Exercises/01-build-agent-portal-and-vscode.html</a></li>
+<li>Tài liệu chính thức: <a href="https://learn.microsoft.com/azure/ai-foundry/agents/" class="uri">https://learn.microsoft.com/azure/ai-foundry/agents/</a></li>
+<li>Azure AI Foundry portal: <a href="https://ai.azure.com/" class="uri">https://ai.azure.com/</a></li>
+</ul>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->

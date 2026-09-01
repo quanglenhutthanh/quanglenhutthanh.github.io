@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-30">
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>Loss Functions – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,25 +30,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,79 +74,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lectures .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lectures'] = new List('listing-lectures', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -158,7 +85,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
@@ -169,15 +96,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../courses/index.html"> 
+    <a class="nav-link" href="../../../courses/index.html"> 
 <span class="menu-text">Learning Space</span></a>
   </li>  
 </ul>
@@ -203,10 +130,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#loss-functions" id="toc-loss-functions" class="nav-link active" data-scroll-target="#loss-functions">Loss Functions</a>
+  <ul class="collapse">
+  <li><a href="#loss-metric" id="toc-loss-metric" class="nav-link" data-scroll-target="#loss-metric">1. Loss ≠ Metric</a></li>
+  <li><a href="#góc-nhìn-xác-suất-loss-đến-từ-đâu" id="toc-góc-nhìn-xác-suất-loss-đến-từ-đâu" class="nav-link" data-scroll-target="#góc-nhìn-xác-suất-loss-đến-từ-đâu">2. Góc nhìn xác suất: loss đến từ đâu</a></li>
+  <li><a href="#loss-cho-hồi-quy" id="toc-loss-cho-hồi-quy" class="nav-link" data-scroll-target="#loss-cho-hồi-quy">3. Loss cho hồi quy</a></li>
+  <li><a href="#loss-cho-phân-loại" id="toc-loss-cho-phân-loại" class="nav-link" data-scroll-target="#loss-cho-phân-loại">4. Loss cho phân loại</a>
+  <ul class="collapse">
+  <li><a href="#vì-sao-không-dùng-01-loss" id="toc-vì-sao-không-dùng-01-loss" class="nav-link" data-scroll-target="#vì-sao-không-dùng-01-loss">4.1. Vì sao không dùng 0–1 loss</a></li>
+  <li><a href="#cross-entropy-log-loss-mặc-định" id="toc-cross-entropy-log-loss-mặc-định" class="nav-link" data-scroll-target="#cross-entropy-log-loss-mặc-định">4.2. Cross-entropy (log loss) — mặc định</a></li>
+  <li><a href="#hinge-loss-svm" id="toc-hinge-loss-svm" class="nav-link" data-scroll-target="#hinge-loss-svm">4.3. Hinge loss (SVM)</a></li>
+  <li><a href="#focal-loss-cho-imbalance-nặng" id="toc-focal-loss-cho-imbalance-nặng" class="nav-link" data-scroll-target="#focal-loss-cho-imbalance-nặng">4.4. Focal loss — cho imbalance nặng</a></li>
+  <li><a href="#label-smoothing" id="toc-label-smoothing" class="nav-link" data-scroll-target="#label-smoothing">4.5. Label smoothing</a></li>
+  </ul></li>
+  <li><a href="#class-weighting-trong-loss" id="toc-class-weighting-trong-loss" class="nav-link" data-scroll-target="#class-weighting-trong-loss">5. Class weighting trong loss</a></li>
+  <li><a href="#regularization-số-hạng-cộng-thêm-vào-loss" id="toc-regularization-số-hạng-cộng-thêm-vào-loss" class="nav-link" data-scroll-target="#regularization-số-hạng-cộng-thêm-vào-loss">6. Regularization: số hạng cộng thêm vào loss</a></li>
+  <li><a href="#ổn-định-số-học-đọc-kỹ-nếu-tự-code" id="toc-ổn-định-số-học-đọc-kỹ-nếu-tự-code" class="nav-link" data-scroll-target="#ổn-định-số-học-đọc-kỹ-nếu-tự-code">7. Ổn định số học (đọc kỹ nếu tự code)</a></li>
+  <li><a href="#chọn-loss-nào" id="toc-chọn-loss-nào" class="nav-link" data-scroll-target="#chọn-loss-nào">8. Chọn loss nào</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">9. Tóm tắt</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -215,8 +157,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">Loss Functions</h1>
 </div>
 
 
@@ -224,6 +165,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -233,156 +180,263 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with the two pieces every model shares — the loss function it minimizes and the Gradient Descent that minimizes it — before moving into specific supervised learning algorithms (decision trees, regression) and ensemble methods (bagging, boosting) for combining weak models into a stronger one. Along the way it covers how to evaluate classifiers properly (ROC-AUC, PR-AUC, F1). The later part covers practical data concerns: class imbalance, distribution shift, and data-leakage-safe validation.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below): the from-scratch implementations of linear regression, logistic regression, decision trees, and neural networks, plus two end-to-end capstone projects — one on dirty multi-table data with leakage-safe feature engineering, one on predictive maintenance under distribution shift.</p>
-</section>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<div id="listing-lectures" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-lectures-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-lectures'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Topic
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
+<section id="loss-functions" class="level1">
+<h1>Loss Functions</h1>
+<p>Hàm loss là <strong>cầu nối giữa dữ liệu và tối ưu hoá</strong>: nó biến “model dự đoán sai bao nhiêu” thành một con số duy nhất, khả vi, để <a href="../../../courses/machine-learning/lectures/gradient-descent.html">Gradient Descent</a> có cái mà giảm. Chọn sai loss thì dù optimizer chạy hoàn hảo, model vẫn học sai thứ ta cần.</p>
+<p>Trong <a href="../../../courses/machine-learning/lectures/gradient-descent.html">note Gradient Descent</a>, loss được coi như “ngọn đồi” trừu tượng <code>L(x) = x²</code>. Note này trả lời: <strong>ngọn đồi đó thực chất là hàm gì, và chọn hàm nào cho bài toán nào.</strong></p>
+<section id="loss-metric" class="level2">
+<h2 class="anchored" data-anchor-id="loss-metric">1. Loss ≠ Metric</h2>
+<p>Hai thứ dễ lẫn:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Tags
-</th>
-
+<tr class="header">
+<th></th>
+<th><strong>Loss</strong></th>
+<th><strong>Metric</strong></th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1785024000000" data-listing-file-modified-sort="1788272785726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2316" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="gradient-descent.md">
-<td>
-<span class="listing-lecture_no">1</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/gradient-descent.html" class="title listing-title">Gradient Descent</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td>Dùng để</td>
+<td>Tối ưu (optimizer giảm nó)</td>
+<td>Báo cáo / ra quyết định nghiệp vụ</td>
 </tr>
-
-<tr data-index="1" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788272785724" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2455" data-listing-title-sort="Classification Metrics" data-listing-filename-sort="classification-metrics.md">
-<td>
-<span class="listing-lecture_no">2</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/classification-metrics.html" class="title listing-title">Classification Metrics</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">metrics, classification, confusion-matrix, accuracy, precision, recall, roc-auc, pr-auc, f1</span>
-</td>
-
+<tr class="even">
+<td>Ràng buộc</td>
+<td>Phải <strong>khả vi</strong> (hoặc gần vậy), trơn</td>
+<td>Không cần khả vi</td>
 </tr>
-
-<tr data-index="2" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788272785726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3259" data-listing-title-sort="Class Imbalance &amp; Distribution Shift" data-listing-filename-sort="data-imbalance-shift.md">
-<td>
-<span class="listing-lecture_no">3</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-imbalance-shift.html" class="title listing-title">Class Imbalance &amp; Distribution Shift</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">eda, data, class-imbalance, distribution-shift, resampling, monitoring, drift, censoring, psi, importance-weighting</span>
-</td>
-
+<tr class="odd">
+<td>Ví dụ</td>
+<td>MSE, cross-entropy, hinge</td>
+<td>Accuracy, F1, ROC-AUC, MAE-tính-bằng-ngày</td>
 </tr>
-
-<tr data-index="3" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788272785726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1120" data-listing-title-sort="Data Leakage &amp; Kiểm định theo thời gian" data-listing-filename-sort="data-leakage-validation.md">
-<td>
-<span class="listing-lecture_no">4</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-leakage-validation.html" class="title listing-title">Data Leakage &amp; Kiểm định theo thời gian</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">data-leakage, validation, cross-validation, time-based-split, feature-engineering, pipeline</span>
-</td>
-
+<tr class="even">
+<td>Ai đọc</td>
+<td>Chỉ optimizer</td>
+<td>Con người, stakeholder</td>
 </tr>
-
-<tr data-index="4" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788272785726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1340" data-listing-title-sort="Loss Functions" data-listing-filename-sort="loss-functions.md">
-<td>
-<span class="listing-lecture_no">5</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/loss-functions.html" class="title listing-title">Loss Functions</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">loss, mse, mae, huber, cross-entropy, hinge, maximum-likelihood, regularization</span>
-</td>
-
-</tr>
-
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
+<p>Nhiều metric (accuracy, F1) có gradient bằng 0 gần như mọi nơi → không tối ưu trực tiếp được. Ta tối ưu một <strong>surrogate loss</strong> trơn (cross-entropy) rồi đo bằng metric thật. Xem <a href="../../../courses/machine-learning/lectures/classification-metrics.html">Classification Metrics</a>.</p>
 </section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
+<section id="góc-nhìn-xác-suất-loss-đến-từ-đâu" class="level2">
+<h2 class="anchored" data-anchor-id="góc-nhìn-xác-suất-loss-đến-từ-đâu">2. Góc nhìn xác suất: loss đến từ đâu</h2>
+<p>Hầu hết loss “chuẩn” không phải bịa ra — chúng là <strong>−log-likelihood</strong> của một giả định về nhiễu:</p>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
-<li><a href="../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist_Reorder_Timing.ipynb</code></a> — Capstone: dự đoán thời điểm đặt hàng lại của nhà thuốc từ 7 bảng dữ liệu bẩn. Làm sạch dữ liệu, thiết kế nhãn theo <em>observation horizon</em> (chống censoring bias), feature engineering <em>as-of</em> chống rò rỉ, split theo thời gian, Linear/Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC_Failure_Distribution_Shift.ipynb</code></a> — Capstone: dự đoán hỏng máy CNC khi train (dây chuyền A) và test (dây chuyền B) lệch phân phối. Phát hiện shift bằng PSI + KS + drift classifier, xử lý bằng importance reweighting &amp; threshold calibration, feature cơ học kháng shift, so sánh 3 mô hình.</li>
+<li>Giả định <code>y = f(x) + ε</code> với <code>ε ~ Gaussian</code> → maximum likelihood ⇔ <strong>tối thiểu MSE</strong>.</li>
+<li>Giả định <code>y ~ Bernoulli(p = f(x))</code> → maximum likelihood ⇔ <strong>tối thiểu binary cross-entropy</strong>.</li>
+<li>Giả định <code>y ~ Categorical</code> → <strong>categorical cross-entropy</strong>.</li>
+<li>Giả định nhiễu <code>Laplace</code> (đuôi dày hơn Gaussian) → <strong>MAE</strong>.</li>
+</ul>
+<p>Thêm một <strong>prior</strong> lên tham số rồi lấy MAP thay vì MLE → sinh ra số hạng regularization (mục 6): prior Gaussian → L2, prior Laplace → L1.</p>
+<p>→ “Chọn loss” thực chất là “khai báo bạn tin nhiễu trong dữ liệu trông thế nào”.</p>
+</section>
+<section id="loss-cho-hồi-quy" class="level2">
+<h2 class="anchored" data-anchor-id="loss-cho-hồi-quy">3. Loss cho hồi quy</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Loss</th>
+<th>Công thức (1 mẫu)</th>
+<th>Tính chất</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>MSE / L2</strong></td>
+<td><code>(y − ŷ)²</code></td>
+<td>Phạt lỗi lớn theo bình phương → <strong>rất nhạy outlier</strong>. Gradient <code>∝ (ŷ − y)</code> tuyến tính, trơn khắp nơi. Nghiệm tối ưu = <strong>trung bình</strong> có điều kiện. Mặc định hợp lý khi dữ liệu sạch.</td>
+</tr>
+<tr class="even">
+<td><strong>MAE / L1</strong></td>
+<td><code>\|y − ŷ\|</code></td>
+<td>Phạt tuyến tính → <strong>bền với outlier</strong>. Nghiệm tối ưu = <strong>trung vị</strong> có điều kiện. Gradient hằng số <code>±1</code>, <strong>không khả vi tại 0</strong> → hội tụ chậm/giật khi gần đáy.</td>
+</tr>
+<tr class="odd">
+<td><strong>Huber</strong></td>
+<td><code>½(y−ŷ)²</code> nếu <code>\|y−ŷ\| ≤ δ</code>, ngược lại <code>δ\|y−ŷ\| − ½δ²</code></td>
+<td><strong>Lai MSE + MAE</strong>: bậc hai ở gần 0 (trơn, hội tụ nhanh), tuyến tính ở xa (bền outlier). <code>δ</code> là siêu tham số điều khiển điểm chuyển. Lựa chọn tốt khi có outlier nhưng vẫn muốn gradient trơn.</td>
+</tr>
+<tr class="even">
+<td><strong>Log-cosh</strong></td>
+<td><code>log(cosh(y − ŷ))</code></td>
+<td>Xấp xỉ Huber nhưng khả vi <strong>mọi bậc</strong>, không cần chọn <code>δ</code>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Quantile / pinball</strong></td>
+<td><code>max(q·e, (q−1)·e)</code> với <code>e = y − ŷ</code></td>
+<td>Dự đoán <strong>phân vị thứ <code>q</code></strong> thay vì trung bình. <code>q = 0.9</code> → model đưa ra cận trên; dùng cho dự báo khoảng.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mẹo thực tế:</strong> target lệch phải mạnh (giá, thời gian chờ, doanh thu) → train trên <code>log1p(y)</code>, dự đoán rồi <code>expm1</code>. Giảm ảnh hưởng đuôi mà không cần đổi loss. (Lab <a href="../../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html">PharmaDist</a> làm đúng vậy cho <code>days_until_next_order</code>.)</p>
+</section>
+<section id="loss-cho-phân-loại" class="level2">
+<h2 class="anchored" data-anchor-id="loss-cho-phân-loại">4. Loss cho phân loại</h2>
+<section id="vì-sao-không-dùng-01-loss" class="level3">
+<h3 class="anchored" data-anchor-id="vì-sao-không-dùng-01-loss">4.1. Vì sao không dùng 0–1 loss</h3>
+<p>0–1 loss (đếm số dự đoán sai) là thứ ta <em>thật sự</em> quan tâm, nhưng nó <strong>bậc thang</strong> — gradient 0 gần như mọi nơi, nhảy bậc tại ranh giới. Optimizer gradient không có tín hiệu để đi. Nên ta thay bằng surrogate trơn.</p>
+</section>
+<section id="cross-entropy-log-loss-mặc-định" class="level3">
+<h3 class="anchored" data-anchor-id="cross-entropy-log-loss-mặc-định">4.2. Cross-entropy (log loss) — mặc định</h3>
+<p>Nhị phân, với <code>p = σ(z)</code> là xác suất dự đoán lớp 1:</p>
+<pre><code>L = −[ y·log(p) + (1−y)·log(1−p) ]</code></pre>
+<ul>
+<li>Phạt <strong>rất nặng</strong> khi model tự tin mà sai (<code>p → 0</code> trong khi <code>y = 1</code> → loss → ∞).</li>
+<li>Gradient theo logit <code>z</code> rút gọn đẹp: <code>∂L/∂z = p − y</code> — chính là “sai số”, tuyến tính, ổn định.</li>
+<li>Đa lớp: <code>L = −Σ_k y_k log(p_k)</code> với <code>p = softmax(z)</code>.</li>
+<li>Tương đương maximum likelihood cho Bernoulli/Categorical (mục 2).</li>
 </ul>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
+<section id="hinge-loss-svm" class="level3">
+<h3 class="anchored" data-anchor-id="hinge-loss-svm">4.3. Hinge loss (SVM)</h3>
+<pre><code>L = max(0, 1 − y·ŷ)   với y ∈ {−1, +1}</code></pre>
+<p>Chỉ phạt khi mẫu nằm trong “lề” (margin) hoặc sai phía. Mẫu đã phân loại đúng và xa ranh giới → loss 0, không đóng góp gradient. Cho ra classifier tối đa hoá margin. Không cho xác suất calibrated như cross-entropy.</p>
+</section>
+<section id="focal-loss-cho-imbalance-nặng" class="level3">
+<h3 class="anchored" data-anchor-id="focal-loss-cho-imbalance-nặng">4.4. Focal loss — cho imbalance nặng</h3>
+<pre><code>L = −(1 − p_t)^γ · log(p_t)</code></pre>
+<p>Nhân cross-entropy với <code>(1 − p_t)^γ</code>: hạ trọng số các mẫu “dễ” (model đã đoán đúng, tự tin), dồn gradient vào mẫu khó. <code>γ = 2</code> phổ biến. Sinh ra cho object detection (nền áp đảo vật thể). Xem thêm cách xử lý mất cân bằng ở <a href="../../../courses/machine-learning/lectures/data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a>.</p>
+</section>
+<section id="label-smoothing" class="level3">
+<h3 class="anchored" data-anchor-id="label-smoothing">4.5. Label smoothing</h3>
+<p>Thay target cứng <code>1</code> bằng <code>1 − ε</code> (và <code>0</code> bằng <code>ε/(K−1)</code>). Chặn model đẩy logit ra vô cực, cải thiện calibration và khả năng tổng quát hoá. <code>ε = 0.1</code> là mặc định thường dùng.</p>
+</section>
+</section>
+<section id="class-weighting-trong-loss" class="level2">
+<h2 class="anchored" data-anchor-id="class-weighting-trong-loss">5. Class weighting trong loss</h2>
+<p>Nhân mỗi số hạng loss với trọng số theo lớp (<code>w_k ∝ 1/tần_suất_lớp_k</code>, tức <code>class_weight="balanced"</code>):</p>
+<pre><code>L = −Σ_i w_{y_i} · [ y_i·log(p_i) + (1−y_i)·log(1−p_i) ]</code></pre>
+<p>Làm lớp thiểu số “nặng cân” ngang lớp đa số trong tổng loss → optimizer không còn bỏ quên nó. Đây là cách xử lý imbalance <strong>ổn định hơn resampling khi có distribution shift</strong> (xem <a href="../../../courses/machine-learning/lectures/data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a>).</p>
+</section>
+<section id="regularization-số-hạng-cộng-thêm-vào-loss" class="level2">
+<h2 class="anchored" data-anchor-id="regularization-số-hạng-cộng-thêm-vào-loss">6. Regularization: số hạng cộng thêm vào loss</h2>
+<p><code>L_total = L_data + λ · R(θ)</code></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>R(θ)</code></th>
+<th>Tên</th>
+<th>Hiệu ứng</th>
+<th>Prior tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Σ θ_j²</code></td>
+<td><strong>L2 / ridge / weight decay</strong></td>
+<td>Co hệ số về gần 0 (không hẳn 0), ổn định, chống overfit</td>
+<td>Gaussian</td>
+</tr>
+<tr class="even">
+<td><code>Σ \|θ_j\|</code></td>
+<td><strong>L1 / lasso</strong></td>
+<td>Đẩy một số hệ số về <strong>đúng 0</strong> → chọn feature tự động</td>
+<td>Laplace</td>
+</tr>
+<tr class="odd">
+<td>kết hợp</td>
+<td><strong>Elastic Net</strong></td>
+<td>Vừa co vừa chọn</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><code>λ</code> cân bằng “khớp dữ liệu” vs “model đơn giản”. Chọn <code>λ</code> bằng cross-validation (xem <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">Data Leakage &amp; Validation</a>).</p>
+</section>
+<section id="ổn-định-số-học-đọc-kỹ-nếu-tự-code" class="level2">
+<h2 class="anchored" data-anchor-id="ổn-định-số-học-đọc-kỹ-nếu-tự-code">7. Ổn định số học (đọc kỹ nếu tự code)</h2>
+<ul>
+<li><strong>Đừng feed xác suất vào log</strong> — dùng <code>p = 0</code> sẽ ra <code>log(0) = −∞</code>. Luôn tính từ <strong>logit</strong>: <code>binary_cross_entropy_with_logits</code>, <code>softmax_cross_entropy_with_logits</code>. Chúng dùng log-sum-exp ổn định bên trong.</li>
+<li>Clip xác suất về <code>[ε, 1−ε]</code> nếu buộc phải tính từ <code>p</code>.</li>
+<li>Trung bình loss trên batch (<code>reduction="mean"</code>) để độ lớn gradient không phụ thuộc batch size.</li>
+<li>Loss ra <code>NaN</code> khi train: thường là learning rate quá lớn (xem <a href="../../../courses/machine-learning/lectures/gradient-descent.html">Gradient Descent</a>), chia cho 0 trong feature, hoặc <code>log(0)</code> như trên.</li>
+</ul>
+</section>
+<section id="chọn-loss-nào" class="level2">
+<h2 class="anchored" data-anchor-id="chọn-loss-nào">8. Chọn loss nào</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bài toán</th>
+<th>Loss mặc định</th>
+<th>Đổi khi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hồi quy, dữ liệu sạch</td>
+<td>MSE</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Hồi quy, có outlier</td>
+<td>Huber (hoặc MAE)</td>
+<td>outlier nhiều &amp; muốn gradient trơn → Huber</td>
+</tr>
+<tr class="odd">
+<td>Hồi quy, cần khoảng dự báo</td>
+<td>Quantile loss</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Phân loại (nhị phân / đa lớp)</td>
+<td>Cross-entropy (từ logit)</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Phân loại, lớp hiếm cực nặng</td>
+<td>Focal loss / cross-entropy + class weight</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Cần max-margin, không cần xác suất</td>
+<td>Hinge</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Overfit</td>
+<td>+ L2; muốn chọn feature → + L1</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">9. Tóm tắt</h2>
+<ul>
+<li>Loss = hàm khả vi mà optimizer giảm; <strong>khác metric</strong> (thứ con người đọc). Accuracy/F1 không tối ưu trực tiếp được → dùng surrogate.</li>
+<li>Loss chuẩn = <strong>−log-likelihood</strong> của một giả định nhiễu: Gaussian → MSE, Laplace → MAE, Bernoulli/Categorical → cross-entropy.</li>
+<li>Hồi quy: <strong>MSE</strong> (nhạy outlier, → trung bình) vs <strong>MAE</strong> (bền, → trung vị) vs <strong>Huber</strong> (lai, trơn + bền).</li>
+<li>Phân loại: <strong>cross-entropy</strong> là mặc định; gradient theo logit = <code>p − y</code>. Focal loss / class weight cho imbalance; hinge cho max-margin.</li>
+<li><strong>Regularization</strong> = số hạng cộng vào loss: L2 co hệ số, L1 chọn feature.</li>
+<li>Luôn tính cross-entropy <strong>từ logit</strong>, không từ xác suất, để tránh <code>log(0)</code> và <code>NaN</code>.</li>
+</ul>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-08-30">
+
+<title>Data Leakage &amp; Kiểm định theo thời gian – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-leakage-kiểm-định-theo-thời-gian" id="toc-data-leakage-kiểm-định-theo-thời-gian" class="nav-link active" data-scroll-target="#data-leakage-kiểm-định-theo-thời-gian">Data Leakage &amp; Kiểm định theo thời gian</a>
+  <ul class="collapse">
+  <li><a href="#hai-họ-leakage" id="toc-hai-họ-leakage" class="nav-link" data-scroll-target="#hai-họ-leakage">1. Hai họ leakage</a>
+  <ul class="collapse">
+  <li><a href="#target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" id="toc-target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" class="nav-link" data-scroll-target="#target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn">1.1. Target leakage — feature chứa thông tin từ tương lai / từ nhãn</a></li>
+  <li><a href="#traintest-contamination-preprocessing-nhìn-thấy-tập-test" id="toc-traintest-contamination-preprocessing-nhìn-thấy-tập-test" class="nav-link" data-scroll-target="#traintest-contamination-preprocessing-nhìn-thấy-tập-test">1.2. Train–test contamination — preprocessing “nhìn thấy” tập test</a></li>
+  </ul></li>
+  <li><a href="#quy-tắc-chống-leakage-rút-từ-2-lab" id="toc-quy-tắc-chống-leakage-rút-từ-2-lab" class="nav-link" data-scroll-target="#quy-tắc-chống-leakage-rút-từ-2-lab">2. Quy tắc chống leakage (rút từ 2 lab)</a>
+  <ul class="collapse">
+  <li><a href="#fit-trên-train-transform-cả-hai" id="toc-fit-trên-train-transform-cả-hai" class="nav-link" data-scroll-target="#fit-trên-train-transform-cả-hai">2.1. Fit trên TRAIN, transform cả hai</a></li>
+  <li><a href="#impute-bằng-thống-kê-train-only" id="toc-impute-bằng-thống-kê-train-only" class="nav-link" data-scroll-target="#impute-bằng-thống-kê-train-only">2.2. Impute bằng thống kê train-only</a></li>
+  <li><a href="#feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" id="toc-feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" class="nav-link" data-scroll-target="#feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán">2.3. Feature <em>as-of</em> — chỉ dùng dữ liệu trước thời điểm dự đoán</a></li>
+  <li><a href="#split-theo-thời-gian-không-random" id="toc-split-theo-thời-gian-không-random" class="nav-link" data-scroll-target="#split-theo-thời-gian-không-random">2.4. Split theo thời gian, không random</a></li>
+  <li><a href="#đồng-bộ-cột-sau-one-hot" id="toc-đồng-bộ-cột-sau-one-hot" class="nav-link" data-scroll-target="#đồng-bộ-cột-sau-one-hot">2.5. Đồng bộ cột sau one-hot</a></li>
+  <li><a href="#resample-chọn-ngưỡng-bên-trong-cv" id="toc-resample-chọn-ngưỡng-bên-trong-cv" class="nav-link" data-scroll-target="#resample-chọn-ngưỡng-bên-trong-cv">2.6. Resample / chọn ngưỡng bên trong CV</a></li>
+  </ul></li>
+  <li><a href="#cross-validation-cho-đúng" id="toc-cross-validation-cho-đúng" class="nav-link" data-scroll-target="#cross-validation-cho-đúng">3. Cross-validation cho đúng</a></li>
+  <li><a href="#pattern-an-toàn-sklearn-pipeline" id="toc-pattern-an-toàn-sklearn-pipeline" class="nav-link" data-scroll-target="#pattern-an-toàn-sklearn-pipeline">4. Pattern an toàn: sklearn Pipeline</a></li>
+  <li><a href="#checklist-trước-khi-tin-vào-một-con-số-offline" id="toc-checklist-trước-khi-tin-vào-một-con-số-offline" class="nav-link" data-scroll-target="#checklist-trước-khi-tin-vào-một-con-số-offline">5. Checklist trước khi tin vào một con số offline</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">6. Tóm tắt</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Leakage &amp; Kiểm định theo thời gian</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="data-leakage-kiểm-định-theo-thời-gian" class="level1">
+<h1>Data Leakage &amp; Kiểm định theo thời gian</h1>
+<p><strong>Data leakage (rò rỉ dữ liệu)</strong> = thông tin mà model <em>sẽ không có</em> lúc dự đoán thật lại lọt vào lúc train hoặc lúc đánh giá. Hậu quả kinh điển: metric offline đẹp lộng lẫy, deploy xong tụt thẳng đứng. Leakage là lỗi phổ biến nhất và tốn kém nhất trong một dự án ML thực tế — nó không báo lỗi, không crash, chỉ âm thầm cho ta một con số sai.</p>
+<p>Hai lab capstone của môn (<a href="../../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist</code></a>, <a href="../../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC</code></a>) dành phần lớn công sức để <em>chặn</em> leakage — note này rút ra các nguyên tắc chung.</p>
+<section id="hai-họ-leakage" class="level2">
+<h2 class="anchored" data-anchor-id="hai-họ-leakage">1. Hai họ leakage</h2>
+<section id="target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn" class="level3">
+<h3 class="anchored" data-anchor-id="target-leakage-feature-chứa-thông-tin-từ-tương-lai-từ-nhãn">1.1. Target leakage — feature chứa thông tin từ tương lai / từ nhãn</h3>
+<p>Một feature được tính bằng dữ liệu chỉ tồn tại <em>sau</em> thời điểm dự đoán, hoặc suy ra (một phần) từ chính nhãn.</p>
+<p>Ví dụ:</p>
+<ul>
+<li>Dự đoán khách churn, nhưng feature <code>số_cuộc_gọi_hỗ_trợ</code> lại tính cả các cuộc gọi <em>sau</em> ngày churn.</li>
+<li>Dự đoán đơn hàng gian lận, feature <code>đã_hoàn_tiền</code> — chỉ có giá trị vì giao dịch đã bị phát hiện gian lận.</li>
+<li>Dự đoán bệnh, feature <code>loại_thuốc_đang_dùng</code> — thuốc được kê <em>vì</em> đã có chẩn đoán.</li>
+</ul>
+<p>Dấu hiệu nghi ngờ: một feature “tốt bất thường” (coefficient hoặc importance áp đảo), AUC gần 1.0 một cách vô lý.</p>
+</section>
+<section id="traintest-contamination-preprocessing-nhìn-thấy-tập-test" class="level3">
+<h3 class="anchored" data-anchor-id="traintest-contamination-preprocessing-nhìn-thấy-tập-test">1.2. Train–test contamination — preprocessing “nhìn thấy” tập test</h3>
+<p>Bất kỳ phép biến đổi nào <em>học tham số từ dữ liệu</em> mà được fit trên toàn bộ dataset trước khi split:</p>
+<ul>
+<li><code>StandardScaler</code> / <code>MinMaxScaler</code> fit trên cả train + test → mean/std đã “nếm” test.</li>
+<li>Impute missing bằng median của cả dataset.</li>
+<li><code>SelectKBest</code> / feature selection chạy trên toàn bộ dữ liệu.</li>
+<li>Target encoding, PCA, <code>fit_transform</code> của bất cứ thứ gì trên full data.</li>
+<li>SMOTE / oversampling trước khi split → bản sao của một mẫu nằm cả ở train lẫn validation.</li>
+</ul>
+</section>
+</section>
+<section id="quy-tắc-chống-leakage-rút-từ-2-lab" class="level2">
+<h2 class="anchored" data-anchor-id="quy-tắc-chống-leakage-rút-từ-2-lab">2. Quy tắc chống leakage (rút từ 2 lab)</h2>
+<section id="fit-trên-train-transform-cả-hai" class="level3">
+<h3 class="anchored" data-anchor-id="fit-trên-train-transform-cả-hai">2.1. Fit trên TRAIN, transform cả hai</h3>
+<p>Mọi transformer có trạng thái đều fit <strong>chỉ trên train</strong>, rồi <code>.transform()</code> áp lên test:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler().fit(X_train[NUM])      <span class="co"># chỉ nhìn train</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>X_train[NUM] <span class="op">=</span> scaler.transform(X_train[NUM])</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X_test[NUM]  <span class="op">=</span> scaler.transform(X_test[NUM])      <span class="co"># dùng thống kê của train</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Kiểm chứng nhanh: sau scale, <code>X_train</code> có mean ≈ 0; <code>X_test</code> <strong>lệch khỏi 0</strong> — đúng như mong đợi (và nếu có distribution shift, độ lệch này chính là bằng chứng shift, xem <a href="../../../courses/machine-learning/lectures/data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a>).</p>
+</section>
+<section id="impute-bằng-thống-kê-train-only" class="level3">
+<h3 class="anchored" data-anchor-id="impute-bằng-thống-kê-train-only">2.2. Impute bằng thống kê train-only</h3>
+<p>Median/mean để điền khuyết phải tính trên <strong>tập train</strong>, kể cả khi việc điền diễn ra trước bước split trong code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cutoff <span class="op">=</span> df[<span class="st">'order_date'</span>].quantile(<span class="fl">0.8</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>train_median <span class="op">=</span> df.loc[df[<span class="st">'order_date'</span>] <span class="op">&lt;=</span> cutoff, <span class="st">'col'</span>].median()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'col'</span>] <span class="op">=</span> df[<span class="st">'col'</span>].fillna(train_median)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán" class="level3">
+<h3 class="anchored" data-anchor-id="feature-as-of-chỉ-dùng-dữ-liệu-trước-thời-điểm-dự-đoán">2.3. Feature <em>as-of</em> — chỉ dùng dữ liệu trước thời điểm dự đoán</h3>
+<p>Với dữ liệu có trục thời gian, mọi feature tổng hợp (đếm, trung bình tích luỹ, RFM…) phải lọc <strong>strict</strong> <code>event_date &lt; prediction_date</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">'before'</span>] <span class="op">=</span> merged[<span class="st">'ticket_date'</span>] <span class="op">&lt;</span> merged[<span class="st">'order_date'</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>agg <span class="op">=</span> merged[merged[<span class="st">'before'</span>]].groupby(<span class="st">'order_id'</span>).agg(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Rồi chốt bằng <strong>leakage guard</strong> — một assertion nổ ngay nếu lọt mẫu vi phạm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>leaked <span class="op">=</span> merged[merged[<span class="st">'before'</span>]]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (leaked[<span class="st">'ticket_date'</span>] <span class="op">&lt;</span> leaked[<span class="st">'order_date'</span>]).<span class="bu">all</span>(), <span class="st">'Leakage detected!'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="split-theo-thời-gian-không-random" class="level3">
+<h3 class="anchored" data-anchor-id="split-theo-thời-gian-không-random">2.4. Split theo thời gian, không random</h3>
+<p>Dữ liệu sinh theo thời gian (đơn hàng, log cảm biến, giao dịch) → <strong>train = phần cũ, test = phần mới</strong> (ví dụ oldest 80% / newest 20%). Random split trộn tương lai vào train, cho metric lạc quan và giấu mất distribution shift.</p>
+</section>
+<section id="đồng-bộ-cột-sau-one-hot" class="level3">
+<h3 class="anchored" data-anchor-id="đồng-bộ-cột-sau-one-hot">2.5. Đồng bộ cột sau one-hot</h3>
+<p><code>get_dummies</code> trên train và test độc lập có thể ra tập cột khác nhau (một hạng mục chỉ xuất hiện ở một bên). Căn lại theo train:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>test_cat <span class="op">=</span> pd.get_dummies(test[CAT]).reindex(columns<span class="op">=</span>train_cat.columns, fill_value<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Với NaN trong biến phân loại: <code>get_dummies(dummy_na=True)</code> coi NaN là một hạng mục riêng — không mất thông tin, không cần impute.</p>
+</section>
+<section id="resample-chọn-ngưỡng-bên-trong-cv" class="level3">
+<h3 class="anchored" data-anchor-id="resample-chọn-ngưỡng-bên-trong-cv">2.6. Resample / chọn ngưỡng bên trong CV</h3>
+<ul>
+<li>SMOTE, undersampling: đặt <strong>trong</strong> pipeline CV, chỉ tác động lên các fold train.</li>
+<li>Chọn <code>best_threshold</code> cho F1: tính trên <strong>out-of-fold predictions của tập train</strong>, không bao giờ trên test. <code>argmax</code> trên một lần chia dao động mạnh → trung bình ngưỡng qua nhiều seed.</li>
+</ul>
+</section>
+</section>
+<section id="cross-validation-cho-đúng" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation-cho-đúng">3. Cross-validation cho đúng</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Loại dữ liệu</th>
+<th>Chiến lược</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I.I.D., phân loại</td>
+<td><strong>StratifiedKFold</strong> (shuffle)</td>
+<td>Giữ tỷ lệ lớp trong mỗi fold — quan trọng khi imbalance</td>
+</tr>
+<tr class="even">
+<td>Có trục thời gian</td>
+<td><strong>TimeSeriesSplit</strong> / walk-forward</td>
+<td>Fold train luôn <em>trước</em> fold validation về thời gian</td>
+</tr>
+<tr class="odd">
+<td>Có nhóm (nhiều dòng / 1 khách)</td>
+<td><strong>GroupKFold</strong></td>
+<td>Không để cùng một khách nằm cả train lẫn validation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Out-of-fold (OOF) predictions</strong>: <code>cross_val_predict</code> cho mỗi mẫu train một dự đoán được tạo bởi model <em>không</em> nhìn thấy nó. Dùng OOF để: chọn ngưỡng, hiệu chỉnh xác suất, stacking — tất cả mà không đụng test.</p>
+<p><strong>Đánh giá drift classifier / bất kỳ meta-model nào cũng phải bằng OOF</strong> — đánh giá in-sample cho AUC lạc quan giả.</p>
+</section>
+<section id="pattern-an-toàn-sklearn-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-an-toàn-sklearn-pipeline">4. Pattern an toàn: sklearn Pipeline</h2>
+<p>Gói toàn bộ preprocessing + model vào một <code>Pipeline</code>; khi truyền vào <code>cross_val_score</code> / <code>RandomizedSearchCV</code>, mỗi fold tự fit lại preprocessing <strong>chỉ trên phần train của fold đó</strong> — leakage bị chặn theo cấu trúc, không phải nhờ kỷ luật thủ công.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'scale'</span>, StandardScaler()),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'clf'</span>, LogisticRegression(class_weight<span class="op">=</span><span class="st">'balanced'</span>)),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(pipe, X_train, y_train, cv<span class="op">=</span>StratifiedKFold(<span class="dv">5</span>), scoring<span class="op">=</span><span class="st">'average_precision'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Việc fit thủ công một scaler chung (như §2.1) chấp nhận được khi ranh giới train/test là <strong>một mốc thời gian cố định</strong> và bạn cần cùng một không gian feature cho nhiều model — nhưng với CV lồng nhau thì Pipeline là chuẩn.</p>
+</section>
+<section id="checklist-trước-khi-tin-vào-một-con-số-offline" class="level2">
+<h2 class="anchored" data-anchor-id="checklist-trước-khi-tin-vào-một-con-số-offline">5. Checklist trước khi tin vào một con số offline</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Có feature nào tính từ dữ liệu <em>sau</em> thời điểm dự đoán không?</label></li>
+<li><label><input type="checkbox">Có feature nào là hệ quả của nhãn (chỉ tồn tại vì sự kiện đã xảy ra) không?</label></li>
+<li><label><input type="checkbox">Scaler / imputer / encoder / feature-selector có fit <strong>chỉ trên train</strong> không?</label></li>
+<li><label><input type="checkbox">Impute dùng thống kê train-only?</label></li>
+<li><label><input type="checkbox">Dữ liệu thời gian → split theo thời gian, CV là TimeSeriesSplit?</label></li>
+<li><label><input type="checkbox">Nhiều dòng / một thực thể → GroupKFold?</label></li>
+<li><label><input type="checkbox">Resampling và chọn ngưỡng nằm <strong>trong</strong> CV / trên OOF train?</label></li>
+<li><label><input type="checkbox">Nhãn được định nghĩa <strong>trước</strong> khi làm feature, với horizon rule rõ ràng (xem <a href="../../../courses/machine-learning/lectures/data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a> Phần C)?</label></li>
+<li><label><input type="checkbox">Có feature nào “tốt bất thường” khiến AUC gần 1.0 không? → nghi leakage.</label></li>
+</ul>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">6. Tóm tắt</h2>
+<ul>
+<li><strong>Target leakage</strong>: feature chứa thông tin tương lai hoặc suy từ nhãn → xoá feature.</li>
+<li><strong>Contamination</strong>: preprocessing fit trên full data → fit chỉ trên train.</li>
+<li>Dữ liệu thời gian: <strong>as-of features</strong> + <strong>split theo thời gian</strong> + <strong>leakage guard assertion</strong>.</li>
+<li>CV: Stratified (imbalance), TimeSeries (thời gian), Group (nhóm); dùng <strong>OOF</strong> để chọn ngưỡng / hiệu chỉnh / đánh giá meta-model.</li>
+<li><strong>Pipeline</strong> đóng gói preprocessing + model → chặn leakage theo cấu trúc.</li>
+<li>Metric offline chỉ đáng tin sau khi đã qua checklist ở §5.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
