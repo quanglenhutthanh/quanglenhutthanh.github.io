@@ -51,7 +51,7 @@ X_train[NUM] = scaler.transform(X_train[NUM])
 X_test[NUM]  = scaler.transform(X_test[NUM])      # dùng thống kê của train
 ```
 
-Kiểm chứng nhanh: sau scale, `X_train` có mean ≈ 0; `X_test` **lệch khỏi 0** — đúng như mong đợi (và nếu có distribution shift, độ lệch này chính là bằng chứng shift, xem [Class Imbalance & Distribution Shift](L03-data-imbalance-shift.md)).
+Kiểm chứng nhanh: sau scale, `X_train` có mean ≈ 0; `X_test` **lệch khỏi 0** — đúng như mong đợi (và nếu có distribution shift, độ lệch này chính là bằng chứng shift, xem [Class Imbalance & Distribution Shift](data-imbalance-shift.md)).
 
 ### 2.2. Impute bằng thống kê train-only
 
@@ -133,7 +133,7 @@ Việc fit thủ công một scaler chung (như §2.1) chấp nhận được kh
 - [ ] Dữ liệu thời gian → split theo thời gian, CV là TimeSeriesSplit?
 - [ ] Nhiều dòng / một thực thể → GroupKFold?
 - [ ] Resampling và chọn ngưỡng nằm **trong** CV / trên OOF train?
-- [ ] Nhãn được định nghĩa **trước** khi làm feature, với horizon rule rõ ràng (xem [L03](L03-data-imbalance-shift.md) Phần C)?
+- [ ] Nhãn được định nghĩa **trước** khi làm feature, với horizon rule rõ ràng (xem [Class Imbalance & Distribution Shift](data-imbalance-shift.md) Phần C)?
 - [ ] Có feature nào "tốt bất thường" khiến AUC gần 1.0 không? → nghi leakage.
 
 ## 6. Tóm tắt

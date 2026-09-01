@@ -40,7 +40,7 @@ Accuracy = (TP + TN) / (TP + TN + FP + FN)
 
 Tỷ lệ dự đoán đúng trên toàn bộ. Trực giác, dễ hiểu — nhưng **sập bẫy khi dữ liệu mất cân bằng**: với 99% lớp âm, model đoán "tất cả là âm" đạt accuracy 99% mà recall lớp dương = 0, hoàn toàn vô dụng. Accuracy gộp chung TP và TN, nên lớp đa số (thường là TN) chi phối con số.
 
-→ Dùng accuracy chỉ khi hai lớp **cân bằng** và chi phí FP ≈ chi phí FN. Ngoài ra, chuyển sang các metric bên dưới. Xem thêm [Class Imbalance & Distribution Shift](L03-data-imbalance-shift.md).
+→ Dùng accuracy chỉ khi hai lớp **cân bằng** và chi phí FP ≈ chi phí FN. Ngoài ra, chuyển sang các metric bên dưới. Xem thêm [Class Imbalance & Distribution Shift](data-imbalance-shift.md).
 
 ## 3. Precision — độ tin khi model báo dương
 
@@ -159,7 +159,7 @@ Chỉ ROC-AUC có baseline cố định 0.5. Baseline của F1 và PR-AUC *trôi
 - **"ROC-AUC cao nghĩa là model tốt để deploy":** không hẳn. ROC-AUC chỉ nói khả năng *xếp hạng*. Với lớp mất cân bằng, ROC-AUC 0.9 vẫn có thể đi kèm PR-AUC thấp và precision tệ tại mọi ngưỡng dùng được.
 - **So F1 (hoặc PR-AUC) giữa hai dataset khác prevalence:** vô nghĩa, vì baseline khác nhau.
 - **Nghĩ Precision và Recall đối xứng nhau:** không. Recall có mẫu số hằng số (toàn lớp dương), Precision có mẫu số thay đổi (pool báo-dương).
-- **Dùng ngưỡng 0.5 mặc định rồi báo F1:** F1 phụ thuộc ngưỡng; nên quét ngưỡng tìm đỉnh F1 (hoặc chọn theo ràng buộc nghiệp vụ) trên tập validation / OOF train trước khi báo cáo — xem [L04](L04-data-leakage-validation.md).
+- **Dùng ngưỡng 0.5 mặc định rồi báo F1:** F1 phụ thuộc ngưỡng; nên quét ngưỡng tìm đỉnh F1 (hoặc chọn theo ràng buộc nghiệp vụ) trên tập validation / OOF train trước khi báo cáo — xem [Data Leakage & Validation](data-leakage-validation.md).
 - **Recall ≠ TPR:** sai — chúng là **cùng một con số**, chỉ khác tên gọi.
 
 ## 13. Tóm tắt
