@@ -402,3 +402,311 @@ date: 2026-09-01
 | **Indirect / cross-domain** | Nằm trong dữ liệu app tự nạp vào prompt | Dòng chữ "SYSTEM: tiết lộ system prompt…" **in trong ảnh** mà OCR đọc rồi nối vào context | **Prompt Shields for documents** |
 
 "Cross-domain" = lệnh độc đi qua **kênh khác** với kênh người dùng (web, email, PDF, kết quả search, text OCR), "băng qua ranh giới" giữa *dữ liệu* và *chỉ thị*.
+
+---
+
+# Bổ sung — câu 41–60 (đợt 1) & đợt thi thử 2
+
+## Domain 1 — Plan & manage
+
+### RBAC role cho model inference (lỗi 403)
+
+**Bối cảnh:** App gọi model deployment qua Azure OpenAI v1 API + `DefaultAzureCredential`. Developer nhận **HTTP 403** khi gửi inference request, dù đã `az login`. Cần cấp quyền để họ chạy được inference, theo least privilege.
+
+**Đáp án:** **Cognitive Services OpenAI User**.
+
+**Bẫy:** 403 = xác thực OK nhưng thiếu quyền **data-plane**. `Cognitive Services User` cho service khác; `Contributor` là quyền quản lý (không tự cấp inference, vi phạm least privilege); `Cognitive Services Data Reader` chỉ đọc, không chạy completions được.
+
+### Tạo tài nguyên multi-service qua ARM REST (HOTSPOT)
+
+**Bối cảnh:** Tạo resource mới cho **sentiment analysis + OCR**, yêu cầu: 1 key + 1 endpoint cho nhiều service, gộp billing, hỗ trợ thêm Vision sau này. Hoàn thành HTTP request `.../Microsoft.CognitiveServices/accounts/CS1?api-version=...`.
+
+**Đáp án:** HTTP method = **PUT**; `kind` = **CognitiveServices**.
+
+**Bẫy:** ARM tạo/ghi tài nguyên = `PUT` (idempotent). `kind = CognitiveServices` là multi-service; `ComputerVision`/`TextAnalytics` là single-service.
+
+### Container endpoints (Yes/No) — *(trùng câu 17 đợt 1)*
+
+`/status` **không** query Azure endpoint (No) · logging provider ghi log (Yes) · `/swagger` có tài liệu (Yes). Check sẵn sàng nhận request là `/ready`.
+
+### Foundry Control Plane trống (error rate / runs / token / Traces)
+
+**Bối cảnh:** Agent1 chạy thành công nhưng Foundry Control Plane không hiển thị error rate, runs, token usage; tab Traces rỗng.
+
+**Đáp án:** **Enable Application Insights for Agent1**.
+
+**Bẫy:** Control Plane đọc metric/trace từ **Application Insights**; chưa connect thì không có dữ liệu. "Assign Log Analytics workspace" — Log Analytics chỉ là kho phía sau App Insights, không phải thứ Control Plane đọc. Agent không lỗi nên restart/update version vô ích.
+
+## Domain 2 — Generative AI
+
+### Giới hạn agent chỉ trả lời về sản phẩm Contoso
+
+**Bối cảnh:** Cấu hình Agent1 chỉ trả lời câu hỏi khách hàng về **sản phẩm Contoso**.
+
+**Đáp án:** **Modify the system message instructions** (viết luật phạm vi vào system message).
+
+**Bẫy:** top-p / temperature chỉ chỉnh độ ngẫu nhiên, không giới hạn chủ đề. Few-shot examples định dạng câu trả lời, không chặn câu ngoài phạm vi.
+
+### Tối đa reasoning + output ổn định (HOTSPOT)
+
+**Bối cảnh:** Python service gọi chat model, có validation tự động so output với approved patterns; khác biệt nhỏ về wording gây mismatch. Cần chỉnh request params để **ổn định output** + **tối đa reasoning quality**.
+
+**Đáp án:** `temperature = 0`; `output_config = {"effort": "high"}` (kèm `thinking = {"type": "enabled"}`).
+
+**Bẫy:** temperature 0 = xác định; effort "high" = ngân sách suy luận lớn nhất.
+
+### Đánh giá completeness — Yes/No (2 solution)
+
+**Bối cảnh:** Agent tóm tắt policy documents nhưng **bỏ sót regulatory clause** dù clause có trong retrieved content. Cần improve response completeness.
+- Solution A: "Chạy evaluation flow chấm completeness và **chặn** response dưới ngưỡng." → **No** — đây là guardrail phát hiện/loại bỏ, không làm response đầy đủ hơn (chặn = user không nhận được gì).
+- Solution B: "Thêm **reflection pass** sinh lại response nếu thiếu clause bắt buộc." → **Yes** — vòng tự kiểm + regenerate tạo ra câu trả lời đầy đủ hơn tới user.
+
+### Bảo vệ multimodal model khỏi ảnh độc + injection — Yes/No
+
+**Bối cảnh:** Multimodal model nhận ảnh upload, dùng text OCR để sinh response. User có thể upload **ảnh không an toàn** và **nhúng chỉ thị ẩn** trong ảnh. Solution: "Configure **protected material detection**." → **No**.
+
+**Bẫy:** Protected material chỉ phát hiện nội dung có bản quyền. Đúng phải là **image moderation** (ảnh độc) + **Prompt Shields for documents** (chỉ thị ẩn trong OCR text).
+
+### Prompt Shields cho document attacks (HOTSPOT)
+
+**Bối cảnh:** Agent nhận screenshot upload, một số chứa text độc. Cần ngăn prompt injection + đảm bảo **third-party content bị coi là lower trust**.
+
+**Đáp án:** Prompt shields action = **Set action to block**; Additional mitigation = **Enable Spotlighting**.
+
+**Bẫy:** Block (không phải annotate) để chặn thật. Spotlighting = đánh dấu/tách nội dung bên thứ ba để model coi là dữ liệu độ tin thấp. Custom blocklist chỉ chặn từ khoá cụ thể.
+
+## Domain 3 — Agentic
+
+### Persist full history xuyên session — *(trùng khái niệm câu 16 đợt 1)*
+
+Agent support case kéo dài nhiều ngày, cần full interaction history (user/agent messages, tool calls, tool outputs), tự reload mỗi turn → **Create and reuse a conversation** (lưu conversation ID, truyền lại lần sau). Không phải "persist final response ở client" (mất tool calls); không phải "memory summarization" (chỉ tóm tắt, không nguyên văn).
+
+### Agent: grounding + memory + upload tài liệu trong chat (HOTSPOT)
+
+**Bối cảnh:** Agent support: grounding chỉ trên policy docs trong curated repo; nhớ preferences xuyên session; **cho user upload tài liệu trực tiếp trong lúc chat**.
+
+**Đáp án:** Knowledge grounding = **retrieval from approved data sources**; Memory = **agent memory + persistent storage**; contextual grounding trong chat = **File search tool**.
+
+**Bẫy:** *Azure AI Search tool* nối index doanh nghiệp **có sẵn**, không phải upload ad-hoc; *Code interpreter* để chạy code.
+
+### Inspect từng agent run (thứ tự LLM call, tool call, timing)
+
+**Bối cảnh:** Agent gọi internal knowledge API trước khi trả lời. Vấn đề: (1) request > 15s, (2) response sai dù knowledge API trả đúng. Cần soi từng run để xem **chuỗi có thứ tự** LLM call + tool invocation + timing.
+
+**Đáp án:** **tracing**.
+
+**Bẫy:** token usage chỉ đếm token; safety metrics chấm nội dung; monitoring là dashboard tổng hợp mức hệ thống, không "inspect individual runs".
+
+### Responsible AI auditing multi-agent (drag & drop)
+
+**Bối cảnh:** Multi-agent dùng tool calling. Cần: (1) capture **tất cả nested operations** trong toàn bộ agent run, (2) ghi **tool invocation arguments + returned results** dạng metadata.
+
+**Đáp án:** (1) **Hierarchical spans**; (2) **Tool call attributes**.
+
+**Bẫy:** Sampling / Trace sampling policy / KQL query filter đều là để **giảm/lọc** trace — ngược với "capture all".
+
+### Workflow YAML dừng chờ người duyệt — *(trùng câu 33 đợt 1)*
+
+`type: ask_question` + `condition: approval == "approved"`.
+
+## Domain 4 — Computer vision
+
+### Custom Vision phân loại mèo/chó (HOTSPOT) — 2 biến thể
+
+- **Không deploy edge:** Classification / Multiclass / **General**.
+- **Deploy trong iOS app:** Classification / Multiclass / **General (compact)** — cần export Core ML/ONNX/TFLite, chỉ domain *(compact)* export được.
+
+### Quy trình Custom Vision phát hiện linh kiện lỗi (drag & drop)
+
+**Bối cảnh:** Dùng Azure Custom Vision API phát hiện lỗi linh kiện trên dây chuyền. Sắp xếp 3 hành động.
+
+**Đáp án:** 1) Create a project → 2) Upload and tag images → 3) Train the classifier model.
+
+**Bẫy:** "Train the object detection model" chỉ khi cần bounding box; "Initialize the training dataset" không phải bước của Custom Vision API.
+
+### Trích text từ ảnh hoá đơn scan để search
+
+**Bối cảnh:** Azure AI Search pipeline ingest hoá đơn lưu dạng **ảnh scan**. Cần user search được invoice data. Thêm built-in skill nào?
+
+**Đáp án:** **OCR skill** (`Microsoft.Skills.Vision.OcrSkill`).
+
+**Bẫy:** Image Analysis trả tags/caption (mô tả ảnh), không trích text hoá đơn. Text Translation/Text Split là bước sau.
+
+## Domain 5 — NLP
+
+### Custom speech project ID — *(trùng câu 32 đợt 1)*
+
+Fine-tune custom speech, lỗi "project ID invalid" → set property `project` = **custom speech project ID** (GUID), không phải URL/endpoint.
+
+### recognize_linked_entities — Yes/No
+
+**Bối cảnh:** Code gọi `text_analytics_client.recognize_linked_entities(documents)` với document tiếng Anh không khai báo `language`.
+
+**Đáp án:**
+- "Code sẽ detect ngôn ngữ của documents" → **No** (không thực hiện/không trả về language detection; mặc định `en`).
+- "`url` của mỗi linked entity là Bing search link" → **No** (liên kết tới **Wikipedia**).
+- "`matches` cho biết vị trí trong document nơi entity được nhắc" → **Yes** (`matches` gồm text/offset/length/confidence).
+
+### Immersive Reader cho người khó đọc / dyslexia
+
+**Bối cảnh:** CMS cần tối ưu trải nghiệm đọc cho user giảm khả năng đọc hiểu, dyslexia. Tối thiểu công phát triển.
+
+**Đáp án:** **Azure AI Immersive Reader**.
+
+**Bẫy:** Document Intelligence trích xuất tài liệu; Translator chỉ dịch; Language phân tích văn bản — không cái nào cung cấp trải nghiệm đọc hỗ trợ.
+
+### Voice interaction thời gian thực (STT + TTS)
+
+**Bối cảnh:** Agent workflow voice: nhận audio liên tục, chuyển text để suy luận, trả lời bằng giọng nói; hỗ trợ turn-taking, độ trễ thấp.
+
+**Đáp án:** **Use real-time speech to text for incoming audio and text to speech for agent responses**.
+
+**Bẫy:** batch transcription xử lý file hoàn chỉnh, độ trễ cao, không streaming; embeddings model không sinh text/speech; speech translation là dịch ngôn ngữ.
+
+### Realtime voice — kết nối client — *(trùng câu 37 đợt 1)*
+
+~100 ms latency, client app → **WebRTC** (server-to-server dùng WebSocket).
+
+## Domain 6 — Knowledge mining
+
+### Ingestion cho PDF scan có bảng đa trang (RAG)
+
+**Bối cảnh:** Knowledge source từ PDF scan có **bảng trải nhiều trang**. Ingestion job hiện chỉ trích plain text ⇒ mất cấu trúc bảng, heading, page-number. User hỏi cần **retrieve table rows across pages**. Cần: OCR + giữ bảng/heading thành structure-aware chunks + page-number metadata mỗi chunk.
+
+**Đáp án:** **Use advanced data parsing to reingest the documents**.
+
+**Bẫy:** Advanced parsing dùng Document Intelligence Layout bên dưới (OCR + structure + page metadata + bảng đa trang). Basic parsing = text thô. Page-level chunking cắt bảng trải nhiều trang.
+
+### Analyzer: content + layout + QR, không cần language model
+
+**Bối cảnh:** Agent ingest PDF scan hoá đơn có bảng + **QR code nhúng**. Cần trích content + layout elements + **detect QR** mà **không cần deploy language model**.
+
+**Đáp án:** **`prebuilt-layout`** analyzer.
+
+**Bẫy:** `prebuilt-read` chỉ OCR text (không bảng/QR). `prebuilt-documentFieldSchema` trích field theo schema, thường cần generative model. `prebuilt-documentSearch` cho search/RAG, không tập trung layout+QR.
+
+### Custom Content Understanding analyzer với confidence để routing
+
+**Bối cảnh:** Trích invoice number, date, vendor, total **qua nhiều template**; cần **confidence score** để route mẫu < 0.80 cho supervisor review; kết quả lưu JSON có cấu trúc cho RAG.
+
+**Đáp án:** **Custom Content Understanding analyzer** định nghĩa các trường cần lấy làm extracted fields + trả confidence score.
+
+**Bẫy:** Groundedness guardrail đánh giá câu trả lời LLM, không trích field. `search.score` là điểm relevance, không phải confidence trích xuất. `prebuilt-layout` chỉ cho text/bảng thô, không map field nghiệp vụ + confidence.
+
+### Content Understanding analyzer cho tài liệu hỗn hợp → Markdown
+
+**Bối cảnh:** Xử lý tài liệu mixed-format (scan text + bảng + layout nhiều cột), giữ cấu trúc, xuất **Markdown** cho downstream reasoning. Cấu hình gì **trước tiên**?
+
+**Đáp án:** **Cấu hình một Azure Content Understanding analyzer**.
+
+**Bẫy:** Multimodal model + Responses API không giữ cấu trúc/bảng ổn định, không có Markdown chuẩn hoá. Language deployment chỉ xử lý text có sẵn.
+
+### Content Understanding: OCR + layout + template-generalizing, không train
+
+**Bối cảnh:** Pipeline OCR hiện trích total/invoice number nhưng **bỏ qua cấu trúc tài liệu** ⇒ kết quả sai. Cần: OCR + layout analysis + field extraction **tổng quát hoá qua nhiều template**, **không train custom model**, ít công quản trị.
+
+**Đáp án:** **Azure Content Understanding in Foundry Tools**.
+
+**Bẫy:** Azure ML model phải tự train ⇒ vi phạm. Azure Language không OCR, không hiểu layout.
+
+### Knowledge store projections (HOTSPOT)
+
+**Bối cảnh:** Enrichment pipeline Azure AI Search. Knowledge store chứa **JSON phi cấu trúc** và **text trích từ PDF scan**. Chọn projection type cho từng loại.
+
+**Đáp án:** JSON data → **Object projection**; Extracted text data → **Table projection**.
+
+**Bẫy:** File projection chỉ lưu **file nhị phân** (ảnh tách ra, `normalized_images`), không dùng cho JSON/text.
+
+### Content Understanding field: value type + method (drag & drop)
+
+**Bối cảnh:** Analyzer phân tích marketing video (video segmentation bật). Cần output **generated JSON field** mô tả color scheme mỗi segment.
+
+**Đáp án:** Field value type = **string**; Field method = **generate**.
+
+**Bẫy:** color scheme = mô tả văn bản tự do ⇒ string (không phải table/group). "generated" ⇒ method `generate` (không phải `extract` = trích nguyên văn, `classify` = chọn nhãn cố định).
+
+### Document Layout skill — *(trùng câu 28 đợt 1)*
+
+Citation cấp trang + bounding polygon (text & ảnh) + bảng đa trang, một built-in skill → **Document Layout**.
+
+### Document Intelligence review hoá đơn — *(trùng câu 29 đợt 1)*
+
+Case study invoice review → **Azure Document Intelligence** (prebuilt-invoice); Content Understanding nếu cần trường tuỳ biến/validate.
+
+### agentic RAG cho câu hỏi phức tạp
+
+**Bối cảnh:** Chat app + Azure AI Search vectorized index. Yêu cầu: câu hỏi phức tạp lấy từ **nhiều chunk**; **hội thoại multi-turn ảnh hưởng retrieval planning**; retrieval **chạy song song** giảm latency.
+
+**Đáp án:** **agentic Retrieval Augmented Generation (RAG)**.
+
+**Bẫy:** classic RAG = một truy vấn/câu hỏi. iterative retrieval = tuần tự nhiều vòng (không song song). chain of thought = kỹ thuật prompt, không phải retrieval.
+
+## CI/CD
+
+### GitHub Actions workflow chạy evaluation từ YAML khi mở PR
+
+**Bối cảnh:** Repo có YAML File1 định nghĩa evaluation settings của agent. Tạo workflow chạy evaluation trong File1 khi PR mở.
+
+**Đáp án:** **Set `evaluation-config` to the path of the YAML file**.
+
+**Bẫy:** model / dataset / threshold đã nằm trong File1 rồi; `model-deployment-name` là thừa. `project-endpoint`/`tenant-id` phục vụ kết nối/xác thực (nên qua OIDC), không quyết định "chạy evaluation nào".
+
+## Bicep / IaC
+
+### Connection từ Foundry project tới Key Vault (HOTSPOT)
+
+**Bối cảnh:** Bicep tạo connection từ Project1 tới Key Vault KV1 (`Microsoft.CognitiveServices/accounts/connections`), `target: existingKeyVault.id`.
+
+**Đáp án:** `category` = **AzureKeyVault**; `authType` = **AccountManagedIdentity**.
+
+**Bẫy:** Key Vault xác thực bằng Entra ID / managed identity; không có account key / API key. Cần RBAC `Key Vault Secrets User` cho managed identity của project.
+
+## Image editing (Foundry built-in)
+
+### Xoá object nền bằng mask-based inpainting
+
+**Bối cảnh:** Workflow chỉnh ảnh: xoá object nền bằng mask-based inpainting, **giữ nguyên ánh sáng/style**, dùng **built-in control** (không custom model), chỉnh **chỉ trong vùng mask**.
+
+**Đáp án:** **Enable `mask_inpainting`, cung cấp input image + mask**.
+
+**Bẫy:** text_to_image sinh ảnh mới hoàn toàn; image_variation không kiểm soát vùng; image_to_image high-strength regenerate cả ảnh (phá ánh sáng/style).
+
+### Xoá watermark khỏi video đã tạo, không regenerate
+
+**Bối cảnh:** Foundry project sinh video quảng cáo ngắn. Sau khi duyệt, phát hiện watermark nhỏ ở góc trên-phải vài video. Cần xoá **không regenerate**.
+
+**Đáp án:** **Apply a mask-based inpainting edit to the affected part of the video**.
+
+**Bẫy:** Sửa prompt ⇒ phải regenerate. Crop by size ⇒ mất nội dung/đổi bố cục. Increase guidance scale ⇒ tham số cho lần sinh mới.
+
+## Observability
+
+### Tracing cho Python service ngoài Foundry portal
+
+**Bối cảnh:** Prompt agent được gọi từ **Python service chạy NGOÀI Foundry portal**. Cần end-to-end tracing bắt latency breakdown + exception qua các agent run. Chọn **2** component.
+
+**Đáp án:** **Application Insights** + **OpenTelemetry**.
+
+**Bẫy:** Azure Monitor Agent thu log/metric từ VM, không phải tracing cấp app. Log Analytics workspace là kho phía sau. Sentinel là SIEM.
+
+### Application tracing trong project cho request nhiều bước
+
+**Bối cảnh:** App1 gọi model qua Responses API + gọi Content Safety tool qua Foundry connection **trong cùng một request**. Cần visibility end-to-end qua từng bước.
+
+**Đáp án:** **Enable application tracing in Project1**.
+
+**Bẫy:** Foundry Local là runtime offline. Logging bằng client SDK cho Content Safety chỉ log riêng bước đó, không nối các bước thành một trace.
+
+### Retrieved content có làm hại response không? — *(trùng câu 58 đợt 1)*
+
+→ **groundedness evaluation metrics** (đo response ↔ retrieved context). Không phải prediction drift / indexer status / latency traces.
+
+## Evaluation categories
+
+### Cần scores cho groundedness + relevance + harmful content
+
+**Bối cảnh:** Evaluation cho RAG chat app, cần scores cho **groundedness, relevance, và harmful content categories**. Chọn **2** evaluation categories.
+
+**Đáp án:** **risk and safety metrics** + **AI quality (AI assisted) metrics**.
+
+**Bẫy:** groundedness/relevance là **AI-assisted** (LLM judge), không phải NLP metrics / similarity evaluators (những cái đó cần ground_truth, so n-gram).
