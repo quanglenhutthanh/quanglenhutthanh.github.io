@@ -710,3 +710,102 @@ Case study invoice review → **Azure Document Intelligence** (prebuilt-invoice)
 **Đáp án:** **risk and safety metrics** + **AI quality (AI assisted) metrics**.
 
 **Bẫy:** groundedness/relevance là **AI-assisted** (LLM judge), không phải NLP metrics / similarity evaluators (những cái đó cần ground_truth, so n-gram).
+
+---
+
+# Bổ sung — đợt thi thử 3
+
+## Domain 1 — Plan & manage
+
+### Deploy DALL·E model từ model catalog
+
+**Bối cảnh:** Có Azure subscription. Sẽ build app dùng model **Azure AI DALL·E**. Cần deploy model.
+
+**Đáp án:** **Microsoft Foundry (portal) + Azure CLI**.
+
+**Bẫy:** SDK for Python / JavaScript là để *gọi* model sau khi deploy, không phải tạo deployment. Azure ML Studio không quản lý deployment của Azure OpenAI models. Microsoft Graph API dùng cho M365/Entra, không liên quan.
+
+### Deployment type cho real-time inference, không đụng vCPU quota
+
+**Bối cảnh:** Foundry project. Deploy một model từ model catalog cho **real-time inference**. Yêu cầu: dùng **key-based authentication**, hỗ trợ **REST API real-time**, và **KHÔNG tiêu vCPU quota** của VM trong subscription.
+
+**Đáp án:** **serverless API**.
+
+**Bẫy:** *standard* (managed compute) deploy lên managed online endpoint dùng VM instances ⇒ tiêu vCPU quota. *self-hosted container* chạy trên hạ tầng của bạn. *batch* không real-time.
+
+### App Service truy cập Foundry Service resource, ít công quản trị
+
+**Bối cảnh:** Azure subscription có App Service app (App1). Provision một Microsoft Foundry Service resource (CSAccount1). Cần cấu hình App1 truy cập CSAccount1, **tối thiểu công quản trị**.
+
+**Đáp án:** **the endpoint URI and subscription key**.
+
+**Bẫy:** OAuth token cần triển khai token flow. SAS token là cơ chế của Azure Storage. "system-assigned managed identity + X.509 certificate" tự mâu thuẫn (MI vốn để khỏi quản credential) và làm tăng công quản lý cert. *(Nếu đề nhấn security/compliance thì managed identity + RBAC mới đúng — ở đây tiêu chí là ít công nhất.)*
+
+### Nhiều client app dùng chung cấu hình Azure AI Search, cấm key auth
+
+**Bối cảnh:** App1 phải retrieve documents bằng Azure AI Search trước khi gửi prompt tới model. Cần tích hợp Project1 với nhiều client app. Yêu cầu: nhiều app **dùng chung một search configuration**, security policy **cấm key-based authentication**, tối thiểu công quản trị.
+
+**Đáp án:** **Configure an Azure AI Search connection in Project1 and reference the connection in each application**.
+
+**Bẫy:** Custom HTTP connection cấu hình endpoint per app ⇒ lặp thủ công, không chia sẻ config. Call trực tiếp bằng Entra auth / managed identity per app ⇒ mỗi app tự cấu hình endpoint + RBAC, không dùng connection dùng chung.
+
+## Domain 2 — Generative AI
+
+### Improve completeness — biến thể multiple choice
+
+**Bối cảnh:** Agent tóm tắt policy documents, bỏ sót regulatory clause dù có trong retrieved content. Cần improve response completeness. Solution phải nằm trong **logic của application code, trước khi trả response**.
+
+**Đáp án:** **Add a retry evaluation before the responses are returned** (reflection/self-check + regenerate).
+
+**Bẫy:** Decrease temperature = tăng nhất quán, không tăng completeness. Model nhỏ hơn = tệ hơn. Tăng `presence_penalty` = phạt token đã dùng ⇒ khuyến khích đổi chủ đề, dễ bỏ sót hơn.
+(Nhắc lại quy tắc series: **regenerate/retry/reflection = Yes; block dưới ngưỡng = No**.)
+
+### Classify ảnh upload theo harmful content, block theo severity
+
+**Bối cảnh:** Deploy support agent cho phép user upload ảnh. Cần **tự động phân loại ảnh theo nội dung độc hại** và **chặn theo mức severity**.
+
+**Đáp án:** **Implement image moderation** (Azure AI Content Safety).
+
+**Bẫy:** *Use blocklists* chỉ chặn từ/cụm văn bản. *Keyword scanning trên OCR output* chỉ bắt chữ trong ảnh, bỏ sót ảnh độc không có chữ, không có severity. *Prompt shields* chống injection text.
+
+## Domain 3 — Agentic
+
+### Compliance workflow: ép retrieval + danh tính tool cô lập (HOTSPOT)
+
+**Bối cảnh:** Agent dùng tool để retrieve internal content + gọi external API, hiện để **model tự quyết** khi nào gọi tool. Publish agent cho compliance workflow. Yêu cầu: **mỗi workflow run phải có bước retrieval trước khi sinh response**; tool call xác thực bằng **danh tính riêng của agent đã publish**; danh tính **tách biệt khỏi tài nguyên project khác**; hỗ trợ **audit tracing**.
+
+**Đáp án:** `tool_choice` = **required**; authenticate by = **Using a distinct agent identity bound to the client application**.
+
+**Bẫy:** `auto` để model tự quyết ⇒ có thể bỏ retrieval; `none` cấm gọi tool. *Shared project agent identity* không isolated. *Storing API keys in prompts* lộ key, không audit theo danh tính được.
+
+### OpenAPI tool trả 401 vì không gửi API key header
+
+**Bối cảnh:** Project1 có OpenAPI tool gọi external API + project connection **Connection1** lưu API key của external API đó. Khi agent gọi tool, API trả **401 unauthorized**, traces cho thấy **API key header không được gửi**. Cần đảm bảo OpenAPI tool **tự đính kèm API key từ Connection1** vào mọi request.
+
+**Đáp án:** **Connect the tool to Connection1**.
+
+**Bẫy:** *Identity passthrough (Entra token của caller)* dùng token Entra, không phải API key ⇒ vẫn 401. *Default connection of Project1* — key ở Connection1, không phải default. *Add API key header manually vào OpenAPI spec* — hardcode key = bảo mật kém, không phải cách Foundry quản lý.
+
+## Observability
+
+### LangChain + OpenTelemetry cùng App Insights — Yes/No
+
+**Bối cảnh:** Project1 connect Application Insights, support team xem runs ở tab Traces. Foundry Agent Service lấy connection string qua `project_client.telemetry.get_application_insights_connection_string()` rồi gọi `configure_azure_monitor(...)`. Một service LangChain **riêng** dùng OpenTelemetry: `AzureAIOpenTelemetryTracer(connection_string=..., enable_content_recording=False)`, truyền qua `config={"callbacks":[azure_tracer]}`. Policy: telemetry của LangChain và OpenTelemetry phải **phân biệt được** trong cùng App Insights; secrets/credentials **không** được lưu trong prompts / tool arguments / span attributes.
+
+**Đáp án:**
+- "LangChain service sẽ xuất hiện trong Traces **mà không cần cấu hình tracer**" → **No** (phải có tracer/callback thì mới phát span).
+- "Đặt `OTEL_SERVICE_NAME` khác nhau sẽ **tách các service** trong Application Insights" → **Yes** (map thành cloud role name).
+- "Với `enable_content_recording=False`, prompts và tool data **vẫn được ghi**" → **No** (False = KHÔNG ghi nội dung, chỉ giữ span/metadata — đúng yêu cầu không lưu secret).
+
+## Deploy / catalog
+
+### Deploy model từ catalog cho real-time — *xem "Domain 1 → serverless API" ở trên*
+
+## Câu trùng đã gặp lại (đợt 3)
+
+- Bicep connection tới Key Vault → `category: AzureKeyVault`, `authType: AccountManagedIdentity` — *(câu 45)*
+- Container `/status` `/swagger` logging Yes/No: No / Yes / Yes — *(câu 17)*
+- Content Safety self-harm severity code: `AnalyzeTextOptions(text=comment)` + `client.analyze_text(request)` — *(câu 19)*
+- Enable application tracing in Project1 (request nhiều bước) — *(câu 56)*
+- OCR skill cho ảnh hoá đơn scan để search — *(câu 11)*
+- Eval flow chấm completeness + **block** dưới ngưỡng → **No** (không improve, chỉ chặn) — *(câu 39)*
