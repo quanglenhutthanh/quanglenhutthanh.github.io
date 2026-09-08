@@ -6,7 +6,13 @@
       "/courses/machine-learning/lectures/classification-metrics.html",
       "/courses/machine-learning/lectures/data-imbalance-shift.html",
       "/courses/machine-learning/lectures/data-leakage-validation.html",
-      "/courses/machine-learning/lectures/loss-functions.html"
+      "/courses/machine-learning/lectures/loss-functions.html",
+      "/courses/machine-learning/lectures/linear-regression.html",
+      "/courses/machine-learning/lectures/logistic-regression.html",
+      "/courses/machine-learning/lectures/regularization-feature-selection.html",
+      "/courses/machine-learning/lectures/decision-tree.html",
+      "/courses/machine-learning/lectures/ensemble-methods.html",
+      "/courses/machine-learning/lectures/neural-networks.html"
     ]
   },
   {

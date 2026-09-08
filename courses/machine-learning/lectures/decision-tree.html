@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-31">
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>Decision Tree – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,28 +27,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-eb8f38d337554339cdec0850d440664f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-eb8f38d337554339cdec0850d440664f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,79 +109,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lectures .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lectures'] = new List('listing-lectures', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -158,7 +120,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
@@ -169,15 +131,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../courses/index.html"> 
+    <a class="nav-link" href="../../../courses/index.html"> 
 <span class="menu-text">Learning Space</span></a>
   </li>  
 </ul>
@@ -203,10 +165,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#decision-tree" id="toc-decision-tree" class="nav-link active" data-scroll-target="#decision-tree">Decision Tree</a>
+  <ul class="collapse">
+  <li><a href="#độ-tinh-khiết-impurity" id="toc-độ-tinh-khiết-impurity" class="nav-link" data-scroll-target="#độ-tinh-khiết-impurity">1. Độ tinh khiết (impurity)</a></li>
+  <li><a href="#information-gain-tiêu-chí-chia" id="toc-information-gain-tiêu-chí-chia" class="nav-link" data-scroll-target="#information-gain-tiêu-chí-chia">2. Information Gain — tiêu chí chia</a></li>
+  <li><a href="#thuật-toán-cart" id="toc-thuật-toán-cart" class="nav-link" data-scroll-target="#thuật-toán-cart">3. Thuật toán CART</a></li>
+  <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting">4. Overfitting</a>
+  <ul class="collapse">
+  <li><a href="#hyperparameter-kiểm-soát-overfitting" id="toc-hyperparameter-kiểm-soát-overfitting" class="nav-link" data-scroll-target="#hyperparameter-kiểm-soát-overfitting">Hyperparameter kiểm soát overfitting</a></li>
+  <li><a href="#chiến-lược-thực-hành" id="toc-chiến-lược-thực-hành" class="nav-link" data-scroll-target="#chiến-lược-thực-hành">Chiến lược thực hành</a></li>
+  </ul></li>
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">5. Cross-Validation</a></li>
+  <li><a href="#hyperparameter-tuning" id="toc-hyperparameter-tuning" class="nav-link" data-scroll-target="#hyperparameter-tuning">6. Hyperparameter Tuning</a>
+  <ul class="collapse">
+  <li><a href="#learning-curve-vs-validation-curve" id="toc-learning-curve-vs-validation-curve" class="nav-link" data-scroll-target="#learning-curve-vs-validation-curve">Learning curve vs Validation curve</a></li>
+  </ul></li>
+  <li><a href="#ưu-nhược" id="toc-ưu-nhược" class="nav-link" data-scroll-target="#ưu-nhược">7. Ưu / nhược</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">8. Tóm tắt</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -215,8 +191,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">Decision Tree</h1>
 </div>
 
 
@@ -224,6 +199,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 31, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -233,252 +214,271 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with the two pieces every model shares — the loss function it minimizes and the Gradient Descent that minimizes it — and how to evaluate classifiers properly (confusion matrix → accuracy, precision/recall, ROC-AUC, PR-AUC, F1), plus the practical data concerns that break offline metrics: class imbalance, distribution shift, and data leakage. It then works through the core supervised algorithms — linear and logistic regression, regularization &amp; feature selection, decision trees, ensemble methods (bagging, Random Forest, boosting, XGBoost) — and closes with neural networks (forward pass + backpropagation) as the bridge to Deep Learning.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below): the from-scratch implementations of linear regression, logistic regression, decision trees, and neural networks, plus two end-to-end capstone projects — one on dirty multi-table data with leakage-safe feature engineering, one on predictive maintenance under distribution shift.</p>
-</section>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<div id="listing-lectures" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-lectures-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-lectures'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Topic
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Tags
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1785024000000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2316" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="gradient-descent.md">
-<td>
-<span class="listing-lecture_no">1</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/gradient-descent.html" class="title listing-title">Gradient Descent</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788878897332" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2455" data-listing-title-sort="Classification Metrics" data-listing-filename-sort="classification-metrics.md">
-<td>
-<span class="listing-lecture_no">2</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/classification-metrics.html" class="title listing-title">Classification Metrics</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">metrics, classification, confusion-matrix, accuracy, precision, recall, roc-auc, pr-auc, f1</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3259" data-listing-title-sort="Class Imbalance &amp; Distribution Shift" data-listing-filename-sort="data-imbalance-shift.md">
-<td>
-<span class="listing-lecture_no">3</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-imbalance-shift.html" class="title listing-title">Class Imbalance &amp; Distribution Shift</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">eda, data, class-imbalance, distribution-shift, resampling, monitoring, drift, censoring, psi, importance-weighting</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1120" data-listing-title-sort="Data Leakage &amp; Kiểm định theo thời gian" data-listing-filename-sort="data-leakage-validation.md">
-<td>
-<span class="listing-lecture_no">4</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-leakage-validation.html" class="title listing-title">Data Leakage &amp; Kiểm định theo thời gian</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">data-leakage, validation, cross-validation, time-based-split, feature-engineering, pipeline</span>
-</td>
-
-</tr>
-
-<tr data-index="4" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1340" data-listing-title-sort="Loss Functions" data-listing-filename-sort="loss-functions.md">
-<td>
-<span class="listing-lecture_no">5</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/loss-functions.html" class="title listing-title">Loss Functions</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">loss, mse, mae, huber, cross-entropy, hinge, maximum-likelihood, regularization</span>
-</td>
-
-</tr>
-
-<tr data-index="5" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1140" data-listing-title-sort="Linear Regression" data-listing-filename-sort="linear-regression.md">
-<td>
-<span class="listing-lecture_no">6</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/linear-regression.html" class="title listing-title">Linear Regression</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">linear-regression, mse, normal-equation, gradient-descent, r-squared, multicollinearity, assumptions</span>
-</td>
-
-</tr>
-
-<tr data-index="6" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="804" data-listing-title-sort="Logistic Regression" data-listing-filename-sort="logistic-regression.md">
-<td>
-<span class="listing-lecture_no">7</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/logistic-regression.html" class="title listing-title">Logistic Regression</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">logistic-regression, sigmoid, softmax, cross-entropy, log-odds, decision-threshold, multiclass</span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1224" data-listing-title-sort="Regularization &amp; Feature Selection" data-listing-filename-sort="regularization-feature-selection.md">
-<td>
-<span class="listing-lecture_no">8</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/regularization-feature-selection.html" class="title listing-title">Regularization &amp; Feature Selection</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">regularization, ridge, lasso, elastic-net, feature-selection, bias-variance, overfitting, preprocessing</span>
-</td>
-
-</tr>
-
-<tr data-index="8" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="996" data-listing-title-sort="Decision Tree" data-listing-filename-sort="decision-tree.md">
-<td>
-<span class="listing-lecture_no">9</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/decision-tree.html" class="title listing-title">Decision Tree</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">decision-tree, gini, entropy, information-gain, cart, overfitting, pruning, cross-validation, hyperparameter-tuning</span>
-</td>
-
-</tr>
-
-<tr data-index="9" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1509" data-listing-title-sort="Ensemble Methods" data-listing-filename-sort="ensemble-methods.md">
-<td>
-<span class="listing-lecture_no">10</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/ensemble-methods.html" class="title listing-title">Ensemble Methods</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">ensemble, bagging, bootstrap, random-forest, boosting, adaboost, gradient-boosting, xgboost, oob, bias-variance</span>
-</td>
-
-</tr>
-
-<tr data-index="10" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1514" data-listing-title-sort="Neural Networks" data-listing-filename-sort="neural-networks.md">
-<td>
-<span class="listing-lecture_no">11</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/neural-networks.html" class="title listing-title">Neural Networks</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">neural-network, mlp, perceptron, activation, forward-pass, backpropagation, chain-rule, vanishing-gradient</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-</section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
+<section id="decision-tree" class="level1">
+<h1>Decision Tree</h1>
+<p>Cây quyết định học bằng cách đặt liên tiếp các câu hỏi Yes/No về đặc trưng, mỗi câu hỏi chia dữ liệu thành hai nhánh <strong>tinh khiết hơn</strong>. Kết quả là một tập luật If-Then con người đọc được. Khác với <a href="../../../courses/machine-learning/lectures/logistic-regression.html">linear/logistic regression</a>: không cần scaling, xử lý phi tuyến và tương tác đặc trưng tự động, nhưng <strong>rất dễ overfit</strong>. Hiểu decision tree = hiểu nền tảng của toàn bộ họ <a href="../../../courses/machine-learning/lectures/ensemble-methods.html">Ensemble Methods</a> (Random Forest, XGBoost).</p>
+<p>Lab: <a href="../../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a>.</p>
+<section id="độ-tinh-khiết-impurity" class="level2">
+<h2 class="anchored" data-anchor-id="độ-tinh-khiết-impurity">1. Độ tinh khiết (impurity)</h2>
+<p>Tại một node có phân phối lớp <code>{p_k}</code>:</p>
+<pre><code>Gini    = 1 − Σ p_k²          (min 0 = tinh khiết, max 0.5 khi 50/50)
+Entropy = − Σ p_k·log₂(p_k)   (min 0,               max 1 bit khi 50/50)</code></pre>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
-<li><a href="../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist_Reorder_Timing.ipynb</code></a> — Capstone: dự đoán thời điểm đặt hàng lại của nhà thuốc từ 7 bảng dữ liệu bẩn. Làm sạch dữ liệu, thiết kế nhãn theo <em>observation horizon</em> (chống censoring bias), feature engineering <em>as-of</em> chống rò rỉ, split theo thời gian, Linear/Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC_Failure_Distribution_Shift.ipynb</code></a> — Capstone: dự đoán hỏng máy CNC khi train (dây chuyền A) và test (dây chuyền B) lệch phân phối. Phát hiện shift bằng PSI + KS + drift classifier, xử lý bằng importance reweighting &amp; threshold calibration, feature cơ học kháng shift, so sánh 3 mô hình.</li>
+<li><strong>Gini</strong>: nhanh hơn (không cần <code>log</code>) — mặc định của sklearn.</li>
+<li><strong>Entropy</strong>: nhạy hơn khi phân phối lệch.</li>
+<li>Thực tế hai thước đo gần như luôn chọn cùng một split.</li>
 </ul>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
+<section id="information-gain-tiêu-chí-chia" class="level2">
+<h2 class="anchored" data-anchor-id="information-gain-tiêu-chí-chia">2. Information Gain — tiêu chí chia</h2>
+<pre><code>Gain = Impurity(cha) − Σ (nₖ/n) · Impurity(conₖ)</code></pre>
+<p>Tại mỗi node, thuật toán <strong>duyệt mọi (đặc trưng, ngưỡng)</strong> và chọn split có <strong>Gain lớn nhất</strong>.</p>
+<ul>
+<li>Đặc trưng số: sắp xếp giá trị, thử các <strong>midpoint</strong> giữa mỗi cặp liên tiếp (<code>n−1</code> ngưỡng ứng viên), tính Gain cho từng ngưỡng.</li>
+<li><strong>Cardinality bias</strong>: đặc trưng liên tục (hoặc nhiều giá trị) có nhiều ngưỡng ứng viên hơn → dễ được ưu tiên hơn đặc trưng nhị phân. Chi phí mỗi node: <code>O(n·log n · p)</code>.</li>
+</ul>
+<p><em>Ví dụ (10 bệnh nhân, 4 High / 6 Low): Gini gốc = 0.48. Split “Hút thuốc = Yes?” cho weighted Gini = 0.317 → Gain = 0.163, cao nhất → chọn làm split đầu tiên.</em></p>
+</section>
+<section id="thuật-toán-cart" class="level2">
+<h2 class="anchored" data-anchor-id="thuật-toán-cart">3. Thuật toán CART</h2>
+<p><em>Classification And Regression Trees:</em></p>
+<ol type="1">
+<li>Tại mỗi node, duyệt mọi đặc trưng × mọi ngưỡng → chọn split có Gain lớn nhất.</li>
+<li>Chia dữ liệu thành 2 nhánh (trái: điều kiện đúng, phải: sai).</li>
+<li>Lặp đệ quy trên mỗi nhánh.</li>
+<li><strong>Điều kiện dừng</strong>: node tinh khiết (Gini = 0), đạt <code>max_depth</code>, hoặc số mẫu <code>&lt; min_samples_split</code>.</li>
+</ol>
+<p>Hồi quy: thay impurity bằng phương sai (MSE), dự đoán ở lá = trung bình <code>y</code>.</p>
+</section>
+<section id="overfitting" class="level2">
+<h2 class="anchored" data-anchor-id="overfitting">4. Overfitting</h2>
+<p>Cây mọc tự do (<code>max_depth=None</code>) sẽ <strong>học thuộc lòng</strong>: mỗi lá 1 mẫu, Train accuracy = 100% nhưng Test tụt hẳn.</p>
+<p><em>Ví dụ điển hình:</em></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>depth=None</th>
+<th>depth=3</th>
+<th>depth=5</th>
+<th>Logistic Reg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Train acc</td>
+<td>1.000</td>
+<td>0.794</td>
+<td>0.819</td>
+<td>0.814</td>
+</tr>
+<tr class="even">
+<td>Test acc</td>
+<td>0.728</td>
+<td>0.754</td>
+<td>0.765</td>
+<td>0.750</td>
+</tr>
+<tr class="odd">
+<td>Số lá</td>
+<td>287</td>
+<td>8</td>
+<td>26</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><code>depth=5</code> cân bằng nhất ở đây.</p>
+<section id="hyperparameter-kiểm-soát-overfitting" class="level3">
+<h3 class="anchored" data-anchor-id="hyperparameter-kiểm-soát-overfitting">Hyperparameter kiểm soát overfitting</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tham số</th>
+<th>Ý nghĩa</th>
+<th>Giảm →</th>
+<th>Khuyến nghị</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>max_depth</code></td>
+<td>số tầng tối đa</td>
+<td>overfit</td>
+<td>thử 3–6</td>
+</tr>
+<tr class="even">
+<td><code>min_samples_leaf</code></td>
+<td>số mẫu tối thiểu ở lá</td>
+<td>overfit</td>
+<td>thử 10–50</td>
+</tr>
+<tr class="odd">
+<td><code>min_samples_split</code></td>
+<td>số mẫu tối thiểu để chia</td>
+<td>overfit</td>
+<td>mặc định 2</td>
+</tr>
+<tr class="even">
+<td><code>max_leaf_nodes</code></td>
+<td>số lá tối đa</td>
+<td>overfit</td>
+<td>thay cho <code>max_depth</code></td>
+</tr>
+<tr class="odd">
+<td><code>ccp_alpha</code></td>
+<td>hệ số cắt tỉa (cost-complexity pruning)</td>
+<td>cây phức tạp</td>
+<td>tìm qua CV</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pre-pruning</strong> = dừng sớm khi mọc (các tham số trên). <strong>Post-pruning</strong> = mọc đầy rồi cắt bớt nhánh ít giá trị (<code>ccp_alpha</code>).</p>
+</section>
+<section id="chiến-lược-thực-hành" class="level3">
+<h3 class="anchored" data-anchor-id="chiến-lược-thực-hành">Chiến lược thực hành</h3>
+<p>① <code>max_depth=3</code> → ② tăng dần, vẽ đường Train/Test → ③ dừng khi Test bắt đầu giảm → ④ <code>GridSearchCV</code> tinh chỉnh.</p>
+</section>
+</section>
+<section id="cross-validation" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation">5. Cross-Validation</h2>
+<p>Train/test split một lần → kết quả phụ thuộc cách chia. <strong>K-Fold</strong>: chia <code>K</code> phần, mỗi phần lần lượt làm test → báo cáo <code>mean ± std</code>. <code>K = 5</code> hoặc <code>10</code> phổ biến.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Biến thể</th>
+<th>Khi nào</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>K-Fold</strong></td>
+<td>dữ liệu cân bằng</td>
+</tr>
+<tr class="even">
+<td><strong>Stratified K-Fold</strong></td>
+<td>giữ tỷ lệ lớp mỗi fold — bắt buộc khi imbalance; mặc định sklearn cho classification</td>
+</tr>
+<tr class="odd">
+<td><strong>Repeated (Stratified) K-Fold</strong></td>
+<td>lặp nhiều seed → giảm phương sai ước lượng; tốn thời gian hơn</td>
+</tr>
+</tbody>
+</table>
+<p>Xem thêm về CV và rò rỉ trong <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">L04</a>.</p>
+</section>
+<section id="hyperparameter-tuning" class="level2">
+<h2 class="anchored" data-anchor-id="hyperparameter-tuning">6. Hyperparameter Tuning</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Grid Search</th>
+<th>Random Search</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cách</td>
+<td>thử <strong>tất cả</strong> tổ hợp</td>
+<td>chọn <strong>ngẫu nhiên</strong> <code>n_iter</code> tổ hợp</td>
+</tr>
+<tr class="even">
+<td>Ưu</td>
+<td>chắc chắn tìm best trong lưới</td>
+<td>nhanh, phủ nhiều vùng tham số hơn</td>
+</tr>
+<tr class="odd">
+<td>Nhược</td>
+<td>chậm khi nhiều tham số (curse of dimensionality)</td>
+<td>không đảm bảo best tuyệt đối</td>
+</tr>
+<tr class="even">
+<td>Khi nào</td>
+<td>≤ 2–3 tham số, ít giá trị mỗi tham số</td>
+<td>≥ 3 tham số, không gian lớn</td>
+</tr>
+</tbody>
+</table>
+<section id="learning-curve-vs-validation-curve" class="level3">
+<h3 class="anchored" data-anchor-id="learning-curve-vs-validation-curve">Learning curve vs Validation curve</h3>
+<ul>
+<li><strong>Learning curve</strong> (trục X = số mẫu train): hai đường Train/Val hội tụ → ổn; khoảng cách lớn → overfit; cả hai thấp → underfit.</li>
+<li><strong>Validation curve</strong> (trục X = một hyperparameter, ví dụ <code>max_depth</code>): chọn điểm Val cao nhất <em>trước khi</em> nó bắt đầu giảm.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV, StratifiedKFold</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> GridSearchCV(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    DecisionTreeClassifier(random_state<span class="op">=</span><span class="dv">42</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'max_depth'</span>: [<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>], <span class="st">'min_samples_leaf'</span>: [<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">50</span>], <span class="st">'criterion'</span>: [<span class="st">'gini'</span>,<span class="st">'entropy'</span>]},</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>StratifiedKFold(<span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>), scoring<span class="op">=</span><span class="st">'accuracy'</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>grid.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="ưu-nhược" class="level2">
+<h2 class="anchored" data-anchor-id="ưu-nhược">7. Ưu / nhược</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ưu</th>
+<th>Nhược</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>luật If-Then trực quan, giải thích được</td>
+<td>dễ overfit — phải kiểm soát</td>
+</tr>
+<tr class="even">
+<td>không cần feature scaling</td>
+<td>không ổn định (đổi data chút → cây khác hẳn)</td>
+</tr>
+<tr class="odd">
+<td>xử lý phi tuyến &amp; tương tác tự động</td>
+<td>ranh giới quyết định vuông góc trục (bậc thang)</td>
+</tr>
+<tr class="even">
+<td>numerical &amp; categorical</td>
+<td>extrapolation kém</td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>một cây đơn lẻ thường yếu → dùng ensemble</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">8. Tóm tắt</h2>
+<ul>
+<li>Chia node theo <strong>Information Gain</strong> = giảm impurity (<strong>Gini</strong> nhanh / <strong>Entropy</strong> nhạy); duyệt mọi (đặc trưng, ngưỡng).</li>
+<li><strong>CART</strong>: đệ quy chia đôi đến điều kiện dừng; hồi quy thì dùng phương sai + trung bình ở lá.</li>
+<li>Cây tự do → overfit (Train 100%, Test thấp) → kiểm soát bằng <code>max_depth</code> (3–6), <code>min_samples_leaf</code> (10–50), <code>ccp_alpha</code> (pruning).</li>
+<li><strong>Cross-validation</strong> (Stratified K-Fold) để đánh giá ổn định; <strong>Grid/Random Search</strong> + learning/validation curve để tune.</li>
+<li>Một cây = nền tảng của <a href="../../../courses/machine-learning/lectures/ensemble-methods.html">Random Forest &amp; Boosting</a>.</li>
+</ul>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->

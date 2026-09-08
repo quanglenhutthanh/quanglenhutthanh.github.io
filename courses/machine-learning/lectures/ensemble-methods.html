@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-08-31">
+
+<title>Ensemble Methods – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-eb8f38d337554339cdec0850d440664f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ensemble-methods" id="toc-ensemble-methods" class="nav-link active" data-scroll-target="#ensemble-methods">Ensemble Methods</a>
+  <ul class="collapse">
+  <li><a href="#bootstrap-bagging" id="toc-bootstrap-bagging" class="nav-link" data-scroll-target="#bootstrap-bagging">1. Bootstrap &amp; Bagging</a>
+  <ul class="collapse">
+  <li><a href="#bootstrap-sampling" id="toc-bootstrap-sampling" class="nav-link" data-scroll-target="#bootstrap-sampling">Bootstrap sampling</a></li>
+  <li><a href="#bagging-bootstrap-aggregating-breiman-1996" id="toc-bagging-bootstrap-aggregating-breiman-1996" class="nav-link" data-scroll-target="#bagging-bootstrap-aggregating-breiman-1996">Bagging = Bootstrap Aggregating (Breiman, 1996)</a></li>
+  </ul></li>
+  <li><a href="#random-forest" id="toc-random-forest" class="nav-link" data-scroll-target="#random-forest">2. Random Forest</a>
+  <ul class="collapse">
+  <li><a href="#oob-evaluation" id="toc-oob-evaluation" class="nav-link" data-scroll-target="#oob-evaluation">OOB Evaluation</a></li>
+  <li><a href="#feature-importance" id="toc-feature-importance" class="nav-link" data-scroll-target="#feature-importance">Feature importance</a></li>
+  <li><a href="#khi-nào-dùng" id="toc-khi-nào-dùng" class="nav-link" data-scroll-target="#khi-nào-dùng">Khi nào dùng</a></li>
+  </ul></li>
+  <li><a href="#boosting-adaboost" id="toc-boosting-adaboost" class="nav-link" data-scroll-target="#boosting-adaboost">3. Boosting &amp; AdaBoost</a>
+  <ul class="collapse">
+  <li><a href="#adaboost-freund-schapire-1996" id="toc-adaboost-freund-schapire-1996" class="nav-link" data-scroll-target="#adaboost-freund-schapire-1996">AdaBoost (Freund &amp; Schapire, 1996)</a></li>
+  </ul></li>
+  <li><a href="#gradient-boosting-friedman-2001" id="toc-gradient-boosting-friedman-2001" class="nav-link" data-scroll-target="#gradient-boosting-friedman-2001">4. Gradient Boosting (Friedman, 2001)</a>
+  <ul class="collapse">
+  <li><a href="#learning-rate-regularization" id="toc-learning-rate-regularization" class="nav-link" data-scroll-target="#learning-rate-regularization">Learning rate &amp; regularization</a></li>
+  </ul></li>
+  <li><a href="#xgboost-chen-guestrin-2016" id="toc-xgboost-chen-guestrin-2016" class="nav-link" data-scroll-target="#xgboost-chen-guestrin-2016">5. XGBoost (Chen &amp; Guestrin, 2016)</a>
+  <ul class="collapse">
+  <li><a href="#regularized-objective" id="toc-regularized-objective" class="nav-link" data-scroll-target="#regularized-objective">① Regularized objective</a></li>
+  <li><a href="#newtons-method-taylor-bậc-2" id="toc-newtons-method-taylor-bậc-2" class="nav-link" data-scroll-target="#newtons-method-taylor-bậc-2">② Newton’s method (Taylor bậc 2)</a></li>
+  <li><a href="#engineering" id="toc-engineering" class="nav-link" data-scroll-target="#engineering">③ Engineering</a></li>
+  <li><a href="#hyperparameter-chính" id="toc-hyperparameter-chính" class="nav-link" data-scroll-target="#hyperparameter-chính">Hyperparameter chính</a></li>
+  </ul></li>
+  <li><a href="#bảng-so-sánh" id="toc-bảng-so-sánh" class="nav-link" data-scroll-target="#bảng-so-sánh">6. Bảng so sánh</a></li>
+  <li><a href="#chọn-cái-nào" id="toc-chọn-cái-nào" class="nav-link" data-scroll-target="#chọn-cái-nào">7. Chọn cái nào</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">8. Tóm tắt</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ensemble Methods</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 31, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="ensemble-methods" class="level1">
+<h1>Ensemble Methods</h1>
+<p>Kết hợp nhiều “weak learner” (<a href="../../../courses/machine-learning/lectures/decision-tree.html">cây quyết định</a>) thành một “strong learner”. Có hai chiến lược ngược nhau, ứng với hai vế của <a href="../../../courses/machine-learning/lectures/regularization-feature-selection.html">bias–variance</a>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Bagging</strong> (song song)</th>
+<th><strong>Boosting</strong> (nối tiếp)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cách</td>
+<td>các model train độc lập, lấy trung bình</td>
+<td>model sau sửa lỗi model trước</td>
+</tr>
+<tr class="even">
+<td>Mục tiêu</td>
+<td><strong>giảm Variance</strong></td>
+<td><strong>giảm Bias</strong></td>
+</tr>
+<tr class="odd">
+<td>Base learner</td>
+<td>cây <strong>sâu</strong> (low bias, high variance)</td>
+<td>cây <strong>nông</strong> / stump (high bias, low variance)</td>
+</tr>
+<tr class="even">
+<td>Ví dụ</td>
+<td>Bagging, Random Forest</td>
+<td>AdaBoost, Gradient Boosting, XGBoost</td>
+</tr>
+</tbody>
+</table>
+<p>Điều kiện để ensemble hoạt động: các model phải <strong>đa dạng</strong> và mỗi cái <strong>tốt hơn ngẫu nhiên</strong> (“wisdom of the crowd”).</p>
+<section id="bootstrap-bagging" class="level2">
+<h2 class="anchored" data-anchor-id="bootstrap-bagging">1. Bootstrap &amp; Bagging</h2>
+<section id="bootstrap-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="bootstrap-sampling">Bootstrap sampling</h3>
+<p>Lấy mẫu <strong>có hoàn lại</strong> từ dataset gốc, cùng kích thước <code>n</code>. Một số mẫu xuất hiện nhiều lần, một số không.</p>
+<pre><code>P(mẫu không được chọn) = (1 − 1/n)ⁿ → e⁻¹ ≈ 0.368</code></pre>
+<p>→ mỗi bootstrap sample chứa ~<strong>63.2%</strong> mẫu gốc (unique), ~<strong>36.8%</strong> bị bỏ qua → dùng làm <strong>Out-of-Bag (OOB)</strong> test set miễn phí.</p>
+</section>
+<section id="bagging-bootstrap-aggregating-breiman-1996" class="level3">
+<h3 class="anchored" data-anchor-id="bagging-bootstrap-aggregating-breiman-1996">Bagging = Bootstrap Aggregating (Breiman, 1996)</h3>
+<pre><code>For b = 1..B:  tạo bootstrap sample Dᵦ  →  train cây Tᵦ đầy đủ (không pruning)
+Dự đoán: classification → majority vote | regression → trung bình</code></pre>
+<p><strong>Vì sao giảm variance:</strong> trung bình <code>B</code> dự đoán triệt tiêu sai số ngẫu nhiên. Công thức:</p>
+<pre><code>Var(bag) → ρσ² + (1−ρ)σ²/B      (B → ∞:  Var → ρσ²)</code></pre>
+<p><code>ρ</code> = tương quan trung bình giữa các cây, <code>σ²</code> = variance mỗi cây. Bias <strong>không đổi</strong> (mỗi cây đã low bias).</p>
+<p><strong>Hạn chế:</strong> nếu có một đặc trưng rất mạnh (dominant), <em>mọi</em> cây đều chọn nó làm root split → các cây tương quan cao (<code>ρ</code> lớn) → trung bình hoá không giúp nhiều. Đây là lý do sinh ra Random Forest.</p>
+</section>
+</section>
+<section id="random-forest" class="level2">
+<h2 class="anchored" data-anchor-id="random-forest">2. Random Forest</h2>
+<p><strong>RF = Bagging + Feature Randomness</strong>: tại <strong>mỗi split</strong>, chỉ xét ngẫu nhiên <code>m</code> đặc trưng (thay vì tất cả <code>p</code>) → đặc trưng dominant không phải lúc nào cũng được xét → cây khác nhau hơn → <code>ρ</code> giảm → <strong>variance giảm mạnh hơn</strong>.</p>
+<p>Chọn <code>m</code> (<code>max_features</code>):</p>
+<ul>
+<li>Classification: <code>m = √p</code> (mặc định)</li>
+<li>Regression: <code>m = p/3</code></li>
+<li><code>m</code> nhỏ → đa dạng, <code>ρ</code> thấp, nhưng mỗi cây yếu hơn (bias tăng chút) → trade-off.</li>
+</ul>
+<p>Hai lớp ngẫu nhiên: ① bootstrap (data), ② random feature subset (split).</p>
+<section id="oob-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="oob-evaluation">OOB Evaluation</h3>
+<p>Với mỗi mẫu <code>xᵢ</code>: dùng các cây <strong>không</strong> chứa <code>xᵢ</code> trong bootstrap (~36.8% cây) để dự đoán → so với nhãn thật → OOB score ≈ ước lượng test error <strong>không cần validation set riêng</strong>. Rẻ hơn CV, nhưng CV chính xác hơn và dùng được cho mọi model.</p>
+</section>
+<section id="feature-importance" class="level3">
+<h3 class="anchored" data-anchor-id="feature-importance">Feature importance</h3>
+<ul>
+<li><strong>MDI (Gini importance)</strong>: tổng mức giảm impurity mỗi khi đặc trưng được dùng để split. Nhanh, <code>model.feature_importances_</code> — nhưng <strong>thiên vị high-cardinality</strong>.</li>
+<li><strong>Permutation importance</strong>: xáo trộn một cột trên test, đo mức giảm hiệu năng. Không thiên vị, dùng cho mọi model. Nên dùng <strong>cả hai và so sánh</strong>. Xem <a href="../../../courses/machine-learning/lectures/regularization-feature-selection.html">L08 §4</a>.</li>
+</ul>
+</section>
+<section id="khi-nào-dùng" class="level3">
+<h3 class="anchored" data-anchor-id="khi-nào-dùng">Khi nào dùng</h3>
+<p>RF = <strong>“go-to baseline” cho tabular data</strong>: hiệu suất cao, ít tuning, không cần scaling, robust với outlier, khó overfit khi tăng <code>B</code>. Nhược: chậm hơn cây đơn, black-box, tốn memory, thường kém XGBoost một chút.</p>
+</section>
+</section>
+<section id="boosting-adaboost" class="level2">
+<h2 class="anchored" data-anchor-id="boosting-adaboost">3. Boosting &amp; AdaBoost</h2>
+<p><strong>Weak learner</strong> = model chỉ cần accuracy &gt; 50% (ví dụ decision stump — cây <code>depth=1</code>). Boosting: mỗi model sau <strong>tập trung vào phần model trước làm sai</strong>.</p>
+<section id="adaboost-freund-schapire-1996" class="level3">
+<h3 class="anchored" data-anchor-id="adaboost-freund-schapire-1996">AdaBoost (Freund &amp; Schapire, 1996)</h3>
+<p>Tăng trọng số các mẫu bị phân loại <strong>sai</strong> → model tiếp theo “chú ý” vào mẫu khó.</p>
+<pre><code>1. Khởi tạo wᵢ = 1/n
+2. Train weak learner hₜ với trọng số wᵢ; tính weighted error εₜ = Σ wᵢ·I[yᵢ ≠ hₜ(xᵢ)]
+3. Trọng số model:  αₜ = ½ ln((1−εₜ)/εₜ)
+4. Cập nhật trọng số mẫu:  sai → wᵢ·e^{+αₜ} (tăng),  đúng → wᵢ·e^{−αₜ} (giảm);  chuẩn hoá lại
+Kết quả: H(x) = sign( Σ αₜ·hₜ(x) )</code></pre>
+<ul>
+<li><code>ε → 0</code> → <code>α → ∞</code> (tin tưởng tuyệt đối); <code>ε = 0.5</code> → <code>α = 0</code> (bỏ qua).</li>
+<li>Ưu: ít hyperparameter, tự chọn <code>α</code> (không cần tune learning rate), lý thuyết vững (Gödel Prize 2003).</li>
+<li>Nhược: <strong>nhạy noise &amp; outlier</strong> (mẫu nhiễu bị đẩy trọng số tăng mãi); chỉ exponential loss.</li>
+</ul>
+</section>
+</section>
+<section id="gradient-boosting-friedman-2001" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-boosting-friedman-2001">4. Gradient Boosting (Friedman, 2001)</h2>
+<p>Thay vì reweight mẫu, <strong>fit model mới vào phần dư (residuals)</strong> của model trước → hoạt động với <strong>bất kỳ loss khả vi nào</strong>.</p>
+<pre><code>F₀ = argmin_c Σ L(yᵢ, c)              (ví dụ MSE: F₀ = mean(y))
+For m = 1..M:
+    rᵢ = −∂L(yᵢ, F(xᵢ))/∂F(xᵢ)        ← pseudo-residual = negative gradient
+    fit cây hₘ vào rᵢ
+    Fₘ = Fₘ₋₁ + η · hₘ</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Loss</th>
+<th>Pseudo-residual</th>
+<th>Dùng cho</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MSE <code>½(y−F)²</code></td>
+<td><code>y − F</code> (residual thường)</td>
+<td>regression</td>
+</tr>
+<tr class="even">
+<td>MAE <code>\|y−F\|</code></td>
+<td><code>sign(y − F)</code></td>
+<td>regression robust</td>
+</tr>
+<tr class="odd">
+<td>Log loss</td>
+<td><code>y − p</code></td>
+<td>classification</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Vì sao gọi “Gradient”:</strong> pseudo-residual <code>−∂L/∂F</code> chính là negative gradient của loss trong <strong>function space</strong> → mỗi cây = một bước gradient descent, nhưng tối ưu <em>hàm</em> <code>F</code> thay vì <em>tham số</em>.</p>
+<section id="learning-rate-regularization" class="level3">
+<h3 class="anchored" data-anchor-id="learning-rate-regularization">Learning rate &amp; regularization</h3>
+<ul>
+<li><strong>Shrinkage <code>η</code></strong> (0.01–0.3): <code>η</code> nhỏ → mỗi cây đóng góp ít → cần nhiều cây, nhưng tổng quát hoá tốt hơn. Trade-off tốt nhất: <code>η</code> nhỏ + <code>n_estimators</code> lớn + <strong>early stopping</strong>.</li>
+<li><strong>Subsample</strong> (0.5–0.8): stochastic GB, như bagging.</li>
+<li><code>max_depth</code> 3–6 (giới hạn độ sâu tương tác), <code>min_samples_leaf</code> ≥ 5–20.</li>
+</ul>
+<p><strong>Overfit risk cao</strong> hơn bagging → cần <code>η</code> nhỏ + early stopping.</p>
+</section>
+</section>
+<section id="xgboost-chen-guestrin-2016" class="level2">
+<h2 class="anchored" data-anchor-id="xgboost-chen-guestrin-2016">5. XGBoost (Chen &amp; Guestrin, 2016)</h2>
+<p>GB + 3 cải tiến:</p>
+<section id="regularized-objective" class="level3">
+<h3 class="anchored" data-anchor-id="regularized-objective">① Regularized objective</h3>
+<pre><code>Obj = Σ L(yᵢ, ŷᵢ) + Σ Ω(fₜ)      với  Ω(f) = γ·T + ½λ·Σ wⱼ²</code></pre>
+<p><code>T</code> = số lá, <code>w</code> = giá trị lá, <code>γ</code> = phạt thêm lá, <code>λ</code> = L2 trên giá trị lá. GB truyền thống <strong>không có</strong> số hạng này.</p>
+</section>
+<section id="newtons-method-taylor-bậc-2" class="level3">
+<h3 class="anchored" data-anchor-id="newtons-method-taylor-bậc-2">② Newton’s method (Taylor bậc 2)</h3>
+<pre><code>L(yᵢ, ŷᵢ + fₜ) ≈ L(yᵢ, ŷᵢ) + gᵢ·fₜ + ½·hᵢ·fₜ²</code></pre>
+<p><code>gᵢ = ∂L/∂ŷ</code> (gradient), <code>hᵢ = ∂²L/∂ŷ²</code> (hessian). GB chỉ dùng bậc 1; XGBoost dùng cả <strong>hessian</strong> → thông tin độ cong → ít vòng lặp hơn, mỗi split chính xác hơn.</p>
+<p><strong>Split gain:</strong></p>
+<pre><code>Gain = ½ [ G²L/(HL+λ) + G²R/(HR+λ) − (GL+GR)²/(HL+HR+λ) ] − γ</code></pre>
+<p><code>Gain ≤ 0</code> → <strong>không split</strong> → post-pruning tự động (GB truyền thống chỉ pre-prune bằng <code>max_depth</code>).</p>
+</section>
+<section id="engineering" class="level3">
+<h3 class="anchored" data-anchor-id="engineering">③ Engineering</h3>
+<p>Column block (cache-friendly), sparsity-aware (tự xử lý missing value — chọn hướng mặc định), column subsampling (<code>colsample_bytree</code>), parallel split finding, out-of-core. → nhanh hơn GB truyền thống 10×+.</p>
+</section>
+<section id="hyperparameter-chính" class="level3">
+<h3 class="anchored" data-anchor-id="hyperparameter-chính">Hyperparameter chính</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tham số</th>
+<th>Range</th>
+<th>Khuyến nghị</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>learning_rate</code> (η)</td>
+<td>0.01–0.3</td>
+<td>0.05–0.1 + early stopping</td>
+</tr>
+<tr class="even">
+<td><code>max_depth</code></td>
+<td>3–10</td>
+<td>3–6 (tabular)</td>
+</tr>
+<tr class="odd">
+<td><code>subsample</code></td>
+<td>0.5–1.0</td>
+<td>0.7–0.8</td>
+</tr>
+<tr class="even">
+<td><code>colsample_bytree</code></td>
+<td>0.5–1.0</td>
+<td>0.7–0.8</td>
+</tr>
+<tr class="odd">
+<td><code>reg_lambda</code> (λ, L2)</td>
+<td>0–10</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td><code>gamma</code> (γ)</td>
+<td>0–5</td>
+<td>0, tăng nếu overfit</td>
+</tr>
+<tr class="odd">
+<td><code>n_estimators</code></td>
+<td>100–1000</td>
+<td>dùng early stopping</td>
+</tr>
+</tbody>
+</table>
+<p>Chiến lược: ① fix <code>η=0.1</code>, tune <code>max_depth</code> + <code>subsample</code> → ② tìm <code>n_estimators</code> qua early stopping → ③ tune <code>reg_lambda</code>, <code>colsample</code> → ④ giảm <code>η</code>, tăng <code>n_estimators</code>.</p>
+</section>
+</section>
+<section id="bảng-so-sánh" class="level2">
+<h2 class="anchored" data-anchor-id="bảng-so-sánh">6. Bảng so sánh</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Bagging</th>
+<th>Random Forest</th>
+<th>AdaBoost</th>
+<th>Gradient Boost</th>
+<th>XGBoost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kiểu</td>
+<td>song song</td>
+<td>song song</td>
+<td>nối tiếp</td>
+<td>nối tiếp</td>
+<td>nối tiếp</td>
+</tr>
+<tr class="even">
+<td>Giảm</td>
+<td>variance</td>
+<td>variance</td>
+<td>bias</td>
+<td>bias</td>
+<td>bias</td>
+</tr>
+<tr class="odd">
+<td>Base learner</td>
+<td>cây sâu</td>
+<td>cây sâu</td>
+<td>stump</td>
+<td>cây nông</td>
+<td>cây nông</td>
+</tr>
+<tr class="even">
+<td>Regularization</td>
+<td>không</td>
+<td>feature subset</td>
+<td>α weights</td>
+<td>η, subsample</td>
+<td>η, λ, γ, α</td>
+</tr>
+<tr class="odd">
+<td>Missing values</td>
+<td>impute</td>
+<td>impute</td>
+<td>impute</td>
+<td>impute</td>
+<td><strong>tự động</strong></td>
+</tr>
+<tr class="even">
+<td>Overfit risk</td>
+<td>thấp</td>
+<td>thấp</td>
+<td>trung bình</td>
+<td>cao</td>
+<td>trung bình</td>
+</tr>
+<tr class="odd">
+<td>Tốc độ train</td>
+<td>nhanh</td>
+<td>nhanh</td>
+<td>trung bình</td>
+<td>chậm</td>
+<td>nhanh</td>
+</tr>
+<tr class="even">
+<td>Accuracy điển hình</td>
+<td>trung bình</td>
+<td>cao</td>
+<td>cao</td>
+<td>rất cao</td>
+<td>rất cao</td>
+</tr>
+</tbody>
+</table>
+<p>Thứ tự accuracy điển hình trên tabular: <strong>DT &lt; Bagging &lt; RF ≈ AdaBoost &lt; GB &lt; XGBoost</strong>.</p>
+</section>
+<section id="chọn-cái-nào" class="level2">
+<h2 class="anchored" data-anchor-id="chọn-cái-nào">7. Chọn cái nào</h2>
+<ul>
+<li>Baseline nhanh, ít tuning → <strong>Random Forest</strong>.</li>
+<li>Accuracy tối đa trên tabular → <strong>XGBoost / LightGBM</strong> + GridSearchCV.</li>
+<li>Dữ liệu rất lớn (&gt; 1M dòng) → <strong>LightGBM</strong> (GOSS + EFB).</li>
+<li>Cần giải thích → <strong>cây đơn</strong> hoặc RF + feature importance.</li>
+<li>Data ít noise, muốn đơn giản → AdaBoost.</li>
+</ul>
+<p><em>Luôn bắt đầu đơn giản: thử RF baseline trước, cần hơn thì chuyển XGBoost.</em></p>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">8. Tóm tắt</h2>
+<ul>
+<li><strong>Bagging</strong> = bootstrap + trung bình hoá → giảm <strong>variance</strong> (giới hạn dưới <code>ρσ²</code>).</li>
+<li><strong>Random Forest</strong> = Bagging + random feature subset mỗi split → giảm <code>ρ</code> → variance giảm mạnh hơn; <strong>OOB</strong> cho ước lượng test miễn phí; go-to baseline.</li>
+<li><strong>Boosting</strong> = train nối tiếp, sửa lỗi model trước → giảm <strong>bias</strong>. <strong>AdaBoost</strong> reweight mẫu sai (nhạy noise); <strong>Gradient Boosting</strong> fit vào residual = negative gradient trong function space (mọi loss khả vi).</li>
+<li><strong>XGBoost</strong> = GB + regularized objective + Newton bậc 2 (hessian) + engineering → nhanh &amp; mạnh, chuẩn vàng tabular.</li>
+<li>Bagging: <code>η</code> không có, tăng <code>B</code> an toàn. Boosting: cần <code>η</code> nhỏ + early stopping vì dễ overfit.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

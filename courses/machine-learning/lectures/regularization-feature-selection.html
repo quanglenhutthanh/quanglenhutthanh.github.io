@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-31">
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>Regularization &amp; Feature Selection – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,25 +30,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-eb8f38d337554339cdec0850d440664f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-eb8f38d337554339cdec0850d440664f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,79 +74,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lectures .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lectures'] = new List('listing-lectures', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -158,7 +85,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
@@ -169,15 +96,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../courses/index.html"> 
+    <a class="nav-link" href="../../../courses/index.html"> 
 <span class="menu-text">Learning Space</span></a>
   </li>  
 </ul>
@@ -203,10 +130,30 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#regularization-feature-selection" id="toc-regularization-feature-selection" class="nav-link active" data-scroll-target="#regularization-feature-selection">Regularization &amp; Feature Selection</a>
+  <ul class="collapse">
+  <li><a href="#tiền-xử-lý-điều-kiện-cần" id="toc-tiền-xử-lý-điều-kiện-cần" class="nav-link" data-scroll-target="#tiền-xử-lý-điều-kiện-cần">1. Tiền xử lý (điều kiện cần)</a>
+  <ul class="collapse">
+  <li><a href="#dữ-liệu-thiếu" id="toc-dữ-liệu-thiếu" class="nav-link" data-scroll-target="#dữ-liệu-thiếu">1.1. Dữ liệu thiếu</a></li>
+  <li><a href="#chuẩn-hoá-feature-scaling" id="toc-chuẩn-hoá-feature-scaling" class="nav-link" data-scroll-target="#chuẩn-hoá-feature-scaling">1.2. Chuẩn hoá (feature scaling)</a></li>
+  <li><a href="#mã-hoá-biến-phân-loại" id="toc-mã-hoá-biến-phân-loại" class="nav-link" data-scroll-target="#mã-hoá-biến-phân-loại">1.3. Mã hoá biến phân loại</a></li>
+  </ul></li>
+  <li><a href="#overfitting-biasvariance" id="toc-overfitting-biasvariance" class="nav-link" data-scroll-target="#overfitting-biasvariance">2. Overfitting &amp; Bias–Variance</a></li>
+  <li><a href="#hướng-1-regularization" id="toc-hướng-1-regularization" class="nav-link" data-scroll-target="#hướng-1-regularization">3. Hướng 1 — Regularization</a>
+  <ul class="collapse">
+  <li><a href="#ridge-l2" id="toc-ridge-l2" class="nav-link" data-scroll-target="#ridge-l2">Ridge (L2)</a></li>
+  <li><a href="#lasso-l1" id="toc-lasso-l1" class="nav-link" data-scroll-target="#lasso-l1">Lasso (L1)</a></li>
+  <li><a href="#elastic-net-l1-l2" id="toc-elastic-net-l1-l2" class="nav-link" data-scroll-target="#elastic-net-l1-l2">Elastic Net (L1 + L2)</a></li>
+  <li><a href="#chọn-λ" id="toc-chọn-λ" class="nav-link" data-scroll-target="#chọn-λ">Chọn λ</a></li>
+  </ul></li>
+  <li><a href="#hướng-2-feature-selection" id="toc-hướng-2-feature-selection" class="nav-link" data-scroll-target="#hướng-2-feature-selection">4. Hướng 2 — Feature Selection</a>
+  <ul class="collapse">
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">Filter</a></li>
+  <li><a href="#wrapper" id="toc-wrapper" class="nav-link" data-scroll-target="#wrapper">Wrapper</a></li>
+  <li><a href="#embedded" id="toc-embedded" class="nav-link" data-scroll-target="#embedded">Embedded</a></li>
+  </ul></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">5. Tóm tắt</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -215,8 +162,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">Regularization &amp; Feature Selection</h1>
 </div>
 
 
@@ -224,6 +170,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 31, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -233,252 +185,251 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with the two pieces every model shares — the loss function it minimizes and the Gradient Descent that minimizes it — and how to evaluate classifiers properly (confusion matrix → accuracy, precision/recall, ROC-AUC, PR-AUC, F1), plus the practical data concerns that break offline metrics: class imbalance, distribution shift, and data leakage. It then works through the core supervised algorithms — linear and logistic regression, regularization &amp; feature selection, decision trees, ensemble methods (bagging, Random Forest, boosting, XGBoost) — and closes with neural networks (forward pass + backpropagation) as the bridge to Deep Learning.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below): the from-scratch implementations of linear regression, logistic regression, decision trees, and neural networks, plus two end-to-end capstone projects — one on dirty multi-table data with leakage-safe feature engineering, one on predictive maintenance under distribution shift.</p>
-</section>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<div id="listing-lectures" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-lectures-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-lectures'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Topic
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Tags
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1785024000000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2316" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="gradient-descent.md">
-<td>
-<span class="listing-lecture_no">1</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/gradient-descent.html" class="title listing-title">Gradient Descent</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788878897332" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2455" data-listing-title-sort="Classification Metrics" data-listing-filename-sort="classification-metrics.md">
-<td>
-<span class="listing-lecture_no">2</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/classification-metrics.html" class="title listing-title">Classification Metrics</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">metrics, classification, confusion-matrix, accuracy, precision, recall, roc-auc, pr-auc, f1</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3259" data-listing-title-sort="Class Imbalance &amp; Distribution Shift" data-listing-filename-sort="data-imbalance-shift.md">
-<td>
-<span class="listing-lecture_no">3</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-imbalance-shift.html" class="title listing-title">Class Imbalance &amp; Distribution Shift</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">eda, data, class-imbalance, distribution-shift, resampling, monitoring, drift, censoring, psi, importance-weighting</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1120" data-listing-title-sort="Data Leakage &amp; Kiểm định theo thời gian" data-listing-filename-sort="data-leakage-validation.md">
-<td>
-<span class="listing-lecture_no">4</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-leakage-validation.html" class="title listing-title">Data Leakage &amp; Kiểm định theo thời gian</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">data-leakage, validation, cross-validation, time-based-split, feature-engineering, pipeline</span>
-</td>
-
-</tr>
-
-<tr data-index="4" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1340" data-listing-title-sort="Loss Functions" data-listing-filename-sort="loss-functions.md">
-<td>
-<span class="listing-lecture_no">5</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/loss-functions.html" class="title listing-title">Loss Functions</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">loss, mse, mae, huber, cross-entropy, hinge, maximum-likelihood, regularization</span>
-</td>
-
-</tr>
-
-<tr data-index="5" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1140" data-listing-title-sort="Linear Regression" data-listing-filename-sort="linear-regression.md">
-<td>
-<span class="listing-lecture_no">6</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/linear-regression.html" class="title listing-title">Linear Regression</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">linear-regression, mse, normal-equation, gradient-descent, r-squared, multicollinearity, assumptions</span>
-</td>
-
-</tr>
-
-<tr data-index="6" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="804" data-listing-title-sort="Logistic Regression" data-listing-filename-sort="logistic-regression.md">
-<td>
-<span class="listing-lecture_no">7</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/logistic-regression.html" class="title listing-title">Logistic Regression</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">logistic-regression, sigmoid, softmax, cross-entropy, log-odds, decision-threshold, multiclass</span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1224" data-listing-title-sort="Regularization &amp; Feature Selection" data-listing-filename-sort="regularization-feature-selection.md">
-<td>
-<span class="listing-lecture_no">8</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/regularization-feature-selection.html" class="title listing-title">Regularization &amp; Feature Selection</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">regularization, ridge, lasso, elastic-net, feature-selection, bias-variance, overfitting, preprocessing</span>
-</td>
-
-</tr>
-
-<tr data-index="8" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="996" data-listing-title-sort="Decision Tree" data-listing-filename-sort="decision-tree.md">
-<td>
-<span class="listing-lecture_no">9</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/decision-tree.html" class="title listing-title">Decision Tree</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">decision-tree, gini, entropy, information-gain, cart, overfitting, pruning, cross-validation, hyperparameter-tuning</span>
-</td>
-
-</tr>
-
-<tr data-index="9" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1509" data-listing-title-sort="Ensemble Methods" data-listing-filename-sort="ensemble-methods.md">
-<td>
-<span class="listing-lecture_no">10</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/ensemble-methods.html" class="title listing-title">Ensemble Methods</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">ensemble, bagging, bootstrap, random-forest, boosting, adaboost, gradient-boosting, xgboost, oob, bias-variance</span>
-</td>
-
-</tr>
-
-<tr data-index="10" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1788878897334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1514" data-listing-title-sort="Neural Networks" data-listing-filename-sort="neural-networks.md">
-<td>
-<span class="listing-lecture_no">11</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/neural-networks.html" class="title listing-title">Neural Networks</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">neural-network, mlp, perceptron, activation, forward-pass, backpropagation, chain-rule, vanishing-gradient</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-</section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
+<section id="regularization-feature-selection" class="level1">
+<h1>Regularization &amp; Feature Selection</h1>
+<p>Khi mô hình khớp tập train gần như hoàn hảo nhưng tổng quát hoá kém — <strong>overfitting</strong> — có hai hướng chữa: (1) <strong>giữ tất cả đặc trưng nhưng thu nhỏ hệ số</strong> (regularization), (2) <strong>giảm số đặc trưng</strong> (feature selection). Cả hai đều nhằm kéo mô hình về phía “đơn giản hơn”. Note này cũng điểm qua tiền xử lý dữ liệu — bước bắt buộc trước khi hai hướng trên có nghĩa.</p>
+<section id="tiền-xử-lý-điều-kiện-cần" class="level2">
+<h2 class="anchored" data-anchor-id="tiền-xử-lý-điều-kiện-cần">1. Tiền xử lý (điều kiện cần)</h2>
+<p><em>“Garbage in, garbage out”</em> — thường chiếm phần lớn thời gian một dự án ML.</p>
+<section id="dữ-liệu-thiếu" class="level3">
+<h3 class="anchored" data-anchor-id="dữ-liệu-thiếu">1.1. Dữ liệu thiếu</h3>
+<p>Ba cơ chế: <strong>MCAR</strong> (thiếu ngẫu nhiên hoàn toàn), <strong>MAR</strong> (thiếu phụ thuộc biến <em>khác</em> đã quan sát), <strong>MNAR</strong> (thiếu phụ thuộc <em>chính giá trị bị thiếu</em> → bản thân việc “bị thiếu” mang thông tin).</p>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
-<li><a href="../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist_Reorder_Timing.ipynb</code></a> — Capstone: dự đoán thời điểm đặt hàng lại của nhà thuốc từ 7 bảng dữ liệu bẩn. Làm sạch dữ liệu, thiết kế nhãn theo <em>observation horizon</em> (chống censoring bias), feature engineering <em>as-of</em> chống rò rỉ, split theo thời gian, Linear/Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC_Failure_Distribution_Shift.ipynb</code></a> — Capstone: dự đoán hỏng máy CNC khi train (dây chuyền A) và test (dây chuyền B) lệch phân phối. Phát hiện shift bằng PSI + KS + drift classifier, xử lý bằng importance reweighting &amp; threshold calibration, feature cơ học kháng shift, so sánh 3 mô hình.</li>
+<li><strong>Xoá</strong>: bỏ cột nếu thiếu &gt; 50–60%; bỏ hàng nếu thiếu ít và ngẫu nhiên.</li>
+<li><strong>Điền (impute)</strong>: mean/median/mode, KNN, Iterative (MICE). Thống kê điền phải tính <strong>chỉ trên train</strong> — <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">L04</a>.</li>
+<li><strong>Cờ <code>is_missing</code></strong>: khi MNAR — giữ tín hiệu thay vì xoá.</li>
 </ul>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
+<section id="chuẩn-hoá-feature-scaling" class="level3">
+<h3 class="anchored" data-anchor-id="chuẩn-hoá-feature-scaling">1.2. Chuẩn hoá (feature scaling)</h3>
+<p>Đặc trưng khác thang đo (Tuổi 0–100 vs Thu nhập hàng triệu) khiến biến lớn lấn át khi tính khoảng cách/gradient. <strong>Bị ảnh hưởng:</strong> kNN, SVM, Gradient Descent, <strong>Regularization</strong>, PCA. <strong>Không cần:</strong> cây quyết định / Random Forest.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cách</th>
+<th>Kết quả</th>
+<th>Bền outlier?</th>
+<th>Khi nào</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Standardization</strong> (z-score)</td>
+<td>mean 0, std 1</td>
+<td>khá</td>
+<td>mặc định (mô hình tuyến tính, SVM, NN)</td>
+</tr>
+<tr class="even">
+<td><strong>Min-Max</strong></td>
+<td>ép về [0, 1]</td>
+<td>kém</td>
+<td>cần biên rõ ràng (ảnh, NN)</td>
+</tr>
+<tr class="odd">
+<td><strong>Robust</strong> (median/IQR)</td>
+<td>theo trung vị &amp; IQR</td>
+<td>tốt</td>
+<td>dữ liệu nhiều outlier</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mã-hoá-biến-phân-loại" class="level3">
+<h3 class="anchored" data-anchor-id="mã-hoá-biến-phân-loại">1.3. Mã hoá biến phân loại</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cách</th>
+<th>Ý tưởng</th>
+<th>Phù hợp</th>
+<th>Lưu ý</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>One-Hot</strong></td>
+<td>mỗi hạng mục → 1 cột nhị phân</td>
+<td>biến danh nghĩa (không thứ tự)</td>
+<td>tăng số chiều nếu nhiều hạng mục</td>
+</tr>
+<tr class="even">
+<td><strong>Label / Ordinal</strong></td>
+<td>gán số nguyên theo thứ tự</td>
+<td>biến CÓ thứ tự (Nhỏ&lt;Vừa&lt;Lớn)</td>
+<td>đừng dùng cho biến danh nghĩa</td>
+</tr>
+<tr class="odd">
+<td><strong>Target / Mean</strong></td>
+<td>thay bằng trung bình <code>y</code> của hạng mục</td>
+<td>high-cardinality</td>
+<td>dễ <strong>rò rỉ</strong> → cần cross-validation</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="overfitting-biasvariance" class="level2">
+<h2 class="anchored" data-anchor-id="overfitting-biasvariance">2. Overfitting &amp; Bias–Variance</h2>
+<ul>
+<li><strong>Bias</strong> (độ chệch): chênh giữa kỳ vọng học được và sự thật — <strong>giảm</strong> khi mô hình phức tạp hơn.</li>
+<li><strong>Variance</strong> (phương sai): độ nhạy với tập dữ liệu cụ thể — <strong>tăng</strong> khi mô hình phức tạp hơn.</li>
+<li>Dưới khớp = bias cao; quá khớp = variance cao.</li>
+<li>Tổng lỗi = <code>bias² + variance + nhiễu</code> → có dạng <strong>chữ U</strong> theo độ phức tạp → tồn tại độ phức tạp “vừa phải” tối ưu.</li>
+</ul>
+</section>
+<section id="hướng-1-regularization" class="level2">
+<h2 class="anchored" data-anchor-id="hướng-1-regularization">3. Hướng 1 — Regularization</h2>
+<p>Thêm số hạng phạt độ lớn hệ số vào hàm chi phí: <code>J_reg = J_data + λ · R(θ)</code>. Hệ số nhỏ → đường cong mượt hơn → giả thuyết đơn giản hơn → bớt overfit. <code>θ₀</code> (hệ số chặn) <strong>không bị phạt</strong>.</p>
+<section id="ridge-l2" class="level3">
+<h3 class="anchored" data-anchor-id="ridge-l2">Ridge (L2)</h3>
+<pre><code>R(θ) = Σ θⱼ²</code></pre>
+<p>Co nhỏ mọi hệ số (không về đúng 0). Có <strong>nghiệm dạng đóng</strong>. Xử lý tốt đa cộng tuyến. Trong gradient descent, L2 tương đương <strong>weight decay</strong>: mỗi bước nhân hệ số với <code>(1 − αλ/n) &lt; 1</code> trước khi cập nhật theo gradient.</p>
+</section>
+<section id="lasso-l1" class="level3">
+<h3 class="anchored" data-anchor-id="lasso-l1">Lasso (L1)</h3>
+<pre><code>R(θ) = Σ |θⱼ|</code></pre>
+<p><em>Least Absolute Shrinkage and Selection Operator.</em> Hình học L1 (hình thoi, có góc nhọn trên trục) đẩy nhiều hệ số về <strong>đúng 0</strong> → <strong>chọn biến tự động</strong>. Không có nghiệm đóng (giải bằng lặp).</p>
+</section>
+<section id="elastic-net-l1-l2" class="level3">
+<h3 class="anchored" data-anchor-id="elastic-net-l1-l2">Elastic Net (L1 + L2)</h3>
+<p>Kết hợp: L1 cho tính <strong>thưa</strong> (chọn biến) + L2 cho tính <strong>ổn định</strong> (xử lý nhóm biến tương quan). <code>α</code> điều phối: <code>α = 1</code> → Lasso thuần, <code>α = 0</code> → Ridge thuần. Tốt khi có nhiều đặc trưng tương quan theo nhóm — Lasso thuần dễ chọn lệch một biến tuỳ ý trong nhóm.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tiêu chí</th>
+<th>Ridge (L2)</th>
+<th>Lasso (L1)</th>
+<th>Elastic Net</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Phạt</td>
+<td><code>Σθⱼ²</code></td>
+<td><code>Σ\|θⱼ\|</code></td>
+<td><code>α·L1 + (1−α)·L2</code></td>
+</tr>
+<tr class="even">
+<td>Đưa hệ số về 0?</td>
+<td>không</td>
+<td>có (thưa)</td>
+<td>có</td>
+</tr>
+<tr class="odd">
+<td>Chọn biến</td>
+<td>không</td>
+<td>có</td>
+<td>có</td>
+</tr>
+<tr class="even">
+<td>Đa cộng tuyến</td>
+<td>tốt</td>
+<td>kém (chọn 1 tuỳ ý)</td>
+<td>tốt</td>
+</tr>
+<tr class="odd">
+<td>Nghiệm</td>
+<td>dạng đóng</td>
+<td>lặp</td>
+<td>lặp</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="chọn-λ" class="level3">
+<h3 class="anchored" data-anchor-id="chọn-λ">Chọn λ</h3>
+<p><code>λ</code> quá lớn → mọi <code>θⱼ ≈ 0</code> → đường ngang → <strong>dưới khớp</strong>. <code>λ</code> quá nhỏ → phạt yếu → vẫn overfit. Chọn bằng <strong>cross-validation</strong> (<code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>). Xem <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">L04</a>.</p>
+<p>Regularization áp dụng y hệt cho <a href="../../../courses/machine-learning/lectures/logistic-regression.html">logistic regression</a> — thêm phạt vào log loss, ranh giới quyết định mượt hơn.</p>
+</section>
+</section>
+<section id="hướng-2-feature-selection" class="level2">
+<h2 class="anchored" data-anchor-id="hướng-2-feature-selection">4. Hướng 2 — Feature Selection</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nhóm</th>
+<th>Ý tưởng</th>
+<th>Ưu / Nhược</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Filter</strong></td>
+<td>đánh giá đặc trưng <strong>độc lập</strong> với mô hình, dựa trên thống kê</td>
+<td>nhanh, rẻ / bỏ qua tương tác</td>
+<td>Variance, Correlation, χ², Mutual Information</td>
+</tr>
+<tr class="even">
+<td><strong>Wrapper</strong></td>
+<td>dùng <strong>hiệu năng mô hình</strong> để chọn tập đặc trưng tốt nhất</td>
+<td>chính xác / rất tốn thời gian</td>
+<td>Forward/Backward, RFE, Boruta, mRMR</td>
+</tr>
+<tr class="odd">
+<td><strong>Embedded</strong></td>
+<td>chọn đặc trưng <strong>ngay trong lúc huấn luyện</strong></td>
+<td>cân bằng</td>
+<td>Lasso (L1), Random Forest importance</td>
+</tr>
+</tbody>
+</table>
+<section id="filter" class="level3">
+<h3 class="anchored" data-anchor-id="filter">Filter</h3>
+<ul>
+<li><strong>Missing ratio / Low variance</strong>: đặc trưng thiếu quá nhiều hoặc gần như hằng số → loại. (<code>VarianceThreshold</code>; nhớ chuẩn hoá trước vì phương sai phụ thuộc thang đo.)</li>
+<li><strong>High correlation</strong>: cặp biến tương quan cao → thông tin trùng → giữ một. Kiểm định theo kiểu cặp: Pearson/Spearman (số–số), χ² (phân loại–phân loại), ANOVA F (số–phân loại).</li>
+<li><strong>Mutual Information</strong>: đo thông tin chia sẻ giữa đặc trưng và <code>y</code>. Bắt được quan hệ <strong>phi tuyến</strong> (ví dụ <code>y = x²</code>: Pearson ≈ 0 nhưng MI &gt; 0). <code>MI ≥ 0</code>; <code>MI = 0</code> ⇔ độc lập.</li>
+</ul>
+</section>
+<section id="wrapper" class="level3">
+<h3 class="anchored" data-anchor-id="wrapper">Wrapper</h3>
+<ul>
+<li><strong>Forward selection</strong>: bắt đầu rỗng, thêm dần biến làm tăng hiệu năng nhiều nhất.</li>
+<li><strong>Backward elimination</strong>: bắt đầu với toàn bộ biến, bỏ dần biến ít ảnh hưởng.</li>
+<li><strong>RFE / RFECV</strong>: lặp loại đệ quy các đặc trưng yếu nhất theo trọng số mô hình; RFECV tự chọn <em>số</em> đặc trưng tối ưu bằng CV.</li>
+<li><strong>Boruta</strong>: so importance biến thật với “shadow features” (bản xáo trộn). <strong>mRMR</strong>: Max-Relevance, Min-Redundancy.</li>
+</ul>
+<p>Cả forward/backward đều <strong>tốn thời gian</strong> — phải huấn luyện lại nhiều lần.</p>
+</section>
+<section id="embedded" class="level3">
+<h3 class="anchored" data-anchor-id="embedded">Embedded</h3>
+<ul>
+<li><strong>Lasso (L1)</strong>: hệ số = 0 → biến bị loại tự động (<code>SelectFromModel</code>; <code>LassoCV</code> tự dò <code>α</code>).</li>
+<li><strong>RF <code>feature_importances_</code></strong> (Mean Decrease in Impurity): nhanh, có sẵn — nhưng <strong>thiên vị đặc trưng nhiều giá trị</strong> (high-cardinality). Xem thêm <a href="../../../courses/machine-learning/lectures/ensemble-methods.html">L10</a>.</li>
+<li><strong>Permutation Importance</strong>: xáo trộn một cột, đo mức <strong>giảm hiệu năng</strong> — không thiên vị, dùng cho mọi mô hình, đo trên test. Cặp đề xuất: RF (nhanh, khám phá) + Permutation (đáng tin, kết luận); SHAP để giải thích từng dự đoán.</li>
+</ul>
+</section>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">5. Tóm tắt</h2>
+<ul>
+<li><strong>Tiền xử lý bắt buộc</strong>: xử lý thiếu (xoá / điền / cờ), chuẩn hoá (z-score / min-max / robust), mã hoá đúng kiểu (one-hot / ordinal / target).</li>
+<li><strong>Overfitting</strong> = khớp train tốt, tổng quát kém (variance cao) → cân bằng bias–variance (đường chữ U).</li>
+<li><strong>Regularization</strong>: <strong>Ridge (L2)</strong> co nhỏ hệ số, ổn định với đa cộng tuyến; <strong>Lasso (L1)</strong> đưa hệ số về đúng 0 → chọn biến; <strong>Elastic Net</strong> kết hợp cả hai. Chọn <code>λ</code> bằng CV.</li>
+<li><strong>Feature selection</strong>: <strong>Filter</strong> (thống kê, nhanh, có MI bắt phi tuyến), <strong>Wrapper</strong> (theo hiệu năng, chậm), <strong>Embedded</strong> (Lasso, RF/Permutation importance).</li>
+</ul>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->
