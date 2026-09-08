@@ -10,19 +10,6 @@
     ]
   },
   {
-    "listing": "/courses/index.html",
-    "items": [
-      "/courses/deep-learning/index.html",
-      "/courses/frontier-transformation-engineer/index.html",
-      "/courses/image-and-video-processing/index.html",
-      "/courses/machine-learning/index.html"
-    ]
-  },
-  {
-    "listing": "/courses/deep-learning/index.html",
-    "items": []
-  },
-  {
     "listing": "/courses/frontier-transformation-engineer/index.html",
     "items": [
       "/courses/frontier-transformation-engineer/lectures/program-overview.html",
@@ -30,8 +17,24 @@
       "/courses/frontier-transformation-engineer/lectures/build-ai-agents-foundry.html",
       "/courses/frontier-transformation-engineer/lectures/ai-103-exam-review.html",
       "/courses/frontier-transformation-engineer/lectures/ai-103-exam-use-cases.html",
+      "/courses/frontier-transformation-engineer/lectures/ab-100-exam-review.html",
       "/courses/frontier-transformation-engineer/lectures/gh-300-exam-review.html",
+      "/courses/frontier-transformation-engineer/lectures/ab-100-final-mock.html",
+      "/courses/frontier-transformation-engineer/lectures/ab-100-final-mock-2.html",
       "/courses/frontier-transformation-engineer/lectures/gh-300-exam-use-cases.html"
+    ]
+  },
+  {
+    "listing": "/courses/deep-learning/index.html",
+    "items": []
+  },
+  {
+    "listing": "/courses/index.html",
+    "items": [
+      "/courses/deep-learning/index.html",
+      "/courses/frontier-transformation-engineer/index.html",
+      "/courses/image-and-video-processing/index.html",
+      "/courses/machine-learning/index.html"
     ]
   },
   {
