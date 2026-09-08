@@ -298,6 +298,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Đa lớp: <code>L = −Σ_k y_k log(p_k)</code> với <code>p = softmax(z)</code>.</li>
 <li>Tương đương maximum likelihood cho Bernoulli/Categorical (mục 2).</li>
 </ul>
+<p><strong>Vì sao không dùng MSE cho phân loại</strong> (khung của Andrew Ng): ghép <code>(σ(z) − y)²</code> với sigmoid cho ra cost <code>J</code> <strong>không lồi</strong> — mặt lởm chởm nhiều cực tiểu địa phương, gradient descent dễ kẹt. Cross-entropy được chọn <em>chính vì</em> nó kéo <code>J</code> về lại hình bát lồi → một cực tiểu toàn cục, luôn hội tụ. Xem <a href="../../../courses/machine-learning/lectures/logistic-regression.html">Logistic Regression §3</a>.</p>
 </section>
 <section id="hinge-loss-svm" class="level3">
 <h3 class="anchored" data-anchor-id="hinge-loss-svm">4.3. Hinge loss (SVM)</h3>

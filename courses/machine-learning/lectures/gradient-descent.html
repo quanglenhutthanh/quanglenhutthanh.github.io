@@ -397,6 +397,9 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Learning rate cố định suốt quá trình train là chưa tối ưu</strong>: nhiều pipeline thực tế giảm dần learning rate theo thời gian (learning rate schedule / decay) — bước đi dài lúc đầu để tiến nhanh, ngắn dần về sau để “hạ cánh” chính xác gần đáy.</li>
 <li><strong>Không chuẩn hóa (normalize) dữ liệu đầu vào</strong>: nếu các đặc trưng (feature) có thang đo chênh lệch quá lớn, bề mặt loss sẽ bị méo (giống một thung lũng dài và hẹp thay vì cái bát tròn), khiến Gradient Descent zic-zac chậm chạp thay vì đi thẳng tới đáy.</li>
 </ul>
+<blockquote class="blockquote">
+<p>Phần <strong>vận hành thực tế</strong> — feature scaling, chọn learning rate theo thang ×3, kiểm tra hội tụ bằng đường <code>J</code> theo iteration, vectorization, feature engineering — nằm ở note <a href="../../../courses/machine-learning/lectures/gradient-descent-in-practice.html">Gradient Descent in Practice</a>.</p>
+</blockquote>
 </section>
 <section id="tóm-tắt" class="level2">
 <h2 class="anchored" data-anchor-id="tóm-tắt">12. Tóm tắt</h2>

@@ -172,21 +172,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#log-odds-vì-sao-diễn-giải-được-hệ-số" id="toc-log-odds-vì-sao-diễn-giải-được-hệ-số" class="nav-link" data-scroll-target="#log-odds-vì-sao-diễn-giải-được-hệ-số">Log-odds — vì sao diễn giải được hệ số</a></li>
   </ul></li>
   <li><a href="#ngưỡng-quyết-định" id="toc-ngưỡng-quyết-định" class="nav-link" data-scroll-target="#ngưỡng-quyết-định">2. Ngưỡng quyết định</a></li>
-  <li><a href="#loss-binary-cross-entropy-không-phải-mse" id="toc-loss-binary-cross-entropy-không-phải-mse" class="nav-link" data-scroll-target="#loss-binary-cross-entropy-không-phải-mse">3. Loss — Binary Cross-Entropy, không phải MSE</a>
+  <li><a href="#loss-vs-cost-binary-cross-entropy-không-phải-mse" id="toc-loss-vs-cost-binary-cross-entropy-không-phải-mse" class="nav-link" data-scroll-target="#loss-vs-cost-binary-cross-entropy-không-phải-mse">3. Loss vs Cost — Binary Cross-Entropy, không phải MSE</a>
   <ul class="collapse">
+  <li><a href="#vì-sao-không-dùng-mse" id="toc-vì-sao-không-dùng-mse" class="nav-link" data-scroll-target="#vì-sao-không-dùng-mse">Vì sao không dùng MSE</a></li>
+  <li><a href="#logistic-loss" id="toc-logistic-loss" class="nav-link" data-scroll-target="#logistic-loss">Logistic loss</a></li>
   <li><a href="#gradient-rút-gọn-đẹp" id="toc-gradient-rút-gọn-đẹp" class="nav-link" data-scroll-target="#gradient-rút-gọn-đẹp">Gradient rút gọn đẹp</a></li>
   </ul></li>
-  <li><a href="#phân-loại-đa-lớp" id="toc-phân-loại-đa-lớp" class="nav-link" data-scroll-target="#phân-loại-đa-lớp">4. Phân loại đa lớp</a>
+  <li><a href="#decision-boundary-ranh-giới-quyết-định" id="toc-decision-boundary-ranh-giới-quyết-định" class="nav-link" data-scroll-target="#decision-boundary-ranh-giới-quyết-định">4. Decision boundary — ranh giới quyết định</a></li>
+  <li><a href="#phân-loại-đa-lớp" id="toc-phân-loại-đa-lớp" class="nav-link" data-scroll-target="#phân-loại-đa-lớp">5. Phân loại đa lớp</a>
   <ul class="collapse">
   <li><a href="#softmax-multinomial-logistic" id="toc-softmax-multinomial-logistic" class="nav-link" data-scroll-target="#softmax-multinomial-logistic">Softmax (multinomial logistic)</a></li>
   <li><a href="#one-vs-rest-vs-softmax" id="toc-one-vs-rest-vs-softmax" class="nav-link" data-scroll-target="#one-vs-rest-vs-softmax">One-vs-Rest vs Softmax</a></li>
   </ul></li>
-  <li><a href="#đánh-giá" id="toc-đánh-giá" class="nav-link" data-scroll-target="#đánh-giá">5. Đánh giá</a>
+  <li><a href="#đánh-giá" id="toc-đánh-giá" class="nav-link" data-scroll-target="#đánh-giá">6. Đánh giá</a>
   <ul class="collapse">
   <li><a href="#mất-cân-bằng-lớp" id="toc-mất-cân-bằng-lớp" class="nav-link" data-scroll-target="#mất-cân-bằng-lớp">Mất cân bằng lớp</a></li>
   </ul></li>
-  <li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization">6. Regularization</a></li>
-  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">7. Tóm tắt</a></li>
+  <li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization">7. Regularization</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">8. Tóm tắt</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -231,6 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <pre><code>p = σ(z) = 1 / (1 + e⁻ᶻ)</code></pre>
 <p>Rồi so <code>p</code> với một <strong>ngưỡng</strong> để ra nhãn 0/1.</p>
+<p><em>(Phần diễn giải decision boundary ở §4 và khung “loss vs cost” ở §3 dựa theo Machine Learning Specialization — Andrew Ng, Coursera, C1 W3.)</em></p>
 <section id="log-odds-vì-sao-diễn-giải-được-hệ-số" class="level3">
 <h3 class="anchored" data-anchor-id="log-odds-vì-sao-diễn-giải-được-hệ-số">Log-odds — vì sao diễn giải được hệ số</h3>
 <p>Nghịch đảo của sigmoid:</p>
@@ -244,20 +248,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Quy tắc: <code>p ≥ ngưỡng → lớp 1</code>. Mặc định ngưỡng = 0.5.</li>
 <li><strong>Hạ ngưỡng</strong> (0.3): bắt nhiều ca dương hơn → <strong>Recall ↑, Precision ↓</strong>.</li>
 <li><strong>Nâng ngưỡng</strong> (0.7): thận trọng hơn → <strong>Precision ↑, Recall ↓</strong>.</li>
-<li>Chọn ngưỡng theo <strong>chi phí sai lầm</strong> của bài toán, không mặc định 0.5. Chi tiết cách chọn (quét trên OOF/validation): <a href="../../../courses/machine-learning/lectures/classification-metrics.html">L02</a>, <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">L04</a>.</li>
+<li>Chọn ngưỡng theo <strong>chi phí sai lầm</strong> của bài toán, không mặc định 0.5. Chi tiết cách chọn (quét trên OOF/validation): <a href="../../../courses/machine-learning/lectures/classification-metrics.html">Classification Metrics</a>, <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">Data Leakage</a>.</li>
 </ul>
 </section>
-<section id="loss-binary-cross-entropy-không-phải-mse" class="level2">
-<h2 class="anchored" data-anchor-id="loss-binary-cross-entropy-không-phải-mse">3. Loss — Binary Cross-Entropy, không phải MSE</h2>
-<p>Nếu dùng MSE với sigmoid: mặt loss <strong>không lồi</strong> → nhiều cực tiểu địa phương, gradient descent dễ kẹt, hội tụ chậm gần 0 và 1.</p>
-<p><strong>Binary Cross-Entropy (log loss)</strong> cho một mẫu:</p>
-<pre><code>L = −[ y·log(p) + (1−y)·log(1−p) ]</code></pre>
+<section id="loss-vs-cost-binary-cross-entropy-không-phải-mse" class="level2">
+<h2 class="anchored" data-anchor-id="loss-vs-cost-binary-cross-entropy-không-phải-mse">3. Loss vs Cost — Binary Cross-Entropy, không phải MSE</h2>
+<p>Phân biệt hai từ (Andrew Ng dùng rất nhất quán):</p>
 <ul>
-<li><code>y = 1</code>: phạt khi <code>p → 0</code> (loss → ∞).</li>
-<li><code>y = 0</code>: phạt khi <code>p → 1</code>.</li>
-<li>Mặt loss <strong>lồi</strong> → một cực tiểu toàn cục, luôn hội tụ.</li>
-<li>Tương đương maximum likelihood cho phân phối Bernoulli — xem <a href="../../../courses/machine-learning/lectures/loss-functions.html">L05 §2</a>.</li>
+<li><strong>Loss</strong> <code>L(f(x), y)</code> — sai số trên <strong>một</strong> mẫu.</li>
+<li><strong>Cost</strong> <code>J(w, b) = (1/m) Σ L</code> — trung bình loss trên <strong>toàn bộ</strong> tập train; đây là thứ gradient descent tối thiểu.</li>
 </ul>
+<section id="vì-sao-không-dùng-mse" class="level3">
+<h3 class="anchored" data-anchor-id="vì-sao-không-dùng-mse">Vì sao không dùng MSE</h3>
+<p>Với sigmoid, <code>J</code> theo MSE là mặt <strong>lồi lởm chởm</strong> (không convex) → nhiều cực tiểu địa phương, gradient descent dễ kẹt. Ta cần một loss sao cho <code>J</code> trở lại <strong>hình cái bát</strong> (convex) — đó là logistic loss.</p>
+</section>
+<section id="logistic-loss" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-loss">Logistic loss</h3>
+<pre><code>L = −y·log(p) − (1−y)·log(1−p)</code></pre>
+<p>Đọc theo hai nhánh:</p>
+<ul>
+<li><code>y = 1</code>: <code>L = −log(p)</code>. Đường <code>−log(p)</code> đi từ 0 (khi <code>p = 1</code>, đoán đúng) lên <strong>∞</strong> khi <code>p → 0</code> (đoán sai mà tự tin).</li>
+<li><code>y = 0</code>: <code>L = −log(1−p)</code>. Ngược lại: 0 khi <code>p = 0</code>, → ∞ khi <code>p → 1</code>.</li>
+</ul>
+<p>Kết quả: <code>J</code> lồi → một cực tiểu toàn cục, gradient descent luôn hội tụ. Logistic loss cũng tương đương maximum likelihood cho phân phối Bernoulli — xem <a href="../../../courses/machine-learning/lectures/loss-functions.html">Loss Functions §2</a>.</p>
+</section>
 <section id="gradient-rút-gọn-đẹp" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-rút-gọn-đẹp">Gradient rút gọn đẹp</h3>
 <p>Áp chain rule cho log loss qua sigmoid:</p>
@@ -265,8 +279,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>σ(z) − y</code> chính là <strong>sai số</strong> (xác suất dự đoán trừ nhãn thật). Dạng cập nhật <strong>giống hệt linear regression</strong>, chỉ khác <code>h</code> là sigmoid thay vì tuyến tính.</p>
 </section>
 </section>
+<section id="decision-boundary-ranh-giới-quyết-định" class="level2">
+<h2 class="anchored" data-anchor-id="decision-boundary-ranh-giới-quyết-định">4. Decision boundary — ranh giới quyết định</h2>
+<p>Với ngưỡng 0.5: <code>p ≥ 0.5 ⇔ σ(z) ≥ 0.5 ⇔ z ≥ 0</code>. Vậy <strong>ranh giới quyết định</strong> chính là tập điểm <code>z = w·x + b = 0</code>.</p>
+<ul>
+<li><strong>Đặc trưng tuyến tính</strong> → <code>z = 0</code> là một <strong>đường thẳng</strong> (mặt phẳng trong nhiều chiều). Ví dụ <code>z = x₁ + x₂ − 3 = 0</code> → đường thẳng chia mặt phẳng làm hai nửa.</li>
+<li><strong>Feature mapping</strong> (thêm <code>x₁², x₂², x₁x₂, …</code> làm đặc trưng mới) → <code>z = 0</code> trở thành <strong>đường cong</strong> (ellipse, hình phức tạp). Mô hình vẫn tuyến tính theo tham số nhưng ranh giới cong được — cùng ý tưởng polynomial ở <a href="../../../courses/machine-learning/lectures/linear-regression.html">Linear Regression §6</a>.</li>
+</ul>
+<p>Bậc đa thức càng cao → ranh giới càng uốn éo → càng dễ <strong>overfit</strong> (ôm sát cả nhiễu). Đây là lý do §7 cần regularization.</p>
+</section>
 <section id="phân-loại-đa-lớp" class="level2">
-<h2 class="anchored" data-anchor-id="phân-loại-đa-lớp">4. Phân loại đa lớp</h2>
+<h2 class="anchored" data-anchor-id="phân-loại-đa-lớp">5. Phân loại đa lớp</h2>
 <section id="softmax-multinomial-logistic" class="level3">
 <h3 class="anchored" data-anchor-id="softmax-multinomial-logistic">Softmax (multinomial logistic)</h3>
 <p>Nhận véc-tơ <code>K</code> logits, chuẩn hoá thành <strong>phân phối xác suất</strong> <code>K</code> giá trị:</p>
@@ -309,8 +332,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="đánh-giá" class="level2">
-<h2 class="anchored" data-anchor-id="đánh-giá">5. Đánh giá</h2>
-<p>Dùng bộ metric phân loại — xem đầy đủ ở <a href="../../../courses/machine-learning/lectures/classification-metrics.html">L02</a>:</p>
+<h2 class="anchored" data-anchor-id="đánh-giá">6. Đánh giá</h2>
+<p>Dùng bộ metric phân loại — xem đầy đủ ở <a href="../../../courses/machine-learning/lectures/classification-metrics.html">Classification Metrics</a>:</p>
 <ul>
 <li><strong>Confusion matrix</strong> là gốc; <strong>Accuracy</strong> chỉ dùng khi cân bằng lớp.</li>
 <li><strong>Precision</strong> (báo dương thì tin được bao nhiêu) vs <strong>Recall</strong> (bắt được bao nhiêu ca dương) — căng nhau theo ngưỡng.</li>
@@ -318,12 +341,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="mất-cân-bằng-lớp" class="level3">
 <h3 class="anchored" data-anchor-id="mất-cân-bằng-lớp">Mất cân bằng lớp</h3>
-<p>Logistic bị lớp đa số kéo lệch. Cách xử lý (chi tiết <a href="../../../courses/machine-learning/lectures/data-imbalance-shift.html">L03</a>): <code>class_weight='balanced'</code> (phạt nặng lỗi lớp hiếm), resampling/SMOTE, dịch ngưỡng, và <strong>bỏ accuracy</strong> — dùng F1 / PR-AUC / balanced accuracy.</p>
+<p>Logistic bị lớp đa số kéo lệch. Cách xử lý (chi tiết <a href="../../../courses/machine-learning/lectures/data-imbalance-shift.html">Class Imbalance &amp; Distribution Shift</a>): <code>class_weight='balanced'</code> (phạt nặng lỗi lớp hiếm), resampling/SMOTE, dịch ngưỡng, và <strong>bỏ accuracy</strong> — dùng F1 / PR-AUC / balanced accuracy.</p>
 </section>
 </section>
 <section id="regularization" class="level2">
-<h2 class="anchored" data-anchor-id="regularization">6. Regularization</h2>
-<p>Thêm số hạng phạt <code>λ/2n · Σbⱼ²</code> (L2) hoặc <code>λ·Σ|bⱼ|</code> (L1) vào log loss → ranh giới quyết định mượt hơn, bớt ngoằn ngoèo, tổng quát hoá tốt hơn. Trong sklearn, <code>LogisticRegression</code> <strong>mặc định đã có L2</strong> (<code>penalty='l2'</code>, <code>C = 1/λ</code>). Chi tiết: <a href="../../../courses/machine-learning/lectures/regularization-feature-selection.html">L08</a>.</p>
+<h2 class="anchored" data-anchor-id="regularization">7. Regularization</h2>
+<p>Thêm số hạng phạt <code>λ/2n · Σbⱼ²</code> (L2) hoặc <code>λ·Σ|bⱼ|</code> (L1) vào cost → ranh giới quyết định mượt hơn, bớt ngoằn ngoèo, tổng quát hoá tốt hơn. Đặc biệt cần khi đã <strong>feature mapping</strong> (§4): bậc đa thức cao mà không phạt → ranh giới ôm sát nhiễu. Trong sklearn, <code>LogisticRegression</code> <strong>mặc định đã có L2</strong> (<code>penalty='l2'</code>, <code>C = 1/λ</code>). Chi tiết: <a href="../../../courses/machine-learning/lectures/regularization-feature-selection.html">Regularization &amp; Feature Selection</a>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>clf.fit(X_tr, y_tr)</span>
@@ -331,11 +354,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> (proba <span class="op">&gt;=</span> <span class="fl">0.3</span>).astype(<span class="bu">int</span>)     <span class="co"># ngưỡng tuỳ chọn</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tóm-tắt" class="level2">
-<h2 class="anchored" data-anchor-id="tóm-tắt">7. Tóm tắt</h2>
+<h2 class="anchored" data-anchor-id="tóm-tắt">8. Tóm tắt</h2>
 <ul>
 <li>Hai bước: <code>z = b·x</code> (tuyến tính) → <code>p = σ(z)</code> (sigmoid) → so ngưỡng.</li>
 <li><strong>Log-odds</strong> <code>log(p/(1−p)) = z</code> tuyến tính theo x → hệ số <code>bⱼ</code> đọc theo odds (<code>×e^{bⱼ}</code>).</li>
-<li>Loss = <strong>binary cross-entropy</strong> (không phải MSE — MSE làm mặt loss không lồi); gradient rút gọn <code>σ(z) − y</code>, mặt loss lồi.</li>
+<li><strong>Loss</strong> = sai số 1 mẫu; <strong>Cost</strong> <code>J</code> = trung bình loss (thứ GD tối thiểu).</li>
+<li>Cost = <strong>binary cross-entropy</strong> (không phải MSE — MSE làm <code>J</code> không lồi); gradient rút gọn <code>σ(z) − y</code>, <code>J</code> lồi → luôn hội tụ.</li>
+<li><strong>Decision boundary</strong> = <code>z = w·x + b = 0</code>: thẳng với đặc trưng tuyến tính, cong khi feature mapping (đa thức).</li>
 <li>Ngưỡng ≠ 0.5 khi chi phí FP/FN lệch: hạ ngưỡng → recall ↑, nâng → precision ↑.</li>
 <li>Đa lớp: <strong>softmax</strong> + categorical cross-entropy (một mô hình) hoặc <strong>OvR</strong> (K mô hình nhị phân).</li>
 <li>Mất cân bằng: <code>class_weight='balanced'</code>, dịch ngưỡng, dùng F1/PR-AUC — không dùng accuracy.</li>

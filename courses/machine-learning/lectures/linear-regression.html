@@ -224,17 +224,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Đơn biến:</strong> <code>ŷ = β₀ + β₁x</code>. <code>β₀</code> = hệ số chặn (giá trị <code>y</code> khi <code>x = 0</code>), <code>β₁</code> = độ dốc (y đổi bao nhiêu khi x tăng 1 đơn vị).</p>
 <p><strong>Bội (p đặc trưng):</strong> <code>ŷ = β₀ + β₁x₁ + ··· + βₚxₚ</code>, dạng ma trận <code>ŷ = Xβ</code> với <code>X</code> có cột đầu toàn 1 (cho <code>β₀</code>).</p>
 <p>Ví dụ: <code>Giá = 50 + 0.8 × Diện_tích</code> → nhà 100 m² được dự đoán 130 triệu.</p>
+<blockquote class="blockquote">
+<p><strong>Ký hiệu.</strong> Slide thống kê dùng <code>β</code>; khoá của Andrew Ng (Coursera) và phần lớn tài liệu ML/DL viết mô hình là <code>f_{w,b}(x) = w·x + b</code> — <code>w</code> (weight) thay <code>β₁…βₚ</code>, <code>b</code> (bias) thay <code>β₀</code>. Hai cách hoàn toàn tương đương; các note sau (loss, gradient descent, logistic, mạng nơ-ron) dùng <code>w, b</code>.</p>
+</blockquote>
 </section>
 <section id="hàm-loss-mse" class="level2">
 <h2 class="anchored" data-anchor-id="hàm-loss-mse">2. Hàm loss — MSE</h2>
 <p>Phần dư (residual) của mẫu <code>i</code>: <code>eᵢ = yᵢ − ŷᵢ</code>. Tổng bình phương phần dư:</p>
 <pre><code>RSS = Σ (yᵢ − ŷᵢ)²        MSE = RSS / n</code></pre>
+<p>Chia thêm cho 2 (<code>J = RSS/2n</code>) là quy ước phổ biến (Andrew Ng) — số 2 triệt tiêu khi lấy đạo hàm, không đổi vị trí cực tiểu. Ở đây <code>J(w, b)</code> là <strong>cost</strong> (trung bình loss trên toàn tập), thứ mà tối ưu hoá tối thiểu.</p>
 <p>Vì sao <strong>bình phương</strong> chứ không phải trị tuyệt đối:</p>
 <ul>
 <li>Phạt nặng sai số lớn (bậc hai).</li>
 <li>Khả vi khắp nơi → dễ lấy đạo hàm để tối ưu.</li>
 <li>Có <strong>nghiệm dạng đóng</strong> (xem §3).</li>
-<li>Tương đương maximum likelihood nếu nhiễu là Gaussian — xem <a href="../../../courses/machine-learning/lectures/loss-functions.html">L05 §2</a>.</li>
+<li><code>J</code> là mặt <strong>lồi</strong> hình bát → một cực tiểu toàn cục.</li>
+<li>Tương đương maximum likelihood nếu nhiễu là Gaussian — xem <a href="../../../courses/machine-learning/lectures/loss-functions.html">Loss Functions §2</a>.</li>
 </ul>
 <p>Nghiệm tối thiểu MSE = <strong>trung bình có điều kiện</strong> của <code>y</code>. Nếu dữ liệu có nhiều outlier → cân nhắc MAE (→ trung vị) hoặc Huber.</p>
 </section>
@@ -295,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Với linear regression + MSE, mặt loss <strong>lồi</strong> → chỉ có một cực tiểu toàn cục, GD không bao giờ kẹt local minima. Chi tiết SGD / mini-batch: xem <a href="../../../courses/machine-learning/lectures/gradient-descent.html">L01</a>.</p>
+<p>Với linear regression + MSE, mặt loss <strong>lồi</strong> → chỉ có một cực tiểu toàn cục, GD không bao giờ kẹt local minima. Chi tiết SGD / mini-batch: xem <a href="../../../courses/machine-learning/lectures/gradient-descent.html">Gradient Descent</a>. Feature scaling, chọn learning rate, kiểm tra hội tụ bằng đường <code>J</code> theo iteration, feature engineering: xem <a href="../../../courses/machine-learning/lectures/gradient-descent-in-practice.html">Gradient Descent in Practice</a>.</p>
 </section>
 </section>
 <section id="các-giả-định-và-vì-sao-quan-trọng" class="level2">
@@ -346,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Hai hay nhiều đặc trưng tương quan mạnh (ví dụ <code>Diện_tích</code> ↔︎ <code>Số_phòng</code>, r ≈ 0.93). Hệ quả: <code>β</code> dao động mạnh khi đổi dữ liệu chút ít, sai số chuẩn phình to, dấu của hệ số có thể lật.</p>
 <ul>
 <li><strong>Phát hiện:</strong> ma trận tương quan; <strong>VIF</strong> (Variance Inflation Factor) — <code>VIF &gt; 5–10</code> là đáng lo.</li>
-<li><strong>Khắc phục:</strong> bỏ bớt / gộp đặc trưng, dùng <strong>Ridge</strong> (<a href="../../../courses/machine-learning/lectures/regularization-feature-selection.html">L08</a>), hoặc PCA.</li>
+<li><strong>Khắc phục:</strong> bỏ bớt / gộp đặc trưng, dùng <strong>Ridge</strong> (<a href="../../../courses/machine-learning/lectures/regularization-feature-selection.html">Regularization &amp; Feature Selection</a>), hoặc PCA.</li>
 </ul>
 </section>
 <section id="phân-tích-phần-dư" class="level3">
@@ -400,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>R² có thể <strong>âm</strong> trên tập test (mô hình tệ hơn cả việc luôn đoán trung bình). Luôn báo cáo trên <strong>tập test</strong> (dữ liệu mô hình chưa thấy) — xem <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">L04</a>.</p>
+<p>R² có thể <strong>âm</strong> trên tập test (mô hình tệ hơn cả việc luôn đoán trung bình). Luôn báo cáo trên <strong>tập test</strong> (dữ liệu mô hình chưa thấy) — xem <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">Data Leakage &amp; Validation</a>.</p>
 </section>
 <section id="mở-rộng-hồi-quy-đa-thức" class="level2">
 <h2 class="anchored" data-anchor-id="mở-rộng-hồi-quy-đa-thức">6. Mở rộng: hồi quy đa thức</h2>
@@ -410,8 +415,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quy-trình-chuẩn" class="level2">
 <h2 class="anchored" data-anchor-id="quy-trình-chuẩn">7. Quy trình chuẩn</h2>
 <ol type="1">
-<li>Chia train/test (80/20), chuẩn hoá đặc trưng (fit scaler <strong>chỉ trên train</strong> — <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">L04</a>).</li>
-<li>Huấn luyện (<code>fit</code>).</li>
+<li>Chia train/test (80/20), chuẩn hoá đặc trưng (fit scaler <strong>chỉ trên train</strong> — <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">Data Leakage &amp; Validation</a>).</li>
+<li>Huấn luyện (<code>fit</code>); nếu tự chạy GD → vẽ <code>J</code> theo iteration, phải giảm đều đến khi phẳng.</li>
 <li>Dự đoán trên test.</li>
 <li>Đánh giá: MAE, RMSE, R², Adjusted R².</li>
 <li>Chẩn đoán: residual plot, Q–Q, VIF.</li>

@@ -196,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Ba cơ chế: <strong>MCAR</strong> (thiếu ngẫu nhiên hoàn toàn), <strong>MAR</strong> (thiếu phụ thuộc biến <em>khác</em> đã quan sát), <strong>MNAR</strong> (thiếu phụ thuộc <em>chính giá trị bị thiếu</em> → bản thân việc “bị thiếu” mang thông tin).</p>
 <ul>
 <li><strong>Xoá</strong>: bỏ cột nếu thiếu &gt; 50–60%; bỏ hàng nếu thiếu ít và ngẫu nhiên.</li>
-<li><strong>Điền (impute)</strong>: mean/median/mode, KNN, Iterative (MICE). Thống kê điền phải tính <strong>chỉ trên train</strong> — <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">L04</a>.</li>
+<li><strong>Điền (impute)</strong>: mean/median/mode, KNN, Iterative (MICE). Thống kê điền phải tính <strong>chỉ trên train</strong> — <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">Data Leakage &amp; Validation</a>.</li>
 <li><strong>Cờ <code>is_missing</code></strong>: khi MNAR — giữ tín hiệu thay vì xoá.</li>
 </ul>
 </section>
@@ -350,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="chọn-λ" class="level3">
 <h3 class="anchored" data-anchor-id="chọn-λ">Chọn λ</h3>
-<p><code>λ</code> quá lớn → mọi <code>θⱼ ≈ 0</code> → đường ngang → <strong>dưới khớp</strong>. <code>λ</code> quá nhỏ → phạt yếu → vẫn overfit. Chọn bằng <strong>cross-validation</strong> (<code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>). Xem <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">L04</a>.</p>
+<p><code>λ</code> quá lớn → mọi <code>θⱼ ≈ 0</code> → đường ngang → <strong>dưới khớp</strong>. <code>λ</code> quá nhỏ → phạt yếu → vẫn overfit. Chọn bằng <strong>cross-validation</strong> (<code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>). Xem <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">Data Leakage &amp; Validation</a>.</p>
 <p>Regularization áp dụng y hệt cho <a href="../../../courses/machine-learning/lectures/logistic-regression.html">logistic regression</a> — thêm phạt vào log loss, ranh giới quyết định mượt hơn.</p>
 </section>
 </section>
