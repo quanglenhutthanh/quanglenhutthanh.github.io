@@ -23,6 +23,8 @@ Lab: [`LinearReg.ipynb`](../labs/LinearReg.ipynb) (cài đặt thuần NumPy + s
 
 Ví dụ: `Giá = 50 + 0.8 × Diện_tích` → nhà 100 m² được dự đoán 130 triệu.
 
+> **Ký hiệu.** Slide thống kê dùng `β`; khoá của Andrew Ng (Coursera) và phần lớn tài liệu ML/DL viết mô hình là `f_{w,b}(x) = w·x + b` — `w` (weight) thay `β₁…βₚ`, `b` (bias) thay `β₀`. Hai cách hoàn toàn tương đương; các note sau (loss, gradient descent, logistic, mạng nơ-ron) dùng `w, b`.
+
 ## 2. Hàm loss — MSE
 
 Phần dư (residual) của mẫu `i`: `eᵢ = yᵢ − ŷᵢ`. Tổng bình phương phần dư:
@@ -31,12 +33,15 @@ Phần dư (residual) của mẫu `i`: `eᵢ = yᵢ − ŷᵢ`. Tổng bình ph�
 RSS = Σ (yᵢ − ŷᵢ)²        MSE = RSS / n
 ```
 
+Chia thêm cho 2 (`J = RSS/2n`) là quy ước phổ biến (Andrew Ng) — số 2 triệt tiêu khi lấy đạo hàm, không đổi vị trí cực tiểu. Ở đây `J(w, b)` là **cost** (trung bình loss trên toàn tập), thứ mà tối ưu hoá tối thiểu.
+
 Vì sao **bình phương** chứ không phải trị tuyệt đối:
 
 - Phạt nặng sai số lớn (bậc hai).
 - Khả vi khắp nơi → dễ lấy đạo hàm để tối ưu.
 - Có **nghiệm dạng đóng** (xem §3).
-- Tương đương maximum likelihood nếu nhiễu là Gaussian — xem [L05 §2](loss-functions.md).
+- `J` là mặt **lồi** hình bát → một cực tiểu toàn cục.
+- Tương đương maximum likelihood nếu nhiễu là Gaussian — xem [Loss Functions §2](loss-functions.md).
 
 Nghiệm tối thiểu MSE = **trung bình có điều kiện** của `y`. Nếu dữ liệu có nhiều outlier → cân nhắc MAE (→ trung vị) hoặc Huber.
 
@@ -71,7 +76,7 @@ grad = (2/n) · Xᵀ(Xβ − y)      β ← β − η · grad
 | `XᵀX` suy biến | thất bại | vẫn chạy |
 | Phù hợp | `p` nhỏ, dữ liệu vừa | `p` lớn, dữ liệu rất lớn |
 
-Với linear regression + MSE, mặt loss **lồi** → chỉ có một cực tiểu toàn cục, GD không bao giờ kẹt local minima. Chi tiết SGD / mini-batch: xem [L01](gradient-descent.md).
+Với linear regression + MSE, mặt loss **lồi** → chỉ có một cực tiểu toàn cục, GD không bao giờ kẹt local minima. Chi tiết SGD / mini-batch: xem [Gradient Descent](gradient-descent.md). Feature scaling, chọn learning rate, kiểm tra hội tụ bằng đường `J` theo iteration, feature engineering: xem [Gradient Descent in Practice](gradient-descent-in-practice.md).
 
 ## 4. Các giả định (và vì sao quan trọng)
 
@@ -88,7 +93,7 @@ Với linear regression + MSE, mặt loss **lồi** → chỉ có một cực ti
 Hai hay nhiều đặc trưng tương quan mạnh (ví dụ `Diện_tích` ↔ `Số_phòng`, r ≈ 0.93). Hệ quả: `β` dao động mạnh khi đổi dữ liệu chút ít, sai số chuẩn phình to, dấu của hệ số có thể lật.
 
 - **Phát hiện:** ma trận tương quan; **VIF** (Variance Inflation Factor) — `VIF > 5–10` là đáng lo.
-- **Khắc phục:** bỏ bớt / gộp đặc trưng, dùng **Ridge** ([L08](regularization-feature-selection.md)), hoặc PCA.
+- **Khắc phục:** bỏ bớt / gộp đặc trưng, dùng **Ridge** ([Regularization & Feature Selection](regularization-feature-selection.md)), hoặc PCA.
 
 ### Phân tích phần dư
 
@@ -105,7 +110,7 @@ Hai hay nhiều đặc trưng tương quan mạnh (ví dụ `Diện_tích` ↔ `
 | **R²** | tỷ lệ phương sai của Y được mô hình giải thích | 0 = không giải thích gì, 1 = khớp hoàn hảo; R² = 0.85 → giải thích 85% biến thiên |
 | **Adjusted R²** | R² phạt theo số đặc trưng `p` | dùng khi so các mô hình khác số biến — thêm biến vô ích thì Adjusted R² giảm |
 
-R² có thể **âm** trên tập test (mô hình tệ hơn cả việc luôn đoán trung bình). Luôn báo cáo trên **tập test** (dữ liệu mô hình chưa thấy) — xem [L04](data-leakage-validation.md).
+R² có thể **âm** trên tập test (mô hình tệ hơn cả việc luôn đoán trung bình). Luôn báo cáo trên **tập test** (dữ liệu mô hình chưa thấy) — xem [Data Leakage & Validation](data-leakage-validation.md).
 
 ## 6. Mở rộng: hồi quy đa thức
 
@@ -115,8 +120,8 @@ Cảnh báo: bậc càng cao càng dễ **quá khớp** → chọn bậc bằng 
 
 ## 7. Quy trình chuẩn
 
-1. Chia train/test (80/20), chuẩn hoá đặc trưng (fit scaler **chỉ trên train** — [L04](data-leakage-validation.md)).
-2. Huấn luyện (`fit`).
+1. Chia train/test (80/20), chuẩn hoá đặc trưng (fit scaler **chỉ trên train** — [Data Leakage & Validation](data-leakage-validation.md)).
+2. Huấn luyện (`fit`); nếu tự chạy GD → vẽ `J` theo iteration, phải giảm đều đến khi phẳng.
 3. Dự đoán trên test.
 4. Đánh giá: MAE, RMSE, R², Adjusted R².
 5. Chẩn đoán: residual plot, Q–Q, VIF.

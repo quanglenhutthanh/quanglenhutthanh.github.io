@@ -22,7 +22,7 @@ Khi mô hình khớp tập train gần như hoàn hảo nhưng tổng quát hoá
 Ba cơ chế: **MCAR** (thiếu ngẫu nhiên hoàn toàn), **MAR** (thiếu phụ thuộc biến *khác* đã quan sát), **MNAR** (thiếu phụ thuộc *chính giá trị bị thiếu* → bản thân việc "bị thiếu" mang thông tin).
 
 - **Xoá**: bỏ cột nếu thiếu > 50–60%; bỏ hàng nếu thiếu ít và ngẫu nhiên.
-- **Điền (impute)**: mean/median/mode, KNN, Iterative (MICE). Thống kê điền phải tính **chỉ trên train** — [L04](data-leakage-validation.md).
+- **Điền (impute)**: mean/median/mode, KNN, Iterative (MICE). Thống kê điền phải tính **chỉ trên train** — [Data Leakage & Validation](data-leakage-validation.md).
 - **Cờ `is_missing`**: khi MNAR — giữ tín hiệu thay vì xoá.
 
 ### 1.2. Chuẩn hoá (feature scaling)
@@ -84,7 +84,7 @@ Kết hợp: L1 cho tính **thưa** (chọn biến) + L2 cho tính **ổn địn
 
 ### Chọn λ
 
-`λ` quá lớn → mọi `θⱼ ≈ 0` → đường ngang → **dưới khớp**. `λ` quá nhỏ → phạt yếu → vẫn overfit. Chọn bằng **cross-validation** (`RidgeCV`, `LassoCV`, `ElasticNetCV`). Xem [L04](data-leakage-validation.md).
+`λ` quá lớn → mọi `θⱼ ≈ 0` → đường ngang → **dưới khớp**. `λ` quá nhỏ → phạt yếu → vẫn overfit. Chọn bằng **cross-validation** (`RidgeCV`, `LassoCV`, `ElasticNetCV`). Xem [Data Leakage & Validation](data-leakage-validation.md).
 
 Regularization áp dụng y hệt cho [logistic regression](logistic-regression.md) — thêm phạt vào log loss, ranh giới quyết định mượt hơn.
 

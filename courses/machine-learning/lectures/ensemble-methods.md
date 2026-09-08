@@ -70,7 +70,7 @@ Với mỗi mẫu `xᵢ`: dùng các cây **không** chứa `xᵢ` trong bootstr
 ### Feature importance
 
 - **MDI (Gini importance)**: tổng mức giảm impurity mỗi khi đặc trưng được dùng để split. Nhanh, `model.feature_importances_` — nhưng **thiên vị high-cardinality**.
-- **Permutation importance**: xáo trộn một cột trên test, đo mức giảm hiệu năng. Không thiên vị, dùng cho mọi model. Nên dùng **cả hai và so sánh**. Xem [L08 §4](regularization-feature-selection.md).
+- **Permutation importance**: xáo trộn một cột trên test, đo mức giảm hiệu năng. Không thiên vị, dùng cho mọi model. Nên dùng **cả hai và so sánh**. Xem [Regularization & Feature Selection §4](regularization-feature-selection.md).
 
 ### Khi nào dùng
 

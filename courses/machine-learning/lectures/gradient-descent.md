@@ -154,6 +154,8 @@ Tất cả các biến thể này vẫn dựa trên nguyên lý gốc: đi ngư�
 - **Learning rate cố định suốt quá trình train là chưa tối ưu**: nhiều pipeline thực tế giảm dần learning rate theo thời gian (learning rate schedule / decay) — bước đi dài lúc đầu để tiến nhanh, ngắn dần về sau để "hạ cánh" chính xác gần đáy.
 - **Không chuẩn hóa (normalize) dữ liệu đầu vào**: nếu các đặc trưng (feature) có thang đo chênh lệch quá lớn, bề mặt loss sẽ bị méo (giống một thung lũng dài và hẹp thay vì cái bát tròn), khiến Gradient Descent zic-zac chậm chạp thay vì đi thẳng tới đáy.
 
+> Phần **vận hành thực tế** — feature scaling, chọn learning rate theo thang ×3, kiểm tra hội tụ bằng đường `J` theo iteration, vectorization, feature engineering — nằm ở note [Gradient Descent in Practice](gradient-descent-in-practice.md).
+
 ## 12. Tóm tắt
 
 - Gradient Descent = phương pháp lặp, đi từng bước ngược hướng gradient để giảm dần hàm loss.

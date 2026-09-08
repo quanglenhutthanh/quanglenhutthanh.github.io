@@ -74,7 +74,7 @@ Lặp từ `l = 1` đến `L`, ra `ŷ = a⁽ᴸ⁾`. **Lưu cache `(z⁽ˡ⁾, a
 | **BCE** (binary cross-entropy) | `−(1/m)·Σ[y·log ŷ + (1−y)·log(1−ŷ)]` | sigmoid output |
 | **CCE** (categorical cross-entropy) | `−(1/m)·Σᵢ Σₖ yₖ·log ŷₖ` | softmax output, nhãn one-hot |
 
-Xem [L05](loss-functions.md) về nguồn gốc maximum likelihood của từng loss.
+Xem [Loss Functions](loss-functions.md) về nguồn gốc maximum likelihood của từng loss.
 
 ## 7. Backpropagation
 
@@ -113,7 +113,7 @@ Chú ý `σ'(z) ≈ 0.001` — rất nhỏ. Đây là mầm mống của vanishi
 θ ← θ − η · ∇_θ L
 ```
 
-Chi tiết `η`, batch/SGD/mini-batch: [L01](gradient-descent.md). Mini-batch (32–256, lũy thừa của 2) là chuẩn thực tế.
+Chi tiết `η`, batch/SGD/mini-batch: [Gradient Descent](gradient-descent.md). Mini-batch (32–256, lũy thừa của 2) là chuẩn thực tế.
 
 | Optimizer | Ý tưởng |
 |---|---|

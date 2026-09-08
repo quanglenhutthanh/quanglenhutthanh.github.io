@@ -72,6 +72,8 @@ L = −[ y·log(p) + (1−y)·log(1−p) ]
 - Đa lớp: `L = −Σ_k y_k log(p_k)` với `p = softmax(z)`.
 - Tương đương maximum likelihood cho Bernoulli/Categorical (mục 2).
 
+**Vì sao không dùng MSE cho phân loại** (khung của Andrew Ng): ghép `(σ(z) − y)²` với sigmoid cho ra cost `J` **không lồi** — mặt lởm chởm nhiều cực tiểu địa phương, gradient descent dễ kẹt. Cross-entropy được chọn *chính vì* nó kéo `J` về lại hình bát lồi → một cực tiểu toàn cục, luôn hội tụ. Xem [Logistic Regression §3](logistic-regression.md).
+
 ### 4.3. Hinge loss (SVM)
 
 ```

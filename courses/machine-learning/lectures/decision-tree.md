@@ -92,7 +92,7 @@ Train/test split một lần → kết quả phụ thuộc cách chia. **K-Fold*
 | **Stratified K-Fold** | giữ tỷ lệ lớp mỗi fold — bắt buộc khi imbalance; mặc định sklearn cho classification |
 | **Repeated (Stratified) K-Fold** | lặp nhiều seed → giảm phương sai ước lượng; tốn thời gian hơn |
 
-Xem thêm về CV và rò rỉ trong [L04](data-leakage-validation.md).
+Xem thêm về CV và rò rỉ trong [Data Leakage & Validation](data-leakage-validation.md).
 
 ## 6. Hyperparameter Tuning
 
