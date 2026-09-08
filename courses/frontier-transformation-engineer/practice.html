@@ -147,9 +147,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Bộ đề thi thử <strong>AB-100 Agentic AI Business Solutions Architect</strong> — 114 câu, có đáp án và giải thích tiếng Việt. Chọn đáp án → <strong>Kiểm tra</strong> để xem đúng/sai và lời giải. Tiến độ được lưu trong trình duyệt.</p>
+<p>Bộ đề thi thử <strong>AB-100 Agentic AI Business Solutions Architect</strong> — 114 câu, có đáp án và giải thích tiếng Việt. Ngân hàng câu hỏi được <strong>mã hoá</strong>; nhập mật khẩu để mở. Chọn đáp án → <strong>Kiểm tra</strong> để xem đúng/sai và lời giải. Tiến độ được lưu trong trình duyệt.</p>
 <div id="ab100-app">
-<p>Đang tải ngân hàng câu hỏi…</p>
+<p>Đang tải…</p>
 </div>
 <style>
 #ab100-app { --ok:#1a7f37; --no:#cf222e; --accent:#2563eb; --line:#e5e7eb; --muted:#6b7280; --bg-soft:#f6f8fa; margin-top:1rem; }
@@ -199,11 +199,18 @@ ul.task-list li input[type="checkbox"] {
 .ab-expl h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:.9rem 0 .3rem}
 .ab-expl h4:first-child{margin-top:0}
 .ab-hint{font-size:.85rem;color:var(--muted);margin-top:.5rem}
+.ab-gate{max-width:340px;border:1px solid var(--line);border-radius:.7rem;padding:1.3rem;background:#fff}
+.ab-gate label{display:block;font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.ab-gate input{width:100%;font:inherit;padding:.5rem .7rem;border:1px solid var(--line);border-radius:.45rem;background:#fff}
+.ab-gate button{margin-top:.8rem;font:inherit;padding:.5rem .9rem;border:1px solid var(--accent);border-radius:.45rem;background:var(--accent);color:#fff;cursor:pointer}
+.ab-gate button:disabled{opacity:.5;cursor:default}
+.ab-gate .err{color:var(--no);font-size:.85rem;margin-top:.6rem;min-height:1.1em}
 @media (prefers-color-scheme: dark){
  #ab100-app{--line:#30363d;--muted:#8b949e;--bg-soft:#161b22}
  #ab100-app .ab-card,#ab100-app .ab-bar select,#ab100-app .ab-bar button,#ab100-app .ab-map button{background:#0d1117;color:#e6edf3}
  #ab100-app .ab-opt{background:#0d1117;color:#e6edf3}
  #ab100-app .ab-opt.sel{background:#132a4d}
+ #ab100-app .ab-gate,#ab100-app .ab-gate input{background:#0d1117;color:#e6edf3}
 }
 </style>
 
@@ -216,8 +223,43 @@ ul.task-list li input[type="checkbox"] {
   function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
 
-  fetch('ab-100-bank.json').then(r=>r.json()).then(d=>{BANK=d; state=load(); boot();})
-    .catch(e=>{root.innerHTML='<p style="color:#cf222e">Không tải được ngân hàng câu hỏi (ab-100-bank.json). Thử mở trang qua <code>quarto preview</code> hoặc bản đã publish.</p>';});
+  const ITER=210000;
+  let encBytes=null;
+
+  async function decryptBank(pw){
+    const salt=encBytes.slice(0,16), iv=encBytes.slice(16,28), data=encBytes.slice(28);
+    const baseKey=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+    const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:ITER,hash:'SHA-256'},baseKey,{name:'AES-GCM',length:256},false,['decrypt']);
+    const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,data);
+    return JSON.parse(new TextDecoder().decode(plain));
+  }
+
+  function gate(){
+    root.innerHTML=`<form class="ab-gate" id="ab-gate">
+      <label for="ab-pw">Mật khẩu</label>
+      <input type="password" id="ab-pw" autocomplete="current-password" autofocus>
+      <button type="submit" id="ab-unlock">Mở khoá</button>
+      <div class="err" id="ab-err"></div>
+    </form>`;
+    const f=document.getElementById('ab-gate'), inp=document.getElementById('ab-pw'),
+          btn=document.getElementById('ab-unlock'), err=document.getElementById('ab-err');
+    f.onsubmit=async(e)=>{
+      e.preventDefault();
+      if(!inp.value) return;
+      btn.disabled=true; err.textContent='Đang mở…';
+      try{
+        BANK=await decryptBank(inp.value);
+        state=load(); boot();
+      }catch(ex){
+        btn.disabled=false; err.textContent='Sai mật khẩu.'; inp.select();
+      }
+    };
+  }
+
+  fetch('ab-100-bank.enc').then(r=>{if(!r.ok)throw 0;return r.text()}).then(b64=>{
+    encBytes=Uint8Array.from(atob(b64.trim()),c=>c.charCodeAt(0));
+    gate();
+  }).catch(e=>{root.innerHTML='<p style="color:#cf222e">Không tải được dữ liệu (ab-100-bank.enc). Mở trang qua <code>quarto preview</code> hoặc bản đã publish.</p>';});
 
   function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a}
 
