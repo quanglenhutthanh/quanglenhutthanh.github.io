@@ -2,7 +2,7 @@
 title: "Loss Functions"
 subject: "machine-learning"
 type: lecture
-lecture_no: 5
+lecture_no: 6
 status: done
 source: note
 tags: [loss, mse, mae, huber, cross-entropy, hinge, maximum-likelihood, regularization]

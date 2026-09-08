@@ -2,7 +2,7 @@
 title: "Classification Metrics"
 subject: "machine-learning"
 type: lecture
-lecture_no: 2
+lecture_no: 3
 status: done
 source: note
 tags: [metrics, classification, confusion-matrix, accuracy, precision, recall, roc-auc, pr-auc, f1]

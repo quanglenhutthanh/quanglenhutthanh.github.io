@@ -2,7 +2,7 @@
 title: "Class Imbalance & Distribution Shift"
 subject: "machine-learning"
 type: lecture
-lecture_no: 3
+lecture_no: 4
 status: done
 source: note
 tags: [eda, data, class-imbalance, distribution-shift, resampling, monitoring, drift, censoring, psi, importance-weighting]

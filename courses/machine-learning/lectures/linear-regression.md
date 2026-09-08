@@ -2,7 +2,7 @@
 title: "Linear Regression"
 subject: "machine-learning"
 type: lecture
-lecture_no: 6
+lecture_no: 7
 status: done
 source: slide
 tags: [linear-regression, mse, normal-equation, gradient-descent, r-squared, multicollinearity, assumptions]

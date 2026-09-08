@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "!sources/"
+    - "*.qmd"
+    - "*.md"
+    - "courses/"
 
 website:
   title: "Le Nhut Thanh Quang"

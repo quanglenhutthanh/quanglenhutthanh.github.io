@@ -2,7 +2,7 @@
 title: "Regularization & Feature Selection"
 subject: "machine-learning"
 type: lecture
-lecture_no: 8
+lecture_no: 9
 status: done
 source: slide
 tags: [regularization, ridge, lasso, elastic-net, feature-selection, bias-variance, overfitting, preprocessing]

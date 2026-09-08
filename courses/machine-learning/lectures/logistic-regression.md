@@ -2,7 +2,7 @@
 title: "Logistic Regression"
 subject: "machine-learning"
 type: lecture
-lecture_no: 7
+lecture_no: 8
 status: done
 source: slide
 tags: [logistic-regression, sigmoid, softmax, cross-entropy, log-odds, decision-threshold, multiclass]

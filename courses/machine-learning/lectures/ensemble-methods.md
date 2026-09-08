@@ -2,7 +2,7 @@
 title: "Ensemble Methods"
 subject: "machine-learning"
 type: lecture
-lecture_no: 10
+lecture_no: 11
 status: done
 source: slide
 tags: [ensemble, bagging, bootstrap, random-forest, boosting, adaboost, gradient-boosting, xgboost, oob, bias-variance]

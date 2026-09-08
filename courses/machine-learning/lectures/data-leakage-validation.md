@@ -2,7 +2,7 @@
 title: "Data Leakage & Kiểm định theo thời gian"
 subject: "machine-learning"
 type: lecture
-lecture_no: 4
+lecture_no: 5
 status: done
 source: note
 tags: [data-leakage, validation, cross-validation, time-based-split, feature-engineering, pipeline]

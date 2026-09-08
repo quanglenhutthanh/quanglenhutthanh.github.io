@@ -2,7 +2,7 @@
 title: "Neural Networks"
 subject: "machine-learning"
 type: lecture
-lecture_no: 11
+lecture_no: 12
 status: done
 source: slide
 tags: [neural-network, mlp, perceptron, activation, forward-pass, backpropagation, chain-rule, vanishing-gradient]

@@ -2,7 +2,7 @@
 title: "Decision Tree"
 subject: "machine-learning"
 type: lecture
-lecture_no: 9
+lecture_no: 10
 status: done
 source: slide
 tags: [decision-tree, gini, entropy, information-gain, cart, overfitting, pruning, cross-validation, hyperparameter-tuning]
