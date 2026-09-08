@@ -2,286 +2,270 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/neural-networks.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/data-leakage-validation.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/decision-tree.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/loss-functions.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/logistic-regression.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/data-imbalance-shift.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/labs/Decision_Tree.html</loc>
-    <lastmod>2026-09-08T14:48:17.291Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.117Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html</loc>
-    <lastmod>2026-09-08T14:48:17.291Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.116Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/labs/PharmaDist_Reorder_Timing.html</loc>
-    <lastmod>2026-09-08T14:48:17.332Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.162Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/index.html</loc>
-    <lastmod>2026-09-08T14:48:17.287Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.111Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/gray-level-histogram-neighborhood.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/image-restoration.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/edge-detection.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/image-processing-basics.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/color-image.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/matlab-basics-imaging-toolbox.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_08.html</loc>
-    <lastmod>2026-09-08T14:48:17.087Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.891Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_07.html</loc>
-    <lastmod>2026-09-08T14:48:17.056Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.857Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_03.html</loc>
-    <lastmod>2026-09-08T14:48:16.964Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.756Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_04.html</loc>
-    <lastmod>2026-09-08T14:48:16.987Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.781Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/references.html</loc>
-    <lastmod>2026-09-08T14:48:17.285Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/practice.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.658Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/ai-103-exam-use-cases.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.657Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/ab-100-exam-review.html</loc>
-    <lastmod>2026-09-08T14:48:16.874Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.655Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/ai-103-exam-review.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.657Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/ab-100-final-mock-2.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.657Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/azure-document-intelligence.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.657Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/index.html</loc>
-    <lastmod>2026-09-08T14:48:16.874Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.655Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/deep-learning/labs/FSB_Faster_RCNN_Torchvision_PennFudan_2026.html</loc>
-    <lastmod>2026-09-08T14:48:16.870Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.651Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/deep-learning/labs/CNN_Waste_Classification.html</loc>
-    <lastmod>2026-09-08T14:48:16.822Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.598Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/deep-learning/labs/MNIST-CNN-Dense.html</loc>
-    <lastmod>2026-09-08T14:48:16.871Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.653Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/deep-learning/index.html</loc>
-    <lastmod>2026-09-08T14:48:16.802Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.575Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/about.html</loc>
-    <lastmod>2026-09-08T14:48:16.801Z</lastmod>
-  </url>
-  <url>
-    <loc>https://quanglenhutthanh.github.io/sources/ML/LeNhutThanhQuang_25ms23318_PharmaDist.html</loc>
-    <lastmod>2026-09-08T14:48:17.440Z</lastmod>
-  </url>
-  <url>
-    <loc>https://quanglenhutthanh.github.io/sources/GH-300-on-tap.html</loc>
-    <lastmod>2026-09-08T14:48:17.390Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.575Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/index.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/DeepLearning.html</loc>
-    <lastmod>2026-09-08T14:48:16.801Z</lastmod>
-  </url>
-  <url>
-    <loc>https://quanglenhutthanh.github.io/sources/ML/bai_tap_cuoi_khoa_ms23319.html</loc>
-    <lastmod>2026-09-08T14:48:17.445Z</lastmod>
-  </url>
-  <url>
-    <loc>https://quanglenhutthanh.github.io/sources/ML/MachineLearning.html</loc>
-    <lastmod>2026-09-08T14:48:17.440Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.575Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/index.html</loc>
-    <lastmod>2026-09-08T14:48:17.285Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/deep-learning/labs/RNN_Text_Classification_Keras_IMDB.html</loc>
-    <lastmod>2026-09-08T14:48:16.872Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.654Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/deep-learning/labs/01_Attention_IMDB_Sentence_Classification.html</loc>
-    <lastmod>2026-09-08T14:48:16.802Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.575Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/deep-learning/labs/04_Llama_CoT_IMDB_ZeroShot_Evaluation.html</loc>
-    <lastmod>2026-09-08T14:48:16.802Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.576Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/deep-learning/labs/02_Pretrained_Language_Model_PhoBERT_Vietnamese_Sentiment.html</loc>
-    <lastmod>2026-09-08T14:48:16.802Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.576Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/ab-100-exam-raw-questions.html</loc>
-    <lastmod>2026-09-08T14:48:16.874Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.655Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/gh-300-exam-review.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.657Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/ab-100-final-mock.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.657Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/gh-300-exam-use-cases.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.658Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/build-ai-agents-foundry.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.657Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/frontier-transformation-engineer/lectures/program-overview.html</loc>
-    <lastmod>2026-09-08T14:48:16.875Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.658Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/index.html</loc>
-    <lastmod>2026-09-08T14:48:16.877Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.659Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_05.html</loc>
-    <lastmod>2026-09-08T14:48:17.020Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.817Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_02.html</loc>
-    <lastmod>2026-09-08T14:48:16.944Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.734Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_06.html</loc>
-    <lastmod>2026-09-08T14:48:17.041Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.842Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_09.html</loc>
-    <lastmod>2026-09-08T14:48:17.282Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.107Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/labs/Session_01.html</loc>
-    <lastmod>2026-09-08T14:48:16.930Z</lastmod>
+    <lastmod>2026-09-08T15:06:04.719Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/introduction-overview.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/keypoint-detection.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/image-segmentation.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/image-sensing-acquisition.html</loc>
-    <lastmod>2026-09-08T14:48:17.284Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/arithmetic-logic-geometric-operations.html</loc>
-    <lastmod>2026-09-08T14:48:17.283Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.107Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/image-and-video-processing/lectures/morphological-processing.html</loc>
-    <lastmod>2026-09-08T14:48:17.285Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.109Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/references.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/labs/LinearReg.html</loc>
-    <lastmod>2026-09-08T14:48:17.292Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.117Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/labs/NN.html</loc>
-    <lastmod>2026-09-08T14:48:17.328Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.157Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/labs/Logistic_Reg.html</loc>
-    <lastmod>2026-09-08T14:48:17.297Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.122Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/linear-regression.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/ensemble-methods.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/classification-metrics.html</loc>
-    <lastmod>2026-09-08T14:48:17.332Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.162Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/regularization-feature-selection.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
   <url>
     <loc>https://quanglenhutthanh.github.io/courses/machine-learning/lectures/gradient-descent.html</loc>
-    <lastmod>2026-09-08T14:48:17.334Z</lastmod>
+    <lastmod>2026-09-08T15:06:05.163Z</lastmod>
   </url>
 </urlset>
