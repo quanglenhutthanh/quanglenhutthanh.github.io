@@ -35,8 +35,13 @@ Bộ đề thi thử **AB-100 Agentic AI Business Solutions Architect** — 114 
 .ab-map button.seen{background:var(--bg-soft)}
 .ab-card{border:1px solid var(--line);border-radius:.7rem;padding:1.2rem 1.3rem;background:#fff}
 .ab-qnum{font-size:.8rem;color:var(--muted);font-weight:600;letter-spacing:.03em}
-.ab-stem{margin:.5rem 0 1rem;line-height:1.6;white-space:pre-wrap}
-.ab-stem.cs{max-height:230px;overflow:auto;padding:.8rem;background:var(--bg-soft);border-radius:.5rem;font-size:.92rem}
+.ab-stem{margin:.5rem 0 1rem;line-height:1.6}
+.ab-stem p{margin:.5rem 0}
+.ab-stem h4.ab-h{font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:1rem 0 .35rem;font-weight:700}
+.ab-stem ul{margin:.4rem 0 .6rem;padding-left:1.2rem}
+.ab-stem li{margin:.25rem 0}
+.ab-stem .ab-tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;background:var(--bg-soft);border:1px solid var(--line);border-radius:.3rem;padding:.05rem .4rem;color:var(--muted);vertical-align:.08em}
+.ab-stem.cs{max-height:260px;overflow:auto;padding:.9rem 1rem;background:var(--bg-soft);border-radius:.5rem;font-size:.92rem}
 .ab-stem.cs.expanded{max-height:none}
 .ab-expand{font-size:.8rem;color:var(--accent);cursor:pointer;background:none;border:none;padding:.2rem 0;margin-bottom:.8rem}
 .ab-opts{display:flex;flex-direction:column;gap:.5rem}
@@ -169,16 +174,30 @@ Bộ đề thi thử **AB-100 Agentic AI Business Solutions Architect** — 114 
     });
   }
   function esc(t){const d=document.createElement('div');d.textContent=t;return d.innerHTML}
+  function inl(t){return esc(t).replace(/`([^`]+)`/g,'<span class="ab-tag">$1</span>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g,'<em>$1</em>')}
+  function mdStem(src){
+    const lines=src.split('\n'); let html='',buf=[],list=[];
+    const flushP=()=>{if(buf.length){html+='<p>'+buf.join(' ')+'</p>';buf=[]}};
+    const flushL=()=>{if(list.length){html+='<ul>'+list.map(x=>'<li>'+x+'</li>').join('')+'</ul>';list=[]}};
+    for(let ln of lines){
+      const t=ln.trim();
+      if(!t){flushP();flushL();continue}
+      if(t.startsWith('### ')){flushP();flushL();html+='<h4 class="ab-h">'+inl(t.slice(4))+'</h4>';continue}
+      if(t.startsWith('- ')){flushP();list.push(inl(t.slice(2)));continue}
+      flushL();buf.push(inl(t));
+    }
+    flushP();flushL();return html;
+  }
 
   function render(){
     if(!view.length){document.getElementById('ab-main').innerHTML='<div class="ab-card">Không có câu nào trong chế độ này.</div>';renderMap();stats();return}
     const q=view[idx];
     const s=state[q.id]||{picked:[],checked:false};
-    const isCS=q.stem.length>600;
+    const isCS=q.stem.length>900;
     const main=document.getElementById('ab-main');
     let h=`<div class="ab-card${s.checked?' checked':''}">
       <div class="ab-qnum">CÂU ${q.id} / 114 · ${idx+1} trong ${view.length}${q.correct.length>1?' · chọn '+q.correct.length+' đáp án':''}</div>
-      <div class="ab-stem${isCS?' cs':''}" id="ab-stem">${esc(q.stem)}</div>`;
+      <div class="ab-stem${isCS?' cs':''}" id="ab-stem">${mdStem(q.stem)}</div>`;
     if(isCS) h+=`<button class="ab-expand" id="ab-exp">Mở rộng / thu gọn đề</button>`;
     h+=`<div class="ab-opts">`;
     q.options.forEach((o,n)=>{
