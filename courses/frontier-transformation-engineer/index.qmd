@@ -25,6 +25,10 @@ Lộ trình học của Microsoft ("Skill Up with Level Up") giúp kỹ sư kỹ
 
 Nguồn: <https://skillupwithlevelup.com/frontier>
 
+## Luyện thi
+
+- [**AB-100 — Luyện thi 114 câu**](practice.qmd) — bộ đề thi thử tương tác (chọn đáp án, kiểm tra, xem lời giải, lưu tiến độ).
+
 ## Topics
 
 :::{#lectures}
