@@ -1,15 +1,5 @@
 [
   {
-    "listing": "/courses/frontier-transformation-engineer/index.html",
-    "items": [
-      "/courses/frontier-transformation-engineer/lectures/program-overview.html",
-      "/courses/frontier-transformation-engineer/lectures/azure-document-intelligence.html",
-      "/courses/frontier-transformation-engineer/lectures/build-ai-agents-foundry.html",
-      "/courses/frontier-transformation-engineer/lectures/ai-103-exam-review.html",
-      "/courses/frontier-transformation-engineer/lectures/ai-103-exam-use-cases.html"
-    ]
-  },
-  {
     "listing": "/courses/machine-learning/index.html",
     "items": [
       "/courses/machine-learning/lectures/gradient-descent.html",
@@ -20,16 +10,26 @@
     ]
   },
   {
-    "listing": "/courses/deep-learning/index.html",
-    "items": []
-  },
-  {
     "listing": "/courses/index.html",
     "items": [
       "/courses/deep-learning/index.html",
       "/courses/frontier-transformation-engineer/index.html",
       "/courses/image-and-video-processing/index.html",
       "/courses/machine-learning/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/deep-learning/index.html",
+    "items": []
+  },
+  {
+    "listing": "/courses/frontier-transformation-engineer/index.html",
+    "items": [
+      "/courses/frontier-transformation-engineer/lectures/program-overview.html",
+      "/courses/frontier-transformation-engineer/lectures/azure-document-intelligence.html",
+      "/courses/frontier-transformation-engineer/lectures/build-ai-agents-foundry.html",
+      "/courses/frontier-transformation-engineer/lectures/ai-103-exam-review.html",
+      "/courses/frontier-transformation-engineer/lectures/ai-103-exam-use-cases.html"
     ]
   },
   {

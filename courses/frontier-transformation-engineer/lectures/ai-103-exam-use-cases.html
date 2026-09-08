@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-48cb5fd48e62f5012225c83f74b157d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-eb8f38d337554339cdec0850d440664f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -266,6 +266,35 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#cần-scores-cho-groundedness-relevance-harmful-content" id="toc-cần-scores-cho-groundedness-relevance-harmful-content" class="nav-link" data-scroll-target="#cần-scores-cho-groundedness-relevance-harmful-content">Cần scores cho groundedness + relevance + harmful content</a></li>
   </ul></li>
+  </ul></li>
+  <li><a href="#bổ-sung-đợt-thi-thử-3" id="toc-bổ-sung-đợt-thi-thử-3" class="nav-link" data-scroll-target="#bổ-sung-đợt-thi-thử-3">Bổ sung — đợt thi thử 3</a>
+  <ul class="collapse">
+  <li><a href="#domain-1-plan-manage-1" id="toc-domain-1-plan-manage-1" class="nav-link" data-scroll-target="#domain-1-plan-manage-1">Domain 1 — Plan &amp; manage</a>
+  <ul class="collapse">
+  <li><a href="#deploy-dalle-model-từ-model-catalog" id="toc-deploy-dalle-model-từ-model-catalog" class="nav-link" data-scroll-target="#deploy-dalle-model-từ-model-catalog">Deploy DALL·E model từ model catalog</a></li>
+  <li><a href="#deployment-type-cho-real-time-inference-không-đụng-vcpu-quota" id="toc-deployment-type-cho-real-time-inference-không-đụng-vcpu-quota" class="nav-link" data-scroll-target="#deployment-type-cho-real-time-inference-không-đụng-vcpu-quota">Deployment type cho real-time inference, không đụng vCPU quota</a></li>
+  <li><a href="#app-service-truy-cập-foundry-service-resource-ít-công-quản-trị" id="toc-app-service-truy-cập-foundry-service-resource-ít-công-quản-trị" class="nav-link" data-scroll-target="#app-service-truy-cập-foundry-service-resource-ít-công-quản-trị">App Service truy cập Foundry Service resource, ít công quản trị</a></li>
+  <li><a href="#nhiều-client-app-dùng-chung-cấu-hình-azure-ai-search-cấm-key-auth" id="toc-nhiều-client-app-dùng-chung-cấu-hình-azure-ai-search-cấm-key-auth" class="nav-link" data-scroll-target="#nhiều-client-app-dùng-chung-cấu-hình-azure-ai-search-cấm-key-auth">Nhiều client app dùng chung cấu hình Azure AI Search, cấm key auth</a></li>
+  </ul></li>
+  <li><a href="#domain-2-generative-ai-1" id="toc-domain-2-generative-ai-1" class="nav-link" data-scroll-target="#domain-2-generative-ai-1">Domain 2 — Generative AI</a>
+  <ul class="collapse">
+  <li><a href="#improve-completeness-biến-thể-multiple-choice" id="toc-improve-completeness-biến-thể-multiple-choice" class="nav-link" data-scroll-target="#improve-completeness-biến-thể-multiple-choice">Improve completeness — biến thể multiple choice</a></li>
+  <li><a href="#classify-ảnh-upload-theo-harmful-content-block-theo-severity" id="toc-classify-ảnh-upload-theo-harmful-content-block-theo-severity" class="nav-link" data-scroll-target="#classify-ảnh-upload-theo-harmful-content-block-theo-severity">Classify ảnh upload theo harmful content, block theo severity</a></li>
+  </ul></li>
+  <li><a href="#domain-3-agentic-1" id="toc-domain-3-agentic-1" class="nav-link" data-scroll-target="#domain-3-agentic-1">Domain 3 — Agentic</a>
+  <ul class="collapse">
+  <li><a href="#compliance-workflow-ép-retrieval-danh-tính-tool-cô-lập-hotspot" id="toc-compliance-workflow-ép-retrieval-danh-tính-tool-cô-lập-hotspot" class="nav-link" data-scroll-target="#compliance-workflow-ép-retrieval-danh-tính-tool-cô-lập-hotspot">Compliance workflow: ép retrieval + danh tính tool cô lập (HOTSPOT)</a></li>
+  <li><a href="#openapi-tool-trả-401-vì-không-gửi-api-key-header" id="toc-openapi-tool-trả-401-vì-không-gửi-api-key-header" class="nav-link" data-scroll-target="#openapi-tool-trả-401-vì-không-gửi-api-key-header">OpenAPI tool trả 401 vì không gửi API key header</a></li>
+  </ul></li>
+  <li><a href="#observability-1" id="toc-observability-1" class="nav-link" data-scroll-target="#observability-1">Observability</a>
+  <ul class="collapse">
+  <li><a href="#langchain-opentelemetry-cùng-app-insights-yesno" id="toc-langchain-opentelemetry-cùng-app-insights-yesno" class="nav-link" data-scroll-target="#langchain-opentelemetry-cùng-app-insights-yesno">LangChain + OpenTelemetry cùng App Insights — Yes/No</a></li>
+  </ul></li>
+  <li><a href="#deploy-catalog" id="toc-deploy-catalog" class="nav-link" data-scroll-target="#deploy-catalog">Deploy / catalog</a>
+  <ul class="collapse">
+  <li><a href="#deploy-model-từ-catalog-cho-real-time-xem-domain-1-serverless-api-ở-trên" id="toc-deploy-model-từ-catalog-cho-real-time-xem-domain-1-serverless-api-ở-trên" class="nav-link" data-scroll-target="#deploy-model-từ-catalog-cho-real-time-xem-domain-1-serverless-api-ở-trên">Deploy model từ catalog cho real-time — <em>xem “Domain 1 → serverless API” ở trên</em></a></li>
+  </ul></li>
+  <li><a href="#câu-trùng-đã-gặp-lại-đợt-3" id="toc-câu-trùng-đã-gặp-lại-đợt-3" class="nav-link" data-scroll-target="#câu-trùng-đã-gặp-lại-đợt-3">Câu trùng đã gặp lại (đợt 3)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -985,9 +1014,95 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Bối cảnh:</strong> Evaluation cho RAG chat app, cần scores cho <strong>groundedness, relevance, và harmful content categories</strong>. Chọn <strong>2</strong> evaluation categories.</p>
 <p><strong>Đáp án:</strong> <strong>risk and safety metrics</strong> + <strong>AI quality (AI assisted) metrics</strong>.</p>
 <p><strong>Bẫy:</strong> groundedness/relevance là <strong>AI-assisted</strong> (LLM judge), không phải NLP metrics / similarity evaluators (những cái đó cần ground_truth, so n-gram).</p>
-
-
+<hr>
 </section>
+</section>
+</section>
+<section id="bổ-sung-đợt-thi-thử-3" class="level1">
+<h1>Bổ sung — đợt thi thử 3</h1>
+<section id="domain-1-plan-manage-1" class="level2">
+<h2 class="anchored" data-anchor-id="domain-1-plan-manage-1">Domain 1 — Plan &amp; manage</h2>
+<section id="deploy-dalle-model-từ-model-catalog" class="level3">
+<h3 class="anchored" data-anchor-id="deploy-dalle-model-từ-model-catalog">Deploy DALL·E model từ model catalog</h3>
+<p><strong>Bối cảnh:</strong> Có Azure subscription. Sẽ build app dùng model <strong>Azure AI DALL·E</strong>. Cần deploy model.</p>
+<p><strong>Đáp án:</strong> <strong>Microsoft Foundry (portal) + Azure CLI</strong>.</p>
+<p><strong>Bẫy:</strong> SDK for Python / JavaScript là để <em>gọi</em> model sau khi deploy, không phải tạo deployment. Azure ML Studio không quản lý deployment của Azure OpenAI models. Microsoft Graph API dùng cho M365/Entra, không liên quan.</p>
+</section>
+<section id="deployment-type-cho-real-time-inference-không-đụng-vcpu-quota" class="level3">
+<h3 class="anchored" data-anchor-id="deployment-type-cho-real-time-inference-không-đụng-vcpu-quota">Deployment type cho real-time inference, không đụng vCPU quota</h3>
+<p><strong>Bối cảnh:</strong> Foundry project. Deploy một model từ model catalog cho <strong>real-time inference</strong>. Yêu cầu: dùng <strong>key-based authentication</strong>, hỗ trợ <strong>REST API real-time</strong>, và <strong>KHÔNG tiêu vCPU quota</strong> của VM trong subscription.</p>
+<p><strong>Đáp án:</strong> <strong>serverless API</strong>.</p>
+<p><strong>Bẫy:</strong> <em>standard</em> (managed compute) deploy lên managed online endpoint dùng VM instances ⇒ tiêu vCPU quota. <em>self-hosted container</em> chạy trên hạ tầng của bạn. <em>batch</em> không real-time.</p>
+</section>
+<section id="app-service-truy-cập-foundry-service-resource-ít-công-quản-trị" class="level3">
+<h3 class="anchored" data-anchor-id="app-service-truy-cập-foundry-service-resource-ít-công-quản-trị">App Service truy cập Foundry Service resource, ít công quản trị</h3>
+<p><strong>Bối cảnh:</strong> Azure subscription có App Service app (App1). Provision một Microsoft Foundry Service resource (CSAccount1). Cần cấu hình App1 truy cập CSAccount1, <strong>tối thiểu công quản trị</strong>.</p>
+<p><strong>Đáp án:</strong> <strong>the endpoint URI and subscription key</strong>.</p>
+<p><strong>Bẫy:</strong> OAuth token cần triển khai token flow. SAS token là cơ chế của Azure Storage. “system-assigned managed identity + X.509 certificate” tự mâu thuẫn (MI vốn để khỏi quản credential) và làm tăng công quản lý cert. <em>(Nếu đề nhấn security/compliance thì managed identity + RBAC mới đúng — ở đây tiêu chí là ít công nhất.)</em></p>
+</section>
+<section id="nhiều-client-app-dùng-chung-cấu-hình-azure-ai-search-cấm-key-auth" class="level3">
+<h3 class="anchored" data-anchor-id="nhiều-client-app-dùng-chung-cấu-hình-azure-ai-search-cấm-key-auth">Nhiều client app dùng chung cấu hình Azure AI Search, cấm key auth</h3>
+<p><strong>Bối cảnh:</strong> App1 phải retrieve documents bằng Azure AI Search trước khi gửi prompt tới model. Cần tích hợp Project1 với nhiều client app. Yêu cầu: nhiều app <strong>dùng chung một search configuration</strong>, security policy <strong>cấm key-based authentication</strong>, tối thiểu công quản trị.</p>
+<p><strong>Đáp án:</strong> <strong>Configure an Azure AI Search connection in Project1 and reference the connection in each application</strong>.</p>
+<p><strong>Bẫy:</strong> Custom HTTP connection cấu hình endpoint per app ⇒ lặp thủ công, không chia sẻ config. Call trực tiếp bằng Entra auth / managed identity per app ⇒ mỗi app tự cấu hình endpoint + RBAC, không dùng connection dùng chung.</p>
+</section>
+</section>
+<section id="domain-2-generative-ai-1" class="level2">
+<h2 class="anchored" data-anchor-id="domain-2-generative-ai-1">Domain 2 — Generative AI</h2>
+<section id="improve-completeness-biến-thể-multiple-choice" class="level3">
+<h3 class="anchored" data-anchor-id="improve-completeness-biến-thể-multiple-choice">Improve completeness — biến thể multiple choice</h3>
+<p><strong>Bối cảnh:</strong> Agent tóm tắt policy documents, bỏ sót regulatory clause dù có trong retrieved content. Cần improve response completeness. Solution phải nằm trong <strong>logic của application code, trước khi trả response</strong>.</p>
+<p><strong>Đáp án:</strong> <strong>Add a retry evaluation before the responses are returned</strong> (reflection/self-check + regenerate).</p>
+<p><strong>Bẫy:</strong> Decrease temperature = tăng nhất quán, không tăng completeness. Model nhỏ hơn = tệ hơn. Tăng <code>presence_penalty</code> = phạt token đã dùng ⇒ khuyến khích đổi chủ đề, dễ bỏ sót hơn. (Nhắc lại quy tắc series: <strong>regenerate/retry/reflection = Yes; block dưới ngưỡng = No</strong>.)</p>
+</section>
+<section id="classify-ảnh-upload-theo-harmful-content-block-theo-severity" class="level3">
+<h3 class="anchored" data-anchor-id="classify-ảnh-upload-theo-harmful-content-block-theo-severity">Classify ảnh upload theo harmful content, block theo severity</h3>
+<p><strong>Bối cảnh:</strong> Deploy support agent cho phép user upload ảnh. Cần <strong>tự động phân loại ảnh theo nội dung độc hại</strong> và <strong>chặn theo mức severity</strong>.</p>
+<p><strong>Đáp án:</strong> <strong>Implement image moderation</strong> (Azure AI Content Safety).</p>
+<p><strong>Bẫy:</strong> <em>Use blocklists</em> chỉ chặn từ/cụm văn bản. <em>Keyword scanning trên OCR output</em> chỉ bắt chữ trong ảnh, bỏ sót ảnh độc không có chữ, không có severity. <em>Prompt shields</em> chống injection text.</p>
+</section>
+</section>
+<section id="domain-3-agentic-1" class="level2">
+<h2 class="anchored" data-anchor-id="domain-3-agentic-1">Domain 3 — Agentic</h2>
+<section id="compliance-workflow-ép-retrieval-danh-tính-tool-cô-lập-hotspot" class="level3">
+<h3 class="anchored" data-anchor-id="compliance-workflow-ép-retrieval-danh-tính-tool-cô-lập-hotspot">Compliance workflow: ép retrieval + danh tính tool cô lập (HOTSPOT)</h3>
+<p><strong>Bối cảnh:</strong> Agent dùng tool để retrieve internal content + gọi external API, hiện để <strong>model tự quyết</strong> khi nào gọi tool. Publish agent cho compliance workflow. Yêu cầu: <strong>mỗi workflow run phải có bước retrieval trước khi sinh response</strong>; tool call xác thực bằng <strong>danh tính riêng của agent đã publish</strong>; danh tính <strong>tách biệt khỏi tài nguyên project khác</strong>; hỗ trợ <strong>audit tracing</strong>.</p>
+<p><strong>Đáp án:</strong> <code>tool_choice</code> = <strong>required</strong>; authenticate by = <strong>Using a distinct agent identity bound to the client application</strong>.</p>
+<p><strong>Bẫy:</strong> <code>auto</code> để model tự quyết ⇒ có thể bỏ retrieval; <code>none</code> cấm gọi tool. <em>Shared project agent identity</em> không isolated. <em>Storing API keys in prompts</em> lộ key, không audit theo danh tính được.</p>
+</section>
+<section id="openapi-tool-trả-401-vì-không-gửi-api-key-header" class="level3">
+<h3 class="anchored" data-anchor-id="openapi-tool-trả-401-vì-không-gửi-api-key-header">OpenAPI tool trả 401 vì không gửi API key header</h3>
+<p><strong>Bối cảnh:</strong> Project1 có OpenAPI tool gọi external API + project connection <strong>Connection1</strong> lưu API key của external API đó. Khi agent gọi tool, API trả <strong>401 unauthorized</strong>, traces cho thấy <strong>API key header không được gửi</strong>. Cần đảm bảo OpenAPI tool <strong>tự đính kèm API key từ Connection1</strong> vào mọi request.</p>
+<p><strong>Đáp án:</strong> <strong>Connect the tool to Connection1</strong>.</p>
+<p><strong>Bẫy:</strong> <em>Identity passthrough (Entra token của caller)</em> dùng token Entra, không phải API key ⇒ vẫn 401. <em>Default connection of Project1</em> — key ở Connection1, không phải default. <em>Add API key header manually vào OpenAPI spec</em> — hardcode key = bảo mật kém, không phải cách Foundry quản lý.</p>
+</section>
+</section>
+<section id="observability-1" class="level2">
+<h2 class="anchored" data-anchor-id="observability-1">Observability</h2>
+<section id="langchain-opentelemetry-cùng-app-insights-yesno" class="level3">
+<h3 class="anchored" data-anchor-id="langchain-opentelemetry-cùng-app-insights-yesno">LangChain + OpenTelemetry cùng App Insights — Yes/No</h3>
+<p><strong>Bối cảnh:</strong> Project1 connect Application Insights, support team xem runs ở tab Traces. Foundry Agent Service lấy connection string qua <code>project_client.telemetry.get_application_insights_connection_string()</code> rồi gọi <code>configure_azure_monitor(...)</code>. Một service LangChain <strong>riêng</strong> dùng OpenTelemetry: <code>AzureAIOpenTelemetryTracer(connection_string=..., enable_content_recording=False)</code>, truyền qua <code>config={"callbacks":[azure_tracer]}</code>. Policy: telemetry của LangChain và OpenTelemetry phải <strong>phân biệt được</strong> trong cùng App Insights; secrets/credentials <strong>không</strong> được lưu trong prompts / tool arguments / span attributes.</p>
+<p><strong>Đáp án:</strong> - “LangChain service sẽ xuất hiện trong Traces <strong>mà không cần cấu hình tracer</strong>” → <strong>No</strong> (phải có tracer/callback thì mới phát span). - “Đặt <code>OTEL_SERVICE_NAME</code> khác nhau sẽ <strong>tách các service</strong> trong Application Insights” → <strong>Yes</strong> (map thành cloud role name). - “Với <code>enable_content_recording=False</code>, prompts và tool data <strong>vẫn được ghi</strong>” → <strong>No</strong> (False = KHÔNG ghi nội dung, chỉ giữ span/metadata — đúng yêu cầu không lưu secret).</p>
+</section>
+</section>
+<section id="deploy-catalog" class="level2">
+<h2 class="anchored" data-anchor-id="deploy-catalog">Deploy / catalog</h2>
+<section id="deploy-model-từ-catalog-cho-real-time-xem-domain-1-serverless-api-ở-trên" class="level3">
+<h3 class="anchored" data-anchor-id="deploy-model-từ-catalog-cho-real-time-xem-domain-1-serverless-api-ở-trên">Deploy model từ catalog cho real-time — <em>xem “Domain 1 → serverless API” ở trên</em></h3>
+</section>
+</section>
+<section id="câu-trùng-đã-gặp-lại-đợt-3" class="level2">
+<h2 class="anchored" data-anchor-id="câu-trùng-đã-gặp-lại-đợt-3">Câu trùng đã gặp lại (đợt 3)</h2>
+<ul>
+<li>Bicep connection tới Key Vault → <code>category: AzureKeyVault</code>, <code>authType: AccountManagedIdentity</code> — <em>(câu 45)</em></li>
+<li>Container <code>/status</code> <code>/swagger</code> logging Yes/No: No / Yes / Yes — <em>(câu 17)</em></li>
+<li>Content Safety self-harm severity code: <code>AnalyzeTextOptions(text=comment)</code> + <code>client.analyze_text(request)</code> — <em>(câu 19)</em></li>
+<li>Enable application tracing in Project1 (request nhiều bước) — <em>(câu 56)</em></li>
+<li>OCR skill cho ảnh hoá đơn scan để search — <em>(câu 11)</em></li>
+<li>Eval flow chấm completeness + <strong>block</strong> dưới ngưỡng → <strong>No</strong> (không improve, chỉ chặn) — <em>(câu 39)</em></li>
+</ul>
+
+
 </section>
 </section>
 
