@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-09-08">
 
-<title>My Learning Space – Le Nhut Thanh Quang</title>
+<title>Gradient Descent in Practice – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,28 +27,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-eb8f38d337554339cdec0850d440664f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-eb8f38d337554339cdec0850d440664f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,79 +109,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -158,7 +120,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
@@ -169,15 +131,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../courses/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../courses/index.html"> 
 <span class="menu-text">Learning Space</span></a>
   </li>  
 </ul>
@@ -198,15 +160,32 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gradient-descent-in-practice" id="toc-gradient-descent-in-practice" class="nav-link active" data-scroll-target="#gradient-descent-in-practice">Gradient Descent in Practice</a>
+  <ul class="collapse">
+  <li><a href="#ký-hiệu" id="toc-ký-hiệu" class="nav-link" data-scroll-target="#ký-hiệu">1. Ký hiệu</a></li>
+  <li><a href="#cost-function-là-một-cái-bát" id="toc-cost-function-là-một-cái-bát" class="nav-link" data-scroll-target="#cost-function-là-một-cái-bát">2. Cost function là một cái bát</a></li>
+  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization">3. Vectorization</a></li>
+  <li><a href="#feature-scaling" id="toc-feature-scaling" class="nav-link" data-scroll-target="#feature-scaling">4. Feature Scaling</a></li>
+  <li><a href="#chọn-learning-rate" id="toc-chọn-learning-rate" class="nav-link" data-scroll-target="#chọn-learning-rate">5. Chọn Learning Rate</a></li>
+  <li><a href="#kiểm-tra-hội-tụ" id="toc-kiểm-tra-hội-tụ" class="nav-link" data-scroll-target="#kiểm-tra-hội-tụ">6. Kiểm tra hội tụ</a></li>
+  <li><a href="#feature-engineering-polynomial-regression" id="toc-feature-engineering-polynomial-regression" class="nav-link" data-scroll-target="#feature-engineering-polynomial-regression">7. Feature Engineering &amp; Polynomial Regression</a></li>
+  <li><a href="#quy-trình" id="toc-quy-trình" class="nav-link" data-scroll-target="#quy-trình">8. Quy trình</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">9. Tóm tắt</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">My Learning Space</h1>
+<h1 class="title">Gradient Descent in Practice</h1>
 </div>
 
 
@@ -214,6 +193,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 8, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -223,56 +208,135 @@ window.Quarto = {
 </header>
 
 
-<p>Notes rewritten from lecture slides and other material I’ve studied.</p>
+<section id="gradient-descent-in-practice" class="level1">
+<h1>Gradient Descent in Practice</h1>
+<p><a href="../../../courses/machine-learning/lectures/gradient-descent.html">Note trước</a> giải thích gradient descent về mặt ý tưởng (quả bóng lăn xuống đồi). Note này là phần <strong>kỹ thuật vận hành</strong>: làm sao để GD thật sự hội tụ nhanh và đúng trên dữ liệu thật nhiều đặc trưng — feature scaling, chọn learning rate, kiểm tra hội tụ, vectorization, feature engineering.</p>
+<p><em>Nguồn: Machine Learning Specialization (Andrew Ng, Coursera) — Course 1, Week 1–2.</em></p>
+<section id="ký-hiệu" class="level2">
+<h2 class="anchored" data-anchor-id="ký-hiệu">1. Ký hiệu</h2>
+<p>Coursera dùng <code>w, b</code> thay cho <code>β</code>:</p>
+<pre><code>f_{w,b}(x) = w·x + b              (một đặc trưng)
+f_{w,b}(x) = w₁x₁ + ··· + wₙxₙ + b = w·x + b   (n đặc trưng, w·x là dot product)
+
+J(w,b) = (1/2m) Σᵢ (f_{w,b}(xⁱ) − yⁱ)²        ← cost = MSE/2</code></pre>
+<p>Cập nhật <strong>đồng thời</strong> (simultaneous) — tính hết đạo hàm riêng <em>trước</em>, rồi mới gán:</p>
+<pre><code>tmp_w = w − α · ∂J/∂w
+tmp_b = b − α · ∂J/∂b
+w, b = tmp_w, tmp_b</code></pre>
+<p>với <code>∂J/∂w = (1/m) Σ (f−y)·x</code> và <code>∂J/∂b = (1/m) Σ (f−y)</code>.</p>
+</section>
+<section id="cost-function-là-một-cái-bát" class="level2">
+<h2 class="anchored" data-anchor-id="cost-function-là-một-cái-bát">2. Cost function là một cái bát</h2>
+<p>Với linear regression + MSE, mặt <code>J(w,b)</code> là <strong>lồi</strong> — hình cái bát (soup bowl), chỉ có một đáy toàn cục, không có local minima. Nhìn từ trên xuống là các <strong>đường đồng mức</strong> (contour) hình elip; đáy là tâm elip.</p>
+<ul>
+<li>Gradient tại mỗi điểm vuông góc với đường đồng mức, chỉ hướng <strong>lên dốc</strong> → GD đi ngược lại.</li>
+<li>Đường đi của GD trên contour: những bước đầu dài, càng gần đáy gradient càng nhỏ nên bước càng ngắn — “hạ cánh” tự nhiên.</li>
+</ul>
+<p>Contour <strong>tròn</strong> → GD đi thẳng tới đáy. Contour <strong>elip dẹt</strong> → GD zic-zac chậm. §4 xử lý chuyện này.</p>
+</section>
+<section id="vectorization" class="level2">
+<h2 class="anchored" data-anchor-id="vectorization">3. Vectorization</h2>
+<p><code>w·x</code> viết bằng vòng lặp vs <code>np.dot</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n): f <span class="op">+=</span> w[j] <span class="op">*</span> x[j]     <span class="co"># chậm</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.dot(w, x)                          <span class="co"># nhanh hơn nhiều</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>np.dot</code> nhanh vì tận dụng <strong>SIMD</strong> (Single Instruction, Multiple Data) của CPU/GPU — nhiều phép nhân chạy song song trong một lệnh, thay vì <code>n</code> vòng lặp tuần tự. Với dataset lớn, khác biệt là hàng chục đến hàng trăm lần.</p>
+<p>Quy ước dữ liệu: <code>X_train</code> có shape <code>(m, n)</code> — <code>m</code> mẫu, <code>n</code> đặc trưng; mỗi hàng là một mẫu.</p>
+</section>
+<section id="feature-scaling" class="level2">
+<h2 class="anchored" data-anchor-id="feature-scaling">4. Feature Scaling</h2>
+<p><strong>Vấn đề:</strong> đặc trưng khác thang đo (Diện tích 300–2000 vs Số phòng 1–5) → đạo hàm theo <code>w</code> của biến lớn rất lớn, của biến nhỏ rất nhỏ → contour thành elip dẹt → GD zic-zac. Với một <code>α</code>, biến này đã “bay” trong khi biến kia chưa nhúc nhích.</p>
+<p><strong>Cách chuẩn hoá</strong> (fit thống kê <strong>chỉ trên train</strong> — <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">rò rỉ dữ liệu</a>):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cách</th>
+<th>Công thức</th>
+<th>Kết quả</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Chia cho max</strong></td>
+<td><code>x / max(x)</code></td>
+<td>về <code>[0, 1]</code> (hoặc <code>[−1, 1]</code>)</td>
+</tr>
+<tr class="even">
+<td><strong>Mean normalization</strong></td>
+<td><code>(x − μ) / (max − min)</code></td>
+<td>tâm quanh 0, biên <code>[−1, 1]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Z-score</strong></td>
+<td><code>(x − μ) / σ</code></td>
+<td>mean 0, std 1 — phổ biến nhất</td>
+</tr>
+</tbody>
+</table>
+<p>Mục tiêu: mọi đặc trưng về cùng khoảng cỡ <code>[−1, 1]</code> (đại khái <code>−3..3</code> hoặc <code>−0.3..0.3</code> là ổn; <code>−100..100</code> hoặc <code>0.001</code> là cần scale). Sau khi scale, contour tròn hơn → GD đi thẳng, hội tụ nhanh hơn nhiều.</p>
+<p>Xem thêm bảng Standardization / Min-Max / Robust ở <a href="../../../courses/machine-learning/lectures/regularization-feature-selection.html">Regularization &amp; Feature Selection</a>.</p>
+</section>
+<section id="chọn-learning-rate" class="level2">
+<h2 class="anchored" data-anchor-id="chọn-learning-rate">5. Chọn Learning Rate</h2>
+<p>Nếu <code>α</code> <strong>quá nhỏ</strong>: hội tụ đúng hướng nhưng rất chậm.</p>
+<p>Nếu <code>α</code> <strong>quá lớn</strong>: <code>J</code> không giảm mà <strong>dao động hoặc tăng vọt</strong> — <code>w</code> và <code>b</code> nảy qua nảy lại giữa dương và âm, biên độ tăng dần, đạo hàm đổi dấu mỗi bước. Đây là dấu hiệu kinh điển của <code>α</code> quá lớn (hoặc có bug trong code gradient).</p>
+<p><strong>Cách dò:</strong> thử theo thang <strong>×3</strong>: <code>… 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1 …</code></p>
+<ul>
+<li>Chạy vài chục vòng với mỗi <code>α</code>, vẽ <code>J</code> theo iteration.</li>
+<li>Chọn <code>α</code> lớn nhất mà <code>J</code> vẫn <strong>giảm đều và nhanh</strong> ở mọi bước.</li>
+<li>Mẹo debug: đặt <code>α</code> cực nhỏ (ví dụ <code>1e-7</code>) — nếu <code>J</code> <em>vẫn</em> không giảm mỗi bước thì gần như chắc chắn code gradient sai dấu.</li>
+</ul>
+</section>
+<section id="kiểm-tra-hội-tụ" class="level2">
+<h2 class="anchored" data-anchor-id="kiểm-tra-hội-tụ">6. Kiểm tra hội tụ</h2>
+<p><strong>Learning curve</strong> = đồ thị <code>J</code> theo số iteration:</p>
+<ul>
+<li><code>J</code> phải <strong>giảm sau mỗi iteration</strong>. Nếu có bước nào <code>J</code> tăng → <code>α</code> quá lớn hoặc bug.</li>
+<li>Đường phẳng dần → đang hội tụ. Số iteration cần rất khác nhau tuỳ bài (30 hay 300 000) → phải nhìn đồ thị, đừng đoán.</li>
+<li><strong>Automatic convergence test</strong>: coi như hội tụ nếu <code>J</code> giảm <code>&lt; ε</code> (ví dụ <code>ε = 0.001</code>) trong một iteration. Chọn <code>ε</code> khó → nhìn đồ thị vẫn đáng tin hơn.</li>
+</ul>
+</section>
+<section id="feature-engineering-polynomial-regression" class="level2">
+<h2 class="anchored" data-anchor-id="feature-engineering-polynomial-regression">7. Feature Engineering &amp; Polynomial Regression</h2>
+<p>Đặc trưng tốt nhất thường là đặc trưng <strong>ta tạo ra</strong> từ hiểu biết bài toán:</p>
+<ul>
+<li>Có <code>chiều_dài</code> và <code>chiều_rộng</code> → tạo <code>diện_tích = dài × rộng</code> có thể là biến dự báo mạnh hơn cả hai biến gốc.</li>
+<li>Quan hệ cong → thêm <code>x²</code>, <code>x³</code>, hoặc <code>√x</code> làm đặc trưng mới → mô hình <strong>tuyến tính theo tham số</strong> nhưng khớp được đường cong. Xem <a href="../../../courses/machine-learning/lectures/linear-regression.html">Linear Regression §6</a>.</li>
+</ul>
+<p><strong>Lưu ý:</strong> khi thêm <code>x², x³</code>, các đặc trưng này có thang đo chênh nhau cực lớn (<code>x ∈ [1,1000]</code> thì <code>x³ ∈ [1, 10⁹]</code>) → <strong>feature scaling càng bắt buộc</strong>.</p>
+</section>
+<section id="quy-trình" class="level2">
+<h2 class="anchored" data-anchor-id="quy-trình">8. Quy trình</h2>
+<ol type="1">
+<li>Vectorize mọi phép tính (<code>np.dot</code>, không vòng lặp Python).</li>
+<li>Feature scaling (z-score, fit trên train).</li>
+<li>Feature engineering / polynomial nếu quan hệ phi tuyến.</li>
+<li>Chọn <code>α</code> bằng thang ×3, nhìn learning curve.</li>
+<li>Chạy GD, kiểm tra <code>J</code> giảm mỗi iteration đến khi phẳng.</li>
+<li>Đánh giá trên test — <a href="../../../courses/machine-learning/lectures/linear-regression.html">metric hồi quy</a> / <a href="../../../courses/machine-learning/lectures/classification-metrics.html">phân loại</a>.</li>
+</ol>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">9. Tóm tắt</h2>
+<ul>
+<li>Cập nhật <strong>đồng thời</strong> <code>w, b</code>; <code>J(w,b)</code> của MSE là mặt <strong>lồi</strong> hình bát → không kẹt local minima.</li>
+<li><strong>Vectorization</strong> (<code>np.dot</code>, SIMD) nhanh hơn vòng lặp hàng chục–trăm lần; <code>X</code> có shape <code>(m, n)</code>.</li>
+<li><strong>Feature scaling</strong> (z-score) làm contour tròn lại → GD hết zic-zac; mục tiêu mọi đặc trưng ~<code>[−1, 1]</code>.</li>
+<li><strong>Learning rate</strong>: dò theo thang ×3; <code>α</code> quá lớn → <code>J</code> dao động/tăng, <code>w</code> nảy dấu.</li>
+<li><strong>Kiểm tra hội tụ</strong>: vẽ <code>J</code> theo iteration — phải giảm mỗi bước, phẳng dần.</li>
+<li><strong>Feature engineering</strong> (tích/tỉ số biến, <code>x², √x</code>) thường mạnh hơn tinh chỉnh mô hình; nhớ scale các đặc trưng mới.</li>
+</ul>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1788880493769" data-listing-reading-time-sort="1" data-listing-word-count-sort="175">
-<a href="../courses/deep-learning/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Deep Learning
-</h5>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1788880493843" data-listing-reading-time-sort="1" data-listing-word-count-sort="125">
-<a href="../courses/frontier-transformation-engineer/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Frontier Transformation Engineer
-</h5>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1788880493846" data-listing-reading-time-sort="1" data-listing-word-count-sort="67">
-<a href="../courses/image-and-video-processing/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Image and Video Processing
-</h5>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1788880494259" data-listing-reading-time-sort="2" data-listing-word-count-sort="261">
-<a href="../courses/machine-learning/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Machine Learning
-</h5>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

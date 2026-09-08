@@ -3,6 +3,7 @@
     "listing": "/courses/machine-learning/index.html",
     "items": [
       "/courses/machine-learning/lectures/gradient-descent.html",
+      "/courses/machine-learning/lectures/gradient-descent-in-practice.html",
       "/courses/machine-learning/lectures/classification-metrics.html",
       "/courses/machine-learning/lectures/data-imbalance-shift.html",
       "/courses/machine-learning/lectures/data-leakage-validation.html",
@@ -14,6 +15,10 @@
       "/courses/machine-learning/lectures/ensemble-methods.html",
       "/courses/machine-learning/lectures/neural-networks.html"
     ]
+  },
+  {
+    "listing": "/courses/deep-learning/index.html",
+    "items": []
   },
   {
     "listing": "/courses/frontier-transformation-engineer/index.html",
@@ -31,19 +36,6 @@
     ]
   },
   {
-    "listing": "/courses/deep-learning/index.html",
-    "items": []
-  },
-  {
-    "listing": "/courses/index.html",
-    "items": [
-      "/courses/deep-learning/index.html",
-      "/courses/frontier-transformation-engineer/index.html",
-      "/courses/image-and-video-processing/index.html",
-      "/courses/machine-learning/index.html"
-    ]
-  },
-  {
     "listing": "/courses/image-and-video-processing/index.html",
     "items": [
       "/courses/image-and-video-processing/lectures/introduction-overview.html",
@@ -58,6 +50,15 @@
       "/courses/image-and-video-processing/lectures/image-segmentation.html",
       "/courses/image-and-video-processing/lectures/color-image.html",
       "/courses/image-and-video-processing/lectures/keypoint-detection.html"
+    ]
+  },
+  {
+    "listing": "/courses/index.html",
+    "items": [
+      "/courses/deep-learning/index.html",
+      "/courses/frontier-transformation-engineer/index.html",
+      "/courses/image-and-video-processing/index.html",
+      "/courses/machine-learning/index.html"
     ]
   }
 ]
