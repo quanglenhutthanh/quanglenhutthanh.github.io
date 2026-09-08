@@ -2,3 +2,16 @@
 **/*.quarto_ipynb
 /_site/
 /sources/
+.DS_Store
+
+# Stray Quarto single-file render artifacts (real output goes to /_site/)
+/site_libs/
+/*.html
+/courses/**/*.html
+/courses/**/index-listing.json
+**/*_files/
+
+# AB-100 practice — keep plaintext questions OUT of this public repo.
+# Only the encrypted bank (ab-100-bank.enc) is committed.
+/courses/frontier-transformation-engineer/ab-100-bank.json
+/courses/frontier-transformation-engineer/_notes/
