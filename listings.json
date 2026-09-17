@@ -1,5 +1,11 @@
 [
   {
+    "listing": "/prompts/index.html",
+    "items": [
+      "/prompts/tom-tat-dinh-huong-luan-van.html"
+    ]
+  },
+  {
     "listing": "/courses/index.html",
     "items": [
       "/courses/deep-learning/index.html",
