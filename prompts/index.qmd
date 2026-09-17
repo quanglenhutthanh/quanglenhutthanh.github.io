@@ -1,0 +1,21 @@
+---
+title: "Thư viện Prompt"
+subtitle: "Các prompt đã dùng và muốn dùng lại"
+type: prompt-library
+listing:
+  - id: prompts
+    contents: "*.md"
+    type: table
+    fields: [date, title, category, tags]
+    sort: "date desc"
+    field-display-names:
+      date: "Ngày"
+      title: "Prompt"
+      category: "Nhóm"
+      tags: "Tags"
+---
+
+Nơi lưu các prompt đã viết ra và muốn dùng lại nguyên văn — mỗi prompt một file, kèm ghi chú về mục đích và cách dùng.
+
+:::{#prompts}
+:::
