@@ -15,7 +15,7 @@ listing:
       tags: "Tags"
 ---
 
-Nơi lưu các prompt đã viết ra và muốn dùng lại nguyên văn — mỗi prompt một file, kèm ghi chú về mục đích và cách dùng.
+Các prompt lưu lại để dùng nguyên văn — mỗi prompt một file.
 
 :::{#prompts}
 :::

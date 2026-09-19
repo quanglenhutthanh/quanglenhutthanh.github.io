@@ -9,20 +9,7 @@ date: 2026-09-17
 
 # Tóm tắt hội thoại định hướng luận văn
 
-## Mục đích
-
-Nén một cuộc hội thoại dài ở **giai đoạn định hướng đề tài** (chưa chạy thực nghiệm) thành một bản ghi quyết định: đã chốt gì, đang nghiêng về đâu, đã loại gì và **vì sao loại**. Mục tiêu là lần sau đọc lại không phải bàn lại từ đầu.
-
-## Khi nào dùng
-
-- Sau vài buổi brainstorm với AI về hướng đề tài, trước khi viết research proposal.
-- Trước buổi gặp GVHD, để có một bản tóm tắt trạng thái suy nghĩ hiện tại.
-
-## Lưu ý khi dùng
-
-- Prompt cố tình tách 3 mức **ĐÃ CHỐT / ĐANG NGHIÊNG VỀ / ĐỀ XUẤT** để không nhầm gợi ý của AI thành quyết định của mình.
-- Ràng buộc "không ghi kết quả hay con số hiệu năng như thể đã đạt được" là để tránh bản tóm tắt tự sinh ra số liệu ảo khi chưa có thực nghiệm nào.
-- Phần nào hội thoại không đề cập thì bắt buộc ghi "Chưa bàn" — chỗ trống chính là thứ cần xử lý tiếp.
+Nén một cuộc hội thoại dài ở giai đoạn định hướng đề tài (chưa có thực nghiệm) thành bản ghi quyết định: đã chốt gì, đang nghiêng về đâu, loại gì và vì sao loại.
 
 ## Prompt
 
