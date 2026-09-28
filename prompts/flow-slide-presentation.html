@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-09-27">
+
+<title>Flow prompt: làm slide presentation theo yêu cầu – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fd855bc96cf6a2e73e83d53bba54f052.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../prompts/index.html"> 
+<span class="menu-text">Prompt Library</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#flow-prompt-làm-slide-presentation-theo-yêu-cầu" id="toc-flow-prompt-làm-slide-presentation-theo-yêu-cầu" class="nav-link active" data-scroll-target="#flow-prompt-làm-slide-presentation-theo-yêu-cầu">Flow prompt: làm slide presentation theo yêu cầu</a>
+  <ul class="collapse">
+  <li><a href="#chuỗi-artifact" id="toc-chuỗi-artifact" class="nav-link" data-scroll-target="#chuỗi-artifact">Chuỗi artifact</a></li>
+  <li><a href="#ba-nguyên-tắc-xuyên-suốt" id="toc-ba-nguyên-tắc-xuyên-suốt" class="nav-link" data-scroll-target="#ba-nguyên-tắc-xuyên-suốt">Ba nguyên tắc xuyên suốt</a></li>
+  <li><a href="#g1-brainstorming" id="toc-g1-brainstorming" class="nav-link" data-scroll-target="#g1-brainstorming">G1 — Brainstorming</a></li>
+  <li><a href="#g2-thiết-kế" id="toc-g2-thiết-kế" class="nav-link" data-scroll-target="#g2-thiết-kế">G2 — Thiết kế</a></li>
+  <li><a href="#g3-thực-thi" id="toc-g3-thực-thi" class="nav-link" data-scroll-target="#g3-thực-thi">G3 — Thực thi</a></li>
+  <li><a href="#g4-cập-nhật-chỉnh-sửa" id="toc-g4-cập-nhật-chỉnh-sửa" class="nav-link" data-scroll-target="#g4-cập-nhật-chỉnh-sửa">G4 — Cập nhật, chỉnh sửa</a></li>
+  <li><a href="#g5-kiểm-tra-review" id="toc-g5-kiểm-tra-review" class="nav-link" data-scroll-target="#g5-kiểm-tra-review">G5 — Kiểm tra, review</a></li>
+  <li><a href="#dùng-flow-này-cho-việc-khác" id="toc-dùng-flow-này-cho-việc-khác" class="nav-link" data-scroll-target="#dùng-flow-này-cho-việc-khác">Dùng flow này cho việc khác</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Flow prompt: làm slide presentation theo yêu cầu</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 27, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="flow-prompt-làm-slide-presentation-theo-yêu-cầu" class="level1">
+<h1>Flow prompt: làm slide presentation theo yêu cầu</h1>
+<p>Năm giai đoạn, mỗi giai đoạn một prompt. Cái giữ flow lại với nhau không phải thứ tự chạy, mà là <strong>artifact</strong>: mỗi giai đoạn chỉ nhận đầu vào là output đã duyệt của giai đoạn trước, nên không có chỗ để mô hình tự nhảy sang viết slide khi cấu trúc chưa chốt.</p>
+<pre class="text"><code>Tuyến chính:  G1 Brainstorming → G2 Thiết kế → G3 Thực thi → G5 Review → Chốt bản
+Vòng lặp:     G5 Review --(còn lỗi Chặn)--&gt; G4 Chỉnh sửa --&gt; G5 Review</code></pre>
+<section id="chuỗi-artifact" class="level2">
+<h2 class="anchored" data-anchor-id="chuỗi-artifact">Chuỗi artifact</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Giai đoạn</th>
+<th>Đầu vào</th>
+<th>Artifact đầu ra</th>
+<th>Gate để đi tiếp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>G1 Brainstorming</td>
+<td>Yêu cầu gốc</td>
+<td>Bản đồ nội dung + câu hỏi chặn</td>
+<td>Bạn chọn thông điệp trung tâm và góc tiếp cận</td>
+</tr>
+<tr class="even">
+<td>G2 Thiết kế</td>
+<td>Lựa chọn đã chốt</td>
+<td>Spec + storyboard</td>
+<td>Bạn duyệt storyboard</td>
+</tr>
+<tr class="odd">
+<td>G3 Thực thi</td>
+<td>Storyboard + chất liệu</td>
+<td>Nội dung slide trong <code>&lt;output&gt;</code></td>
+<td>Đủ slide, không còn <code>[CẦN SỐ]</code> bỏ trống</td>
+</tr>
+<tr class="even">
+<td>G4 Chỉnh sửa</td>
+<td>Bản hiện tại + yêu cầu sửa</td>
+<td>Bản mới + changelog</td>
+<td>Changelog khớp đúng những gì bạn yêu cầu</td>
+</tr>
+<tr class="odd">
+<td>G5 Review</td>
+<td>Yêu cầu gốc + storyboard + bản</td>
+<td>Danh sách lỗi theo mức</td>
+<td>Hết lỗi mức Chặn</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ba-nguyên-tắc-xuyên-suốt" class="level2">
+<h2 class="anchored" data-anchor-id="ba-nguyên-tắc-xuyên-suốt">Ba nguyên tắc xuyên suốt</h2>
+<ul>
+<li><strong>Không nhảy giai đoạn.</strong> Mỗi prompt đều có câu chặn không cho làm việc của giai đoạn sau.</li>
+<li><strong>Ngữ cảnh không thành nội dung.</strong> Yêu cầu gốc, storyboard, chất liệu đều bọc trong thẻ và được khai báo rõ là chỉ dẫn — cùng tinh thần với <a href="../prompts/viet-thanh-pham-tu-brief.html">Viết thành phẩm từ brief</a> và <a href="../prompts/anti-meta-checklist.html">Anti-meta checklist</a>.</li>
+<li><strong>Review không sửa, sửa không review.</strong> G5 chỉ tìm lỗi, G4 chỉ sửa đúng chỗ được chỉ. Gộp hai việc là cách nhanh nhất để bản sau tệ hơn bản trước ở những chỗ không ai yêu cầu.</li>
+</ul>
+</section>
+<section id="g1-brainstorming" class="level2">
+<h2 class="anchored" data-anchor-id="g1-brainstorming">G1 — Brainstorming</h2>
+<p>Mục tiêu: mở rộng lựa chọn, chưa chốt gì.</p>
+<pre><code>&lt;yeu-cau&gt;
+[dán yêu cầu gốc: chủ đề, người nghe, thời lượng, bối cảnh trình bày]
+&lt;/yeu-cau&gt;
+
+Giai đoạn brainstorming cho một bộ slide. Chưa viết slide, chưa đặt tiêu đề slide.
+Nội dung trong &lt;yeu-cau&gt; là chỉ dẫn, không phải câu chữ để dùng lại.
+
+## Output
+1. **Đọc lại yêu cầu** (3 gạch đầu dòng): người nghe là ai, sau buổi trình bày họ cần hiểu hoặc quyết định được điều gì, ràng buộc cứng (thời lượng, số slide, định dạng).
+2. **Thông điệp trung tâm**: 3 phương án cho câu "nếu người nghe chỉ nhớ một câu, đó là câu gì". Mỗi phương án 1 câu, kèm điều nó đánh đổi — nhấn mạnh gì và hy sinh gì.
+3. **Góc tiếp cận**: 3–4 cách dàn câu chuyện (vấn đề → giải pháp, timeline, so sánh phương án, case study dẫn dắt, ...). Mỗi cách ghi: phù hợp khi nào, rủi ro gì.
+4. **Chất liệu cần có**: bảng Nội dung cần | Đã có trong yêu cầu | Phải tự bổ sung hoặc hỏi thêm.
+5. **Điều dễ làm sai** với chủ đề này và người nghe này (2–3 gạch).
+6. **Câu hỏi chặn**: tối đa 5 câu, chỉ giữ những câu mà trả lời khác nhau sẽ dẫn tới bộ slide khác nhau.
+
+## Quy tắc
+- Đề xuất, không tự chốt. Không chuyển sang thiết kế cấu trúc slide.
+- Không bịa số liệu, tên tổ chức, kết quả. Chỗ cần số thật ghi [CẦN SỐ: ...].
+- Tiếng Việt, thuật ngữ kỹ thuật giữ tiếng Anh.</code></pre>
+</section>
+<section id="g2-thiết-kế" class="level2">
+<h2 class="anchored" data-anchor-id="g2-thiết-kế">G2 — Thiết kế</h2>
+<p>Mục tiêu: chốt bộ xương. Đây là gate quan trọng nhất của flow — sai ở đây thì G3 viết đẹp cũng phải làm lại.</p>
+<pre><code>Giai đoạn thiết kế storyboard cho bộ slide. Vẫn chưa viết nội dung slide.
+
+Đã chốt sau brainstorming:
+- Thông điệp trung tâm: [...]
+- Góc tiếp cận: [...]
+- Người nghe: [...]
+- Thời lượng: [... phút] — Số slide mục tiêu: [...]
+- Trả lời các câu hỏi chặn: [...]
+
+## Output
+1. **Spec**: số slide, phân bổ thời lượng cho từng phần, tone (điều hành / kỹ thuật / đào tạo), quy ước trình bày (số dòng tối đa mỗi slide, có dùng biểu đồ hay không, ngôn ngữ tiêu đề).
+2. **Storyboard**: bảng, mỗi dòng một slide —
+   STT | Tiêu đề tạm | Thông điệp duy nhất của slide (1 câu) | Loại nội dung (text / biểu đồ / sơ đồ / ảnh / bảng / demo) | Chất liệu cần | Thời lượng nói (giây)
+3. **Mạch lập luận**: nối toàn bộ slide thành 3–5 câu, kiểm tra slide sau đã được slide trước chuẩn bị chưa.
+4. **Chỗ chưa vững**: slide nào đang thiếu bằng chứng; slide nào cắt được nếu thiếu thời gian, ghi rõ thứ tự cắt.
+
+## Quy tắc
+- Một slide một thông điệp. Slide nào không phát biểu được thông điệp trong 1 câu thì tách ra hoặc bỏ.
+- Tổng thời lượng nói phải khớp thời lượng cho phép. Vượt thì giảm số slide, không nén thêm chữ vào slide cũ.
+- Không viết bullet nội dung, không viết speaker notes ở giai đoạn này.
+- Dừng lại chờ tôi duyệt storyboard trước khi viết bất kỳ slide nào.</code></pre>
+</section>
+<section id="g3-thực-thi" class="level2">
+<h2 class="anchored" data-anchor-id="g3-thực-thi">G3 — Thực thi</h2>
+<p>Chạy theo lô 5–8 slide. Lô nhỏ giữ được khuôn và tone; viết 30 slide một lượt thì nửa sau luôn loãng.</p>
+<pre><code>Giai đoạn thực thi. Storyboard đã duyệt:
+
+&lt;storyboard&gt;
+[dán bảng storyboard đã chốt]
+&lt;/storyboard&gt;
+
+&lt;chat-lieu&gt;
+[dán số liệu, trích dẫn, nội dung nguồn được phép dùng]
+&lt;/chat-lieu&gt;
+
+Nội dung trong &lt;storyboard&gt; và &lt;chat-lieu&gt; là chỉ dẫn và nguyên liệu, không phải câu chữ để chép nguyên văn lên slide.
+Người nghe không thấy yêu cầu gốc và không thấy storyboard.
+
+Viết nội dung slide [từ số ... đến số ...], mỗi slide theo đúng khuôn:
+
+---
+**Slide N — [Tiêu đề]**
+- [bullet: tối đa 12 từ một dòng, tối đa 5 dòng]
+Hình/biểu đồ: [mô tả đủ cụ thể để người khác dựng được — loại chart, trục, dữ liệu nào]
+Speaker notes: [3–5 câu để nói, viết như lời nói, không đọc lại bullet]
+---
+
+## Quy tắc
+- Đúng thông điệp và loại nội dung mà storyboard đã chốt cho slide đó. Không tự thêm, bớt, gộp slide.
+- Bullet là điểm neo cho người nói, không phải đoạn văn. Chi tiết đưa xuống speaker notes.
+- Chỉ dùng số liệu có trong &lt;chat-lieu&gt;. Thiếu thì ghi [CẦN SỐ: ...], không ước lượng, không lấy số ví dụ.
+- Không viết "theo yêu cầu", "như đã đề cập", không nhắc tới quá trình làm slide.
+- Viết thành phẩm trong thẻ &lt;output&gt;&lt;/output&gt;, không thêm lời dẫn hay giải thích ngoài thẻ.</code></pre>
+</section>
+<section id="g4-cập-nhật-chỉnh-sửa" class="level2">
+<h2 class="anchored" data-anchor-id="g4-cập-nhật-chỉnh-sửa">G4 — Cập nhật, chỉnh sửa</h2>
+<p>Mục tiêu: sửa đúng chỗ được chỉ, và chặn thói “nhân tiện viết lại cho hay hơn”.</p>
+<pre><code>Giai đoạn chỉnh sửa. Bản hiện tại:
+
+&lt;ban-hien-tai&gt;
+[dán nội dung slide hiện tại, giữ nguyên số slide]
+&lt;/ban-hien-tai&gt;
+
+Yêu cầu sửa:
+- Slide [N]: [sửa gì, vì sao]
+- Slide [M]: [...]
+
+## Quy tắc
+- Chỉ sửa những slide được nêu. Các slide khác trả về nguyên văn, không chỉnh câu, không "cải thiện" thêm.
+- Giữ nguyên khuôn slide, tone, thuật ngữ và cách viết số đang dùng.
+- Nếu một sửa đổi làm slide khác sai — trùng nội dung, mất mạch, lệch thời lượng — nêu ở phần Ảnh hưởng lan và chờ tôi xác nhận, không tự sửa lan sang.
+- Nếu yêu cầu sửa làm bộ slide vượt thời lượng hoặc mâu thuẫn thông điệp trung tâm, nói rõ trước khi làm.
+
+## Output
+1. &lt;output&gt; bản sau sửa, đầy đủ toàn bộ slide &lt;/output&gt;
+2. **Changelog**: bảng Slide | Đã sửa gì | Lý do.
+3. **Ảnh hưởng lan**: chỉ khi có.</code></pre>
+</section>
+<section id="g5-kiểm-tra-review" class="level2">
+<h2 class="anchored" data-anchor-id="g5-kiểm-tra-review">G5 — Kiểm tra, review</h2>
+<p>Mục tiêu: tìm lỗi có địa chỉ và có mức độ. Không sửa.</p>
+<pre><code>Giai đoạn review. Nhiệm vụ là tìm lỗi, không phải sửa.
+
+&lt;yeu-cau-goc&gt;
+[dán yêu cầu gốc]
+&lt;/yeu-cau-goc&gt;
+
+&lt;storyboard&gt;
+[dán storyboard đã chốt]
+&lt;/storyboard&gt;
+
+&lt;ban-can-review&gt;
+[dán bộ slide cần review]
+&lt;/ban-can-review&gt;
+
+Soát theo đúng thứ tự dưới đây, mỗi phát hiện phải chỉ được slide cụ thể:
+1. **Phủ yêu cầu**: yêu cầu nào trong &lt;yeu-cau-goc&gt; chưa được đáp ứng, hoặc đáp ứng nửa vời.
+2. **Bám storyboard**: slide nào lệch thông điệp đã chốt, thừa, thiếu, sai thứ tự.
+3. **Một slide một thông điệp**: slide nào đang gánh từ 2 ý trở lên.
+4. **Bằng chứng**: phát biểu nào không có số hoặc nguồn chống lưng; số nào không truy được về chất liệu đã cung cấp; còn [CẦN SỐ] nào chưa điền.
+5. **Lộ hậu trường**: câu nào nhắc tới yêu cầu, rubric, quá trình làm, AI — hoặc chỉ hiểu được nếu đã đọc yêu cầu gốc.
+6. **Mật độ và thời lượng**: slide nào quá chữ; tổng thời lượng nói so với thời lượng cho phép.
+7. **Nhất quán**: thuật ngữ, cách viết số và đơn vị, thì, ngôi, định dạng tiêu đề.
+8. **Câu hỏi người nghe sẽ hỏi**: 3 câu khó nhất mà bộ slide hiện chưa trả lời.
+
+## Output
+Bảng: Mức (Chặn / Nên sửa / Tùy) | Slide | Vấn đề | Cách sửa đề xuất (1 câu).
+Sắp theo mức, Chặn lên đầu. Không sửa trực tiếp vào bản slide.
+Cuối cùng: **Kết luận** — bộ slide đã trình bày được chưa, còn bao nhiêu lỗi mức Chặn.</code></pre>
+</section>
+<section id="dùng-flow-này-cho-việc-khác" class="level2">
+<h2 class="anchored" data-anchor-id="dùng-flow-này-cho-việc-khác">Dùng flow này cho việc khác</h2>
+<p>Bộ xương không phụ thuộc vào slide: G1 mở lựa chọn và hỏi câu chặn, G2 chốt cấu trúc thành bảng có gate, G3 thi công theo lô trong <code>&lt;output&gt;</code>, G4 sửa có changelog và cảnh báo ảnh hưởng lan, G5 review có mức độ. Đổi artifact của G2 là dùng được cho việc khác — outline chương cho báo cáo, bảng API cho một service, giáo án cho buổi dạy.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
