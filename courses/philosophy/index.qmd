@@ -1,0 +1,37 @@
+---
+title: "Triết học"
+subtitle: "Triết học Mác – Lênin (Cao học)"
+subject: "philosophy"
+type: subject
+instructor: "TS. Đặng Hoàng Vũ"
+term: "Fall 2026"
+tags: [philosophy, marxism-leninism]
+listing:
+  - id: lectures
+    contents: "lectures/*.md"
+    type: table
+    fields: [lecture_no, title, status, tags]
+    sort: "lecture_no asc"
+    field-display-names:
+      lecture_no: "#"
+      title: "Topic"
+      status: "Status"
+      tags: "Tags"
+---
+
+## Introduction
+
+Học phần Triết học cho hệ cao học, dạy theo hướng **vận dụng**: mỗi nguyên lý, quy luật đều đi kèm "ý nghĩa phương pháp luận", tức là học xong thì làm gì với nó trong công việc và đời sống. Trục chính của môn có ba phần: **bản thể luận** (vật chất, ý thức, vận động, không gian, thời gian), **phép biện chứng duy vật** (2 nguyên lý, 3 quy luật, 6 cặp phạm trù) và **lý luận nhận thức** (thực tiễn, con đường nhận thức, chân lý). Phần triết học xã hội (hình thái kinh tế – xã hội, giai cấp, nhà nước, ý thức xã hội, con người) và quan hệ triết học với khoa học – công nghệ học ở mức tổng quan.
+
+Notes này được viết lại từ slide 10 chương của giảng viên, ba tài liệu hướng dẫn ôn tập (Vật chất – Ý thức, Phép biện chứng duy vật, Lý luận nhận thức) và đề thi mẫu.
+
+## Topics
+
+:::{#lectures}
+:::
+
+## Thi cuối kỳ
+
+- Thời gian làm bài **120 phút**, được dùng **tài liệu giấy**. Đề gồm **2 câu tự luận, mỗi câu 5 điểm**.
+- Đề mẫu hỏi về **mối quan hệ giữa vận động và thời gian**: Câu 1 phân tích lý luận và liên hệ bản thân (có ít nhất 2 ví dụ); Câu 2 chọn một từ khoá (AI, việc làm, CMCN 4.0, TMĐT…), triển khai thành một vấn đề thực tế, rồi luận giải bằng lý luận.
+- Dàn ý và bài mẫu bám theo rubric chấm: xem [Vận động, không gian và thời gian](lectures/van-dong-khong-gian-thoi-gian.md).
