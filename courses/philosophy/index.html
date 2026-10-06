@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>Triết học – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -205,8 +205,7 @@ window.Quarto = {
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#thi-cuối-kỳ" id="toc-thi-cuối-kỳ" class="nav-link" data-scroll-target="#thi-cuối-kỳ">Thi cuối kỳ</a></li>
   </ul>
 </nav>
     </div>
@@ -215,8 +214,8 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">Triết học</h1>
+<p class="subtitle lead">Triết học Mác – Lênin (Cao học)</p>
 </div>
 
 
@@ -235,8 +234,8 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with the two pieces every model shares — the loss function it minimizes and the Gradient Descent that minimizes it — and how to evaluate classifiers properly (confusion matrix → accuracy, precision/recall, ROC-AUC, PR-AUC, F1), plus the practical data concerns that break offline metrics: class imbalance, distribution shift, and data leakage. It then works through the core supervised algorithms — linear and logistic regression, regularization &amp; feature selection, decision trees, ensemble methods (bagging, Random Forest, boosting, XGBoost) — and closes with neural networks (forward pass + backpropagation) as the bridge to Deep Learning.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below): the from-scratch implementations of linear regression, logistic regression, decision trees, and neural networks, plus two end-to-end capstone projects — one on dirty multi-table data with leakage-safe feature engineering, one on predictive maintenance under distribution shift.</p>
+<p>Học phần Triết học cho hệ cao học, dạy theo hướng <strong>vận dụng</strong>: mỗi nguyên lý, quy luật đều đi kèm “ý nghĩa phương pháp luận”, tức là học xong thì làm gì với nó trong công việc và đời sống. Trục chính của môn có ba phần: <strong>bản thể luận</strong> (vật chất, ý thức, vận động, không gian, thời gian), <strong>phép biện chứng duy vật</strong> (2 nguyên lý, 3 quy luật, 6 cặp phạm trù) và <strong>lý luận nhận thức</strong> (thực tiễn, con đường nhận thức, chân lý). Phần triết học xã hội (hình thái kinh tế – xã hội, giai cấp, nhà nước, ý thức xã hội, con người) và quan hệ triết học với khoa học – công nghệ học ở mức tổng quan.</p>
+<p>Notes này được viết lại từ slide 10 chương của giảng viên, ba tài liệu hướng dẫn ôn tập (Vật chất – Ý thức, Phép biện chứng duy vật, Lý luận nhận thức) và đề thi mẫu.</p>
 </section>
 <section id="topics" class="level2">
 <h2 class="anchored" data-anchor-id="topics">Topics</h2>
@@ -281,194 +280,114 @@ Tags
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-date-sort="1785024000000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2350" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="gradient-descent.md">
+<tr data-index="0" data-listing-date-sort="1791244800000" data-listing-file-modified-sort="1791302788352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1126" data-listing-title-sort="Khái luận về triết học" data-listing-filename-sort="khai-luan-triet-hoc.md">
 <td>
 <span class="listing-lecture_no">1</span>
 </td>
 <td>
-<a href="../../courses/machine-learning/lectures/gradient-descent.html" class="title listing-title">Gradient Descent</a>
+<a href="../../courses/philosophy/lectures/khai-luan-triet-hoc.html" class="title listing-title">Khái luận về triết học</a>
 </td>
 <td>
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
+<span class="listing-tags">the-gioi-quan, van-de-co-ban, duy-vat, duy-tam, mac-lenin</span>
 </td>
 
 </tr>
 
-<tr data-index="1" data-listing-date-sort="1788825600000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1056" data-listing-title-sort="Gradient Descent in Practice" data-listing-filename-sort="gradient-descent-in-practice.md">
+<tr data-index="1" data-listing-date-sort="1791244800000" data-listing-file-modified-sort="1791302788352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1975" data-listing-title-sort="Vật chất và ý thức" data-listing-filename-sort="vat-chat-y-thuc.md">
 <td>
 <span class="listing-lecture_no">2</span>
 </td>
 <td>
-<a href="../../courses/machine-learning/lectures/gradient-descent-in-practice.html" class="title listing-title">Gradient Descent in Practice</a>
+<a href="../../courses/philosophy/lectures/vat-chat-y-thuc.html" class="title listing-title">Vật chất và ý thức</a>
 </td>
 <td>
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">gradient-descent, feature-scaling, learning-rate, convergence, vectorization, feature-engineering, polynomial-regression</span>
+<span class="listing-tags">ban-the-luan, vat-chat, y-thuc, lenin, phuong-phap-luan</span>
 </td>
 
 </tr>
 
-<tr data-index="2" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1791302788349" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2455" data-listing-title-sort="Classification Metrics" data-listing-filename-sort="classification-metrics.md">
+<tr data-index="2" data-listing-date-sort="1791244800000" data-listing-file-modified-sort="1791302788352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2386" data-listing-title-sort="Vận động, không gian và thời gian" data-listing-filename-sort="van-dong-khong-gian-thoi-gian.md">
 <td>
 <span class="listing-lecture_no">3</span>
 </td>
 <td>
-<a href="../../courses/machine-learning/lectures/classification-metrics.html" class="title listing-title">Classification Metrics</a>
+<a href="../../courses/philosophy/lectures/van-dong-khong-gian-thoi-gian.html" class="title listing-title">Vận động, không gian và thời gian</a>
 </td>
 <td>
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">metrics, classification, confusion-matrix, accuracy, precision, recall, roc-auc, pr-auc, f1</span>
+<span class="listing-tags">van-dong, khong-gian, thoi-gian, phuong-thuc-ton-tai, de-thi</span>
 </td>
 
 </tr>
 
-<tr data-index="3" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3259" data-listing-title-sort="Class Imbalance &amp; Distribution Shift" data-listing-filename-sort="data-imbalance-shift.md">
+<tr data-index="3" data-listing-date-sort="1791244800000" data-listing-file-modified-sort="1791302788352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2795" data-listing-title-sort="Phép biện chứng duy vật" data-listing-filename-sort="phep-bien-chung-duy-vat.md">
 <td>
 <span class="listing-lecture_no">4</span>
 </td>
 <td>
-<a href="../../courses/machine-learning/lectures/data-imbalance-shift.html" class="title listing-title">Class Imbalance &amp; Distribution Shift</a>
+<a href="../../courses/philosophy/lectures/phep-bien-chung-duy-vat.html" class="title listing-title">Phép biện chứng duy vật</a>
 </td>
 <td>
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">eda, data, class-imbalance, distribution-shift, resampling, monitoring, drift, censoring, psi, importance-weighting</span>
+<span class="listing-tags">bien-chung, nguyen-ly, quy-luat, mau-thuan, luong-chat, phu-dinh, cap-pham-tru</span>
 </td>
 
 </tr>
 
-<tr data-index="4" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1120" data-listing-title-sort="Data Leakage &amp; Kiểm định theo thời gian" data-listing-filename-sort="data-leakage-validation.md">
+<tr data-index="4" data-listing-date-sort="1791244800000" data-listing-file-modified-sort="1791302788352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1520" data-listing-title-sort="Lý luận nhận thức" data-listing-filename-sort="ly-luan-nhan-thuc.md">
 <td>
 <span class="listing-lecture_no">5</span>
 </td>
 <td>
-<a href="../../courses/machine-learning/lectures/data-leakage-validation.html" class="title listing-title">Data Leakage &amp; Kiểm định theo thời gian</a>
+<a href="../../courses/philosophy/lectures/ly-luan-nhan-thuc.html" class="title listing-title">Lý luận nhận thức</a>
 </td>
 <td>
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">data-leakage, validation, cross-validation, time-based-split, feature-engineering, pipeline</span>
+<span class="listing-tags">nhan-thuc, thuc-tien, cam-tinh, ly-tinh, chan-ly</span>
 </td>
 
 </tr>
 
-<tr data-index="5" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1402" data-listing-title-sort="Loss Functions" data-listing-filename-sort="loss-functions.md">
+<tr data-index="5" data-listing-date-sort="1791244800000" data-listing-file-modified-sort="1791302788352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1846" data-listing-title-sort="Triết học xã hội: hình thái KT–XH, chính trị, ý thức xã hội, con người" data-listing-filename-sort="triet-hoc-xa-hoi.md">
 <td>
 <span class="listing-lecture_no">6</span>
 </td>
 <td>
-<a href="../../courses/machine-learning/lectures/loss-functions.html" class="title listing-title">Loss Functions</a>
+<a href="../../courses/philosophy/lectures/triet-hoc-xa-hoi.html" class="title listing-title">Triết học xã hội: hình thái KT–XH, chính trị, ý thức xã hội, con người</a>
 </td>
 <td>
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">loss, mse, mae, huber, cross-entropy, hinge, maximum-likelihood, regularization</span>
+<span class="listing-tags">duy-vat-lich-su, llsx-qhsx, csht-kttt, giai-cap, nha-nuoc, y-thuc-xa-hoi, con-nguoi</span>
 </td>
 
 </tr>
 
-<tr data-index="6" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1300" data-listing-title-sort="Linear Regression" data-listing-filename-sort="linear-regression.md">
+<tr data-index="6" data-listing-date-sort="1791244800000" data-listing-file-modified-sort="1791302788352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="779" data-listing-title-sort="Triết học và khoa học – công nghệ" data-listing-filename-sort="triet-hoc-va-khoa-hoc-cong-nghe.md">
 <td>
 <span class="listing-lecture_no">7</span>
 </td>
 <td>
-<a href="../../courses/machine-learning/lectures/linear-regression.html" class="title listing-title">Linear Regression</a>
+<a href="../../courses/philosophy/lectures/triet-hoc-va-khoa-hoc-cong-nghe.html" class="title listing-title">Triết học và khoa học – công nghệ</a>
 </td>
 <td>
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">linear-regression, mse, normal-equation, gradient-descent, r-squared, multicollinearity, assumptions</span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1135" data-listing-title-sort="Logistic Regression" data-listing-filename-sort="logistic-regression.md">
-<td>
-<span class="listing-lecture_no">8</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/logistic-regression.html" class="title listing-title">Logistic Regression</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">logistic-regression, sigmoid, softmax, cross-entropy, log-odds, decision-boundary, decision-threshold, multiclass, regularization</span>
-</td>
-
-</tr>
-
-<tr data-index="8" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1230" data-listing-title-sort="Regularization &amp; Feature Selection" data-listing-filename-sort="regularization-feature-selection.md">
-<td>
-<span class="listing-lecture_no">9</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/regularization-feature-selection.html" class="title listing-title">Regularization &amp; Feature Selection</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">regularization, ridge, lasso, elastic-net, feature-selection, bias-variance, overfitting, preprocessing</span>
-</td>
-
-</tr>
-
-<tr data-index="9" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="999" data-listing-title-sort="Decision Tree" data-listing-filename-sort="decision-tree.md">
-<td>
-<span class="listing-lecture_no">10</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/decision-tree.html" class="title listing-title">Decision Tree</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">decision-tree, gini, entropy, information-gain, cart, overfitting, pruning, cross-validation, hyperparameter-tuning</span>
-</td>
-
-</tr>
-
-<tr data-index="10" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1512" data-listing-title-sort="Ensemble Methods" data-listing-filename-sort="ensemble-methods.md">
-<td>
-<span class="listing-lecture_no">11</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/ensemble-methods.html" class="title listing-title">Ensemble Methods</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">ensemble, bagging, bootstrap, random-forest, boosting, adaboost, gradient-boosting, xgboost, oob, bias-variance</span>
-</td>
-
-</tr>
-
-<tr data-index="11" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1516" data-listing-title-sort="Neural Networks" data-listing-filename-sort="neural-networks.md">
-<td>
-<span class="listing-lecture_no">12</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/neural-networks.html" class="title listing-title">Neural Networks</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">neural-network, mlp, perceptron, activation, forward-pass, backpropagation, chain-rule, vanishing-gradient</span>
+<span class="listing-tags">khoa-hoc, cong-nghe, cach-mang-cong-nghiep, ai, phuong-phap-luan</span>
 </td>
 
 </tr>
@@ -478,20 +397,13 @@ Tags
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
 </section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
+<section id="thi-cuối-kỳ" class="level2">
+<h2 class="anchored" data-anchor-id="thi-cuối-kỳ">Thi cuối kỳ</h2>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
-<li><a href="../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist_Reorder_Timing.ipynb</code></a> — Capstone: dự đoán thời điểm đặt hàng lại của nhà thuốc từ 7 bảng dữ liệu bẩn. Làm sạch dữ liệu, thiết kế nhãn theo <em>observation horizon</em> (chống censoring bias), feature engineering <em>as-of</em> chống rò rỉ, split theo thời gian, Linear/Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC_Failure_Distribution_Shift.ipynb</code></a> — Capstone: dự đoán hỏng máy CNC khi train (dây chuyền A) và test (dây chuyền B) lệch phân phối. Phát hiện shift bằng PSI + KS + drift classifier, xử lý bằng importance reweighting &amp; threshold calibration, feature cơ học kháng shift, so sánh 3 mô hình.</li>
+<li>Thời gian làm bài <strong>120 phút</strong>, được dùng <strong>tài liệu giấy</strong>. Đề gồm <strong>2 câu tự luận, mỗi câu 5 điểm</strong>.</li>
+<li>Đề mẫu hỏi về <strong>mối quan hệ giữa vận động và thời gian</strong>: Câu 1 phân tích lý luận và liên hệ bản thân (có ít nhất 2 ví dụ); Câu 2 chọn một từ khoá (AI, việc làm, CMCN 4.0, TMĐT…), triển khai thành một vấn đề thực tế, rồi luận giải bằng lý luận.</li>
+<li>Dàn ý và bài mẫu bám theo rubric chấm: xem <a href="../../courses/philosophy/lectures/van-dong-khong-gian-thoi-gian.html">Vận động, không gian và thời gian</a>.</li>
 </ul>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
 
 
 

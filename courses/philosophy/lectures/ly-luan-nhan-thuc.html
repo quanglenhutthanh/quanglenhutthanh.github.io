@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-10-06">
 
-<title>Machine Learning – Le Nhut Thanh Quang</title>
+<title>Lý luận nhận thức – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,25 +30,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-fd855bc96cf6a2e73e83d53bba54f052.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-fd855bc96cf6a2e73e83d53bba54f052.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,79 +74,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-lectures .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-lecture_no','listing-title','listing-status','listing-tags',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-lectures'] = new List('listing-lectures', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -158,7 +85,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
@@ -169,15 +96,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../courses/index.html"> 
+    <a class="nav-link" href="../../../courses/index.html"> 
 <span class="menu-text">Learning Space</span></a>
   </li>  
 </ul>
@@ -203,10 +130,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#chương-iv-lý-luận-nhận-thức" id="toc-chương-iv-lý-luận-nhận-thức" class="nav-link active" data-scroll-target="#chương-iv-lý-luận-nhận-thức">Chương IV – Lý luận nhận thức</a>
+  <ul class="collapse">
+  <li><a href="#các-quan-niệm-về-nhận-thức" id="toc-các-quan-niệm-về-nhận-thức" class="nav-link" data-scroll-target="#các-quan-niệm-về-nhận-thức">5.1 Các quan niệm về nhận thức</a></li>
+  <li><a href="#thực-tiễn" id="toc-thực-tiễn" class="nav-link" data-scroll-target="#thực-tiễn">5.2 Thực tiễn</a></li>
+  <li><a href="#con-đường-biện-chứng-của-nhận-thức" id="toc-con-đường-biện-chứng-của-nhận-thức" class="nav-link" data-scroll-target="#con-đường-biện-chứng-của-nhận-thức">5.3 Con đường biện chứng của nhận thức</a>
+  <ul class="collapse">
+  <li><a href="#a-trực-quan-sinh-động-nhận-thức-cảm-tính" id="toc-a-trực-quan-sinh-động-nhận-thức-cảm-tính" class="nav-link" data-scroll-target="#a-trực-quan-sinh-động-nhận-thức-cảm-tính">a) Trực quan sinh động (nhận thức cảm tính)</a></li>
+  <li><a href="#b-tư-duy-trừu-tượng-nhận-thức-lý-tính" id="toc-b-tư-duy-trừu-tượng-nhận-thức-lý-tính" class="nav-link" data-scroll-target="#b-tư-duy-trừu-tượng-nhận-thức-lý-tính">b) Tư duy trừu tượng (nhận thức lý tính)</a></li>
+  <li><a href="#c-quan-hệ-giữa-cảm-tính-và-lý-tính" id="toc-c-quan-hệ-giữa-cảm-tính-và-lý-tính" class="nav-link" data-scroll-target="#c-quan-hệ-giữa-cảm-tính-và-lý-tính">c) Quan hệ giữa cảm tính và lý tính</a></li>
+  <li><a href="#d-trở-về-thực-tiễn" id="toc-d-trở-về-thực-tiễn" class="nav-link" data-scroll-target="#d-trở-về-thực-tiễn">d) Trở về thực tiễn</a></li>
+  </ul></li>
+  <li><a href="#chân-lý" id="toc-chân-lý" class="nav-link" data-scroll-target="#chân-lý">5.4 Chân lý</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -215,8 +151,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning</h1>
-<p class="subtitle lead">Foundations &amp; Ensemble Methods</p>
+<h1 class="title">Lý luận nhận thức</h1>
 </div>
 
 
@@ -224,6 +159,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 6, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -233,268 +174,247 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Foundations to advanced techniques in Machine Learning. Starts with the two pieces every model shares — the loss function it minimizes and the Gradient Descent that minimizes it — and how to evaluate classifiers properly (confusion matrix → accuracy, precision/recall, ROC-AUC, PR-AUC, F1), plus the practical data concerns that break offline metrics: class imbalance, distribution shift, and data leakage. It then works through the core supervised algorithms — linear and logistic regression, regularization &amp; feature selection, decision trees, ensemble methods (bagging, Random Forest, boosting, XGBoost) — and closes with neural networks (forward pass + backpropagation) as the bridge to Deep Learning.</p>
-<p>Theory is reinforced with hands-on labs (see Labs below): the from-scratch implementations of linear regression, logistic regression, decision trees, and neural networks, plus two end-to-end capstone projects — one on dirty multi-table data with leakage-safe feature engineering, one on predictive maintenance under distribution shift.</p>
-</section>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<div id="listing-lectures" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-lectures-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-lectures'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Topic
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
+<section id="chương-iv-lý-luận-nhận-thức" class="level1">
+<h1>Chương IV – Lý luận nhận thức</h1>
+<blockquote class="blockquote">
+<p>Nội dung chính: bản chất của nhận thức, <strong>thực tiễn và vai trò của thực tiễn</strong>, <strong>con đường biện chứng của nhận thức</strong> (từ trực quan sinh động đến tư duy trừu tượng, rồi trở về thực tiễn) và <strong>chân lý</strong>. Câu hỏi xuyên suốt: <em>làm cách nào để biết được sự thật?</em></p>
+</blockquote>
+<hr>
+<section id="các-quan-niệm-về-nhận-thức" class="level2">
+<h2 class="anchored" data-anchor-id="các-quan-niệm-về-nhận-thức">5.1 Các quan niệm về nhận thức</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Tags
-</th>
-
+<tr class="header">
+<th>Trường phái</th>
+<th>Nhận thức là gì?</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1785024000000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2350" data-listing-title-sort="Gradient Descent" data-listing-filename-sort="gradient-descent.md">
-<td>
-<span class="listing-lecture_no">1</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/gradient-descent.html" class="title listing-title">Gradient Descent</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, optimization, backpropagation</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td>Bất khả tri (Kant)</td>
+<td>Con người không nhận thức được “vật tự nó”</td>
 </tr>
-
-<tr data-index="1" data-listing-date-sort="1788825600000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1056" data-listing-title-sort="Gradient Descent in Practice" data-listing-filename-sort="gradient-descent-in-practice.md">
-<td>
-<span class="listing-lecture_no">2</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/gradient-descent-in-practice.html" class="title listing-title">Gradient Descent in Practice</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">gradient-descent, feature-scaling, learning-rate, convergence, vectorization, feature-engineering, polynomial-regression</span>
-</td>
-
+<tr class="even">
+<td>Duy tâm chủ quan (Berkeley)</td>
+<td>Phức hợp các cảm giác, do chủ thể tự sản sinh ra</td>
 </tr>
-
-<tr data-index="2" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1791302788349" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2455" data-listing-title-sort="Classification Metrics" data-listing-filename-sort="classification-metrics.md">
-<td>
-<span class="listing-lecture_no">3</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/classification-metrics.html" class="title listing-title">Classification Metrics</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">metrics, classification, confusion-matrix, accuracy, precision, recall, roc-auc, pr-auc, f1</span>
-</td>
-
+<tr class="odd">
+<td>Duy tâm khách quan (Hegel)</td>
+<td>Sự tự nhận thức của “ý niệm tuyệt đối”</td>
 </tr>
-
-<tr data-index="3" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3259" data-listing-title-sort="Class Imbalance &amp; Distribution Shift" data-listing-filename-sort="data-imbalance-shift.md">
-<td>
-<span class="listing-lecture_no">4</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-imbalance-shift.html" class="title listing-title">Class Imbalance &amp; Distribution Shift</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">eda, data, class-imbalance, distribution-shift, resampling, monitoring, drift, censoring, psi, importance-weighting</span>
-</td>
-
+<tr class="even">
+<td>Duy vật trước Mác</td>
+<td>Sự <strong>sao chép giản đơn, thụ động</strong> hiện thực. Hạn chế: <em>siêu hình</em> (không thấy nhận thức là một quá trình có mâu thuẫn) và <em>trực quan</em> (không thấy vai trò của thực tiễn).</td>
 </tr>
-
-<tr data-index="4" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1120" data-listing-title-sort="Data Leakage &amp; Kiểm định theo thời gian" data-listing-filename-sort="data-leakage-validation.md">
-<td>
-<span class="listing-lecture_no">5</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/data-leakage-validation.html" class="title listing-title">Data Leakage &amp; Kiểm định theo thời gian</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">data-leakage, validation, cross-validation, time-based-split, feature-engineering, pipeline</span>
-</td>
-
+<tr class="odd">
+<td><strong>Duy vật biện chứng</strong></td>
+<td>Sự <strong>phản ánh</strong> hiện thực khách quan vào bộ óc người một cách <strong>năng động, sáng tạo</strong>, là một quá trình biện chứng <strong>dựa trên thực tiễn</strong></td>
 </tr>
-
-<tr data-index="5" data-listing-date-sort="1788048000000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1402" data-listing-title-sort="Loss Functions" data-listing-filename-sort="loss-functions.md">
-<td>
-<span class="listing-lecture_no">6</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/loss-functions.html" class="title listing-title">Loss Functions</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">loss, mse, mae, huber, cross-entropy, hinge, maximum-likelihood, regularization</span>
-</td>
-
-</tr>
-
-<tr data-index="6" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1300" data-listing-title-sort="Linear Regression" data-listing-filename-sort="linear-regression.md">
-<td>
-<span class="listing-lecture_no">7</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/linear-regression.html" class="title listing-title">Linear Regression</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">linear-regression, mse, normal-equation, gradient-descent, r-squared, multicollinearity, assumptions</span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1135" data-listing-title-sort="Logistic Regression" data-listing-filename-sort="logistic-regression.md">
-<td>
-<span class="listing-lecture_no">8</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/logistic-regression.html" class="title listing-title">Logistic Regression</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">logistic-regression, sigmoid, softmax, cross-entropy, log-odds, decision-boundary, decision-threshold, multiclass, regularization</span>
-</td>
-
-</tr>
-
-<tr data-index="8" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1230" data-listing-title-sort="Regularization &amp; Feature Selection" data-listing-filename-sort="regularization-feature-selection.md">
-<td>
-<span class="listing-lecture_no">9</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/regularization-feature-selection.html" class="title listing-title">Regularization &amp; Feature Selection</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">regularization, ridge, lasso, elastic-net, feature-selection, bias-variance, overfitting, preprocessing</span>
-</td>
-
-</tr>
-
-<tr data-index="9" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="999" data-listing-title-sort="Decision Tree" data-listing-filename-sort="decision-tree.md">
-<td>
-<span class="listing-lecture_no">10</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/decision-tree.html" class="title listing-title">Decision Tree</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">decision-tree, gini, entropy, information-gain, cart, overfitting, pruning, cross-validation, hyperparameter-tuning</span>
-</td>
-
-</tr>
-
-<tr data-index="10" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1512" data-listing-title-sort="Ensemble Methods" data-listing-filename-sort="ensemble-methods.md">
-<td>
-<span class="listing-lecture_no">11</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/ensemble-methods.html" class="title listing-title">Ensemble Methods</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">ensemble, bagging, bootstrap, random-forest, boosting, adaboost, gradient-boosting, xgboost, oob, bias-variance</span>
-</td>
-
-</tr>
-
-<tr data-index="11" data-listing-date-sort="1788134400000" data-listing-file-modified-sort="1791302788351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1516" data-listing-title-sort="Neural Networks" data-listing-filename-sort="neural-networks.md">
-<td>
-<span class="listing-lecture_no">12</span>
-</td>
-<td>
-<a href="../../courses/machine-learning/lectures/neural-networks.html" class="title listing-title">Neural Networks</a>
-</td>
-<td>
-<span class="listing-status">done</span>
-</td>
-<td>
-<span class="listing-tags">neural-network, mlp, perceptron, activation, forward-pass, backpropagation, chain-rule, vanishing-gradient</span>
-</td>
-
-</tr>
-
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-</section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
+<p><strong>Nguyên tắc của lý luận nhận thức duy vật biện chứng:</strong></p>
+<ol type="1">
+<li>Thừa nhận thế giới tồn tại khách quan, độc lập với ý thức.</li>
+<li>Cảm giác, tri giác, ý thức là <strong>hình ảnh</strong> của thế giới khách quan.</li>
+<li><strong>Thực tiễn là tiêu chuẩn kiểm tra chân lý.</strong></li>
+</ol>
+<p><strong>Chủ thể và khách thể:</strong></p>
 <ul>
-<li><a href="../../courses/machine-learning/labs/LinearReg.html"><code>LinearReg.ipynb</code></a> — Linear Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Logistic_Reg.html"><code>Logistic_Reg.ipynb</code></a> — Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/Decision_Tree.html"><code>Decision_Tree.ipynb</code></a> — Decision Tree.</li>
-<li><a href="../../courses/machine-learning/labs/NN.html"><code>NN.ipynb</code></a> — Neural Network.</li>
-<li><a href="../../courses/machine-learning/labs/PharmaDist_Reorder_Timing.html"><code>PharmaDist_Reorder_Timing.ipynb</code></a> — Capstone: dự đoán thời điểm đặt hàng lại của nhà thuốc từ 7 bảng dữ liệu bẩn. Làm sạch dữ liệu, thiết kế nhãn theo <em>observation horizon</em> (chống censoring bias), feature engineering <em>as-of</em> chống rò rỉ, split theo thời gian, Linear/Logistic Regression.</li>
-<li><a href="../../courses/machine-learning/labs/CNC_Failure_Distribution_Shift.html"><code>CNC_Failure_Distribution_Shift.ipynb</code></a> — Capstone: dự đoán hỏng máy CNC khi train (dây chuyền A) và test (dây chuyền B) lệch phân phối. Phát hiện shift bằng PSI + KS + drift classifier, xử lý bằng importance reweighting &amp; threshold calibration, feature cơ học kháng shift, so sánh 3 mô hình.</li>
+<li><strong>Chủ thể</strong> là con người, nhóm người hay xã hội đang <strong>tham gia</strong> hoạt động thực tiễn và nhận thức. Không phải cá nhân nào cũng là chủ thể.</li>
+<li><strong>Khách thể</strong> là phần hiện thực nằm trong phạm vi hoạt động của chủ thể. Khách thể đóng vai trò <strong>quyết định</strong>, nhưng chủ thể không thụ động: chủ thể tác động lên khách thể bằng thực tiễn và phản ánh nó một cách sáng tạo.</li>
+<li><strong>Khách thể</strong> rộng hơn <strong>đối tượng</strong> nhận thức. Ví dụ: cùng một khách thể là con người, nhưng sinh học và triết học nghiên cứu những đối tượng khác nhau.</li>
 </ul>
+<p><strong>Bản chất của nhận thức:</strong> là một quá trình đi từ chưa biết đến biết, từ biết ít đến biết nhiều, từ hiện tượng đến bản chất, lặp lại qua nhiều chu kỳ. Quá trình này là sự tác động biện chứng giữa chủ thể và khách thể <strong>thông qua thực tiễn</strong>.</p>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Xem <a href="../../courses/machine-learning/references.html">danh sách paper &amp; link</a>.</p>
+<section id="thực-tiễn" class="level2">
+<h2 class="anchored" data-anchor-id="thực-tiễn">5.2 Thực tiễn</h2>
+<blockquote class="blockquote">
+<p><strong>Thực tiễn là toàn bộ hoạt động vật chất – cảm tính, có tính lịch sử – xã hội, có mục đích, của con người nhằm cải tạo tự nhiên và xã hội.</strong></p>
+</blockquote>
+<ul>
+<li>Thực tiễn là hoạt động <strong>vật chất</strong>, khác với hoạt động tinh thần thuần tuý. Trong thực tiễn, chủ thể làm biến đổi khách thể và đồng thời cũng tự biến đổi.</li>
+<li>Thực tiễn có tính <strong>xã hội</strong>: là hoạt động của mọi cộng đồng, không của riêng ai.</li>
+<li>Thực tiễn có tính <strong>lịch sử</strong>: mỗi thời kỳ một khác, từ lao động thủ công đến máy móc đến robot.</li>
+</ul>
+<p><strong>Ba hình thức cơ bản của thực tiễn:</strong></p>
+<ol type="1">
+<li><strong>Sản xuất vật chất:</strong> hình thức cơ bản nhất, quyết định các hình thức còn lại. Lao động đã biến vượn thành người.</li>
+<li><strong>Chính trị – xã hội</strong> (cải biến xã hội): đấu tranh giai cấp, giải phóng dân tộc, bảo vệ hoà bình.</li>
+<li><strong>Thực nghiệm khoa học:</strong> hình thức đặc biệt, tiến hành trong điều kiện nhân tạo.</li>
+</ol>
+<p><strong>Vai trò của thực tiễn đối với nhận thức:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vai trò</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cơ sở</strong></td>
+<td>Thực tiễn làm sự vật bộc lộ thuộc tính, cung cấp dữ liệu cho nhận thức, rèn luyện giác quan và tạo ra công cụ mở rộng giác quan. “Đi một ngày đàng, học một sàng khôn.”</td>
+</tr>
+<tr class="even">
+<td><strong>Động lực</strong></td>
+<td>Nhu cầu thực tiễn đặt ra vấn đề buộc con người phải nhận thức. “Thực tiễn đặt ra vấn đề, nhận thức giải quyết vấn đề.” Ví dụ: sống trong kinh tế thị trường thì phải hiểu kinh tế thị trường.</td>
+</tr>
+<tr class="odd">
+<td><strong>Mục đích</strong></td>
+<td>Tri thức chỉ có giá trị khi được áp dụng vào đời sống.</td>
+</tr>
+<tr class="even">
+<td><strong>Tiêu chuẩn của chân lý</strong></td>
+<td>Chỉ có thực tiễn mới kiểm tra được tri thức đúng hay sai. “Hãy nhìn kết quả họ làm, đừng nghe những gì họ nói.”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="con-đường-biện-chứng-của-nhận-thức" class="level2">
+<h2 class="anchored" data-anchor-id="con-đường-biện-chứng-của-nhận-thức">5.3 Con đường biện chứng của nhận thức</h2>
+<blockquote class="blockquote">
+<p>Lênin: <strong>“Từ trực quan sinh động đến tư duy trừu tượng, và từ tư duy trừu tượng đến thực tiễn.”</strong></p>
+</blockquote>
+<section id="a-trực-quan-sinh-động-nhận-thức-cảm-tính" class="level3">
+<h3 class="anchored" data-anchor-id="a-trực-quan-sinh-động-nhận-thức-cảm-tính">a) Trực quan sinh động (nhận thức cảm tính)</h3>
+<p>Phản ánh <strong>trực tiếp</strong> khách thể bằng giác quan, gồm ba hình thức:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hình thức</th>
+<th>Nội dung</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cảm giác</strong></td>
+<td>Phản ánh <strong>từng thuộc tính riêng lẻ</strong>. Đây là hình thức đầu tiên và đơn giản nhất, nhưng mọi hình thức sau đều dựa trên nó.</td>
+<td>Vị cay của quả ớt</td>
+</tr>
+<tr class="even">
+<td><strong>Tri giác</strong></td>
+<td><strong>Tổng hợp</strong> nhiều cảm giác thành một hình ảnh trọn vẹn về sự vật</td>
+<td>Màu vàng, mùi thơm, tiếng rì rào gộp lại thành hình ảnh cánh đồng lúa chín</td>
+</tr>
+<tr class="odd">
+<td><strong>Biểu tượng</strong></td>
+<td>Hình ảnh được <strong>lưu lại</strong> sau khi sự vật không còn tác động trực tiếp, có thể có yếu tố sáng tạo. Đây là hình thức cao nhất của nhận thức cảm tính.</td>
+<td>Nhớ lại ngôi trường cũ; con rồng, nàng tiên cá</td>
+</tr>
+</tbody>
+</table>
+<p>Hạn chế: nhận thức cảm tính mới chỉ thấy <strong>vẻ bề ngoài</strong>, chưa nắm được bản chất và quy luật.</p>
+</section>
+<section id="b-tư-duy-trừu-tượng-nhận-thức-lý-tính" class="level3">
+<h3 class="anchored" data-anchor-id="b-tư-duy-trừu-tượng-nhận-thức-lý-tính">b) Tư duy trừu tượng (nhận thức lý tính)</h3>
+<p>Phản ánh <strong>gián tiếp, khái quát</strong>, nhờ đó sâu sắc và đầy đủ hơn. Gồm ba hình thức:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hình thức</th>
+<th>Nội dung</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Khái niệm</strong></td>
+<td>Phản ánh các thuộc tính <strong>chung, bản chất</strong> của sự vật</td>
+<td>“Người”: có ngôn ngữ, có tư duy trừu tượng, biết chế tạo công cụ. Màu da, vóc dáng là thuộc tính không bản chất.</td>
+</tr>
+<tr class="even">
+<td><strong>Phán đoán</strong></td>
+<td>Liên kết các khái niệm để <strong>khẳng định hay phủ định</strong> một thuộc tính. Chỉ câu trần thuật mới là phán đoán; câu hỏi, câu cảm thán, câu mệnh lệnh thì không.</td>
+<td>“Hà Nội là thủ đô của Việt Nam”</td>
+</tr>
+<tr class="odd">
+<td><strong>Suy luận</strong></td>
+<td>Từ các phán đoán đã có (<strong>tiền đề</strong>) rút ra phán đoán mới (<strong>kết luận</strong>). Toàn bộ khoa học được xây dựng trên suy luận.</td>
+<td>Luật sư phải tốt nghiệp đại học luật; anh Nam là luật sư; vậy anh Nam đã tốt nghiệp đại học luật.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="c-quan-hệ-giữa-cảm-tính-và-lý-tính" class="level3">
+<h3 class="anchored" data-anchor-id="c-quan-hệ-giữa-cảm-tính-và-lý-tính">c) Quan hệ giữa cảm tính và lý tính</h3>
+<p>Hai giai đoạn này <strong>thống nhất, không tách rời</strong>: cảm tính cung cấp dữ liệu cho lý tính, còn lý tính giúp cảm tính phản ánh sâu hơn. Tuyệt đối hoá một giai đoạn đều là siêu hình:</p>
+<ul>
+<li><strong>Duy cảm, chủ nghĩa kinh nghiệm</strong> (Bacon): chỉ tin vào cảm giác và kinh nghiệm, chỉ có “hành” mà không có “học”.</li>
+<li><strong>Duy lý, chủ nghĩa giáo điều</strong> (Descartes): chỉ tin vào lý tính và sách vở, chỉ có “học” mà không có “hành”.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Slide: “Giáo điều và kinh nghiệm chỉ đúng trong một vài trường hợp ngẫu nhiên.”</p>
+</blockquote>
+</section>
+<section id="d-trở-về-thực-tiễn" class="level3">
+<h3 class="anchored" data-anchor-id="d-trở-về-thực-tiễn">d) Trở về thực tiễn</h3>
+<p>Tư duy trừu tượng phản ánh gián tiếp nên <strong>có thể sai</strong>, vì vậy phải trở về thực tiễn để kiểm nghiệm. <strong>Thực tiễn là điểm bắt đầu và cũng là điểm kết thúc</strong> của một vòng nhận thức. Điểm kết thúc đó lại mở ra một vòng mới cao hơn, vì đối tượng vẫn tiếp tục vận động. Slide: “Kiến thức luôn lạc hậu, nên luôn cần nhận thức mới.”</p>
+<p><strong>Động lực</strong> của quá trình nhận thức là các mâu thuẫn: giữa nhận thức và thực tiễn, giữa biết và chưa biết, giữa chân lý và sai lầm.</p>
+</section>
+</section>
+<section id="chân-lý" class="level2">
+<h2 class="anchored" data-anchor-id="chân-lý">5.4 Chân lý</h2>
+<blockquote class="blockquote">
+<p><strong>Chân lý là tri thức phù hợp với hiện thực khách quan và đã được thực tiễn kiểm nghiệm.</strong></p>
+</blockquote>
+<p>Cần phân biệt với các quan niệm khác: chủ nghĩa thực dụng coi “cái có ích là chân lý”; một số quan niệm khác coi chân lý là cái được số đông thừa nhận.</p>
+<p><strong>Tính chất của chân lý:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tính</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Khách quan</strong></td>
+<td>Nội dung của chân lý không phụ thuộc vào chủ thể. Tiêu chuẩn là bản chất và quy luật của khách thể.</td>
+</tr>
+<tr class="even">
+<td><strong>Tương đối</strong></td>
+<td>Tri thức chỉ gần đúng, chưa trùng khít với khách thể, nên phải nhận thức lại nhiều lần theo điều kiện và bối cảnh.</td>
+</tr>
+<tr class="odd">
+<td><strong>Tuyệt đối</strong></td>
+<td>Tri thức đầy đủ, trọn vẹn về khách thể trong những điều kiện xác định. Chân lý tuyệt đối là <strong>tổng của các chân lý tương đối</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Cụ thể</strong></td>
+<td>Không có chân lý trừu tượng. Mọi chân lý gắn với điều kiện lịch sử và đối tượng cụ thể.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phương pháp luận:</strong> chống <strong>chủ nghĩa giáo điều</strong>, tức tuyệt đối hoá chân lý tương đối; đồng thời chống <strong>chủ nghĩa xét lại và tương đối luận</strong>, tức phủ nhận mọi chân lý.</p>
+<blockquote class="blockquote">
+<p>“Nhận thức đúng thì hành động có thể đúng, có thể sai; nhận thức sai thì hành động không thể đúng.”</p>
+</blockquote>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -1,11 +1,14 @@
 [
   {
-    "listing": "/courses/prompt-library/index.html",
+    "listing": "/courses/philosophy/index.html",
     "items": [
-      "/courses/prompt-library/flow-slide-presentation.html",
-      "/courses/prompt-library/viet-thanh-pham-tu-brief.html",
-      "/courses/prompt-library/anti-meta-checklist.html",
-      "/courses/prompt-library/tom-tat-hoi-thoai.html"
+      "/courses/philosophy/lectures/khai-luan-triet-hoc.html",
+      "/courses/philosophy/lectures/vat-chat-y-thuc.html",
+      "/courses/philosophy/lectures/van-dong-khong-gian-thoi-gian.html",
+      "/courses/philosophy/lectures/phep-bien-chung-duy-vat.html",
+      "/courses/philosophy/lectures/ly-luan-nhan-thuc.html",
+      "/courses/philosophy/lectures/triet-hoc-xa-hoi.html",
+      "/courses/philosophy/lectures/triet-hoc-va-khoa-hoc-cong-nghe.html"
     ]
   },
   {
@@ -66,7 +69,17 @@
       "/courses/frontier-transformation-engineer/index.html",
       "/courses/image-and-video-processing/index.html",
       "/courses/machine-learning/index.html",
-      "/courses/prompt-library/index.html"
+      "/courses/prompt-library/index.html",
+      "/courses/philosophy/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/prompt-library/index.html",
+    "items": [
+      "/courses/prompt-library/flow-slide-presentation.html",
+      "/courses/prompt-library/viet-thanh-pham-tu-brief.html",
+      "/courses/prompt-library/anti-meta-checklist.html",
+      "/courses/prompt-library/tom-tat-hoi-thoai.html"
     ]
   }
 ]
