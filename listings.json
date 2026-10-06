@@ -1,5 +1,14 @@
 [
   {
+    "listing": "/courses/prompt-library/index.html",
+    "items": [
+      "/courses/prompt-library/flow-slide-presentation.html",
+      "/courses/prompt-library/viet-thanh-pham-tu-brief.html",
+      "/courses/prompt-library/anti-meta-checklist.html",
+      "/courses/prompt-library/tom-tat-hoi-thoai.html"
+    ]
+  },
+  {
     "listing": "/courses/machine-learning/index.html",
     "items": [
       "/courses/machine-learning/lectures/gradient-descent.html",
@@ -56,16 +65,8 @@
       "/courses/deep-learning/index.html",
       "/courses/frontier-transformation-engineer/index.html",
       "/courses/image-and-video-processing/index.html",
-      "/courses/machine-learning/index.html"
-    ]
-  },
-  {
-    "listing": "/prompts/index.html",
-    "items": [
-      "/prompts/flow-slide-presentation.html",
-      "/prompts/viet-thanh-pham-tu-brief.html",
-      "/prompts/anti-meta-checklist.html",
-      "/prompts/tom-tat-hoi-thoai.html"
+      "/courses/machine-learning/index.html",
+      "/courses/prompt-library/index.html"
     ]
   }
 ]
