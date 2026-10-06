@@ -6,7 +6,6 @@ project:
     - "*.qmd"
     - "*.md"
     - "courses/"
-    - "prompts/"
 
 website:
   title: "Le Nhut Thanh Quang"
@@ -19,8 +18,6 @@ website:
         text: About
       - href: courses/index.qmd
         text: Learning Space
-      - href: prompts/index.qmd
-        text: Prompt Library
     right:
       - icon: github
         href: https://github.com/lenhutthanhquang
