@@ -4,14 +4,14 @@ subject: "data-mining"
 type: lecture
 lecture_no: 1
 status: done
-source: note
-tags: [dikw, kdd, data-mining-process, crisp-dm]
-date: 2026-10-11
+source: slide
+tags: [dikw, kdd, data-mining-process, crisp-dm, machine-learning-types]
+date: 2026-10-15
 ---
 
 # Dữ liệu → Thông tin → Tri thức
 
-Data Mining tồn tại vì một khoảng cách: tổ chức có **rất nhiều dữ liệu** nhưng **rất ít tri thức** dùng được để ra quyết định (*"data rich, information poor"*). Khai phá dữ liệu là quá trình đi từ đầu này sang đầu kia.
+Data Mining tồn tại vì một khoảng cách: tổ chức có **rất nhiều dữ liệu** nhưng **rất ít tri thức** dùng được để ra quyết định (*"data rich, information poor"*). Khai phá dữ liệu là quá trình đi từ đầu này sang đầu kia. Như giáo trình Han mở đầu: người ta hay nói ta sống trong *thời đại thông tin*, nhưng thực ra ta đang sống trong **thời đại dữ liệu**.
 
 ## 1. Tháp DIKW
 
@@ -33,9 +33,23 @@ Lưu ý:
   - Information → Knowledge: tìm mẫu ẩn, quy luật, mô hình dự đoán (đây là việc của **Data Mining**).
   - Knowledge → Wisdom: con người (hoặc hệ thống ra quyết định) đánh giá, cân nhắc bối cảnh và hành động.
 
+Ví dụ trên slide — từ doanh số tháng đến hành động:
+
+| Data | Information | Knowledge |
+|---|---|---|
+| Doanh số tháng: tháng 1 — 1.200 đơn vị; tháng 2 — 950; tháng 3 — 1.350 | Xu hướng: tháng 2 thấp hơn tháng 1 và 3; tổng 3 tháng 3.500 đơn vị | *Insight*: tháng 2 giảm do yếu tố mùa vụ. *Action*: tăng marketing vào tháng 2 để kéo doanh số |
+
+Mũi tên từ knowledge **quay ngược về data**: hành động tạo ra dữ liệu mới, vòng lặp tiếp tục (*adaptive*).
+
 Phân biệt quan trọng: **truy vấn** trả lời câu hỏi mà ta *đã biết để hỏi* ("doanh thu tháng 9 bao nhiêu?"); **khai phá** tìm ra những gì ta *chưa biết để hỏi* ("nhóm khách nào sắp rời bỏ, và vì sao?").
 
 ## 2. Data Mining là gì
+
+Theo slide (Han): Data Mining, còn gọi là **Knowledge Discovery from Data (KDD)**, là việc trích xuất **tự động hoặc thuận tiện** các **mẫu, mô hình** và các dạng tri thức khác (**luật kết hợp, tương quan**) từ tập dữ liệu lớn.
+
+Ví dụ: một search engine nhận hàng trăm triệu truy vấn mỗi ngày. Mỗi truy vấn là một *giao dịch* trong đó người dùng mô tả nhu cầu thông tin của mình. Khai phá khối truy vấn này cho ra tri thức mà không truy vấn đơn lẻ nào chứa được — ví dụ phát hiện sớm dịch cúm từ tần suất tìm kiếm triệu chứng theo vùng (Google Flu Trends).
+
+Định nghĩa kinh điển của Fayyad et al.:
 
 > Data Mining là quá trình **tự động hoặc bán tự động** phát hiện các **mẫu (pattern)** trong lượng dữ liệu lớn, sao cho các mẫu đó **hợp lệ, mới, có ích tiềm năng và hiểu được**.
 
@@ -69,6 +83,15 @@ Quy trình **lặp**: kết quả ở bước 5 thường buộc quay lại bư�
 
 Ánh xạ sang DIKW: bước 1–3 biến *data* thành dữ liệu sẵn sàng phân tích; bước 4 tìm *pattern*; bước 5 biến pattern thành *knowledge*.
 
+Hình trên slide (Han) vẽ cùng quy trình theo cách khác, nhấn mạnh kho dữ liệu:
+
+```
+Data Sources ─► Data Cleaning + Data Integration ─► Data Warehouse ─► Selection ─► Data Mining ─► Pattern Evaluation ─► Knowledge
+             └──────────── Data Preparation ────────────┘
+```
+
+Data Mining là **một bước thiết yếu** trong quá trình khám phá tri thức — nhưng chỉ là một bước.
+
 ### CRISP-DM — phiên bản hướng doanh nghiệp
 
 Quy trình chuẩn công nghiệp, nhấn mạnh hai đầu mà KDD ít nói tới — hiểu bài toán kinh doanh và triển khai:
@@ -81,6 +104,14 @@ Quy trình chuẩn công nghiệp, nhấn mạnh hai đầu mà KDD ít nói t�
 |---|---|---|---|
 | **Mô tả** (*descriptive*) | Tìm cấu trúc, quy luật có sẵn trong dữ liệu | Luật kết hợp, mẫu phổ biến, phân cụm, tóm tắt | Giỏ hàng: {tã} ⇒ {sữa}; phân khúc khách hàng |
 | **Dự đoán** (*predictive*) | Dùng biến đã biết để đoán biến chưa biết | Phân lớp, hồi quy, dự báo chuỗi thời gian, phát hiện bất thường | Khách có rời bỏ không; doanh số tháng sau |
+
+Ánh xạ sang các kiểu học máy:
+
+| Kiểu học | Có nhãn? | Tác vụ data mining tương ứng |
+|---|---|---|
+| **Supervised** (có giám sát) | Có | Phân lớp, hồi quy |
+| **Unsupervised** (không giám sát) | Không | Phân cụm, luật kết hợp |
+| **Reinforcement** (tăng cường) | Không có nhãn; học từ *phần thưởng* khi tương tác với môi trường (action → reward) | Ít dùng trong data mining cổ điển |
 
 Loại dữ liệu đầu vào (xem [Cấu trúc dữ liệu](data-structures.md)) quyết định một phần tác vụ và cách đánh giá.
 

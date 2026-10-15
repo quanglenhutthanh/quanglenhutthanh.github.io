@@ -3,6 +3,7 @@ title: "Data Mining"
 subtitle: "Khai phá dữ liệu"
 subject: "data-mining"
 type: subject
+instructor: "Minh Tran, PhD"
 term: "Fall 2026"
 tags: [data-mining]
 listing:
@@ -20,12 +21,25 @@ listing:
 
 ## Introduction
 
-Học phần Khai phá dữ liệu (Data Mining): quy trình đi từ dữ liệu thô đến tri thức có thể dùng được — tiền xử lý dữ liệu, khai phá luật kết hợp và mẫu phổ biến, phân lớp, phân cụm và phát hiện bất thường.
+Học phần Khai phá dữ liệu (Data Mining), giảng viên Minh Tran, PhD; giáo trình chính là *Data Mining: Concepts and Techniques* (Han, Kamber, Pei). Môn đi theo quy trình từ dữ liệu thô đến tri thức có thể dùng được (data → information → knowledge): hiểu kiểu dữ liệu và thống kê mô tả, tiền xử lý (làm sạch, tích hợp, biến đổi, giảm chiều), phân tích khám phá (EDA), rồi đến các tác vụ khai phá — luật kết hợp, phân lớp, phân cụm.
+
+Notes viết lại từ slide của giảng viên: bài giới thiệu môn và Chương 2 (*Data, Measurements, and Data Preprocessing*, hai phần).
 
 ## Topics
 
 :::{#lectures}
 :::
+
+## Đồ án
+
+Một dự án data mining đi qua 6 bước:
+
+1. **Business Understanding & Problem Definition** — hiểu bài toán kinh doanh, định nghĩa mục tiêu.
+2. **Data Acquisition & Exploration (EDA)** — thu thập và khám phá dữ liệu.
+3. **Data Preprocessing** — làm sạch, tích hợp, biến đổi ([Tiền xử lý dữ liệu](lectures/data-preprocessing.md)).
+4. **Feature Engineering** — tạo feature mới.
+5. **Train / Validate / Test Model & Comparison** — huấn luyện, kiểm định (walk-forward nếu dữ liệu có chiều thời gian, xem [Cấu trúc dữ liệu](lectures/data-structures.md)) và so sánh mô hình.
+6. **Business Insights** — rút ra insight và hành động.
 
 ## References
 

@@ -5,8 +5,8 @@ type: lecture
 lecture_no: 2
 status: done
 source: note
-tags: [cross-sectional, time-series, panel-data, data-types, validation]
-date: 2026-10-11
+tags: [cross-sectional, time-series, panel-data, data-types, validation, walk-forward]
+date: 2026-10-15
 ---
 
 # Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel
@@ -112,6 +112,26 @@ Chọn FE hay RE: **kiểm định Hausman** — bác bỏ $H_0$ → dùng FE.
 | Cross-sectional | Random split / k-fold (stratified nếu lệch lớp) | — |
 | Time series | **Theo thời gian**: train quá khứ, test tương lai; `TimeSeriesSplit` / rolling-origin | Random split → dùng tương lai đoán quá khứ, metric ảo |
 | Panel | Theo thời gian, **và** cân nhắc theo đối tượng (`GroupKFold`) nếu cần dự đoán cho đối tượng mới | Cùng một khách hàng nằm ở cả train lẫn test → model "nhớ" đối tượng |
+
+### Walk-forward validation
+
+Với chuỗi thời gian (và panel), mô phỏng đúng cách mô hình được dùng thật: train trên quá khứ, validate trên giai đoạn **ngay sau đó**, rồi trượt cửa sổ tới trước và lặp lại. Tập test là giai đoạn cuối cùng, không bao giờ đụng tới khi chọn mô hình. Có hai kiểu cửa sổ:
+
+| Kiểu | Train | Khi nào dùng |
+|---|---|---|
+| **Expanding window** (mở rộng) | Bắt đầu từ cùng một mốc, **dài thêm** sau mỗi vòng (vòng 1: kỳ 1; vòng 2: kỳ 1–2; …) | Quan hệ trong dữ liệu ổn định, càng nhiều lịch sử càng tốt |
+| **Sliding window** (trượt) | **Giữ nguyên độ dài**, trượt tới trước (vòng 1: kỳ 1; vòng 2: kỳ 2; …) | Dữ liệu thay đổi theo thời gian (drift), dữ liệu cũ không còn đúng |
+
+```
+Expanding                       Sliding
+kỳ:  1  2  3  4  5              kỳ:  1  2  3  4  5
+v1: [T][V]          [Test]      v1: [T][V]          [Test]
+v2: [T][T][V]       [Test]      v2:    [T][V]       [Test]
+v3: [T][T][T][V]    [Test]      v3:       [T][V]    [Test]
+v4: [T][T][T][T][V] [Test]      v4:          [T][V] [Test]
+```
+
+Trong scikit-learn: `TimeSeriesSplit()` mặc định là expanding; đặt `max_train_size` để thành sliding.
 
 Tương tự với feature: lag và rolling của panel phải tính **trong từng đối tượng** (`groupby`), không được để giá trị của cửa hàng A tràn sang cửa hàng B.
 
