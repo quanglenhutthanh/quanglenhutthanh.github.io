@@ -33,6 +33,13 @@
     "items": []
   },
   {
+    "listing": "/courses/data-mining/index.html",
+    "items": [
+      "/courses/data-mining/lectures/data-information-knowledge.html",
+      "/courses/data-mining/lectures/data-structures.html"
+    ]
+  },
+  {
     "listing": "/courses/frontier-transformation-engineer/index.html",
     "items": [
       "/courses/frontier-transformation-engineer/lectures/program-overview.html",
@@ -65,6 +72,7 @@
   {
     "listing": "/courses/index.html",
     "items": [
+      "/courses/data-mining/index.html",
       "/courses/deep-learning/index.html",
       "/courses/frontier-transformation-engineer/index.html",
       "/courses/image-and-video-processing/index.html",

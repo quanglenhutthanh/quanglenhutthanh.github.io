@@ -1771,6 +1771,48 @@
     "text": "Trang đề: https://learn.microsoft.com/credentials/certifications/exams/ab-100/\nStudy guide chính thức: https://learn.microsoft.com/credentials/certifications/resources/study-guides/ab-100\nMicrosoft Foundry (Azure AI Foundry) docs: https://learn.microsoft.com/azure/ai-foundry/\nCopilot Studio docs: https://learn.microsoft.com/microsoft-copilot-studio/\nPower Platform docs: https://learn.microsoft.com/power-platform/"
   },
   {
+    "objectID": "courses/data-mining/lectures/data-information-knowledge.html",
+    "href": "courses/data-mining/lectures/data-information-knowledge.html",
+    "title": "Dữ liệu → Thông tin → Tri thức",
+    "section": "",
+    "text": "Data Mining tồn tại vì một khoảng cách: tổ chức có rất nhiều dữ liệu nhưng rất ít tri thức dùng được để ra quyết định (“data rich, information poor”). Khai phá dữ liệu là quá trình đi từ đầu này sang đầu kia.\n\n\nBốn tầng, mỗi tầng được xây từ tầng dưới bằng cách thêm ngữ cảnh, xử lý và hiểu biết:\n\n\n\n\n\n\n\n\n\nTầng\nLà gì\nTrả lời câu hỏi\nVí dụ (siêu thị)\n\n\n\n\nData (dữ liệu)\nSự kiện, con số, ký hiệu thô, chưa có ngữ cảnh\n—\nTX1023, 2025-10-04, SKU_88, 2, 45000\n\n\nInformation (thông tin)\nDữ liệu đã được tổ chức, gắn ngữ cảnh, có ý nghĩa\nWho? What? When? Where? How many?\n“Tuần trước bán được 1.200 hộp sữa, giảm 15% so với tuần trước nữa”\n\n\nKnowledge (tri thức)\nQuy luật, mẫu, mối quan hệ rút ra từ thông tin; dùng được để giải thích và dự đoán\nHow? Why?\n“Khách mua tã thường mua kèm sữa; doanh số sữa giảm khi đối thủ chạy khuyến mãi tã”\n\n\nWisdom (sự khôn ngoan)\nVận dụng tri thức để phán đoán, ra quyết định đúng\nWhat should we do?\n“Đặt sữa cạnh tã, chạy combo khi đối thủ khuyến mãi”\n\n\n\nLưu ý:\n\nCàng lên cao: khối lượng giảm, giá trị tăng, mức độ cần con người diễn giải tăng.\nRanh giới giữa các tầng không tuyệt đối — cùng một con số có thể là thông tin với người này, là dữ liệu thô với người khác.\nBiến đổi giữa các tầng:\n\nData → Information: làm sạch, tích hợp, tổng hợp, thống kê mô tả, báo cáo (đây là việc của truy vấn, OLAP, BI).\nInformation → Knowledge: tìm mẫu ẩn, quy luật, mô hình dự đoán (đây là việc của Data Mining).\nKnowledge → Wisdom: con người (hoặc hệ thống ra quyết định) đánh giá, cân nhắc bối cảnh và hành động.\n\n\nPhân biệt quan trọng: truy vấn trả lời câu hỏi mà ta đã biết để hỏi (“doanh thu tháng 9 bao nhiêu?”); khai phá tìm ra những gì ta chưa biết để hỏi (“nhóm khách nào sắp rời bỏ, và vì sao?”).\n\n\n\n\nData Mining là quá trình tự động hoặc bán tự động phát hiện các mẫu (pattern) trong lượng dữ liệu lớn, sao cho các mẫu đó hợp lệ, mới, có ích tiềm năng và hiểu được.\n\nBốn tiêu chí của một mẫu “đáng giá”:\n\nValid — đúng trên dữ liệu mới, không chỉ trên dữ liệu đã thấy (không overfit).\nNovel — chưa biết trước. “Bệnh nhân mang thai đều là nữ” đúng nhưng vô dụng.\nPotentially useful — dẫn tới hành động có lợi.\nUnderstandable — con người diễn giải được (ít nhất là sau khi xử lý thêm).\n\nTheo nghĩa hẹp, Data Mining là một bước trong quy trình KDD; theo nghĩa rộng (cách dùng phổ biến), nó chỉ cả quy trình.\n\n\n\nQuy trình kinh điển của Fayyad et al. (1996), đi từ dữ liệu đến tri thức:\nDatabases ─► Selection ─► Preprocessing ─► Transformation ─► Data Mining ─► Interpretation/Evaluation ─► Knowledge\n   (data)     target data   clean data      transformed data    patterns                                (knowledge)\n\n\n\n\n\n\n\nBước\nLàm gì\n\n\n\n\n1. Selection\nHiểu bài toán, chọn nguồn dữ liệu và tập con liên quan\n\n\n2. Preprocessing\nLàm sạch: xử lý thiếu, nhiễu, ngoại lai, trùng lặp, mâu thuẫn; tích hợp nhiều nguồn\n\n\n3. Transformation\nChuẩn hoá, rời rạc hoá, tạo feature, giảm chiều (PCA, chọn feature)\n\n\n4. Data Mining\nÁp dụng thuật toán để tìm mẫu: luật kết hợp, phân lớp, phân cụm…\n\n\n5. Interpretation / Evaluation\nĐánh giá mẫu theo 4 tiêu chí trên, trực quan hoá, loại mẫu tầm thường, diễn giải cho người dùng\n\n\n\nQuy trình lặp: kết quả ở bước 5 thường buộc quay lại bước trước (thêm dữ liệu, sửa cách làm sạch, đổi feature). Trên thực tế, bước 2–3 chiếm phần lớn thời gian (thường được nói là 60–80%).\nÁnh xạ sang DIKW: bước 1–3 biến data thành dữ liệu sẵn sàng phân tích; bước 4 tìm pattern; bước 5 biến pattern thành knowledge.\n\n\nQuy trình chuẩn công nghiệp, nhấn mạnh hai đầu mà KDD ít nói tới — hiểu bài toán kinh doanh và triển khai:\n\nBusiness Understanding → 2. Data Understanding → 3. Data Preparation → 4. Modeling → 5. Evaluation → 6. Deployment (có vòng lặp giữa các bước).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNhóm\nMục tiêu\nTác vụ\nVí dụ\n\n\n\n\nMô tả (descriptive)\nTìm cấu trúc, quy luật có sẵn trong dữ liệu\nLuật kết hợp, mẫu phổ biến, phân cụm, tóm tắt\nGiỏ hàng: {tã} ⇒ {sữa}; phân khúc khách hàng\n\n\nDự đoán (predictive)\nDùng biến đã biết để đoán biến chưa biết\nPhân lớp, hồi quy, dự báo chuỗi thời gian, phát hiện bất thường\nKhách có rời bỏ không; doanh số tháng sau\n\n\n\nLoại dữ liệu đầu vào (xem Cấu trúc dữ liệu) quyết định một phần tác vụ và cách đánh giá.\n\n\n\n\nData là sự kiện thô; information là dữ liệu có ngữ cảnh (trả lời cái gì, bao nhiêu); knowledge là quy luật rút ra từ thông tin (trả lời thế nào, tại sao); wisdom là biết nên làm gì.\nTruy vấn/BI đưa ta từ data lên information; Data Mining đưa ta từ information lên knowledge.\nMẫu đáng giá phải valid, novel, useful, understandable.\nKDD: Selection → Preprocessing → Transformation → Data Mining → Interpretation, lặp nhiều vòng; tiền xử lý tốn công nhất."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-information-knowledge.html#tháp-dikw",
+    "href": "courses/data-mining/lectures/data-information-knowledge.html#tháp-dikw",
+    "title": "Dữ liệu → Thông tin → Tri thức",
+    "section": "",
+    "text": "Bốn tầng, mỗi tầng được xây từ tầng dưới bằng cách thêm ngữ cảnh, xử lý và hiểu biết:\n\n\n\n\n\n\n\n\n\nTầng\nLà gì\nTrả lời câu hỏi\nVí dụ (siêu thị)\n\n\n\n\nData (dữ liệu)\nSự kiện, con số, ký hiệu thô, chưa có ngữ cảnh\n—\nTX1023, 2025-10-04, SKU_88, 2, 45000\n\n\nInformation (thông tin)\nDữ liệu đã được tổ chức, gắn ngữ cảnh, có ý nghĩa\nWho? What? When? Where? How many?\n“Tuần trước bán được 1.200 hộp sữa, giảm 15% so với tuần trước nữa”\n\n\nKnowledge (tri thức)\nQuy luật, mẫu, mối quan hệ rút ra từ thông tin; dùng được để giải thích và dự đoán\nHow? Why?\n“Khách mua tã thường mua kèm sữa; doanh số sữa giảm khi đối thủ chạy khuyến mãi tã”\n\n\nWisdom (sự khôn ngoan)\nVận dụng tri thức để phán đoán, ra quyết định đúng\nWhat should we do?\n“Đặt sữa cạnh tã, chạy combo khi đối thủ khuyến mãi”\n\n\n\nLưu ý:\n\nCàng lên cao: khối lượng giảm, giá trị tăng, mức độ cần con người diễn giải tăng.\nRanh giới giữa các tầng không tuyệt đối — cùng một con số có thể là thông tin với người này, là dữ liệu thô với người khác.\nBiến đổi giữa các tầng:\n\nData → Information: làm sạch, tích hợp, tổng hợp, thống kê mô tả, báo cáo (đây là việc của truy vấn, OLAP, BI).\nInformation → Knowledge: tìm mẫu ẩn, quy luật, mô hình dự đoán (đây là việc của Data Mining).\nKnowledge → Wisdom: con người (hoặc hệ thống ra quyết định) đánh giá, cân nhắc bối cảnh và hành động.\n\n\nPhân biệt quan trọng: truy vấn trả lời câu hỏi mà ta đã biết để hỏi (“doanh thu tháng 9 bao nhiêu?”); khai phá tìm ra những gì ta chưa biết để hỏi (“nhóm khách nào sắp rời bỏ, và vì sao?”)."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-information-knowledge.html#data-mining-là-gì",
+    "href": "courses/data-mining/lectures/data-information-knowledge.html#data-mining-là-gì",
+    "title": "Dữ liệu → Thông tin → Tri thức",
+    "section": "",
+    "text": "Data Mining là quá trình tự động hoặc bán tự động phát hiện các mẫu (pattern) trong lượng dữ liệu lớn, sao cho các mẫu đó hợp lệ, mới, có ích tiềm năng và hiểu được.\n\nBốn tiêu chí của một mẫu “đáng giá”:\n\nValid — đúng trên dữ liệu mới, không chỉ trên dữ liệu đã thấy (không overfit).\nNovel — chưa biết trước. “Bệnh nhân mang thai đều là nữ” đúng nhưng vô dụng.\nPotentially useful — dẫn tới hành động có lợi.\nUnderstandable — con người diễn giải được (ít nhất là sau khi xử lý thêm).\n\nTheo nghĩa hẹp, Data Mining là một bước trong quy trình KDD; theo nghĩa rộng (cách dùng phổ biến), nó chỉ cả quy trình."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-information-knowledge.html#quy-trình-kdd-knowledge-discovery-in-databases",
+    "href": "courses/data-mining/lectures/data-information-knowledge.html#quy-trình-kdd-knowledge-discovery-in-databases",
+    "title": "Dữ liệu → Thông tin → Tri thức",
+    "section": "",
+    "text": "Quy trình kinh điển của Fayyad et al. (1996), đi từ dữ liệu đến tri thức:\nDatabases ─► Selection ─► Preprocessing ─► Transformation ─► Data Mining ─► Interpretation/Evaluation ─► Knowledge\n   (data)     target data   clean data      transformed data    patterns                                (knowledge)\n\n\n\n\n\n\n\nBước\nLàm gì\n\n\n\n\n1. Selection\nHiểu bài toán, chọn nguồn dữ liệu và tập con liên quan\n\n\n2. Preprocessing\nLàm sạch: xử lý thiếu, nhiễu, ngoại lai, trùng lặp, mâu thuẫn; tích hợp nhiều nguồn\n\n\n3. Transformation\nChuẩn hoá, rời rạc hoá, tạo feature, giảm chiều (PCA, chọn feature)\n\n\n4. Data Mining\nÁp dụng thuật toán để tìm mẫu: luật kết hợp, phân lớp, phân cụm…\n\n\n5. Interpretation / Evaluation\nĐánh giá mẫu theo 4 tiêu chí trên, trực quan hoá, loại mẫu tầm thường, diễn giải cho người dùng\n\n\n\nQuy trình lặp: kết quả ở bước 5 thường buộc quay lại bước trước (thêm dữ liệu, sửa cách làm sạch, đổi feature). Trên thực tế, bước 2–3 chiếm phần lớn thời gian (thường được nói là 60–80%).\nÁnh xạ sang DIKW: bước 1–3 biến data thành dữ liệu sẵn sàng phân tích; bước 4 tìm pattern; bước 5 biến pattern thành knowledge.\n\n\nQuy trình chuẩn công nghiệp, nhấn mạnh hai đầu mà KDD ít nói tới — hiểu bài toán kinh doanh và triển khai:\n\nBusiness Understanding → 2. Data Understanding → 3. Data Preparation → 4. Modeling → 5. Evaluation → 6. Deployment (có vòng lặp giữa các bước)."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-information-knowledge.html#các-loại-tác-vụ-khai-phá",
+    "href": "courses/data-mining/lectures/data-information-knowledge.html#các-loại-tác-vụ-khai-phá",
+    "title": "Dữ liệu → Thông tin → Tri thức",
+    "section": "",
+    "text": "Nhóm\nMục tiêu\nTác vụ\nVí dụ\n\n\n\n\nMô tả (descriptive)\nTìm cấu trúc, quy luật có sẵn trong dữ liệu\nLuật kết hợp, mẫu phổ biến, phân cụm, tóm tắt\nGiỏ hàng: {tã} ⇒ {sữa}; phân khúc khách hàng\n\n\nDự đoán (predictive)\nDùng biến đã biết để đoán biến chưa biết\nPhân lớp, hồi quy, dự báo chuỗi thời gian, phát hiện bất thường\nKhách có rời bỏ không; doanh số tháng sau\n\n\n\nLoại dữ liệu đầu vào (xem Cấu trúc dữ liệu) quyết định một phần tác vụ và cách đánh giá."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-information-knowledge.html#tóm-tắt",
+    "href": "courses/data-mining/lectures/data-information-knowledge.html#tóm-tắt",
+    "title": "Dữ liệu → Thông tin → Tri thức",
+    "section": "",
+    "text": "Data là sự kiện thô; information là dữ liệu có ngữ cảnh (trả lời cái gì, bao nhiêu); knowledge là quy luật rút ra từ thông tin (trả lời thế nào, tại sao); wisdom là biết nên làm gì.\nTruy vấn/BI đưa ta từ data lên information; Data Mining đưa ta từ information lên knowledge.\nMẫu đáng giá phải valid, novel, useful, understandable.\nKDD: Selection → Preprocessing → Transformation → Data Mining → Interpretation, lặp nhiều vòng; tiền xử lý tốn công nhất."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Le Nhut Thanh Quang",
@@ -1883,6 +1925,34 @@
     "text": "Labs\n\nMNIST-CNN-Dense.ipynb — Dense network và CNN cơ bản trên MNIST.\nCNN_Waste_Classification.ipynb — CNN từ đầu cho phân loại ảnh rác (Organic/Recyclable).\nRNN_Text_Classification_Keras_IMDB.ipynb — Simple RNN cho phân loại cảm xúc review phim IMDB.\n01_Attention_IMDB_Sentence_Classification.ipynb — Attention (Q/K/V, Scaled Dot-Product) với BiLSTM cho phân loại câu IMDB.\n02_Pretrained_Language_Model_PhoBERT_Vietnamese_Sentiment.ipynb — Pre-training → fine-tuning; fine-tune PhoBERT cho phân loại cảm xúc tiếng Việt.\n04_Llama_CoT_IMDB_ZeroShot_Evaluation.ipynb — Llama 3.2 1B Instruct, Direct vs Chain-of-Thought prompting, zero-shot trên IMDB.\nFSB_Faster_RCNN_Torchvision_PennFudan_2026.ipynb — Object Detection: fine-tune Faster R-CNN (torchvision) trên Penn–Fudan Pedestrian."
   },
   {
+    "objectID": "courses/data-mining/index.html",
+    "href": "courses/data-mining/index.html",
+    "title": "Data Mining",
+    "section": "",
+    "text": "Học phần Khai phá dữ liệu (Data Mining): quy trình đi từ dữ liệu thô đến tri thức có thể dùng được — tiền xử lý dữ liệu, khai phá luật kết hợp và mẫu phổ biến, phân lớp, phân cụm và phát hiện bất thường."
+  },
+  {
+    "objectID": "courses/data-mining/index.html#introduction",
+    "href": "courses/data-mining/index.html#introduction",
+    "title": "Data Mining",
+    "section": "",
+    "text": "Học phần Khai phá dữ liệu (Data Mining): quy trình đi từ dữ liệu thô đến tri thức có thể dùng được — tiền xử lý dữ liệu, khai phá luật kết hợp và mẫu phổ biến, phân lớp, phân cụm và phát hiện bất thường."
+  },
+  {
+    "objectID": "courses/data-mining/index.html#topics",
+    "href": "courses/data-mining/index.html#topics",
+    "title": "Data Mining",
+    "section": "Topics",
+    "text": "Topics\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Topic\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n#\n\n\n\nTopic\n\n\n\nStatus\n\n\n\nTags\n\n\n\n\n\n\n\n\n1\n\n\nDữ liệu → Thông tin → Tri thức\n\n\ndone\n\n\ndikw, kdd, data-mining-process, crisp-dm\n\n\n\n\n\n\n2\n\n\nCấu trúc dữ liệu: Cross-sectional, Time Series, Panel\n\n\ndone\n\n\ncross-sectional, time-series, panel-data, data-types, validation\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "courses/data-mining/index.html#references",
+    "href": "courses/data-mining/index.html#references",
+    "title": "Data Mining",
+    "section": "References",
+    "text": "References\nXem danh sách paper & link."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About / CV",
@@ -1916,6 +1986,13 @@
     "title": "About / CV",
     "section": "Skills",
     "text": "Skills\n\nD365 Business Central / Navision (on-premise) — implementation, customization/development, technical leadership, consulting, technical support, and project management assistance\nAI/ML — self-directed research and study, with a growing focus on computer vision (classical CV and deep learning)"
+  },
+  {
+    "objectID": "courses/data-mining/references.html",
+    "href": "courses/data-mining/references.html",
+    "title": "References – Data Mining",
+    "section": "",
+    "text": "Status = todo · reading · done\n\n\nTitle\nType\nLink\nStatus"
   },
   {
     "objectID": "courses/frontier-transformation-engineer/index.html",
@@ -1985,7 +2062,7 @@
     "href": "courses/index.html",
     "title": "My Learning Space",
     "section": "",
-    "text": "Notes rewritten from lecture slides and other material I’ve studied.\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\n\n\nFrontier Transformation Engineer\n\n\n\n\n\n\n\n\n\nImage and Video Processing\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n\n\nThư viện Prompt\n\n\n\n\n\n\n\n\n\nTriết học\n\n\n\n\n\nNo matching items"
+    "text": "Notes rewritten from lecture slides and other material I’ve studied.\n\n\n\n\n\n\n\n\n\n\n\nData Mining\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\n\n\nFrontier Transformation Engineer\n\n\n\n\n\n\n\n\n\nImage and Video Processing\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n\n\nThư viện Prompt\n\n\n\n\n\n\n\n\n\nTriết học\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/machine-learning/references.html",
@@ -2007,6 +2084,48 @@
     "title": "Le Nhut Thanh Quang",
     "section": "",
     "text": "CNN\nR-CNN\nFast R-CNN\nYOLO\nGAN & Diffusion - GAN: discriminator, generator\nForensie\nObject Detection with Transformer: DETR\nObject Detection, Instace Segmentation\nMetric Learning\nRegion Proposal Network\nảnh dùng ReLu\nRNN chậm\nmetrics: bert score, GPT Score - semantic: ROUGE, BLEU - LLM-as-a-judge RAGAS"
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-structures.html",
+    "href": "courses/data-mining/lectures/data-structures.html",
+    "title": "Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel",
+    "section": "",
+    "text": "Trước khi chọn mô hình, phải trả lời câu hỏi: mỗi dòng dữ liệu là gì, và các dòng có liên hệ với nhau không? Có ba cấu trúc cơ bản, phân biệt bằng hai chiều: đối tượng (entity, ký hiệu i: người, công ty, cửa hàng, quốc gia…) và thời gian (t).\n\n\n\n\n\n\n\n\n\n\nCấu trúc\nSố đối tượng\nSố thời điểm\nKý hiệu\nVí dụ\n\n\n\n\nCross-sectional\nnhiều (N)\n1\ny_i\nThu nhập của 5.000 hộ gia đình năm 2025\n\n\nTime series\n1\nnhiều (T)\ny_t\nGiá đóng cửa VN-Index mỗi ngày 2015–2025\n\n\nPanel (longitudinal)\nnhiều (N)\nnhiều (T)\ny_{it}\nDoanh thu của 200 cửa hàng theo từng tháng trong 3 năm\n\n\n\n\n\nQuan sát nhiều đối tượng tại cùng một thời điểm (hoặc một khoảng thời gian coi như một thời điểm) — một “lát cắt” của tổng thể.\nVí dụ: khảo sát mức sống hộ gia đình, dữ liệu khách hàng tại ngày chốt sổ, bảng điểm thi của sinh viên một khoá.\nĐặc điểm:\n\nThứ tự các dòng không mang thông tin — xáo trộn dòng không làm mất gì.\nGiả định thường dùng: các quan sát độc lập, cùng phân phối (i.i.d.), thường có được nhờ lấy mẫu ngẫu nhiên.\nVấn đề hay gặp: phương sai sai số thay đổi (heteroskedasticity — ví dụ chi tiêu của hộ giàu dao động mạnh hơn hộ nghèo), sai lệch chọn mẫu (selection bias).\nHạn chế: chỉ thấy tương quan giữa các đối tượng, không thấy một đối tượng thay đổi thế nào theo thời gian.\n\nĐây là cấu trúc mặc định của phần lớn bài toán ML “kinh điển” (phân lớp, phân cụm, luật kết hợp trên giỏ hàng).\n\n\n\nQuan sát một đối tượng (một biến) tại nhiều thời điểm liên tiếp, thường cách đều (ngày, tuần, tháng, quý).\nVí dụ: giá cổ phiếu, nhiệt độ theo giờ, lượng điện tiêu thụ, GDP theo quý, số đơn hàng mỗi ngày của một cửa hàng.\nĐặc điểm:\n\nThứ tự là thông tin — đảo thứ tự là phá hỏng dữ liệu.\nCác quan sát không độc lập: giá trị hôm nay phụ thuộc giá trị hôm qua → tự tương quan (autocorrelation). Giả định i.i.d. bị vi phạm.\nCác thành phần thường gặp (phân rã chuỗi):\n\nXu hướng (trend) — tăng/giảm dài hạn.\nMùa vụ (seasonality) — lặp lại theo chu kỳ cố định (Tết, cuối tuần, mùa hè).\nChu kỳ (cycle) — dao động không cố định độ dài (chu kỳ kinh tế).\nNhiễu (residual / noise) — phần còn lại.\n\n\n\ny_t = T_t + S_t + R_t \\quad \\text{(cộng)} \\qquad\\text{hoặc}\\qquad y_t = T_t \\times S_t \\times R_t \\quad \\text{(nhân)}\n\n\nTính dừng (stationarity): chuỗi có trung bình, phương sai, tự hiệp phương sai không đổi theo thời gian. Nhiều mô hình (ARIMA…) yêu cầu chuỗi dừng → thường phải lấy sai phân \\Delta y_t = y_t - y_{t-1} hoặc log trước. Kiểm định: ADF, KPSS.\nFeature đặc trưng: lag (y_{t-1}, y_{t-7}), rolling statistics (trung bình trượt 7 ngày), biến lịch (thứ, tháng, ngày lễ).\nBài toán điển hình: dự báo (forecasting), phát hiện bất thường theo thời gian.\n\n\n\n\nQuan sát cùng một tập đối tượng qua nhiều thời điểm — kết hợp cả hai chiều. Có thể coi là N chuỗi thời gian xếp cạnh nhau, hoặc T lát cắt chéo xếp chồng lên nhau.\nVí dụ: báo cáo tài chính của các công ty niêm yết qua các năm, lịch sử giao dịch hằng tháng của từng khách hàng, chỉ số kinh tế của 63 tỉnh qua 10 năm.\nKhái niệm cần nắm:\n\nBalanced vs unbalanced panel: balanced — mọi đối tượng có đủ quan sát ở mọi thời điểm (N \\times T dòng); unbalanced — thiếu một số (công ty mới niêm yết, khách hàng rời đi). Thực tế đa số là unbalanced.\nLong vs wide format: long — mỗi dòng là một cặp (đối tượng, thời điểm), dạng chuẩn để phân tích; wide — mỗi đối tượng một dòng, mỗi thời điểm một cột.\n\nLong:\n\n\n\nstore\nmonth\nsales\n\n\n\n\nA\n2025-01\n120\n\n\nA\n2025-02\n135\n\n\nB\n2025-01\n80\n\n\nB\n2025-02\n95\n\n\n\nWide (cùng dữ liệu):\n\n\n\nstore\n2025-01\n2025-02\n\n\n\n\nA\n120\n135\n\n\nB\n80\n95\n\n\n\n\nHiệu ứng riêng của đối tượng (individual / unobserved heterogeneity): mỗi đối tượng có đặc điểm không quan sát được nhưng ổn định theo thời gian (năng lực quản lý của công ty, vị trí cửa hàng). Panel cho phép kiểm soát phần này — điều cross-sectional không làm được.\n\n\ny_{it} = \\beta x_{it} + \\alpha_i + \\varepsilon_{it}\n\nBa cách xử lý \\alpha_i:\n\n\n\n\n\n\n\n\nMô hình\nÝ tưởng\nKhi nào dùng\n\n\n\n\nPooled OLS\nBỏ qua cấu trúc panel, gộp hết thành một bảng chéo\nKhi \\alpha_i không đáng kể (hiếm)\n\n\nFixed Effects (FE)\nMỗi đối tượng một intercept riêng; tương đương trừ đi trung bình của từng đối tượng (within transformation)\nKhi \\alpha_i có thể tương quan với x_{it}\n\n\nRandom Effects (RE)\nCoi \\alpha_i là biến ngẫu nhiên, không tương quan với x_{it}\nKhi giả định đó hợp lý; hiệu quả hơn FE\n\n\n\nChọn FE hay RE: kiểm định Hausman — bác bỏ H_0 → dùng FE.\nƯu điểm của panel: nhiều quan sát hơn, kiểm soát được biến ẩn ổn định theo thời gian, thấy được động lực thay đổi. Nhược điểm: thu thập tốn kém, dễ bị attrition (đối tượng rời khỏi mẫu, gây unbalanced và có thể gây bias).\n\n\n\nĐây là chỗ cấu trúc dữ liệu ảnh hưởng trực tiếp đến kết quả (xem thêm Data Leakage & Kiểm định theo thời gian bên môn ML):\n\n\n\n\n\n\n\n\nCấu trúc\nCách split\nSai lầm hay gặp\n\n\n\n\nCross-sectional\nRandom split / k-fold (stratified nếu lệch lớp)\n—\n\n\nTime series\nTheo thời gian: train quá khứ, test tương lai; TimeSeriesSplit / rolling-origin\nRandom split → dùng tương lai đoán quá khứ, metric ảo\n\n\nPanel\nTheo thời gian, và cân nhắc theo đối tượng (GroupKFold) nếu cần dự đoán cho đối tượng mới\nCùng một khách hàng nằm ở cả train lẫn test → model “nhớ” đối tượng\n\n\n\nTương tự với feature: lag và rolling của panel phải tính trong từng đối tượng (groupby), không được để giá trị của cửa hàng A tràn sang cửa hàng B.\nimport pandas as pd\n\ndf = df.sort_values([\"store\", \"month\"])\n\n# lag & rolling tính riêng cho từng đối tượng\ndf[\"sales_lag1\"]  = df.groupby(\"store\")[\"sales\"].shift(1)\ndf[\"sales_roll3\"] = (df.groupby(\"store\")[\"sales\"]\n                       .transform(lambda s: s.shift(1).rolling(3).mean()))\n\n# long &lt;-&gt; wide\nwide = df.pivot(index=\"store\", columns=\"month\", values=\"sales\")\nlong = wide.reset_index().melt(id_vars=\"store\", var_name=\"month\", value_name=\"sales\")\n\n\n\n\nCross-sectional: nhiều đối tượng, một thời điểm → giả định i.i.d., thứ tự dòng vô nghĩa.\nTime series: một đối tượng, nhiều thời điểm → tự tương quan, trend/mùa vụ, tính dừng; split theo thời gian.\nPanel: nhiều đối tượng × nhiều thời điểm → kiểm soát hiệu ứng riêng của đối tượng (FE/RE); feature và split phải tôn trọng cả hai chiều i và t.\nHỏi trước khi làm: đơn vị quan sát là gì? có chiều thời gian không? một đối tượng xuất hiện bao nhiêu lần? — câu trả lời quyết định cách làm sạch, tạo feature, chia dữ liệu và chọn mô hình."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-structures.html#dữ-liệu-chéo-cross-sectional-data",
+    "href": "courses/data-mining/lectures/data-structures.html#dữ-liệu-chéo-cross-sectional-data",
+    "title": "Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel",
+    "section": "",
+    "text": "Quan sát nhiều đối tượng tại cùng một thời điểm (hoặc một khoảng thời gian coi như một thời điểm) — một “lát cắt” của tổng thể.\nVí dụ: khảo sát mức sống hộ gia đình, dữ liệu khách hàng tại ngày chốt sổ, bảng điểm thi của sinh viên một khoá.\nĐặc điểm:\n\nThứ tự các dòng không mang thông tin — xáo trộn dòng không làm mất gì.\nGiả định thường dùng: các quan sát độc lập, cùng phân phối (i.i.d.), thường có được nhờ lấy mẫu ngẫu nhiên.\nVấn đề hay gặp: phương sai sai số thay đổi (heteroskedasticity — ví dụ chi tiêu của hộ giàu dao động mạnh hơn hộ nghèo), sai lệch chọn mẫu (selection bias).\nHạn chế: chỉ thấy tương quan giữa các đối tượng, không thấy một đối tượng thay đổi thế nào theo thời gian.\n\nĐây là cấu trúc mặc định của phần lớn bài toán ML “kinh điển” (phân lớp, phân cụm, luật kết hợp trên giỏ hàng)."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-structures.html#chuỗi-thời-gian-time-series-data",
+    "href": "courses/data-mining/lectures/data-structures.html#chuỗi-thời-gian-time-series-data",
+    "title": "Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel",
+    "section": "",
+    "text": "Quan sát một đối tượng (một biến) tại nhiều thời điểm liên tiếp, thường cách đều (ngày, tuần, tháng, quý).\nVí dụ: giá cổ phiếu, nhiệt độ theo giờ, lượng điện tiêu thụ, GDP theo quý, số đơn hàng mỗi ngày của một cửa hàng.\nĐặc điểm:\n\nThứ tự là thông tin — đảo thứ tự là phá hỏng dữ liệu.\nCác quan sát không độc lập: giá trị hôm nay phụ thuộc giá trị hôm qua → tự tương quan (autocorrelation). Giả định i.i.d. bị vi phạm.\nCác thành phần thường gặp (phân rã chuỗi):\n\nXu hướng (trend) — tăng/giảm dài hạn.\nMùa vụ (seasonality) — lặp lại theo chu kỳ cố định (Tết, cuối tuần, mùa hè).\nChu kỳ (cycle) — dao động không cố định độ dài (chu kỳ kinh tế).\nNhiễu (residual / noise) — phần còn lại.\n\n\n\ny_t = T_t + S_t + R_t \\quad \\text{(cộng)} \\qquad\\text{hoặc}\\qquad y_t = T_t \\times S_t \\times R_t \\quad \\text{(nhân)}\n\n\nTính dừng (stationarity): chuỗi có trung bình, phương sai, tự hiệp phương sai không đổi theo thời gian. Nhiều mô hình (ARIMA…) yêu cầu chuỗi dừng → thường phải lấy sai phân \\Delta y_t = y_t - y_{t-1} hoặc log trước. Kiểm định: ADF, KPSS.\nFeature đặc trưng: lag (y_{t-1}, y_{t-7}), rolling statistics (trung bình trượt 7 ngày), biến lịch (thứ, tháng, ngày lễ).\nBài toán điển hình: dự báo (forecasting), phát hiện bất thường theo thời gian."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-structures.html#dữ-liệu-bảng-panel-longitudinal-data",
+    "href": "courses/data-mining/lectures/data-structures.html#dữ-liệu-bảng-panel-longitudinal-data",
+    "title": "Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel",
+    "section": "",
+    "text": "Quan sát cùng một tập đối tượng qua nhiều thời điểm — kết hợp cả hai chiều. Có thể coi là N chuỗi thời gian xếp cạnh nhau, hoặc T lát cắt chéo xếp chồng lên nhau.\nVí dụ: báo cáo tài chính của các công ty niêm yết qua các năm, lịch sử giao dịch hằng tháng của từng khách hàng, chỉ số kinh tế của 63 tỉnh qua 10 năm.\nKhái niệm cần nắm:\n\nBalanced vs unbalanced panel: balanced — mọi đối tượng có đủ quan sát ở mọi thời điểm (N \\times T dòng); unbalanced — thiếu một số (công ty mới niêm yết, khách hàng rời đi). Thực tế đa số là unbalanced.\nLong vs wide format: long — mỗi dòng là một cặp (đối tượng, thời điểm), dạng chuẩn để phân tích; wide — mỗi đối tượng một dòng, mỗi thời điểm một cột.\n\nLong:\n\n\n\nstore\nmonth\nsales\n\n\n\n\nA\n2025-01\n120\n\n\nA\n2025-02\n135\n\n\nB\n2025-01\n80\n\n\nB\n2025-02\n95\n\n\n\nWide (cùng dữ liệu):\n\n\n\nstore\n2025-01\n2025-02\n\n\n\n\nA\n120\n135\n\n\nB\n80\n95\n\n\n\n\nHiệu ứng riêng của đối tượng (individual / unobserved heterogeneity): mỗi đối tượng có đặc điểm không quan sát được nhưng ổn định theo thời gian (năng lực quản lý của công ty, vị trí cửa hàng). Panel cho phép kiểm soát phần này — điều cross-sectional không làm được.\n\n\ny_{it} = \\beta x_{it} + \\alpha_i + \\varepsilon_{it}\n\nBa cách xử lý \\alpha_i:\n\n\n\n\n\n\n\n\nMô hình\nÝ tưởng\nKhi nào dùng\n\n\n\n\nPooled OLS\nBỏ qua cấu trúc panel, gộp hết thành một bảng chéo\nKhi \\alpha_i không đáng kể (hiếm)\n\n\nFixed Effects (FE)\nMỗi đối tượng một intercept riêng; tương đương trừ đi trung bình của từng đối tượng (within transformation)\nKhi \\alpha_i có thể tương quan với x_{it}\n\n\nRandom Effects (RE)\nCoi \\alpha_i là biến ngẫu nhiên, không tương quan với x_{it}\nKhi giả định đó hợp lý; hiệu quả hơn FE\n\n\n\nChọn FE hay RE: kiểm định Hausman — bác bỏ H_0 → dùng FE.\nƯu điểm của panel: nhiều quan sát hơn, kiểm soát được biến ẩn ổn định theo thời gian, thấy được động lực thay đổi. Nhược điểm: thu thập tốn kém, dễ bị attrition (đối tượng rời khỏi mẫu, gây unbalanced và có thể gây bias)."
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-structures.html#hệ-quả-khi-chia-traintest",
+    "href": "courses/data-mining/lectures/data-structures.html#hệ-quả-khi-chia-traintest",
+    "title": "Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel",
+    "section": "",
+    "text": "Đây là chỗ cấu trúc dữ liệu ảnh hưởng trực tiếp đến kết quả (xem thêm Data Leakage & Kiểm định theo thời gian bên môn ML):\n\n\n\n\n\n\n\n\nCấu trúc\nCách split\nSai lầm hay gặp\n\n\n\n\nCross-sectional\nRandom split / k-fold (stratified nếu lệch lớp)\n—\n\n\nTime series\nTheo thời gian: train quá khứ, test tương lai; TimeSeriesSplit / rolling-origin\nRandom split → dùng tương lai đoán quá khứ, metric ảo\n\n\nPanel\nTheo thời gian, và cân nhắc theo đối tượng (GroupKFold) nếu cần dự đoán cho đối tượng mới\nCùng một khách hàng nằm ở cả train lẫn test → model “nhớ” đối tượng\n\n\n\nTương tự với feature: lag và rolling của panel phải tính trong từng đối tượng (groupby), không được để giá trị của cửa hàng A tràn sang cửa hàng B.\nimport pandas as pd\n\ndf = df.sort_values([\"store\", \"month\"])\n\n# lag & rolling tính riêng cho từng đối tượng\ndf[\"sales_lag1\"]  = df.groupby(\"store\")[\"sales\"].shift(1)\ndf[\"sales_roll3\"] = (df.groupby(\"store\")[\"sales\"]\n                       .transform(lambda s: s.shift(1).rolling(3).mean()))\n\n# long &lt;-&gt; wide\nwide = df.pivot(index=\"store\", columns=\"month\", values=\"sales\")\nlong = wide.reset_index().melt(id_vars=\"store\", var_name=\"month\", value_name=\"sales\")"
+  },
+  {
+    "objectID": "courses/data-mining/lectures/data-structures.html#tóm-tắt",
+    "href": "courses/data-mining/lectures/data-structures.html#tóm-tắt",
+    "title": "Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel",
+    "section": "",
+    "text": "Cross-sectional: nhiều đối tượng, một thời điểm → giả định i.i.d., thứ tự dòng vô nghĩa.\nTime series: một đối tượng, nhiều thời điểm → tự tương quan, trend/mùa vụ, tính dừng; split theo thời gian.\nPanel: nhiều đối tượng × nhiều thời điểm → kiểm soát hiệu ứng riêng của đối tượng (FE/RE); feature và split phải tôn trọng cả hai chiều i và t.\nHỏi trước khi làm: đơn vị quan sát là gì? có chiều thời gian không? một đối tượng xuất hiện bao nhiêu lần? — câu trả lời quyết định cách làm sạch, tạo feature, chia dữ liệu và chọn mô hình."
   },
   {
     "objectID": "courses/frontier-transformation-engineer/lectures/ai-103-exam-review.html",

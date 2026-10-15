@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-11">
+
+<title>Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-fd855bc96cf6a2e73e83d53bba54f052.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cấu-trúc-dữ-liệu-cross-sectional-time-series-panel" id="toc-cấu-trúc-dữ-liệu-cross-sectional-time-series-panel" class="nav-link active" data-scroll-target="#cấu-trúc-dữ-liệu-cross-sectional-time-series-panel">Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel</a>
+  <ul class="collapse">
+  <li><a href="#dữ-liệu-chéo-cross-sectional-data" id="toc-dữ-liệu-chéo-cross-sectional-data" class="nav-link" data-scroll-target="#dữ-liệu-chéo-cross-sectional-data">1. Dữ liệu chéo (Cross-sectional data)</a></li>
+  <li><a href="#chuỗi-thời-gian-time-series-data" id="toc-chuỗi-thời-gian-time-series-data" class="nav-link" data-scroll-target="#chuỗi-thời-gian-time-series-data">2. Chuỗi thời gian (Time series data)</a></li>
+  <li><a href="#dữ-liệu-bảng-panel-longitudinal-data" id="toc-dữ-liệu-bảng-panel-longitudinal-data" class="nav-link" data-scroll-target="#dữ-liệu-bảng-panel-longitudinal-data">3. Dữ liệu bảng (Panel / Longitudinal data)</a></li>
+  <li><a href="#hệ-quả-khi-chia-traintest" id="toc-hệ-quả-khi-chia-traintest" class="nav-link" data-scroll-target="#hệ-quả-khi-chia-traintest">4. Hệ quả khi chia train/test</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">5. Tóm tắt</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 11, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="cấu-trúc-dữ-liệu-cross-sectional-time-series-panel" class="level1">
+<h1>Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel</h1>
+<p>Trước khi chọn mô hình, phải trả lời câu hỏi: <strong>mỗi dòng dữ liệu là gì, và các dòng có liên hệ với nhau không?</strong> Có ba cấu trúc cơ bản, phân biệt bằng hai chiều: <strong>đối tượng</strong> (<em>entity</em>, ký hiệu <span class="math inline">i</span>: người, công ty, cửa hàng, quốc gia…) và <strong>thời gian</strong> (<span class="math inline">t</span>).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cấu trúc</th>
+<th>Số đối tượng</th>
+<th>Số thời điểm</th>
+<th>Ký hiệu</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cross-sectional</td>
+<td>nhiều (<span class="math inline">N</span>)</td>
+<td><strong>1</strong></td>
+<td><span class="math inline">y_i</span></td>
+<td>Thu nhập của 5.000 hộ gia đình năm 2025</td>
+</tr>
+<tr class="even">
+<td>Time series</td>
+<td><strong>1</strong></td>
+<td>nhiều (<span class="math inline">T</span>)</td>
+<td><span class="math inline">y_t</span></td>
+<td>Giá đóng cửa VN-Index mỗi ngày 2015–2025</td>
+</tr>
+<tr class="odd">
+<td>Panel (longitudinal)</td>
+<td>nhiều (<span class="math inline">N</span>)</td>
+<td>nhiều (<span class="math inline">T</span>)</td>
+<td><span class="math inline">y_{it}</span></td>
+<td>Doanh thu của 200 cửa hàng theo từng tháng trong 3 năm</td>
+</tr>
+</tbody>
+</table>
+<section id="dữ-liệu-chéo-cross-sectional-data" class="level2">
+<h2 class="anchored" data-anchor-id="dữ-liệu-chéo-cross-sectional-data">1. Dữ liệu chéo (Cross-sectional data)</h2>
+<p>Quan sát <strong>nhiều đối tượng tại cùng một thời điểm</strong> (hoặc một khoảng thời gian coi như một thời điểm) — một “lát cắt” của tổng thể.</p>
+<p>Ví dụ: khảo sát mức sống hộ gia đình, dữ liệu khách hàng tại ngày chốt sổ, bảng điểm thi của sinh viên một khoá.</p>
+<p>Đặc điểm:</p>
+<ul>
+<li><strong>Thứ tự các dòng không mang thông tin</strong> — xáo trộn dòng không làm mất gì.</li>
+<li>Giả định thường dùng: các quan sát <strong>độc lập, cùng phân phối (i.i.d.)</strong>, thường có được nhờ lấy mẫu ngẫu nhiên.</li>
+<li>Vấn đề hay gặp: <strong>phương sai sai số thay đổi</strong> (<em>heteroskedasticity</em> — ví dụ chi tiêu của hộ giàu dao động mạnh hơn hộ nghèo), <strong>sai lệch chọn mẫu</strong> (<em>selection bias</em>).</li>
+<li>Hạn chế: chỉ thấy <em>tương quan giữa các đối tượng</em>, không thấy <em>một đối tượng thay đổi thế nào</em> theo thời gian.</li>
+</ul>
+<p>Đây là cấu trúc mặc định của phần lớn bài toán ML “kinh điển” (phân lớp, phân cụm, luật kết hợp trên giỏ hàng).</p>
+</section>
+<section id="chuỗi-thời-gian-time-series-data" class="level2">
+<h2 class="anchored" data-anchor-id="chuỗi-thời-gian-time-series-data">2. Chuỗi thời gian (Time series data)</h2>
+<p>Quan sát <strong>một đối tượng (một biến) tại nhiều thời điểm liên tiếp</strong>, thường cách đều (ngày, tuần, tháng, quý).</p>
+<p>Ví dụ: giá cổ phiếu, nhiệt độ theo giờ, lượng điện tiêu thụ, GDP theo quý, số đơn hàng mỗi ngày của một cửa hàng.</p>
+<p>Đặc điểm:</p>
+<ul>
+<li><strong>Thứ tự là thông tin</strong> — đảo thứ tự là phá hỏng dữ liệu.</li>
+<li>Các quan sát <strong>không độc lập</strong>: giá trị hôm nay phụ thuộc giá trị hôm qua → <strong>tự tương quan</strong> (<em>autocorrelation</em>). Giả định i.i.d. bị vi phạm.</li>
+<li>Các thành phần thường gặp (phân rã chuỗi):
+<ul>
+<li><strong>Xu hướng</strong> (<em>trend</em>) — tăng/giảm dài hạn.</li>
+<li><strong>Mùa vụ</strong> (<em>seasonality</em>) — lặp lại theo chu kỳ cố định (Tết, cuối tuần, mùa hè).</li>
+<li><strong>Chu kỳ</strong> (<em>cycle</em>) — dao động không cố định độ dài (chu kỳ kinh tế).</li>
+<li><strong>Nhiễu</strong> (<em>residual / noise</em>) — phần còn lại.</li>
+</ul></li>
+</ul>
+<p><span class="math display">
+y_t = T_t + S_t + R_t \quad \text{(cộng)} \qquad\text{hoặc}\qquad y_t = T_t \times S_t \times R_t \quad \text{(nhân)}
+</span></p>
+<ul>
+<li><strong>Tính dừng</strong> (<em>stationarity</em>): chuỗi có trung bình, phương sai, tự hiệp phương sai không đổi theo thời gian. Nhiều mô hình (ARIMA…) yêu cầu chuỗi dừng → thường phải lấy sai phân <span class="math inline">\Delta y_t = y_t - y_{t-1}</span> hoặc log trước. Kiểm định: ADF, KPSS.</li>
+<li>Feature đặc trưng: <strong>lag</strong> (<span class="math inline">y_{t-1}, y_{t-7}</span>), <strong>rolling statistics</strong> (trung bình trượt 7 ngày), biến lịch (thứ, tháng, ngày lễ).</li>
+<li>Bài toán điển hình: <strong>dự báo</strong> (<em>forecasting</em>), phát hiện bất thường theo thời gian.</li>
+</ul>
+</section>
+<section id="dữ-liệu-bảng-panel-longitudinal-data" class="level2">
+<h2 class="anchored" data-anchor-id="dữ-liệu-bảng-panel-longitudinal-data">3. Dữ liệu bảng (Panel / Longitudinal data)</h2>
+<p>Quan sát <strong>cùng một tập đối tượng qua nhiều thời điểm</strong> — kết hợp cả hai chiều. Có thể coi là <span class="math inline">N</span> chuỗi thời gian xếp cạnh nhau, hoặc <span class="math inline">T</span> lát cắt chéo xếp chồng lên nhau.</p>
+<p>Ví dụ: báo cáo tài chính của các công ty niêm yết qua các năm, lịch sử giao dịch hằng tháng của từng khách hàng, chỉ số kinh tế của 63 tỉnh qua 10 năm.</p>
+<p>Khái niệm cần nắm:</p>
+<ul>
+<li><strong>Balanced vs unbalanced panel</strong>: <em>balanced</em> — mọi đối tượng có đủ quan sát ở mọi thời điểm (<span class="math inline">N \times T</span> dòng); <em>unbalanced</em> — thiếu một số (công ty mới niêm yết, khách hàng rời đi). Thực tế đa số là unbalanced.</li>
+<li><strong>Long vs wide format</strong>: <em>long</em> — mỗi dòng là một cặp (đối tượng, thời điểm), dạng chuẩn để phân tích; <em>wide</em> — mỗi đối tượng một dòng, mỗi thời điểm một cột.</li>
+</ul>
+<p>Long:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>store</th>
+<th>month</th>
+<th>sales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>2025-01</td>
+<td>120</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>2025-02</td>
+<td>135</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>2025-01</td>
+<td>80</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>2025-02</td>
+<td>95</td>
+</tr>
+</tbody>
+</table>
+<p>Wide (cùng dữ liệu):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>store</th>
+<th>2025-01</th>
+<th>2025-02</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>120</td>
+<td>135</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>80</td>
+<td>95</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Hiệu ứng riêng của đối tượng</strong> (<em>individual / unobserved heterogeneity</em>): mỗi đối tượng có đặc điểm không quan sát được nhưng ổn định theo thời gian (năng lực quản lý của công ty, vị trí cửa hàng). Panel cho phép <strong>kiểm soát</strong> phần này — điều cross-sectional không làm được.</li>
+</ul>
+<p><span class="math display">
+y_{it} = \beta x_{it} + \alpha_i + \varepsilon_{it}
+</span></p>
+<p>Ba cách xử lý <span class="math inline">\alpha_i</span>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mô hình</th>
+<th>Ý tưởng</th>
+<th>Khi nào dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pooled OLS</strong></td>
+<td>Bỏ qua cấu trúc panel, gộp hết thành một bảng chéo</td>
+<td>Khi <span class="math inline">\alpha_i</span> không đáng kể (hiếm)</td>
+</tr>
+<tr class="even">
+<td><strong>Fixed Effects (FE)</strong></td>
+<td>Mỗi đối tượng một intercept riêng; tương đương trừ đi trung bình của từng đối tượng (<em>within transformation</em>)</td>
+<td>Khi <span class="math inline">\alpha_i</span> có thể tương quan với <span class="math inline">x_{it}</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Random Effects (RE)</strong></td>
+<td>Coi <span class="math inline">\alpha_i</span> là biến ngẫu nhiên, không tương quan với <span class="math inline">x_{it}</span></td>
+<td>Khi giả định đó hợp lý; hiệu quả hơn FE</td>
+</tr>
+</tbody>
+</table>
+<p>Chọn FE hay RE: <strong>kiểm định Hausman</strong> — bác bỏ <span class="math inline">H_0</span> → dùng FE.</p>
+<p>Ưu điểm của panel: nhiều quan sát hơn, kiểm soát được biến ẩn ổn định theo thời gian, thấy được động lực thay đổi. Nhược điểm: thu thập tốn kém, dễ bị <strong>attrition</strong> (đối tượng rời khỏi mẫu, gây unbalanced và có thể gây bias).</p>
+</section>
+<section id="hệ-quả-khi-chia-traintest" class="level2">
+<h2 class="anchored" data-anchor-id="hệ-quả-khi-chia-traintest">4. Hệ quả khi chia train/test</h2>
+<p>Đây là chỗ cấu trúc dữ liệu ảnh hưởng trực tiếp đến kết quả (xem thêm <a href="../../../courses/machine-learning/lectures/data-leakage-validation.html">Data Leakage &amp; Kiểm định theo thời gian</a> bên môn ML):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cấu trúc</th>
+<th>Cách split</th>
+<th>Sai lầm hay gặp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cross-sectional</td>
+<td>Random split / k-fold (stratified nếu lệch lớp)</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Time series</td>
+<td><strong>Theo thời gian</strong>: train quá khứ, test tương lai; <code>TimeSeriesSplit</code> / rolling-origin</td>
+<td>Random split → dùng tương lai đoán quá khứ, metric ảo</td>
+</tr>
+<tr class="odd">
+<td>Panel</td>
+<td>Theo thời gian, <strong>và</strong> cân nhắc theo đối tượng (<code>GroupKFold</code>) nếu cần dự đoán cho đối tượng mới</td>
+<td>Cùng một khách hàng nằm ở cả train lẫn test → model “nhớ” đối tượng</td>
+</tr>
+</tbody>
+</table>
+<p>Tương tự với feature: lag và rolling của panel phải tính <strong>trong từng đối tượng</strong> (<code>groupby</code>), không được để giá trị của cửa hàng A tràn sang cửa hàng B.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values([<span class="st">"store"</span>, <span class="st">"month"</span>])</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># lag &amp; rolling tính riêng cho từng đối tượng</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sales_lag1"</span>]  <span class="op">=</span> df.groupby(<span class="st">"store"</span>)[<span class="st">"sales"</span>].shift(<span class="dv">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sales_roll3"</span>] <span class="op">=</span> (df.groupby(<span class="st">"store"</span>)[<span class="st">"sales"</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                       .transform(<span class="kw">lambda</span> s: s.shift(<span class="dv">1</span>).rolling(<span class="dv">3</span>).mean()))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># long &lt;-&gt; wide</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>wide <span class="op">=</span> df.pivot(index<span class="op">=</span><span class="st">"store"</span>, columns<span class="op">=</span><span class="st">"month"</span>, values<span class="op">=</span><span class="st">"sales"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">long</span> <span class="op">=</span> wide.reset_index().melt(id_vars<span class="op">=</span><span class="st">"store"</span>, var_name<span class="op">=</span><span class="st">"month"</span>, value_name<span class="op">=</span><span class="st">"sales"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">5. Tóm tắt</h2>
+<ul>
+<li><strong>Cross-sectional</strong>: nhiều đối tượng, một thời điểm → giả định i.i.d., thứ tự dòng vô nghĩa.</li>
+<li><strong>Time series</strong>: một đối tượng, nhiều thời điểm → tự tương quan, trend/mùa vụ, tính dừng; split theo thời gian.</li>
+<li><strong>Panel</strong>: nhiều đối tượng × nhiều thời điểm → kiểm soát hiệu ứng riêng của đối tượng (FE/RE); feature và split phải tôn trọng cả hai chiều <span class="math inline">i</span> và <span class="math inline">t</span>.</li>
+<li>Hỏi trước khi làm: <em>đơn vị quan sát là gì? có chiều thời gian không? một đối tượng xuất hiện bao nhiêu lần?</em> — câu trả lời quyết định cách làm sạch, tạo feature, chia dữ liệu và chọn mô hình.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
