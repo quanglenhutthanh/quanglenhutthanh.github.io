@@ -1,0 +1,32 @@
+---
+title: "Data Mining"
+subtitle: "Khai phá dữ liệu"
+subject: "data-mining"
+type: subject
+term: "Fall 2026"
+tags: [data-mining]
+listing:
+  - id: lectures
+    contents: "lectures/*.md"
+    type: table
+    fields: [lecture_no, title, status, tags]
+    sort: "lecture_no asc"
+    field-display-names:
+      lecture_no: "#"
+      title: "Topic"
+      status: "Status"
+      tags: "Tags"
+---
+
+## Introduction
+
+Học phần Khai phá dữ liệu (Data Mining): quy trình đi từ dữ liệu thô đến tri thức có thể dùng được — tiền xử lý dữ liệu, khai phá luật kết hợp và mẫu phổ biến, phân lớp, phân cụm và phát hiện bất thường.
+
+## Topics
+
+:::{#lectures}
+:::
+
+## References
+
+Xem [danh sách paper & link](references.qmd).
