@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-10-11">
+<meta name="dcterms.date" content="2026-10-15">
 
 <title>Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel – Le Nhut Thanh Quang</title>
 <style>
@@ -213,7 +213,10 @@ window.Quarto = {
   <li><a href="#dữ-liệu-chéo-cross-sectional-data" id="toc-dữ-liệu-chéo-cross-sectional-data" class="nav-link" data-scroll-target="#dữ-liệu-chéo-cross-sectional-data">1. Dữ liệu chéo (Cross-sectional data)</a></li>
   <li><a href="#chuỗi-thời-gian-time-series-data" id="toc-chuỗi-thời-gian-time-series-data" class="nav-link" data-scroll-target="#chuỗi-thời-gian-time-series-data">2. Chuỗi thời gian (Time series data)</a></li>
   <li><a href="#dữ-liệu-bảng-panel-longitudinal-data" id="toc-dữ-liệu-bảng-panel-longitudinal-data" class="nav-link" data-scroll-target="#dữ-liệu-bảng-panel-longitudinal-data">3. Dữ liệu bảng (Panel / Longitudinal data)</a></li>
-  <li><a href="#hệ-quả-khi-chia-traintest" id="toc-hệ-quả-khi-chia-traintest" class="nav-link" data-scroll-target="#hệ-quả-khi-chia-traintest">4. Hệ quả khi chia train/test</a></li>
+  <li><a href="#hệ-quả-khi-chia-traintest" id="toc-hệ-quả-khi-chia-traintest" class="nav-link" data-scroll-target="#hệ-quả-khi-chia-traintest">4. Hệ quả khi chia train/test</a>
+  <ul class="collapse">
+  <li><a href="#walk-forward-validation" id="toc-walk-forward-validation" class="nav-link" data-scroll-target="#walk-forward-validation">Walk-forward validation</a></li>
+  </ul></li>
   <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">5. Tóm tắt</a></li>
   </ul></li>
   </ul>
@@ -235,7 +238,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 11, 2026</p>
+      <p class="date">October 15, 2026</p>
     </div>
   </div>
   
@@ -467,19 +470,56 @@ y_{it} = \beta x_{it} + \alpha_i + \varepsilon_{it}
 </tr>
 </tbody>
 </table>
+<section id="walk-forward-validation" class="level3">
+<h3 class="anchored" data-anchor-id="walk-forward-validation">Walk-forward validation</h3>
+<p>Với chuỗi thời gian (và panel), mô phỏng đúng cách mô hình được dùng thật: train trên quá khứ, validate trên giai đoạn <strong>ngay sau đó</strong>, rồi trượt cửa sổ tới trước và lặp lại. Tập test là giai đoạn cuối cùng, không bao giờ đụng tới khi chọn mô hình. Có hai kiểu cửa sổ:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kiểu</th>
+<th>Train</th>
+<th>Khi nào dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Expanding window</strong> (mở rộng)</td>
+<td>Bắt đầu từ cùng một mốc, <strong>dài thêm</strong> sau mỗi vòng (vòng 1: kỳ 1; vòng 2: kỳ 1–2; …)</td>
+<td>Quan hệ trong dữ liệu ổn định, càng nhiều lịch sử càng tốt</td>
+</tr>
+<tr class="even">
+<td><strong>Sliding window</strong> (trượt)</td>
+<td><strong>Giữ nguyên độ dài</strong>, trượt tới trước (vòng 1: kỳ 1; vòng 2: kỳ 2; …)</td>
+<td>Dữ liệu thay đổi theo thời gian (drift), dữ liệu cũ không còn đúng</td>
+</tr>
+</tbody>
+</table>
+<pre><code>Expanding                       Sliding
+kỳ:  1  2  3  4  5              kỳ:  1  2  3  4  5
+v1: [T][V]          [Test]      v1: [T][V]          [Test]
+v2: [T][T][V]       [Test]      v2:    [T][V]       [Test]
+v3: [T][T][T][V]    [Test]      v3:       [T][V]    [Test]
+v4: [T][T][T][T][V] [Test]      v4:          [T][V] [Test]</code></pre>
+<p>Trong scikit-learn: <code>TimeSeriesSplit()</code> mặc định là expanding; đặt <code>max_train_size</code> để thành sliding.</p>
 <p>Tương tự với feature: lag và rolling của panel phải tính <strong>trong từng đối tượng</strong> (<code>groupby</code>), không được để giá trị của cửa hàng A tràn sang cửa hàng B.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values([<span class="st">"store"</span>, <span class="st">"month"</span>])</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># lag &amp; rolling tính riêng cho từng đối tượng</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sales_lag1"</span>]  <span class="op">=</span> df.groupby(<span class="st">"store"</span>)[<span class="st">"sales"</span>].shift(<span class="dv">1</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sales_roll3"</span>] <span class="op">=</span> (df.groupby(<span class="st">"store"</span>)[<span class="st">"sales"</span>]</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                       .transform(<span class="kw">lambda</span> s: s.shift(<span class="dv">1</span>).rolling(<span class="dv">3</span>).mean()))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># long &lt;-&gt; wide</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>wide <span class="op">=</span> df.pivot(index<span class="op">=</span><span class="st">"store"</span>, columns<span class="op">=</span><span class="st">"month"</span>, values<span class="op">=</span><span class="st">"sales"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">long</span> <span class="op">=</span> wide.reset_index().melt(id_vars<span class="op">=</span><span class="st">"store"</span>, var_name<span class="op">=</span><span class="st">"month"</span>, value_name<span class="op">=</span><span class="st">"sales"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values([<span class="st">"store"</span>, <span class="st">"month"</span>])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># lag &amp; rolling tính riêng cho từng đối tượng</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sales_lag1"</span>]  <span class="op">=</span> df.groupby(<span class="st">"store"</span>)[<span class="st">"sales"</span>].shift(<span class="dv">1</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sales_roll3"</span>] <span class="op">=</span> (df.groupby(<span class="st">"store"</span>)[<span class="st">"sales"</span>]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                       .transform(<span class="kw">lambda</span> s: s.shift(<span class="dv">1</span>).rolling(<span class="dv">3</span>).mean()))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># long &lt;-&gt; wide</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>wide <span class="op">=</span> df.pivot(index<span class="op">=</span><span class="st">"store"</span>, columns<span class="op">=</span><span class="st">"month"</span>, values<span class="op">=</span><span class="st">"sales"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">long</span> <span class="op">=</span> wide.reset_index().melt(id_vars<span class="op">=</span><span class="st">"store"</span>, var_name<span class="op">=</span><span class="st">"month"</span>, value_name<span class="op">=</span><span class="st">"sales"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 <section id="tóm-tắt" class="level2">
 <h2 class="anchored" data-anchor-id="tóm-tắt">5. Tóm tắt</h2>

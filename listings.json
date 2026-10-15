@@ -36,7 +36,9 @@
     "listing": "/courses/data-mining/index.html",
     "items": [
       "/courses/data-mining/lectures/data-information-knowledge.html",
-      "/courses/data-mining/lectures/data-structures.html"
+      "/courses/data-mining/lectures/data-structures.html",
+      "/courses/data-mining/lectures/attributes-descriptive-statistics.html",
+      "/courses/data-mining/lectures/data-preprocessing.html"
     ]
   },
   {

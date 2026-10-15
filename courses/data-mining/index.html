@@ -205,6 +205,7 @@ window.Quarto = {
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
+  <li><a href="#đồ-án" id="toc-đồ-án" class="nav-link" data-scroll-target="#đồ-án">Đồ án</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -234,7 +235,8 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Học phần Khai phá dữ liệu (Data Mining): quy trình đi từ dữ liệu thô đến tri thức có thể dùng được — tiền xử lý dữ liệu, khai phá luật kết hợp và mẫu phổ biến, phân lớp, phân cụm và phát hiện bất thường.</p>
+<p>Học phần Khai phá dữ liệu (Data Mining), giảng viên Minh Tran, PhD; giáo trình chính là <em>Data Mining: Concepts and Techniques</em> (Han, Kamber, Pei). Môn đi theo quy trình từ dữ liệu thô đến tri thức có thể dùng được (data → information → knowledge): hiểu kiểu dữ liệu và thống kê mô tả, tiền xử lý (làm sạch, tích hợp, biến đổi, giảm chiều), phân tích khám phá (EDA), rồi đến các tác vụ khai phá — luật kết hợp, phân lớp, phân cụm.</p>
+<p>Notes viết lại từ slide của giảng viên: bài giới thiệu môn và Chương 2 (<em>Data, Measurements, and Data Preprocessing</em>, hai phần).</p>
 </section>
 <section id="topics" class="level2">
 <h2 class="anchored" data-anchor-id="topics">Topics</h2>
@@ -279,7 +281,7 @@ Tags
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-date-sort="1791676800000" data-listing-file-modified-sort="1792077917875" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1015" data-listing-title-sort="Dữ liệu → Thông tin → Tri thức" data-listing-filename-sort="data-information-knowledge.md">
+<tr data-index="0" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792079090137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1395" data-listing-title-sort="Dữ liệu → Thông tin → Tri thức" data-listing-filename-sort="data-information-knowledge.md">
 <td>
 <span class="listing-lecture_no">1</span>
 </td>
@@ -290,12 +292,12 @@ Tags
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">dikw, kdd, data-mining-process, crisp-dm</span>
+<span class="listing-tags">dikw, kdd, data-mining-process, crisp-dm, machine-learning-types</span>
 </td>
 
 </tr>
 
-<tr data-index="1" data-listing-date-sort="1791676800000" data-listing-file-modified-sort="1792077917875" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1281" data-listing-title-sort="Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel" data-listing-filename-sort="data-structures.md">
+<tr data-index="1" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792079090137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1584" data-listing-title-sort="Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel" data-listing-filename-sort="data-structures.md">
 <td>
 <span class="listing-lecture_no">2</span>
 </td>
@@ -306,7 +308,39 @@ Tags
 <span class="listing-status">done</span>
 </td>
 <td>
-<span class="listing-tags">cross-sectional, time-series, panel-data, data-types, validation</span>
+<span class="listing-tags">cross-sectional, time-series, panel-data, data-types, validation, walk-forward</span>
+</td>
+
+</tr>
+
+<tr data-index="2" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792079090137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2715" data-listing-title-sort="Thuộc tính, thống kê mô tả &amp; độ đo khoảng cách" data-listing-filename-sort="attributes-descriptive-statistics.md">
+<td>
+<span class="listing-lecture_no">3</span>
+</td>
+<td>
+<a href="../../courses/data-mining/lectures/attributes-descriptive-statistics.html" class="title listing-title">Thuộc tính, thống kê mô tả &amp; độ đo khoảng cách</a>
+</td>
+<td>
+<span class="listing-status">done</span>
+</td>
+<td>
+<span class="listing-tags">attribute-types, levels-of-measurement, descriptive-statistics, boxplot, distance, similarity</span>
+</td>
+
+</tr>
+
+<tr data-index="3" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792079090137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3548" data-listing-title-sort="Tiền xử lý dữ liệu" data-listing-filename-sort="data-preprocessing.md">
+<td>
+<span class="listing-lecture_no">4</span>
+</td>
+<td>
+<a href="../../courses/data-mining/lectures/data-preprocessing.html" class="title listing-title">Tiền xử lý dữ liệu</a>
+</td>
+<td>
+<span class="listing-status">done</span>
+</td>
+<td>
+<span class="listing-tags">data-cleaning, missing-data, binning, chi-square, correlation, normalization, discretization, sampling, pca, feature-selection, eda</span>
 </td>
 
 </tr>
@@ -315,6 +349,18 @@ Tags
 </table>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
+</section>
+<section id="đồ-án" class="level2">
+<h2 class="anchored" data-anchor-id="đồ-án">Đồ án</h2>
+<p>Một dự án data mining đi qua 6 bước:</p>
+<ol type="1">
+<li><strong>Business Understanding &amp; Problem Definition</strong> — hiểu bài toán kinh doanh, định nghĩa mục tiêu.</li>
+<li><strong>Data Acquisition &amp; Exploration (EDA)</strong> — thu thập và khám phá dữ liệu.</li>
+<li><strong>Data Preprocessing</strong> — làm sạch, tích hợp, biến đổi (<a href="../../courses/data-mining/lectures/data-preprocessing.html">Tiền xử lý dữ liệu</a>).</li>
+<li><strong>Feature Engineering</strong> — tạo feature mới.</li>
+<li><strong>Train / Validate / Test Model &amp; Comparison</strong> — huấn luyện, kiểm định (walk-forward nếu dữ liệu có chiều thời gian, xem <a href="../../courses/data-mining/lectures/data-structures.html">Cấu trúc dữ liệu</a>) và so sánh mô hình.</li>
+<li><strong>Business Insights</strong> — rút ra insight và hành động.</li>
+</ol>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
