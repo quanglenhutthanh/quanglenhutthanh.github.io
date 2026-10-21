@@ -3,7 +3,6 @@ title: "Data Mining"
 subtitle: "Khai phá dữ liệu"
 subject: "data-mining"
 type: subject
-instructor: "Minh Tran, PhD"
 term: "Fall 2026"
 tags: [data-mining]
 listing:
@@ -21,9 +20,9 @@ listing:
 
 ## Introduction
 
-Học phần Khai phá dữ liệu (Data Mining), giảng viên Minh Tran, PhD; giáo trình chính là *Data Mining: Concepts and Techniques* (Han, Kamber, Pei). Môn đi theo quy trình từ dữ liệu thô đến tri thức có thể dùng được (data → information → knowledge): hiểu kiểu dữ liệu và thống kê mô tả, tiền xử lý (làm sạch, tích hợp, biến đổi, giảm chiều), phân tích khám phá (EDA), rồi đến các tác vụ khai phá — luật kết hợp, phân lớp, phân cụm.
+Học phần Khai phá dữ liệu (Data Mining); giáo trình chính là *Data Mining: Concepts and Techniques* (Han, Kamber, Pei). Môn đi theo quy trình từ dữ liệu thô đến tri thức có thể dùng được (data → information → knowledge): hiểu kiểu dữ liệu và thống kê mô tả, tiền xử lý (làm sạch, tích hợp, biến đổi, giảm chiều), phân tích khám phá (EDA), rồi đến các tác vụ khai phá — luật kết hợp, phân lớp, phân cụm.
 
-Notes viết lại từ slide của giảng viên: bài giới thiệu môn và Chương 2 (*Data, Measurements, and Data Preprocessing*, hai phần). Hai note về khai phá tập phổ biến (Apriori + hash tree, FP-growth) viết từ giáo trình và có mô phỏng tương tác từng bước.
+Notes viết lại từ slide bài giảng: bài giới thiệu môn và Chương 2 (*Data, Measurements, and Data Preprocessing*, hai phần). Hai note về khai phá tập phổ biến (Apriori + hash tree, FP-growth) viết từ giáo trình và có mô phỏng tương tác từng bước.
 
 ## Topics
 
