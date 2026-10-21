@@ -8,6 +8,7 @@
 /site_libs/
 /*.html
 /courses/**/*.html
+!/courses/**/assets/*.html
 /courses/**/index-listing.json
 **/*_files/
 
