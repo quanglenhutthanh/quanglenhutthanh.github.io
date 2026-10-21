@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-21">
+
+<title>FP-growth: khai phá tập phổ biến không sinh ứng viên – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-fd855bc96cf6a2e73e83d53bba54f052.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#fp-growth-khai-phá-tập-phổ-biến-không-sinh-ứng-viên" id="toc-fp-growth-khai-phá-tập-phổ-biến-không-sinh-ứng-viên" class="nav-link active" data-scroll-target="#fp-growth-khai-phá-tập-phổ-biến-không-sinh-ứng-viên">FP-growth: khai phá tập phổ biến không sinh ứng viên</a>
+  <ul class="collapse">
+  <li><a href="#khái-niệm" id="toc-khái-niệm" class="nav-link" data-scroll-target="#khái-niệm">1. Khái niệm</a></li>
+  <li><a href="#ví-dụ-dùng-xuyên-suốt" id="toc-ví-dụ-dùng-xuyên-suốt" class="nav-link" data-scroll-target="#ví-dụ-dùng-xuyên-suốt">2. Ví dụ dùng xuyên suốt</a></li>
+  <li><a href="#bước-1-quét-db-lần-1-đếm-support-lập-f-list" id="toc-bước-1-quét-db-lần-1-đếm-support-lập-f-list" class="nav-link" data-scroll-target="#bước-1-quét-db-lần-1-đếm-support-lập-f-list">3. Bước 1 — Quét DB lần 1: đếm support, lập F-list</a></li>
+  <li><a href="#bước-2-quét-db-lần-2-dựng-fp-tree" id="toc-bước-2-quét-db-lần-2-dựng-fp-tree" class="nav-link" data-scroll-target="#bước-2-quét-db-lần-2-dựng-fp-tree">4. Bước 2 — Quét DB lần 2: dựng FP-tree</a></li>
+  <li><a href="#bước-3-khai-phá-cây" id="toc-bước-3-khai-phá-cây" class="nav-link" data-scroll-target="#bước-3-khai-phá-cây">5. Bước 3 — Khai phá cây</a>
+  <ul class="collapse">
+  <li><a href="#mô-phỏng-từng-bước" id="toc-mô-phỏng-từng-bước" class="nav-link" data-scroll-target="#mô-phỏng-từng-bước">Mô phỏng từng bước</a></li>
+  </ul></li>
+  <li><a href="#cài-đặt-từ-đầu-bằng-python" id="toc-cài-đặt-từ-đầu-bằng-python" class="nav-link" data-scroll-target="#cài-đặt-từ-đầu-bằng-python">6. Cài đặt từ đầu bằng Python</a></li>
+  <li><a href="#từ-frequent-itemset-tới-luật-kết-hợp" id="toc-từ-frequent-itemset-tới-luật-kết-hợp" class="nav-link" data-scroll-target="#từ-frequent-itemset-tới-luật-kết-hợp">7. Từ frequent itemset tới luật kết hợp</a></li>
+  <li><a href="#so-với-apriori" id="toc-so-với-apriori" class="nav-link" data-scroll-target="#so-với-apriori">8. So với Apriori</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">9. Tóm tắt</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">FP-growth: khai phá tập phổ biến không sinh ứng viên</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="fp-growth-khai-phá-tập-phổ-biến-không-sinh-ứng-viên" class="level1">
+<h1>FP-growth: khai phá tập phổ biến không sinh ứng viên</h1>
+<p><strong>FP-growth</strong> (<em>Frequent Pattern growth</em>, Han, Pei &amp; Yin, 2000) tìm mọi <strong>frequent itemset</strong> — các tập item xuất hiện cùng nhau trong ít nhất <code>min_sup</code> giao dịch — mà <strong>không sinh tập ứng viên</strong> như <a href="../../../courses/data-mining/lectures/apriori-hash-tree.html">Apriori</a>. Ý tưởng: nén toàn bộ database vào một cây prefix gọi là <strong>FP-tree</strong> (chỉ cần <strong>2 lần quét DB</strong>), rồi khai phá trực tiếp trên cây bằng chiến lược <strong>chia để trị</strong>.</p>
+<p>Frequent itemset là đầu vào để sinh <strong>luật kết hợp</strong> (<em>association rules</em>) kiểu <code>{tã} ⇒ {sữa}</code> — tác vụ mô tả kinh điển của data mining (xem <a href="../../../courses/data-mining/lectures/data-information-knowledge.html">Dữ liệu → Thông tin → Tri thức</a>).</p>
+<section id="khái-niệm" class="level2">
+<h2 class="anchored" data-anchor-id="khái-niệm">1. Khái niệm</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Khái niệm</th>
+<th>Nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Itemset</strong></td>
+<td>Một tập item, ví dụ <span class="math inline">\{f, c, a\}</span></td>
+</tr>
+<tr class="even">
+<td><strong>Support</strong> của <span class="math inline">X</span></td>
+<td>Số giao dịch chứa toàn bộ <span class="math inline">X</span> (hoặc tỷ lệ)</td>
+</tr>
+<tr class="odd">
+<td><strong>Frequent itemset</strong></td>
+<td>Itemset có support <span class="math inline">\geq</span> <code>min_sup</code></td>
+</tr>
+<tr class="even">
+<td><strong>F-list</strong></td>
+<td>Danh sách item frequent, <strong>sắp giảm dần theo support</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Tính chất nền tảng (<em>Apriori / downward closure</em>): mọi tập con của một frequent itemset cũng frequent. Nếu <span class="math inline">\{a\}</span> không frequent thì không tập nào chứa <span class="math inline">a</span> frequent — nên ngay từ đầu có thể bỏ hẳn các item không frequent.</p>
+</section>
+<section id="ví-dụ-dùng-xuyên-suốt" class="level2">
+<h2 class="anchored" data-anchor-id="ví-dụ-dùng-xuyên-suốt">2. Ví dụ dùng xuyên suốt</h2>
+<p>5 giao dịch, <code>min_sup = 3</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T1</td>
+<td>f, a, c, d, g, i, m, p</td>
+</tr>
+<tr class="even">
+<td>T2</td>
+<td>a, b, c, f, l, m, o</td>
+</tr>
+<tr class="odd">
+<td>T3</td>
+<td>b, f, h, j, o</td>
+</tr>
+<tr class="even">
+<td>T4</td>
+<td>b, c, k, s, p</td>
+</tr>
+<tr class="odd">
+<td>T5</td>
+<td>a, f, c, e, l, p, m, n</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bước-1-quét-db-lần-1-đếm-support-lập-f-list" class="level2">
+<h2 class="anchored" data-anchor-id="bước-1-quét-db-lần-1-đếm-support-lập-f-list">3. Bước 1 — Quét DB lần 1: đếm support, lập F-list</h2>
+<p>Đếm mỗi item xuất hiện trong bao nhiêu giao dịch, bỏ item có support &lt; 3 (d, e, g, h, i, j, k, l, n, o, s), sắp phần còn lại giảm dần:</p>
+<p><strong>F-list: f:4, c:4, a:3, b:3, m:3, p:3</strong></p>
+<p>Khi hai item cùng support (f và c; a, b, m, p), thứ tự giữa chúng <strong>tuỳ chọn</strong> nhưng phải <strong>cố định</strong> trong suốt thuật toán — kết quả cuối cùng không đổi, chỉ hình dạng cây thay đổi.</p>
+</section>
+<section id="bước-2-quét-db-lần-2-dựng-fp-tree" class="level2">
+<h2 class="anchored" data-anchor-id="bước-2-quét-db-lần-2-dựng-fp-tree">4. Bước 2 — Quét DB lần 2: dựng FP-tree</h2>
+<p>Với mỗi giao dịch: <strong>lọc</strong> bỏ item không frequent, <strong>sắp</strong> theo thứ tự F-list, rồi <strong>chèn</strong> vào cây:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>TID</th>
+<th>Sau khi lọc + sắp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T1</td>
+<td>f, c, a, m, p</td>
+</tr>
+<tr class="even">
+<td>T2</td>
+<td>f, c, a, b, m</td>
+</tr>
+<tr class="odd">
+<td>T3</td>
+<td>f, b</td>
+</tr>
+<tr class="even">
+<td>T4</td>
+<td>c, b, p</td>
+</tr>
+<tr class="odd">
+<td>T5</td>
+<td>f, c, a, m, p</td>
+</tr>
+</tbody>
+</table>
+<p>Quy tắc chèn: đi từ <code>root</code> theo các item của giao dịch. Nếu node con cho item đó <strong>đã có</strong> → đi theo và <strong>cộng 1</strong> vào count; nếu <strong>chưa có</strong> → <strong>rẽ nhánh</strong>, tạo node mới với count = 1.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chèn</th>
+<th>Điều xảy ra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T1 <code>f,c,a,m,p</code></td>
+<td>Cây rỗng → tạo nhánh mới f:1 → c:1 → a:1 → m:1 → p:1</td>
+</tr>
+<tr class="even">
+<td>T2 <code>f,c,a,b,m</code></td>
+<td>Prefix <code>f,c,a</code> trùng → f:2, c:2, a:2; tới b thì rẽ nhánh a → b:1 → m:1</td>
+</tr>
+<tr class="odd">
+<td>T3 <code>f,b</code></td>
+<td>f trùng → f:3; dưới f chưa có b → nhánh mới f → b:1</td>
+</tr>
+<tr class="even">
+<td>T4 <code>c,b,p</code></td>
+<td>Không bắt đầu bằng f → nhánh mới từ root: c:1 → b:1 → p:1</td>
+</tr>
+<tr class="odd">
+<td>T5 <code>f,c,a,m,p</code></td>
+<td>Trùng hoàn toàn T1 → cộng dọc đường: f:4, c:3, a:3, m:2, p:2</td>
+</tr>
+</tbody>
+</table>
+<p>Kết quả:</p>
+<pre><code>root
+├─ f:4
+│  ├─ c:3 ─ a:3 ─┬─ m:2 ─ p:2
+│  │             └─ b:1 ─ m:1
+│  └─ b:1
+└─ c:1 ─ b:1 ─ p:1</code></pre>
+<p><strong>Header table</strong>: mỗi item trong F-list có một con trỏ tới node đầu tiên của nó trong cây; các node cùng item được nối thành chuỗi bằng <strong>node-link</strong>. Ví dụ c có 2 node (<code>f→c:3</code> và <code>root→c:1</code>), b có 3 node, m và p mỗi item 2 node. Nhờ node-link, muốn lấy mọi chỗ xuất hiện của một item thì chỉ cần đi theo chuỗi, không phải duyệt cả cây.</p>
+<p>Vì sao sắp theo support giảm dần: item phổ biến nằm gần root nên được <strong>nhiều giao dịch dùng chung prefix</strong> nhất → cây nhỏ nhất. Ở đây 5 giao dịch (tổng 20 item sau khi lọc) được nén thành <strong>11 node</strong>.</p>
+</section>
+<section id="bước-3-khai-phá-cây" class="level2">
+<h2 class="anchored" data-anchor-id="bước-3-khai-phá-cây">5. Bước 3 — Khai phá cây</h2>
+<p>Đi <strong>từ dưới lên</strong> theo F-list (p → m → b → a → c → f). Với mỗi item <span class="math inline">x</span>:</p>
+<ol type="1">
+<li><strong>Conditional pattern base</strong> của <span class="math inline">x</span>: theo node-link lấy mọi node của <span class="math inline">x</span>; với mỗi node, lấy <strong>đường prefix</strong> từ root tới ngay trước nó, gán count bằng <strong>count của node <span class="math inline">x</span></strong> đó.</li>
+<li><strong>Conditional FP-tree</strong> của <span class="math inline">x</span>: đếm support các item trong pattern base, bỏ item &lt; <code>min_sup</code>, dựng một FP-tree nhỏ từ base (giống bước 2, nhưng mỗi path có trọng số).</li>
+<li><strong>Đệ quy</strong>: mỗi frequent itemset tìm được trong conditional tree, ghép thêm <span class="math inline">x</span>, là một frequent itemset. Khi conditional tree chỉ còn <strong>một đường duy nhất</strong> (<em>single path</em>), sinh luôn <strong>mọi tổ hợp</strong> các node trên đường đó mà không cần đệ quy tiếp.</li>
+</ol>
+<p>Thứ tự bottom-up bảo đảm không trùng lặp: khi xét <span class="math inline">x</span>, chỉ nhìn các item <strong>đứng trước</strong> <span class="math inline">x</span> trong F-list — các itemset chứa item đứng sau đã được tìm ở lượt trước.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Conditional pattern base</th>
+<th>Đếm trong base</th>
+<th>Conditional FP-tree</th>
+<th>Frequent itemsets</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>p</td>
+<td>{f,c,a,m}:2, {c,b}:1</td>
+<td>c:3, f:2, a:2, m:2, b:1</td>
+<td>⟨c:3⟩</td>
+<td>{p}:3, {c,p}:3</td>
+</tr>
+<tr class="even">
+<td>m</td>
+<td>{f,c,a}:2, {f,c,a,b}:1</td>
+<td>f:3, c:3, a:3, b:1</td>
+<td>⟨f:3, c:3, a:3⟩ — single path</td>
+<td>{m}, {f,m}, {c,m}, {a,m}, {f,c,m}, {f,a,m}, {c,a,m}, {f,c,a,m} — tất cả :3</td>
+</tr>
+<tr class="odd">
+<td>b</td>
+<td>{f,c,a}:1, {f}:1, {c}:1</td>
+<td>f:2, c:2, a:1</td>
+<td>rỗng</td>
+<td>{b}:3</td>
+</tr>
+<tr class="even">
+<td>a</td>
+<td>{f,c}:3</td>
+<td>f:3, c:3</td>
+<td>⟨f:3, c:3⟩ — single path</td>
+<td>{a}:3, {f,a}:3, {c,a}:3, {f,c,a}:3</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>{f}:3 (node <code>root→c:1</code> có prefix rỗng)</td>
+<td>f:3</td>
+<td>⟨f:3⟩</td>
+<td>{c}:4, {f,c}:3</td>
+</tr>
+<tr class="even">
+<td>f</td>
+<td>rỗng (f nằm ngay dưới root)</td>
+<td>—</td>
+<td>—</td>
+<td>{f}:4</td>
+</tr>
+</tbody>
+</table>
+<p>Chú ý trường hợp <strong>m</strong>: dù m có 2 node, prefix của chúng là <code>f,c,a</code> (count 2) và <code>f,c,a,b</code> (count 1). Sau khi bỏ b (support 1), cả hai gộp lại thành <strong>một đường</strong> f:3 → c:3 → a:3, nên mọi tập con của {f, c, a} ghép với m đều frequent: <span class="math inline">2^3 = 8</span> itemset.</p>
+<p>Chú ý trường hợp <strong>b</strong>: support của {b} là 3, nhưng 3 lần xuất hiện nằm ở 3 nhánh khác nhau, không item nào đi cùng b đủ 3 lần.</p>
+<p>Tổng cộng <strong>18 frequent itemsets</strong>: 6 itemset 1 phần tử, 7 itemset 2 phần tử, 4 itemset 3 phần tử ({f,c,a}, {f,c,m}, {f,a,m}, {c,a,m}), 1 itemset 4 phần tử ({f,c,a,m}) — trùng khớp với kết quả đếm vét cạn mọi tổ hợp.</p>
+<section id="mô-phỏng-từng-bước" class="level3">
+<h3 class="anchored" data-anchor-id="mô-phỏng-từng-bước">Mô phỏng từng bước</h3>
+<p>Bấm <strong>Bước tiếp →</strong> để xem cây được dựng qua từng giao dịch, rồi khai phá từng item (cam: item đang khai phá, tím: prefix path).</p>
+<iframe src="../assets/fp-growth-sim.html" width="100%" height="880" style="border:1px solid #ddd;border-radius:8px" title="FP-growth simulator">
+</iframe>
+</section>
+</section>
+<section id="cài-đặt-từ-đầu-bằng-python" class="level2">
+<h2 class="anchored" data-anchor-id="cài-đặt-từ-đầu-bằng-python">6. Cài đặt từ đầu bằng Python</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Node:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, item, parent):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.item, <span class="va">self</span>.count, <span class="va">self</span>.parent <span class="op">=</span> item, <span class="dv">0</span>, parent</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.children <span class="op">=</span> {}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.link <span class="op">=</span> <span class="va">None</span>                     <span class="co"># node-link tới node kế tiếp cùng item</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> iter_links(node):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> node:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> node</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        node <span class="op">=</span> node.link</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_tree(transactions, min_sup):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scan 1: đếm support, giữ item frequent, sắp giảm dần -&gt; F-list</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    sup <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t, cnt <span class="kw">in</span> transactions:</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> t:</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            sup[x] <span class="op">+=</span> cnt</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    flist <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">sorted</span>(sup, key<span class="op">=</span><span class="kw">lambda</span> x: <span class="op">-</span>sup[x]) <span class="cf">if</span> sup[x] <span class="op">&gt;=</span> min_sup]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    rank <span class="op">=</span> {x: r <span class="cf">for</span> r, x <span class="kw">in</span> <span class="bu">enumerate</span>(flist)}</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scan 2: lọc + sắp từng transaction theo F-list, chèn vào cây</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    root, header <span class="op">=</span> Node(<span class="va">None</span>, <span class="va">None</span>), {}</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t, cnt <span class="kw">in</span> transactions:</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        node <span class="op">=</span> root</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">sorted</span>((x <span class="cf">for</span> x <span class="kw">in</span> t <span class="cf">if</span> x <span class="kw">in</span> rank), key<span class="op">=</span>rank.get):</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> x <span class="kw">not</span> <span class="kw">in</span> node.children:</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                child <span class="op">=</span> Node(x, node)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                node.children[x] <span class="op">=</span> child</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                child.link, header[x] <span class="op">=</span> header.get(x), child   <span class="co"># nối vào header table</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>            node <span class="op">=</span> node.children[x]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>            node.count <span class="op">+=</span> cnt</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> flist, header</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fp_growth(transactions, min_sup, suffix<span class="op">=</span>()):</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""transactions: list of (items, count). Trả về (itemset, support)."""</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    flist, header <span class="op">=</span> build_tree(transactions, min_sup)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> <span class="bu">reversed</span>(flist):                       <span class="co"># bottom-up theo F-list</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        new <span class="op">=</span> (item,) <span class="op">+</span> suffix</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> new, <span class="bu">sum</span>(n.count <span class="cf">for</span> n <span class="kw">in</span> iter_links(header[item]))</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        base <span class="op">=</span> []</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> node <span class="kw">in</span> iter_links(header[item]):          <span class="co"># conditional pattern base</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>            path, p <span class="op">=</span> [], node.parent</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> p.item <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:                  <span class="co"># prefix path về root</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                path.append(p.item)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                p <span class="op">=</span> p.parent</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> path:</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                base.append((path, node.count))</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> <span class="cf">from</span> fp_growth(base, min_sup, new)       <span class="co"># conditional FP-tree, đệ quy</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> [<span class="st">"facdgimp"</span>, <span class="st">"abcflmo"</span>, <span class="st">"bfhjo"</span>, <span class="st">"bcksp"</span>, <span class="st">"afcelpmn"</span>]</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">dict</span>(fp_growth([(<span class="bu">list</span>(t), <span class="dv">1</span>) <span class="cf">for</span> t <span class="kw">in</span> D], min_sup<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(result))   <span class="co"># 18</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Điểm mấu chốt: hàm <code>fp_growth</code> nhận đầu vào dạng <strong>(items, count)</strong>, nên cùng một hàm dùng được cho cả database gốc (mỗi giao dịch count = 1) lẫn conditional pattern base (mỗi path mang count của node). Cài đặt này không tách riêng trường hợp single path — đệ quy vẫn cho cùng kết quả, chỉ chậm hơn một chút.</p>
+<p>Dùng thư viện:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlxtend.preprocessing <span class="im">import</span> TransactionEncoder</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlxtend.frequent_patterns <span class="im">import</span> fpgrowth, association_rules</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>te <span class="op">=</span> TransactionEncoder()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(te.fit_transform([<span class="bu">list</span>(t) <span class="cf">for</span> t <span class="kw">in</span> D]), columns<span class="op">=</span>te.columns_)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> fpgrowth(df, min_support<span class="op">=</span><span class="dv">3</span><span class="op">/</span><span class="dv">5</span>, use_colnames<span class="op">=</span><span class="va">True</span>)    <span class="co"># min_support là tỷ lệ</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>rules <span class="op">=</span> association_rules(freq, metric<span class="op">=</span><span class="st">"confidence"</span>, min_threshold<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Dữ liệu lớn: Spark MLlib <code>pyspark.ml.fpm.FPGrowth</code> (cài đặt PFP — Parallel FP-growth, chia F-list thành các nhóm và khai phá song song).</p>
+</section>
+<section id="từ-frequent-itemset-tới-luật-kết-hợp" class="level2">
+<h2 class="anchored" data-anchor-id="từ-frequent-itemset-tới-luật-kết-hợp">7. Từ frequent itemset tới luật kết hợp</h2>
+<p>Với frequent itemset <span class="math inline">Z</span> và mỗi cách tách <span class="math inline">Z = X \cup Y</span> (<span class="math inline">X \cap Y = \varnothing</span>), luật <span class="math inline">X \Rightarrow Y</span> có:</p>
+<p><span class="math display">
+\text{confidence}(X \Rightarrow Y) = \frac{\text{support}(X \cup Y)}{\text{support}(X)}
+\qquad
+\text{lift}(X \Rightarrow Y) = \frac{\text{confidence}(X \Rightarrow Y)}{\text{support}(Y)/N}
+</span></p>
+<p>Ví dụ: <span class="math inline">\{a\} \Rightarrow \{m\}</span> có confidence <span class="math inline">= 3/3 = 1</span> — mọi giao dịch có a đều có m. <span class="math inline">\{c\} \Rightarrow \{p\}</span> có confidence <span class="math inline">= 3/4 = 0{,}75</span>. Không cần quét lại DB: support của mọi tập con đã có sẵn trong kết quả FP-growth.</p>
+</section>
+<section id="so-với-apriori" class="level2">
+<h2 class="anchored" data-anchor-id="so-với-apriori">8. So với Apriori</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Apriori</th>
+<th>FP-growth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chiến lược</td>
+<td>Sinh ứng viên và kiểm tra (<em>generate-and-test</em>), theo từng mức <span class="math inline">k</span></td>
+<td>Chia để trị trên cây, không sinh ứng viên</td>
+</tr>
+<tr class="even">
+<td>Số lần quét DB</td>
+<td><span class="math inline">k</span> lần (<span class="math inline">k</span> = độ dài itemset dài nhất)</td>
+<td><strong>2 lần</strong></td>
+</tr>
+<tr class="odd">
+<td>Điểm nghẽn</td>
+<td>Số ứng viên bùng nổ: <span class="math inline">10^4</span> item frequent → khoảng <span class="math inline">5 \times 10^7</span> ứng viên 2 phần tử</td>
+<td>Bộ nhớ: FP-tree và các conditional tree phải nằm trong RAM</td>
+</tr>
+<tr class="even">
+<td>Hợp với</td>
+<td>Dữ liệu nhỏ, <code>min_sup</code> cao, cần cài đặt đơn giản</td>
+<td>Dữ liệu dày, nhiều prefix chung, <code>min_sup</code> thấp, itemset dài</td>
+</tr>
+</tbody>
+</table>
+<p>Điểm yếu của FP-growth: khi dữ liệu <strong>thưa</strong> (các giao dịch ít có prefix chung), cây nén kém, gần bằng database gốc mà còn tốn thêm con trỏ. Cách khắc phục: chiếu database thành nhiều phần nhỏ (<em>projected databases</em>) rồi khai phá từng phần, hoặc phân tán như PFP.</p>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">9. Tóm tắt</h2>
+<ul>
+<li><strong>Scan 1</strong>: đếm support, bỏ item &lt; <code>min_sup</code>, sắp giảm dần → F-list.</li>
+<li><strong>Scan 2</strong>: lọc + sắp từng giao dịch theo F-list, chèn vào FP-tree (prefix chung thì cộng count, khác thì rẽ nhánh); header table + node-link nối các node cùng item.</li>
+<li><strong>Khai phá</strong> bottom-up: với mỗi item lấy conditional pattern base → dựng conditional FP-tree → đệ quy; single path thì sinh mọi tổ hợp.</li>
+<li>Không sinh ứng viên, chỉ 2 lần quét DB; đổi lại cần bộ nhớ cho cây.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

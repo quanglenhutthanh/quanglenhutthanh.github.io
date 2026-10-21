@@ -38,7 +38,9 @@
       "/courses/data-mining/lectures/data-information-knowledge.html",
       "/courses/data-mining/lectures/data-structures.html",
       "/courses/data-mining/lectures/attributes-descriptive-statistics.html",
-      "/courses/data-mining/lectures/data-preprocessing.html"
+      "/courses/data-mining/lectures/data-preprocessing.html",
+      "/courses/data-mining/lectures/apriori-hash-tree.html",
+      "/courses/data-mining/lectures/fp-growth.html"
     ]
   },
   {

@@ -236,7 +236,7 @@ window.Quarto = {
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Học phần Khai phá dữ liệu (Data Mining), giảng viên Minh Tran, PhD; giáo trình chính là <em>Data Mining: Concepts and Techniques</em> (Han, Kamber, Pei). Môn đi theo quy trình từ dữ liệu thô đến tri thức có thể dùng được (data → information → knowledge): hiểu kiểu dữ liệu và thống kê mô tả, tiền xử lý (làm sạch, tích hợp, biến đổi, giảm chiều), phân tích khám phá (EDA), rồi đến các tác vụ khai phá — luật kết hợp, phân lớp, phân cụm.</p>
-<p>Notes viết lại từ slide của giảng viên: bài giới thiệu môn và Chương 2 (<em>Data, Measurements, and Data Preprocessing</em>, hai phần).</p>
+<p>Notes viết lại từ slide của giảng viên: bài giới thiệu môn và Chương 2 (<em>Data, Measurements, and Data Preprocessing</em>, hai phần). Hai note về khai phá tập phổ biến (Apriori + hash tree, FP-growth) viết từ giáo trình và có mô phỏng tương tác từng bước.</p>
 </section>
 <section id="topics" class="level2">
 <h2 class="anchored" data-anchor-id="topics">Topics</h2>
@@ -281,7 +281,7 @@ Tags
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792079090137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1395" data-listing-title-sort="Dữ liệu → Thông tin → Tri thức" data-listing-filename-sort="data-information-knowledge.md">
+<tr data-index="0" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792598574229" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1395" data-listing-title-sort="Dữ liệu → Thông tin → Tri thức" data-listing-filename-sort="data-information-knowledge.md">
 <td>
 <span class="listing-lecture_no">1</span>
 </td>
@@ -297,7 +297,7 @@ Tags
 
 </tr>
 
-<tr data-index="1" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792079090137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1584" data-listing-title-sort="Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel" data-listing-filename-sort="data-structures.md">
+<tr data-index="1" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792598574229" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1584" data-listing-title-sort="Cấu trúc dữ liệu: Cross-sectional, Time Series, Panel" data-listing-filename-sort="data-structures.md">
 <td>
 <span class="listing-lecture_no">2</span>
 </td>
@@ -313,7 +313,7 @@ Tags
 
 </tr>
 
-<tr data-index="2" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792079090137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2715" data-listing-title-sort="Thuộc tính, thống kê mô tả &amp; độ đo khoảng cách" data-listing-filename-sort="attributes-descriptive-statistics.md">
+<tr data-index="2" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792598574229" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2715" data-listing-title-sort="Thuộc tính, thống kê mô tả &amp; độ đo khoảng cách" data-listing-filename-sort="attributes-descriptive-statistics.md">
 <td>
 <span class="listing-lecture_no">3</span>
 </td>
@@ -329,7 +329,7 @@ Tags
 
 </tr>
 
-<tr data-index="3" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792079090137" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3548" data-listing-title-sort="Tiền xử lý dữ liệu" data-listing-filename-sort="data-preprocessing.md">
+<tr data-index="3" data-listing-date-sort="1792022400000" data-listing-file-modified-sort="1792598574229" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3548" data-listing-title-sort="Tiền xử lý dữ liệu" data-listing-filename-sort="data-preprocessing.md">
 <td>
 <span class="listing-lecture_no">4</span>
 </td>
@@ -341,6 +341,38 @@ Tags
 </td>
 <td>
 <span class="listing-tags">data-cleaning, missing-data, binning, chi-square, correlation, normalization, discretization, sampling, pca, feature-selection, eda</span>
+</td>
+
+</tr>
+
+<tr data-index="4" data-listing-date-sort="1792540800000" data-listing-file-modified-sort="1792598574229" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31" data-listing-word-count-sort="6011" data-listing-title-sort="Apriori &amp; đếm support bằng hash tree" data-listing-filename-sort="apriori-hash-tree.md">
+<td>
+<span class="listing-lecture_no">5</span>
+</td>
+<td>
+<a href="../../courses/data-mining/lectures/apriori-hash-tree.html" class="title listing-title">Apriori &amp; đếm support bằng hash tree</a>
+</td>
+<td>
+<span class="listing-status">done</span>
+</td>
+<td>
+<span class="listing-tags">frequent-itemset, association-rules, apriori, hash-tree, support-counting</span>
+</td>
+
+</tr>
+
+<tr data-index="5" data-listing-date-sort="1792540800000" data-listing-file-modified-sort="1792598574229" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2251" data-listing-title-sort="FP-growth: khai phá tập phổ biến không sinh ứng viên" data-listing-filename-sort="fp-growth.md">
+<td>
+<span class="listing-lecture_no">6</span>
+</td>
+<td>
+<a href="../../courses/data-mining/lectures/fp-growth.html" class="title listing-title">FP-growth: khai phá tập phổ biến không sinh ứng viên</a>
+</td>
+<td>
+<span class="listing-status">done</span>
+</td>
+<td>
+<span class="listing-tags">frequent-itemset, association-rules, fp-growth, fp-tree, apriori</span>
 </td>
 
 </tr>

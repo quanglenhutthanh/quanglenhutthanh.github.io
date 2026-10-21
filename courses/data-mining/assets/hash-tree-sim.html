@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hash Tree Simulator</title>
+<style>
+:root{--bg:#fafaf8;--card:#f1efe8;--text:#1f1f1d;--muted:#6b6a65;--border:#d3d1c7;--strong:#888780;
+--teal-f:#E1F5EE;--teal-s:#0F6E56;--teal-t:#085041;--coral-f:#FAECE7;--coral-s:#993C1D;--coral-t:#712B13;
+--pur-f:#EEEDFE;--pur-s:#534AB7;--pur-t:#3C3489;--gray-f:#F1EFE8;--gray-s:#888780;--gray-t:#444441;--ok-bg:#EAF3DE;--ok:#3B6D11}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1c1b;--card:#2a2a28;--text:#ecebe6;--muted:#a8a69e;--border:#444441;--strong:#888780;
+--teal-f:#085041;--teal-s:#5DCAA5;--teal-t:#E1F5EE;--coral-f:#712B13;--coral-s:#F0997B;--coral-t:#FAECE7;
+--pur-f:#3C3489;--pur-s:#AFA9EC;--pur-t:#EEEDFE;--gray-f:#2C2C2A;--gray-s:#888780;--gray-t:#D3D1C7;--ok-bg:#27500A;--ok:#C0DD97}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:20px;font-weight:500;margin:0 0 12px}
+button{font:inherit;color:var(--text);background:transparent;border:1px solid var(--strong);border-radius:8px;padding:8px 14px;cursor:pointer}
+button:hover{background:var(--card)}
+.tx{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;font-family:ui-monospace,monospace;font-size:12px}
+.tx span{padding:3px 7px;border-radius:8px;border:1px solid var(--border)}
+.legend{display:flex;gap:12px;font-size:12px;color:var(--muted);margin:4px 0 10px;flex-wrap:wrap}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}
+.panel{background:var(--card);border-radius:12px;padding:12px 14px;min-height:150px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Hash tree: mô phỏng từng bước</h1>
+<div id="tx" class="tx"></div>
+<svg id="tree" viewBox="0 0 600 300" width="100%" style="display:block"></svg>
+<div class="legend">
+<span><span class="sw" style="background:#1D9E75"></span>đang chèn</span>
+<span><span class="sw" style="background:#D85A30"></span>ngăn vừa chia</span>
+<span><span class="sw" style="background:#7F77DD"></span>đường đi của transaction</span>
+<span><span class="sw" style="background:#97C459"></span>ứng viên khớp</span>
+</div>
+<div class="panel">
+<p id="ttl" style="font-weight:500;font-size:15px;margin:0 0 6px"></p>
+<div id="desc" style="font-size:14px;line-height:1.6"></div>
+</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button id="prev">←</button>
+<button id="next" style="flex:1">Bước tiếp →</button>
+<button id="reset">Làm lại</button>
+</div>
+<p id="cnt" style="font-size:12px;color:var(--muted);text-align:center;margin:8px 0 0"></p>
+<div style="margin-top:12px;font-size:13px"><span style="color:var(--muted)">Support count: </span><span id="res" style="font-family:ui-monospace,monospace"></span></div>
+</div>
+<script>
+const K=3,MAXLEAF=3;
+const C=[[1,4,5],[1,2,4],[4,5,7],[1,2,5],[4,5,8],[1,5,9],[1,3,6],[2,3,4],[5,6,7],[3,4,5],[3,5,6],[3,5,7],[6,8,9],[3,6,7],[3,6,8]];
+const TR=[1,2,3,5,6];
+const ORDER=[1,2,0],BL={1:'A (1,4,7)',2:'B (2,5,8)',0:'C (3,6,9)'},EL={1:'A',2:'B',0:'C'};
+const h=x=>x%3;
+const fmt=c=>'{'+c.join(' ')+'}';
+
+function insert(node,c,log){
+  if(node.ch){const b=h(c[node.d]);log.push(`món thứ ${node.d+1} là ${c[node.d]} → nhóm ${BL[b]}`);
+    if(!node.ch[b])node.ch[b]={d:node.d+1,ch:null,b:[],id:node.id+'/'+b};return insert(node.ch[b],c,log)}
+  node.b.push(c);
+  if(node.b.length>MAXLEAF&&node.d<K){const old=node.b;node.b=[];node.ch={};log.push(`SPLIT:${node.id}:${old.length}:${node.d}`);
+    old.forEach(x=>{const sub=[];insert(node,x,sub);sub.filter(z=>z.startsWith('SPLIT')).forEach(z=>log.push(z))})}}
+function buildStep(n){const root={d:0,ch:{},b:[],id:'r'};let lastLog=[];
+  for(let k=0;k<n;k++){lastLog=[];insert(root,C[k],lastLog)}return {root,log:lastLog}}
+function pathOf(root,c){const ids=['r'];let nd=root;while(nd.ch){nd=nd.ch[h(c[nd.d])];ids.push(nd.id)}return ids}
+
+// counting events
+function events(root){const ev=[],seen=new Set();
+  (function go(nd,start,path,ids){
+    if(!nd.ch){const first=!seen.has(nd.id);seen.add(nd.id);ev.push({path:[...path],ids:[...ids],leaf:nd,first});return}
+    for(let i=start;i<=TR.length-(K-nd.d);i++){const c=nd.ch[h(TR[i])];if(c)go(c,i+1,[...path,TR[i]],[...ids,c.id])}
+  })(root,0,[],['r']);return ev}
+
+const full=buildStep(C.length).root;
+const EV=events(full);
+const S=[{t:'intro'}];
+for(let k=1;k<=C.length;k++)S.push({t:'ins',k});
+S.push({t:'c0'});
+EV.forEach((e,j)=>S.push({t:'ev',j}));
+S.push({t:'done'});
+
+function layout(root){let leaf=0;const all=[];
+  (function f(n,dep,par,b){n.dep=dep;n.par=par;n.eb=b;all.push(n);
+    if(!n.ch){n.x=leaf++}else{const ks=ORDER.filter(z=>n.ch[z]);ks.forEach(z=>f(n.ch[z],dep+1,n,z));n.x=ks.reduce((s,z)=>s+n.ch[z].x,0)/ks.length}})(root,0,null,null);
+  return {all,leaf}}
+
+let i=0;
+function draw(){const s=S[i];
+  const n=s.t==='intro'?0:s.t==='ins'?s.k:C.length;
+  const {root,log}=buildStep(n);const {all,leaf}=layout(root);
+  const W=600,L=Math.max(leaf,1),sx=x=>L===1?W/2:36+x*(W-72)/(L-1),sy=d=>24+d*78;
+  const hot=new Set(),pur=new Set(),coral=new Set(),okc=new Set(),cmp=new Set();
+  let cur=null,ev=null;
+  if(s.t==='ins'){cur=C[s.k-1];pathOf(root,cur).forEach(x=>hot.add(x));
+    log.filter(z=>z.startsWith('SPLIT')).forEach(z=>coral.add(z.split(':')[1]))}
+  if(s.t==='ev'){ev=EV[s.j];ev.ids.forEach(x=>pur.add(x));
+    if(ev.first)ev.leaf.b.forEach(c=>{const k=c.join();cmp.add(k);if(c.every(x=>TR.includes(x)))okc.add(k)})}
+  let g='';
+  all.forEach(z=>{if(!z.par)return;const on=hot.has(z.id)||pur.has(z.id);
+    const x1=sx(z.par.x),y1=sy(z.par.dep),x2=sx(z.x),y2=sy(z.dep);
+    g+=`<line x1="${x1}" y1="${y1+12}" x2="${x2}" y2="${y2-12}" style="stroke:var(--strong);stroke-width:${on?2.2:1}"/>`;
+    g+=`<text x="${(x1+x2)/2+(x2<x1?-8:x2>x1?8:10)}" y="${(y1+y2)/2}" text-anchor="middle" style="font-size:11px;font-weight:500;fill:var(--muted)">${EL[z.eb]}</text>`});
+  all.forEach(z=>{const X=sx(z.x),Y=sy(z.dep);
+    const k=coral.has(z.id)?'coral':hot.has(z.id)?'teal':pur.has(z.id)?'pur':'gray';
+    const f=`--${k}-f`,st=`--${k}-s`,tx=`--${k}-t`;
+    if(z.ch){g+=`<rect x="${X-22}" y="${Y-12}" width="44" height="24" rx="12" style="fill:var(${f});stroke:var(${st})"/><text x="${X}" y="${Y}" text-anchor="middle" dominant-baseline="central" style="font-size:11px;fill:var(${tx})">${z.id==='r'?'root':'d='+z.d}</text>`}
+    else{const hgt=Math.max(1,z.b.length)*16+8;g+=`<rect x="${X-26}" y="${Y-12}" width="52" height="${hgt}" rx="4" style="fill:var(${f});stroke:var(${st})"/>`;
+      z.b.forEach((c,q)=>{const key=c.join();const isNew=cur&&key===cur.join();
+        const fill=okc.has(key)?'var(--ok)':isNew?'var(--teal-s)':cmp.has(key)?`var(${tx})`:`var(${tx})`;
+        const w=okc.has(key)||isNew?700:400;
+        if(okc.has(key))g+=`<rect x="${X-24}" y="${Y-10+q*16}" width="48" height="15" rx="3" style="fill:var(--ok-bg)"/>`;
+        g+=`<text x="${X}" y="${Y-2+q*16}" text-anchor="middle" dominant-baseline="central" style="font-size:12px;font-family:ui-monospace,monospace;font-weight:${w};fill:${fill}">${c.join(' ')}</text>`})}});
+  const maxd=Math.max(...all.map(z=>z.dep));const svg=document.getElementById('tree');
+  svg.setAttribute('viewBox',`0 0 ${W} ${sy(maxd)+64}`);svg.innerHTML=g;
+
+  // chips
+  let chips='';
+  if(s.t==='intro'||s.t==='ins'){C.forEach((c,k)=>{const now=s.t==='ins'&&s.k===k+1,done=s.t==='ins'&&k<s.k;
+    chips+=`<span style="${now?'border-color:var(--ok);background:var(--ok-bg);color:var(--ok)':done?'':'color:var(--muted)'}">${c.join(' ')}</span>`})}
+  else{chips=`<span style="border-color:var(--pur-s);color:var(--pur-t);background:var(--pur-f)">transaction t = {${TR.join(' ')}}</span>`;
+    if(ev)chips+=`<span>tiền tố đang xét: ${ev.path.join(' + ')}</span>`}
+  document.getElementById('tx').innerHTML=chips;
+
+  let ttl='',d='';
+  if(s.t==='intro'){ttl='15 ứng viên 3 món, hàm băm h(p) = p mod 3';
+    d='Chia món thành 3 nhóm theo số dư khi chia 3: <b>A = {1,4,7}</b>, <b>B = {2,5,8}</b>, <b>C = {3,6,9}</b>.<br>Root có sẵn 3 nhánh A, B, C, chọn theo <b>món thứ 1</b>. Ngăn <b>đã chia</b> thì nhìn món kế tiếp và đi tiếp; ngăn <b>chưa chia</b> thì bỏ ứng viên vào.<br>Mỗi ngăn chứa tối đa <b>3</b> ứng viên; quá 3 thì <b>chia</b> ngăn đó theo món kế tiếp.'}
+  if(s.t==='ins'){const c=cur;const route=log.filter(z=>!z.startsWith('SPLIT'));const sp=log.filter(z=>z.startsWith('SPLIT'));
+    ttl=`Chèn ${fmt(c)}`;
+    d=route.join('; ')+'.';
+    if(sp.length){const [,,cntv,dep]=sp[0].split(':');d+=`<br>Ngăn có <b>${cntv}</b> ứng viên &gt; ${MAXLEAF} → <b>chia</b> ngăn này theo món thứ ${+dep+1} của từng ứng viên.`;
+      if(sp.length>1)d+=` Một ngăn con vẫn tràn nên chia tiếp ở tầng sâu hơn.`}
+    else d+=' Ngăn chưa chia và còn chỗ → bỏ vào.';
+    if(s.k===C.length)d+='<br><br>Cây đã xong: 15 ứng viên nằm trong 9 ngăn.'}
+  if(s.t==='c0'){ttl='Đếm support cho t = {1 2 3 5 6}';
+    d='t có C(5,3) = 10 tập con 3 phần tử. Thay vì so t với cả 15 ứng viên, ta đi xuống cây theo các <b>tiền tố</b> của t:<br>• Ở root, món đầu của tập con chỉ có thể là <b>1, 2 hoặc 3</b> (sau 3 còn 5, 6 vẫn đủ 2 món; sau 5 chỉ còn 1 món).<br>• Mỗi món được chọn → xem nhóm của nó để biết đi nhánh nào. Gặp ngăn đã chia thì chọn tiếp một món <b>đứng sau</b> món vừa chọn; gặp ngăn chưa chia thì mở ra so khớp.'}
+  if(s.t==='ev'){const e=ev;const st=e.path.map((x,q)=>`chọn món ${x} → nhóm ${EL[h(x)]}`).join('; ');
+    ttl=`Tiền tố ${e.path.join(' + ')} → ngăn ${e.path.map(x=>EL[h(x)]).join('-')}: [${e.leaf.b.map(c=>c.join('')).join(', ')}]`;
+    if(e.first){const m=e.leaf.b.filter(c=>c.every(x=>TR.includes(x)));
+      d=st+'.<br>Mở ngăn, so khớp '+e.leaf.b.length+' ứng viên: '+e.leaf.b.map(c=>c.every(x=>TR.includes(x))?`<b>${fmt(c)} ⊆ t ✓</b>`:`${fmt(c)} ✗`).join(', ')+'.';}
+    else d=st+'.<br>Ngăn này <b>đã mở</b> ở một bước trước (qua tiền tố khác) → bỏ qua. Nếu so khớp lại, một ứng viên khớp ở đây sẽ bị <b>đếm lặp</b> cho cùng một transaction.'}
+  if(s.t==='done'){const firsts=EV.filter(e=>e.first);const nc=firsts.reduce((s,e)=>s+e.leaf.b.length,0);
+    ttl='Xong transaction t';
+    d=`Duyệt ${EV.length} đường, mở <b>${firsts.length} / 9 ngăn</b> khác nhau, so khớp <b>${nc} / 15 ứng viên</b>.<br>Ba ứng viên khớp: <b>{1 2 5}, {1 3 6}, {3 5 6}</b>, mỗi cái +1 support.<br><br>Lặp lại cho mọi transaction trong DB là xong một lần quét của Apriori.`}
+  document.getElementById('ttl').textContent=ttl;document.getElementById('desc').innerHTML=d;
+  document.getElementById('cnt').textContent=`Bước ${i+1} / ${S.length}`;
+  let found=[];if(s.t==='ev'||s.t==='done'){const upto=s.t==='done'?EV.length:s.j+1;EV.slice(0,upto).filter(e=>e.first).forEach(e=>e.leaf.b.forEach(c=>{if(c.every(x=>TR.includes(x)))found.push(fmt(c)+':1')}))}
+  document.getElementById('res').textContent=found.length?found.join('  '):'(chưa có)';
+  document.getElementById('next').textContent=i===S.length-1?'Hết ✓':'Bước tiếp →';}
+document.getElementById('next').onclick=()=>{if(i<S.length-1){i++;draw()}};
+document.getElementById('prev').onclick=()=>{if(i>0){i--;draw()}};
+document.getElementById('reset').onclick=()=>{i=0;draw()};
+draw();
+</script>
+</body>
+</html>

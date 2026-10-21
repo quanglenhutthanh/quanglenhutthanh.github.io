@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-21">
+
+<title>Apriori &amp; đếm support bằng hash tree – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-fd855bc96cf6a2e73e83d53bba54f052.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#apriori-đếm-support-bằng-hash-tree" id="toc-apriori-đếm-support-bằng-hash-tree" class="nav-link active" data-scroll-target="#apriori-đếm-support-bằng-hash-tree">Apriori &amp; đếm support bằng hash tree</a>
+  <ul class="collapse">
+  <li><a href="#khái-niệm-và-tính-chất-apriori" id="toc-khái-niệm-và-tính-chất-apriori" class="nav-link" data-scroll-target="#khái-niệm-và-tính-chất-apriori">1. Khái niệm và tính chất Apriori</a></li>
+  <li><a href="#thuật-toán" id="toc-thuật-toán" class="nav-link" data-scroll-target="#thuật-toán">2. Thuật toán</a>
+  <ul class="collapse">
+  <li><a href="#sinh-ứng-viên-join-prune" id="toc-sinh-ứng-viên-join-prune" class="nav-link" data-scroll-target="#sinh-ứng-viên-join-prune">Sinh ứng viên: join + prune</a></li>
+  </ul></li>
+  <li><a href="#ví-dụ-dùng-xuyên-suốt" id="toc-ví-dụ-dùng-xuyên-suốt" class="nav-link" data-scroll-target="#ví-dụ-dùng-xuyên-suốt">3. Ví dụ dùng xuyên suốt</a>
+  <ul class="collapse">
+  <li><a href="#mức-1-quét-db-lần-1" id="toc-mức-1-quét-db-lần-1" class="nav-link" data-scroll-target="#mức-1-quét-db-lần-1">Mức 1 — quét DB lần 1</a></li>
+  <li><a href="#mức-2-quét-db-lần-2" id="toc-mức-2-quét-db-lần-2" class="nav-link" data-scroll-target="#mức-2-quét-db-lần-2">Mức 2 — quét DB lần 2</a></li>
+  <li><a href="#mức-3-join-prune" id="toc-mức-3-join-prune" class="nav-link" data-scroll-target="#mức-3-join-prune">Mức 3 — join + prune</a></li>
+  <li><a href="#mức-4" id="toc-mức-4" class="nav-link" data-scroll-target="#mức-4">Mức 4</a></li>
+  <li><a href="#tổng-kết-ví-dụ" id="toc-tổng-kết-ví-dụ" class="nav-link" data-scroll-target="#tổng-kết-ví-dụ">Tổng kết ví dụ</a></li>
+  </ul></li>
+  <li><a href="#điểm-yếu-của-apriori-bước-đếm-support" id="toc-điểm-yếu-của-apriori-bước-đếm-support" class="nav-link" data-scroll-target="#điểm-yếu-của-apriori-bước-đếm-support">4. Điểm yếu của Apriori: bước đếm support</a></li>
+  <li><a href="#hash-tree-từng-bước" id="toc-hash-tree-từng-bước" class="nav-link" data-scroll-target="#hash-tree-từng-bước">5. Hash tree, từng bước</a>
+  <ul class="collapse">
+  <li><a href="#bước-1-chia-item-thành-nhóm-hàm-băm" id="toc-bước-1-chia-item-thành-nhóm-hàm-băm" class="nav-link" data-scroll-target="#bước-1-chia-item-thành-nhóm-hàm-băm">Bước 1 — Chia item thành nhóm (hàm băm)</a></li>
+  <li><a href="#bước-2-ứng-viên-từ-đâu-ra" id="toc-bước-2-ứng-viên-từ-đâu-ra" class="nav-link" data-scroll-target="#bước-2-ứng-viên-từ-đâu-ra">Bước 2 — Ứng viên từ đâu ra</a></li>
+  <li><a href="#bước-3-xếp-từng-ứng-viên-vào-cây" id="toc-bước-3-xếp-từng-ứng-viên-vào-cây" class="nav-link" data-scroll-target="#bước-3-xếp-từng-ứng-viên-vào-cây">Bước 3 — Xếp từng ứng viên vào cây</a></li>
+  <li><a href="#bước-4-cho-giao-dịch-đi-qua-cây-để-đếm" id="toc-bước-4-cho-giao-dịch-đi-qua-cây-để-đếm" class="nav-link" data-scroll-target="#bước-4-cho-giao-dịch-đi-qua-cây-để-đếm">Bước 4 — Cho giao dịch đi qua cây để đếm</a></li>
+  <li><a href="#mô-phỏng-từng-bước" id="toc-mô-phỏng-từng-bước" class="nav-link" data-scroll-target="#mô-phỏng-từng-bước">Mô phỏng từng bước</a></li>
+  <li><a href="#các-tham-số-ảnh-hưởng-hiệu-năng" id="toc-các-tham-số-ảnh-hưởng-hiệu-năng" class="nav-link" data-scroll-target="#các-tham-số-ảnh-hưởng-hiệu-năng">Các tham số ảnh hưởng hiệu năng</a></li>
+  </ul></li>
+  <li><a href="#cài-đặt-bằng-python" id="toc-cài-đặt-bằng-python" class="nav-link" data-scroll-target="#cài-đặt-bằng-python">6. Cài đặt bằng Python</a>
+  <ul class="collapse">
+  <li><a href="#apriori" id="toc-apriori" class="nav-link" data-scroll-target="#apriori">Apriori</a></li>
+  <li><a href="#hash-tree" id="toc-hash-tree" class="nav-link" data-scroll-target="#hash-tree">Hash tree</a></li>
+  </ul></li>
+  <li><a href="#ưu-nhược-điểm-và-cải-tiến" id="toc-ưu-nhược-điểm-và-cải-tiến" class="nav-link" data-scroll-target="#ưu-nhược-điểm-và-cải-tiến">7. Ưu, nhược điểm và cải tiến</a></li>
+  <li><a href="#tóm-tắt" id="toc-tóm-tắt" class="nav-link" data-scroll-target="#tóm-tắt">8. Tóm tắt</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Apriori &amp; đếm support bằng hash tree</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="apriori-đếm-support-bằng-hash-tree" class="level1">
+<h1>Apriori &amp; đếm support bằng hash tree</h1>
+<p><strong>Apriori</strong> (Agrawal &amp; Srikant, 1994) là thuật toán kinh điển tìm mọi <strong>frequent itemset</strong> theo kiểu <strong>sinh ứng viên rồi kiểm tra</strong> (<em>generate-and-test</em>), đi <strong>từng mức</strong> (<em>level-wise</em>): từ itemset 1 phần tử lên 2, 3… phần tử. Phần tốn kém nhất của mỗi mức là <strong>đếm support</strong> cho các ứng viên.</p>
+<p><strong>Hash tree là một cải tiến của Apriori</strong>, nhắm đúng vào bước đếm đó: cất các ứng viên vào một cây có ngăn, để mỗi giao dịch chỉ phải so với vài ngăn liên quan thay vì toàn bộ ứng viên. Kết quả của Apriori không đổi; chỉ có bước đếm nhanh hơn (§4–§5).</p>
+<p>Note này dùng <strong>cùng database</strong> với note <a href="../../../courses/data-mining/lectures/fp-growth.html">FP-growth</a>, nên hai thuật toán có thể đối chiếu trực tiếp: cả hai đều phải ra <strong>18 frequent itemsets</strong>.</p>
+<section id="khái-niệm-và-tính-chất-apriori" class="level2">
+<h2 class="anchored" data-anchor-id="khái-niệm-và-tính-chất-apriori">1. Khái niệm và tính chất Apriori</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ký hiệu</th>
+<th>Nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">C_k</span></td>
+<td>Tập <strong>ứng viên</strong> (<em>candidate</em>) <span class="math inline">k</span>-itemset — có thể frequent</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">L_k</span></td>
+<td>Tập <strong>frequent</strong> <span class="math inline">k</span>-itemset — support <span class="math inline">\geq</span> <code>min_sup</code></td>
+</tr>
+<tr class="odd">
+<td>Support của <span class="math inline">X</span></td>
+<td>Số giao dịch chứa toàn bộ <span class="math inline">X</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tính chất Apriori</strong> (<em>downward closure / anti-monotone</em>): <strong>mọi tập con của một frequent itemset đều frequent</strong>. Phát biểu ngược lại — dạng được dùng để cắt tỉa: nếu một itemset <strong>không</strong> frequent thì <strong>mọi tập cha</strong> của nó cũng không frequent.</p>
+<p>Lý do: tập cha <span class="math inline">Y \supseteq X</span> chỉ xuất hiện trong những giao dịch đã chứa <span class="math inline">X</span>, nên <span class="math inline">\text{support}(Y) \leq \text{support}(X)</span>.</p>
+<p>Nhờ tính chất này, ứng viên mức <span class="math inline">k</span> chỉ cần sinh ra từ <span class="math inline">L_{k-1}</span>, không cần xét mọi tổ hợp item.</p>
+</section>
+<section id="thuật-toán" class="level2">
+<h2 class="anchored" data-anchor-id="thuật-toán">2. Thuật toán</h2>
+<pre><code>L1 = {item có support ≥ min_sup}                     # quét DB lần 1
+for k = 2, 3, ... while L(k-1) không rỗng:
+    Ck = apriori_gen(L(k-1))                          # join + prune
+    for mỗi giao dịch t trong DB:                     # quét DB lần k
+        tăng count cho mọi candidate c ∈ Ck mà c ⊆ t   # ← bước tốn nhất; hash tree cải tiến ở đây
+    Lk = {c ∈ Ck : count(c) ≥ min_sup}
+return L1 ∪ L2 ∪ ...</code></pre>
+<section id="sinh-ứng-viên-join-prune" class="level3">
+<h3 class="anchored" data-anchor-id="sinh-ứng-viên-join-prune">Sinh ứng viên: join + prune</h3>
+<p>Giữ mỗi itemset ở dạng <strong>đã sắp xếp</strong> (theo một thứ tự cố định, ví dụ bảng chữ cái).</p>
+<ol type="1">
+<li><strong>Join</strong> (<span class="math inline">L_{k-1} \bowtie L_{k-1}</span>): ghép hai itemset trong <span class="math inline">L_{k-1}</span> có <strong>chung <span class="math inline">k-2</span> item đầu</strong>, chỉ khác item cuối. Ví dụ với <span class="math inline">k = 3</span>: <span class="math inline">\{a, c\}</span> và <span class="math inline">\{a, f\}</span> → <span class="math inline">\{a, c, f\}</span>.</li>
+<li><strong>Prune</strong>: bỏ ứng viên nào có <strong>một tập con <span class="math inline">(k-1)</span> phần tử không nằm trong <span class="math inline">L_{k-1}</span></strong> — theo tính chất Apriori, nó chắc chắn không frequent, khỏi tốn công đếm.</li>
+</ol>
+<p>Join theo prefix bảo đảm mỗi ứng viên được sinh <strong>đúng một lần</strong>; prune loại ứng viên mà không cần quét DB.</p>
+</section>
+</section>
+<section id="ví-dụ-dùng-xuyên-suốt" class="level2">
+<h2 class="anchored" data-anchor-id="ví-dụ-dùng-xuyên-suốt">3. Ví dụ dùng xuyên suốt</h2>
+<p>Cùng 5 giao dịch với note FP-growth, <code>min_sup = 3</code>. Sắp item theo bảng chữ cái:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>TID</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T1</td>
+<td>a, c, d, f, g, i, m, p</td>
+</tr>
+<tr class="even">
+<td>T2</td>
+<td>a, b, c, f, l, m, o</td>
+</tr>
+<tr class="odd">
+<td>T3</td>
+<td>b, f, h, j, o</td>
+</tr>
+<tr class="even">
+<td>T4</td>
+<td>b, c, k, p, s</td>
+</tr>
+<tr class="odd">
+<td>T5</td>
+<td>a, c, e, f, l, m, n, p</td>
+</tr>
+</tbody>
+</table>
+<section id="mức-1-quét-db-lần-1" class="level3">
+<h3 class="anchored" data-anchor-id="mức-1-quét-db-lần-1">Mức 1 — quét DB lần 1</h3>
+<p><span class="math inline">C_1</span> là cả 17 item. Đếm support và giữ item <span class="math inline">\geq 3</span>:</p>
+<p><strong><span class="math inline">L_1</span> = {a}:3, {b}:3, {c}:4, {f}:4, {m}:3, {p}:3</strong> — 11 item còn lại bị loại (d, e, g, h, i, j, k, l, n, o, s).</p>
+</section>
+<section id="mức-2-quét-db-lần-2" class="level3">
+<h3 class="anchored" data-anchor-id="mức-2-quét-db-lần-2">Mức 2 — quét DB lần 2</h3>
+<p>Join <span class="math inline">L_1</span> với chính nó → mọi cặp trong 6 item: <span class="math inline">C_2</span> có <span class="math inline">\binom{6}{2} = 15</span> ứng viên. Ở mức 2 prune không loại được gì (mọi tập con 1 phần tử đều nằm trong <span class="math inline">L_1</span>).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ứng viên</th>
+<th>Support</th>
+<th></th>
+<th>Ứng viên</th>
+<th>Support</th>
+<th></th>
+<th>Ứng viên</th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>{a,b}</td>
+<td>1</td>
+<td></td>
+<td>{b,c}</td>
+<td>2</td>
+<td></td>
+<td>{c,m}</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td>{a,c}</td>
+<td><strong>3</strong></td>
+<td></td>
+<td>{b,f}</td>
+<td>2</td>
+<td></td>
+<td>{c,p}</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="odd">
+<td>{a,f}</td>
+<td><strong>3</strong></td>
+<td></td>
+<td>{b,m}</td>
+<td>1</td>
+<td></td>
+<td>{f,m}</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td>{a,m}</td>
+<td><strong>3</strong></td>
+<td></td>
+<td>{b,p}</td>
+<td>1</td>
+<td></td>
+<td>{f,p}</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>{a,p}</td>
+<td>2</td>
+<td></td>
+<td>{c,f}</td>
+<td><strong>3</strong></td>
+<td></td>
+<td>{m,p}</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><strong><span class="math inline">L_2</span> = {a,c}, {a,f}, {a,m}, {c,f}, {c,m}, {c,p}, {f,m}</strong> — 7 itemset, đều có support 3. Không cặp nào chứa b đạt ngưỡng.</p>
+</section>
+<section id="mức-3-join-prune" class="level3">
+<h3 class="anchored" data-anchor-id="mức-3-join-prune">Mức 3 — join + prune</h3>
+<p><strong>Join</strong>: ghép các cặp trong <span class="math inline">L_2</span> có chung item đầu.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Chung prefix</th>
+<th>Các itemset trong <span class="math inline">L_2</span></th>
+<th>Ứng viên sinh ra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>{a,c}, {a,f}, {a,m}</td>
+<td>{a,c,f}, {a,c,m}, {a,f,m}</td>
+</tr>
+<tr class="even">
+<td>c</td>
+<td>{c,f}, {c,m}, {c,p}</td>
+<td>{c,f,m}, {c,f,p}, {c,m,p}</td>
+</tr>
+<tr class="odd">
+<td>f</td>
+<td>{f,m}</td>
+<td>— (không có cặp để ghép)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prune</strong>: kiểm tra mọi tập con 2 phần tử.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ứng viên</th>
+<th>Tập con 2 phần tử</th>
+<th>Kết quả</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>{a,c,f}</td>
+<td>{a,c} ✓ {a,f} ✓ {c,f} ✓</td>
+<td>giữ</td>
+</tr>
+<tr class="even">
+<td>{a,c,m}</td>
+<td>{a,c} ✓ {a,m} ✓ {c,m} ✓</td>
+<td>giữ</td>
+</tr>
+<tr class="odd">
+<td>{a,f,m}</td>
+<td>{a,f} ✓ {a,m} ✓ {f,m} ✓</td>
+<td>giữ</td>
+</tr>
+<tr class="even">
+<td>{c,f,m}</td>
+<td>{c,f} ✓ {c,m} ✓ {f,m} ✓</td>
+<td>giữ</td>
+</tr>
+<tr class="odd">
+<td>{c,f,p}</td>
+<td>{f,p} ✗</td>
+<td><strong>loại</strong> — không cần đếm</td>
+</tr>
+<tr class="even">
+<td>{c,m,p}</td>
+<td>{m,p} ✗</td>
+<td><strong>loại</strong></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">C_3</span> còn 4 ứng viên; quét DB lần 3: cả 4 đều có support 3 → <strong><span class="math inline">L_3</span> = {a,c,f}, {a,c,m}, {a,f,m}, {c,f,m}</strong>.</p>
+</section>
+<section id="mức-4" class="level3">
+<h3 class="anchored" data-anchor-id="mức-4">Mức 4</h3>
+<p>Join: {a,c,f} và {a,c,m} chung prefix {a,c} → <strong>{a,c,f,m}</strong>. Prune: 4 tập con 3 phần tử {a,c,f}, {a,c,m}, {a,f,m}, {c,f,m} đều thuộc <span class="math inline">L_3</span> → giữ. Quét DB lần 4: support 3 → <strong><span class="math inline">L_4</span> = {a,c,f,m}</strong>.</p>
+<p>Mức 5: <span class="math inline">L_4</span> chỉ có một itemset nên không join được → <span class="math inline">C_5</span> rỗng, dừng.</p>
+</section>
+<section id="tổng-kết-ví-dụ" class="level3">
+<h3 class="anchored" data-anchor-id="tổng-kết-ví-dụ">Tổng kết ví dụ</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Mức</th>
+<th>Ứng viên đếm</th>
+<th>Frequent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>17</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>15</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>4 (sinh 6, prune 2)</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td><strong>Tổng</strong></td>
+<td><strong>37</strong></td>
+<td><strong>18</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>18 frequent itemsets, 4 lần quét DB</strong> — cùng kết quả với FP-growth (chỉ 2 lần quét, không sinh ứng viên). Với dữ liệu nhỏ như vậy chênh lệch không đáng kể; với dữ liệu thật, số ứng viên và số lần quét mới là vấn đề (xem §7).</p>
+</section>
+</section>
+<section id="điểm-yếu-của-apriori-bước-đếm-support" class="level2">
+<h2 class="anchored" data-anchor-id="điểm-yếu-của-apriori-bước-đếm-support">4. Điểm yếu của Apriori: bước đếm support</h2>
+<p>Sinh ứng viên thì nhanh; thứ làm Apriori chậm là bước <strong>đếm</strong>. Ở mỗi mức, với <strong>mỗi giao dịch</strong> <span class="math inline">t</span>, phải trả lời: <em>trong <span class="math inline">C_k</span>, ứng viên nào nằm trọn trong <span class="math inline">t</span>?</em> Dữ liệu thật có thể có hàng trăm nghìn ứng viên và hàng triệu giao dịch.</p>
+<p>Hai cách đếm ngây thơ đều tệ:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cách</th>
+<th>Chi phí mỗi giao dịch</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>So <span class="math inline">t</span> với <strong>từng ứng viên</strong></td>
+<td><span class="math inline">\lvert C_k \rvert</span> phép kiểm tra tập con — <span class="math inline">C_k</span> có thể hàng trăm nghìn</td>
+</tr>
+<tr class="even">
+<td>Liệt kê <strong>mọi tập con <span class="math inline">k</span> phần tử</strong> của <span class="math inline">t</span> rồi tra từng cái</td>
+<td><span class="math inline">\binom{\lvert t \rvert}{k}</span> tập con — giao dịch 20 item, <span class="math inline">k = 3</span> đã là 1.140</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Hash tree là cải tiến của Apriori ở đúng bước này.</strong> Nó không thay đổi <em>kết quả</em> của Apriori (vẫn cùng ứng viên, cùng frequent itemset), cũng không giảm <em>số lần quét DB</em>. Nó chỉ làm cho <strong>mỗi lần quét đếm nhanh hơn</strong>: cất ứng viên vào một “tủ có ngăn”, để mỗi giao dịch chỉ phải mở vài ngăn liên quan thay vì so với toàn bộ <span class="math inline">C_k</span>.</p>
+</blockquote>
+<p>Vị trí của hash tree trong vòng lặp của Apriori:</p>
+<pre><code>for k = 2, 3, ...:
+    Ck = apriori_gen(L(k-1))           # sinh ứng viên (join + prune)
+    tree = HashTree(Ck)                # ← xếp ứng viên vào tủ, một lần cho mỗi mức
+    for mỗi giao dịch t trong DB:
+        tree.count(t)                  # ← t chỉ mở các ngăn liên quan, +1 cho ứng viên khớp
+    Lk = {c ∈ Ck : count(c) ≥ min_sup}</code></pre>
+<p>Lưu ý: hash tree <strong>chứa ứng viên</strong>, không chứa giao dịch. Giao dịch chỉ <strong>đi qua</strong> cây để đếm, không được thêm vào. Đây là điểm khác cơ bản với FP-tree của <a href="../../../courses/data-mining/lectures/fp-growth.html">FP-growth</a>, nơi cây chứa chính các giao dịch đã nén.</p>
+</section>
+<section id="hash-tree-từng-bước" class="level2">
+<h2 class="anchored" data-anchor-id="hash-tree-từng-bước">5. Hash tree, từng bước</h2>
+<p>Ví dụ kinh điển của Tan, Steinbach &amp; Kumar: 9 item đánh số 1–9 (mỗi số là một món hàng, chỉ là mã), 15 ứng viên 3-itemset, giao dịch <span class="math inline">t = \{1, 2, 3, 5, 6\}</span>.</p>
+<section id="bước-1-chia-item-thành-nhóm-hàm-băm" class="level3">
+<h3 class="anchored" data-anchor-id="bước-1-chia-item-thành-nhóm-hàm-băm">Bước 1 — Chia item thành nhóm (hàm băm)</h3>
+<p>Để biết ứng viên cất vào ngăn nào, cần một quy tắc xếp <strong>món → nhóm</strong>. Ví dụ dùng hàm băm <span class="math inline">h(p) = p \bmod 3</span>: lấy mã món chia 3, xem <strong>số dư</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Món</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Số dư khi chia 3</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Nhóm</td>
+<td><strong>A</strong></td>
+<td><strong>B</strong></td>
+<td><strong>C</strong></td>
+<td><strong>A</strong></td>
+<td><strong>B</strong></td>
+<td><strong>C</strong></td>
+<td><strong>A</strong></td>
+<td><strong>B</strong></td>
+<td><strong>C</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Chia 3 chỉ dư 0, 1 hoặc 2, nên luôn ra đúng 3 nhóm: <strong>A = {1, 4, 7}</strong>, <strong>B = {2, 5, 8}</strong>, <strong>C = {3, 6, 9}</strong>. Mỗi node của cây vì vậy có tối đa 3 nhánh.</p>
+<p>Ba điều cần nhớ:</p>
+<ol type="1">
+<li><strong>Mỗi món luôn thuộc đúng một nhóm</strong>, lần nào tính cũng ra như nhau — nên lúc cất và lúc tìm đi tới cùng một chỗ.</li>
+<li><strong>Nhóm không có ý nghĩa về sản phẩm.</strong> 1, 4, 7 chung nhóm chỉ vì cùng số dư. Đây thuần tuý là cách chia ngăn.</li>
+<li><strong>Nhiều món chung một nhóm</strong>, nên nhìn nhóm thì không biết chính xác là món nào. Vì vậy khi mở ngăn ra vẫn phải <strong>kiểm tra lại từng ứng viên</strong>.</li>
+</ol>
+<p>Số nhóm là do người cài đặt chọn: <code>mod 3</code> vì đủ nhỏ để vẽ; dữ liệu thật hàng nghìn món có thể dùng <code>mod 100</code>. Nhiều nhóm → ngăn nhỏ, ít phải so khớp, nhưng cây tốn bộ nhớ hơn.</p>
+<p>Mỗi ứng viên có thể viết thành <strong>mã nhóm</strong> bằng cách thay từng món bằng nhóm của nó, ví dụ {1 5 9} → <strong>A-B-C</strong>, {3 5 6} → <strong>C-B-C</strong>.</p>
+</section>
+<section id="bước-2-ứng-viên-từ-đâu-ra" class="level3">
+<h3 class="anchored" data-anchor-id="bước-2-ứng-viên-từ-đâu-ra">Bước 2 — Ứng viên từ đâu ra</h3>
+<p><strong>Ứng viên</strong> là nhóm món <em>có thể</em> phổ biến, chưa đếm nên chưa chắc. Trong thực tế, chúng được Apriori <strong>sinh ra từ mức trước</strong> bằng join + prune (§2–§3): ví dụ 5 giao dịch ở §3 sinh ra 4 ứng viên 3 món.</p>
+<p>15 ứng viên dưới đây là <strong>ví dụ do giáo trình cho sẵn</strong> — đủ nhiều để cây phải tách ngăn vài lần, đủ ít để vẽ lên giấy. Hiểu là Apriori đã xong mức 2 và đang ở mức 3, cần đếm support cho:</p>
+<p><span class="math inline">C_3</span> = {1 4 5}, {1 2 4}, {4 5 7}, {1 2 5}, {4 5 8}, {1 5 9}, {1 3 6}, {2 3 4}, {5 6 7}, {3 4 5}, {3 5 6}, {3 5 7}, {6 8 9}, {3 6 7}, {3 6 8}</p>
+<p>(Với 9 món, số bộ ba tối đa là <span class="math inline">\binom{9}{3} = 84</span>; 15 ứng viên nghĩa là mức 2 đã loại giúp 69 bộ ba khỏi phải đếm.)</p>
+</section>
+<section id="bước-3-xếp-từng-ứng-viên-vào-cây" class="level3">
+<h3 class="anchored" data-anchor-id="bước-3-xếp-từng-ứng-viên-vào-cây">Bước 3 — Xếp từng ứng viên vào cây</h3>
+<p><strong>Quy tắc</strong> (tham số <code>max_leaf = 3</code>):</p>
+<ol type="1">
+<li><p><strong>Root có sẵn 3 nhánh A, B, C.</strong> Tại root, nhìn <strong>món thứ 1</strong> của ứng viên để chọn nhánh.</p></li>
+<li><p>Có hai loại ngăn:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Gặp ngăn…</th>
+<th>Làm gì</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Chưa chia</strong> (lá)</td>
+<td><strong>Bỏ ứng viên vào.</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Đã chia</strong> (node trong)</td>
+<td>Không chứa ứng viên, chỉ là <strong>biển chỉ đường</strong>: nhìn <strong>món kế tiếp</strong> để chọn ngăn con, rồi đi tiếp.</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Ngăn chưa chia nào bị <strong>quá 3</strong> ứng viên thì <strong>chia</strong> ngăn đó thành 3 ngăn con A, B, C, và chuyển mọi ứng viên trong ngăn xuống theo <strong>món kế tiếp</strong>: ngăn ở tầng 1 chia theo món thứ 2, ngăn ở tầng 2 chia theo món thứ 3.</p></li>
+<li><p>Chỉ chia <strong>khi thật sự tràn</strong> — không chia sẵn. Chia sẵn đủ 3 tầng sẽ là <span class="math inline">3^3 = 27</span> ngăn cho 15 ứng viên, phần lớn rỗng; với dữ liệu thật thì không bộ nhớ nào chứa nổi.</p></li>
+<li><p>Không chia sâu quá <span class="math inline">k</span> tầng: ứng viên chỉ có <span class="math inline">k</span> món, hết món để nhìn thì ngăn được phép chứa quá <code>max_leaf</code>.</p></li>
+</ol>
+<p><strong>Địa chỉ ngăn</strong> ghi lại đường đi: <strong>A-C</strong> đọc là “trong ngăn A, lấy ngăn con C”. Chữ thứ nhất là nhánh chọn ở root (theo món 1), chữ thứ hai là nhánh chọn bên trong (theo món 2)…</p>
+<p>Tủ lúc đầu: <code>root → A: [ ]   B: [ ]   C: [ ]</code></p>
+<p><strong>Ứng viên 1–3: {1 4 5}, {1 2 4}, {4 5 7}.</strong> Món thứ 1 lần lượt là 1, 1, 4 — đều thuộc <strong>A</strong> (4 khác 1 nhưng <strong>cùng nhóm</strong>). Ngăn A chưa chia, còn chỗ → bỏ vào. A có 3, vừa đủ.</p>
+<p><strong>Ứng viên 4: {1 2 5} — ngăn A tràn.</strong> Món 1 là 1 → A. Bỏ vào thì A có 4 &gt; 3 → <strong>chia ngăn A theo món thứ 2</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ứng viên</th>
+<th>Món thứ 2</th>
+<th>Nhóm</th>
+<th>Sang ngăn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>{1 4 5}</td>
+<td>4</td>
+<td>A</td>
+<td>A-A</td>
+</tr>
+<tr class="even">
+<td>{1 2 4}</td>
+<td>2</td>
+<td>B</td>
+<td>A-B</td>
+</tr>
+<tr class="odd">
+<td>{4 5 7}</td>
+<td>5</td>
+<td>B</td>
+<td>A-B</td>
+</tr>
+<tr class="even">
+<td>{1 2 5}</td>
+<td>2</td>
+<td>B</td>
+<td>A-B</td>
+</tr>
+</tbody>
+</table>
+<p>A-A có 1, A-B có 3, A-C rỗng (chưa ai có món 2 thuộc nhóm C). Từ giờ ngăn <strong>A là ngăn đã chia</strong>: không chứa ứng viên nữa.</p>
+<pre><code>root
+├─ A                    ← đã chia
+│  ├─ A: [145]
+│  ├─ B: [124, 457, 125]
+│  └─ C: [ ]
+├─ B: [ ]
+└─ C: [ ]</code></pre>
+<p><strong>Ứng viên 5: {4 5 8} — ngăn A-B tràn.</strong> Món 1 là 4 → A (đã chia, đi tiếp); món 2 là 5 → B → A-B. Bỏ vào thì A-B có 4 → <strong>chia ngăn A-B theo món thứ 3</strong> (món 1 đã dùng ở root, món 2 đã dùng ở ngăn A):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ứng viên</th>
+<th>Món thứ 3</th>
+<th>Nhóm</th>
+<th>Sang ngăn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>{1 2 4}</td>
+<td>4</td>
+<td>A</td>
+<td>A-B-A</td>
+</tr>
+<tr class="even">
+<td>{4 5 7}</td>
+<td>7</td>
+<td>A</td>
+<td>A-B-A</td>
+</tr>
+<tr class="odd">
+<td>{1 2 5}</td>
+<td>5</td>
+<td>B</td>
+<td>A-B-B</td>
+</tr>
+<tr class="even">
+<td>{4 5 8}</td>
+<td>8</td>
+<td>B</td>
+<td>A-B-B</td>
+</tr>
+</tbody>
+</table>
+<pre><code>root
+├─ A                    ← đã chia
+│  ├─ A: [145]
+│  ├─ B                 ← đã chia
+│  │  ├─ A: [124, 457]
+│  │  ├─ B: [125, 458]
+│  │  └─ C: [ ]
+│  └─ C: [ ]
+├─ B: [ ]
+└─ C: [ ]</code></pre>
+<p><strong>Ứng viên 6: {1 5 9}.</strong> Đây là ví dụ rõ nhất của “đã chia, đi tiếp”:</p>
+<ol type="1">
+<li>Ở root, món 1 là <strong>1</strong> → A. Ngăn A <strong>đã chia</strong> → không bỏ vào được, phải chọn ngăn con.</li>
+<li>Trong A, món 2 là <strong>5</strong> → B → A-B. Ngăn A-B cũng <strong>đã chia</strong> → lại chọn ngăn con.</li>
+<li>Trong A-B, món 3 là <strong>9</strong> → C → <strong>A-B-C</strong>. Ngăn này <strong>chưa chia</strong> (đang rỗng) → bỏ vào.</li>
+</ol>
+<p>Giống tìm phòng trong một toà nhà: tới toà A chưa phải chỗ ở, phải chọn tầng; tới tầng B vẫn chưa, phải chọn phòng; tới phòng C mới vào được.</p>
+<p><strong>Ứng viên 7: {1 3 6}.</strong> Món 1 là 1 → A (đã chia, đi tiếp); món 2 là <strong>3</strong> → nhóm C → ngăn <strong>A-C</strong>. A-C <strong>chưa chia</strong> nên bỏ vào luôn — <strong>không cần nhìn món 3</strong>. Đây là ứng viên đầu tiên vào A-C.</p>
+<p><strong>Ứng viên 8–9: {2 3 4}, {5 6 7}.</strong> Món 1 là 2 và 5, đều thuộc <strong>B</strong> → ngăn B. Chỉ có 2 ứng viên, không bao giờ tràn → ngăn B <strong>không bao giờ bị chia</strong>.</p>
+<p><strong>Ứng viên 10–12: {3 4 5}, {3 5 6}, {3 5 7}.</strong> Món 1 đều là 3 → <strong>C</strong>. Ngăn C có 3, vừa đủ.</p>
+<p><strong>Ứng viên 13: {6 8 9} — ngăn C tràn.</strong> Món 1 là 6 → C, ngăn C có 4 → <strong>chia ngăn C theo món thứ 2</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ứng viên</th>
+<th>Món thứ 2</th>
+<th>Nhóm</th>
+<th>Sang ngăn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>{3 4 5}</td>
+<td>4</td>
+<td>A</td>
+<td>C-A</td>
+</tr>
+<tr class="even">
+<td>{3 5 6}</td>
+<td>5</td>
+<td>B</td>
+<td>C-B</td>
+</tr>
+<tr class="odd">
+<td>{3 5 7}</td>
+<td>5</td>
+<td>B</td>
+<td>C-B</td>
+</tr>
+<tr class="even">
+<td>{6 8 9}</td>
+<td>8</td>
+<td>B</td>
+<td>C-B</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ứng viên 14–15: {3 6 7}, {3 6 8}.</strong> Món 1 là 3 → C (đã chia, đi tiếp); món 2 là 6 → C → ngăn <strong>C-C</strong>, có 2.</p>
+<p><strong>Cây hoàn chỉnh</strong> — 15 ứng viên trong 9 ngăn, chỉ có 3 lần chia (A, A-B, C):</p>
+<pre><code>root                        (chọn nhánh theo món 1)
+├─ A                        (đã chia: chọn theo món 2)
+│  ├─ A: [145]
+│  ├─ B                     (đã chia: chọn theo món 3)
+│  │  ├─ A: [124, 457]
+│  │  ├─ B: [125, 458]
+│  │  └─ C: [159]
+│  └─ C: [136]
+├─ B: [234, 567]
+└─ C                        (đã chia: chọn theo món 2)
+   ├─ A: [345]
+   ├─ B: [356, 357, 689]
+   └─ C: [367, 368]</code></pre>
+<p>Đọc địa chỉ ngăn của một ứng viên:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ứng viên</th>
+<th>Món 1 → nhóm</th>
+<th>Món 2 → nhóm</th>
+<th>Món 3 → nhóm</th>
+<th>Ngăn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>{1 4 5}</td>
+<td>1 → A</td>
+<td>4 → A</td>
+<td>(không cần)</td>
+<td><strong>A-A</strong></td>
+</tr>
+<tr class="even">
+<td>{1 3 6}</td>
+<td>1 → A</td>
+<td>3 → C</td>
+<td>(không cần)</td>
+<td><strong>A-C</strong></td>
+</tr>
+<tr class="odd">
+<td>{1 5 9}</td>
+<td>1 → A</td>
+<td>5 → B</td>
+<td>9 → C</td>
+<td><strong>A-B-C</strong></td>
+</tr>
+<tr class="even">
+<td>{2 3 4}</td>
+<td>2 → B</td>
+<td>(không cần)</td>
+<td></td>
+<td><strong>B</strong></td>
+</tr>
+<tr class="odd">
+<td>{3 6 7}</td>
+<td>3 → C</td>
+<td>6 → C</td>
+<td>(không cần)</td>
+<td><strong>C-C</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Số chữ trong địa chỉ = số tầng ứng viên phải đi qua. Chỉ đi tiếp khi gặp ngăn đã chia, nên <strong>cây không đều</strong>: nhánh A sâu 3 tầng vì nhiều ứng viên bắt đầu bằng 1 và 4; nhánh B chỉ 1 tầng.</p>
+<p><em>Quy ước khác:</em> một số tài liệu cho root <strong>bắt đầu là một ngăn</strong> (chưa chia), tràn mới chia — trong code ở §6 là đổi <code>{} if depth == 0 else None</code> thành <code>None</code>. Với ví dụ này cả hai cách cho ra <strong>cùng một cây cuối cùng</strong>.</p>
+</section>
+<section id="bước-4-cho-giao-dịch-đi-qua-cây-để-đếm" class="level3">
+<h3 class="anchored" data-anchor-id="bước-4-cho-giao-dịch-đi-qua-cây-để-đếm">Bước 4 — Cho giao dịch đi qua cây để đếm</h3>
+<p>Giao dịch <span class="math inline">t = \{1, 2, 3, 5, 6\}</span> có mã nhóm: 1 → A, 2 → B, 3 → C, 5 → B, 6 → C. Câu hỏi: <strong>ứng viên nào nằm trọn trong <span class="math inline">t</span>?</strong></p>
+<p>Cách hiểu đơn giản nhất: liệt kê cả <span class="math inline">\binom{5}{3} = 10</span> tập con 3 phần tử của <span class="math inline">t</span>, đổi sang mã nhóm, xem mỗi tập con <strong>trỏ tới ngăn nào</strong>, rồi mở ngăn đó ra so:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tập con của <span class="math inline">t</span></th>
+<th>Mã</th>
+<th>Mở ngăn</th>
+<th>Trong ngăn có</th>
+<th>Khớp?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 2 3</td>
+<td>A B C</td>
+<td><strong>A-B-C</strong></td>
+<td>159</td>
+<td>✗ (chỉ trùng mã, khác món)</td>
+</tr>
+<tr class="even">
+<td>1 2 5</td>
+<td>A B B</td>
+<td><strong>A-B-B</strong></td>
+<td>125, 458</td>
+<td><strong>125 ✓</strong></td>
+</tr>
+<tr class="odd">
+<td>1 2 6</td>
+<td>A B C</td>
+<td>A-B-C</td>
+<td><em>đã mở rồi — bỏ qua</em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1 3 5</td>
+<td>A C …</td>
+<td><strong>A-C</strong></td>
+<td>136</td>
+<td><strong>136 ✓</strong></td>
+</tr>
+<tr class="odd">
+<td>1 3 6</td>
+<td>A C …</td>
+<td>A-C</td>
+<td><em>đã mở rồi — bỏ qua</em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1 5 6</td>
+<td>A B C</td>
+<td>A-B-C</td>
+<td><em>đã mở rồi — bỏ qua</em></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>2 3 5</td>
+<td>B …</td>
+<td><strong>B</strong></td>
+<td>234, 567</td>
+<td>✗ ✗</td>
+</tr>
+<tr class="even">
+<td>2 3 6</td>
+<td>B …</td>
+<td>B</td>
+<td><em>đã mở rồi — bỏ qua</em></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>2 5 6</td>
+<td>B …</td>
+<td>B</td>
+<td><em>đã mở rồi — bỏ qua</em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>3 5 6</td>
+<td>C B …</td>
+<td><strong>C-B</strong></td>
+<td>356, 357, 689</td>
+<td><strong>356 ✓</strong></td>
+</tr>
+</tbody>
+</table>
+<p>“…” nghĩa là ngăn đó không chia sâu hơn, nên 1–2 chữ đầu là đủ để biết ngăn.</p>
+<p><strong>Kết quả cho giao dịch này:</strong></p>
+<ul>
+<li>Chỉ mở <strong>5 / 9 ngăn</strong>: A-B-C, A-B-B, A-C, B, C-B.</li>
+<li>4 ngăn <strong>không bao giờ đụng tới</strong>: A-A, A-B-A, C-A, C-C — không tập con nào của <span class="math inline">t</span> trỏ vào đó → bỏ qua 6 ứng viên mà không cần so.</li>
+<li>So khớp <strong>9 / 15 ứng viên</strong>, tìm ra <strong>3 cái khớp</strong>: {1 2 5}, {1 3 6}, {3 5 6} → mỗi cái <strong>+1 support</strong>.</li>
+</ul>
+<p>Lặp lại với mọi giao dịch trong DB là xong một lần quét của Apriori ở mức 3. Với 15 ứng viên thì tiết kiệm 6 phép so; với <span class="math inline">10^5</span> ứng viên phân vào hàng nghìn ngăn, mỗi giao dịch chỉ chạm một phần rất nhỏ — đó là cải tiến mà hash tree mang lại.</p>
+<p><strong>Hai điểm dễ sai:</strong></p>
+<ol type="1">
+<li><strong>Vào đúng ngăn vẫn phải so khớp.</strong> Mã nhóm làm mất thông tin: {1 2 3} và {1 5 9} cùng mã A-B-C (2 và 5 cùng nhóm B, 3 và 9 cùng nhóm C). Ngăn chỉ cho biết “<em>có thể</em> khớp”.</li>
+<li><strong>Một ngăn có thể bị trỏ tới nhiều lần.</strong> {1 2 3}, {1 2 6}, {1 5 6} đều trỏ vào A-B-C. Nếu lần nào cũng so và cộng, một ứng viên khớp ở đó sẽ bị <strong>đếm nhiều lần cho cùng một giao dịch</strong>. Cài đặt đúng phải <strong>nhớ ngăn đã mở</strong> trong mỗi giao dịch. Một số giáo trình báo “11 phép so khớp” cho ví dụ này — con số đó tính cả các lần mở lại ngăn A-B-C.</li>
+</ol>
+<p><strong>Trong code, cây liệt kê tập con thông minh hơn</strong>: thay vì sinh đủ 10 tập con, nó đi xuống cây theo <strong>tiền tố</strong> và dừng ngay khi tới lá. Ở root, món đầu chỉ có thể là 1, 2 hoặc 3 (sau 5 chỉ còn 1 món, không đủ cho tập 3 phần tử); ở mỗi tầng chỉ lấy các món <strong>đứng sau</strong> món vừa chọn.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tiền tố</th>
+<th>Đường đi</th>
+<th>Ngăn tới</th>
+<th>Gộp các tập con</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 + 2 + 3</td>
+<td>A → B → C</td>
+<td>A-B-C</td>
+<td>123</td>
+</tr>
+<tr class="even">
+<td>1 + 2 + 5</td>
+<td>A → B → B</td>
+<td>A-B-B</td>
+<td>125</td>
+</tr>
+<tr class="odd">
+<td>1 + 2 + 6</td>
+<td>A → B → C</td>
+<td>A-B-C (mở lại)</td>
+<td>126</td>
+</tr>
+<tr class="even">
+<td>1 + 3</td>
+<td>A → C</td>
+<td>A-C</td>
+<td>135, 136</td>
+</tr>
+<tr class="odd">
+<td>1 + 5 + 6</td>
+<td>A → B → C</td>
+<td>A-B-C (mở lại)</td>
+<td>156</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+<td>B</td>
+<td>235, 236, 256</td>
+</tr>
+<tr class="odd">
+<td>3 + 5</td>
+<td>C → B</td>
+<td>C-B</td>
+<td>356</td>
+</tr>
+</tbody>
+</table>
+<p>Tiền tố <code>2</code> tới ngăn B ngay ở tầng 1 nên gộp luôn ba tập con 235, 236, 256 làm một lần mở. Bản chất vẫn là bảng 10 tập con ở trên.</p>
+</section>
+<section id="mô-phỏng-từng-bước" class="level3">
+<h3 class="anchored" data-anchor-id="mô-phỏng-từng-bước">Mô phỏng từng bước</h3>
+<p>Bấm <strong>Bước tiếp →</strong>: các bước đầu xếp từng ứng viên vào cây (xanh: đường đi khi chèn, cam: ngăn vừa chia), các bước sau cho giao dịch {1 2 3 5 6} đi qua cây (tím: đường đi, xanh lá: ứng viên khớp). Nhánh trên cây được ghi là A / B / C như trong bài.</p>
+<iframe src="../assets/hash-tree-sim.html" width="100%" height="760" style="border:1px solid #ddd;border-radius:8px" title="Hash tree simulator">
+</iframe>
+</section>
+<section id="các-tham-số-ảnh-hưởng-hiệu-năng" class="level3">
+<h3 class="anchored" data-anchor-id="các-tham-số-ảnh-hưởng-hiệu-năng">Các tham số ảnh hưởng hiệu năng</h3>
+<ul>
+<li><strong>Số nhóm của hàm băm</strong>: nhiều nhóm → ngăn nhỏ hơn, ít so khớp hơn, nhưng cây to hơn và mỗi giao dịch đi nhiều đường hơn.</li>
+<li><strong><code>max_leaf</code></strong>: nhỏ → cây sâu, so khớp ít; lớn → cây nông, so khớp nhiều ở mỗi ngăn.</li>
+<li><strong>Độ dài giao dịch</strong>: giao dịch dài có nhiều tập con → mở nhiều ngăn. Hash tree hiệu quả nhất khi giao dịch ngắn so với số ứng viên.</li>
+</ul>
+</section>
+</section>
+<section id="cài-đặt-bằng-python" class="level2">
+<h2 class="anchored" data-anchor-id="cài-đặt-bằng-python">6. Cài đặt bằng Python</h2>
+<section id="apriori" class="level3">
+<h3 class="anchored" data-anchor-id="apriori">Apriori</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apriori_gen(L_prev, k):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Join + prune: sinh C_k từ L_{k-1} (mỗi itemset là tuple đã sắp)."""</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    L_prev <span class="op">=</span> <span class="bu">sorted</span>(L_prev)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> <span class="bu">set</span>(L_prev)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> []</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(L_prev)):</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(L_prev)):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            a, b <span class="op">=</span> L_prev[i], L_prev[j]</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> a[:k<span class="op">-</span><span class="dv">2</span>] <span class="op">!=</span> b[:k<span class="op">-</span><span class="dv">2</span>]:             <span class="co"># join: chung k-2 item đầu</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span>                          <span class="co"># đã sắp nên các b sau cũng không chung prefix</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            c <span class="op">=</span> a <span class="op">+</span> (b[<span class="op">-</span><span class="dv">1</span>],)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">all</span>(s <span class="kw">in</span> S <span class="cf">for</span> s <span class="kw">in</span> combinations(c, k <span class="op">-</span> <span class="dv">1</span>)):   <span class="co"># prune</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                C.append(c)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> C</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apriori(D, min_sup):</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> [<span class="bu">set</span>(t) <span class="cf">for</span> t <span class="kw">in</span> D]</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    cnt <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> D:                                <span class="co"># quét DB lần 1</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> t:</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            cnt[(x,)] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> {c: n <span class="cf">for</span> c, n <span class="kw">in</span> cnt.items() <span class="cf">if</span> n <span class="op">&gt;=</span> min_sup}</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    result, k <span class="op">=</span> <span class="bu">dict</span>(L), <span class="dv">2</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> L:</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        C <span class="op">=</span> apriori_gen(L, k)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        cnt <span class="op">=</span> {c: <span class="bu">sum</span>(<span class="bu">set</span>(c) <span class="op">&lt;=</span> t <span class="cf">for</span> t <span class="kw">in</span> D) <span class="cf">for</span> c <span class="kw">in</span> C}   <span class="co"># quét DB lần k (đếm ngây thơ)</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        L <span class="op">=</span> {c: n <span class="cf">for</span> c, n <span class="kw">in</span> cnt.items() <span class="cf">if</span> n <span class="op">&gt;=</span> min_sup}</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        result.update(L)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        k <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> [<span class="st">"facdgimp"</span>, <span class="st">"abcflmo"</span>, <span class="st">"bfhjo"</span>, <span class="st">"bcksp"</span>, <span class="st">"afcelpmn"</span>]</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(apriori(D, min_sup<span class="op">=</span><span class="dv">3</span>)))   <span class="co"># 18</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="hash-tree" class="level3">
+<h3 class="anchored" data-anchor-id="hash-tree">Hash tree</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HashTree:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, k, max_leaf<span class="op">=</span><span class="dv">3</span>, depth<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.k, <span class="va">self</span>.max_leaf, <span class="va">self</span>.depth <span class="op">=</span> k, max_leaf, depth</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># None = ngăn chưa chia (lá); dict nhóm -&gt; HashTree = ngăn đã chia (node trong).</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Root có sẵn các nhánh; ngăn khác chỉ chia khi tràn.</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.children <span class="op">=</span> {} <span class="cf">if</span> depth <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bucket <span class="op">=</span> []                       <span class="co"># ứng viên lưu ở lá</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> h(item):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> item <span class="op">%</span> <span class="dv">3</span>                        <span class="co"># nhóm A = {1,4,7} -&gt; 1 | B = {2,5,8} -&gt; 2 | C = {3,6,9} -&gt; 0</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> insert(<span class="va">self</span>, c):</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.children <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:          <span class="co"># node trong: băm item thứ `depth` của ứng viên</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            b <span class="op">=</span> <span class="va">self</span>.h(c[<span class="va">self</span>.depth])</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> b <span class="kw">not</span> <span class="kw">in</span> <span class="va">self</span>.children:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.children[b] <span class="op">=</span> HashTree(<span class="va">self</span>.k, <span class="va">self</span>.max_leaf, <span class="va">self</span>.depth <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.children[b].insert(c)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bucket.append(c)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(<span class="va">self</span>.bucket) <span class="op">&gt;</span> <span class="va">self</span>.max_leaf <span class="kw">and</span> <span class="va">self</span>.depth <span class="op">&lt;</span> <span class="va">self</span>.k:   <span class="co"># lá tràn -&gt; tách</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            old, <span class="va">self</span>.bucket, <span class="va">self</span>.children <span class="op">=</span> <span class="va">self</span>.bucket, [], {}</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> x <span class="kw">in</span> old:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.insert(x)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> leaves_for(<span class="va">self</span>, t, start<span class="op">=</span><span class="dv">0</span>, out<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Các lá mà giao dịch t (đã sắp) có thể chứa ứng viên — mỗi lá một lần."""</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> {} <span class="cf">if</span> out <span class="kw">is</span> <span class="va">None</span> <span class="cf">else</span> out</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.children <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            out[<span class="bu">id</span>(<span class="va">self</span>)] <span class="op">=</span> <span class="va">self</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> out</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(start, <span class="bu">len</span>(t) <span class="op">-</span> (<span class="va">self</span>.k <span class="op">-</span> <span class="va">self</span>.depth) <span class="op">+</span> <span class="dv">1</span>):    <span class="co"># chừa đủ item cho các mức sau</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            child <span class="op">=</span> <span class="va">self</span>.children.get(<span class="va">self</span>.h(t[i]))</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> child:</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                child.leaves_for(t, i <span class="op">+</span> <span class="dv">1</span>, out)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> count(<span class="va">self</span>, t, counts):</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>        ts <span class="op">=</span> <span class="bu">set</span>(t)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> leaf <span class="kw">in</span> <span class="va">self</span>.leaves_for(<span class="bu">sorted</span>(t)).values():</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> c <span class="kw">in</span> leaf.bucket:</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> ts.issuperset(c):</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>                    counts[c] <span class="op">=</span> counts.get(c, <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>C3 <span class="op">=</span> [(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>), (<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>), (<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>), (<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>), (<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">8</span>), (<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">9</span>), (<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">6</span>), (<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>      (<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>), (<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), (<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>), (<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), (<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">9</span>), (<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">7</span>), (<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">8</span>)]</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> HashTree(k<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> C3:</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    tree.insert(c)</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> {}</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>tree.count((<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>), counts)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts)   <span class="co"># {(1, 2, 5): 1, (1, 3, 6): 1, (3, 5, 6): 1}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Hàm <code>leaves_for</code> gom lá vào dict theo <code>id</code> — đó chính là bước <strong>chống đếm trùng</strong> ở §5. Hai đoạn code ghép với nhau bằng cách thay dòng đếm ngây thơ trong <code>apriori</code> bằng: dựng <code>HashTree</code> từ <code>C</code>, rồi gọi <code>tree.count(t, cnt)</code> cho mỗi giao dịch (item cần là số nguyên, hoặc đổi <code>h</code> thành <code>hash(item) % 3</code>).</p>
+<p>Dùng thư viện: <code>mlxtend.frequent_patterns.apriori(df, min_support=0.6, use_colnames=True)</code> với cùng cách mã hoá one-hot như ở note FP-growth.</p>
+</section>
+</section>
+<section id="ưu-nhược-điểm-và-cải-tiến" class="level2">
+<h2 class="anchored" data-anchor-id="ưu-nhược-điểm-và-cải-tiến">7. Ưu, nhược điểm và cải tiến</h2>
+<p><strong>Nhược điểm</strong> của Apriori:</p>
+<ul>
+<li><strong>Quét DB nhiều lần</strong>: <span class="math inline">k</span> lần cho itemset dài nhất <span class="math inline">k</span> phần tử.</li>
+<li><strong>Số ứng viên bùng nổ</strong>: <span class="math inline">10^4</span> item frequent → khoảng <span class="math inline">5 \times 10^7</span> ứng viên 2 phần tử; một frequent itemset 100 phần tử kéo theo <span class="math inline">2^{100} - 1</span> tập con frequent phải sinh ra.</li>
+<li><strong>Đếm support tốn kém</strong>: mỗi lần quét, mỗi giao dịch phải kiểm tra với rất nhiều ứng viên.</li>
+</ul>
+<p><strong>Cải tiến</strong>: mỗi kỹ thuật nhắm vào một điểm yếu ở trên.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kỹ thuật</th>
+<th>Cải tiến điểm nào</th>
+<th>Ý tưởng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Hash tree</strong> (§5)</td>
+<td>Đếm support</td>
+<td>Cất ứng viên vào cây có ngăn theo hàm băm; mỗi giao dịch chỉ mở các ngăn mà tập con của nó trỏ tới</td>
+</tr>
+<tr class="even">
+<td><strong>Hash-based</strong> (DHP)</td>
+<td>Số ứng viên</td>
+<td>Khi quét mức <span class="math inline">k</span>, băm luôn các <span class="math inline">(k+1)</span>-itemset vào bucket; bucket nào tổng count &lt; <code>min_sup</code> thì loại sớm ứng viên tương ứng — hiệu quả nhất ở mức 2</td>
+</tr>
+<tr class="odd">
+<td><strong>Transaction reduction</strong></td>
+<td>Đếm support</td>
+<td>Giao dịch không chứa frequent <span class="math inline">k</span>-itemset nào thì bỏ khỏi các lần quét sau</td>
+</tr>
+<tr class="even">
+<td><strong>Partitioning</strong></td>
+<td>Số lần quét</td>
+<td>Chia DB thành phần vừa RAM; itemset frequent toàn cục phải frequent ở ít nhất một phần → chỉ 2 lần quét</td>
+</tr>
+<tr class="odd">
+<td><strong>Sampling</strong></td>
+<td>Số lần quét</td>
+<td>Khai phá trên mẫu với ngưỡng thấp hơn, rồi kiểm tra lại trên toàn DB</td>
+</tr>
+<tr class="even">
+<td><strong>Dynamic itemset counting</strong></td>
+<td>Số lần quét</td>
+<td>Bắt đầu đếm ứng viên mức mới ngay giữa lần quét, không đợi hết mức hiện tại</td>
+</tr>
+</tbody>
+</table>
+<p>Hash tree và DHP đều dùng hàm băm nhưng khác mục đích: hash tree <strong>đếm nhanh</strong> các ứng viên đã có; DHP <strong>loại bớt</strong> ứng viên trước khi đếm.</p>
+<p>Hướng triệt để nhất là <strong>bỏ hẳn việc sinh ứng viên</strong>: <a href="../../../courses/data-mining/lectures/fp-growth.html">FP-growth</a> nén DB vào FP-tree và chỉ quét 2 lần.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Apriori</th>
+<th>FP-growth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chiến lược</td>
+<td>Sinh ứng viên + kiểm tra, theo từng mức</td>
+<td>Chia để trị trên FP-tree</td>
+</tr>
+<tr class="even">
+<td>Số lần quét DB (ví dụ)</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Cấu trúc chính</td>
+<td>Hash tree chứa ứng viên</td>
+<td>FP-tree chứa giao dịch đã nén</td>
+</tr>
+<tr class="even">
+<td>Điểm nghẽn</td>
+<td>Số ứng viên, số lần quét</td>
+<td>Bộ nhớ cho cây</td>
+</tr>
+<tr class="odd">
+<td>Ưu điểm</td>
+<td>Đơn giản, dễ cài đặt, dễ song song hoá theo từng mức</td>
+<td>Nhanh hơn nhiều với dữ liệu dày, <code>min_sup</code> thấp</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tóm-tắt" class="level2">
+<h2 class="anchored" data-anchor-id="tóm-tắt">8. Tóm tắt</h2>
+<ul>
+<li><strong>Tính chất Apriori</strong>: tập con của frequent itemset cũng frequent → tập cha của itemset không frequent cũng không frequent.</li>
+<li>Đi từng mức: <span class="math inline">L_{k-1}</span> → <strong>join</strong> (chung <span class="math inline">k-2</span> item đầu) → <strong>prune</strong> (mọi tập con <span class="math inline">k-1</span> phải thuộc <span class="math inline">L_{k-1}</span>) → <span class="math inline">C_k</span> → quét DB đếm support → <span class="math inline">L_k</span>.</li>
+<li><strong>Hash tree là cải tiến cho bước đếm support của Apriori</strong>: kết quả không đổi, mỗi lần quét nhanh hơn.
+<ul>
+<li><strong>Chia nhóm</strong>: hàm băm xếp mỗi món vào một nhóm (ví dụ <code>mod 3</code> → A, B, C).</li>
+<li><strong>Xếp ứng viên</strong>: đi xuống cây theo nhóm của món 1, 2, 3…; ngăn đã chia thì đi tiếp, ngăn chưa chia thì bỏ vào; ngăn quá <code>max_leaf</code> thì chia theo món kế tiếp.</li>
+<li><strong>Đếm</strong>: mỗi giao dịch chỉ mở các ngăn mà tập con của nó trỏ tới; mở ra vẫn phải so khớp; mỗi ngăn chỉ mở một lần mỗi giao dịch để không đếm trùng.</li>
+</ul></li>
+<li>Ví dụ: 37 ứng viên qua 4 lần quét → 18 frequent itemsets, giống FP-growth.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
