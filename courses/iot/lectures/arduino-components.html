@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-29">
+
+<title>Giới thiệu Arduino &amp; linh kiện cơ bản – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-03f76f603ac1de4e7206c9fd0da51476.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#giới-thiệu-arduino-linh-kiện-cơ-bản" id="toc-giới-thiệu-arduino-linh-kiện-cơ-bản" class="nav-link active" data-scroll-target="#giới-thiệu-arduino-linh-kiện-cơ-bản">Giới thiệu Arduino &amp; linh kiện cơ bản</a>
+  <ul class="collapse">
+  <li><a href="#arduino-là-gì" id="toc-arduino-là-gì" class="nav-link" data-scroll-target="#arduino-là-gì">Arduino là gì</a>
+  <ul class="collapse">
+  <li><a href="#cấu-trúc-một-sketch" id="toc-cấu-trúc-một-sketch" class="nav-link" data-scroll-target="#cấu-trúc-một-sketch">Cấu trúc một sketch</a></li>
+  </ul></li>
+  <li><a href="#board-arduino-uno" id="toc-board-arduino-uno" class="nav-link" data-scroll-target="#board-arduino-uno">Board Arduino Uno</a>
+  <ul class="collapse">
+  <li><a href="#thông-số-chính" id="toc-thông-số-chính" class="nav-link" data-scroll-target="#thông-số-chính">Thông số chính</a></li>
+  <li><a href="#các-khu-vực-trên-board" id="toc-các-khu-vực-trên-board" class="nav-link" data-scroll-target="#các-khu-vực-trên-board">Các khu vực trên board</a></li>
+  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a></li>
+  </ul></li>
+  <li><a href="#breadboard-dây-nối" id="toc-breadboard-dây-nối" class="nav-link" data-scroll-target="#breadboard-dây-nối">Breadboard &amp; dây nối</a>
+  <ul class="collapse">
+  <li><a href="#breadboard" id="toc-breadboard" class="nav-link" data-scroll-target="#breadboard">Breadboard</a></li>
+  <li><a href="#dây-nối-jumper-wire" id="toc-dây-nối-jumper-wire" class="nav-link" data-scroll-target="#dây-nối-jumper-wire">Dây nối (jumper wire)</a></li>
+  <li><a href="#ảnh-thực-tế-1" id="toc-ảnh-thực-tế-1" class="nav-link" data-scroll-target="#ảnh-thực-tế-1">Ảnh thực tế</a></li>
+  </ul></li>
+  <li><a href="#linh-kiện-thụ-động" id="toc-linh-kiện-thụ-động" class="nav-link" data-scroll-target="#linh-kiện-thụ-động">Linh kiện thụ động</a>
+  <ul class="collapse">
+  <li><a href="#điện-trở" id="toc-điện-trở" class="nav-link" data-scroll-target="#điện-trở">Điện trở</a></li>
+  <li><a href="#biến-trở-potentiometer" id="toc-biến-trở-potentiometer" class="nav-link" data-scroll-target="#biến-trở-potentiometer">Biến trở (potentiometer)</a></li>
+  <li><a href="#ảnh-thực-tế-2" id="toc-ảnh-thực-tế-2" class="nav-link" data-scroll-target="#ảnh-thực-tế-2">Ảnh thực tế</a></li>
+  </ul></li>
+  <li><a href="#linh-kiện-hiển-thị-tín-hiệu-ra" id="toc-linh-kiện-hiển-thị-tín-hiệu-ra" class="nav-link" data-scroll-target="#linh-kiện-hiển-thị-tín-hiệu-ra">Linh kiện hiển thị &amp; tín hiệu ra</a>
+  <ul class="collapse">
+  <li><a href="#led" id="toc-led" class="nav-link" data-scroll-target="#led">LED</a></li>
+  <li><a href="#led-rgb" id="toc-led-rgb" class="nav-link" data-scroll-target="#led-rgb">LED RGB</a></li>
+  <li><a href="#buzzer-còi" id="toc-buzzer-còi" class="nav-link" data-scroll-target="#buzzer-còi">Buzzer (còi)</a></li>
+  <li><a href="#lcd-162-i²c" id="toc-lcd-162-i²c" class="nav-link" data-scroll-target="#lcd-162-i²c">LCD 16×2 (I²C)</a></li>
+  <li><a href="#ảnh-thực-tế-3" id="toc-ảnh-thực-tế-3" class="nav-link" data-scroll-target="#ảnh-thực-tế-3">Ảnh thực tế</a></li>
+  </ul></li>
+  <li><a href="#linh-kiện-đầu-vào" id="toc-linh-kiện-đầu-vào" class="nav-link" data-scroll-target="#linh-kiện-đầu-vào">Linh kiện đầu vào</a>
+  <ul class="collapse">
+  <li><a href="#nút-nhấn-push-button" id="toc-nút-nhấn-push-button" class="nav-link" data-scroll-target="#nút-nhấn-push-button">Nút nhấn (push button)</a></li>
+  <li><a href="#ảnh-thực-tế-4" id="toc-ảnh-thực-tế-4" class="nav-link" data-scroll-target="#ảnh-thực-tế-4">Ảnh thực tế</a></li>
+  </ul></li>
+  <li><a href="#cảm-biến" id="toc-cảm-biến" class="nav-link" data-scroll-target="#cảm-biến">Cảm biến</a>
+  <ul class="collapse">
+  <li><a href="#ảnh-thực-tế-5" id="toc-ảnh-thực-tế-5" class="nav-link" data-scroll-target="#ảnh-thực-tế-5">Ảnh thực tế</a></li>
+  </ul></li>
+  <li><a href="#cơ-cấu-chấp-hành" id="toc-cơ-cấu-chấp-hành" class="nav-link" data-scroll-target="#cơ-cấu-chấp-hành">Cơ cấu chấp hành</a>
+  <ul class="collapse">
+  <li><a href="#servo-sg90" id="toc-servo-sg90" class="nav-link" data-scroll-target="#servo-sg90">Servo SG90</a></li>
+  <li><a href="#động-cơ-dc-driver" id="toc-động-cơ-dc-driver" class="nav-link" data-scroll-target="#động-cơ-dc-driver">Động cơ DC &amp; driver</a></li>
+  <li><a href="#relay-module" id="toc-relay-module" class="nav-link" data-scroll-target="#relay-module">Relay module</a></li>
+  <li><a href="#ảnh-thực-tế-6" id="toc-ảnh-thực-tế-6" class="nav-link" data-scroll-target="#ảnh-thực-tế-6">Ảnh thực tế</a></li>
+  </ul></li>
+  <li><a href="#lưu-ý-an-toàn-khi-lắp-mạch" id="toc-lưu-ý-an-toàn-khi-lắp-mạch" class="nav-link" data-scroll-target="#lưu-ý-an-toàn-khi-lắp-mạch">Lưu ý an toàn khi lắp mạch</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Giới thiệu Arduino &amp; linh kiện cơ bản</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 29, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="giới-thiệu-arduino-linh-kiện-cơ-bản" class="level1">
+<h1>Giới thiệu Arduino &amp; linh kiện cơ bản</h1>
+<blockquote class="blockquote">
+<p>Note tham khảo về board Arduino Uno và các linh kiện trong bộ kit dùng cho các lab. Ảnh thực tế sẽ được bổ sung dần cho từng linh kiện.</p>
+</blockquote>
+<section id="arduino-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="arduino-là-gì">Arduino là gì</h2>
+<p><strong>Arduino</strong> là một nền tảng phần cứng/phần mềm mã nguồn mở gồm hai phần:</p>
+<ul>
+<li><strong>Board vi điều khiển</strong> — mạch in có sẵn vi điều khiển, mạch nguồn, cổng USB và các chân I/O cắm được dây trực tiếp. Board phổ biến nhất là <strong>Arduino Uno</strong>.</li>
+<li><strong>Arduino IDE</strong> — môi trường viết code C/C++ (gọi là <em>sketch</em>), biên dịch và nạp xuống board qua USB.</li>
+</ul>
+<p>Trong kiến trúc IoT, Arduino nằm ở <strong>tầng thiết bị (perception)</strong>: đọc cảm biến, điều khiển cơ cấu chấp hành. Bản thân Uno không có Wi-Fi/Bluetooth — muốn kết nối mạng phải gắn thêm module (ESP8266, HC-05…) hoặc dùng board có sẵn kết nối như <strong>ESP32</strong>, <strong>Arduino Uno R4 WiFi</strong>, <strong>Nano 33 IoT</strong>.</p>
+<section id="cấu-trúc-một-sketch" class="level3">
+<h3 class="anchored" data-anchor-id="cấu-trúc-một-sketch">Cấu trúc một sketch</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// chạy 1 lần khi cấp điện hoặc nhấn reset:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// cấu hình chân, khởi tạo Serial, cảm biến...</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span><span class="dv">13</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">// chạy lặp vô hạn sau setup()</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Các hàm dùng nhiều nhất:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hàm</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pinMode(pin, mode)</code></td>
+<td>Đặt chân là <code>OUTPUT</code>, <code>INPUT</code> hoặc <code>INPUT_PULLUP</code></td>
+</tr>
+<tr class="even">
+<td><code>digitalWrite(pin, HIGH/LOW)</code></td>
+<td>Xuất mức 5 V / 0 V</td>
+</tr>
+<tr class="odd">
+<td><code>digitalRead(pin)</code></td>
+<td>Đọc mức logic (<code>HIGH</code>/<code>LOW</code>)</td>
+</tr>
+<tr class="even">
+<td><code>analogRead(pin)</code></td>
+<td>Đọc điện áp chân A0–A5, trả về 0–1023 (ADC 10 bit)</td>
+</tr>
+<tr class="odd">
+<td><code>analogWrite(pin, 0–255)</code></td>
+<td>Xuất PWM trên các chân có dấu <code>~</code></td>
+</tr>
+<tr class="even">
+<td><code>delay(ms)</code> / <code>millis()</code></td>
+<td>Dừng chương trình / đọc số ms từ lúc khởi động</td>
+</tr>
+<tr class="odd">
+<td><code>Serial.print()</code></td>
+<td>Gửi dữ liệu lên máy tính qua Serial Monitor</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="board-arduino-uno" class="level2">
+<h2 class="anchored" data-anchor-id="board-arduino-uno">Board Arduino Uno</h2>
+<section id="thông-số-chính" class="level3">
+<h3 class="anchored" data-anchor-id="thông-số-chính">Thông số chính</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Thông số</th>
+<th>Giá trị</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vi điều khiển</td>
+<td>ATmega328P, 16 MHz</td>
+</tr>
+<tr class="even">
+<td>Mức logic</td>
+<td>5 V</td>
+</tr>
+<tr class="odd">
+<td>Bộ nhớ</td>
+<td>Flash 32 KB (0,5 KB bootloader), SRAM 2 KB, EEPROM 1 KB</td>
+</tr>
+<tr class="even">
+<td>Chân digital</td>
+<td>14 chân (D0–D13), trong đó 6 chân PWM: 3, 5, 6, 9, 10, 11</td>
+</tr>
+<tr class="odd">
+<td>Chân analog</td>
+<td>6 chân (A0–A5), ADC 10 bit</td>
+</tr>
+<tr class="even">
+<td>Dòng mỗi chân I/O</td>
+<td>Khuyến nghị ≤ 20 mA, tối đa tuyệt đối 40 mA</td>
+</tr>
+<tr class="odd">
+<td>Nguồn cấp</td>
+<td>USB 5 V, hoặc jack DC / chân <code>VIN</code> 7–12 V</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="các-khu-vực-trên-board" class="level3">
+<h3 class="anchored" data-anchor-id="các-khu-vực-trên-board">Các khu vực trên board</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Khu vực</th>
+<th>Mô tả</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cổng USB-B</strong></td>
+<td>Cấp nguồn 5 V và nạp code, đồng thời là kênh Serial với máy tính</td>
+</tr>
+<tr class="even">
+<td><strong>Jack nguồn DC</strong></td>
+<td>Cấp nguồn ngoài 7–12 V qua bộ ổn áp trên board</td>
+</tr>
+<tr class="odd">
+<td><strong>Nút RESET</strong></td>
+<td>Khởi động lại chương trình (chạy lại <code>setup()</code>)</td>
+</tr>
+<tr class="even">
+<td><strong>Header digital (D0–D13)</strong></td>
+<td>I/O số; D0/D1 là RX/TX của Serial — tránh dùng khi đang nạp code/Serial</td>
+</tr>
+<tr class="odd">
+<td><strong>Header analog (A0–A5)</strong></td>
+<td>Đọc tín hiệu analog; cũng dùng được như chân digital. A4/A5 là SDA/SCL (I²C)</td>
+</tr>
+<tr class="even">
+<td><strong>Header nguồn</strong></td>
+<td><code>5V</code>, <code>3.3V</code>, <code>GND</code> (nhiều chân), <code>VIN</code>, <code>IOREF</code>, <code>RESET</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Header ICSP</strong></td>
+<td>Nạp trực tiếp cho chip, cũng là đường SPI (MISO/MOSI/SCK)</td>
+</tr>
+<tr class="even">
+<td><strong>LED trên board</strong></td>
+<td><code>ON</code> (có nguồn), <code>L</code> (nối với D13), <code>TX</code>/<code>RX</code> (nháy khi truyền dữ liệu Serial)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ảnh-thực-tế" class="level3">
+<h3 class="anchored" data-anchor-id="ảnh-thực-tế">Ảnh thực tế</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-arduino-uno.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Arduino Uno R3 trong kit kèm cáp USB A–B</figcaption>
+</figure>
+</div>
+<p>Board trong kit là bản <strong>Uno R3 tương thích (clone)</strong>. Một số điểm nhìn thấy trên ảnh:</p>
+<ul>
+<li><strong>Chip ATmega328P dạng DIP 28 chân</strong> (con chip đen dài bên phải), cắm trên đế nên tháo thay được nếu lỡ làm hỏng chip.</li>
+<li>Header digital bên trái in sẵn <code>0 RX</code>, <code>1 TX</code> và dấu <code>~</code> cạnh các chân PWM <code>3, 5, 6, 9, 10, 11</code>. Hai chân <code>GND</code> và <code>AREF</code> nằm ngay sau chân 13.</li>
+<li>Bên phải là header <strong>ANALOG IN</strong> (<code>A0</code>–<code>A5</code>) và <strong>POWER</strong> (<code>IOREF</code>, <code>RESET</code>, <code>3.3V</code>, <code>5V</code>, <code>GND</code>, <code>GND</code>, <code>Vin</code>).</li>
+<li>Bốn LED nhỏ <code>ON</code>, <code>L</code>, <code>TX</code>, <code>RX</code> nằm giữa board. Nút <strong>RESET</strong> màu đỏ ở góc dưới bên trái.</li>
+<li>Phía dưới có <strong>cổng USB-B</strong> (dùng với cáp xanh đi kèm: một đầu USB-A cắm máy tính, một đầu USB-B cắm board) và <strong>jack DC</strong>. Cạnh jack DC là IC ổn áp <strong>AMS1117</strong> hạ áp từ nguồn ngoài xuống 5 V.</li>
+</ul>
+</section>
+</section>
+<section id="breadboard-dây-nối" class="level2">
+<h2 class="anchored" data-anchor-id="breadboard-dây-nối">Breadboard &amp; dây nối</h2>
+<section id="breadboard" class="level3">
+<h3 class="anchored" data-anchor-id="breadboard">Breadboard</h3>
+<p>Bảng cắm thử, không cần hàn. Cấu trúc nối bên trong:</p>
+<ul>
+<li><strong>Hai rail nguồn</strong> chạy dọc hai mép (vạch đỏ <code>+</code>, vạch xanh <code>−</code>): các lỗ trong cùng một rail nối với nhau theo <strong>chiều dọc</strong>. Thường nối rail <code>+</code> về <code>5V</code>, rail <code>−</code> về <code>GND</code>.</li>
+<li><strong>Vùng giữa</strong>: mỗi <strong>cột 5 lỗ</strong> (a–e hoặc f–j) nối với nhau; hai nửa trên/dưới <strong>tách nhau</strong> bởi rãnh giữa — rãnh này để cắm IC/nút nhấn bắc ngang.</li>
+<li>Lỗi hay gặp: một số breadboard dài có rail nguồn <strong>bị ngắt ở giữa</strong> — cần nối cầu nếu dùng cả hai nửa.</li>
+</ul>
+</section>
+<section id="dây-nối-jumper-wire" class="level3">
+<h3 class="anchored" data-anchor-id="dây-nối-jumper-wire">Dây nối (jumper wire)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Loại</th>
+<th>Dùng cho</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Đực – đực (male–male)</td>
+<td>Breadboard ↔︎ header Arduino</td>
+</tr>
+<tr class="even">
+<td>Đực – cái (male–female)</td>
+<td>Module cảm biến có chân header đực ↔︎ breadboard</td>
+</tr>
+<tr class="odd">
+<td>Cái – cái (female–female)</td>
+<td>Module ↔︎ module, hoặc module ↔︎ chân header đực</td>
+</tr>
+</tbody>
+</table>
+<p>Quy ước màu để dễ dò mạch: <strong>đỏ = 5V</strong>, <strong>đen = GND</strong>, các màu khác cho tín hiệu.</p>
+</section>
+<section id="ảnh-thực-tế-1" class="level3">
+<h3 class="anchored" data-anchor-id="ảnh-thực-tế-1">Ảnh thực tế</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-breadboard.jpg" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Breadboard loại full-size: 2 rail nguồn mỗi bên, vùng giữa a–e / f–j</figcaption>
+</figure>
+</div>
+<p>Breadboard trong kit là loại <strong>full-size (~830 lỗ)</strong>. Các cột được đánh số 1 → 60 dọc mép, các hàng được đánh chữ <code>a b c d e</code> (nửa trên) và <code>f g h i j</code> (nửa dưới). Mỗi mép có một cặp rail <code>+</code> (vạch đỏ) / <code>−</code> (vạch xanh). Lỗ trên rail xếp thành từng cụm 5 lỗ để dễ đếm, nhưng vẫn thông nhau theo chiều dài rail. Nên dùng đồng hồ đo kiểm tra lại xem rail có bị ngắt ở giữa board không.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-jumper-wires.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Dây nối đực – đực nhiều màu</figcaption>
+</figure>
+</div>
+<p>Dây trong kit là loại <strong>đực – đực</strong>, đủ để nối breadboard với header Arduino. Muốn cắm module cảm biến có chân đực (DHT11, HC-SR04…) trực tiếp bằng dây thì cần mua thêm dây <strong>đực – cái</strong>. Nếu không, cắm module lên breadboard rồi nối bằng dây đực – đực.</p>
+</section>
+</section>
+<section id="linh-kiện-thụ-động" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện-thụ-động">Linh kiện thụ động</h2>
+<section id="điện-trở" class="level3">
+<h3 class="anchored" data-anchor-id="điện-trở">Điện trở</h3>
+<p>Hạn dòng, chia áp, kéo lên/kéo xuống (pull-up/pull-down). Giá trị đọc theo <strong>vạch màu</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Màu</th>
+<th>Đen</th>
+<th>Nâu</th>
+<th>Đỏ</th>
+<th>Cam</th>
+<th>Vàng</th>
+<th>Lục</th>
+<th>Lam</th>
+<th>Tím</th>
+<th>Xám</th>
+<th>Trắng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Số</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>Với điện trở 4 vạch: <em>vạch 1, vạch 2</em> = hai chữ số, <em>vạch 3</em> = số mũ ×10ⁿ, <em>vạch 4</em> = sai số (nhũ vàng ±5%, nhũ bạc ±10%). Ví dụ: đỏ – đỏ – nâu = 22 × 10¹ = <strong>220 Ω</strong>; nâu – đen – đỏ = 10 × 10² = <strong>1 kΩ</strong>; nâu – đen – cam = <strong>10 kΩ</strong>.</p>
+<p>Điện trở <strong>không phân cực</strong> — cắm chiều nào cũng được.</p>
+</section>
+<section id="biến-trở-potentiometer" class="level3">
+<h3 class="anchored" data-anchor-id="biến-trở-potentiometer">Biến trở (potentiometer)</h3>
+<p>Điện trở xoay được, 3 chân: hai chân ngoài nối <code>5V</code> và <code>GND</code>, <strong>chân giữa</strong> (wiper) cho điện áp thay đổi 0–5 V → đọc bằng <code>analogRead()</code>. Dùng làm núm chỉnh độ sáng, tốc độ, ngưỡng…</p>
+</section>
+<section id="ảnh-thực-tế-2" class="level3">
+<h3 class="anchored" data-anchor-id="ảnh-thực-tế-2">Ảnh thực tế</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-resistors-kit.jpg" class="img-fluid figure-img" style="width:65.0%"></p>
+<figcaption>Ba loại điện trở trong kit (10K, 220R, 1K) và thẻ tra mã màu</figcaption>
+</figure>
+</div>
+<p>Kit có ba giá trị điện trở, dán băng giấy ghi sẵn giá trị:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nhãn</th>
+<th>Vạch màu</th>
+<th>Giá trị</th>
+<th>Dùng cho</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>220R</strong></td>
+<td>đỏ – đỏ – nâu – nhũ vàng</td>
+<td>22 × 10¹ = <strong>220 Ω</strong> ±5%</td>
+<td>Hạn dòng LED, LED sáng rõ (~14 mA)</td>
+</tr>
+<tr class="even">
+<td><strong>1K</strong></td>
+<td>nâu – đen – đỏ – nhũ vàng</td>
+<td>10 × 10² = <strong>1 kΩ</strong> ±5%</td>
+<td>Hạn dòng LED, LED sáng dịu (~3 mA), dùng trong Lab 1</td>
+</tr>
+<tr class="odd">
+<td><strong>10K</strong></td>
+<td>nâu – đen – cam – nhũ vàng</td>
+<td>10 × 10³ = <strong>10 kΩ</strong> ±5%</td>
+<td>Điện trở kéo cho nút nhấn, cầu chia áp với quang trở</td>
+</tr>
+</tbody>
+</table>
+<p>Thẻ đi kèm vừa có bảng mã <strong>4 vạch</strong> (sai số 2%, 5%, 10%), vừa có bảng mã <strong>5 vạch</strong> dành cho điện trở chính xác (sai số 0,1–1%). Với loại 5 vạch, <em>ba</em> vạch đầu là chữ số, vạch thứ 4 là hệ số nhân, vạch thứ 5 là sai số. Ví dụ in trên thẻ: đỏ – cam – tím – đen – nâu = 237 × 10⁰ = <strong>237 Ω ±1%</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-resistor-220.jpg" class="img-fluid figure-img" style="width:35.0%"></p>
+<figcaption>Một điện trở 220 Ω: đỏ – đỏ – nâu – nhũ vàng</figcaption>
+</figure>
+</div>
+<p><strong>Mẹo xác định chiều đọc</strong>: vạch nhũ vàng/bạc (sai số) luôn nằm ở <strong>cuối</strong>. Cầm điện trở sao cho vạch nhũ ở bên phải (hoặc phía dưới, như trong ảnh) rồi đọc từ đầu kia.</p>
+</section>
+</section>
+<section id="linh-kiện-hiển-thị-tín-hiệu-ra" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện-hiển-thị-tín-hiệu-ra">Linh kiện hiển thị &amp; tín hiệu ra</h2>
+<section id="led" class="level3">
+<h3 class="anchored" data-anchor-id="led">LED</h3>
+<p>Diode phát quang, <strong>có phân cực</strong>: chân <strong>dài = anode (+)</strong>, chân ngắn / mép vát = cathode (−). Luôn mắc nối tiếp <strong>điện trở hạn dòng</strong> (220 Ω – 1 kΩ với 5 V). Chi tiết tính dòng xem <a href="../../../courses/iot/labs/led-basics.html">Lab 1</a>.</p>
+</section>
+<section id="led-rgb" class="level3">
+<h3 class="anchored" data-anchor-id="led-rgb">LED RGB</h3>
+<p>Ba LED đỏ/lục/lam trong một vỏ, 4 chân. Loại <strong>cathode chung</strong> nối chân dài về GND; loại <strong>anode chung</strong> nối chân dài về 5V (khi đó logic bị đảo). Mỗi màu cần một điện trở riêng và một chân PWM để trộn màu.</p>
+</section>
+<section id="buzzer-còi" class="level3">
+<h3 class="anchored" data-anchor-id="buzzer-còi">Buzzer (còi)</h3>
+<ul>
+<li><strong>Active buzzer</strong> — có mạch dao động bên trong, chỉ cần cấp <code>HIGH</code> là kêu (một tần số cố định).</li>
+<li><strong>Passive buzzer</strong> — cần tín hiệu dao động, dùng <code>tone(pin, freq)</code> để phát nốt nhạc.</li>
+</ul>
+<p>Phân biệt nhanh: active buzzer thường có tem dán và đáy bịt kín; passive lộ mạch xanh ở đáy.</p>
+</section>
+<section id="lcd-162-i²c" class="level3">
+<h3 class="anchored" data-anchor-id="lcd-162-i²c">LCD 16×2 (I²C)</h3>
+<p>Màn hình 2 dòng × 16 ký tự. Bản gắn module <strong>I²C (PCF8574)</strong> chỉ cần 4 dây: <code>VCC</code>, <code>GND</code>, <code>SDA → A4</code>, <code>SCL → A5</code>. Dùng thư viện <code>LiquidCrystal_I2C</code>; địa chỉ thường là <code>0x27</code> hoặc <code>0x3F</code>. Biến trở xanh trên module chỉnh độ tương phản.</p>
+</section>
+<section id="ảnh-thực-tế-3" class="level3">
+<h3 class="anchored" data-anchor-id="ảnh-thực-tế-3">Ảnh thực tế</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-leds.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>LED 5 mm đỏ, vàng, xanh lá trong kit</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-leds-rgy.jpg" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Ba LED đỏ – vàng – xanh: chân dài là anode (+)</figcaption>
+</figure>
+</div>
+<p>Kit có LED <strong>5 mm, vỏ mờ (diffused)</strong>, ba màu đỏ, vàng, xanh lá — đủ để làm mạch đèn giao thông. Điện áp thuận tham khảo: <strong>đỏ ~1,8–2,0 V</strong>, <strong>vàng ~2,0–2,1 V</strong>, <strong>xanh lá ~2,0–2,2 V</strong> (LED xanh lá loại lục vàng như trong ảnh; loại xanh lá sáng thuần có thể lên ~3 V). Vì chênh lệch không nhiều nên dùng chung điện trở 220 Ω hoặc 1 kΩ cho cả ba màu là được.</p>
+<p>Khi LED còn mới, chân <strong>dài hơn là anode (+)</strong>. Nếu chân đã bị cắt bằng nhau, nhìn vào trong vỏ: miếng kim loại <strong>nhỏ</strong> là anode, miếng <strong>to hình lá cờ</strong> là cathode. Hoặc tìm mép <strong>vát phẳng</strong> trên vành đế — phía đó là cathode.</p>
+<blockquote class="blockquote">
+<p>📷 <em>Chờ ảnh buzzer / LCD (nếu có trong kit).</em></p>
+</blockquote>
+</section>
+</section>
+<section id="linh-kiện-đầu-vào" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện-đầu-vào">Linh kiện đầu vào</h2>
+<section id="nút-nhấn-push-button" class="level3">
+<h3 class="anchored" data-anchor-id="nút-nhấn-push-button">Nút nhấn (push button)</h3>
+<p>Công tắc nhấn nhả, 4 chân: hai cặp chân <strong>đối diện theo chiều dài</strong> nối sẵn với nhau, nhấn thì nối hai cặp. Cắm <strong>bắc ngang rãnh giữa</strong> breadboard.</p>
+<p>Khi đọc bằng <code>digitalRead()</code> phải có điện trở kéo để chân không bị “thả nổi”:</p>
+<ul>
+<li><strong>Pull-down</strong> 10 kΩ xuống GND → không nhấn = <code>LOW</code>, nhấn = <code>HIGH</code>.</li>
+<li><strong><code>INPUT_PULLUP</code></strong> dùng điện trở kéo lên có sẵn trong chip → không cần điện trở ngoài, nhưng logic đảo: nhấn = <code>LOW</code>.</li>
+</ul>
+<p>Nút cơ học bị <strong>dội phím (bounce)</strong> vài ms — cần chống dội bằng phần mềm (<code>millis()</code>) nếu đếm số lần nhấn.</p>
+</section>
+<section id="ảnh-thực-tế-4" class="level3">
+<h3 class="anchored" data-anchor-id="ảnh-thực-tế-4">Ảnh thực tế</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-push-button.jpg" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Nút nhấn 12×12 mm: nhìn từ cạnh (trên) và từ mặt trên (dưới)</figcaption>
+</figure>
+</div>
+<p>Nút trong kit là loại <strong>tactile 12 × 12 mm</strong>, 4 chân. Nhìn từ cạnh (con phía trên trong ảnh) thấy hai chân ló ra cùng một phía. <strong>Hai chân cùng một mặt bên là hai chân được nối bằng công tắc</strong> (chỉ thông khi nhấn). Hai chân <strong>nằm đối diện nhau qua thân nút</strong>, trên cùng một dải kim loại, thì luôn thông với nhau.</p>
+<p>Cách kiểm tra chắc chắn nhất: dùng đồng hồ đo thông mạch. Hoặc cắm nút bắc ngang rãnh giữa breadboard và lấy hai chân <strong>chéo nhau</strong> — cặp chéo luôn là cặp đi qua công tắc, cắm kiểu gì cũng đúng.</p>
+</section>
+</section>
+<section id="cảm-biến" class="level2">
+<h2 class="anchored" data-anchor-id="cảm-biến">Cảm biến</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cảm biến</th>
+<th>Đo gì</th>
+<th>Kiểu tín hiệu</th>
+<th>Ghi chú nối dây</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Quang trở (LDR)</strong></td>
+<td>Cường độ ánh sáng</td>
+<td>Analog</td>
+<td>Mắc cầu chia áp với điện trở 10 kΩ, điểm giữa vào A0</td>
+</tr>
+<tr class="even">
+<td><strong>DHT11 / DHT22</strong></td>
+<td>Nhiệt độ, độ ẩm</td>
+<td>Digital (giao thức 1 dây riêng)</td>
+<td>Chân DATA vào chân digital, cần pull-up 10 kΩ (module thường có sẵn); thư viện <code>DHT</code></td>
+</tr>
+<tr class="odd">
+<td><strong>HC-SR04</strong></td>
+<td>Khoảng cách (siêu âm, 2–400 cm)</td>
+<td>Digital (độ rộng xung)</td>
+<td><code>TRIG</code> phát xung 10 µs, đo thời gian xung <code>ECHO</code> bằng <code>pulseIn()</code>; khoảng cách = t × 0,034 / 2 (cm)</td>
+</tr>
+<tr class="even">
+<td><strong>PIR HC-SR501</strong></td>
+<td>Chuyển động người/động vật</td>
+<td>Digital</td>
+<td>Có 2 biến trở chỉnh độ nhạy và thời gian giữ</td>
+</tr>
+<tr class="odd">
+<td><strong>Cảm biến độ ẩm đất</strong></td>
+<td>Độ ẩm đất</td>
+<td>Analog / Digital</td>
+<td>Module có cả <code>AO</code> và <code>DO</code> (ngưỡng chỉnh bằng biến trở)</td>
+</tr>
+<tr class="even">
+<td><strong>LM35 / TMP36</strong></td>
+<td>Nhiệt độ</td>
+<td>Analog</td>
+<td>LM35: 10 mV/°C</td>
+</tr>
+</tbody>
+</table>
+<section id="ảnh-thực-tế-5" class="level3">
+<h3 class="anchored" data-anchor-id="ảnh-thực-tế-5">Ảnh thực tế</h3>
+<blockquote class="blockquote">
+<p>📷 <em>Chờ ảnh các cảm biến trong kit.</em></p>
+</blockquote>
+</section>
+</section>
+<section id="cơ-cấu-chấp-hành" class="level2">
+<h2 class="anchored" data-anchor-id="cơ-cấu-chấp-hành">Cơ cấu chấp hành</h2>
+<section id="servo-sg90" class="level3">
+<h3 class="anchored" data-anchor-id="servo-sg90">Servo SG90</h3>
+<p>Động cơ quay đến <strong>góc 0–180°</strong>. 3 dây: <strong>nâu = GND</strong>, <strong>đỏ = 5V</strong>, <strong>cam = tín hiệu</strong> (chân PWM). Dùng thư viện <code>Servo</code>: <code>myServo.attach(9); myServo.write(90);</code>.</p>
+</section>
+<section id="động-cơ-dc-driver" class="level3">
+<h3 class="anchored" data-anchor-id="động-cơ-dc-driver">Động cơ DC &amp; driver</h3>
+<p>Động cơ DC kéo dòng lớn (vài trăm mA) — <strong>không nối trực tiếp vào chân Arduino</strong>. Cần mạch driver như <strong>L298N</strong> hoặc <strong>L293D</strong> (đảo chiều bằng 2 chân, chỉnh tốc độ bằng PWM), nguồn động cơ tách riêng, <strong>chung GND</strong> với Arduino.</p>
+</section>
+<section id="relay-module" class="level3">
+<h3 class="anchored" data-anchor-id="relay-module">Relay module</h3>
+<p>Công tắc điện từ cho phép Arduino đóng/ngắt thiết bị công suất lớn (đèn, quạt 220 V). Đầu điều khiển: <code>VCC</code>, <code>GND</code>, <code>IN</code>; đầu tải: <code>COM</code>, <code>NO</code> (thường hở), <code>NC</code> (thường đóng). Nhiều module kích ở mức <strong>LOW</strong>. ⚠️ Làm việc với điện 220 V cần hết sức cẩn thận.</p>
+</section>
+<section id="ảnh-thực-tế-6" class="level3">
+<h3 class="anchored" data-anchor-id="ảnh-thực-tế-6">Ảnh thực tế</h3>
+<blockquote class="blockquote">
+<p>📷 <em>Chờ ảnh servo / relay / motor.</em></p>
+</blockquote>
+</section>
+</section>
+<section id="lưu-ý-an-toàn-khi-lắp-mạch" class="level2">
+<h2 class="anchored" data-anchor-id="lưu-ý-an-toàn-khi-lắp-mạch">Lưu ý an toàn khi lắp mạch</h2>
+<ul>
+<li><strong>Rút USB trước khi thay đổi dây.</strong> Cắm nhầm 5V–GND gây ngắn mạch có thể làm hỏng cổng USB máy tính.</li>
+<li>Không kéo quá <strong>20 mA mỗi chân</strong> và <strong>~200 mA tổng</strong> từ các chân I/O; tải lớn (motor, nhiều LED, servo nhiều cái) dùng nguồn ngoài.</li>
+<li>Mọi thiết bị trong mạch phải <strong>chung GND</strong>.</li>
+<li>Không cấp quá 5 V vào chân I/O; module 3,3 V (ESP8266, một số cảm biến) cần chuyển mức logic.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

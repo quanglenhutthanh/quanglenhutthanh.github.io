@@ -1,66 +1,24 @@
 [
   {
-    "listing": "/courses/philosophy/index.html",
+    "listing": "/courses/prompt-library/index.html",
     "items": [
-      "/courses/philosophy/lectures/khai-luan-triet-hoc.html",
-      "/courses/philosophy/lectures/vat-chat-y-thuc.html",
-      "/courses/philosophy/lectures/van-dong-khong-gian-thoi-gian.html",
-      "/courses/philosophy/lectures/phep-bien-chung-duy-vat.html",
-      "/courses/philosophy/lectures/ly-luan-nhan-thuc.html",
-      "/courses/philosophy/lectures/triet-hoc-xa-hoi.html",
-      "/courses/philosophy/lectures/triet-hoc-va-khoa-hoc-cong-nghe.html"
+      "/courses/prompt-library/flow-slide-presentation.html",
+      "/courses/prompt-library/viet-thanh-pham-tu-brief.html",
+      "/courses/prompt-library/anti-meta-checklist.html",
+      "/courses/prompt-library/tom-tat-hoi-thoai.html"
     ]
   },
   {
-    "listing": "/courses/machine-learning/index.html",
+    "listing": "/courses/index.html",
     "items": [
-      "/courses/machine-learning/lectures/gradient-descent.html",
-      "/courses/machine-learning/lectures/gradient-descent-in-practice.html",
-      "/courses/machine-learning/lectures/classification-metrics.html",
-      "/courses/machine-learning/lectures/data-imbalance-shift.html",
-      "/courses/machine-learning/lectures/data-leakage-validation.html",
-      "/courses/machine-learning/lectures/loss-functions.html",
-      "/courses/machine-learning/lectures/linear-regression.html",
-      "/courses/machine-learning/lectures/logistic-regression.html",
-      "/courses/machine-learning/lectures/regularization-feature-selection.html",
-      "/courses/machine-learning/lectures/decision-tree.html",
-      "/courses/machine-learning/lectures/ensemble-methods.html",
-      "/courses/machine-learning/lectures/neural-networks.html"
-    ]
-  },
-  {
-    "listing": "/courses/iot/index.html",
-    "items": [
-      "/courses/iot/lectures/iot-overview.html",
-      "/courses/iot/labs/led-basics.html"
-    ]
-  },
-  {
-    "listing": "/courses/deep-learning/index.html",
-    "items": []
-  },
-  {
-    "listing": "/courses/data-mining/index.html",
-    "items": [
-      "/courses/data-mining/lectures/data-information-knowledge.html",
-      "/courses/data-mining/lectures/data-structures.html",
-      "/courses/data-mining/lectures/attributes-descriptive-statistics.html",
-      "/courses/data-mining/lectures/data-preprocessing.html",
-      "/courses/data-mining/lectures/apriori-hash-tree.html",
-      "/courses/data-mining/lectures/fp-growth.html"
-    ]
-  },
-  {
-    "listing": "/courses/frontier-transformation-engineer/index.html",
-    "items": [
-      "/courses/frontier-transformation-engineer/lectures/program-overview.html",
-      "/courses/frontier-transformation-engineer/lectures/azure-document-intelligence.html",
-      "/courses/frontier-transformation-engineer/lectures/build-ai-agents-foundry.html",
-      "/courses/frontier-transformation-engineer/lectures/ai-103-exam-review.html",
-      "/courses/frontier-transformation-engineer/lectures/ai-103-exam-use-cases.html",
-      "/courses/frontier-transformation-engineer/lectures/ab-100-exam-review.html",
-      "/courses/frontier-transformation-engineer/lectures/gh-300-exam-review.html",
-      "/courses/frontier-transformation-engineer/lectures/gh-300-exam-use-cases.html"
+      "/courses/data-mining/index.html",
+      "/courses/deep-learning/index.html",
+      "/courses/frontier-transformation-engineer/index.html",
+      "/courses/image-and-video-processing/index.html",
+      "/courses/iot/index.html",
+      "/courses/machine-learning/index.html",
+      "/courses/prompt-library/index.html",
+      "/courses/philosophy/index.html"
     ]
   },
   {
@@ -81,25 +39,68 @@
     ]
   },
   {
-    "listing": "/courses/index.html",
+    "listing": "/courses/frontier-transformation-engineer/index.html",
     "items": [
-      "/courses/data-mining/index.html",
-      "/courses/deep-learning/index.html",
-      "/courses/frontier-transformation-engineer/index.html",
-      "/courses/image-and-video-processing/index.html",
-      "/courses/iot/index.html",
-      "/courses/machine-learning/index.html",
-      "/courses/prompt-library/index.html",
-      "/courses/philosophy/index.html"
+      "/courses/frontier-transformation-engineer/lectures/program-overview.html",
+      "/courses/frontier-transformation-engineer/lectures/azure-document-intelligence.html",
+      "/courses/frontier-transformation-engineer/lectures/build-ai-agents-foundry.html",
+      "/courses/frontier-transformation-engineer/lectures/ai-103-exam-review.html",
+      "/courses/frontier-transformation-engineer/lectures/ai-103-exam-use-cases.html",
+      "/courses/frontier-transformation-engineer/lectures/ab-100-exam-review.html",
+      "/courses/frontier-transformation-engineer/lectures/gh-300-exam-review.html",
+      "/courses/frontier-transformation-engineer/lectures/gh-300-exam-use-cases.html"
     ]
   },
   {
-    "listing": "/courses/prompt-library/index.html",
+    "listing": "/courses/data-mining/index.html",
     "items": [
-      "/courses/prompt-library/flow-slide-presentation.html",
-      "/courses/prompt-library/viet-thanh-pham-tu-brief.html",
-      "/courses/prompt-library/anti-meta-checklist.html",
-      "/courses/prompt-library/tom-tat-hoi-thoai.html"
+      "/courses/data-mining/lectures/data-information-knowledge.html",
+      "/courses/data-mining/lectures/data-structures.html",
+      "/courses/data-mining/lectures/attributes-descriptive-statistics.html",
+      "/courses/data-mining/lectures/data-preprocessing.html",
+      "/courses/data-mining/lectures/apriori-hash-tree.html",
+      "/courses/data-mining/lectures/fp-growth.html"
+    ]
+  },
+  {
+    "listing": "/courses/deep-learning/index.html",
+    "items": []
+  },
+  {
+    "listing": "/courses/iot/index.html",
+    "items": [
+      "/courses/iot/lectures/iot-overview.html",
+      "/courses/iot/lectures/arduino-components.html",
+      "/courses/iot/labs/led-basics.html"
+    ]
+  },
+  {
+    "listing": "/courses/machine-learning/index.html",
+    "items": [
+      "/courses/machine-learning/lectures/gradient-descent.html",
+      "/courses/machine-learning/lectures/gradient-descent-in-practice.html",
+      "/courses/machine-learning/lectures/classification-metrics.html",
+      "/courses/machine-learning/lectures/data-imbalance-shift.html",
+      "/courses/machine-learning/lectures/data-leakage-validation.html",
+      "/courses/machine-learning/lectures/loss-functions.html",
+      "/courses/machine-learning/lectures/linear-regression.html",
+      "/courses/machine-learning/lectures/logistic-regression.html",
+      "/courses/machine-learning/lectures/regularization-feature-selection.html",
+      "/courses/machine-learning/lectures/decision-tree.html",
+      "/courses/machine-learning/lectures/ensemble-methods.html",
+      "/courses/machine-learning/lectures/neural-networks.html"
+    ]
+  },
+  {
+    "listing": "/courses/philosophy/index.html",
+    "items": [
+      "/courses/philosophy/lectures/khai-luan-triet-hoc.html",
+      "/courses/philosophy/lectures/vat-chat-y-thuc.html",
+      "/courses/philosophy/lectures/van-dong-khong-gian-thoi-gian.html",
+      "/courses/philosophy/lectures/phep-bien-chung-duy-vat.html",
+      "/courses/philosophy/lectures/ly-luan-nhan-thuc.html",
+      "/courses/philosophy/lectures/triet-hoc-xa-hoi.html",
+      "/courses/philosophy/lectures/triet-hoc-va-khoa-hoc-cong-nghe.html"
     ]
   }
 ]
