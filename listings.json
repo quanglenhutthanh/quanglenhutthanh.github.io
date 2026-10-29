@@ -29,6 +29,13 @@
     ]
   },
   {
+    "listing": "/courses/iot/index.html",
+    "items": [
+      "/courses/iot/lectures/iot-overview.html",
+      "/courses/iot/labs/led-basics.html"
+    ]
+  },
+  {
     "listing": "/courses/deep-learning/index.html",
     "items": []
   },
@@ -80,6 +87,7 @@
       "/courses/deep-learning/index.html",
       "/courses/frontier-transformation-engineer/index.html",
       "/courses/image-and-video-processing/index.html",
+      "/courses/iot/index.html",
       "/courses/machine-learning/index.html",
       "/courses/prompt-library/index.html",
       "/courses/philosophy/index.html"

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <!-- Arduino -->
+  <rect x="20" y="40" width="250" height="300" rx="12" fill="#eef4fb" stroke="#4a78b5" stroke-width="1.5"/>
+  <text x="145" y="192" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f3f6e">Arduino Uno</text>
+  <text x="145" y="214" text-anchor="middle" fill="#3b5f93">Microcontroller board</text>
+  <text x="258" y="95" text-anchor="end" fill="#3b5f93">D13 (Digital pin 13)</text>
+  <text x="258" y="305" text-anchor="end" fill="#3b5f93">GND (Ground)</text>
+
+  <g stroke="#222" stroke-width="2" fill="none" stroke-linejoin="round">
+    <!-- D13 -> R1 -->
+    <line x1="270" y1="90" x2="380" y2="90"/>
+    <!-- R1 zigzag -->
+    <polyline points="380,90 390,75 407,105 424,75 441,105 458,75 470,90 480,90"/>
+    <!-- R1 -> S1 -->
+    <line x1="480" y1="90" x2="585" y2="90"/>
+    <!-- S1 -->
+    <circle cx="590" cy="90" r="5" fill="#fff"/>
+    <circle cx="660" cy="90" r="5" fill="#fff"/>
+    <line x1="582" y1="70" x2="668" y2="70"/>
+    <line x1="625" y1="70" x2="625" y2="52"/>
+    <line x1="612" y1="52" x2="638" y2="52"/>
+    <!-- S1 -> LED -->
+    <polyline points="665,90 780,90 780,150"/>
+    <!-- LED -->
+    <polygon points="760,150 800,150 780,185" fill="#fde68a"/>
+    <line x1="760" y1="185" x2="800" y2="185"/>
+    <!-- LED -> GND -->
+    <polyline points="780,185 780,300 270,300"/>
+  </g>
+
+  <!-- LED light arrows -->
+  <g stroke="#d97706" stroke-width="1.6" fill="none">
+    <line x1="806" y1="164" x2="824" y2="148" marker-end="url(#arr)"/>
+    <line x1="814" y1="176" x2="832" y2="160" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- Current direction -->
+  <line x1="500" y1="112" x2="545" y2="112" stroke="#d97706" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="523" y="132" text-anchor="middle" fill="#b45309" font-size="13">I ≈ 3 mA</text>
+
+  <!-- R1 -->
+  <text x="430" y="58" text-anchor="middle" font-size="17" font-weight="bold">R1 · 1 kΩ</text>
+  <text x="430" y="132" text-anchor="middle" fill="#555">Điện trở</text>
+  <text x="430" y="150" text-anchor="middle" fill="#555">Resistor</text>
+
+  <!-- S1 -->
+  <text x="625" y="38" text-anchor="middle" font-size="17" font-weight="bold">S1</text>
+  <text x="625" y="118" text-anchor="middle" fill="#555">Nút nhấn</text>
+  <text x="625" y="136" text-anchor="middle" fill="#555">Push button</text>
+
+  <!-- LED -->
+  <text x="750" y="162" text-anchor="end" font-size="17" font-weight="bold">D1 · LED</text>
+  <text x="750" y="182" text-anchor="end" fill="#555">Đèn LED vàng</text>
+  <text x="750" y="200" text-anchor="end" fill="#555">Light-emitting diode</text>
+  <text x="810" y="130" fill="#555">Anode (+)</text>
+  <text x="810" y="212" fill="#555">Cathode (−)</text>
+
+  <!-- Wire + caption -->
+  <text x="525" y="288" text-anchor="middle" fill="#555">Dây nối (Wire)</text>
+  <text x="470" y="365" text-anchor="middle" fill="#444">Mạch nối tiếp (Series circuit): D13 → R1 → S1 → LED → GND</text>
+</svg>
