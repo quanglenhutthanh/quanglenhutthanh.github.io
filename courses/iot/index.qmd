@@ -16,6 +16,16 @@ listing:
       title: "Topic"
       status: "Status"
       tags: "Tags"
+  - id: labs
+    contents: "labs/*.md"
+    type: table
+    fields: [lab_no, title, status, tags]
+    sort: "lab_no asc"
+    field-display-names:
+      lab_no: "#"
+      title: "Lab"
+      status: "Status"
+      tags: "Tags"
 ---
 
 ## Introduction
@@ -25,6 +35,13 @@ Học phần Internet of Things (IoT): hệ thống gồm các thiết bị có 
 ## Topics
 
 :::{#lectures}
+:::
+
+## Labs
+
+Thực hành với Arduino Uno, thiết kế và mô phỏng trên Tinkercad Circuits. Mỗi lab gồm sơ đồ nguyên lý vẽ lại, giải thích mạch và code.
+
+:::{#labs}
 :::
 
 ## References
