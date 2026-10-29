@@ -1,0 +1,32 @@
+---
+title: "Internet of Things"
+subtitle: "Internet vạn vật (IoT)"
+subject: "iot"
+type: subject
+term: "Fall 2026"
+tags: [iot]
+listing:
+  - id: lectures
+    contents: "lectures/*.md"
+    type: table
+    fields: [lecture_no, title, status, tags]
+    sort: "lecture_no asc"
+    field-display-names:
+      lecture_no: "#"
+      title: "Topic"
+      status: "Status"
+      tags: "Tags"
+---
+
+## Introduction
+
+Học phần Internet of Things (IoT): hệ thống gồm các thiết bị có cảm biến/cơ cấu chấp hành, kết nối mạng để thu thập dữ liệu, truyền về nơi xử lý và ra quyết định. Môn đi theo kiến trúc phân tầng của một hệ IoT — **thiết bị** (sensor, actuator, vi điều khiển), **kết nối** (giao thức truyền thông, mạng không dây), **xử lý** (edge/fog/cloud) và **ứng dụng** — cùng các vấn đề xuyên suốt như bảo mật, năng lượng và phân tích dữ liệu cảm biến.
+
+## Topics
+
+:::{#lectures}
+:::
+
+## References
+
+Xem [danh sách paper & link](references.qmd).
