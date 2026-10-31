@@ -1,15 +1,15 @@
 ---
-title: "Màn hình LCD 1602 + I²C"
+title: "Lab 2 · Màn hình LCD 1602 + I²C"
 subject: "iot"
-type: lecture
-lecture_no: 3
-status: reading
+type: lab
+lab_no: 2
+status: done
 source: slide
 tags: [arduino, lcd, lcd1602, i2c, pcf8574, display]
 date: 2026-10-31
 ---
 
-# Màn hình LCD 1602 + I²C
+# Lab 2 · Màn hình LCD 1602 + I²C
 
 > Cách nối màn hình LCD 16×2 có gắn module I²C vào Arduino Uno và hiển thị chữ bằng thư viện `LiquidCrystal_I2C`.
 
@@ -23,7 +23,7 @@ LCD gốc có **16 chân**: `VSS`, `VDD`, `V0` (độ tương phản), `RS`, `RW
 
 Để tiết kiệm chân, LCD thường được hàn sẵn một **module chuyển đổi I²C** ở mặt sau. Module dùng chip **PCF8574** (bộ mở rộng 8 chân I/O qua I²C): Arduino gửi lệnh qua 2 dây I²C, chip PCF8574 tự xuất ra các chân `RS`, `E`, `D4`–`D7` và đèn nền của LCD.
 
-Bảng 16 chân gốc, ảnh thật của LCD trong kit và các chi tiết trên module (biến trở tương phản, jumper `LED`, pad địa chỉ `A0`–`A2`) xem ở [note linh kiện](arduino-components.md#lcd-162-i²c).
+Bảng 16 chân gốc, ảnh thật của LCD trong kit và các chi tiết trên module (biến trở tương phản, jumper `LED`, pad địa chỉ `A0`–`A2`) xem ở [note linh kiện](../lectures/arduino-components.md#lcd-162-i²c).
 
 **Địa chỉ I²C** mặc định thường là `0x27` (chip PCF8574) hoặc `0x3F` (chip PCF8574A). Nếu không chắc, chạy sketch quét I²C ở dưới để tìm.
 
