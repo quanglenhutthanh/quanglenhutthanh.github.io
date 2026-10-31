@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.20">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap-03f76f603ac1de4e7206c9fd0da51476.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -465,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Đực – cái (male–female)</td>
-<td>Module cảm biến có chân header đực ↔︎ breadboard</td>
+<td>Module có chân header đực ↔︎ header Arduino / breadboard</td>
 </tr>
 <tr class="odd">
 <td>Cái – cái (female–female)</td>
@@ -490,7 +490,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Dây nối đực – đực nhiều màu</figcaption>
 </figure>
 </div>
-<p>Dây trong kit là loại <strong>đực – đực</strong>, đủ để nối breadboard với header Arduino. Muốn cắm module cảm biến có chân đực (DHT11, HC-SR04…) trực tiếp bằng dây thì cần mua thêm dây <strong>đực – cái</strong>. Nếu không, cắm module lên breadboard rồi nối bằng dây đực – đực.</p>
+<p>Bó dây trên là loại <strong>đực – đực</strong>, dây mềm và rời từng sợi, dùng để nối breadboard với header Arduino.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-jumper-wires-mf.jpg" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Dây đực – cái dạng cáp dẹt 10 sợi (đầu đực phía trên, đầu cái phía dưới)</figcaption>
+</figure>
+</div>
+<p>Kit còn có một bộ <strong>10 dây đực – cái</strong> dính liền nhau thành cáp dẹt (ribbon), mỗi sợi một màu theo thứ tự đen – trắng – xám – tím – lam – lục – vàng – cam – đỏ – nâu. Đầu <strong>cái</strong> (lỗ, phía dưới ảnh) chụp thẳng vào chân header đực của module: chân I²C của LCD, chân của DHT11, HC-SR04… Đầu <strong>đực</strong> (kim, phía trên ảnh) cắm vào header Arduino hoặc breadboard. Nhờ đó module không cần cắm lên breadboard.</p>
+<p>Các sợi xé rời ra được. Thường chỉ tách đúng số sợi cần (ví dụ 4 sợi cho LCD I²C), để dây không bị rối mà vẫn giữ được quy ước màu.</p>
 </section>
 </section>
 <section id="linh-kiện-thụ-động" class="level2">
@@ -612,7 +620,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="lcd-162-i²c" class="level3">
 <h3 class="anchored" data-anchor-id="lcd-162-i²c">LCD 16×2 (I²C)</h3>
-<p>Màn hình 2 dòng × 16 ký tự. Bản gắn module <strong>I²C (PCF8574)</strong> chỉ cần 4 dây: <code>VCC</code>, <code>GND</code>, <code>SDA → A4</code>, <code>SCL → A5</code>. Dùng thư viện <code>LiquidCrystal_I2C</code>; địa chỉ thường là <code>0x27</code> hoặc <code>0x3F</code>. Biến trở xanh trên module chỉnh độ tương phản.</p>
+<p>Màn hình <strong>2 dòng × 16 ký tự</strong>, mỗi ký tự là một ô 5×8 điểm. Màn hình dùng chip điều khiển <strong>HD44780</strong> (hoặc chip tương thích) và có đèn nền.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-lcd-front.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>LCD 1602 mặt trước: nền xanh dương, 16 chân ở mép trên</figcaption>
+</figure>
+</div>
+<p><strong>16 chân gốc</strong> (in ở mép trên mặt trước, từ trái sang):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chân</th>
+<th>Tên</th>
+<th>Chức năng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>GND</code> (VSS)</td>
+<td>Mass</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>VDD</code></td>
+<td>Nguồn 5 V</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>VO</code></td>
+<td>Chỉnh độ tương phản (nối chân giữa biến trở)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>RS</code></td>
+<td>Chọn thanh ghi: 0 = lệnh, 1 = dữ liệu ký tự</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>RW</code></td>
+<td>Đọc/ghi — thường nối GND (chỉ ghi)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>E</code></td>
+<td>Enable — xung chốt dữ liệu</td>
+</tr>
+<tr class="odd">
+<td>7–14</td>
+<td><code>D0</code>–<code>D7</code></td>
+<td>Bus dữ liệu 8 bit (chế độ 4 bit chỉ dùng <code>D4</code>–<code>D7</code>)</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td><code>BLA</code></td>
+<td>Anode đèn nền (+)</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td><code>BLK</code></td>
+<td>Cathode đèn nền (−)</td>
+</tr>
+</tbody>
+</table>
+<p>Nếu nối trực tiếp (thư viện <code>LiquidCrystal</code>) thì tốn ít nhất 6 chân Arduino (<code>RS</code>, <code>E</code>, <code>D4</code>–<code>D7</code>), chưa kể biến trở chỉnh tương phản.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-lcd-back.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Mặt sau: module I²C PCF8574 đã hàn sẵn vào 16 chân của LCD</figcaption>
+</figure>
+</div>
+<p>LCD trong kit đã được <strong>hàn sẵn module chuyển đổi I²C</strong> (mạch đen ở mặt sau, dùng chip <strong>PCF8574</strong>). Module này chuyển 16 chân thành <strong>4 chân</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Chân module</th>
+<th>Nối Arduino Uno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GND</code></td>
+<td><code>GND</code></td>
+</tr>
+<tr class="even">
+<td><code>VCC</code></td>
+<td><code>5V</code></td>
+</tr>
+<tr class="odd">
+<td><code>SDA</code></td>
+<td><code>A4</code> (hoặc chân <code>SDA</code> gần <code>AREF</code> trên Uno R3)</td>
+</tr>
+<tr class="even">
+<td><code>SCL</code></td>
+<td><code>A5</code> (hoặc chân <code>SCL</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Các chi tiết khác trên module:</p>
+<ul>
+<li><strong>Biến trở xanh</strong> — chỉnh độ tương phản. Cấp điện mà màn chỉ sáng nền, không thấy chữ (hoặc chỉ thấy một hàng ô vuông đen) thì vặn biến trở này trước khi nghĩ đến lỗi code.</li>
+<li><strong>Jumper <code>LED</code></strong> — cắm thì đèn nền sáng, rút ra thì tắt hẳn đèn nền. Code cũng bật/tắt đèn nền được bằng <code>lcd.backlight()</code> / <code>lcd.noBacklight()</code>.</li>
+<li><strong>Ba pad <code>A0</code> <code>A1</code> <code>A2</code></strong> — chọn địa chỉ I²C. Để trống (như trong ảnh) thì địa chỉ là <strong><code>0x27</code></strong> với chip PCF8574T, hoặc <strong><code>0x3F</code></strong> với PCF8574AT. Nối tắt pad để đổi địa chỉ, khi cần gắn nhiều LCD trên cùng bus. Nếu không chắc địa chỉ, chạy sketch <strong>I²C Scanner</strong> để dò.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;LiquidCrystal_I2C.h&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>LiquidCrystal_I2C lcd<span class="op">(</span><span class="bn">0x27</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">2</span><span class="op">);</span>  <span class="co">// địa chỉ, số cột, số dòng</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>init<span class="op">();</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>backlight<span class="op">();</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span>   <span class="co">// cột 0, dòng 0</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"Hello IoT!"</span><span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span>   <span class="co">// cột 0, dòng 1</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"Arduino Uno"</span><span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="ảnh-thực-tế-3" class="level3">
 <h3 class="anchored" data-anchor-id="ảnh-thực-tế-3">Ảnh thực tế</h3>
@@ -631,7 +762,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Kit có LED <strong>5 mm, vỏ mờ (diffused)</strong>, ba màu đỏ, vàng, xanh lá — đủ để làm mạch đèn giao thông. Điện áp thuận tham khảo: <strong>đỏ ~1,8–2,0 V</strong>, <strong>vàng ~2,0–2,1 V</strong>, <strong>xanh lá ~2,0–2,2 V</strong> (LED xanh lá loại lục vàng như trong ảnh; loại xanh lá sáng thuần có thể lên ~3 V). Vì chênh lệch không nhiều nên dùng chung điện trở 220 Ω hoặc 1 kΩ cho cả ba màu là được.</p>
 <p>Khi LED còn mới, chân <strong>dài hơn là anode (+)</strong>. Nếu chân đã bị cắt bằng nhau, nhìn vào trong vỏ: miếng kim loại <strong>nhỏ</strong> là anode, miếng <strong>to hình lá cờ</strong> là cathode. Hoặc tìm mép <strong>vát phẳng</strong> trên vành đế — phía đó là cathode.</p>
 <blockquote class="blockquote">
-<p>📷 <em>Chờ ảnh buzzer / LCD (nếu có trong kit).</em></p>
+<p>📷 <em>Ảnh LCD xem ở mục LCD 16×2 phía trên. Chờ ảnh buzzer (nếu có trong kit).</em></p>
 </blockquote>
 </section>
 </section>
