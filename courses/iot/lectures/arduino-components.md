@@ -107,7 +107,7 @@ Bảng cắm thử, không cần hàn. Cấu trúc nối bên trong:
 | Loại | Dùng cho |
 |---|---|
 | Đực – đực (male–male) | Breadboard ↔ header Arduino |
-| Đực – cái (male–female) | Module cảm biến có chân header đực ↔ breadboard |
+| Đực – cái (male–female) | Module có chân header đực ↔ header Arduino / breadboard |
 | Cái – cái (female–female) | Module ↔ module, hoặc module ↔ chân header đực |
 
 Quy ước màu để dễ dò mạch: **đỏ = 5V**, **đen = GND**, các màu khác cho tín hiệu.
@@ -120,7 +120,13 @@ Breadboard trong kit là loại **full-size (~830 lỗ)**. Các cột được �
 
 ![Dây nối đực – đực nhiều màu](../assets/kit-jumper-wires.jpg){width=70%}
 
-Dây trong kit là loại **đực – đực**, đủ để nối breadboard với header Arduino. Muốn cắm module cảm biến có chân đực (DHT11, HC-SR04…) trực tiếp bằng dây thì cần mua thêm dây **đực – cái**. Nếu không, cắm module lên breadboard rồi nối bằng dây đực – đực.
+Bó dây trên là loại **đực – đực**, dây mềm và rời từng sợi, dùng để nối breadboard với header Arduino.
+
+![Dây đực – cái dạng cáp dẹt 10 sợi (đầu đực phía trên, đầu cái phía dưới)](../assets/kit-jumper-wires-mf.jpg){width=40%}
+
+Kit còn có một bộ **10 dây đực – cái** dính liền nhau thành cáp dẹt (ribbon), mỗi sợi một màu theo thứ tự đen – trắng – xám – tím – lam – lục – vàng – cam – đỏ – nâu. Đầu **cái** (lỗ, phía dưới ảnh) chụp thẳng vào chân header đực của module: chân I²C của LCD, chân của DHT11, HC-SR04… Đầu **đực** (kim, phía trên ảnh) cắm vào header Arduino hoặc breadboard. Nhờ đó module không cần cắm lên breadboard.
+
+Các sợi xé rời ra được. Thường chỉ tách đúng số sợi cần (ví dụ 4 sợi cho LCD I²C), để dây không bị rối mà vẫn giữ được quy ước màu.
 
 ## Linh kiện thụ động
 
@@ -177,7 +183,60 @@ Phân biệt nhanh: active buzzer thường có tem dán và đáy bịt kín; p
 
 ### LCD 16×2 (I²C)
 
-Màn hình 2 dòng × 16 ký tự. Bản gắn module **I²C (PCF8574)** chỉ cần 4 dây: `VCC`, `GND`, `SDA → A4`, `SCL → A5`. Dùng thư viện `LiquidCrystal_I2C`; địa chỉ thường là `0x27` hoặc `0x3F`. Biến trở xanh trên module chỉnh độ tương phản.
+Màn hình **2 dòng × 16 ký tự**, mỗi ký tự là một ô 5×8 điểm. Màn hình dùng chip điều khiển **HD44780** (hoặc chip tương thích) và có đèn nền.
+
+![LCD 1602 mặt trước: nền xanh dương, 16 chân ở mép trên](../assets/kit-lcd-front.jpg){width=60%}
+
+**16 chân gốc** (in ở mép trên mặt trước, từ trái sang):
+
+| Chân | Tên | Chức năng |
+|---|---|---|
+| 1 | `GND` (VSS) | Mass |
+| 2 | `VDD` | Nguồn 5 V |
+| 3 | `VO` | Chỉnh độ tương phản (nối chân giữa biến trở) |
+| 4 | `RS` | Chọn thanh ghi: 0 = lệnh, 1 = dữ liệu ký tự |
+| 5 | `RW` | Đọc/ghi — thường nối GND (chỉ ghi) |
+| 6 | `E` | Enable — xung chốt dữ liệu |
+| 7–14 | `D0`–`D7` | Bus dữ liệu 8 bit (chế độ 4 bit chỉ dùng `D4`–`D7`) |
+| 15 | `BLA` | Anode đèn nền (+) |
+| 16 | `BLK` | Cathode đèn nền (−) |
+
+Nếu nối trực tiếp (thư viện `LiquidCrystal`) thì tốn ít nhất 6 chân Arduino (`RS`, `E`, `D4`–`D7`), chưa kể biến trở chỉnh tương phản.
+
+![Mặt sau: module I²C PCF8574 đã hàn sẵn vào 16 chân của LCD](../assets/kit-lcd-back.jpg){width=60%}
+
+LCD trong kit đã được **hàn sẵn module chuyển đổi I²C** (mạch đen ở mặt sau, dùng chip **PCF8574**). Module này chuyển 16 chân thành **4 chân**:
+
+| Chân module | Nối Arduino Uno |
+|---|---|
+| `GND` | `GND` |
+| `VCC` | `5V` |
+| `SDA` | `A4` (hoặc chân `SDA` gần `AREF` trên Uno R3) |
+| `SCL` | `A5` (hoặc chân `SCL`) |
+
+Các chi tiết khác trên module:
+
+- **Biến trở xanh** — chỉnh độ tương phản. Cấp điện mà màn chỉ sáng nền, không thấy chữ (hoặc chỉ thấy một hàng ô vuông đen) thì vặn biến trở này trước khi nghĩ đến lỗi code.
+- **Jumper `LED`** — cắm thì đèn nền sáng, rút ra thì tắt hẳn đèn nền. Code cũng bật/tắt đèn nền được bằng `lcd.backlight()` / `lcd.noBacklight()`.
+- **Ba pad `A0` `A1` `A2`** — chọn địa chỉ I²C. Để trống (như trong ảnh) thì địa chỉ là **`0x27`** với chip PCF8574T, hoặc **`0x3F`** với PCF8574AT. Nối tắt pad để đổi địa chỉ, khi cần gắn nhiều LCD trên cùng bus. Nếu không chắc địa chỉ, chạy sketch **I²C Scanner** để dò.
+
+```cpp
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // địa chỉ, số cột, số dòng
+
+void setup() {
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);   // cột 0, dòng 0
+  lcd.print("Hello IoT!");
+  lcd.setCursor(0, 1);   // cột 0, dòng 1
+  lcd.print("Arduino Uno");
+}
+
+void loop() {}
+```
 
 ### Ảnh thực tế
 
@@ -189,7 +248,7 @@ Kit có LED **5 mm, vỏ mờ (diffused)**, ba màu đỏ, vàng, xanh lá — �
 
 Khi LED còn mới, chân **dài hơn là anode (+)**. Nếu chân đã bị cắt bằng nhau, nhìn vào trong vỏ: miếng kim loại **nhỏ** là anode, miếng **to hình lá cờ** là cathode. Hoặc tìm mép **vát phẳng** trên vành đế — phía đó là cathode.
 
-> 📷 *Chờ ảnh buzzer / LCD (nếu có trong kit).*
+> 📷 *Ảnh LCD xem ở mục LCD 16×2 phía trên. Chờ ảnh buzzer (nếu có trong kit).*
 
 ## Linh kiện đầu vào
 
