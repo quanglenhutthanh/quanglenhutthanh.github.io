@@ -146,6 +146,33 @@ Với điện trở 4 vạch: *vạch 1, vạch 2* = hai chữ số, *vạch 3* 
 
 Điện trở xoay được, 3 chân: hai chân ngoài nối `5V` và `GND`, **chân giữa** (wiper) cho điện áp thay đổi 0–5 V → đọc bằng `analogRead()`. Dùng làm núm chỉnh độ sáng, tốc độ, ngưỡng…
 
+![Biến trở B10K trong kit: trục ngắn có rãnh, 3 chân hàng ngang](../assets/kit-potentiometer.jpg){width=35%}
+
+Biến trở trong kit in mã **`B10K`**:
+
+- **`10K`**: điện trở toàn phần giữa hai chân ngoài là **10 kΩ**. Giá trị này không đổi khi xoay; chỉ điện trở từ chân giữa tới mỗi chân ngoài thay đổi, và tổng hai phần luôn bằng 10 kΩ.
+- **`B`**: kiểu **tuyến tính (linear)**. Xoay được nửa hành trình thì chân giữa ở đúng 50% điện áp, nên `analogRead()` tăng đều từ 0 đến 1023. Loại **`A`** là kiểu logarit, dùng cho núm âm lượng; với Arduino nên dùng loại `B`.
+- Trục ngắn có **rãnh**: xoay bằng tay, hoặc dùng tua vít dẹt. Có thể gắn thêm núm nhựa.
+- Góc xoay khoảng **300°**, có điểm dừng ở hai đầu.
+
+Khi nối: chân **giữa** vào `A0`, hai chân ngoài vào `5V` và `GND`. Nếu đảo hai chân ngoài thì chiều xoay bị đảo (xoay phải giảm thay vì tăng), nhưng mạch không hỏng.
+
+```cpp
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int raw = analogRead(A0);              // 0–1023
+  float volt = raw * 5.0 / 1023.0;       // đổi ra 0–5 V
+  int pwm = map(raw, 0, 1023, 0, 255);   // dùng cho analogWrite()
+  Serial.print(raw); Serial.print("  ");
+  Serial.print(volt); Serial.print(" V  PWM=");
+  Serial.println(pwm);
+  delay(200);
+}
+```
+
 ### Ảnh thực tế
 
 ![Ba loại điện trở trong kit (10K, 220R, 1K) và thẻ tra mã màu](../assets/kit-resistors-kit.jpg){width=65%}
@@ -308,7 +335,9 @@ Công tắc điện từ cho phép Arduino đóng/ngắt thiết bị công su�
 
 ### Ảnh thực tế
 
-> 📷 *Chờ ảnh servo / relay / motor.*
+![Servo SG90 (Micro Servo 9g) kèm túi cánh tay servo và ốc vít. Cách dùng xem [Lab 4](../labs/servo-sg90.md)](../assets/kit-servo-sg90.jpg){width=60%}
+
+> 📷 *Chờ ảnh relay / motor.*
 
 ## Lưu ý an toàn khi lắp mạch
 
