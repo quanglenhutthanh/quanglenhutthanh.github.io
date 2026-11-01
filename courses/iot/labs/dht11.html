@@ -492,9 +492,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Ảnh chụp với board xoay ngược 180°, nên hàng POWER nằm bên phải và nhãn chân bị lộn ngược. Màu dây chỉ là màu có sẵn trong bộ cáp. Ở đây dây <strong>đỏ là GND</strong>, ngược với quy ước đỏ = nguồn, nên phải nhìn chân cắm chứ đừng nhìn màu dây.</p>
 <p><strong>Lần chạy đầu bị lỗi.</strong> Serial Monitor in <code>Loi doc DHT11!</code> liên tục. Nguyên nhân là dây đỏ (<code>−</code>) cắm nhầm vào <code>Vin</code>, nằm sát cạnh <code>GND</code>. Khi cấp nguồn bằng USB, <code>Vin</code> có điện áp gần 5 V, nên hai chân nguồn của module gần như ngang áp và module không có điện. Module không nóng, không hỏng, nên rất khó nhận ra. Chuyển dây đỏ sang <code>GND</code> là đọc được ngay.</p>
-<blockquote class="blockquote">
-<p>📷 <em>Chờ kết quả Serial Monitor.</em></p>
-</blockquote>
+<p>Kết quả Test 1 trên Serial Monitor (9600 baud):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/dht11-serial-output.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Serial Monitor: độ ẩm 59 %, nhiệt độ 33 °C, nhiệt độ cảm nhận 39,16 °C</figcaption>
+</figure>
+</div>
+<p>Một vài nhận xét về kết quả:</p>
+<ul>
+<li><strong>33 °C, 59 %RH</strong>: nằm trong khoảng bình thường của một phòng không bật điều hoà ở Việt Nam.</li>
+<li>Số đo in ra là <code>33.00</code> và <code>59.00</code>, phần thập phân luôn bằng 0. Đây là độ phân giải 1 °C / 1 % của DHT11, không phải lỗi.</li>
+<li>Các dòng giống hệt nhau vì nhiệt độ và độ ẩm phòng thay đổi chậm hơn bước 1 đơn vị trong vài chục giây. Muốn thấy số nhảy thì hà hơi vào cảm biến, hoặc nắm tay quanh nó.</li>
+<li><strong>Cảm nhận 39,16 °C</strong>: phòng 33 °C với độ ẩm 59 % cho cảm giác nóng như 39 °C. Giá trị này có phần thập phân vì được <em>tính</em> từ hai số nguyên trên, chứ cảm biến không đo trực tiếp.</li>
+</ul>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
