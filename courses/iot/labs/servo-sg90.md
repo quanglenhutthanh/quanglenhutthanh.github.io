@@ -3,10 +3,13 @@ title: "Lab 4 · Động cơ servo SG90 (9g)"
 subject: "iot"
 type: lab
 lab_no: 4
-status: reading
+status: done
 source: slide
 tags: [arduino, servo, sg90, pwm, actuator, potentiometer]
 date: 2026-11-01
+resources:
+  - ../assets/servo-pot-real.mp4
+  - ../assets/servo-pot-real-poster.jpg
 ---
 
 # Lab 4 · Động cơ servo SG90 (9g)
@@ -259,10 +262,12 @@ void loop() {
 
 ### Test 4 – biến trở + servo + 2 LED báo trạng thái
 
-Mở rộng Test 3 thành một mạch hoàn chỉnh hơn. Hai LED cho biết servo đang làm gì mà không cần mở Serial Monitor:
+Mở rộng Test 3: vặn biến trở để xoay servo trong khoảng **0–90°**, hai LED cho biết servo đang ở nửa nào:
 
-- **LED vàng (`D8`)**: sáng khi servo **đang quay**, tắt khi núm biến trở đứng yên.
-- **LED đỏ (`D12`)**: sáng khi góc **≤ 10° hoặc ≥ 170°**, cảnh báo servo gần giới hạn cơ khí (vùng dễ kêu rè rè).
+- **LED đỏ (`D12`)** sáng khi góc **< 45°**.
+- **LED vàng (`D8`)** sáng khi góc **≥ 45°**.
+
+Trong code, đèn ở `D8` được đặt tên `led1_G` (GREEN) nhưng mạch thật và Tinkercad đều cắm LED vàng. Màu LED không ảnh hưởng gì đến code, chỉ là tên biến.
 
 | Linh kiện | Nối vào |
 |---|---|
@@ -277,12 +282,85 @@ Mở rộng Test 3 thành một mạch hoàn chỉnh hơn. Hai LED cho biết se
 Biến trở ở mạch này cắm vào `A5` thay vì `A0`. Chân analog nào cũng được, chỉ cần sửa `POT_PIN`. Lưu ý `A4`/`A5` trên Uno cũng là `SDA`/`SCL` của I²C: nếu sau này gắn thêm LCD của [Lab 2](lcd-i2c.md) thì phải chuyển biến trở sang `A0`–`A3`.
 
 ```cpp
+// Thư viện cần thiết để điều khiển các động cơ Servo
+#include <Servo.h>
+
+// Định nghĩa các chân kết nối
+const int potPin = A5;      // Chân kết nối Potentiometer (biến trở)
+const int servoPin = 9;     // Chân kết nối Micro Servo
+const int led1_G = 8;       // Chân kết nối LED 1 GREEN
+const int led2_R = 12;      // Chân kết nối LED 2 RED
+
+// Khai báo đối tượng Servo
+Servo myServo;
+
+void setup() {
+  // Gắn đối tượng Servo vào chân đã định
+  myServo.attach(servoPin);
+  myServo.write(0);
+
+  // Thiết lập các chân LED là OUTPUT
+  pinMode(led1_G, OUTPUT);
+  pinMode(led2_R, OUTPUT);
+
+  // Theo dõi giá trị trên Serial Monitor
+  Serial.begin(9600);
+}
+
+void loop() {
+  // 1. Đọc giá trị Analog từ Potentiometer (0 đến 1023)
+  int potValue = analogRead(potPin);
+  Serial.println(potValue);
+
+  // 2. Chuyển đổi (map) giá trị Potentiometer (0-1023) sang góc Servo (0-90)
+  // map(value, fromLow, fromHigh, toLow, toHigh)
+  int servoAngle = map(potValue, 0, 1023, 0, 90);
+
+  // 3. Điều khiển Servo quay đến góc đã tính toán
+  myServo.write(servoAngle);
+  Serial.println(servoAngle);
+
+  // 4. Báo nửa hành trình bằng LED:
+  // góc < 45 độ thì bật LED RED, từ 45 độ trở lên thì bật LED GREEN
+  if (servoAngle < 45) {
+    digitalWrite(led1_G, LOW);
+    digitalWrite(led2_R, HIGH);
+  } else {
+    digitalWrite(led1_G, HIGH);
+    digitalWrite(led2_R, LOW);
+  }
+
+  // Chờ một chút để động cơ Servo có thời gian di chuyển và làm ổn định
+  delay(100);
+  Serial.println();
+}
+```
+
+Giải thích:
+
+- **`map(potValue, 0, 1023, 0, 90)`**: chỉ dùng **một phần tư vòng** (0–90°) thay vì 0–180° như Test 3. Vặn hết núm thì servo mới quay 90°. Muốn dùng hết hành trình thì đổi `90` thành `180` và ngưỡng `45` thành `90`.
+- **Ngưỡng đổi đèn**: `map()` làm tròn xuống, nên `potValue` từ 0 đến 511 cho góc 0–44° (đèn đỏ), từ 512 trở lên cho 45–90° (đèn vàng). Tức là đèn đổi màu đúng lúc núm vặn qua **nửa vòng**.
+- **`myServo.write(0)` trong `setup()`**: đưa servo về 0° ngay khi bật, trước khi đọc biến trở. Nếu núm đang ở giữa thì lúc khởi động servo sẽ giật về 0° rồi quay ngược lên vị trí của núm.
+- **Serial Monitor** mỗi vòng in 3 dòng: giá trị thô (0–1023), góc (0–90) và một dòng trống để ngăn cách. Với `delay(100)` là khoảng 10 lần mỗi giây.
+- **`delay(100)`** làm servo phản ứng hơi chậm (trễ tối đa 0,1 s sau khi vặn), đổi lại Serial Monitor dễ đọc hơn. Test 3 dùng `delay(15)` nên servo bám núm mượt hơn.
+
+**Cách kiểm tra:**
+
+- Vặn núm hết về một đầu: servo ở 0°, đèn đỏ sáng, Serial in `0`.
+- Vặn từ từ qua nửa vòng: đến khi Serial in góc `45` thì đèn đỏ tắt, đèn vàng sáng.
+- Vặn hết về đầu kia: servo ở 90° (vuông góc với vị trí ban đầu), Serial in `1023` và `90`.
+
+#### Cải tiến: lọc nhiễu và đèn báo đang quay
+
+Cùng mạch đó, có thể đổi cách dùng hai LED: đèn ở `D8` sáng khi servo **đang quay**, đèn đỏ sáng khi góc **≤ 10° hoặc ≥ 170°** để cảnh báo servo gần giới hạn cơ khí (vùng dễ kêu rè rè). Bản này dùng hết 0–180°.
+
+```cpp
 #include <Servo.h>
 
 #define SERVO_PIN  9
 #define POT_PIN    A5
 #define LED_DO     12   // đỏ: gần giới hạn góc
-#define LED_VANG   8    // vàng: servo đang quay
+#define LED_D8     8    // servo đang quay
 
 Servo myServo;
 int gocCu = -1;                  // góc đã ghi lần trước
@@ -291,7 +369,7 @@ unsigned long lanQuayCuoi = 0;   // thời điểm (ms) servo quay lần cuối
 void setup() {
   Serial.begin(9600);
   pinMode(LED_DO, OUTPUT);
-  pinMode(LED_VANG, OUTPUT);
+  pinMode(LED_D8, OUTPUT);
   myServo.attach(SERVO_PIN);
 }
 
@@ -311,8 +389,8 @@ void loop() {
     Serial.println(goc);
   }
 
-  // vàng sáng thêm 300 ms sau lần quay cuối
-  digitalWrite(LED_VANG, millis() - lanQuayCuoi < 300 ? HIGH : LOW);
+  // đèn D8 sáng thêm 300 ms sau lần quay cuối
+  digitalWrite(LED_D8, millis() - lanQuayCuoi < 300 ? HIGH : LOW);
   // đỏ sáng khi gần hai đầu hành trình
   digitalWrite(LED_DO, (gocCu <= 10 || gocCu >= 170) ? HIGH : LOW);
 
@@ -320,17 +398,13 @@ void loop() {
 }
 ```
 
-Code có ba điểm mới so với Test 3:
+Bản cải tiến có ba điểm mới:
 
 - **Vùng chết 2°** (*dead-band*): `gocCu` lưu góc đã ghi. Góc mới chỉ được `write()` khi lệch từ 2° trở lên, nên nhiễu ADC không làm servo rung và Serial Monitor chỉ in khi thật sự vặn núm.
-- **`millis()` thay vì `delay()`** để giữ đèn vàng sáng 300 ms sau lần quay cuối. Nếu dùng `delay(300)` thì cả `loop()` đứng lại, servo không theo kịp núm vặn. `millis()` trả về số ms từ lúc board khởi động; lấy hiệu với thời điểm đã lưu để biết đã trôi qua bao lâu.
+- **`millis()` thay vì `delay()`** để giữ đèn `D8` sáng 300 ms sau lần quay cuối. Nếu dùng `delay(300)` thì cả `loop()` đứng lại, servo không theo kịp núm vặn. `millis()` trả về số ms từ lúc board khởi động; lấy hiệu với thời điểm đã lưu để biết đã trôi qua bao lâu.
 - LED cắm `D8` và `D12` chỉ dùng `digitalWrite()`, nên không bị ảnh hưởng việc thư viện `Servo` chiếm Timer1. Nếu muốn chỉnh độ sáng LED bằng `analogWrite()` thì tránh `D9`/`D10`.
 
-**Cách kiểm tra:**
-
-- Vặn núm từ từ: servo quay theo, đèn vàng sáng suốt lúc vặn, buông tay khoảng 0,3 s thì tắt.
-- Vặn hết về một đầu: đèn đỏ sáng, Serial in `goc = 0` (hoặc `180`).
-- Để yên núm: servo đứng im, Serial Monitor không in thêm dòng nào.
+Kiểm tra: vặn núm thì đèn `D8` sáng suốt lúc vặn và tắt sau khoảng 0,3 s khi buông tay. Vặn hết về một đầu thì đèn đỏ sáng. Để yên núm thì Serial Monitor không in thêm dòng nào.
 
 ## Mô phỏng
 
@@ -359,15 +433,27 @@ Trong Tinkercad, chân **cong** của LED là chân dương (anode). Hai điện
 
 ## Ảnh thực tế
 
-> 📷 *Chờ ảnh mạch đã nối.*
+### Video Test 4
 
-| Dây servo | Chân Arduino Uno | Màu dây nối trong ảnh |
-|---|---|---|
-| Nâu | `GND` | |
-| Đỏ | `5V` | |
-| Cam | `D9` | |
+<video controls muted playsinline preload="metadata" poster="../assets/servo-pot-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/servo-pot-real.mp4" type="video/mp4">
+</video>
 
-> 📷 *Chờ video servo quét (Test 1) và kết quả Serial Monitor (Test 2/3).*
+Mạch thật lắp theo đúng sơ đồ Tinkercad ở trên, chạy code Test 4. Board xoay ngang 90° nên hàng DIGITAL nằm bên trái, hàng POWER/ANALOG IN nằm bên phải.
+
+- **Servo** đặt bên trái board, cắm vào giắc bằng 3 dây đực – đực. **Dây cam** đi từ `D9` tới chân tín hiệu, hai dây đỏ và đen đi về thanh `+`/`−` của breadboard.
+- **Biến trở** là loại núm vặn có trục khía, cắm ở cuối breadboard. **Dây vàng** từ chân giữa chạy lên `A5`.
+- Hai LED đỏ và vàng cắm ở đầu breadboard, gần board.
+
+Diễn biến trong video:
+
+- **Giây 0–5**: núm biến trở ở nửa đầu hành trình. Góc servo dưới 45°, **LED đỏ sáng**, LED vàng tắt.
+- **Giây 6–11**: vặn núm qua nửa vòng. Cánh tay servo xoay theo, **LED đỏ tắt và LED vàng sáng** đúng lúc góc qua 45°.
+- **Giây 12–13**: vặn núm về lại, servo quay ngược và **LED đỏ sáng lại**.
+- Servo chỉ xoay khoảng **một phần tư vòng** dù vặn hết núm, đúng với `map(..., 0, 90)` trong code.
+- Đèn `ON` (xanh lá) và đèn `L` trên board sáng suốt video. Board **không bị reset** khi servo quay, vì một SG90 không tải cấp từ USB là đủ nguồn.
+
+> 📷 *Chờ ảnh Serial Monitor (Test 2/3/4).*
 
 ## Lỗi hay gặp
 
