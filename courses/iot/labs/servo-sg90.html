@@ -189,7 +189,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#test-4-biến-trở-servo-2-led-báo-trạng-thái" id="toc-test-4-biến-trở-servo-2-led-báo-trạng-thái" class="nav-link" data-scroll-target="#test-4-biến-trở-servo-2-led-báo-trạng-thái">Test 4 – biến trở + servo + 2 LED báo trạng thái</a></li>
   </ul></li>
   <li><a href="#mô-phỏng" id="toc-mô-phỏng" class="nav-link" data-scroll-target="#mô-phỏng">Mô phỏng</a></li>
-  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a></li>
+  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a>
+  <ul class="collapse">
+  <li><a href="#video-test-4" id="toc-video-test-4" class="nav-link" data-scroll-target="#video-test-4">Video Test 4</a></li>
+  </ul></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul></li>
   </ul>
@@ -626,11 +629,12 @@ góc 180°  ‾‾‾‾‾|_________________   xung ~2,4 ms
 </section>
 <section id="test-4-biến-trở-servo-2-led-báo-trạng-thái" class="level3">
 <h3 class="anchored" data-anchor-id="test-4-biến-trở-servo-2-led-báo-trạng-thái">Test 4 – biến trở + servo + 2 LED báo trạng thái</h3>
-<p>Mở rộng Test 3 thành một mạch hoàn chỉnh hơn. Hai LED cho biết servo đang làm gì mà không cần mở Serial Monitor:</p>
+<p>Mở rộng Test 3: vặn biến trở để xoay servo trong khoảng <strong>0–90°</strong>, hai LED cho biết servo đang ở nửa nào:</p>
 <ul>
-<li><strong>LED vàng (<code>D8</code>)</strong>: sáng khi servo <strong>đang quay</strong>, tắt khi núm biến trở đứng yên.</li>
-<li><strong>LED đỏ (<code>D12</code>)</strong>: sáng khi góc <strong>≤ 10° hoặc ≥ 170°</strong>, cảnh báo servo gần giới hạn cơ khí (vùng dễ kêu rè rè).</li>
+<li><strong>LED đỏ (<code>D12</code>)</strong> sáng khi góc <strong>&lt; 45°</strong>.</li>
+<li><strong>LED vàng (<code>D8</code>)</strong> sáng khi góc <strong>≥ 45°</strong>.</li>
 </ul>
+<p>Trong code, đèn ở <code>D8</code> được đặt tên <code>led1_G</code> (GREEN) nhưng mạch thật và Tinkercad đều cắm LED vàng. Màu LED không ảnh hưởng gì đến code, chỉ là tên biến.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -670,59 +674,124 @@ góc 180°  ‾‾‾‾‾|_________________   xung ~2,4 ms
 </tbody>
 </table>
 <p>Biến trở ở mạch này cắm vào <code>A5</code> thay vì <code>A0</code>. Chân analog nào cũng được, chỉ cần sửa <code>POT_PIN</code>. Lưu ý <code>A4</code>/<code>A5</code> trên Uno cũng là <code>SDA</code>/<code>SCL</code> của I²C: nếu sau này gắn thêm LCD của <a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a> thì phải chuyển biến trở sang <code>A0</code>–<code>A3</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SERVO_PIN  </span><span class="dv">9</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define POT_PIN    </span>A5</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_DO     </span><span class="dv">12</span><span class="pp">   </span><span class="co">// đỏ: gần giới hạn góc</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_VANG   </span><span class="dv">8</span><span class="pp">    </span><span class="co">// vàng: servo đang quay</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Servo myServo<span class="op">;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gocCu <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>                  <span class="co">// góc đã ghi lần trước</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lanQuayCuoi <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>   <span class="co">// thời điểm (ms) servo quay lần cuối</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_DO<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_VANG<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  myServo<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>POT_PIN<span class="op">);</span>         <span class="co">// 0–1023</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> goc <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">180</span><span class="op">);</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">// chỉ ra lệnh khi góc đổi ≥ 2°, lọc nhiễu ADC</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>gocCu <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">||</span> abs<span class="op">(</span>goc <span class="op">-</span> gocCu<span class="op">)</span> <span class="op">&gt;=</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    myServo<span class="op">.</span>write<span class="op">(</span>goc<span class="op">);</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    gocCu <span class="op">=</span> goc<span class="op">;</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    lanQuayCuoi <span class="op">=</span> millis<span class="op">();</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"raw = "</span><span class="op">);</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>raw<span class="op">);</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  goc = "</span><span class="op">);</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>goc<span class="op">);</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Thư viện cần thiết để điều khiển các động cơ Servo</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Định nghĩa các chân kết nối</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> potPin <span class="op">=</span> A5<span class="op">;</span>      <span class="co">// Chân kết nối Potentiometer (biến trở)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> servoPin <span class="op">=</span> <span class="dv">9</span><span class="op">;</span>     <span class="co">// Chân kết nối Micro Servo</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> led1_G <span class="op">=</span> <span class="dv">8</span><span class="op">;</span>       <span class="co">// Chân kết nối LED 1 GREEN</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> led2_R <span class="op">=</span> <span class="dv">12</span><span class="op">;</span>      <span class="co">// Chân kết nối LED 2 RED</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Khai báo đối tượng Servo</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>Servo myServo<span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Gắn đối tượng Servo vào chân đã định</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  myServo<span class="op">.</span>attach<span class="op">(</span>servoPin<span class="op">);</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  myServo<span class="op">.</span>write<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Thiết lập các chân LED là OUTPUT</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>led1_G<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>led2_R<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Theo dõi giá trị trên Serial Monitor</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Đọc giá trị Analog từ Potentiometer (0 đến 1023)</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> potValue <span class="op">=</span> analogRead<span class="op">(</span>potPin<span class="op">);</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>potValue<span class="op">);</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Chuyển đổi (map) giá trị Potentiometer (0-1023) sang góc Servo (0-90)</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">// map(value, fromLow, fromHigh, toLow, toHigh)</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> servoAngle <span class="op">=</span> map<span class="op">(</span>potValue<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">90</span><span class="op">);</span></span>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="co">// vàng sáng thêm 300 ms sau lần quay cuối</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_VANG<span class="op">,</span> millis<span class="op">()</span> <span class="op">-</span> lanQuayCuoi <span class="op">&lt;</span> <span class="dv">300</span> <span class="op">?</span> HIGH <span class="op">:</span> LOW<span class="op">);</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">// đỏ sáng khi gần hai đầu hành trình</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_DO<span class="op">,</span> <span class="op">(</span>gocCu <span class="op">&lt;=</span> <span class="dv">10</span> <span class="op">||</span> gocCu <span class="op">&gt;=</span> <span class="dv">170</span><span class="op">)</span> <span class="op">?</span> HIGH <span class="op">:</span> LOW<span class="op">);</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">15</span><span class="op">);</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Code có ba điểm mới so với Test 3:</p>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 3. Điều khiển Servo quay đến góc đã tính toán</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  myServo<span class="op">.</span>write<span class="op">(</span>servoAngle<span class="op">);</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>servoAngle<span class="op">);</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 4. Báo nửa hành trình bằng LED:</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">// góc &lt; 45 độ thì bật LED RED, từ 45 độ trở lên thì bật LED GREEN</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>servoAngle <span class="op">&lt;</span> <span class="dv">45</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led1_G<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led2_R<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led1_G<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led2_R<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Chờ một chút để động cơ Servo có thời gian di chuyển và làm ổn định</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
 <ul>
-<li><strong>Vùng chết 2°</strong> (<em>dead-band</em>): <code>gocCu</code> lưu góc đã ghi. Góc mới chỉ được <code>write()</code> khi lệch từ 2° trở lên, nên nhiễu ADC không làm servo rung và Serial Monitor chỉ in khi thật sự vặn núm.</li>
-<li><strong><code>millis()</code> thay vì <code>delay()</code></strong> để giữ đèn vàng sáng 300 ms sau lần quay cuối. Nếu dùng <code>delay(300)</code> thì cả <code>loop()</code> đứng lại, servo không theo kịp núm vặn. <code>millis()</code> trả về số ms từ lúc board khởi động; lấy hiệu với thời điểm đã lưu để biết đã trôi qua bao lâu.</li>
-<li>LED cắm <code>D8</code> và <code>D12</code> chỉ dùng <code>digitalWrite()</code>, nên không bị ảnh hưởng việc thư viện <code>Servo</code> chiếm Timer1. Nếu muốn chỉnh độ sáng LED bằng <code>analogWrite()</code> thì tránh <code>D9</code>/<code>D10</code>.</li>
+<li><strong><code>map(potValue, 0, 1023, 0, 90)</code></strong>: chỉ dùng <strong>một phần tư vòng</strong> (0–90°) thay vì 0–180° như Test 3. Vặn hết núm thì servo mới quay 90°. Muốn dùng hết hành trình thì đổi <code>90</code> thành <code>180</code> và ngưỡng <code>45</code> thành <code>90</code>.</li>
+<li><strong>Ngưỡng đổi đèn</strong>: <code>map()</code> làm tròn xuống, nên <code>potValue</code> từ 0 đến 511 cho góc 0–44° (đèn đỏ), từ 512 trở lên cho 45–90° (đèn vàng). Tức là đèn đổi màu đúng lúc núm vặn qua <strong>nửa vòng</strong>.</li>
+<li><strong><code>myServo.write(0)</code> trong <code>setup()</code></strong>: đưa servo về 0° ngay khi bật, trước khi đọc biến trở. Nếu núm đang ở giữa thì lúc khởi động servo sẽ giật về 0° rồi quay ngược lên vị trí của núm.</li>
+<li><strong>Serial Monitor</strong> mỗi vòng in 3 dòng: giá trị thô (0–1023), góc (0–90) và một dòng trống để ngăn cách. Với <code>delay(100)</code> là khoảng 10 lần mỗi giây.</li>
+<li><strong><code>delay(100)</code></strong> làm servo phản ứng hơi chậm (trễ tối đa 0,1 s sau khi vặn), đổi lại Serial Monitor dễ đọc hơn. Test 3 dùng <code>delay(15)</code> nên servo bám núm mượt hơn.</li>
 </ul>
 <p><strong>Cách kiểm tra:</strong></p>
 <ul>
-<li>Vặn núm từ từ: servo quay theo, đèn vàng sáng suốt lúc vặn, buông tay khoảng 0,3 s thì tắt.</li>
-<li>Vặn hết về một đầu: đèn đỏ sáng, Serial in <code>goc = 0</code> (hoặc <code>180</code>).</li>
-<li>Để yên núm: servo đứng im, Serial Monitor không in thêm dòng nào.</li>
+<li>Vặn núm hết về một đầu: servo ở 0°, đèn đỏ sáng, Serial in <code>0</code>.</li>
+<li>Vặn từ từ qua nửa vòng: đến khi Serial in góc <code>45</code> thì đèn đỏ tắt, đèn vàng sáng.</li>
+<li>Vặn hết về đầu kia: servo ở 90° (vuông góc với vị trí ban đầu), Serial in <code>1023</code> và <code>90</code>.</li>
 </ul>
+<section id="cải-tiến-lọc-nhiễu-và-đèn-báo-đang-quay" class="level4">
+<h4 class="anchored" data-anchor-id="cải-tiến-lọc-nhiễu-và-đèn-báo-đang-quay">Cải tiến: lọc nhiễu và đèn báo đang quay</h4>
+<p>Cùng mạch đó, có thể đổi cách dùng hai LED: đèn ở <code>D8</code> sáng khi servo <strong>đang quay</strong>, đèn đỏ sáng khi góc <strong>≤ 10° hoặc ≥ 170°</strong> để cảnh báo servo gần giới hạn cơ khí (vùng dễ kêu rè rè). Bản này dùng hết 0–180°.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SERVO_PIN  </span><span class="dv">9</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define POT_PIN    </span>A5</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_DO     </span><span class="dv">12</span><span class="pp">   </span><span class="co">// đỏ: gần giới hạn góc</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_D8     </span><span class="dv">8</span><span class="pp">    </span><span class="co">// servo đang quay</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Servo myServo<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gocCu <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>                  <span class="co">// góc đã ghi lần trước</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lanQuayCuoi <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>   <span class="co">// thời điểm (ms) servo quay lần cuối</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_DO<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_D8<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  myServo<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>POT_PIN<span class="op">);</span>         <span class="co">// 0–1023</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> goc <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">180</span><span class="op">);</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">// chỉ ra lệnh khi góc đổi ≥ 2°, lọc nhiễu ADC</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>gocCu <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">||</span> abs<span class="op">(</span>goc <span class="op">-</span> gocCu<span class="op">)</span> <span class="op">&gt;=</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    myServo<span class="op">.</span>write<span class="op">(</span>goc<span class="op">);</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    gocCu <span class="op">=</span> goc<span class="op">;</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    lanQuayCuoi <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"raw = "</span><span class="op">);</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  goc = "</span><span class="op">);</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>goc<span class="op">);</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="co">// đèn D8 sáng thêm 300 ms sau lần quay cuối</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_D8<span class="op">,</span> millis<span class="op">()</span> <span class="op">-</span> lanQuayCuoi <span class="op">&lt;</span> <span class="dv">300</span> <span class="op">?</span> HIGH <span class="op">:</span> LOW<span class="op">);</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">// đỏ sáng khi gần hai đầu hành trình</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_DO<span class="op">,</span> <span class="op">(</span>gocCu <span class="op">&lt;=</span> <span class="dv">10</span> <span class="op">||</span> gocCu <span class="op">&gt;=</span> <span class="dv">170</span><span class="op">)</span> <span class="op">?</span> HIGH <span class="op">:</span> LOW<span class="op">);</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">15</span><span class="op">);</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Bản cải tiến có ba điểm mới:</p>
+<ul>
+<li><strong>Vùng chết 2°</strong> (<em>dead-band</em>): <code>gocCu</code> lưu góc đã ghi. Góc mới chỉ được <code>write()</code> khi lệch từ 2° trở lên, nên nhiễu ADC không làm servo rung và Serial Monitor chỉ in khi thật sự vặn núm.</li>
+<li><strong><code>millis()</code> thay vì <code>delay()</code></strong> để giữ đèn <code>D8</code> sáng 300 ms sau lần quay cuối. Nếu dùng <code>delay(300)</code> thì cả <code>loop()</code> đứng lại, servo không theo kịp núm vặn. <code>millis()</code> trả về số ms từ lúc board khởi động; lấy hiệu với thời điểm đã lưu để biết đã trôi qua bao lâu.</li>
+<li>LED cắm <code>D8</code> và <code>D12</code> chỉ dùng <code>digitalWrite()</code>, nên không bị ảnh hưởng việc thư viện <code>Servo</code> chiếm Timer1. Nếu muốn chỉnh độ sáng LED bằng <code>analogWrite()</code> thì tránh <code>D9</code>/<code>D10</code>.</li>
+</ul>
+<p>Kiểm tra: vặn núm thì đèn <code>D8</code> sáng suốt lúc vặn và tắt sau khoảng 0,3 s khi buông tay. Vặn hết về một đầu thì đèn đỏ sáng. Để yên núm thì Serial Monitor không in thêm dòng nào.</p>
+</section>
 </section>
 </section>
 <section id="mô-phỏng" class="level2">
@@ -754,38 +823,26 @@ góc 180°  ‾‾‾‾‾|_________________   xung ~2,4 ms
 </section>
 <section id="ảnh-thực-tế" class="level2">
 <h2 class="anchored" data-anchor-id="ảnh-thực-tế">Ảnh thực tế</h2>
-<blockquote class="blockquote">
-<p>📷 <em>Chờ ảnh mạch đã nối.</em></p>
-</blockquote>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Dây servo</th>
-<th>Chân Arduino Uno</th>
-<th>Màu dây nối trong ảnh</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Nâu</td>
-<td><code>GND</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Đỏ</td>
-<td><code>5V</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Cam</td>
-<td><code>D9</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<blockquote class="blockquote">
-<p>📷 <em>Chờ video servo quét (Test 1) và kết quả Serial Monitor (Test 2/3).</em></p>
-</blockquote>
+<section id="video-test-4" class="level3">
+<h3 class="anchored" data-anchor-id="video-test-4">Video Test 4</h3>
+<video controls="" muted="" playsinline="" preload="metadata" poster="../assets/servo-pot-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/servo-pot-real.mp4" type="video/mp4">
+</video>
+<p>Mạch thật lắp theo đúng sơ đồ Tinkercad ở trên, chạy code Test 4. Board xoay ngang 90° nên hàng DIGITAL nằm bên trái, hàng POWER/ANALOG IN nằm bên phải.</p>
+<ul>
+<li><strong>Servo</strong> đặt bên trái board, cắm vào giắc bằng 3 dây đực – đực. <strong>Dây cam</strong> đi từ <code>D9</code> tới chân tín hiệu, hai dây đỏ và đen đi về thanh <code>+</code>/<code>−</code> của breadboard.</li>
+<li><strong>Biến trở</strong> là loại núm vặn có trục khía, cắm ở cuối breadboard. <strong>Dây vàng</strong> từ chân giữa chạy lên <code>A5</code>.</li>
+<li>Hai LED đỏ và vàng cắm ở đầu breadboard, gần board.</li>
+</ul>
+<p>Diễn biến trong video:</p>
+<ul>
+<li><strong>Giây 0–5</strong>: núm biến trở ở nửa đầu hành trình. Góc servo dưới 45°, <strong>LED đỏ sáng</strong>, LED vàng tắt.</li>
+<li><strong>Giây 6–11</strong>: vặn núm qua nửa vòng. Cánh tay servo xoay theo, <strong>LED đỏ tắt và LED vàng sáng</strong> đúng lúc góc qua 45°.</li>
+<li><strong>Giây 12–13</strong>: vặn núm về lại, servo quay ngược và <strong>LED đỏ sáng lại</strong>.</li>
+<li>Servo chỉ xoay khoảng <strong>một phần tư vòng</strong> dù vặn hết núm, đúng với <code>map(..., 0, 90)</code> trong code.</li>
+<li>Đèn <code>ON</code> (xanh lá) và đèn <code>L</code> trên board sáng suốt video. Board <strong>không bị reset</strong> khi servo quay, vì một SG90 không tải cấp từ USB là đủ nguồn.</li>
+</ul>
+</section>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
