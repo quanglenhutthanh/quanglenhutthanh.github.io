@@ -453,8 +453,6 @@ Diễn biến trong video:
 - Servo chỉ xoay khoảng **một phần tư vòng** dù vặn hết núm, đúng với `map(..., 0, 90)` trong code.
 - Đèn `ON` (xanh lá) và đèn `L` trên board sáng suốt video. Board **không bị reset** khi servo quay, vì một SG90 không tải cấp từ USB là đủ nguồn.
 
-> 📷 *Chờ ảnh Serial Monitor (Test 2/3/4).*
-
 ## Lỗi hay gặp
 
 | Hiện tượng | Nguyên nhân / cách xử lý |
