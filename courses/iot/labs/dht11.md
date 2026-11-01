@@ -3,7 +3,7 @@ title: "Lab 3 · Cảm biến nhiệt độ – độ ẩm DHT11"
 subject: "iot"
 type: lab
 lab_no: 3
-status: reading
+status: done
 source: slide
 tags: [arduino, dht11, sensor, temperature, humidity, lcd1602]
 date: 2026-11-01
@@ -216,7 +216,16 @@ Nếu cần một giá trị "độ ẩm" giả để thử phần hiển thị 
 
 **Lần chạy đầu bị lỗi.** Serial Monitor in `Loi doc DHT11!` liên tục. Nguyên nhân là dây đỏ (`−`) cắm nhầm vào `Vin`, nằm sát cạnh `GND`. Khi cấp nguồn bằng USB, `Vin` có điện áp gần 5 V, nên hai chân nguồn của module gần như ngang áp và module không có điện. Module không nóng, không hỏng, nên rất khó nhận ra. Chuyển dây đỏ sang `GND` là đọc được ngay.
 
-> 📷 *Chờ kết quả Serial Monitor.*
+Kết quả Test 1 trên Serial Monitor (9600 baud):
+
+![Serial Monitor: độ ẩm 59 %, nhiệt độ 33 °C, nhiệt độ cảm nhận 39,16 °C](../assets/dht11-serial-output.png){width=80%}
+
+Một vài nhận xét về kết quả:
+
+- **33 °C, 59 %RH**: nằm trong khoảng bình thường của một phòng không bật điều hoà ở Việt Nam.
+- Số đo in ra là `33.00` và `59.00`, phần thập phân luôn bằng 0. Đây là độ phân giải 1 °C / 1 % của DHT11, không phải lỗi.
+- Các dòng giống hệt nhau vì nhiệt độ và độ ẩm phòng thay đổi chậm hơn bước 1 đơn vị trong vài chục giây. Muốn thấy số nhảy thì hà hơi vào cảm biến, hoặc nắm tay quanh nó.
+- **Cảm nhận 39,16 °C**: phòng 33 °C với độ ẩm 59 % cho cảm giác nóng như 39 °C. Giá trị này có phần thập phân vì được *tính* từ hai số nguyên trên, chứ cảm biến không đo trực tiếp.
 
 ## Lỗi hay gặp
 
