@@ -284,7 +284,13 @@ Cách kiểm tra chắc chắn nhất: dùng đồng hồ đo thông mạch. Ho�
 
 ### Ảnh thực tế
 
-> 📷 *Chờ ảnh các cảm biến trong kit.*
+#### Module DHT11
+
+![Module DHT11 trong kit (mạch `V182`): chân `+` · `out` · `−` tính từ trên xuống khi nhìn mặt trước](../assets/kit-dht11-front.jpg){width=50%}
+
+Cảm biến hàn sẵn trên mạch, đã có điện trở kéo lên. Cách nối dây và code xem ở [Lab 3](../labs/dht11.md).
+
+> 📷 *Chờ ảnh các cảm biến còn lại trong kit.*
 
 ## Cơ cấu chấp hành
 
