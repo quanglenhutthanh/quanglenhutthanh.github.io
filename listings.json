@@ -33,8 +33,8 @@
     "items": [
       "/courses/iot/lectures/iot-overview.html",
       "/courses/iot/lectures/arduino-components.html",
-      "/courses/iot/lectures/lcd-i2c.html",
-      "/courses/iot/labs/led-basics.html"
+      "/courses/iot/labs/led-basics.html",
+      "/courses/iot/labs/lcd-i2c.html"
     ]
   },
   {
