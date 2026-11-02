@@ -5,13 +5,13 @@ type: lab
 lab_no: 5
 status: reading
 source: slide
-tags: [arduino, ldr, photoresistor, sensor, light, adc, pwm]
+tags: [arduino, ldr, photoresistor, sensor, light, adc, pwm, servo]
 date: 2026-11-02
 ---
 
 # Lab 5 · Quang trở (LDR) – cảm biến ánh sáng
 
-> Đo cường độ ánh sáng bằng quang trở và Arduino Uno: đọc giá trị analog lên Serial Monitor, làm đèn ngủ tự bật khi trời tối, rồi chỉnh độ sáng LED theo ánh sáng phòng. Đây là lab đầu tiên tự mắc **cầu chia áp** để đọc một cảm biến analog.
+> Đo cường độ ánh sáng bằng quang trở và Arduino Uno: đọc giá trị analog lên Serial Monitor, làm đèn ngủ tự bật khi trời tối, chỉnh độ sáng LED theo ánh sáng phòng, rồi dùng hai quang trở để servo tự xoay về phía sáng hơn. Đây là lab đầu tiên tự mắc **cầu chia áp** để đọc một cảm biến analog.
 
 ## Quang trở là gì
 
@@ -216,6 +216,82 @@ Giải thích:
 - **Hiệu chỉnh**: thay `RAW_TOI`, `RAW_SANG` bằng số đo thật. Nếu dùng nguyên 0–1023 thì LED gần như không bao giờ sáng hết cỡ hay tắt hẳn, vì trong phòng LDR hiếm khi xuống 0 hay lên 1023.
 - **Mắt người cảm nhận độ sáng phi tuyến**: PWM 0 → 50 trông thay đổi nhiều, 200 → 255 gần như không khác. Muốn đều mắt hơn thì bình phương: `doSang = doSang * doSang / 255;` (đổi `doSang` sang `long` để tránh tràn số khi nhân, vì `int` trên Uno chỉ tới 32767).
 
+### Test 4 – servo bám ánh sáng (2 quang trở)
+
+Ghép quang trở với servo SG90 của [Lab 4](servo-sg90.md): hai LDR đặt cách nhau, servo tự xoay về phía **sáng hơn**. Đây là nguyên lý của tấm pin mặt trời bám nắng (*solar tracker*): khi hai LDR nhận ánh sáng bằng nhau thì tấm pin đang nhìn thẳng vào nguồn sáng.
+
+| Linh kiện | Nối vào |
+|---|---|
+| Uno `5V` / `GND` | Thanh `+` / `−` phía dưới breadboard |
+| LDR trái (cột 6–7) | Cột 7 → thanh `+`; cột 6 là điểm giữa → **`A0`** |
+| Điện trở 10 kΩ trái | Cột 6 → thanh `−` |
+| LDR phải (cột 24–25) | Cột 25 → thanh `+`; cột 24 là điểm giữa → **`A1`** |
+| Điện trở 10 kΩ phải | Cột 24 → thanh `−` |
+| Servo – tín hiệu | `D9` |
+| Servo – đỏ / nâu | Thanh `+` / `−` (đầu bên phải breadboard) |
+
+Mỗi LDR là một cầu chia áp riêng giống hệt Test 1, nên cả hai cho **số lớn khi sáng**.
+
+```cpp
+#include <Servo.h>
+
+#define LDR_TRAI   A0
+#define LDR_PHAI   A1
+#define SERVO_PIN  9
+
+#define VUNG_CHET  30   // chênh lệch nhỏ hơn mức này thì coi như cân bằng
+#define BUOC       1    // mỗi lần xoay 1°
+
+Servo myServo;
+int goc = 90;           // bắt đầu ở giữa
+
+void setup() {
+  Serial.begin(9600);
+  myServo.attach(SERVO_PIN);
+  myServo.write(goc);
+}
+
+void loop() {
+  int trai = analogRead(LDR_TRAI);
+  int phai = analogRead(LDR_PHAI);
+  int lech = trai - phai;            // > 0: bên trái sáng hơn
+
+  if (lech > VUNG_CHET) {
+    goc += BUOC;                     // quay về phía LDR trái
+  } else if (lech < -VUNG_CHET) {
+    goc -= BUOC;                     // quay về phía LDR phải
+  }
+  goc = constrain(goc, 0, 180);
+  myServo.write(goc);
+
+  Serial.print("trai = ");
+  Serial.print(trai);
+  Serial.print("  phai = ");
+  Serial.print(phai);
+  Serial.print("  goc = ");
+  Serial.println(goc);
+  delay(20);
+}
+```
+
+Giải thích:
+
+- **So sánh hai LDR với nhau, không so với ngưỡng cố định.** Trời sáng hay tối thì hai số cùng lên cùng xuống, chỉ có **hiệu** `trai - phai` cho biết nguồn sáng lệch về bên nào. Nhờ vậy mạch chạy được cả trong phòng lẫn ngoài nắng mà không cần hiệu chỉnh ngưỡng.
+- **Xoay từng bước 1°** chứ không nhảy thẳng đến góc tính sẵn: mỗi vòng `loop()` servo nhích một chút về phía sáng hơn, đến khi hai LDR cân bằng thì dừng. Đây là vòng điều khiển phản hồi đơn giản nhất. Với `delay(20)`, quay hết 180° mất khoảng 3,6 s.
+- **`VUNG_CHET`** (vùng chết) giống ý tưởng hysteresis ở Test 2: hai LDR không bao giờ cho số bằng hệt nhau (sai lệch giữa hai con, nhiễu ADC), nên nếu không có vùng chết servo sẽ lắc qua lắc lại quanh điểm cân bằng. Tăng lên nếu servo còn rung, giảm xuống nếu servo dừng chưa đúng hướng.
+- **Chiều quay** phụ thuộc cách gắn LDR lên cánh tay servo. Nếu servo quay **ra xa** nguồn sáng thay vì về phía đó, đổi `goc += BUOC` thành `goc -= BUOC` và ngược lại (hoặc đổi chỗ dây `A0`/`A1`).
+
+**Cách kiểm tra:**
+
+- Để hai LDR cùng ánh sáng phòng: servo đứng yên ở 90°, `trai` và `phai` chênh nhau ít.
+- Che LDR phải bằng tay: `phai` tụt, `lech` dương, servo quay dần về một phía và Serial in `goc` tăng dần.
+- Che LDR trái: servo quay ngược lại.
+- Chiếu đèn flash vào một bên: servo quay về phía đó rồi dừng ở đầu hành trình (0° hoặc 180°), vì trên breadboard hai LDR đứng yên, không bao giờ cân bằng lại được.
+
+**Làm bám nắng thật.** Trên breadboard, LDR không gắn vào servo nên servo quay mãi đến cuối hành trình. Muốn servo **dừng đúng hướng** nguồn sáng thì gắn hai LDR lên cánh tay servo, quay lưng vào nhau hoặc ngăn giữa bằng một tấm bìa đứng (vách chắn). Khi cánh tay nhìn thẳng vào đèn thì hai LDR sáng bằng nhau, khi lệch thì vách chắn đổ bóng lên một con. Cách này cần dây dài từ LDR xuống breadboard.
+
+Trong kit có đúng **hai quang trở**, đủ cho mạch này.
+
 ### Mở rộng: hiển thị lên LCD
 
 Ghép với [Lab 2](lcd-i2c.md): LCD vẫn ở `A4`/`A5`, LDR ở `A0`. In một thanh mức sáng 16 ô:
@@ -257,7 +333,7 @@ void loop() {
 |---|---|---|
 | Chiếu sáng | Đèn đường, đèn sân vườn tự bật | Bật đèn khi trời tối, tắt khi sáng (chính là Test 2) |
 | Điện thoại / màn hình | Tự chỉnh độ sáng màn hình | Đo ánh sáng môi trường (máy hiện đại dùng photodiode, cùng nguyên lý) |
-| Năng lượng | Tấm pin mặt trời bám nắng | 2 quang trở hai bên, servo ([Lab 4](servo-sg90.md)) xoay về phía số đo lớn hơn |
+| Năng lượng | Tấm pin mặt trời bám nắng | 2 quang trở hai bên, servo ([Lab 4](servo-sg90.md)) xoay về phía số đo lớn hơn (chính là Test 4) |
 | An ninh | Báo động tia laser | Laser chiếu vào LDR, có người cắt ngang tia thì số đo tụt → báo động |
 | Đồ chơi / robot | Robot dò line, robot đi theo ánh sáng | Đo ánh sáng phản xạ từ mặt sàn đen/trắng |
 | Nông nghiệp | Nhà kính | Ghi lại số giờ nắng, kéo rèm che khi quá nắng |
@@ -280,6 +356,19 @@ Tinkercad Circuits có sẵn **Photoresistor** (tìm `photoresistor` hoặc `LDR
 4. **Bấm vào quang trở** lúc đang mô phỏng sẽ hiện thanh trượt độ sáng. Kéo sang trái (tối) thì `raw` giảm, sang phải (sáng) thì tăng.
 
 Quang trở trong Tinkercad cho số đọc tuyến tính và không nhiễu, nên LED ở Test 2 sẽ không nháy kể cả khi chỉ dùng một ngưỡng. Hysteresis chỉ thấy tác dụng trên mạch thật.
+
+Mạch Test 4 dựng trên Tinkercad:
+
+![Mạch Test 4 trên Tinkercad: hai quang trở ở cột 6–7 và 24–25, mỗi con có điện trở 10 kΩ xuống thanh `−`, điểm giữa nối `A0` (dây xanh nhạt) và `A1` (dây xanh dương), servo ở `D9`](../assets/ldr-servo-tinkercad.png){width=100%}
+
+Đọc mạch theo từng đường:
+
+- **Nguồn:** `5V` (dây đỏ) và `GND` (dây đen) của Uno đi vào thanh `+` và `−` phía dưới breadboard, ở đầu bên trái. Servo lấy điện từ đầu bên phải của cùng hai thanh này.
+- **LDR trái:** hai chân cắm ở hàng `e`, cột 6 và 7. Cột 7 có dây đỏ xuống thanh `+`. Cột 6 có điện trở 10 kΩ (vòng nâu – đen – cam) xuống thanh `−`, và dây xanh nhạt từ hàng `c` đi về `A0`.
+- **LDR phải:** giống hệt, ở cột 24 và 25. Dây xanh dương từ cột 24 chạy chéo qua breadboard về `A1`.
+- **Servo:** dây xanh từ `D9` chạy vòng phía trên sang giắc servo. Dây đỏ và đen của servo đi xuống thanh `+`/`−`.
+
+Lúc mô phỏng, bấm vào từng quang trở để kéo thanh trượt độ sáng riêng của nó. Kéo LDR trái sáng hơn LDR phải thì servo quay về một phía, kéo ngược lại thì servo quay về phía kia, kéo hai thanh bằng nhau thì servo dừng.
 
 ## Ảnh thực tế
 
