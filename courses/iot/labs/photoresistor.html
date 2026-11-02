@@ -219,6 +219,7 @@ window.Quarto = {
   <li><a href="#test-1-đọc-giá-trị-ánh-sáng" id="toc-test-1-đọc-giá-trị-ánh-sáng" class="nav-link" data-scroll-target="#test-1-đọc-giá-trị-ánh-sáng">Test 1 – đọc giá trị ánh sáng</a></li>
   <li><a href="#test-2-đèn-ngủ-tự-động" id="toc-test-2-đèn-ngủ-tự-động" class="nav-link" data-scroll-target="#test-2-đèn-ngủ-tự-động">Test 2 – đèn ngủ tự động</a></li>
   <li><a href="#test-3-độ-sáng-led-theo-ánh-sáng-phòng" id="toc-test-3-độ-sáng-led-theo-ánh-sáng-phòng" class="nav-link" data-scroll-target="#test-3-độ-sáng-led-theo-ánh-sáng-phòng">Test 3 – độ sáng LED theo ánh sáng phòng</a></li>
+  <li><a href="#test-4-servo-bám-ánh-sáng-2-quang-trở" id="toc-test-4-servo-bám-ánh-sáng-2-quang-trở" class="nav-link" data-scroll-target="#test-4-servo-bám-ánh-sáng-2-quang-trở">Test 4 – servo bám ánh sáng (2 quang trở)</a></li>
   <li><a href="#mở-rộng-hiển-thị-lên-lcd" id="toc-mở-rộng-hiển-thị-lên-lcd" class="nav-link" data-scroll-target="#mở-rộng-hiển-thị-lên-lcd">Mở rộng: hiển thị lên LCD</a></li>
   </ul></li>
   <li><a href="#ứng-dụng-của-quang-trở" id="toc-ứng-dụng-của-quang-trở" class="nav-link" data-scroll-target="#ứng-dụng-của-quang-trở">Ứng dụng của quang trở</a>
@@ -263,7 +264,7 @@ window.Quarto = {
 <section id="lab-5-quang-trở-ldr-cảm-biến-ánh-sáng" class="level1">
 <h1>Lab 5 · Quang trở (LDR) – cảm biến ánh sáng</h1>
 <blockquote class="blockquote">
-<p>Đo cường độ ánh sáng bằng quang trở và Arduino Uno: đọc giá trị analog lên Serial Monitor, làm đèn ngủ tự bật khi trời tối, rồi chỉnh độ sáng LED theo ánh sáng phòng. Đây là lab đầu tiên tự mắc <strong>cầu chia áp</strong> để đọc một cảm biến analog.</p>
+<p>Đo cường độ ánh sáng bằng quang trở và Arduino Uno: đọc giá trị analog lên Serial Monitor, làm đèn ngủ tự bật khi trời tối, chỉnh độ sáng LED theo ánh sáng phòng, rồi dùng hai quang trở để servo tự xoay về phía sáng hơn. Đây là lab đầu tiên tự mắc <strong>cầu chia áp</strong> để đọc một cảm biến analog.</p>
 </blockquote>
 <section id="quang-trở-là-gì" class="level2">
 <h2 class="anchored" data-anchor-id="quang-trở-là-gì">Quang trở là gì</h2>
@@ -565,35 +566,137 @@ window.Quarto = {
 <li><strong>Mắt người cảm nhận độ sáng phi tuyến</strong>: PWM 0 → 50 trông thay đổi nhiều, 200 → 255 gần như không khác. Muốn đều mắt hơn thì bình phương: <code>doSang = doSang * doSang / 255;</code> (đổi <code>doSang</code> sang <code>long</code> để tránh tràn số khi nhân, vì <code>int</code> trên Uno chỉ tới 32767).</li>
 </ul>
 </section>
+<section id="test-4-servo-bám-ánh-sáng-2-quang-trở" class="level3">
+<h3 class="anchored" data-anchor-id="test-4-servo-bám-ánh-sáng-2-quang-trở">Test 4 – servo bám ánh sáng (2 quang trở)</h3>
+<p>Ghép quang trở với servo SG90 của <a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>: hai LDR đặt cách nhau, servo tự xoay về phía <strong>sáng hơn</strong>. Đây là nguyên lý của tấm pin mặt trời bám nắng (<em>solar tracker</em>): khi hai LDR nhận ánh sáng bằng nhau thì tấm pin đang nhìn thẳng vào nguồn sáng.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Nối vào</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Uno <code>5V</code> / <code>GND</code></td>
+<td>Thanh <code>+</code> / <code>−</code> phía dưới breadboard</td>
+</tr>
+<tr class="even">
+<td>LDR trái (cột 6–7)</td>
+<td>Cột 7 → thanh <code>+</code>; cột 6 là điểm giữa → <strong><code>A0</code></strong></td>
+</tr>
+<tr class="odd">
+<td>Điện trở 10 kΩ trái</td>
+<td>Cột 6 → thanh <code>−</code></td>
+</tr>
+<tr class="even">
+<td>LDR phải (cột 24–25)</td>
+<td>Cột 25 → thanh <code>+</code>; cột 24 là điểm giữa → <strong><code>A1</code></strong></td>
+</tr>
+<tr class="odd">
+<td>Điện trở 10 kΩ phải</td>
+<td>Cột 24 → thanh <code>−</code></td>
+</tr>
+<tr class="even">
+<td>Servo – tín hiệu</td>
+<td><code>D9</code></td>
+</tr>
+<tr class="odd">
+<td>Servo – đỏ / nâu</td>
+<td>Thanh <code>+</code> / <code>−</code> (đầu bên phải breadboard)</td>
+</tr>
+</tbody>
+</table>
+<p>Mỗi LDR là một cầu chia áp riêng giống hệt Test 1, nên cả hai cho <strong>số lớn khi sáng</strong>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LDR_TRAI   </span>A0</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LDR_PHAI   </span>A1</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SERVO_PIN  </span><span class="dv">9</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define VUNG_CHET  </span><span class="dv">30</span><span class="pp">   </span><span class="co">// chênh lệch nhỏ hơn mức này thì coi như cân bằng</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BUOC       </span><span class="dv">1</span><span class="pp">    </span><span class="co">// mỗi lần xoay 1°</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>Servo myServo<span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> goc <span class="op">=</span> <span class="dv">90</span><span class="op">;</span>           <span class="co">// bắt đầu ở giữa</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  myServo<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  myServo<span class="op">.</span>write<span class="op">(</span>goc<span class="op">);</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> trai <span class="op">=</span> analogRead<span class="op">(</span>LDR_TRAI<span class="op">);</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> phai <span class="op">=</span> analogRead<span class="op">(</span>LDR_PHAI<span class="op">);</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> lech <span class="op">=</span> trai <span class="op">-</span> phai<span class="op">;</span>            <span class="co">// &gt; 0: bên trái sáng hơn</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>lech <span class="op">&gt;</span> VUNG_CHET<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    goc <span class="op">+=</span> BUOC<span class="op">;</span>                     <span class="co">// quay về phía LDR trái</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>lech <span class="op">&lt;</span> <span class="op">-</span>VUNG_CHET<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    goc <span class="op">-=</span> BUOC<span class="op">;</span>                     <span class="co">// quay về phía LDR phải</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  goc <span class="op">=</span> constrain<span class="op">(</span>goc<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">180</span><span class="op">);</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  myServo<span class="op">.</span>write<span class="op">(</span>goc<span class="op">);</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"trai = "</span><span class="op">);</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>trai<span class="op">);</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  phai = "</span><span class="op">);</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>phai<span class="op">);</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  goc = "</span><span class="op">);</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>goc<span class="op">);</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">20</span><span class="op">);</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li><strong>So sánh hai LDR với nhau, không so với ngưỡng cố định.</strong> Trời sáng hay tối thì hai số cùng lên cùng xuống, chỉ có <strong>hiệu</strong> <code>trai - phai</code> cho biết nguồn sáng lệch về bên nào. Nhờ vậy mạch chạy được cả trong phòng lẫn ngoài nắng mà không cần hiệu chỉnh ngưỡng.</li>
+<li><strong>Xoay từng bước 1°</strong> chứ không nhảy thẳng đến góc tính sẵn: mỗi vòng <code>loop()</code> servo nhích một chút về phía sáng hơn, đến khi hai LDR cân bằng thì dừng. Đây là vòng điều khiển phản hồi đơn giản nhất. Với <code>delay(20)</code>, quay hết 180° mất khoảng 3,6 s.</li>
+<li><strong><code>VUNG_CHET</code></strong> (vùng chết) giống ý tưởng hysteresis ở Test 2: hai LDR không bao giờ cho số bằng hệt nhau (sai lệch giữa hai con, nhiễu ADC), nên nếu không có vùng chết servo sẽ lắc qua lắc lại quanh điểm cân bằng. Tăng lên nếu servo còn rung, giảm xuống nếu servo dừng chưa đúng hướng.</li>
+<li><strong>Chiều quay</strong> phụ thuộc cách gắn LDR lên cánh tay servo. Nếu servo quay <strong>ra xa</strong> nguồn sáng thay vì về phía đó, đổi <code>goc += BUOC</code> thành <code>goc -= BUOC</code> và ngược lại (hoặc đổi chỗ dây <code>A0</code>/<code>A1</code>).</li>
+</ul>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Để hai LDR cùng ánh sáng phòng: servo đứng yên ở 90°, <code>trai</code> và <code>phai</code> chênh nhau ít.</li>
+<li>Che LDR phải bằng tay: <code>phai</code> tụt, <code>lech</code> dương, servo quay dần về một phía và Serial in <code>goc</code> tăng dần.</li>
+<li>Che LDR trái: servo quay ngược lại.</li>
+<li>Chiếu đèn flash vào một bên: servo quay về phía đó rồi dừng ở đầu hành trình (0° hoặc 180°), vì trên breadboard hai LDR đứng yên, không bao giờ cân bằng lại được.</li>
+</ul>
+<p><strong>Làm bám nắng thật.</strong> Trên breadboard, LDR không gắn vào servo nên servo quay mãi đến cuối hành trình. Muốn servo <strong>dừng đúng hướng</strong> nguồn sáng thì gắn hai LDR lên cánh tay servo, quay lưng vào nhau hoặc ngăn giữa bằng một tấm bìa đứng (vách chắn). Khi cánh tay nhìn thẳng vào đèn thì hai LDR sáng bằng nhau, khi lệch thì vách chắn đổ bóng lên một con. Cách này cần dây dài từ LDR xuống breadboard.</p>
+<p>Trong kit có đúng <strong>hai quang trở</strong>, đủ cho mạch này.</p>
+</section>
 <section id="mở-rộng-hiển-thị-lên-lcd" class="level3">
 <h3 class="anchored" data-anchor-id="mở-rộng-hiển-thị-lên-lcd">Mở rộng: hiển thị lên LCD</h3>
 <p>Ghép với <a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>: LCD vẫn ở <code>A4</code>/<code>A5</code>, LDR ở <code>A0</code>. In một thanh mức sáng 16 ô:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;LiquidCrystal_I2C.h&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>LiquidCrystal_I2C lcd<span class="op">(</span><span class="bn">0x27</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>init<span class="op">();</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>backlight<span class="op">();</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>A0<span class="op">);</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> phanTram <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">100</span><span class="op">);</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> soO <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">16</span><span class="op">);</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"Anh sang: "</span><span class="op">);</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span>phanTram<span class="op">);</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">" %   "</span><span class="op">);</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span>i <span class="op">&lt;</span> soO <span class="op">?</span> <span class="op">(</span><span class="dt">char</span><span class="op">)</span><span class="dv">255</span> <span class="op">:</span> <span class="ch">' '</span><span class="op">);</span>   <span class="co">// 255 = ô tô đen trong ROM HD44780</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;LiquidCrystal_I2C.h&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>LiquidCrystal_I2C lcd<span class="op">(</span><span class="bn">0x27</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>init<span class="op">();</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>backlight<span class="op">();</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>A0<span class="op">);</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> phanTram <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">100</span><span class="op">);</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> soO <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">16</span><span class="op">);</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"Anh sang: "</span><span class="op">);</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span>phanTram<span class="op">);</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">" %   "</span><span class="op">);</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span>i <span class="op">&lt;</span> soO <span class="op">?</span> <span class="op">(</span><span class="dt">char</span><span class="op">)</span><span class="dv">255</span> <span class="op">:</span> <span class="ch">' '</span><span class="op">);</span>   <span class="co">// 255 = ô tô đen trong ROM HD44780</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>“%” ở đây chỉ là tỉ lệ điện áp, <strong>không phải</strong> phần trăm ánh sáng thật, vì quan hệ giữa điện áp và lux là phi tuyến.</p>
 </section>
 </section>
@@ -621,7 +724,7 @@ window.Quarto = {
 <tr class="odd">
 <td>Năng lượng</td>
 <td>Tấm pin mặt trời bám nắng</td>
-<td>2 quang trở hai bên, servo (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>) xoay về phía số đo lớn hơn</td>
+<td>2 quang trở hai bên, servo (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>) xoay về phía số đo lớn hơn (chính là Test 4)</td>
 </tr>
 <tr class="even">
 <td>An ninh</td>
@@ -660,6 +763,21 @@ window.Quarto = {
 <li><strong>Bấm vào quang trở</strong> lúc đang mô phỏng sẽ hiện thanh trượt độ sáng. Kéo sang trái (tối) thì <code>raw</code> giảm, sang phải (sáng) thì tăng.</li>
 </ol>
 <p>Quang trở trong Tinkercad cho số đọc tuyến tính và không nhiễu, nên LED ở Test 2 sẽ không nháy kể cả khi chỉ dùng một ngưỡng. Hysteresis chỉ thấy tác dụng trên mạch thật.</p>
+<p>Mạch Test 4 dựng trên Tinkercad:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/ldr-servo-tinkercad.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Mạch Test 4 trên Tinkercad: hai quang trở ở cột 6–7 và 24–25, mỗi con có điện trở 10 kΩ xuống thanh <code>−</code>, điểm giữa nối <code>A0</code> (dây xanh nhạt) và <code>A1</code> (dây xanh dương), servo ở <code>D9</code></figcaption>
+</figure>
+</div>
+<p>Đọc mạch theo từng đường:</p>
+<ul>
+<li><strong>Nguồn:</strong> <code>5V</code> (dây đỏ) và <code>GND</code> (dây đen) của Uno đi vào thanh <code>+</code> và <code>−</code> phía dưới breadboard, ở đầu bên trái. Servo lấy điện từ đầu bên phải của cùng hai thanh này.</li>
+<li><strong>LDR trái:</strong> hai chân cắm ở hàng <code>e</code>, cột 6 và 7. Cột 7 có dây đỏ xuống thanh <code>+</code>. Cột 6 có điện trở 10 kΩ (vòng nâu – đen – cam) xuống thanh <code>−</code>, và dây xanh nhạt từ hàng <code>c</code> đi về <code>A0</code>.</li>
+<li><strong>LDR phải:</strong> giống hệt, ở cột 24 và 25. Dây xanh dương từ cột 24 chạy chéo qua breadboard về <code>A1</code>.</li>
+<li><strong>Servo:</strong> dây xanh từ <code>D9</code> chạy vòng phía trên sang giắc servo. Dây đỏ và đen của servo đi xuống thanh <code>+</code>/<code>−</code>.</li>
+</ul>
+<p>Lúc mô phỏng, bấm vào từng quang trở để kéo thanh trượt độ sáng riêng của nó. Kéo LDR trái sáng hơn LDR phải thì servo quay về một phía, kéo ngược lại thì servo quay về phía kia, kéo hai thanh bằng nhau thì servo dừng.</p>
 </section>
 <section id="ảnh-thực-tế" class="level2">
 <h2 class="anchored" data-anchor-id="ảnh-thực-tế">Ảnh thực tế</h2>
