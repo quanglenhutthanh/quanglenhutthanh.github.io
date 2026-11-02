@@ -1,0 +1,300 @@
+---
+title: "Lab 5 · Quang trở (LDR) – cảm biến ánh sáng"
+subject: "iot"
+type: lab
+lab_no: 5
+status: reading
+source: slide
+tags: [arduino, ldr, photoresistor, sensor, light, adc, pwm]
+date: 2026-11-02
+---
+
+# Lab 5 · Quang trở (LDR) – cảm biến ánh sáng
+
+> Đo cường độ ánh sáng bằng quang trở và Arduino Uno: đọc giá trị analog lên Serial Monitor, làm đèn ngủ tự bật khi trời tối, rồi chỉnh độ sáng LED theo ánh sáng phòng. Đây là lab đầu tiên tự mắc **cầu chia áp** để đọc một cảm biến analog.
+
+## Quang trở là gì
+
+**Quang trở** (LDR – *Light Dependent Resistor*, hay *photoresistor*) là một điện trở có **giá trị thay đổi theo ánh sáng**: càng sáng thì điện trở càng **nhỏ**, càng tối thì điện trở càng **lớn**. Mặt trên có một đường ziczac màu cam làm bằng **cadmi sunfua (CdS)**. Ánh sáng chiếu vào giải phóng thêm điện tử tự do trong lớp CdS, nên dòng điện đi qua dễ hơn.
+
+Loại hay gặp trong kit là **GL5528** (đường kính 5 mm):
+
+| Thông số | GL5528 |
+|---|---|
+| Điện trở khi sáng (10 lux) | 8–20 kΩ |
+| Điện trở khi tối hẳn | ≥ 1 MΩ |
+| Điện trở dưới đèn bàn / nắng | ~1 kΩ hoặc nhỏ hơn |
+| Thời gian đáp ứng | ~20 ms khi sáng lên, ~30 ms khi tối đi |
+| Đỉnh nhạy | ~540 nm (ánh sáng xanh lá, gần mắt người) |
+| Điện áp tối đa | 150 V DC |
+| Phân cực | **Không** – cắm chiều nào cũng được |
+
+![Hai quang trở trần trong kit: con phía trước quay mặt CdS ziczac về camera, con phía sau nằm nghiêng với hai chân chĩa sang trái](../assets/kit-ldr.jpg){width=70%}
+
+Kit dùng **quang trở trần** (không có mạch module), thân tròn dẹt khoảng 5 mm, hai chân dài và mềm. Hai chân giống hệt nhau, không có chân dài/ngắn hay dấu cực như LED. Chân rất dễ cong, nên vuốt thẳng trước khi cắm breadboard; có thể cắt ngắn bớt cho LDR đứng vững, nhưng chừa ít nhất 1 cm.
+
+Quang trở rẻ và dễ dùng, nhưng **không chính xác**: hai con cùng mã có thể lệch nhau vài chục phần trăm, giá trị còn trôi theo nhiệt độ, và quan hệ giữa điện trở với lux là phi tuyến. Nó hợp để phân biệt **sáng / tối / rất sáng**, không hợp để đo lux chính xác (khi đó dùng cảm biến số như BH1750).
+
+## Cầu chia áp
+
+Arduino không đo trực tiếp được điện trở, chỉ đo được **điện áp** (`analogRead()` trả 0–1023 cho 0–5 V). Vì vậy phải biến thay đổi điện trở thành thay đổi điện áp bằng **cầu chia áp**: mắc quang trở nối tiếp một **điện trở cố định 10 kΩ** giữa `5V` và `GND`, lấy điện áp ở điểm giữa.
+
+```
+5V ──[ LDR ]──┬──[ 10 kΩ ]── GND
+              │
+              A0
+```
+
+Điện áp ở `A0`:
+
+$$V_{A0} = 5\,\text{V} \times \frac{R_{10k}}{R_{LDR} + R_{10k}}$$
+
+| Ánh sáng | $R_{LDR}$ | $V_{A0}$ | `analogRead(A0)` |
+|---|---|---|---|
+| Che kín bằng tay / tối | ~1 MΩ | ~0,05 V | ~10 |
+| Phòng hơi tối | ~50 kΩ | ~0,8 V | ~170 |
+| Phòng đủ sáng (~10 lux) | ~15 kΩ | ~2 V | ~410 |
+| Dưới đèn bàn | ~2 kΩ | ~4,2 V | ~850 |
+| Đèn flash điện thoại chiếu sát | ~0,5 kΩ | ~4,8 V | ~970 |
+
+Với cách mắc này, **càng sáng thì số đọc càng lớn**, dễ hiểu khi đọc code. Nếu đổi chỗ LDR và điện trở 10 kΩ thì ngược lại: càng sáng số càng nhỏ.
+
+**Vì sao chọn 10 kΩ.** Cầu chia áp nhạy nhất khi điện trở cố định xấp xỉ điện trở LDR ở mức sáng cần phân biệt. GL5528 khoảng 10–20 kΩ ở ánh sáng phòng, nên 10 kΩ cho dải đo rộng nhất trong nhà. Muốn phân biệt tốt các mức **tối** thì tăng lên 47–100 kΩ; muốn phân biệt tốt các mức **rất sáng** (ngoài trời) thì giảm xuống 1–2 kΩ.
+
+Điện trở 10 kΩ có vòng màu **nâu – đen – cam – nhũ vàng**, khác với 220 Ω (đỏ – đỏ – nâu) dùng cho LED. Xem lại bảng màu ở bài [linh kiện Arduino](../lectures/arduino-components.md).
+
+## Linh kiện và chân
+
+| Linh kiện | Số lượng | Ghi chú |
+|---|---|---|
+| Quang trở GL5528 | 1 | 2 chân, không phân cực |
+| Điện trở 10 kΩ | 1 | Cầu chia áp |
+| LED (đỏ hoặc vàng) + điện trở 220 Ω | 1 bộ | Dùng cho Test 2 và Test 3 |
+| Breadboard, dây đực – đực | | |
+
+Nối dây:
+
+| Từ | Đến |
+|---|---|
+| Uno `5V` / `GND` | Thanh `+` / `−` breadboard |
+| LDR chân 1 | Thanh `+` |
+| LDR chân 2 | Một cột trống, gọi là **điểm giữa** |
+| Điện trở 10 kΩ | Từ điểm giữa xuống thanh `−` |
+| Điểm giữa | `A0` |
+| LED (Test 2, 3) | `D9` → điện trở 220 Ω → chân dài LED; chân ngắn → thanh `−` |
+
+LED cắm `D9` vì đây là chân có dấu `~`, dùng được `analogWrite()` ở Test 3. Lab này không dùng thư viện `Servo`, nên `D9` không bị chiếm Timer1 như [Lab 4](servo-sg90.md).
+
+**Module quang trở.** Một số kit dùng module quang trở có mạch xanh với 3 hoặc 4 chân (`VCC`, `GND`, `AO`, `DO`) và một biến trở xanh. Module đã có sẵn cầu chia áp:
+
+- `AO` → `A0`: dùng như code bên dưới, nhưng hầu hết module mắc LDR ở **phía dưới** cầu chia áp, nên **càng sáng số càng nhỏ**. Đảo điều kiện so sánh trong code cho phù hợp.
+- `DO` → chân digital: chip so sánh **LM393** đưa ra `HIGH`/`LOW` theo ngưỡng chỉnh bằng biến trở trên module, đèn `DO-LED` trên module sáng khi qua ngưỡng. Đọc bằng `digitalRead()`, không cần code ngưỡng.
+
+## Code
+
+### Test 1 – đọc giá trị ánh sáng
+
+```cpp
+#define LDR_PIN A0
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int raw = analogRead(LDR_PIN);         // 0–1023
+  float v = raw * 5.0 / 1023.0;          // đổi ra volt
+
+  Serial.print("raw = ");
+  Serial.print(raw);
+  Serial.print("  V = ");
+  Serial.print(v, 2);
+  Serial.println(" V");
+  delay(500);
+}
+```
+
+**Cách kiểm tra:**
+
+- Để bình thường trong phòng: số đọc nằm đâu đó giữa 300 và 700, tùy đèn phòng.
+- Lấy tay che kín LDR: số giảm mạnh, có thể dưới 50.
+- Bật đèn flash điện thoại chiếu sát: số tăng lên gần 1000.
+- Mở **Tools → Serial Plotter** (cùng 9600 baud) sẽ thấy đồ thị lên xuống theo tay che. Serial Plotter vẽ mọi số trên một dòng, nên dòng `raw = ... V = ...` sẽ thành hai đường.
+
+**Ghi lại 3 số** trên mạch thật: lúc che kín, lúc ánh sáng phòng, lúc chiếu flash. Test 2 cần các số này để chọn ngưỡng.
+
+### Test 2 – đèn ngủ tự động
+
+LED bật khi phòng **tối**, tắt khi **sáng**. Cách đơn giản nhất là so với một ngưỡng:
+
+```cpp
+if (raw < 300) digitalWrite(LED_PIN, HIGH);
+else           digitalWrite(LED_PIN, LOW);
+```
+
+Nhưng khi ánh sáng nằm sát ngưỡng (trời chạng vạng, bóng người đi qua), nhiễu ADC làm `raw` nhảy 298, 301, 299… và LED **nháy liên tục**. Cách sửa là dùng **hai ngưỡng** (*hysteresis*, trễ): tối hơn 250 mới bật, sáng hơn 350 mới tắt, ở giữa thì giữ nguyên trạng thái cũ.
+
+```cpp
+#define LDR_PIN   A0
+#define LED_PIN   9
+
+#define NGUONG_BAT  250   // tối hơn mức này → bật đèn
+#define NGUONG_TAT  350   // sáng hơn mức này → tắt đèn
+
+bool denBat = false;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  int raw = analogRead(LDR_PIN);
+
+  if (!denBat && raw < NGUONG_BAT) {
+    denBat = true;
+    Serial.println("Toi -> BAT den");
+  } else if (denBat && raw > NGUONG_TAT) {
+    denBat = false;
+    Serial.println("Sang -> TAT den");
+  }
+  digitalWrite(LED_PIN, denBat ? HIGH : LOW);
+
+  Serial.print("raw = ");
+  Serial.println(raw);
+  delay(200);
+}
+```
+
+Chọn hai ngưỡng theo số đã ghi ở Test 1: `NGUONG_BAT` khoảng 1/2 số đọc lúc ánh sáng phòng, `NGUONG_TAT` cao hơn `NGUONG_BAT` khoảng 50–100. Khoảng cách giữa hai ngưỡng càng lớn thì càng ít nháy, nhưng đèn phản ứng càng chậm.
+
+**Cách kiểm tra:**
+
+- Che dần LDR bằng tay: đến khi `raw` xuống dưới `NGUONG_BAT` thì LED sáng, Serial in `Toi -> BAT den` **một lần**.
+- Hé tay ra một chút (để `raw` nằm giữa hai ngưỡng): LED **vẫn sáng**, không nháy.
+- Bỏ tay ra hẳn: LED tắt, Serial in `Sang -> TAT den`.
+
+**Đừng để LED chiếu vào LDR.** Nếu LED đặt sát và hướng về LDR, khi LED bật nó làm LDR "thấy sáng" và tắt lại, rồi lại tối và bật lại: mạch tự dao động. Đặt LED cách xa hoặc quay lưng LED về phía LDR.
+
+### Test 3 – độ sáng LED theo ánh sáng phòng
+
+Thay vì bật/tắt, cho LED **sáng dần** khi phòng tối dần, giống đèn màn hình điện thoại tự chỉnh độ sáng (nhưng ngược chiều: phòng tối thì đèn ngủ sáng hơn).
+
+```cpp
+#define LDR_PIN  A0
+#define LED_PIN  9      // chân ~ để dùng analogWrite
+
+// số đọc lúc che kín và lúc ánh sáng phòng (ghi ở Test 1)
+#define RAW_TOI   50
+#define RAW_SANG  600
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  int raw = analogRead(LDR_PIN);
+  raw = constrain(raw, RAW_TOI, RAW_SANG);
+
+  // tối (RAW_TOI) → sáng nhất 255, sáng (RAW_SANG) → tắt 0
+  int doSang = map(raw, RAW_TOI, RAW_SANG, 255, 0);
+  analogWrite(LED_PIN, doSang);
+
+  Serial.print("raw = ");
+  Serial.print(raw);
+  Serial.print("  PWM = ");
+  Serial.println(doSang);
+  delay(50);
+}
+```
+
+Giải thích:
+
+- **`constrain()` trước `map()`**: `map()` không tự chặn, nên nếu `raw` vượt `RAW_SANG` thì kết quả âm, `analogWrite()` nhận số âm sẽ cho giá trị sai. Chặn trước cho chắc.
+- **`map(raw, RAW_TOI, RAW_SANG, 255, 0)`**: đảo khoảng ra (255 → 0) để tối thì PWM lớn. Không cần viết `255 - map(...)`.
+- **Hiệu chỉnh**: thay `RAW_TOI`, `RAW_SANG` bằng số đo thật. Nếu dùng nguyên 0–1023 thì LED gần như không bao giờ sáng hết cỡ hay tắt hẳn, vì trong phòng LDR hiếm khi xuống 0 hay lên 1023.
+- **Mắt người cảm nhận độ sáng phi tuyến**: PWM 0 → 50 trông thay đổi nhiều, 200 → 255 gần như không khác. Muốn đều mắt hơn thì bình phương: `doSang = doSang * doSang / 255;` (đổi `doSang` sang `long` để tránh tràn số khi nhân, vì `int` trên Uno chỉ tới 32767).
+
+### Mở rộng: hiển thị lên LCD
+
+Ghép với [Lab 2](lcd-i2c.md): LCD vẫn ở `A4`/`A5`, LDR ở `A0`. In một thanh mức sáng 16 ô:
+
+```cpp
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  lcd.init();
+  lcd.backlight();
+}
+
+void loop() {
+  int raw = analogRead(A0);
+  int phanTram = map(raw, 0, 1023, 0, 100);
+  int soO = map(raw, 0, 1023, 0, 16);
+
+  lcd.setCursor(0, 0);
+  lcd.print("Anh sang: ");
+  lcd.print(phanTram);
+  lcd.print(" %   ");
+
+  lcd.setCursor(0, 1);
+  for (int i = 0; i < 16; i++) {
+    lcd.print(i < soO ? (char)255 : ' ');   // 255 = ô tô đen trong ROM HD44780
+  }
+  delay(200);
+}
+```
+
+"%" ở đây chỉ là tỉ lệ điện áp, **không phải** phần trăm ánh sáng thật, vì quan hệ giữa điện áp và lux là phi tuyến.
+
+## Ứng dụng của quang trở
+
+| Lĩnh vực | Ví dụ | Quang trở làm gì |
+|---|---|---|
+| Chiếu sáng | Đèn đường, đèn sân vườn tự bật | Bật đèn khi trời tối, tắt khi sáng (chính là Test 2) |
+| Điện thoại / màn hình | Tự chỉnh độ sáng màn hình | Đo ánh sáng môi trường (máy hiện đại dùng photodiode, cùng nguyên lý) |
+| Năng lượng | Tấm pin mặt trời bám nắng | 2 quang trở hai bên, servo ([Lab 4](servo-sg90.md)) xoay về phía số đo lớn hơn |
+| An ninh | Báo động tia laser | Laser chiếu vào LDR, có người cắt ngang tia thì số đo tụt → báo động |
+| Đồ chơi / robot | Robot dò line, robot đi theo ánh sáng | Đo ánh sáng phản xạ từ mặt sàn đen/trắng |
+| Nông nghiệp | Nhà kính | Ghi lại số giờ nắng, kéo rèm che khi quá nắng |
+
+### Trong hệ IoT
+
+Quang trở là ví dụ điển hình của **cảm biến analog** ở tầng thiết bị: tín hiệu liên tục, phải qua **ADC** mới thành số, và phải **hiệu chỉnh** theo từng con cảm biến. Vài hướng ghép với các lab trước:
+
+- **LDR + servo (Lab 4)**: rèm cửa tự đóng khi nắng gắt, mở khi trời dịu.
+- **LDR + DHT11 (Lab 3) + LCD (Lab 2)**: trạm thời tiết mini hiển thị nhiệt độ, độ ẩm và mức sáng.
+- **ESP8266/ESP32 thay Uno**: gửi số đo ánh sáng lên cloud mỗi phút để vẽ đồ thị ngày/đêm. Lưu ý ADC của ESP32 là 12 bit (0–4095) và tham chiếu 3,3 V, nên phải sửa lại các ngưỡng.
+
+## Mô phỏng
+
+Tinkercad Circuits có sẵn **Photoresistor** (tìm `photoresistor` hoặc `LDR` trong ô linh kiện):
+
+1. Kéo *Arduino Uno R3*, *Breadboard small*, *Photoresistor*, một *Resistor* (đổi giá trị thành **10 kΩ**) và một *LED* + *Resistor 220 Ω* vào.
+2. Nối như bảng ở trên.
+3. Dán code Test 1, bấm **Start Simulation**, mở **Serial Monitor** ở dưới khung code.
+4. **Bấm vào quang trở** lúc đang mô phỏng sẽ hiện thanh trượt độ sáng. Kéo sang trái (tối) thì `raw` giảm, sang phải (sáng) thì tăng.
+
+Quang trở trong Tinkercad cho số đọc tuyến tính và không nhiễu, nên LED ở Test 2 sẽ không nháy kể cả khi chỉ dùng một ngưỡng. Hysteresis chỉ thấy tác dụng trên mạch thật.
+
+## Ảnh thực tế
+
+> 📷 *Chờ ảnh mạch thật và kết quả Serial Monitor.*
+
+## Lỗi hay gặp
+
+| Hiện tượng | Nguyên nhân / cách xử lý |
+|---|---|
+| Số đọc luôn 0 | Thiếu dây `5V` vào LDR, hoặc dây `A0` cắm vào thanh `−` |
+| Số đọc luôn ~1023 | Thiếu điện trở 10 kΩ xuống `GND`, hoặc điện trở cắm lệch cột không chạm điểm giữa |
+| Số đọc nhảy lung tung, chạm tay vào dây thì đổi | `A0` đang **thả nổi**: dây `A0` không chạm điểm giữa cầu chia áp |
+| Che tay số chỉ đổi rất ít | Dùng nhầm điện trở 220 Ω thay vì 10 kΩ (đọc lại vòng màu), hoặc phòng quá tối/quá sáng so với điện trở đã chọn |
+| Càng sáng số càng nhỏ | LDR và điện trở 10 kΩ bị đổi chỗ, hoặc dùng module có `AO` mắc ngược — đảo điều kiện trong code |
+| LED nháy liên tục khi trời chạng vạng | Chỉ dùng một ngưỡng — dùng hysteresis như Test 2 |
+| LED tự bật tắt liên tục dù không ai đụng | LED chiếu ánh sáng vào chính LDR — đặt LED xa hoặc quay hướng khác |
+| Đèn phòng bật mà số đọc dao động nhẹ đều đặn | Đèn huỳnh quang/LED nhấp nháy 100 Hz theo điện lưới — lấy trung bình 10–20 lần đọc |
+| `analogWrite()` chỉ bật/tắt, không sáng dần | LED cắm chân không có dấu `~` — chuyển sang `D3`, `D5`, `D6`, `D9`, `D10` hoặc `D11` |

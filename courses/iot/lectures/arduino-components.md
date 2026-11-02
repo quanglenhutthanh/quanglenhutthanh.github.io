@@ -317,6 +317,12 @@ Cách kiểm tra chắc chắn nhất: dùng đồng hồ đo thông mạch. Ho�
 
 Cảm biến hàn sẵn trên mạch, đã có điện trở kéo lên. Cách nối dây và code xem ở [Lab 3](../labs/dht11.md).
 
+#### Quang trở (LDR)
+
+![Hai quang trở trần trong kit, mặt CdS ziczac màu cam](../assets/kit-ldr.jpg){width=50%}
+
+Quang trở trần 2 chân, không phân cực, phải tự mắc cầu chia áp với điện trở 10 kΩ. Cách nối dây và code xem ở [Lab 5](../labs/photoresistor.md).
+
 > 📷 *Chờ ảnh các cảm biến còn lại trong kit.*
 
 ## Cơ cấu chấp hành
