@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.20">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,14 +73,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../../">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-03f76f603ac1de4e7206c9fd0da51476.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-31aa2054366f318f94060c07976aeae6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -159,19 +160,18 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Le Nhut Thanh Quang</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -199,6 +199,7 @@ window.Quarto = {
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -210,7 +211,7 @@ window.Quarto = {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -818,17 +819,11 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Collecting SpeechRecognition
-
   Downloading speechrecognition-3.16.1-py3-none-any.whl.metadata (28 kB)
-
 Requirement already satisfied: typing-extensions in /usr/local/lib/python3.12/dist-packages (from SpeechRecognition) (4.15.0)
-
 Downloading speechrecognition-3.16.1-py3-none-any.whl (32.9 MB)
-
    <span class="ansi-bright-black-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">32.9/32.9 MB</span> <span class="ansi-red-fg">21.9 MB/s</span> eta <span class="ansi-cyan-fg">0:00:00</span>
-
 Installing collected packages: SpeechRecognition
-
 Successfully installed SpeechRecognition-3.16.1
 </pre>
 </div>
@@ -941,47 +936,26 @@ You said: tôi là Lê Nhật Thanh Quan</code></pre>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Collecting gTTS
-
   Downloading gTTS-2.5.4-py3-none-any.whl.metadata (4.1 kB)
-
 Requirement already satisfied: requests&lt;3,&gt;=2.27 in /usr/local/lib/python3.12/dist-packages (from gTTS) (2.32.4)
-
 Collecting click&lt;8.2,&gt;=7.1 (from gTTS)
-
   Downloading click-8.1.8-py3-none-any.whl.metadata (2.3 kB)
-
 Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests&lt;3,&gt;=2.27-&gt;gTTS) (3.4.7)
-
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.12/dist-packages (from requests&lt;3,&gt;=2.27-&gt;gTTS) (3.18)
-
 Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests&lt;3,&gt;=2.27-&gt;gTTS) (2.5.0)
-
 Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests&lt;3,&gt;=2.27-&gt;gTTS) (2026.5.20)
-
 Downloading gTTS-2.5.4-py3-none-any.whl (29 kB)
-
 Downloading click-8.1.8-py3-none-any.whl (98 kB)
-
    <span class="ansi-bright-black-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">98.2/98.2 kB</span> <span class="ansi-red-fg">2.9 MB/s</span> eta <span class="ansi-cyan-fg">0:00:00</span>
-
 Installing collected packages: click, gTTS
-
   Attempting uninstall: click
-
     Found existing installation: click 8.4.1
-
     Uninstalling click-8.4.1:
-
       Successfully uninstalled click-8.4.1
-
 <span class="ansi-red-fg">ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
-
 huggingface-hub 1.17.0 requires click&gt;=8.4.0, but you have click 8.1.8 which is incompatible.
-
 typer 0.25.1 requires click&gt;=8.2.1, but you have click 8.1.8 which is incompatible.
-
 wandb 0.27.0 requires click&gt;=8.2.0, but you have click 8.1.8 which is incompatible.</span><span class="ansi-red-fg">
-
 </span>Successfully installed click-8.1.8 gTTS-2.5.4
 </pre>
 </div>
@@ -1028,289 +1002,147 @@ wandb 0.27.0 requires click&gt;=8.2.0, but you have click 8.1.8 which is incompa
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Requirement already satisfied: transformers in /usr/local/lib/python3.12/dist-packages (5.9.0)
-
 Requirement already satisfied: torch in /usr/local/lib/python3.12/dist-packages (2.11.0+cpu)
-
 Requirement already satisfied: pillow in /usr/local/lib/python3.12/dist-packages (11.3.0)
-
 Collecting pyttsx3
-
   Downloading pyttsx3-2.99-py3-none-any.whl.metadata (6.2 kB)
-
 Requirement already satisfied: huggingface-hub&lt;2.0,&gt;=1.5.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (1.17.0)
-
 Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.12/dist-packages (from transformers) (2.0.2)
-
 Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (26.2)
-
 Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.12/dist-packages (from transformers) (6.0.3)
-
 Requirement already satisfied: regex&gt;=2025.10.22 in /usr/local/lib/python3.12/dist-packages (from transformers) (2025.11.3)
-
 Requirement already satisfied: tokenizers&lt;=0.23.0,&gt;=0.22.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (0.22.2)
-
 Requirement already satisfied: typer in /usr/local/lib/python3.12/dist-packages (from transformers) (0.25.1)
-
 Requirement already satisfied: safetensors&gt;=0.4.3 in /usr/local/lib/python3.12/dist-packages (from transformers) (0.7.0)
-
 Requirement already satisfied: tqdm&gt;=4.27 in /usr/local/lib/python3.12/dist-packages (from transformers) (4.67.3)
-
 Requirement already satisfied: filelock in /usr/local/lib/python3.12/dist-packages (from torch) (3.29.0)
-
 Requirement already satisfied: typing-extensions&gt;=4.10.0 in /usr/local/lib/python3.12/dist-packages (from torch) (4.15.0)
-
 Requirement already satisfied: setuptools&lt;82 in /usr/local/lib/python3.12/dist-packages (from torch) (75.2.0)
-
 Requirement already satisfied: sympy&gt;=1.13.3 in /usr/local/lib/python3.12/dist-packages (from torch) (1.14.0)
-
 Requirement already satisfied: networkx&gt;=2.5.1 in /usr/local/lib/python3.12/dist-packages (from torch) (3.6.1)
-
 Requirement already satisfied: jinja2 in /usr/local/lib/python3.12/dist-packages (from torch) (3.1.6)
-
 Requirement already satisfied: fsspec&gt;=0.8.5 in /usr/local/lib/python3.12/dist-packages (from torch) (2025.3.0)
-
 Collecting click&gt;=8.4.0 (from huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers)
-
   Downloading click-8.4.1-py3-none-any.whl.metadata (2.6 kB)
-
 Requirement already satisfied: hf-xet&lt;2.0.0,&gt;=1.4.3 in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers) (1.5.0)
-
 Requirement already satisfied: httpx&lt;1,&gt;=0.23.0 in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers) (0.28.1)
-
 Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /usr/local/lib/python3.12/dist-packages (from sympy&gt;=1.13.3-&gt;torch) (1.3.0)
-
 Requirement already satisfied: shellingham&gt;=1.3.0 in /usr/local/lib/python3.12/dist-packages (from typer-&gt;transformers) (1.5.4)
-
 Requirement already satisfied: rich&gt;=13.8.0 in /usr/local/lib/python3.12/dist-packages (from typer-&gt;transformers) (13.9.4)
-
 Requirement already satisfied: annotated-doc&gt;=0.0.2 in /usr/local/lib/python3.12/dist-packages (from typer-&gt;transformers) (0.0.4)
-
 Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.12/dist-packages (from jinja2-&gt;torch) (3.0.3)
-
 Requirement already satisfied: anyio in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers) (4.13.0)
-
 Requirement already satisfied: certifi in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers) (2026.5.20)
-
 Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers) (1.0.9)
-
 Requirement already satisfied: idna in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers) (3.18)
-
 Requirement already satisfied: h11&gt;=0.16 in /usr/local/lib/python3.12/dist-packages (from httpcore==1.*-&gt;httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.5.0-&gt;transformers) (0.16.0)
-
 Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from rich&gt;=13.8.0-&gt;typer-&gt;transformers) (4.2.0)
-
 Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /usr/local/lib/python3.12/dist-packages (from rich&gt;=13.8.0-&gt;typer-&gt;transformers) (2.20.0)
-
 Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.12/dist-packages (from markdown-it-py&gt;=2.2.0-&gt;rich&gt;=13.8.0-&gt;typer-&gt;transformers) (0.1.2)
-
 Downloading pyttsx3-2.99-py3-none-any.whl (32 kB)
-
 Downloading click-8.4.1-py3-none-any.whl (116 kB)
-
    <span class="ansi-bright-black-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">116.6/116.6 kB</span> <span class="ansi-red-fg">7.6 MB/s</span> eta <span class="ansi-cyan-fg">0:00:00</span>
-
 Installing collected packages: pyttsx3, click
-
   Attempting uninstall: click
-
     Found existing installation: click 8.1.8
-
     Uninstalling click-8.1.8:
-
       Successfully uninstalled click-8.1.8
-
 <span class="ansi-red-fg">ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
-
 gtts 2.5.4 requires click&lt;8.2,&gt;=7.1, but you have click 8.4.1 which is incompatible.</span><span class="ansi-red-fg">
-
 </span>Successfully installed click-8.4.1 pyttsx3-2.99
-
 Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
-
 Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-
 Get:3 https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/ InRelease [3,632 B]
-
 Hit:4 https://cli.github.com/packages stable InRelease
-
 Get:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-
 Get:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
-
 Get:7 https://r2u.stat.illinois.edu/ubuntu jammy InRelease [6,555 B]
-
 Hit:8 https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu jammy InRelease
-
 Get:9 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [7,183 kB]
-
 Hit:10 https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu jammy InRelease
-
 Get:11 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1,300 kB]
-
 Get:12 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [4,005 kB]
-
 Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [4,354 kB]
-
 Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [7,489 kB]
-
 Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1,607 kB]
-
 Get:16 https://r2u.stat.illinois.edu/ubuntu jammy/main all Packages [10.3 MB]
-
 Get:17 https://r2u.stat.illinois.edu/ubuntu jammy/main amd64 Packages [3,043 kB]
-
 Fetched 39.7 MB in 8s (4,741 kB/s)
-
 Reading package lists... Done
-
 W: Skipping acquire of configured file 'main/source/Sources' as repository 'https://r2u.stat.illinois.edu/ubuntu jammy InRelease' does not seem to provide it (sources.list entry misspelt?)
-
 Reading package lists... Done
-
 Building dependency tree... Done
-
 Reading state information... Done
-
 The following additional packages will be installed:
-
   espeak-data libespeak1 libportaudio2 libsonic0
-
 The following NEW packages will be installed:
-
   espeak espeak-data libespeak1 libportaudio2 libsonic0
-
 0 upgraded, 5 newly installed, 0 to remove and 11 not upgraded.
-
 Need to get 1,382 kB of archives.
-
 After this operation, 3,178 kB of additional disk space will be used.
-
 Get:1 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libportaudio2 amd64 19.6.0-1.1 [65.3 kB]
-
 Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libsonic0 amd64 0.2.0-11build1 [10.3 kB]
-
 Get:3 http://archive.ubuntu.com/ubuntu jammy/universe amd64 espeak-data amd64 1.48.15+dfsg-3 [1,085 kB]
-
 Get:4 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libespeak1 amd64 1.48.15+dfsg-3 [156 kB]
-
 Get:5 http://archive.ubuntu.com/ubuntu jammy/universe amd64 espeak amd64 1.48.15+dfsg-3 [64.2 kB]
-
 Fetched 1,382 kB in 0s (7,723 kB/s)
-
 debconf: unable to initialize frontend: Dialog
-
 debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 78, &lt;&gt; line 5.)
-
 debconf: falling back to frontend: Readline
-
 debconf: unable to initialize frontend: Readline
-
 debconf: (This frontend requires a controlling tty.)
-
 debconf: falling back to frontend: Teletype
-
 dpkg-preconfigure: unable to re-open stdin: 
-
 Selecting previously unselected package libportaudio2:amd64.
-
 (Reading database ... 118243 files and directories currently installed.)
-
 Preparing to unpack .../libportaudio2_19.6.0-1.1_amd64.deb ...
-
 Unpacking libportaudio2:amd64 (19.6.0-1.1) ...
-
 Selecting previously unselected package libsonic0:amd64.
-
 Preparing to unpack .../libsonic0_0.2.0-11build1_amd64.deb ...
-
 Unpacking libsonic0:amd64 (0.2.0-11build1) ...
-
 Selecting previously unselected package espeak-data:amd64.
-
 Preparing to unpack .../espeak-data_1.48.15+dfsg-3_amd64.deb ...
-
 Unpacking espeak-data:amd64 (1.48.15+dfsg-3) ...
-
 Selecting previously unselected package libespeak1:amd64.
-
 Preparing to unpack .../libespeak1_1.48.15+dfsg-3_amd64.deb ...
-
 Unpacking libespeak1:amd64 (1.48.15+dfsg-3) ...
-
 Selecting previously unselected package espeak.
-
 Preparing to unpack .../espeak_1.48.15+dfsg-3_amd64.deb ...
-
 Unpacking espeak (1.48.15+dfsg-3) ...
-
 Setting up libportaudio2:amd64 (19.6.0-1.1) ...
-
 Setting up libsonic0:amd64 (0.2.0-11build1) ...
-
 Setting up espeak-data:amd64 (1.48.15+dfsg-3) ...
-
 Setting up libespeak1:amd64 (1.48.15+dfsg-3) ...
-
 Setting up espeak (1.48.15+dfsg-3) ...
-
 Processing triggers for man-db (2.10.2-1) ...
-
 Processing triggers for libc-bin (2.35-0ubuntu3.13) ...
-
 /sbin/ldconfig.real: /usr/local/lib/libtbbbind_2_5.so.3 is not a symbolic link
-
-
 
 /sbin/ldconfig.real: /usr/local/lib/libtcm.so.1 is not a symbolic link
 
-
-
 /sbin/ldconfig.real: /usr/local/lib/libtcm_debug.so.1 is not a symbolic link
-
-
 
 /sbin/ldconfig.real: /usr/local/lib/libtbbmalloc.so.2 is not a symbolic link
 
-
-
 /sbin/ldconfig.real: /usr/local/lib/libtbb.so.12 is not a symbolic link
-
-
 
 /sbin/ldconfig.real: /usr/local/lib/libhwloc.so.15 is not a symbolic link
 
-
-
 /sbin/ldconfig.real: /usr/local/lib/libur_loader.so.0 is not a symbolic link
-
-
 
 /sbin/ldconfig.real: /usr/local/lib/libtbbbind_2_0.so.3 is not a symbolic link
 
-
-
 /sbin/ldconfig.real: /usr/local/lib/libur_adapter_opencl.so.0 is not a symbolic link
-
-
 
 /sbin/ldconfig.real: /usr/local/lib/libtbbmalloc_proxy.so.2 is not a symbolic link
 
-
-
 /sbin/ldconfig.real: /usr/local/lib/libur_adapter_level_zero.so.0 is not a symbolic link
-
-
 
 /sbin/ldconfig.real: /usr/local/lib/libur_adapter_level_zero_v2.so.0 is not a symbolic link
 
-
-
 /sbin/ldconfig.real: /usr/local/lib/libtbbbind.so.3 is not a symbolic link
 
-
-
 /sbin/ldconfig.real: /usr/local/lib/libumf.so.1 is not a symbolic link
-
 
 </pre>
 </div>
@@ -1692,7 +1524,8 @@ Converted caption to speech and saved as caption_audio.mp3</code></pre>
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1701,8 +1534,69 @@ Converted caption to speech and saved as caption_audio.mp3</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1716,6 +1610,7 @@ Converted caption to speech and saved as caption_audio.mp3</code></pre>
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1878,44 +1773,54 @@ Converted caption to speech and saved as caption_audio.mp3</code></pre>
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -2013,6 +1918,9 @@ Converted caption to speech and saved as caption_audio.mp3</code></pre>
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 <footer class="footer">

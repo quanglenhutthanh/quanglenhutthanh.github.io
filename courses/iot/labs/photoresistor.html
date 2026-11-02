@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-02">
+
+<title>Lab 5 · Quang trở (LDR) – cảm biến ánh sáng – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-31aa2054366f318f94060c07976aeae6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lab-5-quang-trở-ldr-cảm-biến-ánh-sáng" id="toc-lab-5-quang-trở-ldr-cảm-biến-ánh-sáng" class="nav-link active" data-scroll-target="#lab-5-quang-trở-ldr-cảm-biến-ánh-sáng">Lab 5 · Quang trở (LDR) – cảm biến ánh sáng</a>
+  <ul class="collapse">
+  <li><a href="#quang-trở-là-gì" id="toc-quang-trở-là-gì" class="nav-link" data-scroll-target="#quang-trở-là-gì">Quang trở là gì</a></li>
+  <li><a href="#cầu-chia-áp" id="toc-cầu-chia-áp" class="nav-link" data-scroll-target="#cầu-chia-áp">Cầu chia áp</a></li>
+  <li><a href="#linh-kiện-và-chân" id="toc-linh-kiện-và-chân" class="nav-link" data-scroll-target="#linh-kiện-và-chân">Linh kiện và chân</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <ul class="collapse">
+  <li><a href="#test-1-đọc-giá-trị-ánh-sáng" id="toc-test-1-đọc-giá-trị-ánh-sáng" class="nav-link" data-scroll-target="#test-1-đọc-giá-trị-ánh-sáng">Test 1 – đọc giá trị ánh sáng</a></li>
+  <li><a href="#test-2-đèn-ngủ-tự-động" id="toc-test-2-đèn-ngủ-tự-động" class="nav-link" data-scroll-target="#test-2-đèn-ngủ-tự-động">Test 2 – đèn ngủ tự động</a></li>
+  <li><a href="#test-3-độ-sáng-led-theo-ánh-sáng-phòng" id="toc-test-3-độ-sáng-led-theo-ánh-sáng-phòng" class="nav-link" data-scroll-target="#test-3-độ-sáng-led-theo-ánh-sáng-phòng">Test 3 – độ sáng LED theo ánh sáng phòng</a></li>
+  <li><a href="#mở-rộng-hiển-thị-lên-lcd" id="toc-mở-rộng-hiển-thị-lên-lcd" class="nav-link" data-scroll-target="#mở-rộng-hiển-thị-lên-lcd">Mở rộng: hiển thị lên LCD</a></li>
+  </ul></li>
+  <li><a href="#ứng-dụng-của-quang-trở" id="toc-ứng-dụng-của-quang-trở" class="nav-link" data-scroll-target="#ứng-dụng-của-quang-trở">Ứng dụng của quang trở</a>
+  <ul class="collapse">
+  <li><a href="#trong-hệ-iot" id="toc-trong-hệ-iot" class="nav-link" data-scroll-target="#trong-hệ-iot">Trong hệ IoT</a></li>
+  </ul></li>
+  <li><a href="#mô-phỏng" id="toc-mô-phỏng" class="nav-link" data-scroll-target="#mô-phỏng">Mô phỏng</a></li>
+  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a></li>
+  <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 5 · Quang trở (LDR) – cảm biến ánh sáng</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lab-5-quang-trở-ldr-cảm-biến-ánh-sáng" class="level1">
+<h1>Lab 5 · Quang trở (LDR) – cảm biến ánh sáng</h1>
+<blockquote class="blockquote">
+<p>Đo cường độ ánh sáng bằng quang trở và Arduino Uno: đọc giá trị analog lên Serial Monitor, làm đèn ngủ tự bật khi trời tối, rồi chỉnh độ sáng LED theo ánh sáng phòng. Đây là lab đầu tiên tự mắc <strong>cầu chia áp</strong> để đọc một cảm biến analog.</p>
+</blockquote>
+<section id="quang-trở-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="quang-trở-là-gì">Quang trở là gì</h2>
+<p><strong>Quang trở</strong> (LDR – <em>Light Dependent Resistor</em>, hay <em>photoresistor</em>) là một điện trở có <strong>giá trị thay đổi theo ánh sáng</strong>: càng sáng thì điện trở càng <strong>nhỏ</strong>, càng tối thì điện trở càng <strong>lớn</strong>. Mặt trên có một đường ziczac màu cam làm bằng <strong>cadmi sunfua (CdS)</strong>. Ánh sáng chiếu vào giải phóng thêm điện tử tự do trong lớp CdS, nên dòng điện đi qua dễ hơn.</p>
+<p>Loại hay gặp trong kit là <strong>GL5528</strong> (đường kính 5 mm):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Thông số</th>
+<th>GL5528</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Điện trở khi sáng (10 lux)</td>
+<td>8–20 kΩ</td>
+</tr>
+<tr class="even">
+<td>Điện trở khi tối hẳn</td>
+<td>≥ 1 MΩ</td>
+</tr>
+<tr class="odd">
+<td>Điện trở dưới đèn bàn / nắng</td>
+<td>~1 kΩ hoặc nhỏ hơn</td>
+</tr>
+<tr class="even">
+<td>Thời gian đáp ứng</td>
+<td>~20 ms khi sáng lên, ~30 ms khi tối đi</td>
+</tr>
+<tr class="odd">
+<td>Đỉnh nhạy</td>
+<td>~540 nm (ánh sáng xanh lá, gần mắt người)</td>
+</tr>
+<tr class="even">
+<td>Điện áp tối đa</td>
+<td>150 V DC</td>
+</tr>
+<tr class="odd">
+<td>Phân cực</td>
+<td><strong>Không</strong> – cắm chiều nào cũng được</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-ldr.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Hai quang trở trần trong kit: con phía trước quay mặt CdS ziczac về camera, con phía sau nằm nghiêng với hai chân chĩa sang trái</figcaption>
+</figure>
+</div>
+<p>Kit dùng <strong>quang trở trần</strong> (không có mạch module), thân tròn dẹt khoảng 5 mm, hai chân dài và mềm. Hai chân giống hệt nhau, không có chân dài/ngắn hay dấu cực như LED. Chân rất dễ cong, nên vuốt thẳng trước khi cắm breadboard; có thể cắt ngắn bớt cho LDR đứng vững, nhưng chừa ít nhất 1 cm.</p>
+<p>Quang trở rẻ và dễ dùng, nhưng <strong>không chính xác</strong>: hai con cùng mã có thể lệch nhau vài chục phần trăm, giá trị còn trôi theo nhiệt độ, và quan hệ giữa điện trở với lux là phi tuyến. Nó hợp để phân biệt <strong>sáng / tối / rất sáng</strong>, không hợp để đo lux chính xác (khi đó dùng cảm biến số như BH1750).</p>
+</section>
+<section id="cầu-chia-áp" class="level2">
+<h2 class="anchored" data-anchor-id="cầu-chia-áp">Cầu chia áp</h2>
+<p>Arduino không đo trực tiếp được điện trở, chỉ đo được <strong>điện áp</strong> (<code>analogRead()</code> trả 0–1023 cho 0–5 V). Vì vậy phải biến thay đổi điện trở thành thay đổi điện áp bằng <strong>cầu chia áp</strong>: mắc quang trở nối tiếp một <strong>điện trở cố định 10 kΩ</strong> giữa <code>5V</code> và <code>GND</code>, lấy điện áp ở điểm giữa.</p>
+<pre><code>5V ──[ LDR ]──┬──[ 10 kΩ ]── GND
+              │
+              A0</code></pre>
+<p>Điện áp ở <code>A0</code>:</p>
+<p><span class="math display">V_{A0} = 5\,\text{V} \times \frac{R_{10k}}{R_{LDR} + R_{10k}}</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ánh sáng</th>
+<th><span class="math inline">R_{LDR}</span></th>
+<th><span class="math inline">V_{A0}</span></th>
+<th><code>analogRead(A0)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Che kín bằng tay / tối</td>
+<td>~1 MΩ</td>
+<td>~0,05 V</td>
+<td>~10</td>
+</tr>
+<tr class="even">
+<td>Phòng hơi tối</td>
+<td>~50 kΩ</td>
+<td>~0,8 V</td>
+<td>~170</td>
+</tr>
+<tr class="odd">
+<td>Phòng đủ sáng (~10 lux)</td>
+<td>~15 kΩ</td>
+<td>~2 V</td>
+<td>~410</td>
+</tr>
+<tr class="even">
+<td>Dưới đèn bàn</td>
+<td>~2 kΩ</td>
+<td>~4,2 V</td>
+<td>~850</td>
+</tr>
+<tr class="odd">
+<td>Đèn flash điện thoại chiếu sát</td>
+<td>~0,5 kΩ</td>
+<td>~4,8 V</td>
+<td>~970</td>
+</tr>
+</tbody>
+</table>
+<p>Với cách mắc này, <strong>càng sáng thì số đọc càng lớn</strong>, dễ hiểu khi đọc code. Nếu đổi chỗ LDR và điện trở 10 kΩ thì ngược lại: càng sáng số càng nhỏ.</p>
+<p><strong>Vì sao chọn 10 kΩ.</strong> Cầu chia áp nhạy nhất khi điện trở cố định xấp xỉ điện trở LDR ở mức sáng cần phân biệt. GL5528 khoảng 10–20 kΩ ở ánh sáng phòng, nên 10 kΩ cho dải đo rộng nhất trong nhà. Muốn phân biệt tốt các mức <strong>tối</strong> thì tăng lên 47–100 kΩ; muốn phân biệt tốt các mức <strong>rất sáng</strong> (ngoài trời) thì giảm xuống 1–2 kΩ.</p>
+<p>Điện trở 10 kΩ có vòng màu <strong>nâu – đen – cam – nhũ vàng</strong>, khác với 220 Ω (đỏ – đỏ – nâu) dùng cho LED. Xem lại bảng màu ở bài <a href="../../../courses/iot/lectures/arduino-components.html">linh kiện Arduino</a>.</p>
+</section>
+<section id="linh-kiện-và-chân" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện-và-chân">Linh kiện và chân</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Số lượng</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Quang trở GL5528</td>
+<td>1</td>
+<td>2 chân, không phân cực</td>
+</tr>
+<tr class="even">
+<td>Điện trở 10 kΩ</td>
+<td>1</td>
+<td>Cầu chia áp</td>
+</tr>
+<tr class="odd">
+<td>LED (đỏ hoặc vàng) + điện trở 220 Ω</td>
+<td>1 bộ</td>
+<td>Dùng cho Test 2 và Test 3</td>
+</tr>
+<tr class="even">
+<td>Breadboard, dây đực – đực</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Nối dây:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Từ</th>
+<th>Đến</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Uno <code>5V</code> / <code>GND</code></td>
+<td>Thanh <code>+</code> / <code>−</code> breadboard</td>
+</tr>
+<tr class="even">
+<td>LDR chân 1</td>
+<td>Thanh <code>+</code></td>
+</tr>
+<tr class="odd">
+<td>LDR chân 2</td>
+<td>Một cột trống, gọi là <strong>điểm giữa</strong></td>
+</tr>
+<tr class="even">
+<td>Điện trở 10 kΩ</td>
+<td>Từ điểm giữa xuống thanh <code>−</code></td>
+</tr>
+<tr class="odd">
+<td>Điểm giữa</td>
+<td><code>A0</code></td>
+</tr>
+<tr class="even">
+<td>LED (Test 2, 3)</td>
+<td><code>D9</code> → điện trở 220 Ω → chân dài LED; chân ngắn → thanh <code>−</code></td>
+</tr>
+</tbody>
+</table>
+<p>LED cắm <code>D9</code> vì đây là chân có dấu <code>~</code>, dùng được <code>analogWrite()</code> ở Test 3. Lab này không dùng thư viện <code>Servo</code>, nên <code>D9</code> không bị chiếm Timer1 như <a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>.</p>
+<p><strong>Module quang trở.</strong> Một số kit dùng module quang trở có mạch xanh với 3 hoặc 4 chân (<code>VCC</code>, <code>GND</code>, <code>AO</code>, <code>DO</code>) và một biến trở xanh. Module đã có sẵn cầu chia áp:</p>
+<ul>
+<li><code>AO</code> → <code>A0</code>: dùng như code bên dưới, nhưng hầu hết module mắc LDR ở <strong>phía dưới</strong> cầu chia áp, nên <strong>càng sáng số càng nhỏ</strong>. Đảo điều kiện so sánh trong code cho phù hợp.</li>
+<li><code>DO</code> → chân digital: chip so sánh <strong>LM393</strong> đưa ra <code>HIGH</code>/<code>LOW</code> theo ngưỡng chỉnh bằng biến trở trên module, đèn <code>DO-LED</code> trên module sáng khi qua ngưỡng. Đọc bằng <code>digitalRead()</code>, không cần code ngưỡng.</li>
+</ul>
+</section>
+<section id="code" class="level2">
+<h2 class="anchored" data-anchor-id="code">Code</h2>
+<section id="test-1-đọc-giá-trị-ánh-sáng" class="level3">
+<h3 class="anchored" data-anchor-id="test-1-đọc-giá-trị-ánh-sáng">Test 1 – đọc giá trị ánh sáng</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LDR_PIN </span>A0</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>LDR_PIN<span class="op">);</span>         <span class="co">// 0–1023</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> v <span class="op">=</span> raw <span class="op">*</span> <span class="fl">5.0</span> <span class="op">/</span> <span class="fl">1023.0</span><span class="op">;</span>          <span class="co">// đổi ra volt</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"raw = "</span><span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  V = "</span><span class="op">);</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>v<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" V"</span><span class="op">);</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Để bình thường trong phòng: số đọc nằm đâu đó giữa 300 và 700, tùy đèn phòng.</li>
+<li>Lấy tay che kín LDR: số giảm mạnh, có thể dưới 50.</li>
+<li>Bật đèn flash điện thoại chiếu sát: số tăng lên gần 1000.</li>
+<li>Mở <strong>Tools → Serial Plotter</strong> (cùng 9600 baud) sẽ thấy đồ thị lên xuống theo tay che. Serial Plotter vẽ mọi số trên một dòng, nên dòng <code>raw = ... V = ...</code> sẽ thành hai đường.</li>
+</ul>
+<p><strong>Ghi lại 3 số</strong> trên mạch thật: lúc che kín, lúc ánh sáng phòng, lúc chiếu flash. Test 2 cần các số này để chọn ngưỡng.</p>
+</section>
+<section id="test-2-đèn-ngủ-tự-động" class="level3">
+<h3 class="anchored" data-anchor-id="test-2-đèn-ngủ-tự-động">Test 2 – đèn ngủ tự động</h3>
+<p>LED bật khi phòng <strong>tối</strong>, tắt khi <strong>sáng</strong>. Cách đơn giản nhất là so với một ngưỡng:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>raw <span class="op">&lt;</span> <span class="dv">300</span><span class="op">)</span> digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>           digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> LOW<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Nhưng khi ánh sáng nằm sát ngưỡng (trời chạng vạng, bóng người đi qua), nhiễu ADC làm <code>raw</code> nhảy 298, 301, 299… và LED <strong>nháy liên tục</strong>. Cách sửa là dùng <strong>hai ngưỡng</strong> (<em>hysteresis</em>, trễ): tối hơn 250 mới bật, sáng hơn 350 mới tắt, ở giữa thì giữ nguyên trạng thái cũ.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LDR_PIN   </span>A0</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_PIN   </span><span class="dv">9</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NGUONG_BAT  </span><span class="dv">250</span><span class="pp">   </span><span class="co">// tối hơn mức này → bật đèn</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NGUONG_TAT  </span><span class="dv">350</span><span class="pp">   </span><span class="co">// sáng hơn mức này → tắt đèn</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> denBat <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>LDR_PIN<span class="op">);</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>denBat <span class="op">&amp;&amp;</span> raw <span class="op">&lt;</span> NGUONG_BAT<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    denBat <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Toi -&gt; BAT den"</span><span class="op">);</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>denBat <span class="op">&amp;&amp;</span> raw <span class="op">&gt;</span> NGUONG_TAT<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    denBat <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Sang -&gt; TAT den"</span><span class="op">);</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> denBat <span class="op">?</span> HIGH <span class="op">:</span> LOW<span class="op">);</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"raw = "</span><span class="op">);</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Chọn hai ngưỡng theo số đã ghi ở Test 1: <code>NGUONG_BAT</code> khoảng 1/2 số đọc lúc ánh sáng phòng, <code>NGUONG_TAT</code> cao hơn <code>NGUONG_BAT</code> khoảng 50–100. Khoảng cách giữa hai ngưỡng càng lớn thì càng ít nháy, nhưng đèn phản ứng càng chậm.</p>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Che dần LDR bằng tay: đến khi <code>raw</code> xuống dưới <code>NGUONG_BAT</code> thì LED sáng, Serial in <code>Toi -&gt; BAT den</code> <strong>một lần</strong>.</li>
+<li>Hé tay ra một chút (để <code>raw</code> nằm giữa hai ngưỡng): LED <strong>vẫn sáng</strong>, không nháy.</li>
+<li>Bỏ tay ra hẳn: LED tắt, Serial in <code>Sang -&gt; TAT den</code>.</li>
+</ul>
+<p><strong>Đừng để LED chiếu vào LDR.</strong> Nếu LED đặt sát và hướng về LDR, khi LED bật nó làm LDR “thấy sáng” và tắt lại, rồi lại tối và bật lại: mạch tự dao động. Đặt LED cách xa hoặc quay lưng LED về phía LDR.</p>
+</section>
+<section id="test-3-độ-sáng-led-theo-ánh-sáng-phòng" class="level3">
+<h3 class="anchored" data-anchor-id="test-3-độ-sáng-led-theo-ánh-sáng-phòng">Test 3 – độ sáng LED theo ánh sáng phòng</h3>
+<p>Thay vì bật/tắt, cho LED <strong>sáng dần</strong> khi phòng tối dần, giống đèn màn hình điện thoại tự chỉnh độ sáng (nhưng ngược chiều: phòng tối thì đèn ngủ sáng hơn).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LDR_PIN  </span>A0</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_PIN  </span><span class="dv">9</span><span class="pp">      </span><span class="co">// chân ~ để dùng analogWrite</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">// số đọc lúc che kín và lúc ánh sáng phòng (ghi ở Test 1)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RAW_TOI   </span><span class="dv">50</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RAW_SANG  </span><span class="dv">600</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>LDR_PIN<span class="op">);</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  raw <span class="op">=</span> constrain<span class="op">(</span>raw<span class="op">,</span> RAW_TOI<span class="op">,</span> RAW_SANG<span class="op">);</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">// tối (RAW_TOI) → sáng nhất 255, sáng (RAW_SANG) → tắt 0</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> doSang <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> RAW_TOI<span class="op">,</span> RAW_SANG<span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  analogWrite<span class="op">(</span>LED_PIN<span class="op">,</span> doSang<span class="op">);</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"raw = "</span><span class="op">);</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  PWM = "</span><span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>doSang<span class="op">);</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">50</span><span class="op">);</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li><strong><code>constrain()</code> trước <code>map()</code></strong>: <code>map()</code> không tự chặn, nên nếu <code>raw</code> vượt <code>RAW_SANG</code> thì kết quả âm, <code>analogWrite()</code> nhận số âm sẽ cho giá trị sai. Chặn trước cho chắc.</li>
+<li><strong><code>map(raw, RAW_TOI, RAW_SANG, 255, 0)</code></strong>: đảo khoảng ra (255 → 0) để tối thì PWM lớn. Không cần viết <code>255 - map(...)</code>.</li>
+<li><strong>Hiệu chỉnh</strong>: thay <code>RAW_TOI</code>, <code>RAW_SANG</code> bằng số đo thật. Nếu dùng nguyên 0–1023 thì LED gần như không bao giờ sáng hết cỡ hay tắt hẳn, vì trong phòng LDR hiếm khi xuống 0 hay lên 1023.</li>
+<li><strong>Mắt người cảm nhận độ sáng phi tuyến</strong>: PWM 0 → 50 trông thay đổi nhiều, 200 → 255 gần như không khác. Muốn đều mắt hơn thì bình phương: <code>doSang = doSang * doSang / 255;</code> (đổi <code>doSang</code> sang <code>long</code> để tránh tràn số khi nhân, vì <code>int</code> trên Uno chỉ tới 32767).</li>
+</ul>
+</section>
+<section id="mở-rộng-hiển-thị-lên-lcd" class="level3">
+<h3 class="anchored" data-anchor-id="mở-rộng-hiển-thị-lên-lcd">Mở rộng: hiển thị lên LCD</h3>
+<p>Ghép với <a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>: LCD vẫn ở <code>A4</code>/<code>A5</code>, LDR ở <code>A0</code>. In một thanh mức sáng 16 ô:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;LiquidCrystal_I2C.h&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>LiquidCrystal_I2C lcd<span class="op">(</span><span class="bn">0x27</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>init<span class="op">();</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>backlight<span class="op">();</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>A0<span class="op">);</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> phanTram <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">100</span><span class="op">);</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> soO <span class="op">=</span> map<span class="op">(</span>raw<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1023</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">16</span><span class="op">);</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"Anh sang: "</span><span class="op">);</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span>phanTram<span class="op">);</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">" %   "</span><span class="op">);</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span>i <span class="op">&lt;</span> soO <span class="op">?</span> <span class="op">(</span><span class="dt">char</span><span class="op">)</span><span class="dv">255</span> <span class="op">:</span> <span class="ch">' '</span><span class="op">);</span>   <span class="co">// 255 = ô tô đen trong ROM HD44780</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>“%” ở đây chỉ là tỉ lệ điện áp, <strong>không phải</strong> phần trăm ánh sáng thật, vì quan hệ giữa điện áp và lux là phi tuyến.</p>
+</section>
+</section>
+<section id="ứng-dụng-của-quang-trở" class="level2">
+<h2 class="anchored" data-anchor-id="ứng-dụng-của-quang-trở">Ứng dụng của quang trở</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lĩnh vực</th>
+<th>Ví dụ</th>
+<th>Quang trở làm gì</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chiếu sáng</td>
+<td>Đèn đường, đèn sân vườn tự bật</td>
+<td>Bật đèn khi trời tối, tắt khi sáng (chính là Test 2)</td>
+</tr>
+<tr class="even">
+<td>Điện thoại / màn hình</td>
+<td>Tự chỉnh độ sáng màn hình</td>
+<td>Đo ánh sáng môi trường (máy hiện đại dùng photodiode, cùng nguyên lý)</td>
+</tr>
+<tr class="odd">
+<td>Năng lượng</td>
+<td>Tấm pin mặt trời bám nắng</td>
+<td>2 quang trở hai bên, servo (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>) xoay về phía số đo lớn hơn</td>
+</tr>
+<tr class="even">
+<td>An ninh</td>
+<td>Báo động tia laser</td>
+<td>Laser chiếu vào LDR, có người cắt ngang tia thì số đo tụt → báo động</td>
+</tr>
+<tr class="odd">
+<td>Đồ chơi / robot</td>
+<td>Robot dò line, robot đi theo ánh sáng</td>
+<td>Đo ánh sáng phản xạ từ mặt sàn đen/trắng</td>
+</tr>
+<tr class="even">
+<td>Nông nghiệp</td>
+<td>Nhà kính</td>
+<td>Ghi lại số giờ nắng, kéo rèm che khi quá nắng</td>
+</tr>
+</tbody>
+</table>
+<section id="trong-hệ-iot" class="level3">
+<h3 class="anchored" data-anchor-id="trong-hệ-iot">Trong hệ IoT</h3>
+<p>Quang trở là ví dụ điển hình của <strong>cảm biến analog</strong> ở tầng thiết bị: tín hiệu liên tục, phải qua <strong>ADC</strong> mới thành số, và phải <strong>hiệu chỉnh</strong> theo từng con cảm biến. Vài hướng ghép với các lab trước:</p>
+<ul>
+<li><strong>LDR + servo (Lab 4)</strong>: rèm cửa tự đóng khi nắng gắt, mở khi trời dịu.</li>
+<li><strong>LDR + DHT11 (Lab 3) + LCD (Lab 2)</strong>: trạm thời tiết mini hiển thị nhiệt độ, độ ẩm và mức sáng.</li>
+<li><strong>ESP8266/ESP32 thay Uno</strong>: gửi số đo ánh sáng lên cloud mỗi phút để vẽ đồ thị ngày/đêm. Lưu ý ADC của ESP32 là 12 bit (0–4095) và tham chiếu 3,3 V, nên phải sửa lại các ngưỡng.</li>
+</ul>
+</section>
+</section>
+<section id="mô-phỏng" class="level2">
+<h2 class="anchored" data-anchor-id="mô-phỏng">Mô phỏng</h2>
+<p>Tinkercad Circuits có sẵn <strong>Photoresistor</strong> (tìm <code>photoresistor</code> hoặc <code>LDR</code> trong ô linh kiện):</p>
+<ol type="1">
+<li>Kéo <em>Arduino Uno R3</em>, <em>Breadboard small</em>, <em>Photoresistor</em>, một <em>Resistor</em> (đổi giá trị thành <strong>10 kΩ</strong>) và một <em>LED</em> + <em>Resistor 220 Ω</em> vào.</li>
+<li>Nối như bảng ở trên.</li>
+<li>Dán code Test 1, bấm <strong>Start Simulation</strong>, mở <strong>Serial Monitor</strong> ở dưới khung code.</li>
+<li><strong>Bấm vào quang trở</strong> lúc đang mô phỏng sẽ hiện thanh trượt độ sáng. Kéo sang trái (tối) thì <code>raw</code> giảm, sang phải (sáng) thì tăng.</li>
+</ol>
+<p>Quang trở trong Tinkercad cho số đọc tuyến tính và không nhiễu, nên LED ở Test 2 sẽ không nháy kể cả khi chỉ dùng một ngưỡng. Hysteresis chỉ thấy tác dụng trên mạch thật.</p>
+</section>
+<section id="ảnh-thực-tế" class="level2">
+<h2 class="anchored" data-anchor-id="ảnh-thực-tế">Ảnh thực tế</h2>
+<blockquote class="blockquote">
+<p>📷 <em>Chờ ảnh mạch thật và kết quả Serial Monitor.</em></p>
+</blockquote>
+</section>
+<section id="lỗi-hay-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hiện tượng</th>
+<th>Nguyên nhân / cách xử lý</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Số đọc luôn 0</td>
+<td>Thiếu dây <code>5V</code> vào LDR, hoặc dây <code>A0</code> cắm vào thanh <code>−</code></td>
+</tr>
+<tr class="even">
+<td>Số đọc luôn ~1023</td>
+<td>Thiếu điện trở 10 kΩ xuống <code>GND</code>, hoặc điện trở cắm lệch cột không chạm điểm giữa</td>
+</tr>
+<tr class="odd">
+<td>Số đọc nhảy lung tung, chạm tay vào dây thì đổi</td>
+<td><code>A0</code> đang <strong>thả nổi</strong>: dây <code>A0</code> không chạm điểm giữa cầu chia áp</td>
+</tr>
+<tr class="even">
+<td>Che tay số chỉ đổi rất ít</td>
+<td>Dùng nhầm điện trở 220 Ω thay vì 10 kΩ (đọc lại vòng màu), hoặc phòng quá tối/quá sáng so với điện trở đã chọn</td>
+</tr>
+<tr class="odd">
+<td>Càng sáng số càng nhỏ</td>
+<td>LDR và điện trở 10 kΩ bị đổi chỗ, hoặc dùng module có <code>AO</code> mắc ngược — đảo điều kiện trong code</td>
+</tr>
+<tr class="even">
+<td>LED nháy liên tục khi trời chạng vạng</td>
+<td>Chỉ dùng một ngưỡng — dùng hysteresis như Test 2</td>
+</tr>
+<tr class="odd">
+<td>LED tự bật tắt liên tục dù không ai đụng</td>
+<td>LED chiếu ánh sáng vào chính LDR — đặt LED xa hoặc quay hướng khác</td>
+</tr>
+<tr class="even">
+<td>Đèn phòng bật mà số đọc dao động nhẹ đều đặn</td>
+<td>Đèn huỳnh quang/LED nhấp nháy 100 Hz theo điện lưới — lấy trung bình 10–20 lần đọc</td>
+</tr>
+<tr class="odd">
+<td><code>analogWrite()</code> chỉ bật/tắt, không sáng dần</td>
+<td>LED cắm chân không có dấu <code>~</code> — chuyển sang <code>D3</code>, <code>D5</code>, <code>D6</code>, <code>D9</code>, <code>D10</code> hoặc <code>D11</code></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
