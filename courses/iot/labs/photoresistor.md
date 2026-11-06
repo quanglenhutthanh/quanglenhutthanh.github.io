@@ -3,10 +3,13 @@ title: "Lab 5 · Quang trở (LDR) – cảm biến ánh sáng"
 subject: "iot"
 type: lab
 lab_no: 5
-status: reading
+status: done
 source: slide
 tags: [arduino, ldr, photoresistor, sensor, light, adc, pwm, servo]
 date: 2026-11-02
+resources:
+  - ../assets/ldr-servo-real.mp4
+  - ../assets/ldr-servo-real-poster.jpg
 ---
 
 # Lab 5 · Quang trở (LDR) – cảm biến ánh sáng
@@ -372,7 +375,37 @@ Lúc mô phỏng, bấm vào từng quang trở để kéo thanh trượt độ 
 
 ## Ảnh thực tế
 
-> 📷 *Chờ ảnh mạch thật và kết quả Serial Monitor.*
+### Video Test 4
+
+<video controls muted playsinline preload="metadata" poster="../assets/ldr-servo-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/ldr-servo-real.mp4" type="video/mp4">
+</video>
+
+Mạch thật chạy code Test 4. Camera đi từ breadboard xuống servo:
+
+- **Breadboard** ở trên cùng: hai quang trở cắm cách nhau, mỗi con có dây đỏ vòng lên thanh `+`, điện trở 10 kΩ xuống thanh `−` và dây vàng từ điểm giữa về `A0`/`A1`.
+- **Arduino Uno** ở giữa, cắm cáp USB. Đèn `TX` nháy liên tục vì code in Serial mỗi 20 ms.
+- **Servo SG90** nằm dưới cùng, cánh tay ban đầu nằm ngang (90°).
+
+Kết quả:
+
+- **Khoảng 5–9 s**: lấy ngón tay che quang trở bên phải. Cánh tay servo quay dần từ nằm ngang lên gần thẳng đứng, đúng kiểu nhích từng 1° một chứ không giật một phát.
+- **Khoảng 9–12 s**: chuyển ngón tay sang che quang trở bên trái. Servo quay ngược lại về vị trí nằm ngang.
+
+Che bên nào thì servo quay về một chiều, che bên kia thì quay chiều ngược lại, khớp với phần **Cách kiểm tra** của Test 4. Vì hai quang trở cắm cố định trên breadboard (không gắn lên cánh tay servo), servo không tự dừng lại ở hướng nguồn sáng mà cứ quay đến khi bỏ tay ra hoặc chạm đầu hành trình.
+
+### Serial Monitor
+
+Serial Monitor khi chạy code Test 4 trên mạch thật, buổi tối trong phòng đèn mờ:
+
+![Serial Monitor của Test 4 trên mạch thật: các dòng lặp lại `trai = 8  phai = 13  goc = 90`](../assets/ldr-servo-serial.png){width=70%}
+
+Đọc kết quả:
+
+- **Số đọc rất thấp (8 và 13)**: phòng tối nên điện trở LDR lên cỡ vài trăm kΩ đến 1 MΩ, điểm giữa cầu chia áp chỉ còn khoảng 0,05 V. Khớp với dòng "che kín / tối" trong bảng ở phần cầu chia áp.
+- **Hai LDR lệch nhau 5 đơn vị** dù cùng ánh sáng: đây là sai lệch giữa hai con quang trở (và hai điện trở 10 kΩ), đúng như đã nói ở phần giới thiệu.
+- **Servo đứng yên ở 90°**: `lech = 8 - 13 = -5`, nhỏ hơn `VUNG_CHET = 30` nên code coi như cân bằng. Không có vùng chết thì servo đã nhích dần về phía LDR phải chỉ vì sai lệch linh kiện.
+- Ở mức tối như vậy, che tay chỉ làm số giảm được vài đơn vị, nhỏ hơn vùng chết, nên servo hầu như không phản ứng. Video ở trên quay trong phòng sáng hơn nên che tay là servo quay ngay. Muốn thử trong phòng tối thì **chiếu đèn flash điện thoại** vào một bên. Nếu thường dùng mạch trong phòng tối, đổi điện trở 10 kΩ sang 47–100 kΩ hoặc giảm `VUNG_CHET`.
 
 ## Lỗi hay gặp
 
