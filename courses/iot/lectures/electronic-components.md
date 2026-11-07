@@ -196,7 +196,26 @@ Kit có LED **5 mm, vỏ mờ (diffused)**, ba màu đỏ, vàng, xanh lá — �
 
 Khi LED còn mới, chân **dài hơn là anode (+)**. Nếu chân đã bị cắt bằng nhau, nhìn vào trong vỏ: miếng kim loại **nhỏ** là anode, miếng **to hình lá cờ** là cathode. Hoặc tìm mép **vát phẳng** trên vành đế — phía đó là cathode.
 
-> 📷 *Ảnh LCD xem ở mục LCD 16×2 phía trên. Chờ ảnh buzzer (nếu có trong kit).*
+#### Buzzer
+
+::: {layout-ncol=2}
+![Buzzer nhìn ngang: vỏ nhựa đen hình trụ, hai chân kim loại, chân trên dài hơn chân dưới](../assets/kit-buzzer-side.jpg)
+
+![Buzzer cắm trên breadboard nhìn từ trên xuống: dấu `+` in nổi trên mặt, lỗ thoát âm ở giữa](../assets/kit-buzzer-top.jpg)
+:::
+
+Buzzer trong kit là loại **tròn khoảng 12 mm**, vỏ nhựa đen, hai chân cắm thẳng xuống:
+
+- **Mặt trên** có dấu **`+`** in nổi để đánh dấu chân dương, và một **lỗ thoát âm** ở giữa.
+- **Hai chân dài ngắn khác nhau** (ảnh trái): **chân dài là `+`**, nằm cùng phía với dấu `+` trên mặt. Chân này nối vào chân điều khiển của Arduino, chân ngắn nối `GND`. Giống LED, nên xem dấu `+` trước khi cắt chân.
+- Khoảng cách hai chân khoảng 7,5 mm, tức **3 lỗ breadboard**. Thân buzzer to nên che mất vài lỗ xung quanh (ảnh phải), cần chừa chỗ khi bố trí mạch.
+
+**Chủ động hay thụ động?** Hai loại nhìn ngoài rất giống nhau. Cách thử chắc chắn nhất là cấp điện trực tiếp: chân `+` vào `5V`, chân `−` vào `GND`.
+
+- **Kêu "tít" liên tục** → buzzer **chủ động**. Chỉ cần `digitalWrite(pin, HIGH)` là kêu.
+- **Chỉ nghe "tách" một cái rồi im** → buzzer **thụ động**. Phải dùng `tone(pin, tanSo)` mới kêu.
+
+Code ở [Lab 6](../labs/ultrasonic-hc-sr04.md) dùng `tone()`, chạy được với cả hai loại, nên không cần biết trước buzzer là loại nào.
 
 ## Linh kiện đầu vào
 
