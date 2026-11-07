@@ -1,17 +1,17 @@
 ---
-title: "Linh kiện cơ bản trong kit Arduino"
+title: "Linh kiện điện tử cơ bản"
 subject: "iot"
 type: lecture
 lecture_no: 3
 status: reading
 source: note
-tags: [arduino, breadboard, components, sensors, actuators]
+tags: [electronics, breadboard, components, sensors, actuators]
 date: 2026-10-29
 ---
 
-# Linh kiện cơ bản trong kit Arduino
+# Linh kiện điện tử cơ bản
 
-> Note tham khảo về các linh kiện trong bộ kit dùng cho các lab. Ảnh thực tế sẽ được bổ sung dần cho từng linh kiện. Board Arduino Uno và cấu trúc sketch xem ở bài [Giới thiệu Arduino & board Arduino Uno](arduino-intro.md); lưu ý an toàn khi lắp mạch xem ở [cuối bài đó](arduino-intro.md#lưu-ý-an-toàn-khi-lắp-mạch).
+> Note tham khảo về các linh kiện trong bộ kit dùng cho các lab. Đây là linh kiện điện tử phổ thông, không riêng cho Arduino: dùng được với ESP32, Raspberry Pi… hoặc mạch không có vi điều khiển; khi chuyển sang board logic 3,3 V cần chú ý mức điện áp tín hiệu. Ảnh thực tế sẽ được bổ sung dần cho từng linh kiện. Board Arduino Uno và cấu trúc sketch xem ở bài [Giới thiệu Arduino & board Arduino Uno](arduino-intro.md); lưu ý an toàn khi lắp mạch xem ở [cuối bài đó](arduino-intro.md#lưu-ý-an-toàn-khi-lắp-mạch).
 
 ## Breadboard & dây nối
 

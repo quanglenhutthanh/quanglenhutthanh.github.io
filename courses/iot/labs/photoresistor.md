@@ -64,7 +64,7 @@ Với cách mắc này, **càng sáng thì số đọc càng lớn**, dễ hiể
 
 **Vì sao chọn 10 kΩ.** Cầu chia áp nhạy nhất khi điện trở cố định xấp xỉ điện trở LDR ở mức sáng cần phân biệt. GL5528 khoảng 10–20 kΩ ở ánh sáng phòng, nên 10 kΩ cho dải đo rộng nhất trong nhà. Muốn phân biệt tốt các mức **tối** thì tăng lên 47–100 kΩ; muốn phân biệt tốt các mức **rất sáng** (ngoài trời) thì giảm xuống 1–2 kΩ.
 
-Điện trở 10 kΩ có vòng màu **nâu – đen – cam – nhũ vàng**, khác với 220 Ω (đỏ – đỏ – nâu) dùng cho LED. Xem lại bảng màu ở bài [linh kiện Arduino](../lectures/arduino-components.md).
+Điện trở 10 kΩ có vòng màu **nâu – đen – cam – nhũ vàng**, khác với 220 Ω (đỏ – đỏ – nâu) dùng cho LED. Xem lại bảng màu ở bài [linh kiện điện tử cơ bản](../lectures/electronic-components.md).
 
 ## Linh kiện và chân
 

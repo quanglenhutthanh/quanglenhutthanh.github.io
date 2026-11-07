@@ -11,7 +11,7 @@ date: 2026-10-29
 
 # Giới thiệu Arduino & board Arduino Uno
 
-> Note tham khảo về nền tảng Arduino và board Arduino Uno dùng cho các lab. Các linh kiện trong bộ kit xem ở bài [Linh kiện cơ bản trong kit Arduino](arduino-components.md).
+> Note tham khảo về nền tảng Arduino và board Arduino Uno dùng cho các lab. Các linh kiện trong bộ kit xem ở bài [Linh kiện điện tử cơ bản](electronic-components.md).
 
 ## Arduino là gì
 
