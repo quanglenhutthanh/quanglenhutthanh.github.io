@@ -10,6 +10,8 @@ date: 2026-11-07
 resources:
   - ../assets/ultrasonic-real.mp4
   - ../assets/ultrasonic-real-poster.jpg
+  - ../assets/ultrasonic-led-real.mp4
+  - ../assets/ultrasonic-led-real-poster.jpg
 ---
 
 # Lab 6 · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách
@@ -590,6 +592,20 @@ Muốn còi **im** khi không có ai lại gần thì:
 - hoặc giảm vùng báo động, ví dụ `#define CANH_BAO 20`.
 
 Mở **Serial Monitor** để xem dòng `d = ... cm`, biết cảm biến đang "thấy" vật ở khoảng cách bao nhiêu.
+
+### Video kết quả: cảm biến + buzzer + LED
+
+<video controls playsinline preload="metadata" poster="../assets/ultrasonic-led-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/ultrasonic-led-real.mp4" type="video/mp4">
+</video>
+
+Mạch hoàn chỉnh của Test 3, cùng góc quay với video trên nhưng có thêm LED:
+
+- **LED vàng** cắm bên phải buzzer, nối tiếp một **điện trở** (nằm ngang ngay cạnh LED). Dây **xanh lá** đưa tín hiệu từ chân điều khiển của Uno tới LED, dây đen đưa chân còn lại của LED xuống thanh `−`.
+- Kit dùng LED vàng thay cho LED đỏ trong mạch Tinkercad. Code không đổi, vì LED màu nào cũng bật tắt bằng `digitalWrite()` như nhau.
+- Cảm biến, buzzer và nguồn giữ nguyên như video trước.
+
+Code dùng chung hàm `baoDong()` cho LED và buzzer, nên **LED nháy đúng nhịp tiếng bíp**: vật ở vùng 10–50 cm thì cả hai cùng nháy và bíp, càng gần càng nhanh. Dưới 10 cm thì LED sáng đứng và còi kêu liền.
 
 > 📷 *Chờ ảnh Serial Monitor/Serial Plotter.*
 
