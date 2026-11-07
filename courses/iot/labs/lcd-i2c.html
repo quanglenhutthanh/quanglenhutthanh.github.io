@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="module-i²c-pcf8574" class="level2">
 <h2 class="anchored" data-anchor-id="module-i²c-pcf8574">Module I²C (PCF8574)</h2>
 <p>Để tiết kiệm chân, LCD thường được hàn sẵn một <strong>module chuyển đổi I²C</strong> ở mặt sau. Module dùng chip <strong>PCF8574</strong> (bộ mở rộng 8 chân I/O qua I²C): Arduino gửi lệnh qua 2 dây I²C, chip PCF8574 tự xuất ra các chân <code>RS</code>, <code>E</code>, <code>D4</code>–<code>D7</code> và đèn nền của LCD.</p>
-<p>Bảng 16 chân gốc, ảnh thật của LCD trong kit và các chi tiết trên module (biến trở tương phản, jumper <code>LED</code>, pad địa chỉ <code>A0</code>–<code>A2</code>) xem ở <a href="../../../courses/iot/lectures/arduino-components.html#lcd-162-i²c">note linh kiện</a>.</p>
+<p>Bảng 16 chân gốc, ảnh thật của LCD trong kit và các chi tiết trên module (biến trở tương phản, jumper <code>LED</code>, pad địa chỉ <code>A0</code>–<code>A2</code>) xem ở <a href="../../../courses/iot/lectures/electronic-components.html#lcd-162-i²c">note linh kiện</a>.</p>
 <p><strong>Địa chỉ I²C</strong> mặc định thường là <code>0x27</code> (chip PCF8574) hoặc <code>0x3F</code> (chip PCF8574A). Nếu không chắc, chạy sketch quét I²C ở dưới để tìm.</p>
 <section id="i²c-hoạt-động-thế-nào" class="level3">
 <h3 class="anchored" data-anchor-id="i²c-hoạt-động-thế-nào">I²C hoạt động thế nào</h3>

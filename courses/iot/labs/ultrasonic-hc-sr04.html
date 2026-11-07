@@ -404,9 +404,19 @@ ECHO  ___________________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|__
 <p><strong>Chân <code>OUT</code> của HC-SR05:</strong> để trống. Tài liệu của các nhà sản xuất ghi không thống nhất (có bản ghi là ngõ ra công tắc, có bản bắt chước chân chọn chế độ 1 dây của SRF05), còn cách dùng phổ biến với Arduino chỉ cần <code>Trig</code> và <code>Echo</code>. Nối HC-SR05 y như HC-SR04, bỏ qua <code>OUT</code>.</p>
 <p>Con số “3 mm” chỉ là độ phân giải lý thuyết. Trên mạch thật, sai số thường cỡ <strong>±1 cm</strong> ở khoảng cách gần, và tăng dần khi đo xa.</p>
 <p><strong>Bản 3,3 V.</strong> HC-SR04 gốc cần 5 V và chân <code>ECHO</code> ra mức 5 V. Nếu dùng ESP32/ESP8266 (chân chịu 3,3 V) thì phải hạ áp <code>ECHO</code> bằng cầu chia áp (ví dụ 1 kΩ + 2 kΩ), hoặc mua bản <strong>HC-SR04P</strong> chạy được 3–5,5 V.</p>
-<blockquote class="blockquote">
-<p>📷 <em>Chờ ảnh module HC-SR04 / HC-SR05 trong kit (mặt trước và mặt sau).</em></p>
-</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-hc-sr05.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Module HC-SR05 trong kit (in chữ <code>HY-SRF05</code>): đầu phát <code>T</code> bên trái, đầu thu <code>R</code> bên phải, thạch anh <code>Y1</code> ở giữa phía trên, 5 chân <code>Vcc</code> · <code>Trig</code> · <code>Echo</code> · <code>OUT</code> · <code>GND</code> hàn sẵn header bẻ góc 90°</figcaption>
+</figure>
+</div>
+<p>Module trong kit là <strong>HC-SR05</strong>, trên mạch in chữ <strong><code>HY-SRF05</code></strong> (hãng HY, đặt tên theo cảm biến SRF05 mà nó bắt chước). Nhìn mặt trước:</p>
+<ul>
+<li><strong>Hai đầu dò:</strong> <code>T</code> (phát) bên trái, <code>R</code> (thu) bên phải, giống hệt HC-SR04.</li>
+<li><strong>Thạch anh <code>Y1</code></strong> (khối kim loại bạc ở giữa phía trên): tạo xung nhịp cho chip đo thời gian ở mặt sau.</li>
+<li><strong>5 chân</strong> từ trái sang phải: <code>Vcc</code> · <code>Trig</code> · <code>Echo</code> · <code>OUT</code> · <code>GND</code>. So với HC-SR04 chỉ thêm <code>OUT</code> ở giữa <code>Echo</code> và <code>GND</code>, nên <strong>đừng cắm theo thói quen 4 chân</strong>: chân thứ tư là <code>OUT</code>, <code>GND</code> là chân thứ năm.</li>
+<li><strong>Header bẻ góc 90°:</strong> chân chĩa ra phía sau, song song với mặt mạch. Cắm lên breadboard thì module đứng thẳng, mặt hai “mắt” nhìn ngang, tiện để đo vật phía trước.</li>
+</ul>
 </section>
 <section id="giới-hạn-của-cảm-biến-siêu-âm" class="level2">
 <h2 class="anchored" data-anchor-id="giới-hạn-của-cảm-biến-siêu-âm">Giới hạn của cảm biến siêu âm</h2>
