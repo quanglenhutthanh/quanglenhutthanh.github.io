@@ -551,7 +551,18 @@ Dây chân `+` của piezo và dây `ECHO` cùng màu vàng, cắm sát nhau ở
 
 ## Ảnh thực tế
 
-> 📷 *Chờ ảnh mạch thật, ảnh Serial Monitor/Serial Plotter và video Test 3.*
+### Mạch thật với HC-SR05
+
+![Mạch thật: HC-SR05 cắm lật ngửa ở mép dưới breadboard, hai đầu dò chĩa ra ngoài; dây đỏ/đen từ Uno vào thanh nguồn phía trên, dây xanh dương và vàng từ cảm biến lên header digital](../assets/ultrasonic-real.jpg){width=100%}
+
+Đọc mạch:
+
+- **Cảm biến** cắm ở mép dưới breadboard, **lật ngửa** (nhìn thấy mặt sau có chip), header bẻ góc 90° cắm vào lỗ, hai đầu dò chĩa ra ngoài mép bàn. Cách đặt này giúp phía trước cảm biến không bị breadboard hay dây che.
+- Vì module lật ngửa nên thứ tự chân **vẫn là** `Vcc` · `Trig` · `Echo` · `OUT` · `GND` tính từ trái sang, giống mặt trước. Lật module mà không xoay thì trái phải không đổi.
+- **Dây từ cảm biến:** đỏ (`Vcc`) và đen (`GND`) lên thanh nguồn phía trên. Xanh dương và vàng (`Trig`/`Echo`) chạy thẳng lên header digital của Uno. Chân `OUT` để trống.
+- **Nguồn:** dây đỏ và đen từ header POWER của Uno vào thanh `+`/`−` phía trên breadboard.
+
+> 📷 *Chờ ảnh Serial Monitor/Serial Plotter và video Test 3.*
 
 ## Lỗi hay gặp
 
