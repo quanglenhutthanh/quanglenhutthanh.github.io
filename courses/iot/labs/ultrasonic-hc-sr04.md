@@ -7,6 +7,9 @@ status: reading
 source: slide
 tags: [arduino, hc-sr04, hc-sr05, ultrasonic, sensor, distance, pulsein]
 date: 2026-11-07
+resources:
+  - ../assets/ultrasonic-real.mp4
+  - ../assets/ultrasonic-real-poster.jpg
 ---
 
 # Lab 6 · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách
@@ -562,7 +565,33 @@ Dây chân `+` của piezo và dây `ECHO` cùng màu vàng, cắm sát nhau ở
 - **Dây từ cảm biến:** đỏ (`Vcc`) và đen (`GND`) lên thanh nguồn phía trên. Xanh dương và vàng (`Trig`/`Echo`) chạy thẳng lên header digital của Uno. Chân `OUT` để trống.
 - **Nguồn:** dây đỏ và đen từ header POWER của Uno vào thanh `+`/`−` phía trên breadboard.
 
-> 📷 *Chờ ảnh Serial Monitor/Serial Plotter và video Test 3.*
+### Video Test 3 (cảm biến + buzzer)
+
+<video controls playsinline preload="metadata" poster="../assets/ultrasonic-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/ultrasonic-real.mp4" type="video/mp4">
+</video>
+
+Mạch thật chạy code Test 3, bản chỉ có cảm biến và buzzer, không có LED:
+
+- **HC-SR05** cắm ở mép breadboard, hai đầu dò quay ra phía sau khung hình.
+- **Buzzer** (vỏ đen tròn) cắm bên phải breadboard: dây vàng lên chân điều khiển của Uno, dây đen xuống thanh `−`.
+- Trên Uno, đèn `ON` sáng xanh, đèn `TX` nháy cam liên tục vì code in khoảng cách ra Serial mỗi vòng `loop()`.
+
+Video có tiếng, nên **bật âm thanh** khi xem.
+
+Kết quả:
+
+- **Không đưa tay vào**, còi vẫn **bíp ngắt quãng đều đặn**. Đây không phải lỗi: ngay trước cảm biến có màn hình (vật tối màu phía trên khung hình) nằm trong khoảng 10–50 cm, nên code coi đó là vật cản và báo ở mức giữa.
+- **Đưa vật lại gần dưới 10 cm**, còi chuyển sang **kêu liền một hồi dài**, đúng nhánh `d < SAT` trong code.
+
+Muốn còi **im** khi không có ai lại gần thì:
+
+- xoay cảm biến ra chỗ trống, hoặc dời vật phía trước ra xa hơn 50 cm;
+- hoặc giảm vùng báo động, ví dụ `#define CANH_BAO 20`.
+
+Mở **Serial Monitor** để xem dòng `d = ... cm`, biết cảm biến đang "thấy" vật ở khoảng cách bao nhiêu.
+
+> 📷 *Chờ ảnh Serial Monitor/Serial Plotter.*
 
 ## Lỗi hay gặp
 
