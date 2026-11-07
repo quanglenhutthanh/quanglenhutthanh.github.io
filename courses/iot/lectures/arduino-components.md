@@ -323,6 +323,12 @@ Cảm biến hàn sẵn trên mạch, đã có điện trở kéo lên. Cách n�
 
 Quang trở trần 2 chân, không phân cực, phải tự mắc cầu chia áp với điện trở 10 kΩ. Cách nối dây và code xem ở [Lab 5](../labs/photoresistor.md).
 
+#### Cảm biến siêu âm HC-SR05
+
+![Module HC-SR05 trong kit (in chữ `HY-SRF05`), 5 chân `Vcc` · `Trig` · `Echo` · `OUT` · `GND`](../assets/kit-hc-sr05.jpg){width=50%}
+
+Bản 5 chân của HC-SR04, đo xa tới ~450 cm. Chân `OUT` để trống, nối 4 chân còn lại như HC-SR04. Cách nối dây và code xem ở [Lab 6](../labs/ultrasonic-hc-sr04.md).
+
 > 📷 *Chờ ảnh các cảm biến còn lại trong kit.*
 
 ## Cơ cấu chấp hành

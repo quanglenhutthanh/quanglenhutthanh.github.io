@@ -82,7 +82,14 @@ Con số "3 mm" chỉ là độ phân giải lý thuyết. Trên mạch thật, 
 
 **Bản 3,3 V.** HC-SR04 gốc cần 5 V và chân `ECHO` ra mức 5 V. Nếu dùng ESP32/ESP8266 (chân chịu 3,3 V) thì phải hạ áp `ECHO` bằng cầu chia áp (ví dụ 1 kΩ + 2 kΩ), hoặc mua bản **HC-SR04P** chạy được 3–5,5 V.
 
-> 📷 *Chờ ảnh module HC-SR04 / HC-SR05 trong kit (mặt trước và mặt sau).*
+![Module HC-SR05 trong kit (in chữ `HY-SRF05`): đầu phát `T` bên trái, đầu thu `R` bên phải, thạch anh `Y1` ở giữa phía trên, 5 chân `Vcc` · `Trig` · `Echo` · `OUT` · `GND` hàn sẵn header bẻ góc 90°](../assets/kit-hc-sr05.jpg){width=60%}
+
+Module trong kit là **HC-SR05**, trên mạch in chữ **`HY-SRF05`** (hãng HY, đặt tên theo cảm biến SRF05 mà nó bắt chước). Nhìn mặt trước:
+
+- **Hai đầu dò:** `T` (phát) bên trái, `R` (thu) bên phải, giống hệt HC-SR04.
+- **Thạch anh `Y1`** (khối kim loại bạc ở giữa phía trên): tạo xung nhịp cho chip đo thời gian ở mặt sau.
+- **5 chân** từ trái sang phải: `Vcc` · `Trig` · `Echo` · `OUT` · `GND`. So với HC-SR04 chỉ thêm `OUT` ở giữa `Echo` và `GND`, nên **đừng cắm theo thói quen 4 chân**: chân thứ tư là `OUT`, `GND` là chân thứ năm.
+- **Header bẻ góc 90°:** chân chĩa ra phía sau, song song với mặt mạch. Cắm lên breadboard thì module đứng thẳng, mặt hai "mắt" nhìn ngang, tiện để đo vật phía trước.
 
 ## Giới hạn của cảm biến siêu âm
 
