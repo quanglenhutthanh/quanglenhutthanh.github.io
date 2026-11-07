@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-07">
+
+<title>Lab 6 · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lab-6-cảm-biến-siêu-âm-hc-sr04-hc-sr05-đo-khoảng-cách" id="toc-lab-6-cảm-biến-siêu-âm-hc-sr04-hc-sr05-đo-khoảng-cách" class="nav-link active" data-scroll-target="#lab-6-cảm-biến-siêu-âm-hc-sr04-hc-sr05-đo-khoảng-cách">Lab 6 · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách</a>
+  <ul class="collapse">
+  <li><a href="#cảm-biến-siêu-âm-là-gì" id="toc-cảm-biến-siêu-âm-là-gì" class="nav-link" data-scroll-target="#cảm-biến-siêu-âm-là-gì">Cảm biến siêu âm là gì</a>
+  <ul class="collapse">
+  <li><a href="#một-lần-đo-diễn-ra-thế-nào" id="toc-một-lần-đo-diễn-ra-thế-nào" class="nav-link" data-scroll-target="#một-lần-đo-diễn-ra-thế-nào">Một lần đo diễn ra thế nào</a></li>
+  <li><a href="#đổi-thời-gian-ra-khoảng-cách" id="toc-đổi-thời-gian-ra-khoảng-cách" class="nav-link" data-scroll-target="#đổi-thời-gian-ra-khoảng-cách">Đổi thời gian ra khoảng cách</a></li>
+  </ul></li>
+  <li><a href="#hc-sr04-và-hc-sr05" id="toc-hc-sr04-và-hc-sr05" class="nav-link" data-scroll-target="#hc-sr04-và-hc-sr05">HC-SR04 và HC-SR05</a></li>
+  <li><a href="#giới-hạn-của-cảm-biến-siêu-âm" id="toc-giới-hạn-của-cảm-biến-siêu-âm" class="nav-link" data-scroll-target="#giới-hạn-của-cảm-biến-siêu-âm">Giới hạn của cảm biến siêu âm</a></li>
+  <li><a href="#linh-kiện-và-chân" id="toc-linh-kiện-và-chân" class="nav-link" data-scroll-target="#linh-kiện-và-chân">Linh kiện và chân</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <ul class="collapse">
+  <li><a href="#test-1-đo-khoảng-cách" id="toc-test-1-đo-khoảng-cách" class="nav-link" data-scroll-target="#test-1-đo-khoảng-cách">Test 1 – đo khoảng cách</a></li>
+  <li><a href="#test-2-lọc-nhiễu-bằng-trung-vị" id="toc-test-2-lọc-nhiễu-bằng-trung-vị" class="nav-link" data-scroll-target="#test-2-lọc-nhiễu-bằng-trung-vị">Test 2 – lọc nhiễu bằng trung vị</a></li>
+  <li><a href="#test-3-báo-vật-cản-bằng-led-và-buzzer" id="toc-test-3-báo-vật-cản-bằng-led-và-buzzer" class="nav-link" data-scroll-target="#test-3-báo-vật-cản-bằng-led-và-buzzer">Test 3 – báo vật cản bằng LED và buzzer</a></li>
+  <li><a href="#test-4-bù-nhiệt-độ-bằng-dht11-hiển-thị-lcd" id="toc-test-4-bù-nhiệt-độ-bằng-dht11-hiển-thị-lcd" class="nav-link" data-scroll-target="#test-4-bù-nhiệt-độ-bằng-dht11-hiển-thị-lcd">Test 4 – bù nhiệt độ bằng DHT11, hiển thị LCD</a></li>
+  <li><a href="#mở-rộng-thư-viện-newping" id="toc-mở-rộng-thư-viện-newping" class="nav-link" data-scroll-target="#mở-rộng-thư-viện-newping">Mở rộng: thư viện NewPing</a></li>
+  </ul></li>
+  <li><a href="#ứng-dụng-của-cảm-biến-siêu-âm" id="toc-ứng-dụng-của-cảm-biến-siêu-âm" class="nav-link" data-scroll-target="#ứng-dụng-của-cảm-biến-siêu-âm">Ứng dụng của cảm biến siêu âm</a>
+  <ul class="collapse">
+  <li><a href="#trong-hệ-iot" id="toc-trong-hệ-iot" class="nav-link" data-scroll-target="#trong-hệ-iot">Trong hệ IoT</a></li>
+  </ul></li>
+  <li><a href="#mô-phỏng" id="toc-mô-phỏng" class="nav-link" data-scroll-target="#mô-phỏng">Mô phỏng</a>
+  <ul class="collapse">
+  <li><a href="#dựng-mạch-test-3-trên-tinkercad" id="toc-dựng-mạch-test-3-trên-tinkercad" class="nav-link" data-scroll-target="#dựng-mạch-test-3-trên-tinkercad">Dựng mạch Test 3 trên Tinkercad</a></li>
+  </ul></li>
+  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a></li>
+  <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 6 · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 7, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lab-6-cảm-biến-siêu-âm-hc-sr04-hc-sr05-đo-khoảng-cách" class="level1">
+<h1>Lab 6 · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách</h1>
+<blockquote class="blockquote">
+<p>Đo khoảng cách bằng sóng siêu âm với Arduino Uno: phát xung <code>TRIG</code>, đo độ rộng xung <code>ECHO</code> bằng <code>pulseIn()</code>, đổi thời gian ra cm. Sau đó lọc nhiễu bằng trung vị, làm đèn báo lùi xe 3 màu, và bù sai số nhiệt độ bằng DHT11. Đây là lab đầu tiên đọc một cảm biến bằng <strong>độ rộng xung</strong> thay vì mức điện áp.</p>
+</blockquote>
+<section id="cảm-biến-siêu-âm-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="cảm-biến-siêu-âm-là-gì">Cảm biến siêu âm là gì</h2>
+<p>Module có hai “mắt” tròn bằng kim loại, nhưng đó không phải camera mà là hai <strong>đầu dò siêu âm</strong> (<em>transducer</em>):</p>
+<ul>
+<li><strong><code>T</code></strong> (<em>transmitter</em>) – loa phát sóng âm tần số <strong>40 kHz</strong>, cao hơn tai người nghe được (≤ 20 kHz).</li>
+<li><strong><code>R</code></strong> (<em>receiver</em>) – micro thu sóng phản xạ.</li>
+</ul>
+<p>Nguyên lý giống con dơi và máy sonar: phát một chuỗi sóng âm, chờ sóng <strong>dội lại</strong> từ vật cản, đo <strong>thời gian đi và về</strong> rồi nhân với vận tốc âm thanh.</p>
+<p><span class="math display">d = \frac{v_{\text{âm}} \times t}{2}</span></p>
+<p>Chia 2 vì sóng đi <strong>tới vật rồi quay về</strong>, quãng đường là gấp đôi khoảng cách.</p>
+<section id="một-lần-đo-diễn-ra-thế-nào" class="level3">
+<h3 class="anchored" data-anchor-id="một-lần-đo-diễn-ra-thế-nào">Một lần đo diễn ra thế nào</h3>
+<pre><code>TRIG  ___|‾‾‾‾|______________________________________   ← Arduino giữ HIGH 10 µs
+          10µs
+Sóng  _________|||||||||_____________________________   ← module tự phát 8 xung 40 kHz
+ECHO  ___________________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|_________   ← HIGH suốt thời gian chờ sóng về
+                          &lt;------ t ------&gt;</code></pre>
+<ol type="1">
+<li>Arduino kéo <code>TRIG</code> lên <code>HIGH</code> <strong>ít nhất 10 µs</strong> rồi hạ xuống.</li>
+<li>Chip trên module phát <strong>8 chu kỳ</strong> sóng 40 kHz (khoảng 200 µs) qua đầu <code>T</code>.</li>
+<li>Ngay sau khi phát xong, module kéo <code>ECHO</code> lên <code>HIGH</code>.</li>
+<li>Khi đầu <code>R</code> nhận được sóng phản xạ, <code>ECHO</code> hạ xuống <code>LOW</code>.</li>
+<li><strong>Độ rộng xung <code>ECHO</code></strong> chính là thời gian <code>t</code> đi và về.</li>
+</ol>
+<p>Arduino không cần biết gì về 40 kHz, chỉ cần tạo xung <code>TRIG</code> và đo xung <code>ECHO</code>.</p>
+</section>
+<section id="đổi-thời-gian-ra-khoảng-cách" class="level3">
+<h3 class="anchored" data-anchor-id="đổi-thời-gian-ra-khoảng-cách">Đổi thời gian ra khoảng cách</h3>
+<p>Ở 20 °C, âm thanh đi được <strong>343 m/s = 0,0343 cm/µs</strong>. Vậy:</p>
+<p><span class="math display">d\,[\text{cm}] = \frac{t\,[\mu s] \times 0{,}0343}{2} = \frac{t}{58{,}3}</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Khoảng cách</th>
+<th>Thời gian <code>ECHO</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2 cm (gần nhất đo được)</td>
+<td>~117 µs</td>
+</tr>
+<tr class="even">
+<td>10 cm</td>
+<td>~583 µs</td>
+</tr>
+<tr class="odd">
+<td>1 m</td>
+<td>~5,8 ms</td>
+</tr>
+<tr class="even">
+<td>4 m (xa nhất HC-SR04)</td>
+<td>~23 ms</td>
+</tr>
+<tr class="odd">
+<td>Không có vật cản</td>
+<td>~38 ms rồi tự hạ (tùy module)</td>
+</tr>
+</tbody>
+</table>
+<p>Nhiều tài liệu viết <code>distance = duration / 58</code> hoặc <code>duration * 0.034 / 2</code>, đều là cùng một công thức làm tròn.</p>
+</section>
+</section>
+<section id="hc-sr04-và-hc-sr05" class="level2">
+<h2 class="anchored" data-anchor-id="hc-sr04-và-hc-sr05">HC-SR04 và HC-SR05</h2>
+<p>Hai module dùng chung nguyên lý và <strong>chung code</strong>, khác nhau chủ yếu ở số chân và tầm đo:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Thông số</th>
+<th>HC-SR04</th>
+<th>HC-SR05</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Số chân</td>
+<td>4: <code>VCC</code> · <code>Trig</code> · <code>Echo</code> · <code>GND</code></td>
+<td>5: <code>VCC</code> · <code>Trig</code> · <code>Echo</code> · <code>OUT</code> · <code>GND</code></td>
+</tr>
+<tr class="even">
+<td>Điện áp</td>
+<td>5 V DC</td>
+<td>5 V DC</td>
+</tr>
+<tr class="odd">
+<td>Dòng tiêu thụ</td>
+<td>~15 mA</td>
+<td>~15 mA (tùy bản dưới 10 mA)</td>
+</tr>
+<tr class="even">
+<td>Tần số sóng</td>
+<td>40 kHz</td>
+<td>40 kHz</td>
+</tr>
+<tr class="odd">
+<td>Tầm đo</td>
+<td>2–400 cm</td>
+<td>2–450 cm</td>
+</tr>
+<tr class="even">
+<td>Độ phân giải công bố</td>
+<td>~3 mm</td>
+<td>~2 mm</td>
+</tr>
+<tr class="odd">
+<td>Góc đo</td>
+<td>~15°</td>
+<td>~15°</td>
+</tr>
+<tr class="even">
+<td>Xung <code>TRIG</code></td>
+<td>≥ 10 µs</td>
+<td>≥ 10 µs</td>
+</tr>
+<tr class="odd">
+<td>Chu kỳ đo tối thiểu</td>
+<td>60 ms</td>
+<td>60 ms</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Chân <code>OUT</code> của HC-SR05:</strong> để trống. Tài liệu của các nhà sản xuất ghi không thống nhất (có bản ghi là ngõ ra công tắc, có bản bắt chước chân chọn chế độ 1 dây của SRF05), còn cách dùng phổ biến với Arduino chỉ cần <code>Trig</code> và <code>Echo</code>. Nối HC-SR05 y như HC-SR04, bỏ qua <code>OUT</code>.</p>
+<p>Con số “3 mm” chỉ là độ phân giải lý thuyết. Trên mạch thật, sai số thường cỡ <strong>±1 cm</strong> ở khoảng cách gần, và tăng dần khi đo xa.</p>
+<p><strong>Bản 3,3 V.</strong> HC-SR04 gốc cần 5 V và chân <code>ECHO</code> ra mức 5 V. Nếu dùng ESP32/ESP8266 (chân chịu 3,3 V) thì phải hạ áp <code>ECHO</code> bằng cầu chia áp (ví dụ 1 kΩ + 2 kΩ), hoặc mua bản <strong>HC-SR04P</strong> chạy được 3–5,5 V.</p>
+<blockquote class="blockquote">
+<p>📷 <em>Chờ ảnh module HC-SR04 / HC-SR05 trong kit (mặt trước và mặt sau).</em></p>
+</blockquote>
+</section>
+<section id="giới-hạn-của-cảm-biến-siêu-âm" class="level2">
+<h2 class="anchored" data-anchor-id="giới-hạn-của-cảm-biến-siêu-âm">Giới hạn của cảm biến siêu âm</h2>
+<p>Cảm biến đo được khi sóng <strong>dội thẳng về</strong> đầu <code>R</code>. Những trường hợp đo sai hoặc không đo được:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tình huống</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vật <strong>nghiêng</strong> so với cảm biến (&gt; ~15°)</td>
+<td>Sóng phản xạ đi chệch hướng, không về đầu <code>R</code> → đọc ra xa hơn thật hoặc timeout</td>
+</tr>
+<tr class="even">
+<td>Vật <strong>mềm, xốp</strong>: vải, mút, rèm, áo len</td>
+<td>Hấp thụ sóng âm, phản xạ yếu</td>
+</tr>
+<tr class="odd">
+<td>Vật <strong>nhỏ, mảnh</strong>: bút, cây que, dây</td>
+<td>Bề mặt phản xạ quá nhỏ</td>
+</tr>
+<tr class="even">
+<td>Vật <strong>gần hơn 2 cm</strong></td>
+<td>Sóng về trước khi module kịp chuyển sang chế độ nghe</td>
+</tr>
+<tr class="odd">
+<td>Hai cảm biến siêu âm chạy cùng lúc</td>
+<td>Cảm biến này nhận nhầm sóng của cảm biến kia — đo lần lượt, không đo song song</td>
+</tr>
+<tr class="even">
+<td>Đo liên tục quá nhanh (&lt; 60 ms)</td>
+<td>Sóng dội từ lần đo trước (vật xa, phản xạ nhiều lần) về muộn, bị tính cho lần đo sau</td>
+</tr>
+</tbody>
+</table>
+<p>Ngược lại, siêu âm <strong>không phụ thuộc màu sắc và ánh sáng</strong>: vật đen, vật trong suốt (kính) hay phòng tối đều đo được, điều mà cảm biến hồng ngoại hay camera làm không tốt.</p>
+</section>
+<section id="linh-kiện-và-chân" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện-và-chân">Linh kiện và chân</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Số lượng</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HC-SR04 hoặc HC-SR05</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>LED đỏ + điện trở 220 Ω</td>
+<td>1 bộ</td>
+<td>Dùng cho Test 3</td>
+</tr>
+<tr class="odd">
+<td>Buzzer (còi)</td>
+<td>1</td>
+<td>Dùng cho Test 3. Trong Tinkercad là <em>Piezo</em></td>
+</tr>
+<tr class="even">
+<td>Module DHT11</td>
+<td>1</td>
+<td>Dùng cho Test 4, xem <a href="../../../courses/iot/labs/dht11.html">Lab 3</a></td>
+</tr>
+<tr class="odd">
+<td>LCD 1602 I²C</td>
+<td>1</td>
+<td>Dùng cho Test 4, xem <a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a></td>
+</tr>
+<tr class="even">
+<td>Breadboard, dây đực – đực, dây đực – cái</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Nối dây:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Chân cảm biến</th>
+<th>Nối vào Uno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>VCC</code></td>
+<td><code>5V</code></td>
+</tr>
+<tr class="even">
+<td><code>Trig</code></td>
+<td><code>D7</code></td>
+</tr>
+<tr class="odd">
+<td><code>Echo</code></td>
+<td><code>D8</code></td>
+</tr>
+<tr class="even">
+<td><code>GND</code></td>
+<td><code>GND</code></td>
+</tr>
+<tr class="odd">
+<td><code>OUT</code> (chỉ HC-SR05)</td>
+<td>Để trống</td>
+</tr>
+</tbody>
+</table>
+<p>Có thể cắm module thẳng lên breadboard (chân hướng xuống, mặt “mắt” quay ra ngoài mép), hoặc dùng <strong>dây đực – cái</strong> dạng cáp dẹt trong kit chụp vào header của module để xoay cảm biến tự do. Đặt cảm biến sao cho <strong>không có gì chắn trước mặt</strong> trong khoảng 30 cm đầu: dây cắm, mép bàn hay thành breadboard nằm trong vùng 15° đều có thể bị đo nhầm.</p>
+<p><code>Trig</code>/<code>Echo</code> không cần chân PWM hay chân ngắt, chân digital nào cũng được. <code>D7</code>/<code>D8</code> được chọn để chừa <code>D2</code> cho DHT11 (giống Lab 3), <code>D5</code>/<code>D6</code> cho LED và buzzer, <code>A4</code>/<code>A5</code> cho LCD.</p>
+</section>
+<section id="code" class="level2">
+<h2 class="anchored" data-anchor-id="code">Code</h2>
+<section id="test-1-đo-khoảng-cách" class="level3">
+<h3 class="anchored" data-anchor-id="test-1-đo-khoảng-cách">Test 1 – đo khoảng cách</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TRIG_PIN  </span><span class="dv">7</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ECHO_PIN  </span><span class="dv">8</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TIMEOUT_US  </span><span class="dv">30000</span><span class="bu">UL</span><span class="pp">   </span><span class="co">// 30 ms ≈ 5 m đi và về, quá mức này coi như không có vật</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>TRIG_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>ECHO_PIN<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> doKhoangCach<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">// xung TRIG 10 µs, có 2 µs LOW trước để xung sạch</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  delayMicroseconds<span class="op">(</span><span class="dv">2</span><span class="op">);</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  delayMicroseconds<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">long</span> t <span class="op">=</span> pulseIn<span class="op">(</span>ECHO_PIN<span class="op">,</span> HIGH<span class="op">,</span> TIMEOUT_US<span class="op">);</span>   <span class="co">// µs, 0 nếu timeout</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>t <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>                                   <span class="co">// không đo được</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> t <span class="op">*</span> <span class="fl">0.0343</span> <span class="op">/</span> <span class="fl">2.0</span><span class="op">;</span>                                 <span class="co">// cm</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> d <span class="op">=</span> doKhoangCach<span class="op">();</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>d <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Ngoai tam do"</span><span class="op">);</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"d = "</span><span class="op">);</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>d<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" cm"</span><span class="op">);</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li><strong><code>pulseIn(ECHO_PIN, HIGH, timeout)</code></strong> chờ chân <code>ECHO</code> lên <code>HIGH</code>, bấm giờ, chờ xuống <code>LOW</code>, rồi trả về số µs. Đây là hàm <strong>chặn</strong> (<em>blocking</em>): trong lúc chờ, <code>loop()</code> không làm được gì khác.</li>
+<li><strong>Luôn truyền <code>timeout</code>.</strong> Mặc định <code>pulseIn()</code> chờ tới <strong>1 giây</strong>. Khi không có vật cản, một số module HC-SR04 bản rẻ giữ <code>ECHO</code> ở <code>HIGH</code> rất lâu, chương trình sẽ đứng gần 1 s mỗi lần đo. Với 30 ms, hàm trả 0 nếu quá tầm và code in <code>Ngoai tam do</code>.</li>
+<li><strong><code>unsigned long</code></strong> cho <code>t</code>: thời gian có thể tới vài chục nghìn µs, vượt giới hạn 32767 của <code>int</code> trên Uno.</li>
+<li><strong><code>delay(100)</code></strong> giữa hai lần đo, lớn hơn 60 ms theo khuyến cáo để sóng dội của lần trước tắt hẳn.</li>
+</ul>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Đặt cảm biến hướng lên trần nhà hoặc ra phòng trống: Serial in khoảng cách tới trần/tường, hoặc <code>Ngoai tam do</code> nếu quá 4 m.</li>
+<li>Đưa bàn tay (hoặc tốt hơn là một quyển sách, mặt phẳng song song với cảm biến) lại gần dần: số giảm theo.</li>
+<li>Dùng thước kẻ đo thật ở <strong>10 cm, 20 cm, 50 cm</strong> và so với số trên Serial. Ghi lại sai lệch.</li>
+<li>Đưa sách sát dưới 2 cm: số nhảy lung tung hoặc lớn bất thường, vì đã dưới tầm đo tối thiểu.</li>
+<li>Nghiêng quyển sách khoảng 45°: số nhảy hoặc báo ngoài tầm, vì sóng dội đi hướng khác.</li>
+</ul>
+</section>
+<section id="test-2-lọc-nhiễu-bằng-trung-vị" class="level3">
+<h3 class="anchored" data-anchor-id="test-2-lọc-nhiễu-bằng-trung-vị">Test 2 – lọc nhiễu bằng trung vị</h3>
+<p>Đo thật sẽ thấy thỉnh thoảng có một số <strong>vọt hẳn ra</strong> (ví dụ 23, 23, 24, <strong>187</strong>, 23…) do sóng dội lạc hoặc một lần timeout. Lấy <strong>trung bình</strong> thì một số vọt cũng kéo lệch kết quả. Lấy <strong>trung vị</strong> (<em>median</em>) của 5 lần đo, tức sắp xếp rồi chọn số ở giữa, thì vài số vọt bị loại bỏ hoàn toàn.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TRIG_PIN  </span><span class="dv">7</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ECHO_PIN  </span><span class="dv">8</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TIMEOUT_US  </span><span class="dv">30000</span><span class="bu">UL</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SO_LAN  </span><span class="dv">5</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>TRIG_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>ECHO_PIN<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> doKhoangCach<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  delayMicroseconds<span class="op">(</span><span class="dv">2</span><span class="op">);</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  delayMicroseconds<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">long</span> t <span class="op">=</span> pulseIn<span class="op">(</span>ECHO_PIN<span class="op">,</span> HIGH<span class="op">,</span> TIMEOUT_US<span class="op">);</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>t <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">999</span><span class="op">;</span>          <span class="co">// timeout → coi là rất xa, để trung vị đẩy ra cuối</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> t <span class="op">*</span> <span class="fl">0.0343</span> <span class="op">/</span> <span class="fl">2.0</span><span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> doTrungVi<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> a<span class="op">[</span>SO_LAN<span class="op">];</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> SO_LAN<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> doKhoangCach<span class="op">();</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">60</span><span class="op">);</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">// sắp xếp chèn (insertion sort), mảng nhỏ nên đủ nhanh</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> SO_LAN<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> x <span class="op">=</span> a<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> j <span class="op">=</span> i <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>j <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> a<span class="op">[</span>j<span class="op">]</span> <span class="op">&gt;</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      a<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>j<span class="op">];</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      j<span class="op">--;</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> a<span class="op">[</span>SO_LAN <span class="op">/</span> <span class="dv">2</span><span class="op">];</span>            <span class="co">// phần tử giữa</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> tho <span class="op">=</span> doKhoangCach<span class="op">();</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">60</span><span class="op">);</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> loc <span class="op">=</span> doTrungVi<span class="op">();</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Serial Plotter: 2 đường "tho" và "loc"</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"tho:"</span><span class="op">);</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>tho <span class="op">&gt;</span> <span class="dv">500</span> <span class="op">?</span> <span class="dv">0</span> <span class="op">:</span> tho<span class="op">);</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" loc:"</span><span class="op">);</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>loc <span class="op">&gt;</span> <span class="dv">500</span> <span class="op">?</span> <span class="dv">0</span> <span class="op">:</span> loc<span class="op">);</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Mở <strong>Tools → Serial Plotter</strong> (9600 baud). Định dạng <code>ten:giatri</code> giúp Plotter đặt tên cho từng đường.</p>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Để cảm biến nhìn vào một bức tường cố định: đường <code>tho</code> thỉnh thoảng có gai nhọn, đường <code>loc</code> gần như phẳng.</li>
+<li>Đưa tay qua lại nhanh: <code>loc</code> phản ứng <strong>chậm hơn</strong> <code>tho</code> một chút, vì mỗi giá trị lọc mất 5 × 60 ms = 0,3 s. Đây là cái giá của bộ lọc: càng nhiều lần đo thì càng mượt nhưng càng trễ.</li>
+</ul>
+</section>
+<section id="test-3-báo-vật-cản-bằng-led-và-buzzer" class="level3">
+<h3 class="anchored" data-anchor-id="test-3-báo-vật-cản-bằng-led-và-buzzer">Test 3 – báo vật cản bằng LED và buzzer</h3>
+<p>Mạch gốc của bài này là một sơ đồ Fritzing cho <strong>Raspberry Pi</strong>: HC-SR04, một LED đỏ, một điện trở và một buzzer, chân <code>Echo</code> đi qua cầu chia áp <strong>R1 220 Ω + R2 330 Ω</strong>. Dưới đây là bản chuyển sang <strong>Arduino Uno</strong> để dựng trên Tinkercad.</p>
+<p><strong>Khác gì so với bản Raspberry Pi:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Raspberry Pi (mạch gốc)</th>
+<th>Arduino Uno (lab này)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mức logic chân GPIO</td>
+<td>3,3 V, <strong>không chịu được 5 V</strong></td>
+<td>5 V</td>
+</tr>
+<tr class="even">
+<td>Chân <code>Echo</code></td>
+<td>Phải qua cầu chia áp 220 Ω / 330 Ω: <span class="math inline">5 \times \frac{330}{220+330} = 3\,\text{V}</span></td>
+<td><strong>Nối thẳng</strong> vào <code>D8</code>, bỏ R1 và R2</td>
+</tr>
+<tr class="odd">
+<td><code>VCC</code> cảm biến</td>
+<td>Chân 5 V của header GPIO</td>
+<td><code>5V</code> của Uno</td>
+</tr>
+<tr class="even">
+<td>Báo động</td>
+<td>LED + điện trở + buzzer <strong>nối tiếp</strong> trên một chân GPIO</td>
+<td>Mỗi thứ <strong>một chân riêng</strong>: LED <code>D5</code>, buzzer <code>D6</code></td>
+</tr>
+<tr class="odd">
+<td>Code</td>
+<td>Python (<code>RPi.GPIO</code>, <code>time.time()</code>)</td>
+<td>C++ (<code>pulseIn()</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Tách LED và buzzer ra hai chân vì mắc nối tiếp thì 5 V phải chia cho cả LED, điện trở lẫn buzzer, cả hai đều yếu. Tách ra thì LED sáng rõ, buzzer kêu to, và sửa code điều khiển riêng từng thứ được (ví dụ chỉ nháy LED, không kêu).</p>
+<p>Nối dây:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Từ</th>
+<th>Đến</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Uno <code>5V</code> / <code>GND</code></td>
+<td>Thanh <code>+</code> / <code>−</code> breadboard</td>
+</tr>
+<tr class="even">
+<td>HC-SR04 <code>Vcc</code> / <code>Gnd</code></td>
+<td>Thanh <code>+</code> / <code>−</code></td>
+</tr>
+<tr class="odd">
+<td>HC-SR04 <code>Trig</code></td>
+<td><code>D7</code></td>
+</tr>
+<tr class="even">
+<td>HC-SR04 <code>Echo</code></td>
+<td><code>D8</code> (trực tiếp, không điện trở)</td>
+</tr>
+<tr class="odd">
+<td>LED đỏ</td>
+<td><code>D5</code> → điện trở 220 Ω → chân dài (anode); chân ngắn (cathode) → thanh <code>−</code></td>
+</tr>
+<tr class="even">
+<td>Buzzer</td>
+<td>Chân <code>+</code> (chân dài) → <code>D6</code>; chân <code>−</code> → thanh <code>−</code></td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TRIG_PIN    </span><span class="dv">7</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ECHO_PIN    </span><span class="dv">8</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_PIN     </span><span class="dv">5</span><span class="pp">     </span><span class="co">// LED đỏ (qua điện trở 220 Ω)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BUZZER_PIN  </span><span class="dv">6</span><span class="pp">     </span><span class="co">// piezo</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TIMEOUT_US  </span><span class="dv">30000</span><span class="bu">UL</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define CANH_BAO    </span><span class="dv">50</span><span class="pp">    </span><span class="co">// &lt; 50 cm: bắt đầu báo</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SAT         </span><span class="dv">10</span><span class="pp">    </span><span class="co">// &lt; 10 cm: báo liên tục</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lanBeepTruoc <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> dangKeu <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>TRIG_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>ECHO_PIN<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>BUZZER_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> doKhoangCach<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  delayMicroseconds<span class="op">(</span><span class="dv">2</span><span class="op">);</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  delayMicroseconds<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">long</span> t <span class="op">=</span> pulseIn<span class="op">(</span>ECHO_PIN<span class="op">,</span> HIGH<span class="op">,</span> TIMEOUT_US<span class="op">);</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>t <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">999</span><span class="op">;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> t <span class="op">*</span> <span class="fl">0.0343</span> <span class="op">/</span> <span class="fl">2.0</span><span class="op">;</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">// bật/tắt LED và buzzer cùng lúc</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> baoDong<span class="op">(</span><span class="dt">bool</span> bat<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> bat<span class="op">);</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>bat<span class="op">)</span> tone<span class="op">(</span>BUZZER_PIN<span class="op">,</span> <span class="dv">2000</span><span class="op">);</span>   <span class="co">// 2 kHz</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>     noTone<span class="op">(</span>BUZZER_PIN<span class="op">);</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> d <span class="op">=</span> doKhoangCach<span class="op">();</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>d <span class="op">&gt;=</span> CANH_BAO<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    dangKeu <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>                 <span class="co">// xa: tắt hết</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    baoDong<span class="op">(</span><span class="kw">false</span><span class="op">);</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>d <span class="op">&lt;</span> SAT<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    dangKeu <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>                  <span class="co">// quá sát: LED sáng đứng, còi kêu liên tục</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    baoDong<span class="op">(</span><span class="kw">true</span><span class="op">);</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 10 cm → nháy/bíp mỗi 80 ms, 50 cm → mỗi 500 ms</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> chuKy <span class="op">=</span> map<span class="op">((</span><span class="dt">long</span><span class="op">)</span>d<span class="op">,</span> SAT<span class="op">,</span> CANH_BAO<span class="op">,</span> <span class="dv">80</span><span class="op">,</span> <span class="dv">500</span><span class="op">);</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> lanBeepTruoc <span class="op">&gt;=</span> chuKy<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>      lanBeepTruoc <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>      dangKeu <span class="op">=</span> <span class="op">!</span>dangKeu<span class="op">;</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>      baoDong<span class="op">(</span>dangKeu<span class="op">);</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"d = "</span><span class="op">);</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>d<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" cm"</span><span class="op">);</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">60</span><span class="op">);</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li><strong><code>tone(BUZZER_PIN, 2000)</code></strong> phát sóng vuông 2 kHz, dùng được cho cả <strong>buzzer thụ động</strong> (piezo, cần tần số mới kêu, chính là <em>Piezo</em> trong Tinkercad) lẫn <strong>buzzer chủ động</strong> (có mạch dao động bên trong, chỉ cần cấp <code>HIGH</code>). Nếu kit là buzzer chủ động thì thay <code>tone()</code>/<code>noTone()</code> bằng <code>digitalWrite(BUZZER_PIN, HIGH/LOW)</code> cũng được.</li>
+<li><strong>LED và buzzer bật tắt cùng nhau</strong> trong hàm <code>baoDong()</code>: <code>digitalWrite(LED_PIN, bat)</code> cho chân <code>D5</code> ra 5 V (LED sáng) hoặc 0 V (LED tắt), cùng lúc với <code>tone()</code>/<code>noTone()</code> của buzzer. Vì vậy LED nháy đúng nhịp tiếng bíp.</li>
+<li><strong>Bíp bằng <code>millis()</code> chứ không dùng <code>delay()</code></strong>: nếu <code>delay(chuKy)</code> thì trong lúc chờ Arduino không đo, vật lại gần mà còi vẫn kêu chậm. Với <code>millis()</code>, mỗi vòng <code>loop()</code> vẫn đo, chỉ đổi trạng thái khi đủ thời gian. Cùng kỹ thuật với nháy LED không chặn ở <a href="../../../courses/iot/labs/led-basics.html">Lab 1</a>.</li>
+<li><strong><code>map((long)d, SAT, CANH_BAO, 80, 500)</code></strong>: <code>map()</code> chỉ làm việc với số nguyên nên ép kiểu <code>d</code>. Càng gần thì chu kỳ càng ngắn, bíp càng nhanh, đúng kiểu cảm biến lùi xe.</li>
+<li><strong><code>tone()</code> dùng Timer2</strong>, nên sẽ làm mất PWM ở chân <code>D3</code> và <code>D11</code>. Lab này không dùng hai chân đó.</li>
+</ul>
+<p><strong>Cách kiểm tra:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Khoảng cách</th>
+<th>LED</th>
+<th>Buzzer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>≥ 50 cm</td>
+<td>tắt</td>
+<td>im</td>
+</tr>
+<tr class="even">
+<td>10–50 cm</td>
+<td>nháy, càng gần càng nhanh</td>
+<td>bíp cùng nhịp</td>
+</tr>
+<tr class="odd">
+<td>&lt; 10 cm</td>
+<td>sáng đứng</td>
+<td>kêu liên tục</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="test-4-bù-nhiệt-độ-bằng-dht11-hiển-thị-lcd" class="level3">
+<h3 class="anchored" data-anchor-id="test-4-bù-nhiệt-độ-bằng-dht11-hiển-thị-lcd">Test 4 – bù nhiệt độ bằng DHT11, hiển thị LCD</h3>
+<p>Vận tốc âm thanh <strong>phụ thuộc nhiệt độ không khí</strong>:</p>
+<p><span class="math display">v \approx 331{,}3 + 0{,}606 \times T \quad [\text{m/s}],\ T \text{ tính bằng °C}</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Nhiệt độ</th>
+<th>Vận tốc âm</th>
+<th>Đo vật thật ở 2 m, code dùng 343 m/s sẽ ra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10 °C</td>
+<td>337,4 m/s</td>
+<td>203,3 cm</td>
+</tr>
+<tr class="even">
+<td>20 °C</td>
+<td>343,4 m/s</td>
+<td>199,8 cm</td>
+</tr>
+<tr class="odd">
+<td>30 °C (phòng ở Việt Nam)</td>
+<td>349,5 m/s</td>
+<td>196,3 cm</td>
+</tr>
+<tr class="even">
+<td>35 °C</td>
+<td>352,5 m/s</td>
+<td>194,6 cm</td>
+</tr>
+</tbody>
+</table>
+<p>Phòng 30 °C đã lệch gần <strong>2 %</strong>, khoảng 4 cm ở 2 m. Ghép DHT11 của <a href="../../../courses/iot/labs/dht11.html">Lab 3</a> để đọc nhiệt độ thật và tính lại vận tốc. Nối thêm:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Nối vào</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DHT11 <code>out</code></td>
+<td><code>D2</code></td>
+</tr>
+<tr class="even">
+<td>DHT11 <code>+</code> / <code>−</code></td>
+<td><code>5V</code> / <code>GND</code></td>
+</tr>
+<tr class="odd">
+<td>LCD I²C <code>SDA</code> / <code>SCL</code></td>
+<td><code>A4</code> / <code>A5</code></td>
+</tr>
+<tr class="even">
+<td>LCD I²C <code>VCC</code> / <code>GND</code></td>
+<td><code>5V</code> / <code>GND</code></td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;LiquidCrystal_I2C.h&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;DHT.h&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TRIG_PIN  </span><span class="dv">7</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ECHO_PIN  </span><span class="dv">8</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DHTPIN    </span><span class="dv">2</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define DHTTYPE   </span>DHT11</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TIMEOUT_US  </span><span class="dv">30000</span><span class="bu">UL</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>LiquidCrystal_I2C lcd<span class="op">(</span><span class="bn">0x27</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>DHT dht<span class="op">(</span>DHTPIN<span class="op">,</span> DHTTYPE<span class="op">);</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> nhietDo <span class="op">=</span> <span class="fl">25.0</span><span class="op">;</span>                 <span class="co">// giá trị mặc định nếu DHT11 lỗi</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lanDocDhtTruoc <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>TRIG_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>ECHO_PIN<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  dht<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>init<span class="op">();</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>backlight<span class="op">();</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> doThoiGian<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  delayMicroseconds<span class="op">(</span><span class="dv">2</span><span class="op">);</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  delayMicroseconds<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>TRIG_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> pulseIn<span class="op">(</span>ECHO_PIN<span class="op">,</span> HIGH<span class="op">,</span> TIMEOUT_US<span class="op">);</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="co">// DHT11 chỉ đọc được mỗi ~1–2 s, nhiệt độ cũng thay đổi chậm</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> lanDocDhtTruoc <span class="op">&gt;=</span> <span class="dv">2000</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    lanDocDhtTruoc <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> t <span class="op">=</span> dht<span class="op">.</span>readTemperature<span class="op">();</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>isnan<span class="op">(</span>t<span class="op">))</span> nhietDo <span class="op">=</span> t<span class="op">;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> v <span class="op">=</span> <span class="fl">331.3</span> <span class="op">+</span> <span class="fl">0.606</span> <span class="op">*</span> nhietDo<span class="op">;</span>          <span class="co">// m/s</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> cmMoiUs <span class="op">=</span> v <span class="op">/</span> <span class="fl">10000.0</span><span class="op">;</span>                <span class="co">// m/s → cm/µs</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">long</span> t <span class="op">=</span> doThoiGian<span class="op">();</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>t <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"d: ngoai tam    "</span><span class="op">);</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> dBu <span class="op">=</span> t <span class="op">*</span> cmMoiUs <span class="op">/</span> <span class="fl">2.0</span><span class="op">;</span>            <span class="co">// có bù nhiệt</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> d20 <span class="op">=</span> t <span class="op">*</span> <span class="fl">0.0343</span> <span class="op">/</span> <span class="fl">2.0</span><span class="op">;</span>             <span class="co">// giả sử 20 °C</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"d:"</span><span class="op">);</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span>dBu<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span><span class="st">" ("</span><span class="op">);</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span>d20<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>print<span class="op">(</span><span class="st">")    "</span><span class="op">);</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"T:"</span><span class="op">);</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span>nhietDo<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">((</span><span class="dt">char</span><span class="op">)</span><span class="dv">223</span><span class="op">);</span>                       <span class="co">// ký tự ° trong ROM HD44780</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"C v:"</span><span class="op">);</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span>v<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"m/s "</span><span class="op">);</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Dòng 1 hiện khoảng cách <strong>có bù nhiệt</strong>, trong ngoặc là số <strong>không bù</strong> (giả sử 20 °C) để so sánh. Dòng 2 hiện nhiệt độ và vận tốc âm đang dùng.</p>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Đặt cảm biến cách tường đúng <strong>1 m</strong> (đo bằng thước dây). Số có bù phải gần 100 cm hơn số trong ngoặc. Ở phòng 30 °C, hai số chênh nhau khoảng 2 cm.</li>
+<li>Ở khoảng cách gần (10–20 cm), hai số gần như bằng nhau: sai số nhiệt tỉ lệ với khoảng cách, nên chỉ đáng kể khi đo xa.</li>
+<li>Độ ẩm cũng ảnh hưởng vận tốc âm nhưng rất ít (dưới 0,5 %), bỏ qua được.</li>
+</ul>
+</section>
+<section id="mở-rộng-thư-viện-newping" class="level3">
+<h3 class="anchored" data-anchor-id="mở-rộng-thư-viện-newping">Mở rộng: thư viện NewPing</h3>
+<p>Thư viện <strong>NewPing</strong> (cài qua <strong>Library Manager</strong>) gói sẵn phần phát xung, timeout và lọc trung vị:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;NewPing.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>NewPing sonar<span class="op">(</span><span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">400</span><span class="op">);</span>        <span class="co">// TRIG, ECHO, khoảng cách tối đa (cm)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span> Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span> <span class="op">}</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">int</span> cm <span class="op">=</span> sonar<span class="op">.</span>convert_cm<span class="op">(</span>sonar<span class="op">.</span>ping_median<span class="op">(</span><span class="dv">5</span><span class="op">));</span>   <span class="co">// trung vị 5 lần, 0 = ngoài tầm</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>cm<span class="op">);</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>NewPing cũng hỗ trợ chế độ <strong>1 chân</strong> (nối <code>TRIG</code> và <code>ECHO</code> chung một chân Arduino) để tiết kiệm chân, và đo <strong>không chặn</strong> bằng ngắt timer. Lab vẫn viết tay ở các Test trên để hiểu rõ <code>TRIG</code>/<code>ECHO</code> hoạt động thế nào.</p>
+</section>
+</section>
+<section id="ứng-dụng-của-cảm-biến-siêu-âm" class="level2">
+<h2 class="anchored" data-anchor-id="ứng-dụng-của-cảm-biến-siêu-âm">Ứng dụng của cảm biến siêu âm</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lĩnh vực</th>
+<th>Ví dụ</th>
+<th>Cảm biến làm gì</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ô tô</td>
+<td>Cảm biến lùi xe, hỗ trợ đỗ xe</td>
+<td>Đo khoảng cách tới xe/tường phía sau, báo tít nhanh dần (chính là Test 3)</td>
+</tr>
+<tr class="even">
+<td>Robot</td>
+<td>Robot tránh vật cản</td>
+<td>Đo phía trước, gần hơn ngưỡng thì rẽ</td>
+</tr>
+<tr class="odd">
+<td>Đo mức</td>
+<td>Bồn nước, thùng rác thông minh</td>
+<td>Gắn trên nắp hướng xuống, khoảng cách tới mặt nước/rác cho biết mức đầy</td>
+</tr>
+<tr class="even">
+<td>Bãi đỗ xe</td>
+<td>Đèn báo chỗ trống trên trần</td>
+<td>Có xe đỗ thì khoảng cách giảm đột ngột → đổi đèn đỏ</td>
+</tr>
+<tr class="odd">
+<td>Đếm người</td>
+<td>Cửa ra vào</td>
+<td>Khoảng cách tới cửa đối diện tụt xuống khi có người đi qua</td>
+</tr>
+<tr class="even">
+<td>Y tế / tiện ích</td>
+<td>Máy rửa tay, thùng rác tự mở nắp</td>
+<td>Đưa tay lại gần thì kích hoạt</td>
+</tr>
+</tbody>
+</table>
+<section id="trong-hệ-iot" class="level3">
+<h3 class="anchored" data-anchor-id="trong-hệ-iot">Trong hệ IoT</h3>
+<p>HC-SR04 là ví dụ cho kiểu <strong>cảm biến đo thời gian</strong> (<em>time-of-flight</em>) ở tầng thiết bị: tín hiệu là <strong>độ rộng xung</strong>, không qua ADC như quang trở. Vài hướng ghép:</p>
+<ul>
+<li><strong>HC-SR04 + servo (Lab 4)</strong>: gắn cảm biến lên cánh tay servo, quét 0–180° và in cặp (góc, khoảng cách) để vẽ “radar” trên máy tính.</li>
+<li><strong>Đo mức nước bồn + ESP32</strong>: mỗi 10 phút gửi mức nước lên cloud, cảnh báo khi bồn sắp cạn. Nhớ hạ áp chân <code>ECHO</code> về 3,3 V.</li>
+<li><strong>Thùng rác thông minh</strong>: một HC-SR04 trên nắp đo mức đầy, một cái phía trước phát hiện tay để servo mở nắp. Nhớ <strong>đo lần lượt</strong> hai cảm biến, không phát cùng lúc.</li>
+</ul>
+</section>
+</section>
+<section id="mô-phỏng" class="level2">
+<h2 class="anchored" data-anchor-id="mô-phỏng">Mô phỏng</h2>
+<p>Tinkercad Circuits có sẵn <strong>Ultrasonic Distance Sensor (4-pin)</strong>, chính là HC-SR04 (tìm <code>ultrasonic</code> trong ô linh kiện). Không có HC-SR05, nhưng code giống hệt nên dùng bản 4 chân để mô phỏng.</p>
+<ol type="1">
+<li>Kéo <em>Arduino Uno R3</em>, <em>Breadboard small</em> và <em>Ultrasonic Distance Sensor (4-pin)</em> vào.</li>
+<li>Nối <code>VCC</code> → <code>5V</code>, <code>TRIG</code> → <code>D7</code>, <code>ECHO</code> → <code>D8</code>, <code>GND</code> → <code>GND</code>.</li>
+<li>Dán code Test 1, bấm <strong>Start Simulation</strong>, mở <strong>Serial Monitor</strong>.</li>
+<li><strong>Bấm vào cảm biến</strong> lúc đang mô phỏng sẽ hiện một vùng hình quạt và một chấm tròn (vật cản ảo). Kéo chấm lại gần hoặc ra xa thì số trên Serial thay đổi theo. Kéo chấm ra ngoài vùng quạt thì code in <code>Ngoai tam do</code>.</li>
+</ol>
+<section id="dựng-mạch-test-3-trên-tinkercad" class="level3">
+<h3 class="anchored" data-anchor-id="dựng-mạch-test-3-trên-tinkercad">Dựng mạch Test 3 trên Tinkercad</h3>
+<p>Bản Arduino của mạch Fritzing (Raspberry Pi) ở Test 3, gồm cảm biến, LED và buzzer.</p>
+<ol type="1">
+<li>Kéo vào: <em>Arduino Uno R3</em>, <em>Breadboard small</em>, <em>Ultrasonic Distance Sensor (4-pin)</em>, <em>LED</em> (đỏ), <em>Resistor</em> (đổi thành <strong>220 Ω</strong>) và <em>Piezo</em>.</li>
+<li><strong>Nguồn:</strong> <code>5V</code> của Uno (dây đỏ) → thanh <code>+</code> phía trên breadboard; <code>GND</code> (dây đen) → thanh <code>−</code> phía trên.</li>
+<li><strong>Cảm biến</strong> (đặt ngoài breadboard, bên phải):
+<ul>
+<li><code>VCC</code> → thanh <code>+</code> (dây đỏ)</li>
+<li><code>GND</code> → thanh <code>−</code> (dây đen)</li>
+<li><code>TRIG</code> → <code>D7</code> của Uno (dây xanh dương)</li>
+<li><code>ECHO</code> → <code>D8</code> của Uno (dây vàng) — <strong>không</strong> cần R1/R2 như bản Raspberry Pi</li>
+</ul></li>
+<li><strong>Piezo</strong> (đặt ngoài breadboard): chân <code>+</code> → <code>D6</code> của Uno, chân <code>−</code> → thanh <code>−</code> (dây đen).</li>
+<li><strong>LED</strong> cắm ở hàng <code>j</code>: chân thẳng (cathode) ở <strong>cột 10</strong>, chân cong (anode) ở <strong>cột 11</strong>.</li>
+<li><strong>Điện trở 220 Ω</strong> nằm ngang ở hàng <code>h</code>, từ <strong>h11</strong> (cùng cột anode) đến <strong>h15</strong>.</li>
+<li>Dây từ <strong>i10</strong> lên thanh <code>−</code> (đen), dây từ <strong>j15</strong> lên <code>D5</code> của Uno (cam).</li>
+<li>Dán code Test 3, <strong>Start Simulation</strong>. Bấm vào cảm biến, kéo chấm vật cản vào trong 50 cm: LED nháy và loa máy tính phát tiếng bíp, kéo càng gần càng nhanh.</li>
+</ol>
+<p>Tinkercad phát tiếng piezo qua loa máy tính, nhớ bật âm lượng. Nếu LED không sáng thì thường do cắm ngược chân (đổi cột 10 và 11), hoặc điện trở cắm lệch sang cột 10 (cột cathode) thay vì cột 11.</p>
+<p>Cảm biến trong Tinkercad cho số đúng tuyệt đối, không nhiễu và không phụ thuộc nhiệt độ, nên Test 2 và Test 4 chỉ thấy tác dụng trên mạch thật. Tinkercad không có DHT11, chỉ có <em>Temperature Sensor [TMP36]</em>, nên muốn mô phỏng Test 4 thì thay DHT11 bằng TMP36 đọc qua <code>analogRead()</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/ultrasonic-led-buzzer-tinkercad.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Mạch Test 3 trên Tinkercad: HC-SR04 bên phải nối <code>TRIG</code> → <code>D7</code> (dây xanh dương), <code>ECHO</code> → <code>D8</code> (dây vàng), <code>VCC</code>/<code>GND</code> vào thanh <code>+</code>/<code>−</code>; piezo phía trên nối <code>+</code> → <code>D6</code>; LED đỏ trên breadboard qua điện trở 220 Ω nối <code>D5</code> (dây cam)</figcaption>
+</figure>
+</div>
+<p>Đọc mạch theo từng đường:</p>
+<ul>
+<li><strong>Nguồn:</strong> <code>5V</code> (dây đỏ) và <code>GND</code> (dây đen) của Uno đi vào thanh <code>+</code> và <code>−</code> phía trên breadboard, ở đầu bên trái.</li>
+<li><strong>HC-SR04:</strong> nằm ngoài breadboard, bên phải. <code>VCC</code> (dây đỏ) và <code>GND</code> (dây đen) đi xuống đầu bên phải của hai thanh nguồn. <code>TRIG</code> (dây xanh dương) và <code>ECHO</code> (dây vàng) chạy ngang lên header digital, vào <code>D7</code> và <code>D8</code>. Không có điện trở chia áp như bản Raspberry Pi.</li>
+<li><strong>Piezo:</strong> nằm phía trên Uno. Chân <code>+</code> (dây vàng) đi vào <code>D6</code>, chân <code>−</code> (dây đen) chạy xuống thanh <code>−</code> ở giữa breadboard.</li>
+<li><strong>LED:</strong> cắm ở hàng <code>j</code>, cột 10 (cathode) và 11 (anode). Dây đen từ cột 10 lên thanh <code>−</code>. Điện trở 220 Ω (vòng đỏ – đỏ – nâu) nằm ở hàng <code>h</code> từ cột 11 sang cột 15, rồi dây cam từ cột 15 chạy thẳng lên <code>D5</code>, ngay cạnh dây piezo ở <code>D6</code>.</li>
+</ul>
+<p>Dây chân <code>+</code> của piezo và dây <code>ECHO</code> cùng màu vàng, cắm sát nhau ở <code>D6</code> và <code>D8</code>. Khi dò lỗi, bấm vào từng dây để xem nó nối chân nào.</p>
+</section>
+</section>
+<section id="ảnh-thực-tế" class="level2">
+<h2 class="anchored" data-anchor-id="ảnh-thực-tế">Ảnh thực tế</h2>
+<blockquote class="blockquote">
+<p>📷 <em>Chờ ảnh mạch thật, ảnh Serial Monitor/Serial Plotter và video Test 3.</em></p>
+</blockquote>
+</section>
+<section id="lỗi-hay-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hiện tượng</th>
+<th>Nguyên nhân / cách xử lý</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Luôn in <code>Ngoai tam do</code> (hoặc 0)</td>
+<td>Đổi lẫn dây <code>Trig</code>/<code>Echo</code>, hoặc thiếu <code>VCC</code> 5 V. Kiểm tra lại <code>#define TRIG_PIN</code>/<code>ECHO_PIN</code> khớp với dây</td>
+</tr>
+<tr class="even">
+<td>Mỗi lần đo chậm khoảng 1 giây</td>
+<td>Gọi <code>pulseIn()</code> không có <code>timeout</code> và module giữ <code>ECHO</code> lâu khi không có vật — thêm tham số <code>TIMEOUT_US</code></td>
+</tr>
+<tr class="odd">
+<td>Số đọc luôn rất nhỏ (2–5 cm) hoặc cố định</td>
+<td>Có vật chắn sát trước cảm biến: dây cắm, mép breadboard, ngón tay giữ module. Đưa cảm biến ra mép bàn</td>
+</tr>
+<tr class="even">
+<td>Thỉnh thoảng có số vọt rất lớn</td>
+<td>Sóng dội lạc hoặc timeout — lọc trung vị như Test 2</td>
+</tr>
+<tr class="odd">
+<td>Đo tường thì đúng, đo người/áo thì sai</td>
+<td>Vải hấp thụ sóng âm — bình thường với cảm biến siêu âm</td>
+</tr>
+<tr class="even">
+<td>Đo xa luôn hụt vài cm</td>
+<td>Phòng nóng, vận tốc âm lớn hơn 343 m/s — bù nhiệt độ như Test 4</td>
+</tr>
+<tr class="odd">
+<td>Hai cảm biến cùng mạch đo sai</td>
+<td>Phát cùng lúc, nhận nhầm sóng của nhau — đo lần lượt, cách nhau ≥ 60 ms</td>
+</tr>
+<tr class="even">
+<td>HC-SR05 không chạy dù nối giống HC-SR04</td>
+<td>Lỡ nối chân <code>OUT</code> vào <code>Trig</code>/<code>Echo</code> hoặc <code>GND</code>. Rút dây <code>OUT</code> ra, để trống</td>
+</tr>
+<tr class="odd">
+<td>ESP32 đọc lung tung hoặc chân bị nóng</td>
+<td><code>ECHO</code> ra 5 V vào chân 3,3 V — thêm cầu chia áp hoặc dùng HC-SR04P</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

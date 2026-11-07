@@ -821,12 +821,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="cảm-biến" class="level2">
 <h2 class="anchored" data-anchor-id="cảm-biến">Cảm biến</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Cảm biến</th>
@@ -849,10 +843,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Chân DATA vào chân digital, cần pull-up 10 kΩ (module thường có sẵn); thư viện <code>DHT</code></td>
 </tr>
 <tr class="odd">
-<td><strong>HC-SR04</strong></td>
-<td>Khoảng cách (siêu âm, 2–400 cm)</td>
+<td><strong>HC-SR04 / HC-SR05</strong></td>
+<td>Khoảng cách (siêu âm, 2–400/450 cm)</td>
 <td>Digital (độ rộng xung)</td>
-<td><code>TRIG</code> phát xung 10 µs, đo thời gian xung <code>ECHO</code> bằng <code>pulseIn()</code>; khoảng cách = t × 0,034 / 2 (cm)</td>
+<td><code>TRIG</code> phát xung 10 µs, đo thời gian xung <code>ECHO</code> bằng <code>pulseIn()</code>; khoảng cách = t × 0,034 / 2 (cm). Xem <a href="../../../courses/iot/labs/ultrasonic-hc-sr04.html">Lab 6</a></td>
 </tr>
 <tr class="even">
 <td><strong>PIR HC-SR501</strong></td>
