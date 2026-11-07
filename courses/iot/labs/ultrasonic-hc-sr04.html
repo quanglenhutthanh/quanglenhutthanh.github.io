@@ -235,7 +235,12 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#dựng-mạch-test-3-trên-tinkercad" id="toc-dựng-mạch-test-3-trên-tinkercad" class="nav-link" data-scroll-target="#dựng-mạch-test-3-trên-tinkercad">Dựng mạch Test 3 trên Tinkercad</a></li>
   </ul></li>
-  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a></li>
+  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a>
+  <ul class="collapse">
+  <li><a href="#mạch-thật-với-hc-sr05" id="toc-mạch-thật-với-hc-sr05" class="nav-link" data-scroll-target="#mạch-thật-với-hc-sr05">Mạch thật với HC-SR05</a></li>
+  <li><a href="#video-test-3-cảm-biến-buzzer" id="toc-video-test-3-cảm-biến-buzzer" class="nav-link" data-scroll-target="#video-test-3-cảm-biến-buzzer">Video Test 3 (cảm biến + buzzer)</a></li>
+  <li><a href="#video-kết-quả-cảm-biến-buzzer-led" id="toc-video-kết-quả-cảm-biến-buzzer-led" class="nav-link" data-scroll-target="#video-kết-quả-cảm-biến-buzzer-led">Video kết quả: cảm biến + buzzer + LED</a></li>
+  </ul></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul></li>
   </ul>
@@ -1105,9 +1110,62 @@ ECHO  ___________________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|__
 </section>
 <section id="ảnh-thực-tế" class="level2">
 <h2 class="anchored" data-anchor-id="ảnh-thực-tế">Ảnh thực tế</h2>
+<section id="mạch-thật-với-hc-sr05" class="level3">
+<h3 class="anchored" data-anchor-id="mạch-thật-với-hc-sr05">Mạch thật với HC-SR05</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/ultrasonic-real.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Mạch thật: HC-SR05 cắm lật ngửa ở mép dưới breadboard, hai đầu dò chĩa ra ngoài; dây đỏ/đen từ Uno vào thanh nguồn phía trên, dây xanh dương và vàng từ cảm biến lên header digital</figcaption>
+</figure>
+</div>
+<p>Đọc mạch:</p>
+<ul>
+<li><strong>Cảm biến</strong> cắm ở mép dưới breadboard, <strong>lật ngửa</strong> (nhìn thấy mặt sau có chip), header bẻ góc 90° cắm vào lỗ, hai đầu dò chĩa ra ngoài mép bàn. Cách đặt này giúp phía trước cảm biến không bị breadboard hay dây che.</li>
+<li>Vì module lật ngửa nên thứ tự chân <strong>vẫn là</strong> <code>Vcc</code> · <code>Trig</code> · <code>Echo</code> · <code>OUT</code> · <code>GND</code> tính từ trái sang, giống mặt trước. Lật module mà không xoay thì trái phải không đổi.</li>
+<li><strong>Dây từ cảm biến:</strong> đỏ (<code>Vcc</code>) và đen (<code>GND</code>) lên thanh nguồn phía trên. Xanh dương và vàng (<code>Trig</code>/<code>Echo</code>) chạy thẳng lên header digital của Uno. Chân <code>OUT</code> để trống.</li>
+<li><strong>Nguồn:</strong> dây đỏ và đen từ header POWER của Uno vào thanh <code>+</code>/<code>−</code> phía trên breadboard.</li>
+</ul>
+</section>
+<section id="video-test-3-cảm-biến-buzzer" class="level3">
+<h3 class="anchored" data-anchor-id="video-test-3-cảm-biến-buzzer">Video Test 3 (cảm biến + buzzer)</h3>
+<video controls="" playsinline="" preload="metadata" poster="../assets/ultrasonic-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/ultrasonic-real.mp4" type="video/mp4">
+</video>
+<p>Mạch thật chạy code Test 3, bản chỉ có cảm biến và buzzer, không có LED:</p>
+<ul>
+<li><strong>HC-SR05</strong> cắm ở mép breadboard, hai đầu dò quay ra phía sau khung hình.</li>
+<li><strong>Buzzer</strong> (vỏ đen tròn) cắm bên phải breadboard: dây vàng lên chân điều khiển của Uno, dây đen xuống thanh <code>−</code>.</li>
+<li>Trên Uno, đèn <code>ON</code> sáng xanh, đèn <code>TX</code> nháy cam liên tục vì code in khoảng cách ra Serial mỗi vòng <code>loop()</code>.</li>
+</ul>
+<p>Video có tiếng, nên <strong>bật âm thanh</strong> khi xem.</p>
+<p>Kết quả:</p>
+<ul>
+<li><strong>Không đưa tay vào</strong>, còi vẫn <strong>bíp ngắt quãng đều đặn</strong>. Đây không phải lỗi: ngay trước cảm biến có màn hình (vật tối màu phía trên khung hình) nằm trong khoảng 10–50 cm, nên code coi đó là vật cản và báo ở mức giữa.</li>
+<li><strong>Đưa vật lại gần dưới 10 cm</strong>, còi chuyển sang <strong>kêu liền một hồi dài</strong>, đúng nhánh <code>d &lt; SAT</code> trong code.</li>
+</ul>
+<p>Muốn còi <strong>im</strong> khi không có ai lại gần thì:</p>
+<ul>
+<li>xoay cảm biến ra chỗ trống, hoặc dời vật phía trước ra xa hơn 50 cm;</li>
+<li>hoặc giảm vùng báo động, ví dụ <code>#define CANH_BAO 20</code>.</li>
+</ul>
+<p>Mở <strong>Serial Monitor</strong> để xem dòng <code>d = ... cm</code>, biết cảm biến đang “thấy” vật ở khoảng cách bao nhiêu.</p>
+</section>
+<section id="video-kết-quả-cảm-biến-buzzer-led" class="level3">
+<h3 class="anchored" data-anchor-id="video-kết-quả-cảm-biến-buzzer-led">Video kết quả: cảm biến + buzzer + LED</h3>
+<video controls="" playsinline="" preload="metadata" poster="../assets/ultrasonic-led-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/ultrasonic-led-real.mp4" type="video/mp4">
+</video>
+<p>Mạch hoàn chỉnh của Test 3, cùng góc quay với video trên nhưng có thêm LED:</p>
+<ul>
+<li><strong>LED vàng</strong> cắm bên phải buzzer, nối tiếp một <strong>điện trở</strong> (nằm ngang ngay cạnh LED). Dây <strong>xanh lá</strong> đưa tín hiệu từ chân điều khiển của Uno tới LED, dây đen đưa chân còn lại của LED xuống thanh <code>−</code>.</li>
+<li>Kit dùng LED vàng thay cho LED đỏ trong mạch Tinkercad. Code không đổi, vì LED màu nào cũng bật tắt bằng <code>digitalWrite()</code> như nhau.</li>
+<li>Cảm biến, buzzer và nguồn giữ nguyên như video trước.</li>
+</ul>
+<p>Code dùng chung hàm <code>baoDong()</code> cho LED và buzzer, nên <strong>LED nháy đúng nhịp tiếng bíp</strong>: vật ở vùng 10–50 cm thì cả hai cùng nháy và bíp, càng gần càng nhanh. Dưới 10 cm thì LED sáng đứng và còi kêu liền.</p>
 <blockquote class="blockquote">
-<p>📷 <em>Chờ ảnh mạch thật, ảnh Serial Monitor/Serial Plotter và video Test 3.</em></p>
+<p>📷 <em>Chờ ảnh Serial Monitor/Serial Plotter.</em></p>
 </blockquote>
+</section>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>

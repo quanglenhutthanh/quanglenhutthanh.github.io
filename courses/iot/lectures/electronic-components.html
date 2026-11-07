@@ -595,9 +595,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Kit có LED <strong>5 mm, vỏ mờ (diffused)</strong>, ba màu đỏ, vàng, xanh lá — đủ để làm mạch đèn giao thông. Điện áp thuận tham khảo: <strong>đỏ ~1,8–2,0 V</strong>, <strong>vàng ~2,0–2,1 V</strong>, <strong>xanh lá ~2,0–2,2 V</strong> (LED xanh lá loại lục vàng như trong ảnh; loại xanh lá sáng thuần có thể lên ~3 V). Vì chênh lệch không nhiều nên dùng chung điện trở 220 Ω hoặc 1 kΩ cho cả ba màu là được.</p>
 <p>Khi LED còn mới, chân <strong>dài hơn là anode (+)</strong>. Nếu chân đã bị cắt bằng nhau, nhìn vào trong vỏ: miếng kim loại <strong>nhỏ</strong> là anode, miếng <strong>to hình lá cờ</strong> là cathode. Hoặc tìm mép <strong>vát phẳng</strong> trên vành đế — phía đó là cathode.</p>
-<blockquote class="blockquote">
-<p>📷 <em>Ảnh LCD xem ở mục LCD 16×2 phía trên. Chờ ảnh buzzer (nếu có trong kit).</em></p>
-</blockquote>
+<section id="buzzer" class="level4">
+<h4 class="anchored" data-anchor-id="buzzer">Buzzer</h4>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-buzzer-side.jpg" class="img-fluid figure-img"></p>
+<figcaption>Buzzer nhìn ngang: vỏ nhựa đen hình trụ, hai chân kim loại, chân trên dài hơn chân dưới</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-buzzer-top.jpg" class="img-fluid figure-img"></p>
+<figcaption>Buzzer cắm trên breadboard nhìn từ trên xuống: dấu <code>+</code> in nổi trên mặt, lỗ thoát âm ở giữa</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Buzzer trong kit là loại <strong>tròn khoảng 12 mm</strong>, vỏ nhựa đen, hai chân cắm thẳng xuống:</p>
+<ul>
+<li><strong>Mặt trên</strong> có dấu <strong><code>+</code></strong> in nổi để đánh dấu chân dương, và một <strong>lỗ thoát âm</strong> ở giữa.</li>
+<li><strong>Hai chân dài ngắn khác nhau</strong> (ảnh trái): <strong>chân dài là <code>+</code></strong>, nằm cùng phía với dấu <code>+</code> trên mặt. Chân này nối vào chân điều khiển của Arduino, chân ngắn nối <code>GND</code>. Giống LED, nên xem dấu <code>+</code> trước khi cắt chân.</li>
+<li>Khoảng cách hai chân khoảng 7,5 mm, tức <strong>3 lỗ breadboard</strong>. Thân buzzer to nên che mất vài lỗ xung quanh (ảnh phải), cần chừa chỗ khi bố trí mạch.</li>
+</ul>
+<p><strong>Chủ động hay thụ động?</strong> Hai loại nhìn ngoài rất giống nhau. Cách thử chắc chắn nhất là cấp điện trực tiếp: chân <code>+</code> vào <code>5V</code>, chân <code>−</code> vào <code>GND</code>.</p>
+<ul>
+<li><strong>Kêu “tít” liên tục</strong> → buzzer <strong>chủ động</strong>. Chỉ cần <code>digitalWrite(pin, HIGH)</code> là kêu.</li>
+<li><strong>Chỉ nghe “tách” một cái rồi im</strong> → buzzer <strong>thụ động</strong>. Phải dùng <code>tone(pin, tanSo)</code> mới kêu.</li>
+</ul>
+<p>Code ở <a href="../../../courses/iot/labs/ultrasonic-hc-sr04.html">Lab 6</a> dùng <code>tone()</code>, chạy được với cả hai loại, nên không cần biết trước buzzer là loại nào.</p>
+</section>
 </section>
 </section>
 <section id="linh-kiện-đầu-vào" class="level2">
