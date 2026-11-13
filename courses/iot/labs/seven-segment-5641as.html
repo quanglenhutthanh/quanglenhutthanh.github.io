@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -179,7 +179,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#nối-dây" id="toc-nối-dây" class="nav-link" data-scroll-target="#nối-dây">Nối dây</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#video-mạch-thật" id="toc-video-mạch-thật" class="nav-link" data-scroll-target="#video-mạch-thật">Video mạch thật</a></li>
+  <li><a href="#video-mạch-thật-một-số" id="toc-video-mạch-thật-một-số" class="nav-link" data-scroll-target="#video-mạch-thật-một-số">Video mạch thật (một số)</a></li>
+  </ul></li>
+  <li><a href="#quet-4-so" id="toc-quet-4-so" class="nav-link" data-scroll-target="#quet-4-so">Cách 2 (tiếp) · Quét đủ 4 số</a>
+  <ul class="collapse">
+  <li><a href="#nối-dây-1" id="toc-nối-dây-1" class="nav-link" data-scroll-target="#nối-dây-1">Nối dây</a></li>
+  <li><a href="#code-1" id="toc-code-1" class="nav-link" data-scroll-target="#code-1">Code</a></li>
+  <li><a href="#kết-quả-cả-4-số-cùng-sáng" id="toc-kết-quả-cả-4-số-cùng-sáng" class="nav-link" data-scroll-target="#kết-quả-cả-4-số-cùng-sáng">Kết quả: cả 4 số cùng sáng</a></li>
   </ul></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul></li>
@@ -477,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Chân chữ số <code>D1</code> nối xuống <code>GND</code> qua <strong>một điện trở 220 Ω</strong>, nên chữ số đầu luôn được bật. <code>D2</code>–<code>D4</code> để trống nên ba số còn lại tắt. Vì chỉ có một điện trở chung cho cả 8 đoạn, số nào ít đoạn sáng (số <code>1</code>) sẽ sáng hơn số nhiều đoạn (số <code>8</code>). Như vậy đủ để thử mạch. Khi làm hoàn chỉnh thì chuyển sang 8 điện trở đặt giữa các chân <code>Q</code> và chân đoạn, rồi nối <code>D1</code>–<code>D4</code> vào Arduino để quét.</p>
+<p>Chân chữ số <code>D1</code> nối xuống <code>GND</code> qua <strong>một điện trở 220 Ω</strong>, nên chữ số đầu luôn được bật. <code>D2</code>–<code>D4</code> để trống nên ba số còn lại tắt. Vì chỉ có một điện trở chung cho cả 8 đoạn, số nào ít đoạn sáng (số <code>1</code>) sẽ sáng hơn số nhiều đoạn (số <code>8</code>). Như vậy đủ để thử mạch. Bản đủ 4 số ở <a href="#quet-4-so">phần sau</a> nối cả <code>D1</code>–<code>D4</code> về Arduino để quét.</p>
 </section>
 <section id="code" class="level3">
 <h3 class="anchored" data-anchor-id="code">Code</h3>
@@ -521,12 +527,118 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Muốn bật dấu chấm thì thêm bit 5: <code>show(DIGITS[n] | 0b00100000);</code>.</p>
 </section>
-<section id="video-mạch-thật" class="level3">
-<h3 class="anchored" data-anchor-id="video-mạch-thật">Video mạch thật</h3>
+<section id="video-mạch-thật-một-số" class="level3">
+<h3 class="anchored" data-anchor-id="video-mạch-thật-một-số">Video mạch thật (một số)</h3>
 <p>Chữ số đầu tiên đã sáng và hiển thị số <code>5</code>:</p>
 <video controls="" playsinline="" preload="metadata" poster="../assets/7seg-595-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
 <source src="../assets/7seg-595-real.mp4" type="video/mp4">
 </video>
+</section>
+</section>
+<section id="quet-4-so" class="level2">
+<h2 class="anchored" data-anchor-id="quet-4-so">Cách 2 (tiếp) · Quét đủ 4 số</h2>
+<p>Giữ nguyên phần 74HC595 ở trên, chỉ đổi cách nối 4 chân chữ số: thay vì <code>D1</code> nối cố định xuống <code>GND</code>, cả <code>D1</code>–<code>D4</code> đều nối về Arduino, <strong>mỗi chân qua một điện trở 220 Ω</strong>. Arduino kéo chân nào xuống <code>LOW</code> thì chữ số đó sáng.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/7seg-595-4digits-schematic.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Sơ đồ đủ 4 số: 8 dây đoạn từ 74HC595 (xanh lục) giữ như bản một số, thêm 4 dây chọn chữ số qua 220 Ω về Arduino D2–D5 (nâu)</figcaption>
+</figure>
+</div>
+<section id="nối-dây-1" class="level3">
+<h3 class="anchored" data-anchor-id="nối-dây-1">Nối dây</h3>
+<p>Phần 74HC595 (nguồn, <code>DS</code> → <code>11</code>, <code>ST</code> → <code>8</code>, <code>SH</code> → <code>12</code>, <code>OE</code>, <code>MR</code>) và 8 dây <code>Q0</code>–<code>Q7</code> → chân đoạn <strong>giữ nguyên</strong> như bảng ở trên. Chỉ thêm 4 dây chọn chữ số:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Chân 5641AS</th>
+<th>Chân số trên module</th>
+<th>Qua</th>
+<th>Nối Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>D1</code> (số trái nhất)</td>
+<td>12</td>
+<td>220 Ω</td>
+<td><code>2</code></td>
+</tr>
+<tr class="even">
+<td><code>D2</code></td>
+<td>9</td>
+<td>220 Ω</td>
+<td><code>3</code></td>
+</tr>
+<tr class="odd">
+<td><code>D3</code></td>
+<td>8</td>
+<td>220 Ω</td>
+<td><code>4</code></td>
+</tr>
+<tr class="even">
+<td><code>D4</code> (số phải nhất)</td>
+<td>6</td>
+<td>220 Ω</td>
+<td><code>5</code></td>
+</tr>
+</tbody>
+</table>
+<p>Mỗi lúc chỉ một chữ số bật, nên mỗi chân Arduino chỉ phải hút dòng của một chữ số: khoảng (5 V − 2 V) / 220 Ω ≈ <strong>14 mA</strong>, trong giới hạn của chân Uno. Điện trở vẫn nằm ở chân chữ số (một điện trở cho cả 8 đoạn của số đó), nên số <code>1</code> vẫn sáng hơn số <code>8</code> một chút. Muốn độ sáng đều thì chuyển 4 điện trở này thành 8 điện trở trên 8 dây đoạn.</p>
+</section>
+<section id="code-1" class="level3">
+<h3 class="anchored" data-anchor-id="code-1">Code</h3>
+<p>Bảng <code>DIGITS</code> giữ nguyên vì thứ tự <code>Q0</code>–<code>Q7</code> không đổi. Vòng <code>loop()</code> quét lần lượt 4 chữ số, mỗi số sáng khoảng 3 ms:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> DATA_PIN  <span class="op">=</span> <span class="dv">11</span><span class="op">;</span>  <span class="co">// DS</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> LATCH_PIN <span class="op">=</span> <span class="dv">8</span><span class="op">;</span>   <span class="co">// ST</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> CLOCK_PIN <span class="op">=</span> <span class="dv">12</span><span class="op">;</span>  <span class="co">// SH</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> DIGIT_PINS<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span>  <span class="co">// D1 D2 D3 D4 (qua 220 Ω)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">// bit:  7 6 5  4 3 2 1 0</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">// đoạn: E D DP C G B F A</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte DIGITS<span class="op">[</span><span class="dv">10</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11010111</span><span class="op">,</span> <span class="bn">0b00010100</span><span class="op">,</span> <span class="bn">0b11001101</span><span class="op">,</span> <span class="bn">0b01011101</span><span class="op">,</span> <span class="bn">0b00011110</span><span class="op">,</span>  <span class="co">// 0–4</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01011011</span><span class="op">,</span> <span class="bn">0b11011011</span><span class="op">,</span> <span class="bn">0b00010101</span><span class="op">,</span> <span class="bn">0b11011111</span><span class="op">,</span> <span class="bn">0b01011111</span><span class="op">,</span>  <span class="co">// 5–9</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> show<span class="op">(</span>byte pattern<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LATCH_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  shiftOut<span class="op">(</span>DATA_PIN<span class="op">,</span> CLOCK_PIN<span class="op">,</span> MSBFIRST<span class="op">,</span> pattern<span class="op">);</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LATCH_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>DATA_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LATCH_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>CLOCK_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">4</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>DIGIT_PINS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>DIGIT_PINS<span class="op">[</span>i<span class="op">],</span> HIGH<span class="op">);</span>   <span class="co">// cathode chung: HIGH = tắt chữ số</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> value <span class="op">=</span> <span class="dv">1234</span><span class="op">;</span>                      <span class="co">// thử đồng hồ đếm giây: (millis() / 1000) % 10000</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> d<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span> value <span class="op">/</span> <span class="dv">1000</span> <span class="op">%</span> <span class="dv">10</span><span class="op">,</span> value <span class="op">/</span> <span class="dv">100</span> <span class="op">%</span> <span class="dv">10</span><span class="op">,</span> value <span class="op">/</span> <span class="dv">10</span> <span class="op">%</span> <span class="dv">10</span><span class="op">,</span> value <span class="op">%</span> <span class="dv">10</span> <span class="op">};</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">4</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>DIGITS<span class="op">[</span>d<span class="op">[</span>i<span class="op">]]);</span>                  <span class="co">// 1. đưa mẫu đoạn của chữ số i ra Q0–Q7</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>DIGIT_PINS<span class="op">[</span>i<span class="op">],</span> LOW<span class="op">);</span>    <span class="co">// 2. bật chữ số i</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">3</span><span class="op">);</span>                            <span class="co">// 3. giữ sáng ~3 ms</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>DIGIT_PINS<span class="op">[</span>i<span class="op">],</span> HIGH<span class="op">);</span>   <span class="co">// 4. tắt trước khi đổi mẫu, tránh "bóng ma"</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Một vòng quét 4 số mất khoảng 12 ms, tức hơn 80 lần mỗi giây, nên mắt không thấy nhấp nháy. Bước 4 quan trọng: nếu đổi mẫu đoạn khi chữ số cũ còn bật, số đó sẽ loé lên hình của số kế tiếp, để lại vệt mờ (ghosting).</p>
+<p><code>delay(3)</code> ở đây đủ ngắn nên không làm hỏng việc quét. Nếu <code>loop()</code> cần làm thêm việc khác (đọc cảm biến, đếm thời gian) thì nên bỏ <code>delay()</code>, dùng <code>millis()</code> để chuyển sang chữ số kế tiếp, như cách thư viện <code>SevSeg</code> ở Cách 1 làm.</p>
+</section>
+<section id="kết-quả-cả-4-số-cùng-sáng" class="level3">
+<h3 class="anchored" data-anchor-id="kết-quả-cả-4-số-cùng-sáng">Kết quả: cả 4 số cùng sáng</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/7seg-595-4digits-real.jpg" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Mạch 74HC595 đủ 4 số: 5641AS hiển thị <code>1234</code></figcaption>
+</figure>
+</div>
+<p>Màn hiện đủ <strong><code>1234</code></strong>: 74HC595 lo 8 chân đoạn, Arduino dùng thêm 4 chân <code>D2</code>–<code>D5</code> để chọn chữ số. Tổng cộng mạch tốn <strong>7 chân</strong> Arduino, so với 12 chân ở Cách 1.</p>
 </section>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
@@ -557,11 +669,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Cả 4 số hiện cùng một chữ số</td>
-<td>Cách 1: chưa quét, đang bật nhiều chân <code>D</code> cùng lúc</td>
+<td>Đang bật nhiều chân <code>D</code> cùng lúc, chưa quét. Mỗi lúc chỉ được một chân <code>D</code> ở mức <code>LOW</code></td>
 </tr>
 <tr class="odd">
 <td>Các số nhấp nháy hoặc chỉ một số sáng</td>
-<td>Cách 1: có <code>delay()</code> dài trong <code>loop()</code>, <code>refreshDisplay()</code> không được gọi đủ nhanh</td>
+<td>Có <code>delay()</code> dài trong <code>loop()</code>. Cách 1: <code>refreshDisplay()</code> không được gọi đủ nhanh</td>
+</tr>
+<tr class="even">
+<td>Mỗi số có vệt mờ của số bên cạnh (ghosting)</td>
+<td>Đổi mẫu đoạn khi chữ số cũ còn bật. Tắt chân <code>D</code> trước khi gọi <code>show()</code></td>
+</tr>
+<tr class="odd">
+<td>Các số hiện đúng nhưng sai vị trí (<code>4321</code>)</td>
+<td>Thứ tự chân trong <code>DIGIT_PINS</code> không khớp <code>D1</code>–<code>D4</code> trên module</td>
 </tr>
 </tbody>
 </table>
