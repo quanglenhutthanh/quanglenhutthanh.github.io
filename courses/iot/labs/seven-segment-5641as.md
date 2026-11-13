@@ -142,7 +142,7 @@ Cách này tốn 12/20 chân của Uno, gần như không còn chỗ cho cảm b
 |---|---|---|---|---|---|---|---|
 | `A` | `F` | `B` | `G` | `C` | `DP` | `D` | `E` |
 
-Chân chữ số `D1` nối xuống `GND` qua **một điện trở 220 Ω**, nên chữ số đầu luôn được bật. `D2`–`D4` để trống nên ba số còn lại tắt. Vì chỉ có một điện trở chung cho cả 8 đoạn, số nào ít đoạn sáng (số `1`) sẽ sáng hơn số nhiều đoạn (số `8`). Như vậy đủ để thử mạch. Khi làm hoàn chỉnh thì chuyển sang 8 điện trở đặt giữa các chân `Q` và chân đoạn, rồi nối `D1`–`D4` vào Arduino để quét.
+Chân chữ số `D1` nối xuống `GND` qua **một điện trở 220 Ω**, nên chữ số đầu luôn được bật. `D2`–`D4` để trống nên ba số còn lại tắt. Vì chỉ có một điện trở chung cho cả 8 đoạn, số nào ít đoạn sáng (số `1`) sẽ sáng hơn số nhiều đoạn (số `8`). Như vậy đủ để thử mạch. Bản đủ 4 số ở [phần sau](#quet-4-so) nối cả `D1`–`D4` về Arduino để quét.
 
 ### Code
 
@@ -190,13 +190,88 @@ void loop() {
 
 Muốn bật dấu chấm thì thêm bit 5: `show(DIGITS[n] | 0b00100000);`.
 
-### Video mạch thật
+### Video mạch thật (một số)
 
 Chữ số đầu tiên đã sáng và hiển thị số `5`:
 
 <video controls playsinline preload="metadata" poster="../assets/7seg-595-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
   <source src="../assets/7seg-595-real.mp4" type="video/mp4">
 </video>
+
+## Cách 2 (tiếp) · Quét đủ 4 số {#quet-4-so}
+
+Giữ nguyên phần 74HC595 ở trên, chỉ đổi cách nối 4 chân chữ số: thay vì `D1` nối cố định xuống `GND`, cả `D1`–`D4` đều nối về Arduino, **mỗi chân qua một điện trở 220 Ω**. Arduino kéo chân nào xuống `LOW` thì chữ số đó sáng.
+
+![Sơ đồ đủ 4 số: 8 dây đoạn từ 74HC595 (xanh lục) giữ như bản một số, thêm 4 dây chọn chữ số qua 220 Ω về Arduino D2–D5 (nâu)](../assets/7seg-595-4digits-schematic.png){width=100%}
+
+### Nối dây
+
+Phần 74HC595 (nguồn, `DS` → `11`, `ST` → `8`, `SH` → `12`, `OE`, `MR`) và 8 dây `Q0`–`Q7` → chân đoạn **giữ nguyên** như bảng ở trên. Chỉ thêm 4 dây chọn chữ số:
+
+| Chân 5641AS | Chân số trên module | Qua | Nối Arduino |
+|---|---|---|---|
+| `D1` (số trái nhất) | 12 | 220 Ω | `2` |
+| `D2` | 9 | 220 Ω | `3` |
+| `D3` | 8 | 220 Ω | `4` |
+| `D4` (số phải nhất) | 6 | 220 Ω | `5` |
+
+Mỗi lúc chỉ một chữ số bật, nên mỗi chân Arduino chỉ phải hút dòng của một chữ số: khoảng (5 V − 2 V) / 220 Ω ≈ **14 mA**, trong giới hạn của chân Uno. Điện trở vẫn nằm ở chân chữ số (một điện trở cho cả 8 đoạn của số đó), nên số `1` vẫn sáng hơn số `8` một chút. Muốn độ sáng đều thì chuyển 4 điện trở này thành 8 điện trở trên 8 dây đoạn.
+
+### Code
+
+Bảng `DIGITS` giữ nguyên vì thứ tự `Q0`–`Q7` không đổi. Vòng `loop()` quét lần lượt 4 chữ số, mỗi số sáng khoảng 3 ms:
+
+```cpp
+const int DATA_PIN  = 11;  // DS
+const int LATCH_PIN = 8;   // ST
+const int CLOCK_PIN = 12;  // SH
+const int DIGIT_PINS[4] = {2, 3, 4, 5};  // D1 D2 D3 D4 (qua 220 Ω)
+
+// bit:  7 6 5  4 3 2 1 0
+// đoạn: E D DP C G B F A
+const byte DIGITS[10] = {
+  0b11010111, 0b00010100, 0b11001101, 0b01011101, 0b00011110,  // 0–4
+  0b01011011, 0b11011011, 0b00010101, 0b11011111, 0b01011111,  // 5–9
+};
+
+void show(byte pattern) {
+  digitalWrite(LATCH_PIN, LOW);
+  shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, pattern);
+  digitalWrite(LATCH_PIN, HIGH);
+}
+
+void setup() {
+  pinMode(DATA_PIN, OUTPUT);
+  pinMode(LATCH_PIN, OUTPUT);
+  pinMode(CLOCK_PIN, OUTPUT);
+  for (int i = 0; i < 4; i++) {
+    pinMode(DIGIT_PINS[i], OUTPUT);
+    digitalWrite(DIGIT_PINS[i], HIGH);   // cathode chung: HIGH = tắt chữ số
+  }
+}
+
+void loop() {
+  int value = 1234;                      // thử đồng hồ đếm giây: (millis() / 1000) % 10000
+  int d[4] = { value / 1000 % 10, value / 100 % 10, value / 10 % 10, value % 10 };
+
+  for (int i = 0; i < 4; i++) {
+    show(DIGITS[d[i]]);                  // 1. đưa mẫu đoạn của chữ số i ra Q0–Q7
+    digitalWrite(DIGIT_PINS[i], LOW);    // 2. bật chữ số i
+    delay(3);                            // 3. giữ sáng ~3 ms
+    digitalWrite(DIGIT_PINS[i], HIGH);   // 4. tắt trước khi đổi mẫu, tránh "bóng ma"
+  }
+}
+```
+
+Một vòng quét 4 số mất khoảng 12 ms, tức hơn 80 lần mỗi giây, nên mắt không thấy nhấp nháy. Bước 4 quan trọng: nếu đổi mẫu đoạn khi chữ số cũ còn bật, số đó sẽ loé lên hình của số kế tiếp, để lại vệt mờ (ghosting).
+
+`delay(3)` ở đây đủ ngắn nên không làm hỏng việc quét. Nếu `loop()` cần làm thêm việc khác (đọc cảm biến, đếm thời gian) thì nên bỏ `delay()`, dùng `millis()` để chuyển sang chữ số kế tiếp, như cách thư viện `SevSeg` ở Cách 1 làm.
+
+### Kết quả: cả 4 số cùng sáng
+
+![Mạch 74HC595 đủ 4 số: 5641AS hiển thị `1234`](../assets/7seg-595-4digits-real.jpg){width=90%}
+
+Màn hiện đủ **`1234`**: 74HC595 lo 8 chân đoạn, Arduino dùng thêm 4 chân `D2`–`D5` để chọn chữ số. Tổng cộng mạch tốn **7 chân** Arduino, so với 12 chân ở Cách 1.
 
 ## Lỗi hay gặp
 
@@ -205,5 +280,7 @@ Chữ số đầu tiên đã sáng và hiển thị số `5`:
 | Không đoạn nào sáng | Chân chữ số chưa nối về `GND`, hoặc dùng nhầm module anode chung (5641BS). Thử bằng đồng hồ như ở phần sơ đồ chân |
 | Số hiện sai hình (ví dụ `5` ra ký tự lạ) | Một dây `Q` → chân đoạn bị lắp lệch so với bảng nối. Thử lần lượt `show(1 << k)` với `k` = 0 → 7 để xem mỗi bit bật đúng đoạn nào |
 | 74HC595 không xuất gì | `OE` chưa nối `GND` hoặc `MR` chưa nối `5V` (để thả nổi thì IC chạy thất thường) |
-| Cả 4 số hiện cùng một chữ số | Cách 1: chưa quét, đang bật nhiều chân `D` cùng lúc |
-| Các số nhấp nháy hoặc chỉ một số sáng | Cách 1: có `delay()` dài trong `loop()`, `refreshDisplay()` không được gọi đủ nhanh |
+| Cả 4 số hiện cùng một chữ số | Đang bật nhiều chân `D` cùng lúc, chưa quét. Mỗi lúc chỉ được một chân `D` ở mức `LOW` |
+| Các số nhấp nháy hoặc chỉ một số sáng | Có `delay()` dài trong `loop()`. Cách 1: `refreshDisplay()` không được gọi đủ nhanh |
+| Mỗi số có vệt mờ của số bên cạnh (ghosting) | Đổi mẫu đoạn khi chữ số cũ còn bật. Tắt chân `D` trước khi gọi `show()` |
+| Các số hiện đúng nhưng sai vị trí (`4321`) | Thứ tự chân trong `DIGIT_PINS` không khớp `D1`–`D4` trên module |
