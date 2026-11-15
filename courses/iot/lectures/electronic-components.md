@@ -5,7 +5,7 @@ type: lecture
 lecture_no: 3
 status: reading
 source: note
-tags: [electronics, breadboard, components, sensors, actuators]
+tags: [electronics, breadboard, power, components, sensors, actuators]
 date: 2026-10-29
 ---
 
@@ -48,6 +48,49 @@ Bó dây trên là loại **đực – đực**, dây mềm và rời từng s�
 Kit còn có một bộ **10 dây đực – cái** dính liền nhau thành cáp dẹt (ribbon), mỗi sợi một màu theo thứ tự đen – trắng – xám – tím – lam – lục – vàng – cam – đỏ – nâu. Đầu **cái** (lỗ, phía dưới ảnh) chụp thẳng vào chân header đực của module: chân I²C của LCD, chân của DHT11, HC-SR04… Đầu **đực** (kim, phía trên ảnh) cắm vào header Arduino hoặc breadboard. Nhờ đó module không cần cắm lên breadboard.
 
 Các sợi xé rời ra được. Thường chỉ tách đúng số sợi cần (ví dụ 4 sợi cho LCD I²C), để dây không bị rối mà vẫn giữ được quy ước màu.
+
+## Nguồn
+
+### Pin 9 V & dây kẹp pin (battery snap)
+
+Dùng để chạy mạch **không cần cáp USB**: mang board ra khỏi máy tính, đặt cảm biến ở xa, hoặc làm nguồn riêng cho driver động cơ.
+
+**Pin 9 V** (mã **6F22** / PP3, hình hộp chữ nhật) có hai cực nằm cạnh nhau ở đầu trên:
+
+- Cực **nhỏ, tròn** = **dương (+)**.
+- Cực **to, hình lục giác** = **âm (−)**.
+
+**Dây kẹp pin** (battery snap/clip) có hai núm bấm ngược với pin (núm to trên clip chụp vào cực nhỏ của pin và ngược lại), nên chỉ lắp được **một chiều**. Hai dây ra: **đỏ = +**, **đen = −**. Đầu còn lại thường có hai kiểu:
+
+| Đầu ra | Cắm vào Arduino Uno |
+|---|---|
+| **Jack DC tròn 5,5 × 2,1 mm** (tâm dương) | Cắm thẳng vào **jack DC** của board |
+| **Dây trần / kim đực** | Dây đỏ vào chân **`VIN`**, dây đen vào **`GND`** (hoặc cắm lên breadboard) |
+
+Cả hai đường này đều đi qua **IC ổn áp** trên board, chịu được **7–12 V**, nên pin 9 V nằm trong khoảng an toàn (xem bảng nguồn cấp ở bài [Giới thiệu Arduino](arduino-intro.md)).
+
+Lưu ý:
+
+- ⚠️ **Không nối 9 V vào chân `5V`** hay rail `+` đang cấp cho cảm biến. Chân `5V` đi thẳng vào vi điều khiển, bỏ qua ổn áp → cháy chip.
+- Cắm **cả USB và pin cùng lúc** vẫn an toàn: khi có nguồn ngoài đủ áp, Uno tự ngắt nguồn USB và dùng nguồn ngoài; cổng USB vẫn nạp code và Serial bình thường.
+- **Dung lượng pin nhỏ** (pin kiềm ~400–600 mAh, pin kẽm – carbon như pin trong kit chỉ ~300–400 mAh). Uno tự tiêu thụ ~50 mA, chưa tính LED/cảm biến, nên pin chỉ đủ vài giờ đến khoảng mười giờ. Ổn áp trên board là loại tuyến tính: phần chênh lệch (9 − 5) V × dòng điện bị đốt thành nhiệt.
+- **Không dùng pin 9 V cho servo/động cơ**: dòng khởi động vài trăm mA làm áp pin tụt, board bị reset. Với động cơ dùng hộp pin AA hoặc adapter, nối **chung GND** với Arduino.
+- Pin yếu (đo dưới ~7 V) thì board chạy chập chờn, LCD mờ, cảm biến đọc sai, dù đèn `ON` vẫn sáng. Thấy lỗi lạ khi chạy pin, thử lại bằng USB trước.
+- Tháo clip khi không dùng. Hai cực pin nằm sát nhau nên dễ bị chập nếu chạm vật kim loại (chìa khóa, dây thừa) trong hộp kit.
+
+### Ảnh thực tế
+
+![Dây kẹp pin trong kit: đầu kẹp (phải) có núm tròn và núm lục giác, đầu kia là jack DC tròn](../assets/kit-9v-snap.jpg){width=70%}
+
+Dây kẹp pin trong kit là loại **đầu jack DC 5,5 × 2,1 mm**, dây đỏ – đen dài khoảng 15 cm. Trên đầu kẹp, **núm tròn nhỏ** chụp vào cực **lục giác (−)** của pin, **núm lục giác** chụp vào cực **tròn (+)** của pin.
+
+![Pin 9 V Toshiba 6F22KG đã gắn vào dây kẹp](../assets/kit-9v-battery-snap.jpg){width=70%}
+
+Pin đi kèm là **Toshiba 6F22KG 9 V**. Mã **6F22** là pin **kẽm – carbon** (loại thường, không phải pin kiềm), dung lượng chỉ khoảng **300–400 mAh**, nên hết nhanh hơn pin kiềm. Trên vỏ ghi rõ: không sạc lại, không làm chập mạch, không đốt.
+
+![Cắm jack DC vào Arduino Uno: chỉ dùng pin, không cắm USB, đèn `ON` sáng](../assets/kit-9v-uno.jpg){width=55%}
+
+Cắm jack vào **jack DC** ở góc board (cạnh cổng USB-B). Không cần cáp USB, đèn **`ON`** sáng ngay và sketch đã nạp trước đó bắt đầu chạy. Muốn tắt thì rút jack ra khỏi board hoặc tháo kẹp khỏi pin.
 
 ## Linh kiện thụ động
 
