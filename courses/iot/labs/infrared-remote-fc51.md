@@ -10,6 +10,8 @@ date: 2026-11-15
 resources:
   - ../assets/ir-remote-led-real.mp4
   - ../assets/ir-remote-led-real-poster.jpg
+  - ../assets/fc51-led-real.mp4
+  - ../assets/fc51-led-real-poster.jpg
 ---
 
 # Lab 8 · Hồng ngoại: remote IR + mắt thu VS1838B và cảm biến tránh vật cản FC-51
@@ -567,7 +569,25 @@ Xe tránh vật cản thường dùng cả hai: siêu âm nhìn xa phía trướ
 
 Mạch Phần A có thêm **LED vàng** cắm trên breadboard, nối tiếp điện trở 220 Ω với `D9`. Bấm phím trên remote, LED vàng sáng theo lệnh. Phía dưới khung hình là module FC-51 chưa nối dây, dùng cho Phần B.
 
-> 📷 *Chờ ảnh/video mạch Phần B (FC-51 + LED) và Phần C.*
+### Video Test B2: đưa tay lại gần, LED sáng
+
+<video controls playsinline preload="metadata" poster="../assets/fc51-led-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/fc51-led-real.mp4" type="video/mp4">
+</video>
+
+Mạch thật chạy code Test B2:
+
+- **FC-51** cắm đứng trên breadboard, hai "mắt" (LED phát trong suốt và đầu thu đen) hướng lên trên, header cắm xuống lỗ. Đèn báo xanh dương trên module hắt sáng xuống mặt breadboard.
+- **LED vàng** cắm bên phải, nối tiếp điện trở 220 Ω (nằm phía trên LED) với `D9`.
+- Ba dây của FC-51 nối về Uno ở phía sau khung hình: `OUT` vào `D3` như code Test B2, `GND` và `VCC` vào nguồn.
+
+Kết quả:
+
+- **Không có tay:** chỉ có đèn nguồn trên FC-51 sáng, LED vàng tắt.
+- **Đưa tay sát phía trên hai "mắt":** LED vàng sáng ngay. Rút tay ra, LED tắt. Lặp lại nhiều lần cho kết quả giống nhau.
+- Lúc tay mới **lướt qua phía xa** hoặc đang rút ra, LED chưa sáng hoặc đã tắt: tay đang ở ngoài khoảng phát hiện đặt bằng biến trở.
+
+> 📷 *Chờ ảnh/video mạch Phần C (remote + vẫy tay).*
 
 ## Lỗi hay gặp
 
