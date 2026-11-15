@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -180,7 +180,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#test-2-hiển-thị-lên-lcd-1602-i²c" id="toc-test-2-hiển-thị-lên-lcd-1602-i²c" class="nav-link" data-scroll-target="#test-2-hiển-thị-lên-lcd-1602-i²c">Test 2 – hiển thị lên LCD 1602 I²C</a></li>
   </ul></li>
   <li><a href="#mô-phỏng" id="toc-mô-phỏng" class="nav-link" data-scroll-target="#mô-phỏng">Mô phỏng</a></li>
-  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a></li>
+  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a>
+  <ul class="collapse">
+  <li><a href="#test-2-trên-lcd" id="toc-test-2-trên-lcd" class="nav-link" data-scroll-target="#test-2-trên-lcd">Test 2 trên LCD</a></li>
+  </ul></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul></li>
   </ul>
@@ -507,6 +510,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Các dòng giống hệt nhau vì nhiệt độ và độ ẩm phòng thay đổi chậm hơn bước 1 đơn vị trong vài chục giây. Muốn thấy số nhảy thì hà hơi vào cảm biến, hoặc nắm tay quanh nó.</li>
 <li><strong>Cảm nhận 39,16 °C</strong>: phòng 33 °C với độ ẩm 59 % cho cảm giác nóng như 39 °C. Giá trị này có phần thập phân vì được <em>tính</em> từ hai số nguyên trên, chứ cảm biến không đo trực tiếp.</li>
 </ul>
+<section id="test-2-trên-lcd" class="level3">
+<h3 class="anchored" data-anchor-id="test-2-trên-lcd">Test 2 trên LCD</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/dht11-lcd-real.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Nạp code Test 2: LCD hiện nhiệt độ 31 °C và độ ẩm 68 %, DHT11 đặt cách xa board</figcaption>
+</figure>
+</div>
+<p>Nạp nguyên code Test 2, không sửa gì. LCD hiện:</p>
+<pre><code>Nhiet do: 31°C
+Do am:    68 %</code></pre>
+<ul>
+<li>Ký hiệu <code>°</code> hiện đúng nhờ <code>(char)223</code>, không cần tự vẽ ký tự bằng <code>createChar</code>.</li>
+<li>Board Uno clone trong ảnh có thêm hàng chân phụ <code>5V</code>/<code>GND</code> (và <code>SDA</code>/<code>SCL</code>) cạnh hàng ANALOG IN. Vì vậy cả LCD lẫn DHT11 đều cắm thẳng dây đực – cái vào board, <strong>không cần breadboard</strong> để chia nguồn. Với Uno R3 chính hãng, vốn chỉ có một chân <code>5V</code>, thì vẫn phải dùng breadboard hoặc header ICSP như đã nói ở phần nối dây.</li>
+<li>DHT11 được đặt cách board và LCD khoảng một gang tay, để hơi nóng từ chip ổn áp và đèn nền LCD không làm số đo cao lên (xem bảng lỗi bên dưới).</li>
+<li>Số đo 31 °C / 68 %RH khác lần chạy Test 1 (33 °C / 59 %RH) chỉ vì đo vào thời điểm khác. Cả hai đều nằm trong khoảng bình thường của phòng không bật điều hoà.</li>
+</ul>
+</section>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
