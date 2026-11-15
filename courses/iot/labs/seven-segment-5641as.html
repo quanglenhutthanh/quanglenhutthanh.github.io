@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -187,6 +187,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#code-1" id="toc-code-1" class="nav-link" data-scroll-target="#code-1">Code</a></li>
   <li><a href="#kết-quả-cả-4-số-cùng-sáng" id="toc-kết-quả-cả-4-số-cùng-sáng" class="nav-link" data-scroll-target="#kết-quả-cả-4-số-cùng-sáng">Kết quả: cả 4 số cùng sáng</a></li>
   </ul></li>
+  <li><a href="#ứng-dụng-hiển-thị-nhiệt-độ-độ-ẩm-từ-raspberry-pi" id="toc-ứng-dụng-hiển-thị-nhiệt-độ-độ-ẩm-từ-raspberry-pi" class="nav-link" data-scroll-target="#ứng-dụng-hiển-thị-nhiệt-độ-độ-ẩm-từ-raspberry-pi">Ứng dụng · Hiển thị nhiệt độ, độ ẩm từ Raspberry Pi</a>
+  <ul class="collapse">
+  <li><a href="#định-dạng-hiển-thị" id="toc-định-dạng-hiển-thị" class="nav-link" data-scroll-target="#định-dạng-hiển-thị">Định dạng hiển thị</a></li>
+  <li><a href="#code-mẫu" id="toc-code-mẫu" class="nav-link" data-scroll-target="#code-mẫu">Code mẫu</a></li>
+  </ul></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul></li>
   </ul>
@@ -223,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="lab-7-led-7-đoạn-4-số-5641as-ic-74hc595" class="level1">
 <h1>Lab 7 · LED 7 đoạn 4 số 5641AS + IC 74HC595</h1>
 <blockquote class="blockquote">
-<p>Hiển thị số trên LED 7 đoạn 4 số <strong>5641AS</strong> với Arduino Uno. Lab giải thích sơ đồ chân và cách quét (multiplexing), nối trực tiếp 12 chân với thư viện <code>SevSeg</code>, rồi dùng <strong>IC dịch 74HC595</strong> để Arduino chỉ cần 3 dây cho 8 chân đoạn. Đây là lab đầu tiên dùng <strong>thanh ghi dịch</strong> để mở rộng số chân ra.</p>
+<p>Hiển thị số trên LED 7 đoạn 4 số <strong>5641AS</strong> với Arduino Uno. Lab giải thích sơ đồ chân và cách quét (multiplexing), nối trực tiếp 12 chân với thư viện <code>SevSeg</code>, rồi dùng <strong>IC dịch 74HC595</strong> để Arduino chỉ cần 3 dây cho 8 chân đoạn. Cuối lab, mạch được dùng làm màn hình hiển thị nhiệt độ, độ ẩm mà <strong>Raspberry Pi</strong> gửi sang qua cổng Serial. Đây là lab đầu tiên dùng <strong>thanh ghi dịch</strong> để mở rộng số chân ra.</p>
 </blockquote>
 <section id="led-7-đoạn-4-số-là-gì" class="level2">
 <h2 class="anchored" data-anchor-id="led-7-đoạn-4-số-là-gì">LED 7 đoạn 4 số là gì</h2>
@@ -639,6 +644,157 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Màn hiện đủ <strong><code>1234</code></strong>: 74HC595 lo 8 chân đoạn, Arduino dùng thêm 4 chân <code>D2</code>–<code>D5</code> để chọn chữ số. Tổng cộng mạch tốn <strong>7 chân</strong> Arduino, so với 12 chân ở Cách 1.</p>
+</section>
+</section>
+<section id="ứng-dụng-hiển-thị-nhiệt-độ-độ-ẩm-từ-raspberry-pi" class="level2">
+<h2 class="anchored" data-anchor-id="ứng-dụng-hiển-thị-nhiệt-độ-độ-ẩm-từ-raspberry-pi">Ứng dụng · Hiển thị nhiệt độ, độ ẩm từ Raspberry Pi</h2>
+<p>Mạch 4 số ở trên được dùng làm <strong>màn hình</strong> cho Raspberry Pi. Pi có nhiệt độ, độ ẩm và gửi sang Arduino qua <strong>cáp USB</strong> (Serial). Arduino nhận số rồi hiển thị lên 5641AS. Phần cứng giữ nguyên mạch <a href="#quet-4-so">quét đủ 4 số</a>, chỉ thay cáp USB nối Arduino vào máy tính bằng cáp nối vào Pi. Cáp này vừa cấp nguồn 5 V cho Uno, vừa truyền dữ liệu.</p>
+<p>Đây là mô hình chia việc hay gặp trong IoT: <strong>Pi</strong> (máy tính Linux, có mạng) lo thu thập và xử lý dữ liệu; <strong>Arduino</strong> (vi điều khiển) lo phần điều khiển phần cứng cần thời gian chính xác, ở đây là quét LED vài ms một lần.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/7seg-rpi-dht-real.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Mạch hiển thị <code>24.3C</code>: nhiệt độ 24,3 °C nhận từ Raspberry Pi, chữ số cuối là chữ <code>C</code></figcaption>
+</figure>
+</div>
+<p>Video: cáp USB nối Uno với Raspberry Pi, và màn LED hiển thị số Pi gửi sang.</p>
+<video controls="" playsinline="" preload="metadata" poster="../assets/7seg-rpi-dht-real.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/7seg-rpi-dht-real.mp4" type="video/mp4">
+</video>
+<section id="định-dạng-hiển-thị" class="level3">
+<h3 class="anchored" data-anchor-id="định-dạng-hiển-thị">Định dạng hiển thị</h3>
+<p>Mỗi giá trị có 3 chữ số kèm 1 chữ số thập phân, chữ số thứ tư là ký hiệu đơn vị:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Hiển thị</th>
+<th>Ý nghĩa</th>
+<th>Mẫu đoạn chữ cái (theo cách nối <code>Q0</code>–<code>Q7</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>24.3C</code></td>
+<td>24,3 °C</td>
+<td><code>C</code> = A F E D = <code>0b11000011</code></td>
+</tr>
+<tr class="even">
+<td><code>65.0H</code></td>
+<td>65,0 % độ ẩm</td>
+<td><code>H</code> = F E G B C = <code>0b10011110</code></td>
+</tr>
+</tbody>
+</table>
+<p>Dấu chấm sau chữ số thứ hai là bit <code>DP</code> (bit 5) bật thêm vào mẫu của số đó.</p>
+</section>
+<section id="code-mẫu" class="level3">
+<h3 class="anchored" data-anchor-id="code-mẫu">Code mẫu</h3>
+<blockquote class="blockquote">
+<p>Code dưới đây là <strong>một cách làm mẫu</strong> khớp với sơ đồ đủ 4 số ở trên, không phải code chạy trong video. Định dạng gửi là một dòng văn bản <code>nhiệt_độ,độ_ẩm</code>, ví dụ <code>24.3,65.0</code>.</p>
+</blockquote>
+<p><strong>Phía Raspberry Pi</strong> (Python, cần <code>pip install pyserial</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> serial</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ser <span class="op">=</span> serial.Serial(<span class="st">"/dev/ttyACM0"</span>, <span class="dv">9600</span>, timeout<span class="op">=</span><span class="dv">1</span>)  <span class="co"># Uno thường hiện là ttyACM0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)  <span class="co"># mở cổng làm Uno khởi động lại, chờ bootloader chạy xong</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doc_cam_bien():</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Thay bằng cách đọc thật, ví dụ cảm biến DHT11/DHT22 nối GPIO của Pi</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">24.3</span>, <span class="fl">65.0</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    t, h <span class="op">=</span> doc_cam_bien()</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    ser.write(<span class="ss">f"</span><span class="sc">{</span>t<span class="sc">:.1f}</span><span class="ss">,</span><span class="sc">{</span>h<span class="sc">:.1f}</span><span class="ch">\n</span><span class="ss">"</span>.encode())</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Phía Arduino:</strong> đọc Serial <strong>không chặn</strong> (từng ký tự, gặp <code>\n</code> mới xử lý cả dòng). Nếu dùng <code>Serial.readStringUntil()</code> thì Arduino đứng chờ dữ liệu, ngừng quét LED và màn sẽ tắt hoặc chỉ sáng một số.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> DATA_PIN  <span class="op">=</span> <span class="dv">11</span><span class="op">;</span>  <span class="co">// DS</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> LATCH_PIN <span class="op">=</span> <span class="dv">8</span><span class="op">;</span>   <span class="co">// ST</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> CLOCK_PIN <span class="op">=</span> <span class="dv">12</span><span class="op">;</span>  <span class="co">// SH</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> DIGIT_PINS<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span>  <span class="co">// D1 D2 D3 D4</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte DIGITS<span class="op">[</span><span class="dv">10</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11010111</span><span class="op">,</span> <span class="bn">0b00010100</span><span class="op">,</span> <span class="bn">0b11001101</span><span class="op">,</span> <span class="bn">0b01011101</span><span class="op">,</span> <span class="bn">0b00011110</span><span class="op">,</span>  <span class="co">// 0–4</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01011011</span><span class="op">,</span> <span class="bn">0b11011011</span><span class="op">,</span> <span class="bn">0b00010101</span><span class="op">,</span> <span class="bn">0b11011111</span><span class="op">,</span> <span class="bn">0b01011111</span><span class="op">,</span>  <span class="co">// 5–9</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte LETTER_C <span class="op">=</span> <span class="bn">0b11000011</span><span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte LETTER_H <span class="op">=</span> <span class="bn">0b10011110</span><span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte DOT      <span class="op">=</span> <span class="bn">0b00100000</span><span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte DASH     <span class="op">=</span> <span class="bn">0b00001000</span><span class="op">;</span>  <span class="co">// đoạn G</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>byte frame<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span>DASH<span class="op">,</span> DASH<span class="op">,</span> DASH<span class="op">,</span> DASH<span class="op">};</span>  <span class="co">// chưa có dữ liệu: hiện ----</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> temp <span class="op">=</span> NAN<span class="op">,</span> hum <span class="op">=</span> NAN<span class="op">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> buf<span class="op">[</span><span class="dv">24</span><span class="op">];</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>byte len <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> show<span class="op">(</span>byte pattern<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LATCH_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  shiftOut<span class="op">(</span>DATA_PIN<span class="op">,</span> CLOCK_PIN<span class="op">,</span> MSBFIRST<span class="op">,</span> pattern<span class="op">);</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LATCH_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">// 24.3 + 'C' -&gt; [2] [4.] [3] [C]; chỉ hiện được 0.0–99.9</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setFrame<span class="op">(</span><span class="dt">float</span> v<span class="op">,</span> byte unit<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> x <span class="op">=</span> round<span class="op">(</span>v <span class="op">*</span> <span class="dv">10</span><span class="op">);</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>isnan<span class="op">(</span>v<span class="op">)</span> <span class="op">||</span> x <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">||</span> x <span class="op">&gt;</span> <span class="dv">999</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">4</span><span class="op">;</span> i<span class="op">++)</span> frame<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> DASH<span class="op">;</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  frame<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="op">(</span>x <span class="op">&gt;=</span> <span class="dv">100</span><span class="op">)</span> <span class="op">?</span> DIGITS<span class="op">[</span>x <span class="op">/</span> <span class="dv">100</span><span class="op">]</span> <span class="op">:</span> <span class="dv">0</span><span class="op">;</span>  <span class="co">// ẩn số 0 ở đầu</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  frame<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> DIGITS<span class="op">[</span>x <span class="op">/</span> <span class="dv">10</span> <span class="op">%</span> <span class="dv">10</span><span class="op">]</span> <span class="op">|</span> DOT<span class="op">;</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  frame<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> DIGITS<span class="op">[</span>x <span class="op">%</span> <span class="dv">10</span><span class="op">];</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  frame<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> unit<span class="op">;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> readSerial<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>Serial<span class="op">.</span>available<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> c <span class="op">=</span> Serial<span class="op">.</span>read<span class="op">();</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>c <span class="op">==</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>      buf<span class="op">[</span>len<span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>      <span class="dt">char</span> <span class="op">*</span>comma <span class="op">=</span> strchr<span class="op">(</span>buf<span class="op">,</span> <span class="ch">','</span><span class="op">);</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>comma<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>comma <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> atof<span class="op">(</span>buf<span class="op">);</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>        hum  <span class="op">=</span> atof<span class="op">(</span>comma <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>      len <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>c <span class="op">!=</span> <span class="ch">'</span><span class="sc">\r</span><span class="ch">'</span> <span class="op">&amp;&amp;</span> len <span class="op">&lt;</span> <span class="kw">sizeof</span><span class="op">(</span>buf<span class="op">)</span> <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>      buf<span class="op">[</span>len<span class="op">++]</span> <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>DATA_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LATCH_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>CLOCK_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">4</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>DIGIT_PINS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>DIGIT_PINS<span class="op">[</span>i<span class="op">],</span> HIGH<span class="op">);</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  readSerial<span class="op">();</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> showTemp <span class="op">=</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">/</span> <span class="dv">3000</span><span class="op">)</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">;</span>   <span class="co">// đổi qua lại mỗi 3 giây</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>showTemp<span class="op">)</span> setFrame<span class="op">(</span>temp<span class="op">,</span> LETTER_C<span class="op">);</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>          setFrame<span class="op">(</span>hum<span class="op">,</span>  LETTER_H<span class="op">);</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">4</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>frame<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>DIGIT_PINS<span class="op">[</span>i<span class="op">],</span> LOW<span class="op">);</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">3</span><span class="op">);</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>DIGIT_PINS<span class="op">[</span>i<span class="op">],</span> HIGH<span class="op">);</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lưu ý khi chạy:</p>
+<ul>
+<li><strong>Đóng Serial Monitor</strong> trên máy tính khi Uno đã cắm vào Pi. Mỗi lúc chỉ một chương trình mở được cổng Serial.</li>
+<li>Trên Pi, kiểm tra tên cổng bằng <code>ls /dev/ttyACM* /dev/ttyUSB*</code>. Board Uno clone dùng chip CH340 thường hiện là <code>/dev/ttyUSB0</code>.</li>
+<li>Nếu Python báo lỗi quyền truy cập cổng, thêm user vào nhóm <code>dialout</code>: <code>sudo usermod -aG dialout $USER</code>, rồi đăng xuất và đăng nhập lại.</li>
+<li>Một vòng <code>loop()</code> mất khoảng 12 ms. Ở 9600 baud, trong 12 ms Pi gửi được tối đa khoảng 12 byte, nhỏ hơn nhiều so với bộ đệm 64 byte của Uno, nên không bị mất dữ liệu.</li>
+</ul>
 </section>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
