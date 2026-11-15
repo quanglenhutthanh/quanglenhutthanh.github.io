@@ -200,6 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#mạch-phần-a-mắt-thu-vs1838b" id="toc-mạch-phần-a-mắt-thu-vs1838b" class="nav-link" data-scroll-target="#mạch-phần-a-mắt-thu-vs1838b">Mạch Phần A: mắt thu VS1838B</a></li>
   <li><a href="#video-test-a2-bật-led-bằng-remote" id="toc-video-test-a2-bật-led-bằng-remote" class="nav-link" data-scroll-target="#video-test-a2-bật-led-bằng-remote">Video Test A2: bật LED bằng remote</a></li>
+  <li><a href="#video-test-b2-đưa-tay-lại-gần-led-sáng" id="toc-video-test-b2-đưa-tay-lại-gần-led-sáng" class="nav-link" data-scroll-target="#video-test-b2-đưa-tay-lại-gần-led-sáng">Video Test B2: đưa tay lại gần, LED sáng</a></li>
   </ul></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul></li>
@@ -1144,8 +1145,26 @@ GND của hai module ── thanh − ── GND</code></pre>
 <source src="../assets/ir-remote-led-real.mp4" type="video/mp4">
 </video>
 <p>Mạch Phần A có thêm <strong>LED vàng</strong> cắm trên breadboard, nối tiếp điện trở 220 Ω với <code>D9</code>. Bấm phím trên remote, LED vàng sáng theo lệnh. Phía dưới khung hình là module FC-51 chưa nối dây, dùng cho Phần B.</p>
+</section>
+<section id="video-test-b2-đưa-tay-lại-gần-led-sáng" class="level3">
+<h3 class="anchored" data-anchor-id="video-test-b2-đưa-tay-lại-gần-led-sáng">Video Test B2: đưa tay lại gần, LED sáng</h3>
+<video controls="" playsinline="" preload="metadata" poster="../assets/fc51-led-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/fc51-led-real.mp4" type="video/mp4">
+</video>
+<p>Mạch thật chạy code Test B2:</p>
+<ul>
+<li><strong>FC-51</strong> cắm đứng trên breadboard, hai “mắt” (LED phát trong suốt và đầu thu đen) hướng lên trên, header cắm xuống lỗ. Đèn báo xanh dương trên module hắt sáng xuống mặt breadboard.</li>
+<li><strong>LED vàng</strong> cắm bên phải, nối tiếp điện trở 220 Ω (nằm phía trên LED) với <code>D9</code>.</li>
+<li>Ba dây của FC-51 nối về Uno ở phía sau khung hình: <code>OUT</code> vào <code>D3</code> như code Test B2, <code>GND</code> và <code>VCC</code> vào nguồn.</li>
+</ul>
+<p>Kết quả:</p>
+<ul>
+<li><strong>Không có tay:</strong> chỉ có đèn nguồn trên FC-51 sáng, LED vàng tắt.</li>
+<li><strong>Đưa tay sát phía trên hai “mắt”:</strong> LED vàng sáng ngay. Rút tay ra, LED tắt. Lặp lại nhiều lần cho kết quả giống nhau.</li>
+<li>Lúc tay mới <strong>lướt qua phía xa</strong> hoặc đang rút ra, LED chưa sáng hoặc đã tắt: tay đang ở ngoài khoảng phát hiện đặt bằng biến trở.</li>
+</ul>
 <blockquote class="blockquote">
-<p>📷 <em>Chờ ảnh/video mạch Phần B (FC-51 + LED) và Phần C.</em></p>
+<p>📷 <em>Chờ ảnh/video mạch Phần C (remote + vẫy tay).</em></p>
 </blockquote>
 </section>
 </section>
