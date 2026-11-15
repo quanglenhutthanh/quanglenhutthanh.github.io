@@ -5,16 +5,17 @@ type: lab
 lab_no: 7
 status: reading
 source: note
-tags: [arduino, 7-segment, 5641as, 74hc595, shift-register, multiplexing, display]
+tags: [arduino, 7-segment, 5641as, 74hc595, shift-register, multiplexing, display, raspberry-pi, serial]
 date: 2026-11-12
 resources:
   - ../assets/7seg-595-real.mp4
   - ../assets/7seg-595-real-poster.jpg
+  - ../assets/7seg-rpi-dht-real.mp4
 ---
 
 # Lab 7 · LED 7 đoạn 4 số 5641AS + IC 74HC595
 
-> Hiển thị số trên LED 7 đoạn 4 số **5641AS** với Arduino Uno. Lab giải thích sơ đồ chân và cách quét (multiplexing), nối trực tiếp 12 chân với thư viện `SevSeg`, rồi dùng **IC dịch 74HC595** để Arduino chỉ cần 3 dây cho 8 chân đoạn. Đây là lab đầu tiên dùng **thanh ghi dịch** để mở rộng số chân ra.
+> Hiển thị số trên LED 7 đoạn 4 số **5641AS** với Arduino Uno. Lab giải thích sơ đồ chân và cách quét (multiplexing), nối trực tiếp 12 chân với thư viện `SevSeg`, rồi dùng **IC dịch 74HC595** để Arduino chỉ cần 3 dây cho 8 chân đoạn. Cuối lab, mạch được dùng làm màn hình hiển thị nhiệt độ, độ ẩm mà **Raspberry Pi** gửi sang qua cổng Serial. Đây là lab đầu tiên dùng **thanh ghi dịch** để mở rộng số chân ra.
 
 ## LED 7 đoạn 4 số là gì
 
@@ -272,6 +273,147 @@ Một vòng quét 4 số mất khoảng 12 ms, tức hơn 80 lần mỗi giây, 
 ![Mạch 74HC595 đủ 4 số: 5641AS hiển thị `1234`](../assets/7seg-595-4digits-real.jpg){width=90%}
 
 Màn hiện đủ **`1234`**: 74HC595 lo 8 chân đoạn, Arduino dùng thêm 4 chân `D2`–`D5` để chọn chữ số. Tổng cộng mạch tốn **7 chân** Arduino, so với 12 chân ở Cách 1.
+
+## Ứng dụng · Hiển thị nhiệt độ, độ ẩm từ Raspberry Pi
+
+Mạch 4 số ở trên được dùng làm **màn hình** cho Raspberry Pi. Pi có nhiệt độ, độ ẩm và gửi sang Arduino qua **cáp USB** (Serial). Arduino nhận số rồi hiển thị lên 5641AS. Phần cứng giữ nguyên mạch [quét đủ 4 số](#quet-4-so), chỉ thay cáp USB nối Arduino vào máy tính bằng cáp nối vào Pi. Cáp này vừa cấp nguồn 5 V cho Uno, vừa truyền dữ liệu.
+
+Đây là mô hình chia việc hay gặp trong IoT: **Pi** (máy tính Linux, có mạng) lo thu thập và xử lý dữ liệu; **Arduino** (vi điều khiển) lo phần điều khiển phần cứng cần thời gian chính xác, ở đây là quét LED vài ms một lần.
+
+![Mạch hiển thị `24.3C`: nhiệt độ 24,3 °C nhận từ Raspberry Pi, chữ số cuối là chữ `C`](../assets/7seg-rpi-dht-real.jpg){width=70%}
+
+Video: cáp USB nối Uno với Raspberry Pi, và màn LED hiển thị số Pi gửi sang.
+
+<video controls playsinline preload="metadata" poster="../assets/7seg-rpi-dht-real.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/7seg-rpi-dht-real.mp4" type="video/mp4">
+</video>
+
+### Định dạng hiển thị
+
+Mỗi giá trị có 3 chữ số kèm 1 chữ số thập phân, chữ số thứ tư là ký hiệu đơn vị:
+
+| Hiển thị | Ý nghĩa | Mẫu đoạn chữ cái (theo cách nối `Q0`–`Q7`) |
+|---|---|---|
+| `24.3C` | 24,3 °C | `C` = A F E D = `0b11000011` |
+| `65.0H` | 65,0 % độ ẩm | `H` = F E G B C = `0b10011110` |
+
+Dấu chấm sau chữ số thứ hai là bit `DP` (bit 5) bật thêm vào mẫu của số đó.
+
+### Code mẫu
+
+> Code dưới đây là **một cách làm mẫu** khớp với sơ đồ đủ 4 số ở trên, không phải code chạy trong video. Định dạng gửi là một dòng văn bản `nhiệt_độ,độ_ẩm`, ví dụ `24.3,65.0`.
+
+**Phía Raspberry Pi** (Python, cần `pip install pyserial`):
+
+```python
+import time
+import serial
+
+ser = serial.Serial("/dev/ttyACM0", 9600, timeout=1)  # Uno thường hiện là ttyACM0
+time.sleep(2)  # mở cổng làm Uno khởi động lại, chờ bootloader chạy xong
+
+def doc_cam_bien():
+    # Thay bằng cách đọc thật, ví dụ cảm biến DHT11/DHT22 nối GPIO của Pi
+    return 24.3, 65.0
+
+while True:
+    t, h = doc_cam_bien()
+    ser.write(f"{t:.1f},{h:.1f}\n".encode())
+    time.sleep(2)
+```
+
+**Phía Arduino:** đọc Serial **không chặn** (từng ký tự, gặp `\n` mới xử lý cả dòng). Nếu dùng `Serial.readStringUntil()` thì Arduino đứng chờ dữ liệu, ngừng quét LED và màn sẽ tắt hoặc chỉ sáng một số.
+
+```cpp
+const int DATA_PIN  = 11;  // DS
+const int LATCH_PIN = 8;   // ST
+const int CLOCK_PIN = 12;  // SH
+const int DIGIT_PINS[4] = {2, 3, 4, 5};  // D1 D2 D3 D4
+
+const byte DIGITS[10] = {
+  0b11010111, 0b00010100, 0b11001101, 0b01011101, 0b00011110,  // 0–4
+  0b01011011, 0b11011011, 0b00010101, 0b11011111, 0b01011111,  // 5–9
+};
+const byte LETTER_C = 0b11000011;
+const byte LETTER_H = 0b10011110;
+const byte DOT      = 0b00100000;
+const byte DASH     = 0b00001000;  // đoạn G
+
+byte frame[4] = {DASH, DASH, DASH, DASH};  // chưa có dữ liệu: hiện ----
+float temp = NAN, hum = NAN;
+char buf[24];
+byte len = 0;
+
+void show(byte pattern) {
+  digitalWrite(LATCH_PIN, LOW);
+  shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, pattern);
+  digitalWrite(LATCH_PIN, HIGH);
+}
+
+// 24.3 + 'C' -> [2] [4.] [3] [C]; chỉ hiện được 0.0–99.9
+void setFrame(float v, byte unit) {
+  int x = round(v * 10);
+  if (isnan(v) || x < 0 || x > 999) {
+    for (int i = 0; i < 4; i++) frame[i] = DASH;
+    return;
+  }
+  frame[0] = (x >= 100) ? DIGITS[x / 100] : 0;  // ẩn số 0 ở đầu
+  frame[1] = DIGITS[x / 10 % 10] | DOT;
+  frame[2] = DIGITS[x % 10];
+  frame[3] = unit;
+}
+
+void readSerial() {
+  while (Serial.available()) {
+    char c = Serial.read();
+    if (c == '\n') {
+      buf[len] = '\0';
+      char *comma = strchr(buf, ',');
+      if (comma) {
+        *comma = '\0';
+        temp = atof(buf);
+        hum  = atof(comma + 1);
+      }
+      len = 0;
+    } else if (c != '\r' && len < sizeof(buf) - 1) {
+      buf[len++] = c;
+    }
+  }
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(DATA_PIN, OUTPUT);
+  pinMode(LATCH_PIN, OUTPUT);
+  pinMode(CLOCK_PIN, OUTPUT);
+  for (int i = 0; i < 4; i++) {
+    pinMode(DIGIT_PINS[i], OUTPUT);
+    digitalWrite(DIGIT_PINS[i], HIGH);
+  }
+}
+
+void loop() {
+  readSerial();
+
+  bool showTemp = (millis() / 3000) % 2 == 0;   // đổi qua lại mỗi 3 giây
+  if (showTemp) setFrame(temp, LETTER_C);
+  else          setFrame(hum,  LETTER_H);
+
+  for (int i = 0; i < 4; i++) {
+    show(frame[i]);
+    digitalWrite(DIGIT_PINS[i], LOW);
+    delay(3);
+    digitalWrite(DIGIT_PINS[i], HIGH);
+  }
+}
+```
+
+Lưu ý khi chạy:
+
+- **Đóng Serial Monitor** trên máy tính khi Uno đã cắm vào Pi. Mỗi lúc chỉ một chương trình mở được cổng Serial.
+- Trên Pi, kiểm tra tên cổng bằng `ls /dev/ttyACM* /dev/ttyUSB*`. Board Uno clone dùng chip CH340 thường hiện là `/dev/ttyUSB0`.
+- Nếu Python báo lỗi quyền truy cập cổng, thêm user vào nhóm `dialout`: `sudo usermod -aG dialout $USER`, rồi đăng xuất và đăng nhập lại.
+- Một vòng `loop()` mất khoảng 12 ms. Ở 9600 baud, trong 12 ms Pi gửi được tối đa khoảng 12 byte, nhỏ hơn nhiều so với bộ đệm 64 byte của Uno, nên không bị mất dữ liệu.
 
 ## Lỗi hay gặp
 
