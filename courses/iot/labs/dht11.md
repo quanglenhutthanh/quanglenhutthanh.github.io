@@ -227,6 +227,22 @@ Một vài nhận xét về kết quả:
 - Các dòng giống hệt nhau vì nhiệt độ và độ ẩm phòng thay đổi chậm hơn bước 1 đơn vị trong vài chục giây. Muốn thấy số nhảy thì hà hơi vào cảm biến, hoặc nắm tay quanh nó.
 - **Cảm nhận 39,16 °C**: phòng 33 °C với độ ẩm 59 % cho cảm giác nóng như 39 °C. Giá trị này có phần thập phân vì được *tính* từ hai số nguyên trên, chứ cảm biến không đo trực tiếp.
 
+### Test 2 trên LCD
+
+![Nạp code Test 2: LCD hiện nhiệt độ 31 °C và độ ẩm 68 %, DHT11 đặt cách xa board](../assets/dht11-lcd-real.jpg){width=80%}
+
+Nạp nguyên code Test 2, không sửa gì. LCD hiện:
+
+```
+Nhiet do: 31°C
+Do am:    68 %
+```
+
+- Ký hiệu `°` hiện đúng nhờ `(char)223`, không cần tự vẽ ký tự bằng `createChar`.
+- Board Uno clone trong ảnh có thêm hàng chân phụ `5V`/`GND` (và `SDA`/`SCL`) cạnh hàng ANALOG IN. Vì vậy cả LCD lẫn DHT11 đều cắm thẳng dây đực – cái vào board, **không cần breadboard** để chia nguồn. Với Uno R3 chính hãng, vốn chỉ có một chân `5V`, thì vẫn phải dùng breadboard hoặc header ICSP như đã nói ở phần nối dây.
+- DHT11 được đặt cách board và LCD khoảng một gang tay, để hơi nóng từ chip ổn áp và đèn nền LCD không làm số đo cao lên (xem bảng lỗi bên dưới).
+- Số đo 31 °C / 68 %RH khác lần chạy Test 1 (33 °C / 59 %RH) chỉ vì đo vào thời điểm khác. Cả hai đều nằm trong khoảng bình thường của phòng không bật điều hoà.
+
 ## Lỗi hay gặp
 
 | Hiện tượng | Nguyên nhân / cách xử lý |
