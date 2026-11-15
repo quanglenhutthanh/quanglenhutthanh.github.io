@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-15">
+
+<title>Lab 8 · Hồng ngoại: remote IR + mắt thu VS1838B và cảm biến tránh vật cản FC-51 – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lab-8-hồng-ngoại-remote-ir-mắt-thu-vs1838b-và-cảm-biến-tránh-vật-cản-fc-51" id="toc-lab-8-hồng-ngoại-remote-ir-mắt-thu-vs1838b-và-cảm-biến-tránh-vật-cản-fc-51" class="nav-link active" data-scroll-target="#lab-8-hồng-ngoại-remote-ir-mắt-thu-vs1838b-và-cảm-biến-tránh-vật-cản-fc-51">Lab 8 · Hồng ngoại: remote IR + mắt thu VS1838B và cảm biến tránh vật cản FC-51</a>
+  <ul class="collapse">
+  <li><a href="#hồng-ngoại-và-hai-cách-dùng" id="toc-hồng-ngoại-và-hai-cách-dùng" class="nav-link" data-scroll-target="#hồng-ngoại-và-hai-cách-dùng">Hồng ngoại và hai cách dùng</a>
+  <ul class="collapse">
+  <li><a href="#vì-sao-remote-cần-sóng-mang-38-khz" id="toc-vì-sao-remote-cần-sóng-mang-38-khz" class="nav-link" data-scroll-target="#vì-sao-remote-cần-sóng-mang-38-khz">Vì sao remote cần sóng mang 38 kHz</a></li>
+  <li><a href="#giao-thức-nec" id="toc-giao-thức-nec" class="nav-link" data-scroll-target="#giao-thức-nec">Giao thức NEC</a></li>
+  </ul></li>
+  <li><a href="#linh-kiện-trong-kit" id="toc-linh-kiện-trong-kit" class="nav-link" data-scroll-target="#linh-kiện-trong-kit">Linh kiện trong kit</a>
+  <ul class="collapse">
+  <li><a href="#remote-car-mp3-21-phím" id="toc-remote-car-mp3-21-phím" class="nav-link" data-scroll-target="#remote-car-mp3-21-phím">Remote “Car MP3” 21 phím</a></li>
+  <li><a href="#mắt-thu-vs1838b" id="toc-mắt-thu-vs1838b" class="nav-link" data-scroll-target="#mắt-thu-vs1838b">Mắt thu VS1838B</a></li>
+  <li><a href="#cảm-biến-tránh-vật-cản-fc-51" id="toc-cảm-biến-tránh-vật-cản-fc-51" class="nav-link" data-scroll-target="#cảm-biến-tránh-vật-cản-fc-51">Cảm biến tránh vật cản FC-51</a></li>
+  </ul></li>
+  <li><a href="#linh-kiện-và-chân" id="toc-linh-kiện-và-chân" class="nav-link" data-scroll-target="#linh-kiện-và-chân">Linh kiện và chân</a></li>
+  <li><a href="#cài-thư-viện" id="toc-cài-thư-viện" class="nav-link" data-scroll-target="#cài-thư-viện">Cài thư viện</a></li>
+  <li><a href="#phần-a-remote-mắt-thu-vs1838b" id="toc-phần-a-remote-mắt-thu-vs1838b" class="nav-link" data-scroll-target="#phần-a-remote-mắt-thu-vs1838b">Phần A – Remote + mắt thu VS1838B</a>
+  <ul class="collapse">
+  <li><a href="#test-a1-đọc-mã-phím-ra-serial" id="toc-test-a1-đọc-mã-phím-ra-serial" class="nav-link" data-scroll-target="#test-a1-đọc-mã-phím-ra-serial">Test A1 – đọc mã phím ra Serial</a></li>
+  <li><a href="#bảng-mã-phím-remote-car-mp3" id="toc-bảng-mã-phím-remote-car-mp3" class="nav-link" data-scroll-target="#bảng-mã-phím-remote-car-mp3">Bảng mã phím remote “Car MP3”</a></li>
+  <li><a href="#test-a2-điều-khiển-led-bằng-remote" id="toc-test-a2-điều-khiển-led-bằng-remote" class="nav-link" data-scroll-target="#test-a2-điều-khiển-led-bằng-remote">Test A2 – điều khiển LED bằng remote</a></li>
+  </ul></li>
+  <li><a href="#phần-b-cảm-biến-fc-51" id="toc-phần-b-cảm-biến-fc-51" class="nav-link" data-scroll-target="#phần-b-cảm-biến-fc-51">Phần B – Cảm biến FC-51</a>
+  <ul class="collapse">
+  <li><a href="#test-b1-thử-không-cần-code" id="toc-test-b1-thử-không-cần-code" class="nav-link" data-scroll-target="#test-b1-thử-không-cần-code">Test B1 – thử không cần code</a></li>
+  <li><a href="#test-b2-có-vật-thì-led-sáng" id="toc-test-b2-có-vật-thì-led-sáng" class="nav-link" data-scroll-target="#test-b2-có-vật-thì-led-sáng">Test B2 – có vật thì LED sáng</a></li>
+  <li><a href="#low-là-bao-nhiêu-volt" id="toc-low-là-bao-nhiêu-volt" class="nav-link" data-scroll-target="#low-là-bao-nhiêu-volt"><code>LOW</code> là bao nhiêu volt</a></li>
+  <li><a href="#test-b3-đo-điện-áp-thật-và-đếm-số-lần" id="toc-test-b3-đo-điện-áp-thật-và-đếm-số-lần" class="nav-link" data-scroll-target="#test-b3-đo-điện-áp-thật-và-đếm-số-lần">Test B3 – đo điện áp thật và đếm số lần</a></li>
+  </ul></li>
+  <li><a href="#phần-c-công-tắc-đèn-2-cách" id="toc-phần-c-công-tắc-đèn-2-cách" class="nav-link" data-scroll-target="#phần-c-công-tắc-đèn-2-cách">Phần C – Công tắc đèn 2 cách</a></li>
+  <li><a href="#ứng-dụng" id="toc-ứng-dụng" class="nav-link" data-scroll-target="#ứng-dụng">Ứng dụng</a></li>
+  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a>
+  <ul class="collapse">
+  <li><a href="#mạch-phần-a-mắt-thu-vs1838b" id="toc-mạch-phần-a-mắt-thu-vs1838b" class="nav-link" data-scroll-target="#mạch-phần-a-mắt-thu-vs1838b">Mạch Phần A: mắt thu VS1838B</a></li>
+  <li><a href="#video-test-a2-bật-led-bằng-remote" id="toc-video-test-a2-bật-led-bằng-remote" class="nav-link" data-scroll-target="#video-test-a2-bật-led-bằng-remote">Video Test A2: bật LED bằng remote</a></li>
+  </ul></li>
+  <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 8 · Hồng ngoại: remote IR + mắt thu VS1838B và cảm biến tránh vật cản FC-51</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 15, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lab-8-hồng-ngoại-remote-ir-mắt-thu-vs1838b-và-cảm-biến-tránh-vật-cản-fc-51" class="level1">
+<h1>Lab 8 · Hồng ngoại: remote IR + mắt thu VS1838B và cảm biến tránh vật cản FC-51</h1>
+<blockquote class="blockquote">
+<p>Dùng hai linh kiện hồng ngoại trong kit với Arduino Uno: <strong>remote + mắt thu VS1838B</strong> để nhận lệnh từ xa (đọc mã phím, bật tắt và chỉnh độ sáng LED), và <strong>cảm biến FC-51</strong> để phát hiện vật cản. Cuối lab ghép hai phần thành “công tắc đèn 2 cách”: bật đèn bằng remote hoặc bằng cách vẫy tay. Điểm chính của lab là thấy cùng là hồng ngoại nhưng có hai cách dùng hoàn toàn khác nhau.</p>
+</blockquote>
+<section id="hồng-ngoại-và-hai-cách-dùng" class="level2">
+<h2 class="anchored" data-anchor-id="hồng-ngoại-và-hai-cách-dùng">Hồng ngoại và hai cách dùng</h2>
+<p><strong>Hồng ngoại</strong> (IR – <em>infrared</em>) là ánh sáng có bước sóng dài hơn ánh sáng đỏ, mắt người không thấy. Các linh kiện trong kit đều dùng bước sóng khoảng <strong>940 nm</strong>. Camera điện thoại thấy được bước sóng này: nhìn đầu remote qua camera rồi bấm phím sẽ thấy một chấm sáng tím nhấp nháy.</p>
+<p>Ba linh kiện của lab chia thành <strong>hai hệ độc lập</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Hệ 1: điều khiển từ xa</th>
+<th>Hệ 2: phát hiện vật cản</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Linh kiện</td>
+<td>Remote (phát) + mắt thu VS1838B (thu)</td>
+<td>FC-51 (tự phát, tự thu)</td>
+</tr>
+<tr class="even">
+<td>Ánh sáng phát ra</td>
+<td><strong>Nhấp nháy 38 kHz</strong>, bật tắt theo mã</td>
+<td><strong>Liên tục</strong>, không mã hóa</td>
+</tr>
+<tr class="odd">
+<td>Thông tin mang theo</td>
+<td>Mã phím (nhiều giá trị)</td>
+<td>Có / không có vật (0 hoặc 1)</td>
+</tr>
+<tr class="even">
+<td>Tầm hoạt động</td>
+<td>5–8 m</td>
+<td>2–30 cm (chỉnh bằng biến trở)</td>
+</tr>
+<tr class="odd">
+<td>Arduino đọc bằng</td>
+<td>Thư viện <code>IRremote</code> giải mã</td>
+<td><code>digitalRead()</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hai hệ không dùng lẫn được với nhau.</strong> FC-51 không có mạch lọc 38 kHz nên không đọc được mã remote. Ngược lại, VS1838B chỉ nhận ánh sáng nhấp nháy 38 kHz nên không thấy ánh sáng liên tục của FC-51. Cái duy nhất xảy ra là chĩa remote vào FC-51 có thể làm nó <strong>báo nhầm có vật</strong> (thử ở Phần B).</p>
+<section id="vì-sao-remote-cần-sóng-mang-38-khz" class="level3">
+<h3 class="anchored" data-anchor-id="vì-sao-remote-cần-sóng-mang-38-khz">Vì sao remote cần sóng mang 38 kHz</h3>
+<p>Trong phòng có rất nhiều hồng ngoại “nền”: ánh nắng, bóng đèn sợi đốt, cơ thể người. Nếu remote chỉ bật một tia sáng liên tục, mắt thu không phân biệt được với ánh sáng nền. Vì vậy remote <strong>bật tắt LED 38 000 lần mỗi giây</strong> trong lúc gửi một bit. Bên trong VS1838B có bộ lọc chỉ cho tần số quanh 38 kHz đi qua, rồi tách sóng mang ra, trả về Arduino một chuỗi xung sạch:</p>
+<pre><code>LED remote   |||||||||||______|||||______|||||||||||______   ← nhấp nháy 38 kHz theo từng bit
+OUT VS1838B  ‾‾|___________|‾‾‾‾‾‾|_____|‾‾‾‾‾‾|__________|  ← đã tách sóng mang, mức LOW khi có tín hiệu</code></pre>
+<p>Chân <code>OUT</code> của mắt thu <strong>nghỉ ở mức HIGH</strong>, xuống <code>LOW</code> khi có tín hiệu 38 kHz.</p>
+</section>
+<section id="giao-thức-nec" class="level3">
+<h3 class="anchored" data-anchor-id="giao-thức-nec">Giao thức NEC</h3>
+<p>Remote trong kit dùng giao thức <strong>NEC</strong>, phổ biến nhất trên remote giá rẻ. Mỗi lần bấm phím, remote gửi một <strong>khung 32 bit</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Phần</th>
+<th>Độ dài</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Xung mở đầu</td>
+<td>9 ms sáng + 4,5 ms tắt</td>
+<td>Báo hiệu bắt đầu khung</td>
+</tr>
+<tr class="even">
+<td>Địa chỉ</td>
+<td>8 bit + 8 bit đảo</td>
+<td>Loại thiết bị (remote kit là <code>0x00</code>)</td>
+</tr>
+<tr class="odd">
+<td>Lệnh</td>
+<td>8 bit + 8 bit đảo</td>
+<td><strong>Mã phím</strong>, đây là giá trị code cần đọc</td>
+</tr>
+<tr class="even">
+<td>Bit kết thúc</td>
+<td>562 µs</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Bit <code>0</code> và bit <code>1</code> khác nhau ở độ dài khoảng tắt sau mỗi xung (562 µs hoặc 1,69 ms). Phần “đảo” là bản sao lật bit để kiểm tra lỗi.</p>
+<p>Nếu tay <strong>giữ phím quá khoảng 110 ms</strong>, remote không gửi lại cả khung mà gửi một <strong>khung lặp</strong> (<em>repeat</em>) ngắn, cứ 110 ms một lần. Thư viện báo khung này bằng cờ <code>IRDATA_FLAGS_IS_REPEAT</code>. Gần như lần bấm nào cũng sinh ra ít nhất một khung lặp, nên code phải bỏ qua cờ này, nếu không thì một lần bấm bị tính thành hai, ba lần.</p>
+</section>
+</section>
+<section id="linh-kiện-trong-kit" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện-trong-kit">Linh kiện trong kit</h2>
+<section id="remote-car-mp3-21-phím" class="level3">
+<h3 class="anchored" data-anchor-id="remote-car-mp3-21-phím">Remote “Car MP3” 21 phím</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-ir-remote.jpg" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Remote hồng ngoại 21 phím in chữ “Car mp3”: hàng CH−/CH/CH+, hàng PREV/NEXT/PLAY, hàng VOL−/VOL+/EQ và các phím số 0–9, 100+, 200+</figcaption>
+</figure>
+</div>
+<ul>
+<li>Remote mỏng, dùng <strong>pin cúc CR2025</strong>, LED hồng ngoại nằm ở cạnh đầu remote.</li>
+<li><strong>Lần đầu dùng phải rút miếng nhựa trong suốt</strong> thò ra ở đầu remote phía dưới. Miếng nhựa này cách điện pin khi vận chuyển, chưa rút thì remote không phát.</li>
+<li>Giao thức <strong>NEC</strong>, địa chỉ <code>0x00</code>. Bảng mã phím ở <a href="#bảng-mã-phím-remote-car-mp3">Phần A</a>.</li>
+</ul>
+</section>
+<section id="mắt-thu-vs1838b" class="level3">
+<h3 class="anchored" data-anchor-id="mắt-thu-vs1838b">Mắt thu VS1838B</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-vs1838b.jpg" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Mắt thu hồng ngoại VS1838B trần: thân nhựa đen có vỏ kim loại bọc ngoài, mặt trước in dấu X trên mắt tròn, ba chân dài</figcaption>
+</figure>
+</div>
+<p>Kit có mắt thu <strong>trần</strong> (không gắn trên board), loại có <strong>vỏ kim loại</strong> bọc ngoài để chống nhiễu. Bên trong đã có sẵn photodiode, mạch khuếch đại, bộ lọc 38 kHz và tách sóng, nên Arduino chỉ cần đọc một chân.</p>
+<p><strong>Sơ đồ chân:</strong> nhìn <strong>thẳng vào mặt có dấu X / mắt tròn</strong>, chân hướng xuống:</p>
+<pre><code>    ┌─────┐
+    │  X  │
+    └┬─┬─┬┘
+     │ │ │
+   OUT GND VCC</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Thông số</th>
+<th>VS1838B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Điện áp</td>
+<td>2,7–5,5 V (dùng được cả 3,3 V và 5 V)</td>
+</tr>
+<tr class="even">
+<td>Tần số sóng mang</td>
+<td>38 kHz</td>
+</tr>
+<tr class="odd">
+<td>Góc nhận</td>
+<td>~±45°</td>
+</tr>
+<tr class="even">
+<td>Tầm nhận</td>
+<td>~8–10 m với remote còn pin tốt</td>
+</tr>
+<tr class="odd">
+<td>Mức <code>OUT</code></td>
+<td>Nghỉ <code>HIGH</code>, có tín hiệu <code>LOW</code></td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>Đừng cắm ngược <code>VCC</code> và <code>GND</code>.</strong> Mắt thu nóng lên và hỏng sau vài giây. Cắm điện xong nên chạm thử vào thân mắt thu: nếu thấy ấm thì rút USB ngay.</p>
+<p>Có một số bản mắt thu khác (ví dụ một vài lô HX1838 hoặc TSOP) có thứ tự chân khác. Nếu mắt thu trong kit không giống ảnh, xem datasheet của đúng mã in trên thân.</p>
+</section>
+<section id="cảm-biến-tránh-vật-cản-fc-51" class="level3">
+<h3 class="anchored" data-anchor-id="cảm-biến-tránh-vật-cản-fc-51">Cảm biến tránh vật cản FC-51</h3>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-fc51-front.jpg" class="img-fluid figure-img"></p>
+<figcaption>FC-51 mặt trước: LED phát hồng ngoại trong suốt và đầu thu màu đen ở trên, chip LM393 và biến trở xanh ở giữa, hai đèn báo và 3 chân <code>OUT</code> · <code>GND</code> · <code>VCC</code> ở dưới</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-fc51-back.jpg" class="img-fluid figure-img"></p>
+<figcaption>FC-51 mặt sau: in chữ <code>MH-Sensor-Series Flying-Fish</code>, nhãn chân <code>OUT</code> · <code>GND</code> · <code>VCC</code> cạnh header</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Module trong kit là dòng <strong>MH-Sensor-Series “Flying-Fish”</strong> (in ở mặt sau), bán dưới tên <strong>FC-51</strong> hoặc <strong>IR obstacle avoidance sensor</strong>. Trên mạch có:</p>
+<ul>
+<li><strong>LED phát hồng ngoại</strong> (vỏ trong suốt) và <strong>đầu thu hồng ngoại</strong> (vỏ đen) đặt cạnh nhau, cùng hướng về phía trước.</li>
+<li><strong>Chip LM393</strong>: mạch so sánh điện áp. So tín hiệu từ đầu thu với một ngưỡng, ra <code>LOW</code> hoặc <code>HIGH</code>.</li>
+<li><strong>Biến trở xanh</strong>: đặt ngưỡng so sánh, tức <strong>khoảng cách phát hiện</strong>.</li>
+<li><strong>Hai đèn báo SMD</strong>: một đèn <strong>nguồn</strong> (sáng khi có điện), một đèn <strong>có vật</strong> (sáng khi <code>OUT</code> xuống <code>LOW</code>).</li>
+<li><strong>3 chân, thứ tự <code>OUT</code> · <code>GND</code> · <code>VCC</code>.</strong> Thứ tự này <strong>khác</strong> đa số module khác trong kit (thường là <code>VCC</code> đầu tiên). Nhãn in ở cả hai mặt, luôn đọc nhãn trước khi cắm.</li>
+</ul>
+<p><strong>Nguyên lý:</strong> LED phát chiếu hồng ngoại ra phía trước. Khi có vật, ánh sáng dội lại vào đầu thu. Vật càng gần (hoặc càng sáng màu) thì đầu thu nhận càng mạnh. Khi vượt ngưỡng đặt bằng biến trở, LM393 kéo <code>OUT</code> xuống <code>LOW</code>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Thông số</th>
+<th>FC-51</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Điện áp</td>
+<td>3,3–5 V</td>
+</tr>
+<tr class="even">
+<td>Tầm phát hiện</td>
+<td>~2–30 cm, chỉnh bằng biến trở</td>
+</tr>
+<tr class="odd">
+<td>Góc phát hiện</td>
+<td>~35°</td>
+</tr>
+<tr class="even">
+<td>Ngõ ra</td>
+<td>Digital: <strong>có vật = <code>LOW</code></strong>, không có vật = <code>HIGH</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Giới hạn</strong> (ngược với cảm biến siêu âm ở <a href="../../../courses/iot/labs/ultrasonic-hc-sr04.html">Lab 6</a>):</p>
+<ul>
+<li><strong>Vật màu đen</strong> hấp thụ hồng ngoại, phải đưa gần hơn rất nhiều mới bị phát hiện, có khi không phát hiện được.</li>
+<li><strong>Nắng hoặc đèn sợi đốt chiếu thẳng</strong> vào đầu thu làm cảm biến báo có vật liên tục.</li>
+<li>Chỉ trả lời <strong>có / không</strong>, không cho biết vật cách bao xa. Muốn đo khoảng cách thì dùng HC-SR04.</li>
+</ul>
+</section>
+</section>
+<section id="linh-kiện-và-chân" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện-và-chân">Linh kiện và chân</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Số lượng</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arduino Uno + cáp USB</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Remote + mắt thu VS1838B</td>
+<td>1 bộ</td>
+<td>Phần A, C</td>
+</tr>
+<tr class="odd">
+<td>Cảm biến FC-51</td>
+<td>1</td>
+<td>Phần B, C. Không cần điện trở</td>
+</tr>
+<tr class="even">
+<td>LED 5 mm + điện trở 220 Ω</td>
+<td>1 bộ</td>
+<td>LED ngoài ở <code>D9</code></td>
+</tr>
+<tr class="odd">
+<td>Breadboard, dây đực – đực, dây đực – cái</td>
+<td></td>
+<td>Dây đực – cái để nối thẳng vào chân FC-51</td>
+</tr>
+</tbody>
+</table>
+<p>Nối dây:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Chân</th>
+<th>Nối vào Uno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VS1838B</td>
+<td><code>OUT</code> (trái)</td>
+<td><code>D2</code></td>
+</tr>
+<tr class="even">
+<td>VS1838B</td>
+<td><code>GND</code> (giữa)</td>
+<td><code>GND</code></td>
+</tr>
+<tr class="odd">
+<td>VS1838B</td>
+<td><code>VCC</code> (phải)</td>
+<td><code>5V</code></td>
+</tr>
+<tr class="even">
+<td>FC-51</td>
+<td><code>OUT</code></td>
+<td><code>D3</code></td>
+</tr>
+<tr class="odd">
+<td>FC-51</td>
+<td><code>GND</code></td>
+<td><code>GND</code></td>
+</tr>
+<tr class="even">
+<td>FC-51</td>
+<td><code>VCC</code></td>
+<td><code>5V</code></td>
+</tr>
+<tr class="odd">
+<td>LED ngoài</td>
+<td>Chân dài qua 220 Ω</td>
+<td><code>D9</code></td>
+</tr>
+<tr class="even">
+<td>LED ngoài</td>
+<td>Chân ngắn</td>
+<td><code>GND</code></td>
+</tr>
+<tr class="odd">
+<td>LED <code>L</code> trên board</td>
+<td>(nối sẵn)</td>
+<td><code>D13</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code>VS1838B OUT ─────────────── D2
+FC-51   OUT ─────────────── D3
+D9 ──[220Ω]──▶|── GND          (LED ngoài)
+VCC của hai module ── thanh + ── 5V
+GND của hai module ── thanh − ── GND</code></pre>
+<p>Giải thích cách chọn chân:</p>
+<ul>
+<li><strong>LED ngoài ở <code>D9</code> (chân PWM)</strong> để chỉnh được độ sáng bằng remote. Trên Uno, thư viện <code>IRremote</code> chiếm <strong>Timer2</strong>, nên PWM ở <strong><code>D3</code> và <code>D11</code> không dùng được</strong> trong lab này. <code>D9</code> chạy bằng Timer1, không bị ảnh hưởng. <code>D3</code> vẫn dùng bình thường làm chân đọc digital cho FC-51.</li>
+<li><strong>LED thứ hai dùng LED <code>L</code> có sẵn trên board ở <code>D13</code></strong> (đã có điện trở bên trong), để lab chỉ cần <strong>một</strong> điện trở. Khi đó <strong>không dùng <code>ENABLE_LED_FEEDBACK</code></strong> trong <code>IrReceiver.begin()</code>, vì tùy chọn này cũng nháy <code>D13</code> mỗi khi nhận được tín hiệu.</li>
+<li>Uno có 3 chân <code>GND</code>. Kéo <code>5V</code> và <code>GND</code> ra hai thanh nguồn dọc breadboard rồi cắm các module vào đó cho gọn.</li>
+</ul>
+</section>
+<section id="cài-thư-viện" class="level2">
+<h2 class="anchored" data-anchor-id="cài-thư-viện">Cài thư viện</h2>
+<p>Arduino IDE → <strong>Tools → Manage Libraries</strong> → tìm <strong>IRremote</strong> → cài bản của <strong>Armin Joachimsmeyer</strong> (bản 4.x).</p>
+<p>Code trong lab dùng cú pháp bản 4.x: <code>#include &lt;IRremote.hpp&gt;</code>, <code>IrReceiver.begin()</code>, <code>IrReceiver.decode()</code>, <code>IrReceiver.decodedIRData</code>. Nhiều ví dụ cũ trên mạng dùng bản 2.x (<code>IRrecv irrecv(pin); decode_results results; results.value</code>), cú pháp đó <strong>không biên dịch được</strong> với bản 4.x.</p>
+</section>
+<section id="phần-a-remote-mắt-thu-vs1838b" class="level2">
+<h2 class="anchored" data-anchor-id="phần-a-remote-mắt-thu-vs1838b">Phần A – Remote + mắt thu VS1838B</h2>
+<p>Chỉ cần mắt thu, chưa cần LED hay FC-51.</p>
+<section id="test-a1-đọc-mã-phím-ra-serial" class="level3">
+<h3 class="anchored" data-anchor-id="test-a1-đọc-mã-phím-ra-serial">Test A1 – đọc mã phím ra Serial</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;IRremote.hpp&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IR_PIN </span><span class="dv">2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Đổi mã phím thành tên, theo remote "Car MP3" 21 phím</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> keyName<span class="op">(</span><span class="dt">uint8_t</span> cmd<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span> <span class="op">(</span>cmd<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x45</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"CH-"</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x46</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"CH"</span><span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x47</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"CH+"</span><span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x44</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"PREV"</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x40</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"NEXT"</span><span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x43</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"PLAY/PAUSE"</span><span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x07</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"VOL-"</span><span class="op">;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x15</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"VOL+"</span><span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x09</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"EQ"</span><span class="op">;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x16</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"0"</span><span class="op">;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x19</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"100+"</span><span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x0D</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"200+"</span><span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x0C</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"1"</span><span class="op">;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x18</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"2"</span><span class="op">;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x5E</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"3"</span><span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x08</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"4"</span><span class="op">;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x1C</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"5"</span><span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x5A</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"6"</span><span class="op">;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x42</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"7"</span><span class="op">;</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x52</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"8"</span><span class="op">;</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bn">0x4A</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"9"</span><span class="op">;</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span>   <span class="cf">return</span> <span class="st">"?? (phim la)"</span><span class="op">;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  IrReceiver<span class="op">.</span>begin<span class="op">(</span>IR_PIN<span class="op">,</span> ENABLE_LED_FEEDBACK<span class="op">);</span>   <span class="co">// LED D13 nháy khi nhận tín hiệu</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"San sang - hay bam remote..."</span><span class="op">);</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>IrReceiver<span class="op">.</span>decode<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint8_t</span> cmd <span class="op">=</span> IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>command<span class="op">;</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>flags <span class="op">&amp;</span> IRDATA_FLAGS_IS_REPEAT<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"  (giu phim)"</span><span class="op">);</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Phim: "</span><span class="op">);</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span>keyName<span class="op">(</span>cmd<span class="op">));</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"   | ma: 0x"</span><span class="op">);</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span>cmd<span class="op">,</span> HEX<span class="op">);</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"   | giao thuc: "</span><span class="op">);</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>println<span class="op">(</span>getProtocolString<span class="op">(</span>IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>protocol<span class="op">));</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    IrReceiver<span class="op">.</span>resume<span class="op">();</span>   <span class="co">// sẵn sàng nhận khung tiếp theo</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li><strong><code>IrReceiver.decode()</code></strong> trả <code>true</code> khi đã nhận đủ một khung. Thư viện đo các xung bằng ngắt timer ở nền, nên <code>loop()</code> không bị chặn trong lúc chờ.</li>
+<li><strong><code>decodedIRData.command</code></strong> là 8 bit lệnh của khung NEC, tức mã phím. <code>decodedIRData.address</code> là địa chỉ, với remote kit là <code>0</code>.</li>
+<li><strong><code>IRDATA_FLAGS_IS_REPEAT</code></strong> đánh dấu khung lặp khi giữ phím.</li>
+<li><strong><code>IrReceiver.resume()</code></strong> phải gọi sau mỗi lần xử lý, nếu không thư viện không nhận khung tiếp theo.</li>
+<li><strong><code>ENABLE_LED_FEEDBACK</code></strong> cho LED <code>L</code> (<code>D13</code>) nháy mỗi khi có tín hiệu: rất tiện để biết mắt thu đã nhận được ánh sáng hay chưa, kể cả khi Serial chưa in gì.</li>
+<li>Chuỗi in ra Serial viết <strong>không dấu</strong> để tránh lỗi font trên Serial Monitor.</li>
+</ul>
+<p><strong>Cách kiểm tra:</strong> nạp code, mở Serial Monitor (baud <strong>9600</strong>), chĩa remote vào mắt thu và bấm vài phím. Kết quả thật trên mạch:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/ir-remote-serial.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Serial Monitor khi bấm lần lượt phím 1, 2, 5, 6, 200+: mỗi lần bấm in một dòng <code>Phim: … | ma: 0x… | giao thuc: NEC</code>, sau đó là dòng <code>(giu phim)</code></figcaption>
+</figure>
+</div>
+<p>Dòng <code>(giu phim)</code> xuất hiện sau gần như mọi lần bấm, kể cả bấm nhanh: đó là khung lặp NEC như đã giải thích ở trên, không phải lỗi.</p>
+</section>
+<section id="bảng-mã-phím-remote-car-mp3" class="level3">
+<h3 class="anchored" data-anchor-id="bảng-mã-phím-remote-car-mp3">Bảng mã phím remote “Car MP3”</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Phím</th>
+<th>Mã</th>
+<th>Phím</th>
+<th>Mã</th>
+<th>Phím</th>
+<th>Mã</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CH−</td>
+<td><code>0x45</code></td>
+<td>CH</td>
+<td><code>0x46</code></td>
+<td>CH+</td>
+<td><code>0x47</code></td>
+</tr>
+<tr class="even">
+<td>PREV</td>
+<td><code>0x44</code></td>
+<td>NEXT</td>
+<td><code>0x40</code></td>
+<td>PLAY/PAUSE</td>
+<td><code>0x43</code></td>
+</tr>
+<tr class="odd">
+<td>VOL−</td>
+<td><code>0x07</code></td>
+<td>VOL+</td>
+<td><code>0x15</code></td>
+<td>EQ</td>
+<td><code>0x09</code></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td><code>0x16</code></td>
+<td>100+</td>
+<td><code>0x19</code></td>
+<td>200+</td>
+<td><code>0x0D</code></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td><code>0x0C</code></td>
+<td>2</td>
+<td><code>0x18</code></td>
+<td>3</td>
+<td><code>0x5E</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>0x08</code></td>
+<td>5</td>
+<td><code>0x1C</code></td>
+<td>6</td>
+<td><code>0x5A</code></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>0x42</code></td>
+<td>8</td>
+<td><code>0x52</code></td>
+<td>9</td>
+<td><code>0x4A</code></td>
+</tr>
+</tbody>
+</table>
+<p>Đây là mã của remote trong kit. Remote cùng kiểu dáng nhưng khác lô có thể có mã khác: nếu Serial in <code>?? (phim la)</code> thì ghi lại mã hex và sửa trong <code>keyName()</code>. Remote TV, máy lạnh trong nhà cũng đọc được nếu dùng sóng mang ~38 kHz, chỉ khác giao thức và mã.</p>
+</section>
+<section id="test-a2-điều-khiển-led-bằng-remote" class="level3">
+<h3 class="anchored" data-anchor-id="test-a2-điều-khiển-led-bằng-remote">Test A2 – điều khiển LED bằng remote</h3>
+<p>Thêm LED ngoài ở <code>D9</code> (qua điện trở 220 Ω). LED thứ hai là LED <code>L</code> trên board.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Phím</th>
+<th>Chức năng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Bật / tắt LED ngoài (<code>D9</code>)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Bật / tắt LED <code>L</code> trên board (<code>D13</code>)</td>
+</tr>
+<tr class="odd">
+<td>VOL+ / VOL−</td>
+<td>Tăng / giảm độ sáng LED ngoài</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>Tắt hết</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;IRremote.hpp&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IR_PIN  </span><span class="dv">2</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_EXT </span><span class="dv">9</span><span class="pp">    </span><span class="co">// LED ngoài, qua điện trở 220 Ω (chân PWM)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_L   </span><span class="dv">13</span><span class="pp">   </span><span class="co">// LED "L" trên board</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_0     </span><span class="bn">0x16</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_1     </span><span class="bn">0x0C</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_2     </span><span class="bn">0x18</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_VOLUP </span><span class="bn">0x15</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_VOLDN </span><span class="bn">0x07</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> extOn <span class="op">=</span> <span class="kw">false</span><span class="op">,</span> lOn <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> brightness <span class="op">=</span> <span class="dv">128</span><span class="op">;</span>          <span class="co">// 0..255</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> update<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  analogWrite<span class="op">(</span>LED_EXT<span class="op">,</span> extOn <span class="op">?</span> brightness <span class="op">:</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_L<span class="op">,</span> lOn<span class="op">);</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_EXT<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_L<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  IrReceiver<span class="op">.</span>begin<span class="op">(</span>IR_PIN<span class="op">);</span>    <span class="co">// không dùng ENABLE_LED_FEEDBACK vì cần D13</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"San sang - hay bam remote..."</span><span class="op">);</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>IrReceiver<span class="op">.</span>decode<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!(</span>IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>flags <span class="op">&amp;</span> IRDATA_FLAGS_IS_REPEAT<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">switch</span> <span class="op">(</span>IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>command<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_1<span class="op">:</span>     extOn <span class="op">=</span> <span class="op">!</span>extOn<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_2<span class="op">:</span>     lOn <span class="op">=</span> <span class="op">!</span>lOn<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_VOLUP<span class="op">:</span> brightness <span class="op">=</span> min<span class="op">(</span>brightness <span class="op">+</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">255</span><span class="op">);</span> extOn <span class="op">=</span> <span class="kw">true</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_VOLDN<span class="op">:</span> brightness <span class="op">=</span> max<span class="op">(</span>brightness <span class="op">-</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_0<span class="op">:</span>     extOn <span class="op">=</span> lOn <span class="op">=</span> <span class="kw">false</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>      update<span class="op">();</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"LED ngoai: "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>extOn <span class="op">?</span> <span class="st">"BAT"</span> <span class="op">:</span> <span class="st">"TAT"</span><span class="op">);</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" (do sang "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>brightness<span class="op">);</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">")  |  LED L: "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>lOn <span class="op">?</span> <span class="st">"BAT"</span> <span class="op">:</span> <span class="st">"TAT"</span><span class="op">);</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    IrReceiver<span class="op">.</span>resume<span class="op">();</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li>Trạng thái đèn lưu trong biến (<code>extOn</code>, <code>lOn</code>, <code>brightness</code>), hàm <code>update()</code> xuất trạng thái ra chân. Cách tách “trạng thái” và “xuất ra chân” này giúp Phần C chỉ cần thêm một nguồn thay đổi trạng thái (FC-51) mà không sửa phần xuất.</li>
+<li><strong><code>analogWrite()</code></strong> trên <code>D9</code> tạo PWM, nên VOL+/VOL− chỉnh được độ sáng. Bấm VOL+ khi đèn đang tắt sẽ bật đèn luôn.</li>
+<li><strong>Bỏ qua khung lặp</strong> ở đây là bắt buộc: nếu không, một lần bấm phím 1 có thể bật rồi tắt ngay, nhìn như đèn không phản ứng.</li>
+</ul>
+<p><strong>Cách kiểm tra:</strong> bấm 1 thì LED ngoài sáng; VOL− vài lần thì LED tối dần; bấm 2 thì LED <code>L</code> sáng; bấm 0 thì tắt cả hai.</p>
+</section>
+</section>
+<section id="phần-b-cảm-biến-fc-51" class="level2">
+<h2 class="anchored" data-anchor-id="phần-b-cảm-biến-fc-51">Phần B – Cảm biến FC-51</h2>
+<p>Có thể giữ nguyên mắt thu trên breadboard, code Phần B không dùng tới.</p>
+<section id="test-b1-thử-không-cần-code" class="level3">
+<h3 class="anchored" data-anchor-id="test-b1-thử-không-cần-code">Test B1 – thử không cần code</h3>
+<p>Chỉ cấp nguồn cho FC-51 (<code>VCC</code> → <code>5V</code>, <code>GND</code> → <code>GND</code>, theo nhãn trên board), chưa cần nạp code:</p>
+<ol type="1">
+<li><strong>Đèn nguồn</strong> trên module sáng. Nếu không sáng thì chưa có điện hoặc cắm ngược nguồn: rút USB và kiểm tra lại theo nhãn <code>OUT</code> · <code>GND</code> · <code>VCC</code>.</li>
+<li>Đưa tay vào trước hai “mắt”, <strong>đèn có vật</strong> phải sáng.</li>
+<li><strong>Chỉnh biến trở xanh</strong> bằng tua vít nhỏ: vặn tới khi <strong>không có vật thì đèn tắt</strong>, đưa tay cách <strong>5–10 cm thì đèn sáng</strong>. Nếu đèn sáng liên tục kể cả khi trước mặt trống, cảm biến đang quá nhạy hoặc bị nắng chiếu vào: vặn ngược lại.</li>
+</ol>
+<p>Đặt cảm biến <strong>hướng ra chỗ trống</strong>. Nếu cắm module đứng trên breadboard thì hai “mắt” hướng lên trần, khi đó phải đưa tay <strong>từ trên xuống</strong>.</p>
+</section>
+<section id="test-b2-có-vật-thì-led-sáng" class="level3">
+<h3 class="anchored" data-anchor-id="test-b2-có-vật-thì-led-sáng">Test B2 – có vật thì LED sáng</h3>
+<p>Nối <code>OUT</code> → <code>D3</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SENSOR_PIN </span><span class="dv">3</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_PIN    </span><span class="dv">9</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>SENSOR_PIN<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>digitalRead<span class="op">(</span>SENSOR_PIN<span class="op">)</span> <span class="op">==</span> LOW<span class="op">)</span> <span class="op">{</span>   <span class="co">// LOW = có vật</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Code này giống hệt đọc nút nhấn ở <a href="../../../courses/iot/labs/led-basics.html">Lab 1</a> với <code>INPUT_PULLUP</code>: FC-51 về mặt điện chính là một “nút nhấn không chạm”, có vật thì kéo chân xuống <code>LOW</code>. Không cần <code>INPUT_PULLUP</code> vì module đã có điện trở kéo lên sẵn trên board.</p>
+</section>
+<section id="low-là-bao-nhiêu-volt" class="level3">
+<h3 class="anchored" data-anchor-id="low-là-bao-nhiêu-volt"><code>LOW</code> là bao nhiêu volt</h3>
+<p>Trong code, <code>LOW</code> là hằng số <strong>0</strong> và <code>HIGH</code> là <strong>1</strong>. Về điện áp, Uno chạy 5 V đọc như sau (theo datasheet ATmega328P):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Điện áp ở chân</th>
+<th><code>digitalRead()</code> trả về</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0 – ~1,5 V (dưới 0,3 × VCC)</td>
+<td><code>LOW</code> (0)</td>
+</tr>
+<tr class="even">
+<td>~1,5 – 3 V</td>
+<td>Không xác định, có thể ra 0 hoặc 1</td>
+</tr>
+<tr class="odd">
+<td>~3 – 5 V (trên 0,6 × VCC)</td>
+<td><code>HIGH</code> (1)</td>
+</tr>
+</tbody>
+</table>
+<p>LM393 trên FC-51 cho ra hai mức rất rõ: <strong>có vật ~0 V</strong>, <strong>không có vật ~5 V</strong>, nên không bao giờ rơi vào vùng giữa.</p>
+</section>
+<section id="test-b3-đo-điện-áp-thật-và-đếm-số-lần" class="level3">
+<h3 class="anchored" data-anchor-id="test-b3-đo-điện-áp-thật-và-đếm-số-lần">Test B3 – đo điện áp thật và đếm số lần</h3>
+<p>Nối thêm một dây từ <code>OUT</code> của FC-51 sang <code>A0</code> (giữ dây vào <code>D3</code>), để thấy cùng lúc mức logic và điện áp thật:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SENSOR_PIN </span><span class="dv">3</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_PIN    </span><span class="dv">9</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> last <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>SENSOR_PIN<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> obstacle <span class="op">=</span> <span class="op">(</span>digitalRead<span class="op">(</span>SENSOR_PIN<span class="op">)</span> <span class="op">==</span> LOW<span class="op">);</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> obstacle<span class="op">);</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>obstacle <span class="op">&amp;&amp;</span> <span class="op">!</span>last<span class="op">)</span> <span class="op">{</span>                 <span class="co">// vừa có vật đưa vào</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    count<span class="op">++;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> volt <span class="op">=</span> analogRead<span class="op">(</span>A0<span class="op">)</span> <span class="op">*</span> <span class="fl">5.0</span> <span class="op">/</span> <span class="dv">1023</span><span class="op">;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Co vat! lan thu "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>count<span class="op">);</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  | OUT = "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>volt<span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" V"</span><span class="op">);</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>obstacle <span class="op">&amp;&amp;</span> last<span class="op">)</span> <span class="op">{</span>                 <span class="co">// vật vừa rời đi</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> volt <span class="op">=</span> analogRead<span class="op">(</span>A0<span class="op">)</span> <span class="op">*</span> <span class="fl">5.0</span> <span class="op">/</span> <span class="dv">1023</span><span class="op">;</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Het vat           | OUT = "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>volt<span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" V"</span><span class="op">);</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  last <span class="op">=</span> obstacle<span class="op">;</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">20</span><span class="op">);</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong><code>obstacle &amp;&amp; !last</code></strong> chỉ đúng tại thời điểm tay <strong>vừa đưa vào</strong> (cạnh xuống của tín hiệu). Không có biến <code>last</code> thì khi tay còn để đó, Serial sẽ in liên tục và bộ đếm tăng không ngừng.</li>
+<li><code>delay(20)</code> giúp bỏ qua dao động ngắn khi tay ở đúng mép vùng phát hiện.</li>
+</ul>
+<p><strong>Thử thêm để hiểu cảm biến:</strong></p>
+<ul>
+<li>So sánh <strong>tờ giấy trắng</strong> với <strong>vật màu đen</strong> (mặt lưng điện thoại, áo đen): vật đen phải đưa gần hơn nhiều, có khi không phát hiện được.</li>
+<li>Chĩa <strong>remote</strong> vào FC-51 và giữ phím: cảm biến có thể báo <code>Co vat!</code> dù trước mặt trống, vì đầu thu nhận ánh sáng hồng ngoại của remote.</li>
+<li>Đặt cảm biến gần cửa sổ có nắng: đèn có vật có thể sáng liên tục.</li>
+</ul>
+</section>
+</section>
+<section id="phần-c-công-tắc-đèn-2-cách" class="level2">
+<h2 class="anchored" data-anchor-id="phần-c-công-tắc-đèn-2-cách">Phần C – Công tắc đèn 2 cách</h2>
+<p>Ghép Phần A và Phần B: LED ngoài bật tắt được bằng <strong>phím 1 trên remote</strong> hoặc bằng <strong>vẫy tay</strong> trước FC-51, giống đèn cảm ứng tủ quần áo có thêm remote.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Đầu vào</th>
+<th>Tác dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Phím 1</td>
+<td>Bật / tắt LED ngoài</td>
+</tr>
+<tr class="even">
+<td>Phím 2</td>
+<td>Bật / tắt LED <code>L</code></td>
+</tr>
+<tr class="odd">
+<td>VOL+ / VOL−</td>
+<td>Chỉnh độ sáng LED ngoài</td>
+</tr>
+<tr class="even">
+<td>Phím 0</td>
+<td>Tắt hết</td>
+</tr>
+<tr class="odd">
+<td><strong>Vẫy tay</strong> trước FC-51</td>
+<td>Bật / tắt LED ngoài</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;IRremote.hpp&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IR_PIN    </span><span class="dv">2</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define HAND_PIN  </span><span class="dv">3</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_EXT   </span><span class="dv">9</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_L     </span><span class="dv">13</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_0     </span><span class="bn">0x16</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_1     </span><span class="bn">0x0C</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_2     </span><span class="bn">0x18</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_VOLUP </span><span class="bn">0x15</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define KEY_VOLDN </span><span class="bn">0x07</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define HAND_LOCK_MS </span><span class="dv">500</span><span class="pp">   </span><span class="co">// sau một lần vẫy, bỏ qua cảm biến 0,5 s</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> extOn <span class="op">=</span> <span class="kw">false</span><span class="op">,</span> lOn <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> brightness <span class="op">=</span> <span class="dv">128</span><span class="op">;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> lastHand <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lastHandTime <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> update<span class="op">(</span><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> source<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  analogWrite<span class="op">(</span>LED_EXT<span class="op">,</span> extOn <span class="op">?</span> brightness <span class="op">:</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_L<span class="op">,</span> lOn<span class="op">);</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"["</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>source<span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"] "</span><span class="op">);</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"LED ngoai: "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>extOn <span class="op">?</span> <span class="st">"BAT"</span> <span class="op">:</span> <span class="st">"TAT"</span><span class="op">);</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" (do sang "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>brightness<span class="op">);</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">")  |  LED L: "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>lOn <span class="op">?</span> <span class="st">"BAT"</span> <span class="op">:</span> <span class="st">"TAT"</span><span class="op">);</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>HAND_PIN<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_EXT<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_L<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  IrReceiver<span class="op">.</span>begin<span class="op">(</span>IR_PIN<span class="op">);</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Remote hoac vay tay de bat/tat den"</span><span class="op">);</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Remote</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>IrReceiver<span class="op">.</span>decode<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!(</span>IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>flags <span class="op">&amp;</span> IRDATA_FLAGS_IS_REPEAT<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>      <span class="dt">bool</span> known <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>      <span class="cf">switch</span> <span class="op">(</span>IrReceiver<span class="op">.</span>decodedIRData<span class="op">.</span>command<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_1<span class="op">:</span>     extOn <span class="op">=</span> <span class="op">!</span>extOn<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_2<span class="op">:</span>     lOn <span class="op">=</span> <span class="op">!</span>lOn<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_VOLUP<span class="op">:</span> brightness <span class="op">=</span> min<span class="op">(</span>brightness <span class="op">+</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">255</span><span class="op">);</span> extOn <span class="op">=</span> <span class="kw">true</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_VOLDN<span class="op">:</span> brightness <span class="op">=</span> max<span class="op">(</span>brightness <span class="op">-</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> KEY_0<span class="op">:</span>     extOn <span class="op">=</span> lOn <span class="op">=</span> <span class="kw">false</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span>        known <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>known<span class="op">)</span> update<span class="op">(</span><span class="st">"remote"</span><span class="op">);</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    IrReceiver<span class="op">.</span>resume<span class="op">();</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Vẫy tay: chỉ xử lý lúc tay vừa đưa vào, và không quá dày</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> hand <span class="op">=</span> <span class="op">(</span>digitalRead<span class="op">(</span>HAND_PIN<span class="op">)</span> <span class="op">==</span> LOW<span class="op">);</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>hand <span class="op">&amp;&amp;</span> <span class="op">!</span>lastHand <span class="op">&amp;&amp;</span> millis<span class="op">()</span> <span class="op">-</span> lastHandTime <span class="op">&gt;</span> HAND_LOCK_MS<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    extOn <span class="op">=</span> <span class="op">!</span>extOn<span class="op">;</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>    lastHandTime <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>    update<span class="op">(</span><span class="st">"vay tay"</span><span class="op">);</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>  lastHand <span class="op">=</span> hand<span class="op">;</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li>Hai nguồn đầu vào cùng thay đổi <strong>một biến trạng thái</strong> <code>extOn</code>, rồi đều gọi <code>update()</code>. Đèn luôn phản ánh trạng thái mới nhất, bất kể lệnh đến từ đâu.</li>
+<li><strong>Không dùng <code>delay()</code></strong> để chống dội cho FC-51 như Test B3, mà dùng <code>millis()</code> (<code>HAND_LOCK_MS</code>). Nếu <code>loop()</code> bị <code>delay()</code> chặn, thư viện vẫn nhận khung IR ở nền, nhưng phản hồi phím sẽ chậm đi. Với <code>millis()</code>, cả hai đầu vào đều được kiểm tra liên tục.</li>
+<li><code>update()</code> in ra <strong>nguồn của lệnh</strong> (<code>[remote]</code> hoặc <code>[vay tay]</code>), tiện để kiểm tra trên Serial.</li>
+<li>Khi chĩa remote vào sát FC-51, một lần bấm phím có thể bị tính <strong>hai lần</strong>: một lần do mắt thu nhận mã, một lần do FC-51 “thấy” ánh sáng remote. Đặt FC-51 quay hướng khác với mắt thu, hoặc đứng xa hơn khi bấm remote.</li>
+</ul>
+<p><strong>Mở rộng:</strong></p>
+<ul>
+<li><strong>Chế độ báo động:</strong> phím PLAY bật/tắt “canh”. Khi đang canh mà FC-51 thấy vật thì LED ngoài nháy nhanh, LED <code>L</code> sáng, Serial in cảnh báo.</li>
+<li><strong>Đèn tự tắt:</strong> vẫy tay bật đèn, sau 10 s không có ai thì tự tắt (dùng <code>millis()</code>). Remote dùng để chuyển giữa chế độ tự động và bật cố định.</li>
+<li><strong>Đếm người qua cửa</strong> bằng FC-51, phím 0 trên remote để reset bộ đếm, hiển thị số đếm lên LCD (<a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>) hoặc LED 7 đoạn (<a href="../../../courses/iot/labs/seven-segment-5641as.html">Lab 7</a>).</li>
+</ul>
+</section>
+<section id="ứng-dụng" class="level2">
+<h2 class="anchored" data-anchor-id="ứng-dụng">Ứng dụng</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ứng dụng</th>
+<th>Dùng gì</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bật/tắt đèn, quạt từ xa</td>
+<td>Remote + VS1838B + relay</td>
+</tr>
+<tr class="even">
+<td>Chỉnh tốc độ quạt, độ sáng đèn</td>
+<td>Remote + PWM / MOSFET</td>
+</tr>
+<tr class="odd">
+<td>Khóa cửa nhập mã số</td>
+<td>Remote (phím số) + servo + LCD</td>
+</tr>
+<tr class="even">
+<td>Xe robot điều khiển từ xa</td>
+<td>Remote + driver L298N + động cơ DC</td>
+</tr>
+<tr class="odd">
+<td>Xe tránh vật cản, xe dò line</td>
+<td>2–3 FC-51 (hoặc TCRT5000 cho dò line) + L298N</td>
+</tr>
+<tr class="even">
+<td>Vòi nước, máy rửa tay tự động</td>
+<td>FC-51 + relay + bơm</td>
+</tr>
+<tr class="odd">
+<td>Thùng rác tự mở nắp</td>
+<td>FC-51 + servo (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>)</td>
+</tr>
+<tr class="even">
+<td>Đếm sản phẩm trên băng chuyền</td>
+<td>FC-51 + LCD / LED 7 đoạn</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hồng ngoại hay siêu âm?</strong> Cả FC-51 và HC-SR04 (<a href="../../../courses/iot/labs/ultrasonic-hc-sr04.html">Lab 6</a>) đều phát hiện vật cản, nhưng bổ sung cho nhau:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>FC-51 (hồng ngoại)</th>
+<th>HC-SR04 (siêu âm)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kết quả</td>
+<td>Có / không</td>
+<td>Khoảng cách (cm)</td>
+</tr>
+<tr class="even">
+<td>Tầm</td>
+<td>2–30 cm</td>
+<td>2–400 cm</td>
+</tr>
+<tr class="odd">
+<td>Vật màu đen</td>
+<td>Kém</td>
+<td>Tốt</td>
+</tr>
+<tr class="even">
+<td>Vật mềm (vải, mút)</td>
+<td>Tốt</td>
+<td>Kém</td>
+</tr>
+<tr class="odd">
+<td>Nắng chiếu vào</td>
+<td>Dễ báo sai</td>
+<td>Không ảnh hưởng</td>
+</tr>
+<tr class="even">
+<td>Code</td>
+<td><code>digitalRead()</code></td>
+<td><code>pulseIn()</code> + công thức</td>
+</tr>
+<tr class="odd">
+<td>Giá</td>
+<td>Rẻ hơn</td>
+<td>Đắt hơn một chút</td>
+</tr>
+</tbody>
+</table>
+<p>Xe tránh vật cản thường dùng cả hai: siêu âm nhìn xa phía trước, hồng ngoại canh hai bên và sát thân xe.</p>
+</section>
+<section id="ảnh-thực-tế" class="level2">
+<h2 class="anchored" data-anchor-id="ảnh-thực-tế">Ảnh thực tế</h2>
+<section id="mạch-phần-a-mắt-thu-vs1838b" class="level3">
+<h3 class="anchored" data-anchor-id="mạch-phần-a-mắt-thu-vs1838b">Mạch Phần A: mắt thu VS1838B</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/ir-remote-real.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Mạch thật Phần A: mắt thu VS1838B cắm trên breadboard với mặt có mắt quay ra ngoài, ba dây xanh lá, đen, cam nối vào chân; Arduino Uno đặt phía trên, remote Car MP3 bên phải</figcaption>
+</figure>
+</div>
+<p>Đọc mạch:</p>
+<ul>
+<li><strong>Mắt thu</strong> quay mặt có mắt tròn ra ngoài để dễ chĩa remote vào. Ba dây cắm thẳng vào chân mắt thu: <strong>xanh lá</strong> (<code>OUT</code>) về <code>D2</code>, <strong>đen</strong> (<code>GND</code>) về <code>GND</code>, <strong>cam</strong> (<code>VCC</code>) về <code>5V</code>.</li>
+<li>Uno được đặt <strong>xoay ngược 180°</strong> so với hình vẽ thông thường: header POWER ở phía trên, header digital ở phía dưới. Khi xoay như vậy, <code>D0</code>–<code>D2</code> nằm ở đầu bên trái header dưới, còn <code>D13</code> nằm phía cổng USB. Cần đọc nhãn in trên board (bị lộn đầu) khi cắm dây.</li>
+<li>Kết quả Test A1 trên mạch này là ảnh Serial Monitor ở <a href="#test-a1--đọc-mã-phím-ra-serial">Test A1</a>.</li>
+</ul>
+</section>
+<section id="video-test-a2-bật-led-bằng-remote" class="level3">
+<h3 class="anchored" data-anchor-id="video-test-a2-bật-led-bằng-remote">Video Test A2: bật LED bằng remote</h3>
+<video controls="" playsinline="" preload="metadata" poster="../assets/ir-remote-led-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/ir-remote-led-real.mp4" type="video/mp4">
+</video>
+<p>Mạch Phần A có thêm <strong>LED vàng</strong> cắm trên breadboard, nối tiếp điện trở 220 Ω với <code>D9</code>. Bấm phím trên remote, LED vàng sáng theo lệnh. Phía dưới khung hình là module FC-51 chưa nối dây, dùng cho Phần B.</p>
+<blockquote class="blockquote">
+<p>📷 <em>Chờ ảnh/video mạch Phần B (FC-51 + LED) và Phần C.</em></p>
+</blockquote>
+</section>
+</section>
+<section id="lỗi-hay-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hiện tượng</th>
+<th>Nguyên nhân / cách xử lý</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bấm remote, LED <code>L</code> không nháy, Serial không in gì</td>
+<td>Remote chưa rút miếng nhựa cách điện pin, hoặc hết pin. Nhìn đầu remote qua camera điện thoại khi bấm: không thấy chấm sáng tím thì lỗi ở remote</td>
+</tr>
+<tr class="even">
+<td>Remote phát (camera thấy) nhưng LED <code>L</code> vẫn không nháy</td>
+<td>Sai chân mắt thu: kiểm tra lại <code>OUT</code> · <code>GND</code> · <code>VCC</code> nhìn từ mặt có mắt, và <code>OUT</code> vào đúng <code>D2</code></td>
+</tr>
+<tr class="odd">
+<td>Mắt thu nóng khi cắm điện</td>
+<td>Ngược <code>VCC</code>/<code>GND</code>. Rút USB ngay, để nguội, cắm lại đúng chiều. Nếu vẫn không nhận tín hiệu thì mắt thu đã hỏng</td>
+</tr>
+<tr class="even">
+<td>Lỗi biên dịch <code>IRrecv</code>, <code>decode_results</code></td>
+<td>Code viết cho IRremote bản 2.x. Dùng cú pháp bản 4.x như trong lab</td>
+</tr>
+<tr class="odd">
+<td>Serial in <code>?? (phim la)</code></td>
+<td>Remote khác lô, mã khác bảng. Ghi lại mã hex in ra và sửa <code>keyName()</code> / các <code>#define KEY_</code></td>
+</tr>
+<tr class="even">
+<td>Bấm một lần, đèn bật rồi tắt ngay</td>
+<td>Chưa bỏ qua khung lặp: thiếu điều kiện <code>IRDATA_FLAGS_IS_REPEAT</code></td>
+</tr>
+<tr class="odd">
+<td>Nhận chập chờn, phải chĩa thật gần</td>
+<td>Pin remote yếu, hoặc nguồn mắt thu nhiễu: thêm tụ 10 µF giữa <code>VCC</code> và <code>GND</code>, sát mắt thu. Tránh đèn huỳnh quang / nắng chiếu thẳng vào mắt thu</td>
+</tr>
+<tr class="even">
+<td><code>analogWrite()</code> lên <code>D3</code> hoặc <code>D11</code> không chỉnh được độ sáng</td>
+<td>Thư viện IRremote chiếm Timer2 trên Uno. Dùng <code>D5</code>, <code>D6</code>, <code>D9</code> hoặc <code>D10</code> cho PWM</td>
+</tr>
+<tr class="odd">
+<td>LED <code>L</code> (<code>D13</code>) nháy lung tung dù code không bật</td>
+<td>Còn để <code>ENABLE_LED_FEEDBACK</code> trong <code>IrReceiver.begin()</code>. Bỏ tùy chọn này khi dùng <code>D13</code> làm đèn</td>
+</tr>
+<tr class="even">
+<td>FC-51 không sáng đèn nguồn</td>
+<td>Chưa có điện hoặc cắm ngược: thứ tự chân là <code>OUT</code> · <code>GND</code> · <code>VCC</code>, đọc nhãn trên board</td>
+</tr>
+<tr class="odd">
+<td>Đèn có vật trên FC-51 sáng nhưng LED ngoài không sáng</td>
+<td>Dây <code>OUT</code> không vào đúng chân code đọc. In <code>digitalRead()</code> của vài chân ra Serial để tìm chân đổi giá trị khi đưa tay vào</td>
+</tr>
+<tr class="even">
+<td>FC-51 báo có vật liên tục</td>
+<td>Quá nhạy: vặn biến trở ngược lại. Hoặc có vật/mép bàn ngay trước mặt, hoặc nắng chiếu vào</td>
+</tr>
+<tr class="odd">
+<td>FC-51 không thấy vật màu đen</td>
+<td>Màu đen hấp thụ hồng ngoại: bình thường. Đưa gần hơn, hoặc dùng HC-SR04</td>
+</tr>
+<tr class="even">
+<td>Một lần bấm remote bị tính hai lần trong Phần C</td>
+<td>FC-51 nhận ánh sáng remote. Xoay FC-51 hướng khác, hoặc bấm remote từ xa hơn</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

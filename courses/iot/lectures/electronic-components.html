@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -704,6 +704,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>TRIG</code> phát xung 10 µs, đo thời gian xung <code>ECHO</code> bằng <code>pulseIn()</code>; khoảng cách = t × 0,034 / 2 (cm). Xem <a href="../../../courses/iot/labs/ultrasonic-hc-sr04.html">Lab 6</a></td>
 </tr>
 <tr class="even">
+<td><strong>Mắt thu hồng ngoại VS1838B</strong> (+ remote)</td>
+<td>Lệnh từ remote IR (sóng mang 38 kHz)</td>
+<td>Digital (chuỗi xung, giải mã giao thức NEC)</td>
+<td>Chân <code>OUT</code> · <code>GND</code> · <code>VCC</code> nhìn từ mặt có mắt; thư viện <code>IRremote</code>. Xem <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a></td>
+</tr>
+<tr class="odd">
+<td><strong>FC-51</strong> (tránh vật cản hồng ngoại)</td>
+<td>Có / không có vật trong 2–30 cm</td>
+<td>Digital (có vật = <code>LOW</code>)</td>
+<td>Chân <code>OUT</code> · <code>GND</code> · <code>VCC</code>; chỉnh tầm bằng biến trở. Xem <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a></td>
+</tr>
+<tr class="even">
 <td><strong>PIR HC-SR501</strong></td>
 <td>Chuyển động người/động vật</td>
 <td>Digital</td>
@@ -754,6 +766,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Bản 5 chân của HC-SR04, đo xa tới ~450 cm. Chân <code>OUT</code> để trống, nối 4 chân còn lại như HC-SR04. Cách nối dây và code xem ở <a href="../../../courses/iot/labs/ultrasonic-hc-sr04.html">Lab 6</a>.</p>
+</section>
+<section id="remote-hồng-ngoại-và-mắt-thu-vs1838b" class="level4">
+<h4 class="anchored" data-anchor-id="remote-hồng-ngoại-và-mắt-thu-vs1838b">Remote hồng ngoại và mắt thu VS1838B</h4>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-ir-remote.jpg" class="img-fluid figure-img"></p>
+<figcaption>Remote hồng ngoại 21 phím “Car mp3” trong kit</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-vs1838b.jpg" class="img-fluid figure-img"></p>
+<figcaption>Mắt thu VS1838B trần, vỏ kim loại, mặt trước có dấu X; chân từ trái sang <code>OUT</code> · <code>GND</code> · <code>VCC</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Một bộ dùng chung: <strong>remote phát</strong>, <strong>mắt thu nhận</strong>. Remote không bật LED hồng ngoại liên tục mà nhấp nháy ở <strong>38 kHz</strong> theo mã của từng phím (giao thức <strong>NEC</strong>). Mắt thu có sẵn bộ lọc 38 kHz nên bỏ qua ánh sáng nền, trả về Arduino chuỗi xung đã tách sóng mang, thư viện <code>IRremote</code> giải mã ra mã phím.</p>
+<ul>
+<li><strong>Remote:</strong> pin cúc, lần đầu dùng phải <strong>rút miếng nhựa cách điện</strong> ở đầu remote.</li>
+<li><strong>Mắt thu</strong> là loại trần, không có board. Nhìn thẳng vào mặt có mắt, chân từ trái sang là <code>OUT</code> · <code>GND</code> · <code>VCC</code>. <strong>Cắm ngược nguồn thì mắt thu nóng và hỏng sau vài giây.</strong></li>
+<li>Mắt thu nhận được cả remote TV, máy lạnh dùng sóng mang ~38 kHz, chỉ khác mã phím.</li>
+</ul>
+<p>Bảng mã phím, code và mạch thật xem ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a>.</p>
+</section>
+<section id="cảm-biến-tránh-vật-cản-hồng-ngoại-fc-51" class="level4">
+<h4 class="anchored" data-anchor-id="cảm-biến-tránh-vật-cản-hồng-ngoại-fc-51">Cảm biến tránh vật cản hồng ngoại FC-51</h4>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-fc51-front.jpg" class="img-fluid figure-img"></p>
+<figcaption>FC-51 mặt trước: LED phát trong suốt và đầu thu đen, chip LM393, biến trở xanh, chân <code>OUT</code> · <code>GND</code> · <code>VCC</code></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-fc51-back.jpg" class="img-fluid figure-img"></p>
+<figcaption>FC-51 mặt sau: in <code>MH-Sensor-Series Flying-Fish</code> và nhãn chân</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Module dòng <strong>MH-Sensor-Series “Flying-Fish”</strong>, tự phát và tự thu: <strong>LED trong suốt</strong> chiếu hồng ngoại liên tục ra trước, <strong>đầu thu màu đen</strong> nhận ánh sáng dội lại từ vật. Chip <strong>LM393</strong> so độ mạnh ánh sáng nhận được với ngưỡng đặt bằng <strong>biến trở xanh</strong>, vượt ngưỡng thì kéo <code>OUT</code> xuống <code>LOW</code>.</p>
+<ul>
+<li><strong>Thứ tự chân <code>OUT</code> · <code>GND</code> · <code>VCC</code></strong>, khác thói quen <code>VCC</code> đứng đầu của nhiều module khác. Nhãn in ở cả hai mặt.</li>
+<li><strong>Hai đèn báo:</strong> một đèn nguồn, một đèn sáng khi có vật. Dùng đèn thứ hai để chỉnh biến trở trước khi viết code.</li>
+<li>Chỉ báo <strong>có / không</strong> trong khoảng 2–30 cm, <strong>kém với vật màu đen</strong> và dễ báo sai khi nắng chiếu vào. Cần biết khoảng cách thì dùng HC-SR05 ở trên.</li>
+</ul>
+<p>FC-51 <strong>không đọc được tín hiệu remote</strong> (không có bộ lọc 38 kHz), và mắt thu VS1838B cũng không thay được FC-51. Cách nối dây, code và mạch kết hợp hai linh kiện xem ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a>.</p>
 <blockquote class="blockquote">
 <p>📷 <em>Chờ ảnh các cảm biến còn lại trong kit.</em></p>
 </blockquote>
