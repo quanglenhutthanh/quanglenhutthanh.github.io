@@ -259,6 +259,8 @@ Cách kiểm tra chắc chắn nhất: dùng đồng hồ đo thông mạch. Ho�
 | **Quang trở (LDR)** | Cường độ ánh sáng | Analog | Mắc cầu chia áp với điện trở 10 kΩ, điểm giữa vào A0 |
 | **DHT11 / DHT22** | Nhiệt độ, độ ẩm | Digital (giao thức 1 dây riêng) | Chân DATA vào chân digital, cần pull-up 10 kΩ (module thường có sẵn); thư viện `DHT` |
 | **HC-SR04 / HC-SR05** | Khoảng cách (siêu âm, 2–400/450 cm) | Digital (độ rộng xung) | `TRIG` phát xung 10 µs, đo thời gian xung `ECHO` bằng `pulseIn()`; khoảng cách = t × 0,034 / 2 (cm). Xem [Lab 6](../labs/ultrasonic-hc-sr04.md) |
+| **Mắt thu hồng ngoại VS1838B** (+ remote) | Lệnh từ remote IR (sóng mang 38 kHz) | Digital (chuỗi xung, giải mã giao thức NEC) | Chân `OUT` · `GND` · `VCC` nhìn từ mặt có mắt; thư viện `IRremote`. Xem [Lab 8](../labs/infrared-remote-fc51.md) |
+| **FC-51** (tránh vật cản hồng ngoại) | Có / không có vật trong 2–30 cm | Digital (có vật = `LOW`) | Chân `OUT` · `GND` · `VCC`; chỉnh tầm bằng biến trở. Xem [Lab 8](../labs/infrared-remote-fc51.md) |
 | **PIR HC-SR501** | Chuyển động người/động vật | Digital | Có 2 biến trở chỉnh độ nhạy và thời gian giữ |
 | **Cảm biến độ ẩm đất** | Độ ẩm đất | Analog / Digital | Module có cả `AO` và `DO` (ngưỡng chỉnh bằng biến trở) |
 | **LM35 / TMP36** | Nhiệt độ | Analog | LM35: 10 mV/°C |
@@ -282,6 +284,38 @@ Quang trở trần 2 chân, không phân cực, phải tự mắc cầu chia áp
 ![Module HC-SR05 trong kit (in chữ `HY-SRF05`), 5 chân `Vcc` · `Trig` · `Echo` · `OUT` · `GND`](../assets/kit-hc-sr05.jpg){width=50%}
 
 Bản 5 chân của HC-SR04, đo xa tới ~450 cm. Chân `OUT` để trống, nối 4 chân còn lại như HC-SR04. Cách nối dây và code xem ở [Lab 6](../labs/ultrasonic-hc-sr04.md).
+
+#### Remote hồng ngoại và mắt thu VS1838B
+
+::: {layout-ncol=2}
+![Remote hồng ngoại 21 phím "Car mp3" trong kit](../assets/kit-ir-remote.jpg)
+
+![Mắt thu VS1838B trần, vỏ kim loại, mặt trước có dấu X; chân từ trái sang `OUT` · `GND` · `VCC`](../assets/kit-vs1838b.jpg)
+:::
+
+Một bộ dùng chung: **remote phát**, **mắt thu nhận**. Remote không bật LED hồng ngoại liên tục mà nhấp nháy ở **38 kHz** theo mã của từng phím (giao thức **NEC**). Mắt thu có sẵn bộ lọc 38 kHz nên bỏ qua ánh sáng nền, trả về Arduino chuỗi xung đã tách sóng mang, thư viện `IRremote` giải mã ra mã phím.
+
+- **Remote:** pin cúc, lần đầu dùng phải **rút miếng nhựa cách điện** ở đầu remote.
+- **Mắt thu** là loại trần, không có board. Nhìn thẳng vào mặt có mắt, chân từ trái sang là `OUT` · `GND` · `VCC`. **Cắm ngược nguồn thì mắt thu nóng và hỏng sau vài giây.**
+- Mắt thu nhận được cả remote TV, máy lạnh dùng sóng mang ~38 kHz, chỉ khác mã phím.
+
+Bảng mã phím, code và mạch thật xem ở [Lab 8](../labs/infrared-remote-fc51.md).
+
+#### Cảm biến tránh vật cản hồng ngoại FC-51
+
+::: {layout-ncol=2}
+![FC-51 mặt trước: LED phát trong suốt và đầu thu đen, chip LM393, biến trở xanh, chân `OUT` · `GND` · `VCC`](../assets/kit-fc51-front.jpg)
+
+![FC-51 mặt sau: in `MH-Sensor-Series Flying-Fish` và nhãn chân](../assets/kit-fc51-back.jpg)
+:::
+
+Module dòng **MH-Sensor-Series "Flying-Fish"**, tự phát và tự thu: **LED trong suốt** chiếu hồng ngoại liên tục ra trước, **đầu thu màu đen** nhận ánh sáng dội lại từ vật. Chip **LM393** so độ mạnh ánh sáng nhận được với ngưỡng đặt bằng **biến trở xanh**, vượt ngưỡng thì kéo `OUT` xuống `LOW`.
+
+- **Thứ tự chân `OUT` · `GND` · `VCC`**, khác thói quen `VCC` đứng đầu của nhiều module khác. Nhãn in ở cả hai mặt.
+- **Hai đèn báo:** một đèn nguồn, một đèn sáng khi có vật. Dùng đèn thứ hai để chỉnh biến trở trước khi viết code.
+- Chỉ báo **có / không** trong khoảng 2–30 cm, **kém với vật màu đen** và dễ báo sai khi nắng chiếu vào. Cần biết khoảng cách thì dùng HC-SR05 ở trên.
+
+FC-51 **không đọc được tín hiệu remote** (không có bộ lọc 38 kHz), và mắt thu VS1838B cũng không thay được FC-51. Cách nối dây, code và mạch kết hợp hai linh kiện xem ở [Lab 8](../labs/infrared-remote-fc51.md).
 
 > 📷 *Chờ ảnh các cảm biến còn lại trong kit.*
 
