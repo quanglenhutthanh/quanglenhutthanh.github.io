@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -790,18 +790,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Chân <code>OUT</code> · <code>GND</code> · <code>VCC</code>; chỉnh tầm bằng biến trở. Xem <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a></td>
 </tr>
 <tr class="even">
+<td><strong>RFID RC522</strong> (+ thẻ MIFARE)</td>
+<td>UID và dữ liệu của thẻ 13,56 MHz trong tầm 0–5 cm</td>
+<td>SPI</td>
+<td><strong>Nguồn 3,3 V</strong>; <code>SDA</code>→<code>D10</code>, <code>SCK</code>→<code>D13</code>, <code>MOSI</code>→<code>D11</code>, <code>MISO</code>→<code>D12</code>, <code>RST</code>→<code>D9</code>; thư viện <code>MFRC522</code>. Xem <a href="../../../courses/iot/labs/rfid-rc522.html">Lab 10</a></td>
+</tr>
+<tr class="odd">
 <td><strong>PIR HC-SR501</strong></td>
 <td>Chuyển động người/động vật</td>
 <td>Digital</td>
 <td>Có 2 biến trở chỉnh độ nhạy và thời gian giữ</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Cảm biến độ ẩm đất</strong></td>
 <td>Độ ẩm đất</td>
 <td>Analog / Digital</td>
 <td>Module có cả <code>AO</code> và <code>DO</code> (ngưỡng chỉnh bằng biến trở)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>LM35 / TMP36</strong></td>
 <td>Nhiệt độ</td>
 <td>Analog</td>
@@ -900,6 +906,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Chỉ báo <strong>có / không</strong> trong khoảng 2–30 cm, <strong>kém với vật màu đen</strong> và dễ báo sai khi nắng chiếu vào. Cần biết khoảng cách thì dùng HC-SR05 ở trên.</li>
 </ul>
 <p>FC-51 <strong>không đọc được tín hiệu remote</strong> (không có bộ lọc 38 kHz), và mắt thu VS1838B cũng không thay được FC-51. Cách nối dây, code và mạch kết hợp hai linh kiện xem ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a>.</p>
+</section>
+<section id="module-rfid-rc522-thẻ" class="level4">
+<h4 class="anchored" data-anchor-id="module-rfid-rc522-thẻ">Module RFID RC522 + thẻ</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-rc522-set.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Bộ RFID trong kit: móc khóa xanh dương, thẻ trắng, module <code>RFID-RC522</code> và hai hàng chân 8 pin (thẳng và cong 90°) chưa hàn</figcaption>
+</figure>
+</div>
+<p>Đầu đọc thẻ <strong>13,56 MHz</strong> (chuẩn MIFARE / NFC), đọc trong tầm 0–5 cm. Thẻ <strong>không có pin</strong>: thẻ lấy điện từ từ trường của anten in trên module. Thẻ trắng trong kit đọc được; <strong>móc khóa xanh dương thì RC522 không đọc được</strong> (nhiều khả năng là loại 125 kHz).</p>
+<ul>
+<li>Module bán ra <strong>chưa hàn chân</strong>: hàn một trong hai hàng chân đi kèm trước khi dùng, nên chọn <strong>hàng cong 90°</strong>. Hướng dẫn hàn ở <a href="../../../courses/iot/labs/rfid-rc522.html#rc522-header">Lab 10</a>.</li>
+<li><strong>Nguồn 3,3 V</strong>, không phải 5 V. Giao tiếp <strong>SPI</strong> qua <code>D10</code>–<code>D13</code> của Uno.</li>
+<li>Nhãn chân in lộn ngược: <code>SDA</code> là chân sát thạch anh <code>27.120</code>, <code>3.3V</code> là chân sát LED <code>D1</code>.</li>
+</ul>
+<p>Cách nối dây, code đọc UID, ghi dữ liệu và khóa cửa quẹt thẻ xem ở <a href="../../../courses/iot/labs/rfid-rc522.html">Lab 10</a>.</p>
 <blockquote class="blockquote">
 <p>📷 <em>Chờ ảnh các cảm biến còn lại trong kit.</em></p>
 </blockquote>

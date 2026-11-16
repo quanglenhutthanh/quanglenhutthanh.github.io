@@ -79,7 +79,9 @@
       "/courses/iot/labs/photoresistor.html",
       "/courses/iot/labs/ultrasonic-hc-sr04.html",
       "/courses/iot/labs/seven-segment-5641as.html",
-      "/courses/iot/labs/infrared-remote-fc51.html"
+      "/courses/iot/labs/infrared-remote-fc51.html",
+      "/courses/iot/labs/rfid-rc522.html",
+      "/courses/iot/labs/water-sensor.html"
     ]
   },
   {
