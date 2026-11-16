@@ -304,6 +304,7 @@ Cách kiểm tra chắc chắn nhất: dùng đồng hồ đo thông mạch. Ho�
 | **HC-SR04 / HC-SR05** | Khoảng cách (siêu âm, 2–400/450 cm) | Digital (độ rộng xung) | `TRIG` phát xung 10 µs, đo thời gian xung `ECHO` bằng `pulseIn()`; khoảng cách = t × 0,034 / 2 (cm). Xem [Lab 6](../labs/ultrasonic-hc-sr04.md) |
 | **Mắt thu hồng ngoại VS1838B** (+ remote) | Lệnh từ remote IR (sóng mang 38 kHz) | Digital (chuỗi xung, giải mã giao thức NEC) | Chân `OUT` · `GND` · `VCC` nhìn từ mặt có mắt; thư viện `IRremote`. Xem [Lab 8](../labs/infrared-remote-fc51.md) |
 | **FC-51** (tránh vật cản hồng ngoại) | Có / không có vật trong 2–30 cm | Digital (có vật = `LOW`) | Chân `OUT` · `GND` · `VCC`; chỉnh tầm bằng biến trở. Xem [Lab 8](../labs/infrared-remote-fc51.md) |
+| **RFID RC522** (+ thẻ MIFARE) | UID và dữ liệu của thẻ 13,56 MHz trong tầm 0–5 cm | SPI | **Nguồn 3,3 V**; `SDA`→`D10`, `SCK`→`D13`, `MOSI`→`D11`, `MISO`→`D12`, `RST`→`D9`; thư viện `MFRC522`. Xem [Lab 10](../labs/rfid-rc522.md) |
 | **PIR HC-SR501** | Chuyển động người/động vật | Digital | Có 2 biến trở chỉnh độ nhạy và thời gian giữ |
 | **Cảm biến độ ẩm đất** | Độ ẩm đất | Analog / Digital | Module có cả `AO` và `DO` (ngưỡng chỉnh bằng biến trở) |
 | **LM35 / TMP36** | Nhiệt độ | Analog | LM35: 10 mV/°C |
@@ -359,6 +360,18 @@ Module dòng **MH-Sensor-Series "Flying-Fish"**, tự phát và tự thu: **LED 
 - Chỉ báo **có / không** trong khoảng 2–30 cm, **kém với vật màu đen** và dễ báo sai khi nắng chiếu vào. Cần biết khoảng cách thì dùng HC-SR05 ở trên.
 
 FC-51 **không đọc được tín hiệu remote** (không có bộ lọc 38 kHz), và mắt thu VS1838B cũng không thay được FC-51. Cách nối dây, code và mạch kết hợp hai linh kiện xem ở [Lab 8](../labs/infrared-remote-fc51.md).
+
+#### Module RFID RC522 + thẻ
+
+![Bộ RFID trong kit: móc khóa xanh dương, thẻ trắng, module `RFID-RC522` và hai hàng chân 8 pin (thẳng và cong 90°) chưa hàn](../assets/kit-rc522-set.jpg){width=60%}
+
+Đầu đọc thẻ **13,56 MHz** (chuẩn MIFARE / NFC), đọc trong tầm 0–5 cm. Thẻ **không có pin**: thẻ lấy điện từ từ trường của anten in trên module. Thẻ trắng trong kit đọc được; **móc khóa xanh dương thì RC522 không đọc được** (nhiều khả năng là loại 125 kHz).
+
+- Module bán ra **chưa hàn chân**: hàn một trong hai hàng chân đi kèm trước khi dùng, nên chọn **hàng cong 90°**. Hướng dẫn hàn ở [Lab 10](../labs/rfid-rc522.md#rc522-header).
+- **Nguồn 3,3 V**, không phải 5 V. Giao tiếp **SPI** qua `D10`–`D13` của Uno.
+- Nhãn chân in lộn ngược: `SDA` là chân sát thạch anh `27.120`, `3.3V` là chân sát LED `D1`.
+
+Cách nối dây, code đọc UID, ghi dữ liệu và khóa cửa quẹt thẻ xem ở [Lab 10](../labs/rfid-rc522.md).
 
 > 📷 *Chờ ảnh các cảm biến còn lại trong kit.*
 
