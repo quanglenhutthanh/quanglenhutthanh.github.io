@@ -33,6 +33,22 @@ Module có 3 chân:
 | `+` | Nguồn 5 V |
 | `−` | GND |
 
+![Mặt trước module trong kit: hàng 3 chân `S + −` ở trên cùng, đèn `Power`, transistor và các điện trở dán ở giữa, bên dưới là 10 đường đồng trần chạy dọc](../assets/kit-water-sensor-front.jpg){width=40%}
+
+Nhìn từ mặt trước, từ trên xuống:
+
+- **Hàng 3 chân cắm** ghi `S`, `+`, `−` từ trái sang phải. Chân cắm thẳng, dùng dây đực – cái nối thẳng vào Uno.
+- **Đèn `Power`** (LED dán nhỏ) và điện trở hạn dòng của nó: sáng khi có điện, không liên quan đến nước.
+- **Transistor** (con chip đen 3 chân ở giữa) và hai điện trở dán: phần khuếch đại tín hiệu ra chân `S`.
+- **10 đường đồng song song**, xen kẽ hai nhóm. Các đường có **lỗ tròn nhỏ ở đầu trên** được nối chung với nhau ở mặt sau; các đường còn lại nối chung ở phía trên. Nước bắc cầu giữa hai nhóm thì có tín hiệu.
+- Hai **lỗ bắt vít** ở hai bên hàng chân, dùng để gắn module lên thành bể/thùng.
+
+::: {layout-ncol=2}
+![Mặt sau: không có linh kiện, chỉ có các đường mạch và hàng lỗ via nối chung các đường đồng có lỗ ở mặt trước](../assets/kit-water-sensor-back.jpg)
+
+![Mặt trước nhìn ngang: chân cắm bên trái, vùng đường đồng bên phải. Khi dùng, cắm đứng với chân ở trên, chỉ phần đường đồng nhúng vào nước](../assets/kit-water-sensor-top.jpg)
+:::
+
 Cảm biến này chỉ cho biết **có nước / ngập nhiều hay ít**, không đo mực nước chính xác theo mm: số đọc phụ thuộc độ dẫn điện của nước (nước máy, nước muối, nước mưa cho số khác nhau).
 
 ## Linh kiện và chân
