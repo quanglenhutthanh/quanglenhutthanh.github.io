@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -170,11 +170,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#cảm-biến-nước-là-gì" id="toc-cảm-biến-nước-là-gì" class="nav-link" data-scroll-target="#cảm-biến-nước-là-gì">Cảm biến nước là gì</a></li>
   <li><a href="#linh-kiện-và-chân" id="toc-linh-kiện-và-chân" class="nav-link" data-scroll-target="#linh-kiện-và-chân">Linh kiện và chân</a></li>
+  <li><a href="#lắp-mạch" id="toc-lắp-mạch" class="nav-link" data-scroll-target="#lắp-mạch">Lắp mạch</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
   <ul class="collapse">
   <li><a href="#test-1-đọc-giá-trị-cảm-biến" id="toc-test-1-đọc-giá-trị-cảm-biến" class="nav-link" data-scroll-target="#test-1-đọc-giá-trị-cảm-biến">Test 1 – đọc giá trị cảm biến</a></li>
+  <li><a href="#test-2-có-nước-thì-đèn-sáng" id="toc-test-2-có-nước-thì-đèn-sáng" class="nav-link" data-scroll-target="#test-2-có-nước-thì-đèn-sáng">Test 2 – có nước thì đèn sáng</a></li>
   </ul></li>
   <li><a href="#lưu-ý-cảm-biến-bị-ăn-mòn" id="toc-lưu-ý-cảm-biến-bị-ăn-mòn" class="nav-link" data-scroll-target="#lưu-ý-cảm-biến-bị-ăn-mòn">Lưu ý: cảm biến bị ăn mòn</a></li>
+  <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a>
+  <ul class="collapse">
+  <li><a href="#video-test-2" id="toc-video-test-2" class="nav-link" data-scroll-target="#video-test-2">Video Test 2</a></li>
+  </ul></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul></li>
   </ul>
@@ -211,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="lab-11-cảm-biến-mực-nước-water-sensor" class="level1">
 <h1>Lab 11 · Cảm biến mực nước (water sensor)</h1>
 <blockquote class="blockquote">
-<p>Đọc module cảm biến nước bằng Arduino Uno: in giá trị analog lên Serial Monitor và quan sát số đọc thay đổi khi nhúng cảm biến vào nước. Lab này chỉ làm test cơ bản.</p>
+<p>Đọc module cảm biến nước bằng Arduino Uno: in giá trị analog lên Serial Monitor và quan sát số đọc thay đổi khi nhúng cảm biến vào nước, rồi làm mạch báo có nước bằng LED.</p>
 </blockquote>
 <section id="cảm-biến-nước-là-gì" class="level2">
 <h2 class="anchored" data-anchor-id="cảm-biến-nước-là-gì">Cảm biến nước là gì</h2>
@@ -331,6 +337,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Cốc nước</td>
 <td>1</td>
 </tr>
+<tr class="odd">
+<td>LED + điện trở 220 Ω</td>
+<td>1 bộ (Test 2)</td>
+</tr>
+<tr class="even">
+<td>Breadboard, dây đực – đực</td>
+<td>(Test 2)</td>
+</tr>
 </tbody>
 </table>
 <p>Nối dây:</p>
@@ -357,23 +371,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
+<section id="lắp-mạch" class="level2">
+<h2 class="anchored" data-anchor-id="lắp-mạch">Lắp mạch</h2>
+<p>Mạch đầy đủ (dùng cho cả Test 1 và Test 2):</p>
+<pre><code>                 ┌──────────── Arduino Uno ────────────┐
+                 │  5V    GND         A0           D8  │
+                 └───┬─────┬───────────┬────────────┬──┘
+                     │     │           │            │
+ thanh + breadboard ─┘     │           │         [220 Ω]
+ thanh − breadboard ───────┘           │            │
+                                       │          LED (chân dài)
+   Water sensor                        │            │
+     S  ───────────────────────────────┘          LED (chân ngắn)
+     +  ── thanh +                                  │
+     −  ── thanh −                       thanh − ───┘</code></pre>
+<p><strong>Rút cáp USB ra trước khi cắm dây</strong>, lắp xong và kiểm tra lại mới cắm điện.</p>
+<p><strong>Bước 1 – nguồn ra breadboard.</strong> Dây đực – đực: <code>5V</code> của Uno → thanh <code>+</code> (vạch đỏ) của breadboard, <code>GND</code> của Uno → thanh <code>−</code> (vạch xanh). Từ đây module và LED đều lấy nguồn từ hai thanh này.</p>
+<p><strong>Bước 2 – cảm biến.</strong> Cầm module, mặt có chữ <code>S + −</code> hướng về phía mình. Dùng 3 dây đực – cái, đầu <strong>cái</strong> cắm vào chân module:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Chân module</th>
+<th>Đầu đực cắm vào</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>S</code> (trái)</td>
+<td>Chân <code>A0</code> của Uno</td>
+</tr>
+<tr class="even">
+<td><code>+</code> (giữa)</td>
+<td>Thanh <code>+</code> breadboard</td>
+</tr>
+<tr class="odd">
+<td><code>−</code> (phải)</td>
+<td>Thanh <code>−</code> breadboard</td>
+</tr>
+</tbody>
+</table>
+<p>Nên dùng dây khác màu (ví dụ vàng – đỏ – đen) để khỏi nhầm. Đặt module đứng, chân cắm ở trên, phần đường đồng chĩa xuống phía cốc nước. Dây đủ dài để module nằm <strong>xa</strong> Uno và breadboard, phòng nước văng.</p>
+<p><strong>Bước 3 – LED (chỉ cần cho Test 2).</strong> Trên breadboard, chọn một chỗ trống, ví dụ cột 10 và 11:</p>
+<ol type="1">
+<li><strong>Nhận chân LED</strong>: chân <strong>dài</strong> là cực dương (+), chân ngắn là cực âm (−); nhìn trong bóng LED thì cực âm là bản kim loại to hơn, vành LED phía cực âm có chỗ vát phẳng.</li>
+<li>Cắm <strong>chân dài</strong> vào hàng <code>e</code> cột 10, <strong>chân ngắn</strong> thẳng xuống thanh <code>−</code>.</li>
+<li>Cắm <strong>điện trở 220 Ω</strong> (vòng đỏ – đỏ – nâu) từ hàng <code>a</code> cột 10 sang hàng <code>a</code> cột 15. Điện trở không phân cực, chiều nào cũng được.</li>
+<li>Dây đực – đực từ hàng <code>c</code> cột 15 → chân <code>D8</code> của Uno.</li>
+</ol>
+<p>Đường đi của dòng điện: <code>D8</code> → dây → cột 15 → điện trở → cột 10 → LED → thanh <code>−</code> → <code>GND</code>.</p>
+<p><strong>Bước 4 – kiểm tra trước khi cắm điện.</strong></p>
+<ul>
+<li>Đếm lại 3 dây của module: <code>S</code> vào <code>A0</code> (hàng chân analog, phía dưới bên phải), <strong>không phải</strong> chân <code>D0</code>.</li>
+<li><code>+</code> và <code>−</code> của module không bị đảo. Cắm ngược nguồn có thể làm hỏng transistor trên module.</li>
+<li>LED đúng chiều: chân dài phía điện trở, chân ngắn ở thanh <code>−</code>.</li>
+<li>Thanh <code>+</code> và <code>−</code> không có dây nào nối tắt với nhau.</li>
+</ul>
+<p><strong>Bước 5 – cắm USB, nạp code.</strong> Cắm cáp USB: đèn <code>Power</code> trên module phải sáng ngay (chưa cần code). Không sáng thì quay lại kiểm tra dây <code>+</code>/<code>−</code>. Sau đó nạp code Test 1 hoặc Test 2 bên dưới và mở <strong>Serial Monitor</strong> ở 9600 baud.</p>
+<p><strong>Bước 6 – thử với nước.</strong> Đặt cốc nước <strong>xa</strong> Uno và breadboard, nhúng từ từ phần đường đồng vào. Lần đầu chỉ nhúng 1–2 cm để thấy số thay đổi, không nhúng quá vạch chữ <em>Water Sensor</em>.</p>
+</section>
 <section id="code" class="level2">
 <h2 class="anchored" data-anchor-id="code">Code</h2>
 <section id="test-1-đọc-giá-trị-cảm-biến" class="level3">
 <h3 class="anchored" data-anchor-id="test-1-đọc-giá-trị-cảm-biến">Test 1 – đọc giá trị cảm biến</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WATER_PIN </span>A0</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>WATER_PIN<span class="op">);</span>   <span class="co">// 0–1023</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Water = "</span><span class="op">);</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>raw<span class="op">);</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WATER_PIN </span>A0</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>WATER_PIN<span class="op">);</span>   <span class="co">// 0–1023</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Water = "</span><span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Cách kiểm tra:</strong></p>
 <ul>
 <li>Để cảm biến khô ngoài không khí: số đọc gần <strong>0</strong> (thường dưới 10).</li>
@@ -383,31 +455,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Mở <strong>Tools → Serial Plotter</strong> (9600 baud) để thấy đồ thị lên xuống khi nhúng/rút.</li>
 </ul>
 <p><strong>Chỉ nhúng phần có đường đồng</strong>, không để nước chạm tới linh kiện và chân cắm phía trên module.</p>
+<p><strong>Ghi lại số đọc</strong> lúc khô và lúc vừa chạm nước. Test 2 cần số này để chọn ngưỡng.</p>
+</section>
+<section id="test-2-có-nước-thì-đèn-sáng" class="level3">
+<h3 class="anchored" data-anchor-id="test-2-có-nước-thì-đèn-sáng">Test 2 – có nước thì đèn sáng</h3>
+<p>Thêm một LED: cảm biến chạm nước thì LED sáng, khô thì tắt.</p>
+<p>Mạch như phần <a href="#lắp-mạch">Lắp mạch</a>, có thêm LED ở bước 3: <code>D8</code> → điện trở 220 Ω → chân dài LED, chân ngắn LED → <code>GND</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WATER_PIN  </span>A0</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_PIN    </span><span class="dv">8</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NGUONG     </span><span class="dv">100</span><span class="pp">   </span><span class="co">// số đọc lớn hơn mức này → coi là có nước</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>WATER_PIN<span class="op">);</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> coNuoc <span class="op">=</span> raw <span class="op">&gt;</span> NGUONG<span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> coNuoc <span class="op">?</span> HIGH <span class="op">:</span> LOW<span class="op">);</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Water = "</span><span class="op">);</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>coNuoc <span class="op">?</span> <span class="st">"  -&gt; CO NUOC"</span> <span class="op">:</span> <span class="st">"  -&gt; kho"</span><span class="op">);</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li><strong>Ngưỡng <code>NGUONG</code></strong>: lúc khô số đọc gần 0, vừa chạm nước đã nhảy lên vài trăm, nên khoảng cách rất rộng, một ngưỡng 100 là đủ, không cần hysteresis như <a href="../../../courses/iot/labs/photoresistor.html">Lab 5</a>. Nếu ở Test 1 số lúc khô của bạn cao hơn (nước đọng, độ ẩm cao) thì nâng ngưỡng lên.</li>
+<li><strong>Không có LED rời?</strong> Đổi <code>LED_PIN</code> thành <code>13</code> để dùng LED <code>L</code> có sẵn trên board Uno.</li>
+</ul>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Cảm biến khô: LED tắt, Serial in <code>-&gt; kho</code>.</li>
+<li>Nhúng đầu cảm biến vào cốc nước: LED sáng ngay, Serial in <code>-&gt; CO NUOC</code>.</li>
+<li>Nhỏ một giọt nước bắc ngang hai đường đồng cạnh nhau: LED cũng sáng. Đây là cách module dùng để <strong>báo mưa</strong> hoặc <strong>báo rò rỉ nước</strong> dưới gầm máy giặt.</li>
+<li>Rút ra và lau khô: LED tắt.</li>
+</ul>
 </section>
 </section>
 <section id="lưu-ý-cảm-biến-bị-ăn-mòn" class="level2">
 <h2 class="anchored" data-anchor-id="lưu-ý-cảm-biến-bị-ăn-mòn">Lưu ý: cảm biến bị ăn mòn</h2>
 <p>Khi cấp điện liên tục mà các đường đồng ngâm trong nước, dòng điện một chiều gây <strong>điện phân</strong>, đường đồng bị oxy hóa và mòn dần sau vài ngày đến vài tuần, số đọc sẽ lệch. Khi dùng lâu dài (không chỉ test), nên cấp nguồn cho module bằng một chân digital, chỉ bật lúc đọc:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WATER_PIN  </span>A0</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define POWER_PIN  </span><span class="dv">7</span><span class="pp">     </span><span class="co">// chân + của module nối D7 thay vì 5V</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>POWER_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span>                          <span class="co">// chờ module ổn định</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>WATER_PIN<span class="op">);</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Water = "</span><span class="op">);</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>raw<span class="op">);</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WATER_PIN  </span>A0</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define POWER_PIN  </span><span class="dv">7</span><span class="pp">     </span><span class="co">// chân + của module nối D7 thay vì 5V</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>POWER_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span>                          <span class="co">// chờ module ổn định</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>WATER_PIN<span class="op">);</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Water = "</span><span class="op">);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Module tiêu thụ dưới 20 mA, chân digital của Uno cấp được (tối đa 40 mA, khuyến nghị 20 mA).</p>
+</section>
+<section id="ảnh-thực-tế" class="level2">
+<h2 class="anchored" data-anchor-id="ảnh-thực-tế">Ảnh thực tế</h2>
+<section id="video-test-2" class="level3">
+<h3 class="anchored" data-anchor-id="video-test-2">Video Test 2</h3>
+<video controls="" playsinline="" preload="metadata" poster="../assets/water-sensor-led-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/water-sensor-led-real.mp4" type="video/mp4">
+</video>
+<p>Mạch thật chạy code Test 2:</p>
+<ul>
+<li><strong>Module water sensor</strong> nằm cạnh bát nước, nối về Uno bằng 3 dây: vàng (<code>S</code> → <code>A0</code>), đỏ (<code>+</code> → <code>5V</code>), đen (<code>−</code> → <code>GND</code>). Đèn <code>Power</code> đỏ trên module sáng ngay khi cắm USB, kể cả lúc chưa có nước.</li>
+<li><strong>LED vàng</strong> trên breadboard, có điện trở 220 Ω, nối về <code>D8</code> và <code>GND</code> bằng hai dây xanh lá.</li>
+</ul>
+<p>Kết quả:</p>
+<ul>
+<li><strong>Khoảng 0–4 s</strong>: cảm biến khô, nằm trên mặt giấy. LED vàng <strong>tắt</strong>.</li>
+<li><strong>Khoảng 4–6 s</strong>: cầm module ở phần chân cắm, nhúng vùng đường đồng xuống bát nước. Ngay khi đường đồng chạm nước, LED vàng <strong>sáng</strong>.</li>
+<li><strong>Khoảng 6–11 s</strong>: giữ cảm biến trong nước, chỉ ngập phần đường đồng, chưa tới vạch chữ <em>Water Sensor</em>. LED sáng ổn định, không nháy.</li>
+</ul>
+<p>Đúng như phần <strong>Cách kiểm tra</strong> của Test 2: khô thì tắt, có nước thì sáng. Khoảng cách giữa số đọc lúc khô (gần 0) và lúc chạm nước (vài trăm) rất lớn, nên một ngưỡng 100 là đủ để LED không nháy.</p>
+</section>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
@@ -426,6 +558,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>Đèn <code>PWR</code> không sáng, số luôn 0</td>
 <td>Thiếu dây <code>+</code> hoặc <code>−</code>, hoặc cắm ngược</td>
+</tr>
+<tr class="even">
+<td>Chạy <strong>ngược</strong>: khô thì số rất cao (báo có nước), nhúng nước thì số tụt về gần 0; đèn <code>Power</code> tắt, rút dây “<code>S</code>” cắm xuống <code>GND</code> thì đèn sáng</td>
+<td>Dây chân <code>S</code> và dây chân <code>−</code> bị đổi chỗ: chân <code>−</code> của module đang vào <code>A0</code>, nên module không có <code>GND</code> thật và <code>A0</code> bị kéo lên qua đèn <code>Power</code> — dò lại dây từ chính chân module</td>
+</tr>
+<tr class="odd">
+<td>Serial báo đúng (<code>-&gt; kho</code> / <code>-&gt; CO NUOC</code>) nhưng LED chạy <strong>ngược</strong>: khô thì sáng, có nước thì tắt</td>
+<td>LED đang nối lên thanh <code>+</code> (5V) thay vì thanh <code>−</code>: dòng chạy từ 5V qua LED vào <code>D8</code>, nên LED sáng khi <code>D8</code> = <code>LOW</code>. Cắm chân ngắn LED vào thanh <code>−</code> (vạch xanh), chân dài về phía điện trở</td>
 </tr>
 <tr class="even">
 <td>Số nhảy lung tung khi khô</td>
