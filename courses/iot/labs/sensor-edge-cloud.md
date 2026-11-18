@@ -15,7 +15,9 @@ date: 2026-11-15
 
 Lab xây dựng một hệ IoT hoàn chỉnh theo kiến trúc 3 tầng. **Tầng thiết bị**: Arduino đọc cảm biến. **Tầng edge**: Raspberry Pi nhận dữ liệu từ Arduino, xử lý sơ bộ rồi gửi lên cloud. **Tầng cloud**: server tiếp nhận, lưu trữ dữ liệu và hiển thị trên dashboard.
 
-```{mermaid}
-flowchart LR
-    A["Sensor<br/>(Arduino)"] --> E["Edge<br/>(Raspberry Pi)"] --> C["Cloud server"] --> D["Dashboard"]
+```
+┌───────────┐    ┌────────────────┐    ┌──────────────┐    ┌───────────┐
+│  Sensor   │───►│      Edge      │───►│ Cloud server │───►│ Dashboard │
+│ (Arduino) │    │ (Raspberry Pi) │    │              │    │           │
+└───────────┘    └────────────────┘    └──────────────┘    └───────────┘
 ```
