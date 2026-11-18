@@ -56,15 +56,7 @@ Hệ quả: mỗi LED chỉ sáng **1/8 thời gian**, nên hình sẽ tối hơ
 
 Đặt ma trận **mặt LED hướng về phía mình**, cạnh có in mã số (`1088BS`) ở **phía dưới**. Chân 1 ở **góc dưới bên trái**, đánh số **ngược chiều kim đồng hồ**: 1 → 8 dọc hàng chân dưới từ trái sang phải, 9 → 16 dọc hàng chân trên từ phải sang trái.
 
-```
-        16  15  14  13  12  11  10   9      ← hàng chân trên
-      ┌───────────────────────────────┐
-      │  ● ● ● ● ● ● ● ●              │
-      │  ● ● ●  64 LED  ● ●           │    (nhìn từ mặt LED)
-      │  ● ● ● ● ● ● ● ●              │
-      └───────────────────────────────┘
-         1   2   3   4   5   6   7   8      ← hàng chân dưới (cạnh có mã số)
-```
+![Sơ đồ chân 1088BS nhìn từ mặt LED, cạnh có mã số ở dưới. Mỗi chân ghi số chân, vai trò (R = hàng, cực âm; C = cột, cực dương) và cột lỗ breadboard khi cắm ma trận ở cột 30–37](../assets/led-matrix-8x8-pinout.svg){width=100%}
 
 Sơ đồ chân của 1088BS (giống hệt 1088AS, chỉ khác chiều cực):
 
@@ -137,16 +129,7 @@ Mạch chia hai vùng:
 - **Vùng ma trận**: cột 30 – 37.
 - **Vùng điện trở**: cột 4 – 18, mỗi điện trở cách nhau một cột.
 
-```
- cột:   4   6   8  10  12  14  16  18           30  31  32  33  34  35  36  37
-        │   │   │   │   │   │   │   │           16  15  14  13  12  11  10   9  ← chân ma trận
- xa     ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃          ┌─────────────────────────────┐
- ═══════┃═══┃═══┃═══┃═══┃═══┃═══┃═══┃═ rãnh ══│        ma trận 8×8          │
- gần    ┃   ┃   ┃   ┃   ┃   ┃   ┃   ┃          │   (mặt LED hướng lên trên)  │
-        C5  C3  C2  C4  C6  C1  C7  C8          └─────────────────────────────┘
-        └─ 8 điện trở 1 kΩ vắt qua rãnh ─┘        1   2   3   4   5   6   7   8  ← chân ma trận
-                                                  (cạnh có mã số 1088BS)
-```
+Vị trí từng chân ma trận trên cột lỗ 30 – 37 xem ở [hình sơ đồ chân](#nhận-chân-ma-trận) (hàng số nhỏ trên/dưới cùng).
 
 ### Vì sao cần vùng điện trở riêng
 
@@ -193,6 +176,42 @@ Trước khi cắm 24 dây, kiểm tra hướng ma trận bằng một LED:
 - Sáng ở góc khác → ma trận đang bị xoay, kiểm tra lại cạnh có mã số.
 
 **Rút USB** và gỡ hai dây thử ra trước khi sang bước tiếp.
+
+### Thử 1 đèn bằng code
+
+Trước khi cắm đủ 24 dây, cho Uno điều khiển một đèn (R1 · C1) với 3 dây và 1 điện trở:
+
+![Mạch thử 1 đèn: R1 (cột 37 – xa) về D2; C1 (a) từ cột 33 – xa sang cột 14 – xa; điện trở 1 kΩ vắt qua rãnh ở cột 14; C1 (b) từ cột 14 – gần về D10](../assets/led-matrix-8x8-test-1-led.svg){width=100%}
+
+| Dây | Từ | Đến |
+|---|---|---|
+| R1 | cột 37 – xa | `D2` |
+| C1 (a) | cột 33 – xa | cột 14 – xa |
+| Điện trở 1 kΩ | cột 14 – xa | cột 14 – gần (vắt qua rãnh) |
+| C1 (b) | cột 14 – gần | `D10` |
+
+```cpp
+#define ROW1 2     // R1 (cực âm)
+#define COL1 10    // C1 (cực dương), qua 1 kΩ
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ROW1, OUTPUT);
+  pinMode(COL1, OUTPUT);
+  digitalWrite(ROW1, LOW);
+}
+
+void loop() {
+  digitalWrite(COL1, HIGH);
+  Serial.println("R1 C1: SANG");
+  delay(500);
+  digitalWrite(COL1, LOW);
+  Serial.println("R1 C1: tat");
+  delay(500);
+}
+```
+
+LED góc trên bên trái nhấp nháy mỗi nửa giây là đúng. Các dây và điện trở này nằm đúng vị trí của mạch đầy đủ, nên **giữ nguyên** và cắm tiếp các bước dưới.
 
 ### Bước 3 – 8 điện trở
 
