@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-f7b4dd7c00d09131344c922f6194db6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -665,6 +665,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Nếu đẩy phải mà servo quay trái, đổi <code>goc += dx / TOC_DO</code> thành <code>goc -= …</code>.</li>
 <li>Board tự reset khi servo bắt đầu quay → sụt nguồn, xem mục <em>Nguồn cho servo</em> ở <a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a> (thêm tụ 100 – 470 µF giữa thanh <code>+</code>/<code>−</code>).</li>
 </ul>
+<p><strong>Video mạch thật:</strong></p>
+<video controls="" muted="" playsinline="" preload="metadata" poster="../assets/joystick-servo-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/joystick-servo-real.mp4" type="video/mp4">
+</video>
+<p>Mạch chạy đúng code Test 3 ở trên: joystick cắm trên breadboard, servo SG90 nằm bên trái, nhìn từ phía mặt có cánh tay.</p>
+<ul>
+<li><strong>Gạt cần lên</strong>: <code>A0</code> tăng, <code>dx</code> dương, <code>goc</code> tăng dần tới tối đa <strong>180°</strong>. Trên module này, nhìn từ phía cánh tay thì 180° là cánh tay nghiêng sang <strong>trái</strong>.</li>
+<li><strong>Gạt cần xuống</strong>: <code>goc</code> giảm dần về 0°, cánh tay quay sang phải.</li>
+<li><strong>Thả tay</strong>: servo đứng yên ở góc đang có, vì code cộng dồn tốc độ chứ không ánh xạ thẳng vị trí cần → góc.</li>
+</ul>
+<p>Chiều này tùy cách cầm và cách gắn module. Muốn đảo chiều thì đổi <code>+=</code> thành <code>-=</code>.</p>
 <p><strong>Bài tập:</strong> thêm servo thứ hai trên <code>D10</code>, lái bằng trục Y (<code>A1</code>) → giá camera pan – tilt 2 trục.</p>
 </section>
 </section>
@@ -1020,6 +1031,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>LCD 1602 đổi ký tự khá chậm (vài chục ms), nên khi game chạy nhanh, chướng ngại vật trông hơi nhòe — mắt người vẫn thấy rõ, nhưng quay bằng điện thoại có thể gần như không thấy.</p>
+<p><strong>Video mạch thật:</strong></p>
+<video controls="" muted="" playsinline="" preload="metadata" poster="../assets/joystick-lcd-game-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/joystick-lcd-game-real.mp4" type="video/mp4">
+</video>
+<p>LCD 1602 I2C nằm bên trái, joystick bên phải. Người chơi đứng ở cột 2, dòng dưới. Cây xương rồng chạy từ phải sang trái. Mỗi khi cây tới gần, <strong>gạt cần lên</strong> để nhân vật nhảy lên dòng trên rồi rơi xuống sau 3 nhịp. Trong video, chướng ngại vật hơi mờ và nhòe đúng như đã nói ở trên, do LCD đổi ký tự chậm so với camera.</p>
 <p><strong>Bài tập:</strong></p>
 <ul>
 <li>Hiện điểm ở góc trên bên phải trong lúc chơi (chỉ cho chim xuất hiện từ cột 12 trở về trái để không đè lên số).</li>

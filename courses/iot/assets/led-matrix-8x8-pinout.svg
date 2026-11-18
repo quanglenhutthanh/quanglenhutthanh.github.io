@@ -3,89 +3,89 @@
 <rect x="236" y="136" width="8" height="34" fill="#b9b9b9"/>
 <text x="240" y="128" text-anchor="middle" font-size="14" fill="#888">16</text>
 <rect x="216" y="82" width="48" height="30" rx="6" fill="#3f9a6e"/>
-<text x="240" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C8+</text>
-<text x="240" y="70" text-anchor="middle" font-size="13" fill="#666">30</text>
+<text x="240" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C8−</text>
+<text x="240" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">A3</text>
 <rect x="296" y="136" width="8" height="34" fill="#b9b9b9"/>
 <text x="300" y="128" text-anchor="middle" font-size="14" fill="#888">15</text>
 <rect x="276" y="82" width="48" height="30" rx="6" fill="#3f9a6e"/>
-<text x="300" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C7+</text>
-<text x="300" y="70" text-anchor="middle" font-size="13" fill="#666">31</text>
+<text x="300" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C7−</text>
+<text x="300" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">A2</text>
 <rect x="356" y="136" width="8" height="34" fill="#b9b9b9"/>
 <text x="360" y="128" text-anchor="middle" font-size="14" fill="#888">14</text>
 <rect x="336" y="82" width="48" height="30" rx="6" fill="#b5782f"/>
-<text x="360" y="103" text-anchor="middle" font-weight="bold" fill="#fff">R2−</text>
-<text x="360" y="70" text-anchor="middle" font-size="13" fill="#666">32</text>
+<text x="360" y="103" text-anchor="middle" font-weight="bold" fill="#fff">R2+</text>
+<text x="360" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D3</text>
 <rect x="416" y="136" width="8" height="34" fill="#b9b9b9"/>
 <text x="420" y="128" text-anchor="middle" font-size="14" fill="#888">13</text>
 <rect x="396" y="82" width="48" height="30" rx="6" fill="#3f9a6e"/>
-<text x="420" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C1+</text>
-<text x="420" y="70" text-anchor="middle" font-size="13" fill="#666">33</text>
+<text x="420" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C1−</text>
+<text x="420" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D10</text>
 <rect x="476" y="136" width="8" height="34" fill="#b9b9b9"/>
 <text x="480" y="128" text-anchor="middle" font-size="14" fill="#888">12</text>
 <rect x="456" y="82" width="48" height="30" rx="6" fill="#b5782f"/>
-<text x="480" y="103" text-anchor="middle" font-weight="bold" fill="#fff">R4−</text>
-<text x="480" y="70" text-anchor="middle" font-size="13" fill="#666">34</text>
+<text x="480" y="103" text-anchor="middle" font-weight="bold" fill="#fff">R4+</text>
+<text x="480" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D5</text>
 <rect x="536" y="136" width="8" height="34" fill="#b9b9b9"/>
 <text x="540" y="128" text-anchor="middle" font-size="14" fill="#888">11</text>
 <rect x="516" y="82" width="48" height="30" rx="6" fill="#3f9a6e"/>
-<text x="540" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C6+</text>
-<text x="540" y="70" text-anchor="middle" font-size="13" fill="#666">35</text>
+<text x="540" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C6−</text>
+<text x="540" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">A1</text>
 <rect x="596" y="136" width="8" height="34" fill="#b9b9b9"/>
 <text x="600" y="128" text-anchor="middle" font-size="14" fill="#888">10</text>
 <rect x="576" y="82" width="48" height="30" rx="6" fill="#3f9a6e"/>
-<text x="600" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C4+</text>
-<text x="600" y="70" text-anchor="middle" font-size="13" fill="#666">36</text>
+<text x="600" y="103" text-anchor="middle" font-weight="bold" fill="#fff">C4−</text>
+<text x="600" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D13</text>
 <rect x="656" y="136" width="8" height="34" fill="#b9b9b9"/>
 <text x="660" y="128" text-anchor="middle" font-size="14" fill="#888">9</text>
 <rect x="636" y="82" width="48" height="30" rx="6" fill="#b5782f"/>
-<text x="660" y="103" text-anchor="middle" font-weight="bold" fill="#fff">R1−</text>
-<text x="660" y="70" text-anchor="middle" font-size="13" fill="#666">37</text>
+<text x="660" y="103" text-anchor="middle" font-weight="bold" fill="#fff">R1+</text>
+<text x="660" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D2</text>
 <rect x="236" y="470" width="8" height="34" fill="#b9b9b9"/>
 <text x="240" y="522" text-anchor="middle" font-size="14" fill="#888">1</text>
 <rect x="216" y="530" width="48" height="30" rx="6" fill="#b5782f"/>
-<text x="240" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R5−</text>
-<text x="240" y="580" text-anchor="middle" font-size="13" fill="#666">30</text>
+<text x="240" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R5+</text>
+<text x="240" y="580" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D6</text>
 <rect x="296" y="470" width="8" height="34" fill="#b9b9b9"/>
 <text x="300" y="522" text-anchor="middle" font-size="14" fill="#888">2</text>
 <rect x="276" y="530" width="48" height="30" rx="6" fill="#b5782f"/>
-<text x="300" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R7−</text>
-<text x="300" y="580" text-anchor="middle" font-size="13" fill="#666">31</text>
+<text x="300" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R7+</text>
+<text x="300" y="580" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D8</text>
 <rect x="356" y="470" width="8" height="34" fill="#b9b9b9"/>
 <text x="360" y="522" text-anchor="middle" font-size="14" fill="#888">3</text>
 <rect x="336" y="530" width="48" height="30" rx="6" fill="#3f9a6e"/>
-<text x="360" y="551" text-anchor="middle" font-weight="bold" fill="#fff">C2+</text>
-<text x="360" y="580" text-anchor="middle" font-size="13" fill="#666">32</text>
+<text x="360" y="551" text-anchor="middle" font-weight="bold" fill="#fff">C2−</text>
+<text x="360" y="580" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D11</text>
 <rect x="416" y="470" width="8" height="34" fill="#b9b9b9"/>
 <text x="420" y="522" text-anchor="middle" font-size="14" fill="#888">4</text>
 <rect x="396" y="530" width="48" height="30" rx="6" fill="#3f9a6e"/>
-<text x="420" y="551" text-anchor="middle" font-weight="bold" fill="#fff">C3+</text>
-<text x="420" y="580" text-anchor="middle" font-size="13" fill="#666">33</text>
+<text x="420" y="551" text-anchor="middle" font-weight="bold" fill="#fff">C3−</text>
+<text x="420" y="580" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D12</text>
 <rect x="476" y="470" width="8" height="34" fill="#b9b9b9"/>
 <text x="480" y="522" text-anchor="middle" font-size="14" fill="#888">5</text>
 <rect x="456" y="530" width="48" height="30" rx="6" fill="#b5782f"/>
-<text x="480" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R8−</text>
-<text x="480" y="580" text-anchor="middle" font-size="13" fill="#666">34</text>
+<text x="480" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R8+</text>
+<text x="480" y="580" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D9</text>
 <rect x="536" y="470" width="8" height="34" fill="#b9b9b9"/>
 <text x="540" y="522" text-anchor="middle" font-size="14" fill="#888">6</text>
 <rect x="516" y="530" width="48" height="30" rx="6" fill="#3f9a6e"/>
-<text x="540" y="551" text-anchor="middle" font-weight="bold" fill="#fff">C5+</text>
-<text x="540" y="580" text-anchor="middle" font-size="13" fill="#666">35</text>
+<text x="540" y="551" text-anchor="middle" font-weight="bold" fill="#fff">C5−</text>
+<text x="540" y="580" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">A0</text>
 <rect x="596" y="470" width="8" height="34" fill="#b9b9b9"/>
 <text x="600" y="522" text-anchor="middle" font-size="14" fill="#888">7</text>
 <rect x="576" y="530" width="48" height="30" rx="6" fill="#b5782f"/>
-<text x="600" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R6−</text>
-<text x="600" y="580" text-anchor="middle" font-size="13" fill="#666">36</text>
+<text x="600" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R6+</text>
+<text x="600" y="580" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D7</text>
 <rect x="656" y="470" width="8" height="34" fill="#b9b9b9"/>
 <text x="660" y="522" text-anchor="middle" font-size="14" fill="#888">8</text>
 <rect x="636" y="530" width="48" height="30" rx="6" fill="#b5782f"/>
-<text x="660" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R3−</text>
-<text x="660" y="580" text-anchor="middle" font-size="13" fill="#666">37</text>
-<text x="190" y="74" text-anchor="end" font-size="13" fill="#666">cột lỗ (nửa xa)</text>
+<text x="660" y="551" text-anchor="middle" font-weight="bold" fill="#fff">R3+</text>
+<text x="660" y="580" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">D4</text>
+<text x="190" y="74" text-anchor="end" font-size="13" fill="#666">chân Uno</text>
 <text x="190" y="102" text-anchor="end" font-size="13" fill="#666">vai trò</text>
 <text x="190" y="132" text-anchor="end" font-size="13" fill="#666">số chân</text>
 <text x="190" y="518" text-anchor="end" font-size="13" fill="#666">số chân</text>
 <text x="190" y="550" text-anchor="end" font-size="13" fill="#666">vai trò</text>
-<text x="190" y="578" text-anchor="end" font-size="13" fill="#666">cột lỗ (nửa gần)</text>
+<text x="190" y="578" text-anchor="end" font-size="13" fill="#666">chân Uno</text>
 <rect x="205" y="170" width="490" height="300" rx="10" fill="#262626"/>
 <text x="312" y="227" text-anchor="end" font-size="13" font-weight="bold" fill="#e0a865">R1</text>
 <text x="312" y="257" text-anchor="end" font-size="13" font-weight="bold" fill="#e0a865">R2</text>
@@ -171,11 +171,11 @@
 <text x="574" y="227" font-size="12" fill="#ff8080">R1·C1</text>
 <text x="720" y="190" font-size="14" fill="#333" font-weight="bold">Nhìn từ mặt LED,</text>
 <text x="720" y="210" font-size="14" fill="#333" font-weight="bold">cạnh có mã số ở dưới</text>
-<text x="720" y="250" font-size="14" fill="#b5782f">R… − : hàng, cực âm</text>
-<text x="720" y="272" font-size="14" fill="#3f9a6e">C… + : cột, cực dương</text>
+<text x="720" y="250" font-size="14" fill="#b5782f">R… + : hàng, cực dương</text>
+<text x="720" y="272" font-size="14" fill="#3f9a6e">C… − : cột, cực âm</text>
 <text x="720" y="312" font-size="14" fill="#333">Chân 1: góc dưới trái,</text>
 <text x="720" y="332" font-size="14" fill="#333">đếm ngược chiều</text>
 <text x="720" y="352" font-size="14" fill="#333">kim đồng hồ</text>
-<text x="720" y="392" font-size="14" fill="#333">LED sáng khi cột HIGH</text>
-<text x="720" y="412" font-size="14" fill="#333">và hàng LOW</text>
+<text x="720" y="392" font-size="14" fill="#333">LED sáng khi hàng HIGH</text>
+<text x="720" y="412" font-size="14" fill="#333">và cột LOW</text>
 </svg>

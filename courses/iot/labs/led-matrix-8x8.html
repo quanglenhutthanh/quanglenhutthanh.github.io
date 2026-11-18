@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-f7b4dd7c00d09131344c922f6194db6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -213,33 +213,23 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#led-ma-trận-88-là-gì" id="toc-led-ma-trận-88-là-gì" class="nav-link" data-scroll-target="#led-ma-trận-88-là-gì">LED ma trận 8×8 là gì</a>
   <ul class="collapse">
-  <li><a href="#vì-sao-phải-quét-multiplexing" id="toc-vì-sao-phải-quét-multiplexing" class="nav-link" data-scroll-target="#vì-sao-phải-quét-multiplexing">Vì sao phải quét (multiplexing)</a></li>
+  <li><a href="#vì-sao-phải-quét" id="toc-vì-sao-phải-quét" class="nav-link" data-scroll-target="#vì-sao-phải-quét">Vì sao phải quét</a></li>
+  <li><a href="#vì-sao-quét-từng-đèn-dùng-điện-trở-220-ω" id="toc-vì-sao-quét-từng-đèn-dùng-điện-trở-220-ω" class="nav-link" data-scroll-target="#vì-sao-quét-từng-đèn-dùng-điện-trở-220-ω">Vì sao quét từng đèn, dùng điện trở 220 Ω</a></li>
   </ul></li>
-  <li><a href="#linh-kiện-và-chân" id="toc-linh-kiện-và-chân" class="nav-link" data-scroll-target="#linh-kiện-và-chân">Linh kiện và chân</a>
+  <li><a href="#linh-kiện" id="toc-linh-kiện" class="nav-link" data-scroll-target="#linh-kiện">Linh kiện</a></li>
+  <li><a href="#sơ-đồ-chân-và-nối-dây" id="toc-sơ-đồ-chân-và-nối-dây" class="nav-link" data-scroll-target="#sơ-đồ-chân-và-nối-dây">Sơ đồ chân và nối dây</a></li>
+  <li><a href="#lắp-từng-bước" id="toc-lắp-từng-bước" class="nav-link" data-scroll-target="#lắp-từng-bước">Lắp từng bước</a>
   <ul class="collapse">
-  <li><a href="#nhận-chân-ma-trận" id="toc-nhận-chân-ma-trận" class="nav-link" data-scroll-target="#nhận-chân-ma-trận">Nhận chân ma trận</a></li>
-  <li><a href="#nối-với-uno" id="toc-nối-với-uno" class="nav-link" data-scroll-target="#nối-với-uno">Nối với Uno</a></li>
-  <li><a href="#vì-sao-điện-trở-1-kω-đặt-ở-cột" id="toc-vì-sao-điện-trở-1-kω-đặt-ở-cột" class="nav-link" data-scroll-target="#vì-sao-điện-trở-1-kω-đặt-ở-cột">Vì sao điện trở 1 kΩ, đặt ở cột</a></li>
-  </ul></li>
-  <li><a href="#lắp-mạch" id="toc-lắp-mạch" class="nav-link" data-scroll-target="#lắp-mạch">Lắp mạch</a>
-  <ul class="collapse">
-  <li><a href="#quy-ước-vị-trí-trên-breadboard" id="toc-quy-ước-vị-trí-trên-breadboard" class="nav-link" data-scroll-target="#quy-ước-vị-trí-trên-breadboard">Quy ước vị trí trên breadboard</a></li>
-  <li><a href="#vì-sao-cần-vùng-điện-trở-riêng" id="toc-vì-sao-cần-vùng-điện-trở-riêng" class="nav-link" data-scroll-target="#vì-sao-cần-vùng-điện-trở-riêng">Vì sao cần vùng điện trở riêng</a></li>
-  <li><a href="#hình-lắp-đầy-đủ" id="toc-hình-lắp-đầy-đủ" class="nav-link" data-scroll-target="#hình-lắp-đầy-đủ">Hình lắp đầy đủ</a></li>
-  <li><a href="#bước-1-cắm-ma-trận" id="toc-bước-1-cắm-ma-trận" class="nav-link" data-scroll-target="#bước-1-cắm-ma-trận">Bước 1 – cắm ma trận</a></li>
-  <li><a href="#bước-2-thử-nhanh-trước-khi-đi-dây" id="toc-bước-2-thử-nhanh-trước-khi-đi-dây" class="nav-link" data-scroll-target="#bước-2-thử-nhanh-trước-khi-đi-dây">Bước 2 – thử nhanh trước khi đi dây</a></li>
-  <li><a href="#thử-1-đèn-bằng-code" id="toc-thử-1-đèn-bằng-code" class="nav-link" data-scroll-target="#thử-1-đèn-bằng-code">Thử 1 đèn bằng code</a></li>
-  <li><a href="#bước-3-8-điện-trở" id="toc-bước-3-8-điện-trở" class="nav-link" data-scroll-target="#bước-3-8-điện-trở">Bước 3 – 8 điện trở</a></li>
-  <li><a href="#bước-4-8-dây-hàng-không-qua-điện-trở" id="toc-bước-4-8-dây-hàng-không-qua-điện-trở" class="nav-link" data-scroll-target="#bước-4-8-dây-hàng-không-qua-điện-trở">Bước 4 – 8 dây hàng (không qua điện trở)</a></li>
-  <li><a href="#bước-5-16-dây-cột-qua-điện-trở" id="toc-bước-5-16-dây-cột-qua-điện-trở" class="nav-link" data-scroll-target="#bước-5-16-dây-cột-qua-điện-trở">Bước 5 – 16 dây cột (qua điện trở)</a></li>
-  <li><a href="#bước-6-kiểm-tra-trước-khi-cắm-điện" id="toc-bước-6-kiểm-tra-trước-khi-cắm-điện" class="nav-link" data-scroll-target="#bước-6-kiểm-tra-trước-khi-cắm-điện">Bước 6 – kiểm tra trước khi cắm điện</a></li>
-  <li><a href="#bước-7-cắm-usb-nạp-test-1" id="toc-bước-7-cắm-usb-nạp-test-1" class="nav-link" data-scroll-target="#bước-7-cắm-usb-nạp-test-1">Bước 7 – cắm USB, nạp Test 1</a></li>
+  <li><a href="#bước-1-thử-1-đèn" id="toc-bước-1-thử-1-đèn" class="nav-link" data-scroll-target="#bước-1-thử-1-đèn">Bước 1 – thử 1 đèn</a></li>
+  <li><a href="#bước-2-2-hàng-3-cột-6-đèn" id="toc-bước-2-2-hàng-3-cột-6-đèn" class="nav-link" data-scroll-target="#bước-2-2-hàng-3-cột-6-đèn">Bước 2 – 2 hàng × 3 cột (6 đèn)</a></li>
+  <li><a href="#bước-3-đủ-16-dây" id="toc-bước-3-đủ-16-dây" class="nav-link" data-scroll-target="#bước-3-đủ-16-dây">Bước 3 – đủ 16 dây</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
   <ul class="collapse">
-  <li><a href="#test-1-bật-lần-lượt-từng-điểm" id="toc-test-1-bật-lần-lượt-từng-điểm" class="nav-link" data-scroll-target="#test-1-bật-lần-lượt-từng-điểm">Test 1 – bật lần lượt từng điểm</a></li>
-  <li><a href="#test-2-vẽ-hình-trái-tim-quét-hàng" id="toc-test-2-vẽ-hình-trái-tim-quét-hàng" class="nav-link" data-scroll-target="#test-2-vẽ-hình-trái-tim-quét-hàng">Test 2 – vẽ hình trái tim (quét hàng)</a></li>
-  <li><a href="#test-3-chạy-chữ" id="toc-test-3-chạy-chữ" class="nav-link" data-scroll-target="#test-3-chạy-chữ">Test 3 – chạy chữ</a></li>
+  <li><a href="#test-1-chạy-điểm-sáng-qua-64-đèn" id="toc-test-1-chạy-điểm-sáng-qua-64-đèn" class="nav-link" data-scroll-target="#test-1-chạy-điểm-sáng-qua-64-đèn">Test 1 – chạy điểm sáng qua 64 đèn</a></li>
+  <li><a href="#test-2-vẽ-hình-trái-tim" id="toc-test-2-vẽ-hình-trái-tim" class="nav-link" data-scroll-target="#test-2-vẽ-hình-trái-tim">Test 2 – vẽ hình trái tim</a></li>
+  <li><a href="#test-3-chương-trình-trình-diễn" id="toc-test-3-chương-trình-trình-diễn" class="nav-link" data-scroll-target="#test-3-chương-trình-trình-diễn">Test 3 – chương trình trình diễn</a></li>
+  <li><a href="#test-4-xúc-xắc-điện-tử" id="toc-test-4-xúc-xắc-điện-tử" class="nav-link" data-scroll-target="#test-4-xúc-xắc-điện-tử">Test 4 – xúc xắc điện tử</a></li>
   </ul></li>
   <li><a href="#module-max7219" id="toc-module-max7219" class="nav-link" data-scroll-target="#module-max7219">Module MAX7219</a></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
@@ -278,7 +268,7 @@ window.Quarto = {
 <section id="lab-13-led-ma-trận-88-1088bs" class="level1">
 <h1>Lab 13 · LED ma trận 8×8 (1088BS)</h1>
 <blockquote class="blockquote">
-<p>Điều khiển ma trận LED 8×8 rời (16 chân) trực tiếp bằng Arduino Uno theo kiểu <strong>quét hàng</strong> (multiplexing): bật từng điểm, vẽ hình trái tim, rồi chạy chữ. Cuối lab có phần cho <strong>module MAX7219</strong> nếu kit của bạn là loại đã gắn sẵn IC điều khiển.</p>
+<p>Điều khiển ma trận LED 8×8 rời (16 chân) trực tiếp bằng Arduino Uno, không dùng IC điều khiển: thử 1 đèn, chạy điểm sáng qua 64 đèn, vẽ trái tim, chạy chương trình trình diễn (tim đập, mặt cười, mưa rơi, Game of Life) và làm xúc xắc điện tử. Cuối lab có phần cho <strong>module MAX7219</strong> nếu kit của bạn là loại đã gắn sẵn IC.</p>
 </blockquote>
 <section id="led-ma-trận-88-là-gì" class="level2">
 <h2 class="anchored" data-anchor-id="led-ma-trận-88-là-gì">LED ma trận 8×8 là gì</h2>
@@ -287,24 +277,59 @@ window.Quarto = {
 <li><strong>8 LED cùng hàng</strong> chung một cực,</li>
 <li><strong>8 LED cùng cột</strong> chung cực còn lại.</li>
 </ul>
-<p>Với <strong>1088BS</strong> (loại trong kit), hàng nối <strong>cực âm</strong> (cathode), cột nối <strong>cực dương</strong> (anode). Loại 1088AS thì ngược lại; hai loại có cùng sơ đồ chân, chỉ khác chiều cực.</p>
-<p>Kết quả là chỉ còn <strong>16 chân</strong>: 8 chân hàng + 8 chân cột. LED ở hàng <code>r</code>, cột <code>c</code> sáng khi chân hàng <code>r</code> ở mức “bật” <strong>và</strong> chân cột <code>c</code> ở mức “bật” (với 1088BS: cột HIGH, hàng LOW).</p>
-<pre><code>            C1   C2   C3  ...  C8      (chân cột: cực dương)
+<p>Kết quả là chỉ còn <strong>16 chân</strong>: 8 chân hàng + 8 chân cột. Với con <strong>1088BS</strong> trong kit (đã thử thực tế), hàng nối <strong>cực dương</strong> (anode), cột nối <strong>cực âm</strong> (cathode): LED ở hàng <code>r</code>, cột <code>c</code> sáng khi chân hàng <code>r</code> ở <code>HIGH</code> <strong>và</strong> chân cột <code>c</code> ở <code>LOW</code>.</p>
+<pre><code>            C1   C2   C3  ...  C8      (chân cột: cực âm)
              │    │    │        │
-   R1 ───────●────●────●── … ───●      ● = 1 LED, anode nối cột,
-             │    │    │        │          cathode nối hàng
+   R1 ──────►●────●────●── … ───●      ● = 1 LED, anode nối hàng,
+             │    │    │        │          cathode nối cột
    R2 ──────►●────●────●── … ───●
              ⋮    ⋮    ⋮        ⋮
    R8 ──────►●────●────●── … ───●</code></pre>
-<section id="vì-sao-phải-quét-multiplexing" class="level3">
-<h3 class="anchored" data-anchor-id="vì-sao-phải-quét-multiplexing">Vì sao phải quét (multiplexing)</h3>
+<p><strong>Hậu tố <code>AS</code> / <code>BS</code> không thống nhất giữa các hãng.</strong> Có ma trận cùng mã, cùng sơ đồ chân nhưng ngược chiều cực. Vì vậy luôn làm <a href="#bước-1--thử-1-đèn">Bước 1 – thử 1 đèn</a> trước; nếu ngược thì chỉ cần đảo 4 dòng <code>#define</code> trong code.</p>
+<section id="vì-sao-phải-quét" class="level3">
+<h3 class="anchored" data-anchor-id="vì-sao-phải-quét">Vì sao phải quét</h3>
 <p>Với kiểu nối chung này, <strong>không thể</strong> bật tùy ý nhiều điểm cùng lúc. Ví dụ muốn sáng (R1,C1) và (R2,C2): bật R1, R2, C1, C2 thì (R1,C2) và (R2,C1) cũng sáng theo — ra 4 điểm thay vì 2.</p>
-<p>Cách giải: <strong>mỗi lúc chỉ bật một hàng</strong>, đặt 8 chân cột theo hình của hàng đó, giữ khoảng 1 ms, tắt, chuyển sang hàng kế. Quét hết 8 hàng mất ~8 ms, tức hơn 100 lần/giây. Mắt người không thấy nhấp nháy ở tần số trên ~50 Hz nên thấy cả hình đứng yên. Đây cũng là nguyên lý của <a href="../../../courses/iot/labs/seven-segment-5641as.html">LED 7 đoạn 4 số ở Lab 7</a>, chỉ khác là 8 “chữ số” thay vì 4.</p>
-<p>Hệ quả: mỗi LED chỉ sáng <strong>1/8 thời gian</strong>, nên hình sẽ tối hơn so với một LED đơn cùng dòng điện.</p>
+<p>Cách giải: bật <strong>lần lượt từng điểm</strong> của hình, mỗi điểm khoảng 0,15 ms, rồi lặp lại thật nhanh. Quét hết 64 điểm mất khoảng 10 ms, tức khoảng 100 lần/giây; mắt người không thấy nhấp nháy ở tần số trên ~50 Hz nên thấy cả hình đứng yên. Đây cũng là nguyên lý quét của <a href="../../../courses/iot/labs/seven-segment-5641as.html">LED 7 đoạn 4 số ở Lab 7</a>.</p>
+</section>
+<section id="vì-sao-quét-từng-đèn-dùng-điện-trở-220-ω" class="level3">
+<h3 class="anchored" data-anchor-id="vì-sao-quét-từng-đèn-dùng-điện-trở-220-ω">Vì sao quét từng đèn, dùng điện trở 220 Ω</h3>
+<p>Cách quét phổ biến hơn là <strong>quét theo hàng</strong>: bật cả một hàng, đặt 8 cột theo hình. Nhưng khi cả hàng sáng, <strong>một chân hàng</strong> phải cấp dòng cho cả 8 LED. Giới hạn của Uno là <strong>40 mA mỗi chân</strong> (khuyến nghị ≤ 20 mA). Với LED đỏ (<span class="math inline">V_f \approx 1{,}8</span> V):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Điện trở cột</th>
+<th>Dòng 1 LED</th>
+<th>Quét theo hàng (8 LED/chân)</th>
+<th>Quét từng đèn (1 LED/chân)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>220 Ω</td>
+<td>~14,5 mA</td>
+<td><strong>~116 mA — hỏng chân</strong></td>
+<td>~14,5 mA — an toàn</td>
+</tr>
+<tr class="even">
+<td>1 kΩ</td>
+<td>~3,2 mA</td>
+<td>~26 mA — an toàn</td>
+<td>~3,2 mA — rất tối</td>
+</tr>
+</tbody>
+</table>
+<p>Lab này dùng <strong>8 điện trở 220 Ω</strong> (vòng đỏ – đỏ – nâu, kit có sẵn nhiều) và <strong>quét từng đèn</strong>: mỗi thời điểm chỉ một LED sáng, nên dòng qua mọi chân Uno luôn khoảng 14,5 mA. Đánh đổi là mỗi LED chỉ sáng một phần nhỏ thời gian; hình càng ít điểm thì càng sáng.</p>
+<p><strong>Không chạy code quét theo hàng với điện trở 220 Ω.</strong> Nếu dùng 1 kΩ thì quét theo hàng được, nhưng phải đủ 8 điện trở 1 kΩ.</p>
 </section>
 </section>
-<section id="linh-kiện-và-chân" class="level2">
-<h2 class="anchored" data-anchor-id="linh-kiện-và-chân">Linh kiện và chân</h2>
+<section id="linh-kiện" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện">Linh kiện</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -322,97 +347,42 @@ window.Quarto = {
 <td>1</td>
 </tr>
 <tr class="odd">
-<td>Điện trở <strong>1 kΩ</strong> (nâu – đen – đỏ)</td>
+<td>Điện trở <strong>220 Ω</strong> (đỏ – đỏ – nâu)</td>
 <td>8</td>
 </tr>
 <tr class="even">
 <td>Breadboard</td>
-<td>1 (loại lớn 830 lỗ)</td>
+<td>1 (chỉ để cắm điện trở)</td>
 </tr>
 <tr class="odd">
+<td>Dây <strong>đực – cái</strong></td>
+<td>16 (từ chân ma trận ra)</td>
+</tr>
+<tr class="even">
 <td>Dây đực – đực</td>
-<td>24 (8 cho hàng, 16 cho cột)</td>
+<td>8 (từ điện trở về Uno)</td>
 </tr>
 </tbody>
 </table>
-<section id="nhận-chân-ma-trận" class="level3">
-<h3 class="anchored" data-anchor-id="nhận-chân-ma-trận">Nhận chân ma trận</h3>
-<p>Đặt ma trận <strong>mặt LED hướng về phía mình</strong>, cạnh có in mã số (<code>1088BS</code>) ở <strong>phía dưới</strong>. Chân 1 ở <strong>góc dưới bên trái</strong>, đánh số <strong>ngược chiều kim đồng hồ</strong>: 1 → 8 dọc hàng chân dưới từ trái sang phải, 9 → 16 dọc hàng chân trên từ phải sang trái.</p>
+<p><strong>Không cắm ma trận lên breadboard.</strong> Thân 1088BS rộng khoảng 32 mm, cắm vắt qua rãnh giữa sẽ che kín cả 5 lỗ mỗi bên, không còn chỗ cắm dây. Thay vào đó, cắm <strong>đầu cái</strong> của dây đực – cái thẳng vào từng chân ma trận.</p>
+</section>
+<section id="sơ-đồ-chân-và-nối-dây" class="level2">
+<h2 class="anchored" data-anchor-id="sơ-đồ-chân-và-nối-dây">Sơ đồ chân và nối dây</h2>
+<p>Cầm ma trận <strong>mặt LED hướng về phía mình</strong>, cạnh có in chữ <code>1088BS</code> ở <strong>phía dưới</strong>. Chân 1 ở <strong>góc dưới bên trái</strong>, đánh số <strong>ngược chiều kim đồng hồ</strong>: 1 → 8 dọc hàng chân dưới từ trái sang phải, 9 → 16 dọc hàng chân trên từ phải sang trái.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/led-matrix-8x8-pinout.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Sơ đồ chân 1088BS nhìn từ mặt LED, cạnh có mã số ở dưới. Mỗi chân ghi số chân, vai trò (R = hàng, cực âm; C = cột, cực dương) và cột lỗ breadboard khi cắm ma trận ở cột 30–37</figcaption>
+<figcaption>Sơ đồ chân 1088BS nhìn từ mặt LED, cạnh có mã số ở dưới. Mỗi chân ghi số chân, vai trò (R = hàng, cực dương; C = cột, cực âm) và chân Arduino Uno cần nối tới</figcaption>
 </figure>
 </div>
-<p>Sơ đồ chân của 1088BS (giống hệt 1088AS, chỉ khác chiều cực):</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Hàng</th>
-<th>R1</th>
-<th>R2</th>
-<th>R3</th>
-<th>R4</th>
-<th>R5</th>
-<th>R6</th>
-<th>R7</th>
-<th>R8</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Chân ma trận</td>
-<td>9</td>
-<td>14</td>
-<td>8</td>
-<td>12</td>
-<td>1</td>
-<td>7</td>
-<td>2</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Cột</th>
-<th>C1</th>
-<th>C2</th>
-<th>C3</th>
-<th>C4</th>
-<th>C5</th>
-<th>C6</th>
-<th>C7</th>
-<th>C8</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Chân ma trận</td>
-<td>13</td>
-<td>3</td>
-<td>4</td>
-<td>10</td>
-<td>6</td>
-<td>11</td>
-<td>15</td>
-<td>16</td>
-</tr>
-</tbody>
-</table>
-<p>Thứ tự này <strong>không theo quy luật</strong> — do cách đi mạch bên trong — nên phải tra bảng, không đoán.</p>
-<p><strong><code>AS</code> hay <code>BS</code>.</strong> Hậu tố chỉ khác chiều cực: <strong>1088BS</strong> hàng là cathode (cột là anode), <strong>1088AS</strong> hàng là anode. Code trong lab mặc định cho 1088BS, có hằng số để đảo nếu dùng loại kia. Một số hãng ghi ngược quy ước, nên vẫn làm Bước 2 (thử nhanh) ở phần Lắp mạch để chắc chắn.</p>
-<p><strong>Tự dò chân nếu không chắc</strong>: nối <code>5V</code> qua một điện trở 1 kΩ vào một chân, <code>GND</code> vào một chân khác. Nếu một LED sáng thì chân nối <code>5V</code> là <strong>hàng/cột anode</strong>, chân nối <code>GND</code> là cathode, và vị trí LED sáng cho biết đó là hàng nào, cột nào. Lặp lại vài lần là dựng lại được bảng trên.</p>
-</section>
-<section id="nối-với-uno" class="level3">
-<h3 class="anchored" data-anchor-id="nối-với-uno">Nối với Uno</h3>
-<p>Dùng 16 chân của Uno: <code>D2</code>–<code>D13</code> và <code>A0</code>–<code>A3</code> (chân analog dùng được như chân digital, <code>A0</code> = 14 … <code>A3</code> = 17). Chừa <code>D0</code>/<code>D1</code> cho Serial.</p>
+<p>Thứ tự hàng/cột <strong>không theo quy luật</strong> — do cách đi mạch bên trong — nên phải tra bảng, không đoán. Dùng 16 chân Uno: <code>D2</code>–<code>D13</code> và <code>A0</code>–<code>A3</code> (chân analog dùng được như chân digital). Chừa <code>D0</code>/<code>D1</code> cho Serial.</p>
+<p><strong>8 dây hàng (R) — cắm thẳng về Uno, không qua điện trở:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Hàng</th>
 <th>Chân ma trận</th>
+<th>Vị trí chân (đếm từ trái)</th>
 <th>Uno</th>
 </tr>
 </thead>
@@ -420,50 +390,60 @@ window.Quarto = {
 <tr class="odd">
 <td>R1</td>
 <td>9</td>
+<td>trên, thứ 8 (ngoài cùng phải)</td>
 <td><code>D2</code></td>
 </tr>
 <tr class="even">
 <td>R2</td>
 <td>14</td>
+<td>trên, thứ 3</td>
 <td><code>D3</code></td>
 </tr>
 <tr class="odd">
 <td>R3</td>
 <td>8</td>
+<td>dưới, thứ 8 (ngoài cùng phải)</td>
 <td><code>D4</code></td>
 </tr>
 <tr class="even">
 <td>R4</td>
 <td>12</td>
+<td>trên, thứ 5</td>
 <td><code>D5</code></td>
 </tr>
 <tr class="odd">
 <td>R5</td>
 <td>1</td>
+<td>dưới, thứ 1 (ngoài cùng trái)</td>
 <td><code>D6</code></td>
 </tr>
 <tr class="even">
 <td>R6</td>
 <td>7</td>
+<td>dưới, thứ 7</td>
 <td><code>D7</code></td>
 </tr>
 <tr class="odd">
 <td>R7</td>
 <td>2</td>
+<td>dưới, thứ 2</td>
 <td><code>D8</code></td>
 </tr>
 <tr class="even">
 <td>R8</td>
 <td>5</td>
+<td>dưới, thứ 5</td>
 <td><code>D9</code></td>
 </tr>
 </tbody>
 </table>
+<p><strong>8 dây cột (C) — đi qua điện trở 220 Ω:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Cột</th>
 <th>Chân ma trận</th>
+<th>Vị trí chân (đếm từ trái)</th>
 <th>Uno</th>
 </tr>
 </thead>
@@ -471,176 +451,87 @@ window.Quarto = {
 <tr class="odd">
 <td>C1</td>
 <td>13</td>
-<td><code>D10</code> qua 1 kΩ</td>
+<td>trên, thứ 4</td>
+<td>220 Ω → <code>D10</code></td>
 </tr>
 <tr class="even">
 <td>C2</td>
 <td>3</td>
-<td><code>D11</code> qua 1 kΩ</td>
+<td>dưới, thứ 3</td>
+<td>220 Ω → <code>D11</code></td>
 </tr>
 <tr class="odd">
 <td>C3</td>
 <td>4</td>
-<td><code>D12</code> qua 1 kΩ</td>
+<td>dưới, thứ 4</td>
+<td>220 Ω → <code>D12</code></td>
 </tr>
 <tr class="even">
 <td>C4</td>
 <td>10</td>
-<td><code>D13</code> qua 1 kΩ</td>
+<td>trên, thứ 7</td>
+<td>220 Ω → <code>D13</code></td>
 </tr>
 <tr class="odd">
 <td>C5</td>
 <td>6</td>
-<td><code>A0</code> qua 1 kΩ</td>
+<td>dưới, thứ 6</td>
+<td>220 Ω → <code>A0</code></td>
 </tr>
 <tr class="even">
 <td>C6</td>
 <td>11</td>
-<td><code>A1</code> qua 1 kΩ</td>
+<td>trên, thứ 6</td>
+<td>220 Ω → <code>A1</code></td>
 </tr>
 <tr class="odd">
 <td>C7</td>
 <td>15</td>
-<td><code>A2</code> qua 1 kΩ</td>
+<td>trên, thứ 2</td>
+<td>220 Ω → <code>A2</code></td>
 </tr>
 <tr class="even">
 <td>C8</td>
 <td>16</td>
-<td><code>A3</code> qua 1 kΩ</td>
+<td>trên, thứ 1 (ngoài cùng trái)</td>
+<td>220 Ω → <code>A3</code></td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="vì-sao-điện-trở-1-kω-đặt-ở-cột" class="level3">
-<h3 class="anchored" data-anchor-id="vì-sao-điện-trở-1-kω-đặt-ở-cột">Vì sao điện trở 1 kΩ, đặt ở cột</h3>
-<p>Khi quét theo hàng, <strong>một chân hàng</strong> phải gánh dòng của tối đa <strong>8 LED</strong> (với 1088BS là hút dòng về, vì hàng là cực âm) cùng lúc (cả hàng sáng), còn mỗi chân cột chỉ mang dòng của <strong>1 LED</strong>. Vì vậy điện trở đặt ở <strong>cột</strong> để mỗi LED có điện trở riêng, sáng đều nhau.</p>
-<p>Giới hạn của Uno: tối đa <strong>40 mA mỗi chân</strong> (khuyến nghị ≤ 20 mA). Với LED đỏ (<span class="math inline">V_f \approx 1{,}8</span> V):</p>
-<p><span class="math display">
-I_{LED} = \frac{5 - 1{,}8}{1000} \approx 3{,}2 \text{ mA}, \qquad I_{hàng} = 8 \times 3{,}2 \approx 26 \text{ mA}
-</span></p>
-<p>Dòng chân hàng dưới 40 mA, an toàn. Nếu dùng 220 Ω như các lab trước thì <span class="math inline">I_{LED} \approx 14{,}5</span> mA và cả hàng sáng sẽ kéo <strong>~116 mA</strong> qua một chân — đủ để làm hỏng chân đó. Hình hơi tối là cái giá phải trả khi lái trực tiếp; muốn sáng hơn thì dùng IC điều khiển (xem phần <a href="#module-max7219">MAX7219</a>).</p>
-</section>
-</section>
-<section id="lắp-mạch" class="level2">
-<h2 class="anchored" data-anchor-id="lắp-mạch">Lắp mạch</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/led-matrix-8x8-schematic.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Sơ đồ nối ma trận 1088BS với Arduino Uno. Ma trận vẽ theo đúng vị trí chân khi nhìn từ mặt LED, cạnh có mã số ở dưới. Màu nâu: 8 dây hàng nối thẳng về Uno; màu xanh lục: 8 dây cột đi qua điện trở 1 kΩ</figcaption>
+<figcaption>Sơ đồ nối ma trận 1088BS với Arduino Uno. Màu nâu: 8 dây hàng nối thẳng về Uno; màu xanh lục: 8 dây cột đi qua điện trở 220 Ω</figcaption>
 </figure>
 </div>
-<p><strong>Rút cáp USB ra trước khi cắm dây.</strong> Mạch có 24 dây, nên làm từng bước và đánh dấu từng dòng trong bảng khi cắm xong.</p>
-<section id="quy-ước-vị-trí-trên-breadboard" class="level3">
-<h3 class="anchored" data-anchor-id="quy-ước-vị-trí-trên-breadboard">Quy ước vị trí trên breadboard</h3>
-<p>Đặt breadboard nằm ngang trước mặt. Các <strong>cột lỗ</strong> được đánh số 1 → 63 từ trái sang phải; mỗi cột lỗ có 5 lỗ ở <strong>nửa gần</strong> (phía mình, dưới rãnh giữa) nối chung với nhau, và 5 lỗ ở <strong>nửa xa</strong> (trên rãnh giữa) nối chung với nhau. Hai nửa <strong>không</strong> nối với nhau qua rãnh.</p>
-<p>Trong hướng dẫn này, “cột 33 – xa” nghĩa là <em>một lỗ bất kỳ còn trống ở cột 33, nửa xa</em>.</p>
-<p>Mạch chia hai vùng:</p>
+<p>Đường đi của mỗi loại dây:</p>
+<pre><code>Dây hàng:  chân R ──(đực–cái)───────────────────────────────────────► Uno D2…D9
+
+Dây cột:   chân C ──(đực–cái)──► [hàng lỗ X] ═ 220 Ω ═ [hàng lỗ Y] ──(đực–đực)──► Uno D10…D13 / A0…A3
+                                 └──── breadboard, điện trở vắt qua rãnh giữa ────┘</code></pre>
 <ul>
-<li><strong>Vùng ma trận</strong>: cột 30 – 37.</li>
-<li><strong>Vùng điện trở</strong>: cột 4 – 18, mỗi điện trở cách nhau một cột.</li>
+<li>Mỗi điện trở <strong>vắt qua rãnh giữa</strong> breadboard. Ở mỗi đầu, dây và chân điện trở phải nằm <strong>cùng một hàng 5 lỗ</strong>.</li>
+<li>Các điện trở cách nhau <strong>ít nhất một hàng lỗ</strong> để chân không chạm nhau.</li>
+<li>Mạch <strong>không dùng</strong> <code>5V</code>, <code>GND</code>: ma trận lấy điện qua chính các chân D/A.</li>
+<li><code>A0</code>–<code>A3</code> ở hàng chân <strong>ANALOG IN</strong> (mép dưới bên phải Uno), dùng như chân digital.</li>
 </ul>
-<p>Vị trí từng chân ma trận trên cột lỗ 30 – 37 xem ở <a href="#nhận-chân-ma-trận">hình sơ đồ chân</a> (hàng số nhỏ trên/dưới cùng).</p>
 </section>
-<section id="vì-sao-cần-vùng-điện-trở-riêng" class="level3">
-<h3 class="anchored" data-anchor-id="vì-sao-cần-vùng-điện-trở-riêng">Vì sao cần vùng điện trở riêng</h3>
-<p>Trong vùng ma trận, 8 cột lỗ 30 – 37 nằm sát nhau và <strong>mỗi cột đã thuộc về một chân khác nhau</strong>. Không thể cắm điện trở từ chân này sang cột lỗ bên cạnh, vì cột bên cạnh chính là một chân khác của ma trận — sẽ nối tắt hai chân. Vì vậy điện trở được đặt ở chỗ trống bên trái, mỗi cái <strong>vắt qua rãnh giữa</strong>: một chân ở nửa gần, một chân ở nửa xa của cùng một cột lỗ. Dòng đi: chân ma trận → dây → điện trở → dây → Uno.</p>
-</section>
-<section id="hình-lắp-đầy-đủ" class="level3">
-<h3 class="anchored" data-anchor-id="hình-lắp-đầy-đủ">Hình lắp đầy đủ</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/led-matrix-8x8-breadboard.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Hình lắp trên breadboard (1088BS). Ma trận ở cột 30–37, 8 điện trở 1 kΩ vắt qua rãnh ở cột 4–18. Nhãn D2, A0… ở đầu mỗi dây là chân Arduino Uno cần cắm vào. Chữ nhỏ trên lỗ cạnh ma trận cho biết chân đó là hàng hay cột nào.</figcaption>
-</figure>
-</div>
-<p>Dây nâu (hàng) đi thẳng từ ma trận về Uno. Dây xanh (cột) đi từ ma trận vòng sang một điện trở, rồi từ đầu kia của điện trở về Uno. Các bước dưới đây đi lần lượt từng phần của hình này.</p>
-</section>
-<section id="bước-1-cắm-ma-trận" class="level3">
-<h3 class="anchored" data-anchor-id="bước-1-cắm-ma-trận">Bước 1 – cắm ma trận</h3>
-<ol type="1">
-<li>Tìm <strong>cạnh có in mã số</strong> (<code>1088BS</code>) trên thân ma trận. Cạnh đó hướng <strong>về phía mình</strong>.</li>
-<li>Đặt ma trận vắt ngang rãnh giữa, hàng chân có mã số (chân 1 – 8) cắm vào <strong>nửa gần</strong>, hàng chân kia (chân 9 – 16) cắm vào <strong>nửa xa</strong>.</li>
-<li>Canh cho <strong>chân 1</strong> (góc gần, bên trái) rơi vào <strong>cột 30</strong>. Khi đó chân 1 → 8 nằm ở cột 30 → 37 nửa gần, chân 16 → 9 nằm ở cột 30 → 37 nửa xa.</li>
-<li>Ấn đều hai tay lên thân ma trận cho đến khi cả 16 chân vào hết. Nếu một bên vào mà bên kia kẹt, rút ra và nắn thẳng chân — chân ma trận ngắn, dễ cong gập bên dưới mà không biết.</li>
-</ol>
-<p>Sau bước này, mỗi cột lỗ 30 – 37 có hai chân ma trận (một ở nửa gần, một ở nửa xa) — <strong>đúng</strong>, vì hai nửa không nối nhau.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Cột lỗ</th>
-<th>Nửa gần: chân → vai trò</th>
-<th>Nửa xa: chân → vai trò</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>30</td>
-<td>1 → <strong>R5</strong></td>
-<td>16 → C8</td>
-</tr>
-<tr class="even">
-<td>31</td>
-<td>2 → <strong>R7</strong></td>
-<td>15 → C7</td>
-</tr>
-<tr class="odd">
-<td>32</td>
-<td>3 → C2</td>
-<td>14 → <strong>R2</strong></td>
-</tr>
-<tr class="even">
-<td>33</td>
-<td>4 → C3</td>
-<td>13 → C1</td>
-</tr>
-<tr class="odd">
-<td>34</td>
-<td>5 → <strong>R8</strong></td>
-<td>12 → <strong>R4</strong></td>
-</tr>
-<tr class="even">
-<td>35</td>
-<td>6 → C5</td>
-<td>11 → C6</td>
-</tr>
-<tr class="odd">
-<td>36</td>
-<td>7 → <strong>R6</strong></td>
-<td>10 → C4</td>
-</tr>
-<tr class="even">
-<td>37</td>
-<td>8 → <strong>R3</strong></td>
-<td>9 → <strong>R1</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Thân ma trận sẽ che phần lớn các lỗ bên dưới, thường chỉ còn <strong>1 – 2 lỗ ở mép ngoài</strong> (phía xa nhất so với rãnh) của mỗi cột lỗ. Dây cắm vào các lỗ mép ngoài đó. Nếu thân ma trận che kín, nhấc ma trận ra, cắm dây vào các lỗ sát mép trước rồi mới cắm lại ma trận, hoặc dùng dây <strong>đực – cái</strong> cắm thẳng vào chân ma trận.</p>
-</section>
-<section id="bước-2-thử-nhanh-trước-khi-đi-dây" class="level3">
-<h3 class="anchored" data-anchor-id="bước-2-thử-nhanh-trước-khi-đi-dây">Bước 2 – thử nhanh trước khi đi dây</h3>
-<p>Trước khi cắm 24 dây, kiểm tra hướng ma trận bằng một LED:</p>
-<ol type="1">
-<li>Một dây từ <code>5V</code> của Uno, qua một <strong>điện trở 1 kΩ</strong>, vào <strong>cột 33 – xa</strong> (chân 13 = C1, cực dương với 1088BS).</li>
-<li>Một dây từ <code>GND</code> vào <strong>cột 37 – xa</strong> (chân 9 = R1, cực âm).</li>
-<li>Cắm USB: LED <strong>góc trên bên trái</strong> phải sáng.</li>
-</ol>
-<ul>
-<li>Sáng đúng góc → đúng 1088BS, dùng code mặc định.</li>
-<li>Không sáng → đổi chỗ hai dây (<code>5V</code> vào cột 37, <code>GND</code> vào cột 33). Nếu giờ sáng thì ma trận thực ra là loại hàng anode (như 1088AS): khi nạp code nhớ đảo <code>ROW_ON/OFF</code> và <code>COL_ON/OFF</code>.</li>
-<li>Sáng ở góc khác → ma trận đang bị xoay, kiểm tra lại cạnh có mã số.</li>
-</ul>
-<p><strong>Rút USB</strong> và gỡ hai dây thử ra trước khi sang bước tiếp.</p>
-</section>
-<section id="thử-1-đèn-bằng-code" class="level3">
-<h3 class="anchored" data-anchor-id="thử-1-đèn-bằng-code">Thử 1 đèn bằng code</h3>
-<p>Trước khi cắm đủ 24 dây, cho Uno điều khiển một đèn (R1 · C1) với 3 dây và 1 điện trở:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/led-matrix-8x8-test-1-led.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Mạch thử 1 đèn: R1 (cột 37 – xa) về D2; C1 (a) từ cột 33 – xa sang cột 14 – xa; điện trở 1 kΩ vắt qua rãnh ở cột 14; C1 (b) từ cột 14 – gần về D10</figcaption>
-</figure>
-</div>
+<section id="lắp-từng-bước" class="level2">
+<h2 class="anchored" data-anchor-id="lắp-từng-bước">Lắp từng bước</h2>
+<p>Không cắm đủ 24 dây rồi mới thử. Mỗi bước chỉ cắm thêm vài dây, nạp code, thấy đúng rồi mới cắm tiếp — khi có lỗi thì biết ngay nằm ở mấy dây vừa cắm. <strong>Rút USB mỗi lần cắm thêm dây.</strong></p>
+<p>Cả lab dùng chung phần khai báo chân dưới đây. Mảng <code>ROWS[]</code> / <code>COLS[]</code> theo đúng thứ tự R1…R8 và C1…C8:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span>             <span class="co">// R1 → R8</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span>     <span class="co">// C1 → C8</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 1088BS trong kit: hàng = cực dương, cột = cực âm</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Nếu ma trận của bạn ngược cực, đổi ngược cả bốn dòng dưới.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>HIGH</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>LOW</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>LOW</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>HIGH</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="bước-1-thử-1-đèn" class="level3">
+<h3 class="anchored" data-anchor-id="bước-1-thử-1-đèn">Bước 1 – thử 1 đèn</h3>
+<p>Chỉ cắm <strong>R1</strong> và <strong>C1</strong>: 2 dây đực – cái, 1 điện trở, 1 dây đực – đực.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -652,435 +543,491 @@ I_{LED} = \frac{5 - 1{,}8}{1000} \approx 3{,}2 \text{ mA}, \qquad I_{hàng} = 8 
 <tbody>
 <tr class="odd">
 <td>R1</td>
-<td>cột 37 – xa</td>
+<td>chân 9 (trên, ngoài cùng phải)</td>
 <td><code>D2</code></td>
 </tr>
 <tr class="even">
-<td>C1 (a)</td>
-<td>cột 33 – xa</td>
-<td>cột 14 – xa</td>
+<td>C1</td>
+<td>chân 13 (trên, thứ 4 từ trái)</td>
+<td>một đầu điện trở 220 Ω</td>
 </tr>
 <tr class="odd">
-<td>Điện trở 1 kΩ</td>
-<td>cột 14 – xa</td>
-<td>cột 14 – gần (vắt qua rãnh)</td>
-</tr>
-<tr class="even">
-<td>C1 (b)</td>
-<td>cột 14 – gần</td>
+<td>—</td>
+<td>đầu kia điện trở</td>
 <td><code>D10</code></td>
 </tr>
 </tbody>
 </table>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW1 </span><span class="dv">2</span><span class="pp">     </span><span class="co">// R1 (cực âm)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL1 </span><span class="dv">10</span><span class="pp">    </span><span class="co">// C1 (cực dương), qua 1 kΩ</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>ROW1<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>COL1<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>ROW1<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>COL1<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"R1 C1: SANG"</span><span class="op">);</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>COL1<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"R1 C1: tat"</span><span class="op">);</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>LED góc trên bên trái nhấp nháy mỗi nửa giây là đúng. Các dây và điện trở này nằm đúng vị trí của mạch đầy đủ, nên <strong>giữ nguyên</strong> và cắm tiếp các bước dưới.</p>
-</section>
-<section id="bước-3-8-điện-trở" class="level3">
-<h3 class="anchored" data-anchor-id="bước-3-8-điện-trở">Bước 3 – 8 điện trở</h3>
-<p>Cắm 8 điện trở 1 kΩ (nâu – đen – đỏ) <strong>vắt qua rãnh giữa</strong>, mỗi cái nằm dọc trong một cột lỗ: một chân ở nửa gần, một chân ở nửa xa.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Điện trở cho</th>
-<th>Cột lỗ</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>C5</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>C3</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>C2</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>C4</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td>C6</td>
-<td>12</td>
-</tr>
-<tr class="even">
-<td>C1</td>
-<td>14</td>
-</tr>
-<tr class="odd">
-<td>C7</td>
-<td>16</td>
-</tr>
-<tr class="even">
-<td>C8</td>
-<td>18</td>
-</tr>
-</tbody>
-</table>
-<p>Thứ tự điện trở không theo C1 → C8 mà được xếp sao cho <strong>các dây không bắt chéo nhau</strong> (xem hình lắp ở trên).</p>
-<p>Cách một cột giữa hai điện trở để chân không chạm nhau. Bẻ chân điện trở thành hình chữ U cho vừa khoảng cách qua rãnh. Điện trở không phân cực.</p>
-</section>
-<section id="bước-4-8-dây-hàng-không-qua-điện-trở" class="level3">
-<h3 class="anchored" data-anchor-id="bước-4-8-dây-hàng-không-qua-điện-trở">Bước 4 – 8 dây hàng (không qua điện trở)</h3>
-<p>Dùng <strong>một màu dây</strong> (ví dụ đỏ) cho tất cả dây hàng. Mỗi dây nối thẳng từ vùng ma trận về Uno:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Hàng</th>
-<th>Từ lỗ</th>
-<th>Đến Uno</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>R1</td>
-<td>cột 37 – xa</td>
-<td><code>D2</code></td>
-</tr>
-<tr class="even">
-<td>R2</td>
-<td>cột 32 – xa</td>
-<td><code>D3</code></td>
-</tr>
-<tr class="odd">
-<td>R3</td>
-<td>cột 37 – gần</td>
-<td><code>D4</code></td>
-</tr>
-<tr class="even">
-<td>R4</td>
-<td>cột 34 – xa</td>
-<td><code>D5</code></td>
-</tr>
-<tr class="odd">
-<td>R5</td>
-<td>cột 30 – gần</td>
-<td><code>D6</code></td>
-</tr>
-<tr class="even">
-<td>R6</td>
-<td>cột 36 – gần</td>
-<td><code>D7</code></td>
-</tr>
-<tr class="odd">
-<td>R7</td>
-<td>cột 31 – gần</td>
-<td><code>D8</code></td>
-</tr>
-<tr class="even">
-<td>R8</td>
-<td>cột 34 – gần</td>
-<td><code>D9</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="bước-5-16-dây-cột-qua-điện-trở" class="level3">
-<h3 class="anchored" data-anchor-id="bước-5-16-dây-cột-qua-điện-trở">Bước 5 – 16 dây cột (qua điện trở)</h3>
-<p>Dùng <strong>màu khác</strong> (ví dụ xanh) cho dây cột. Mỗi cột cần <strong>hai dây</strong>: dây (a) từ chân ma trận tới điện trở, <strong>cùng nửa</strong> với chân ma trận (chân ở nửa xa thì vào đầu xa của điện trở, chân ở nửa gần thì vào đầu gần); dây (b) từ <strong>đầu còn lại</strong> của điện trở về Uno. Nhờ vậy dây (a) của nửa xa đi vòng phía trên, của nửa gần đi vòng phía dưới, không dây nào vắt ngang breadboard.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW1 </span><span class="dv">2</span><span class="pp">     </span><span class="co">// R1 (cực dương)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL1 </span><span class="dv">10</span><span class="pp">    </span><span class="co">// C1 (cực âm), qua 220 Ω</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>ROW1<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>COL1<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>ROW1<span class="op">,</span> HIGH<span class="op">);</span>   <span class="co">// hàng = cực dương</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>COL1<span class="op">,</span> LOW<span class="op">);</span>    <span class="co">// cột = cực âm → LOW thì sáng</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"R1 C1: SANG"</span><span class="op">);</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>COL1<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"R1 C1: tat"</span><span class="op">);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Kết quả đúng:</strong> LED <strong>góc trên bên trái</strong> nhấp nháy mỗi nửa giây.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Cột</th>
-<th>(a) Từ chân ma trận</th>
-<th>→ đến điện trở</th>
-<th>(b) Từ điện trở</th>
-<th>→ đến Uno</th>
+<th>Hiện tượng</th>
+<th>Nguyên nhân / cách xử lý</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>C1</td>
-<td>cột 33 – xa</td>
-<td>cột 14 – xa</td>
-<td>cột 14 – gần</td>
-<td><code>D10</code></td>
+<td>Serial in đều nhưng không sáng</td>
+<td>Ma trận ngược cực: đổi <code>HIGH</code> ↔︎ <code>LOW</code> ở cả hai chân (<code>ROW1</code> thành <code>LOW</code>, <code>COL1</code> sáng khi <code>HIGH</code>). Nếu giờ sáng thì đảo 4 dòng <code>#define</code> ở mọi code sau</td>
 </tr>
 <tr class="even">
-<td>C2</td>
-<td>cột 32 – gần</td>
-<td>cột 8 – gần</td>
-<td>cột 8 – xa</td>
-<td><code>D11</code></td>
+<td>Đổi cực vẫn không sáng</td>
+<td>Đầu dây cái chưa ăn vào chân (ấn hết cỡ), hoặc dây và chân điện trở không cùng hàng 5 lỗ</td>
 </tr>
 <tr class="odd">
-<td>C3</td>
-<td>cột 33 – gần</td>
-<td>cột 6 – gần</td>
-<td>cột 6 – xa</td>
-<td><code>D12</code></td>
-</tr>
-<tr class="even">
-<td>C4</td>
-<td>cột 36 – xa</td>
-<td>cột 10 – xa</td>
-<td>cột 10 – gần</td>
-<td><code>D13</code></td>
-</tr>
-<tr class="odd">
-<td>C5</td>
-<td>cột 35 – gần</td>
-<td>cột 4 – gần</td>
-<td>cột 4 – xa</td>
-<td><code>A0</code></td>
-</tr>
-<tr class="even">
-<td>C6</td>
-<td>cột 35 – xa</td>
-<td>cột 12 – xa</td>
-<td>cột 12 – gần</td>
-<td><code>A1</code></td>
-</tr>
-<tr class="odd">
-<td>C7</td>
-<td>cột 31 – xa</td>
-<td>cột 16 – xa</td>
-<td>cột 16 – gần</td>
-<td><code>A2</code></td>
-</tr>
-<tr class="even">
-<td>C8</td>
-<td>cột 30 – xa</td>
-<td>cột 18 – xa</td>
-<td>cột 18 – gần</td>
-<td><code>A3</code></td>
+<td>Sáng LED khác</td>
+<td>Cắm nhầm chân — kiểm tra lại hướng cầm: mặt LED về phía mình, chữ <code>1088BS</code> ở dưới</td>
 </tr>
 </tbody>
 </table>
-<p>Mẹo: làm xong toàn bộ cột (a) trước, rồi mới làm cột (b). Lỗ cắm dây ở vùng điện trở nên chọn hàng ngoài cùng (<code>j</code> hoặc <code>a</code>), để chừa hàng <code>f</code>/<code>e</code> cho chân điện trở. Dây (b) đi về hàng chân <strong>analog</strong> <code>A0</code>–<code>A3</code> ở mép dưới bên phải Uno, đừng nhầm với hàng chân nguồn bên cạnh.</p>
+<p>Kiểm tra nhanh không cần code: dây điện trở sang <code>GND</code>, dây chân 9 sang <code>5V</code>; không sáng thì đổi chiều. Chiều nào sáng thì chân nối <code>5V</code> là cực dương.</p>
 </section>
-<section id="bước-6-kiểm-tra-trước-khi-cắm-điện" class="level3">
-<h3 class="anchored" data-anchor-id="bước-6-kiểm-tra-trước-khi-cắm-điện">Bước 6 – kiểm tra trước khi cắm điện</h3>
-<ul>
-<li><strong>Đếm dây</strong>: 8 dây đỏ (hàng) đi thẳng từ cột 30 – 37 về <code>D2</code>–<code>D9</code>; 16 dây xanh (cột) đi qua vùng điện trở.</li>
-<li><strong>Mỗi lỗ ở vùng ma trận chỉ có một dây</strong> ở mỗi nửa. Cả 16 vị trí (8 cột lỗ × 2 nửa) đều có đúng một dây.</li>
-<li><strong>Không có dây nào nối thẳng</strong> từ vùng ma trận về <code>D10</code>–<code>D13</code> / <code>A0</code>–<code>A3</code> mà bỏ qua điện trở.</li>
-<li>Không có dây nào cắm vào thanh nguồn <code>+</code>/<code>−</code> — lab này không dùng thanh nguồn.</li>
-<li>Dán bảng ở Bước 4 – 5 cạnh mạch để dò lại khi có lỗi.</li>
-</ul>
+<section id="bước-2-2-hàng-3-cột-6-đèn" class="level3">
+<h3 class="anchored" data-anchor-id="bước-2-2-hàng-3-cột-6-đèn">Bước 2 – 2 hàng × 3 cột (6 đèn)</h3>
+<p>Giữ dây Bước 1, cắm thêm:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Thêm</th>
+<th>Chân ma trận</th>
+<th>Nối về Uno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C2</td>
+<td>3 (dưới, thứ 3)</td>
+<td>220 Ω → <code>D11</code></td>
+</tr>
+<tr class="even">
+<td>C3</td>
+<td>4 (dưới, thứ 4)</td>
+<td>220 Ω → <code>D12</code></td>
+</tr>
+<tr class="odd">
+<td>R2</td>
+<td>14 (trên, thứ 3)</td>
+<td>thẳng → <code>D3</code></td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span>          <span class="co">// R1, R2  (cực dương)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">};</span>    <span class="co">// C1, C2, C3 (cực âm, qua 220 Ω)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte NR <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span>ROWS<span class="op">);</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte NC <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span>COLS<span class="op">);</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> allOff<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> NR<span class="op">;</span> i<span class="op">++)</span> digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> LOW<span class="op">);</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> NC<span class="op">;</span> i<span class="op">++)</span> digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> HIGH<span class="op">);</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> NR<span class="op">;</span> i<span class="op">++)</span> pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> NC<span class="op">;</span> i<span class="op">++)</span> pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  allOff<span class="op">();</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> NR<span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> NC<span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      allOff<span class="op">();</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> HIGH<span class="op">);</span>   <span class="co">// bật hàng</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> LOW<span class="op">);</span>    <span class="co">// bật cột</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"R"</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>r <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" C"</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>c <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>      delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Kết quả đúng:</strong> điểm sáng chạy ① → ⑥, mỗi lúc chỉ một đèn, khớp dòng Serial:</p>
+<pre><code>         C1   C2   C3
+R1  →    ①    ②    ③      (hàng trên cùng)
+R2  →    ④    ⑤    ⑥      (hàng thứ 2)</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hiện tượng</th>
+<th>Nguyên nhân</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Serial in <code>R1 C2</code> mà không đèn nào sáng</td>
+<td>Dây hoặc điện trở của C2 lỏng / không cùng hàng lỗ</td>
+</tr>
+<tr class="even">
+<td><code>R1 C2</code> sáng ở vị trí C3 và ngược lại</td>
+<td>Hai dây <code>D11</code> và <code>D12</code> bị đổi chỗ trên Uno</td>
+</tr>
+<tr class="odd">
+<td><code>R2 …</code> sáng ở hàng khác</td>
+<td>Nhầm chân: R2 là chân 14, hàng chân <strong>trên</strong>, thứ 3 từ trái</td>
+</tr>
+<tr class="even">
+<td>Đèn sáng lung tung, nhiều đèn cùng lúc</td>
+<td>Đang chạy code cũ chỉ khai báo 2 chân — các chân còn lại thả nổi. Nạp đúng code bước này</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="bước-7-cắm-usb-nạp-test-1" class="level3">
-<h3 class="anchored" data-anchor-id="bước-7-cắm-usb-nạp-test-1">Bước 7 – cắm USB, nạp Test 1</h3>
-<p>Nạp code Test 1 bên dưới, mở Serial Monitor. Điểm sáng phải chạy từ góc trên bên trái, sang phải hết hàng 1, rồi xuống hàng 2… Nếu sai, so dòng <code>R? C?</code> trên Serial với vị trí LED thật và tra lại bảng Bước 4 – 5.</p>
+<section id="bước-3-đủ-16-dây" class="level3">
+<h3 class="anchored" data-anchor-id="bước-3-đủ-16-dây">Bước 3 – đủ 16 dây</h3>
+<p>Cắm thêm <strong>C4 – C8</strong> (mỗi cột một điện trở 220 Ω), chạy thử, rồi cắm <strong>R3 – R8</strong> theo bảng ở phần <a href="#sơ-đồ-chân-và-nối-dây">Sơ đồ chân và nối dây</a>. Hàng nào chưa cắm thì lúc chạy đến hàng đó ma trận chỉ tối. Sau đó chuyển sang Test 1.</p>
+<p>Đối chiếu nhanh khi cắm xong:</p>
+<pre><code>Hàng chân TRÊN (trái → phải):  C8  C7  R2  C1  R4  C6  C4  R1
+                        Uno:   A3  A2  D3  D10 D5  A1  D13 D2
+
+Hàng chân DƯỚI (trái → phải):  R5  R7  C2  C3  R8  C5  R6  R3
+                        Uno:   D6  D8  D11 D12 D9  A0  D7  D4</code></pre>
 </section>
 </section>
 <section id="code" class="level2">
 <h2 class="anchored" data-anchor-id="code">Code</h2>
-<p>Cả ba test dùng chung phần khai báo chân dưới đây. Mảng <code>ROWS[]</code> / <code>COLS[]</code> theo đúng thứ tự R1…R8 và C1…C8, nên nếu nối khác bảng thì chỉ cần sửa hai mảng này.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 1088BS: hàng là cathode, cột là anode → cột HIGH + hàng LOW thì LED sáng.</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Nếu Test 1 không có LED nào sáng (ma trận loại 1088AS), đổi ngược cả bốn dòng dưới.</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>LOW</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>HIGH</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>HIGH</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>LOW</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="test-1-bật-lần-lượt-từng-điểm" class="level3">
-<h3 class="anchored" data-anchor-id="test-1-bật-lần-lượt-từng-điểm">Test 1 – bật lần lượt từng điểm</h3>
-<p>Cho một điểm sáng chạy qua đủ 64 vị trí, từ trái sang phải, trên xuống dưới. Đây là bài <strong>kiểm tra dây</strong>: nếu thứ tự chạy sai thì biết ngay dây nào bị lẫn.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>LOW</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>HIGH</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>HIGH</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>LOW</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> allOff<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> COL_OFF<span class="op">);</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  allOff<span class="op">();</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      allOff<span class="op">();</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_ON<span class="op">);</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> COL_ON<span class="op">);</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"R"</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>r <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" C"</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>c <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>      delay<span class="op">(</span><span class="dv">150</span><span class="op">);</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="test-1-chạy-điểm-sáng-qua-64-đèn" class="level3">
+<h3 class="anchored" data-anchor-id="test-1-chạy-điểm-sáng-qua-64-đèn">Test 1 – chạy điểm sáng qua 64 đèn</h3>
+<p>Kiểm tra toàn bộ dây: một điểm sáng chạy từ trái sang phải, trên xuống dưới, qua đủ 64 vị trí.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span>             <span class="co">// R1 → R8</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span>     <span class="co">// C1 → C8</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>HIGH</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>LOW</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>LOW</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>HIGH</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> allOff<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> COL_OFF<span class="op">);</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  allOff<span class="op">();</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>      allOff<span class="op">();</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>      digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_ON<span class="op">);</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> COL_ON<span class="op">);</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"R"</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>r <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" C"</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>c <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>      delay<span class="op">(</span><span class="dv">150</span><span class="op">);</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Cách kiểm tra:</strong></p>
 <ul>
-<li>Mở Serial Monitor (9600 baud). Mỗi dòng <code>R? C?</code> tương ứng đúng <strong>một</strong> LED sáng ở hàng, cột đó (hàng 1 ở trên, cột 1 bên trái khi mã số ở dưới).</li>
-<li><strong>Không LED nào sáng</strong>: ma trận ngược cực so với code (loại hàng là anode, như 1088AS) — đổi <code>ROW_ON</code>/<code>ROW_OFF</code> thành <code>HIGH</code>/<code>LOW</code> và <code>COL_ON</code>/<code>COL_OFF</code> thành <code>LOW</code>/<code>HIGH</code>, nạp lại.</li>
-<li><strong>Sáng nhưng sai chỗ</strong>: ghi lại dòng Serial và vị trí thật, so với bảng để tìm dây bị đổi. Nếu hình bị xoay 90° (điểm chạy dọc thay vì ngang) thì hàng và cột đang bị đổi vai — tráo hai mảng <code>ROWS</code> và <code>COLS</code>, đồng thời đảo chiều <code>ON</code>/<code>OFF</code>.</li>
+<li>Mỗi dòng <code>R? C?</code> trên Serial Monitor (9600 baud) tương ứng đúng <strong>một</strong> LED sáng ở hàng, cột đó.</li>
+<li><strong>Sáng sai chỗ</strong>: ghi lại dòng Serial và vị trí thật, tra bảng để tìm hai dây bị đổi. Nếu điểm chạy dọc thay vì ngang thì hàng và cột bị đổi vai.</li>
 <li><strong>Một hàng hoặc một cột không bao giờ sáng</strong>: dây đó lỏng hoặc chưa cắm.</li>
-<li><code>D13</code> có LED <code>L</code> trên board Uno nối song song, nên LED <code>L</code> sẽ nháy theo cột 4 — bình thường.</li>
+<li><code>D13</code> có LED <code>L</code> trên board Uno nối song song, nên LED <code>L</code> nháy theo cột 4 — bình thường.</li>
 </ul>
+<video controls="" playsinline="" preload="metadata" poster="../assets/led-matrix-8x8-scan-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/led-matrix-8x8-scan-real.mp4" type="video/mp4">
+</video>
+<p>Mạch thật chạy Test 1: 16 dây đực – cái cắm thẳng vào chân ma trận, ma trận đặt đứng trước breadboard. Điểm sáng chạy lần lượt qua các vị trí; đoạn sau của video quay sang Uno và breadboard có các điện trở vắt qua rãnh giữa.</p>
 </section>
-<section id="test-2-vẽ-hình-trái-tim-quét-hàng" class="level3">
-<h3 class="anchored" data-anchor-id="test-2-vẽ-hình-trái-tim-quét-hàng">Test 2 – vẽ hình trái tim (quét hàng)</h3>
+<section id="test-2-vẽ-hình-trái-tim" class="level3">
+<h3 class="anchored" data-anchor-id="test-2-vẽ-hình-trái-tim">Test 2 – vẽ hình trái tim</h3>
 <p>Hình được lưu thành mảng 8 byte, mỗi byte là một hàng, <strong>bit 7 là cột 1</strong> (trái), bit 0 là cột 8. Viết ở dạng nhị phân <code>0b…</code> thì nhìn code thấy luôn hình.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>LOW</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>HIGH</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>HIGH</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>LOW</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte HEART<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000000</span><span class="op">,</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01100110</span><span class="op">,</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11111111</span><span class="op">,</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11111111</span><span class="op">,</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01111110</span><span class="op">,</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00111100</span><span class="op">,</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00011000</span><span class="op">,</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000000</span><span class="op">,</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> COL_OFF<span class="op">);</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co">// Vẽ 1 khung hình: quét 8 hàng một lượt (~8 ms)</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawFrame<span class="op">(</span><span class="at">const</span> byte img<span class="op">[</span><span class="dv">8</span><span class="op">])</span> <span class="op">{</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 1. Đặt 8 cột theo hình của hàng r</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>      <span class="dt">bool</span> on <span class="op">=</span> img<span class="op">[</span>r<span class="op">]</span> <span class="op">&amp;</span> <span class="op">(</span><span class="bn">0x80</span> <span class="op">&gt;&gt;</span> c<span class="op">);</span>      <span class="co">// bit 7 = cột 1</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>      digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> on <span class="op">?</span> COL_ON <span class="op">:</span> COL_OFF<span class="op">);</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 2. Bật hàng r, giữ 1 ms, tắt</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_ON<span class="op">);</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  drawFrame<span class="op">(</span>HEART<span class="op">);</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>HIGH</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>LOW</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>LOW</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>HIGH</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte HEART<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000000</span><span class="op">,</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01100110</span><span class="op">,</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11111111</span><span class="op">,</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11111111</span><span class="op">,</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01111110</span><span class="op">,</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00111100</span><span class="op">,</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00011000</span><span class="op">,</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000000</span><span class="op">,</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> COL_OFF<span class="op">);</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">// Quét từng đèn: mỗi lúc chỉ 1 LED sáng → dòng mỗi chân ~14,5 mA, an toàn với 220 Ω</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawFrame<span class="op">(</span><span class="at">const</span> byte img<span class="op">[</span><span class="dv">8</span><span class="op">])</span> <span class="op">{</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_ON<span class="op">);</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>img<span class="op">[</span>r<span class="op">]</span> <span class="op">&amp;</span> <span class="op">(</span><span class="bn">0x80</span> <span class="op">&gt;&gt;</span> c<span class="op">))</span> <span class="op">{</span>           <span class="co">// bit 7 = cột 1</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> COL_ON<span class="op">);</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        delayMicroseconds<span class="op">(</span><span class="dv">150</span><span class="op">);</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> COL_OFF<span class="op">);</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  drawFrame<span class="op">(</span>HEART<span class="op">);</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Giải thích:</p>
 <ul>
-<li><strong>Thứ tự trong <code>drawFrame</code></strong>: đặt cột <strong>trước</strong>, rồi mới bật hàng, và tắt hàng <strong>trước</strong> khi chuyển sang hàng kế. Nếu làm ngược, hàng mới sẽ thoáng hiện hình của hàng cũ, gây “bóng ma” (ghosting) mờ mờ.</li>
-<li><strong><code>loop()</code> phải gọi <code>drawFrame</code> liên tục</strong>. Chỉ cần thêm một <code>delay(500)</code> vào <code>loop()</code> là hình tắt ngay — vì ma trận không tự nhớ hình, CPU phải vẽ lại liên tục.</li>
+<li><strong><code>drawFrame</code> chỉ bật những điểm có bit <code>1</code></strong>, mỗi điểm 150 µs rồi tắt. Hình trái tim có 36 điểm nên một khung mất khoảng 5,4 ms, tức gần 200 khung mỗi giây.</li>
+<li><strong><code>loop()</code> phải gọi <code>drawFrame</code> liên tục.</strong> Thêm một <code>delay(500)</code> vào <code>loop()</code> là hình tắt ngay — ma trận không tự nhớ hình, CPU phải vẽ lại liên tục.</li>
+<li>Hình nhấp nháy thì giảm <code>delayMicroseconds(150)</code> xuống <code>100</code>; muốn sáng hơn thì tăng lên <code>250</code> (tăng quá sẽ bắt đầu thấy nháy).</li>
+<li>Tự vẽ hình khác: sửa các số <code>0b…</code>, mỗi số <code>1</code> là một điểm sáng.</li>
 </ul>
-<p><strong>Cách kiểm tra:</strong></p>
-<ul>
-<li>Thấy trái tim đứng yên, không nhấp nháy.</li>
-<li>Đổi <code>delay(1)</code> thành <code>delay(10)</code>: quét 8 hàng mất 80 ms (~12 Hz), sẽ thấy rõ các hàng sáng <strong>lần lượt</strong> từ trên xuống — đây chính là quét hàng chạy chậm.</li>
-<li>Tự vẽ hình khác: sửa các số <code>0b…</code> trong <code>HEART</code>, mỗi số <code>1</code> là một điểm sáng.</li>
-</ul>
+<video controls="" playsinline="" preload="metadata" poster="../assets/led-matrix-8x8-heart-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/led-matrix-8x8-heart-real.mp4" type="video/mp4">
+</video>
+<p>Trái tim hiện đứng yên, không nhấp nháy, dù thực ra mỗi lúc chỉ có một LED sáng.</p>
 </section>
-<section id="test-3-chạy-chữ" class="level3">
-<h3 class="anchored" data-anchor-id="test-3-chạy-chữ">Test 3 – chạy chữ</h3>
-<p>Cho dòng chữ <code>IOT ♥</code> chạy từ phải sang trái. Lần này chữ được lưu <strong>theo cột</strong> (mỗi byte là một cột, bit 0 là hàng 1 trên cùng) vì chạy chữ ngang thực chất là dịch cửa sổ 8 cột dọc theo một dải cột dài.</p>
-<p>Không dùng <code>delay()</code> để đợi giữa hai bước dịch, vì như Test 2 cho thấy, <code>delay</code> làm ma trận tắt. Thay vào đó dùng <code>millis()</code>: vẫn vẽ liên tục, chỉ dịch khi đã đủ 100 ms.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>LOW</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>HIGH</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>HIGH</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>LOW</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Mỗi byte = 1 cột, bit 0 = hàng 1 (trên cùng)</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte MSG<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0x41</span><span class="op">,</span> <span class="bn">0x7F</span><span class="op">,</span> <span class="bn">0x41</span><span class="op">,</span>                   <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span>   <span class="co">// I</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0x3E</span><span class="op">,</span> <span class="bn">0x41</span><span class="op">,</span> <span class="bn">0x41</span><span class="op">,</span> <span class="bn">0x41</span><span class="op">,</span> <span class="bn">0x3E</span><span class="op">,</span>       <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span>   <span class="co">// O</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0x01</span><span class="op">,</span> <span class="bn">0x01</span><span class="op">,</span> <span class="bn">0x7F</span><span class="op">,</span> <span class="bn">0x01</span><span class="op">,</span> <span class="bn">0x01</span><span class="op">,</span>       <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span>   <span class="co">// T</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0x0C</span><span class="op">,</span> <span class="bn">0x1E</span><span class="op">,</span> <span class="bn">0x3E</span><span class="op">,</span> <span class="bn">0x7C</span><span class="op">,</span> <span class="bn">0x3E</span><span class="op">,</span> <span class="bn">0x1E</span><span class="op">,</span> <span class="bn">0x0C</span><span class="op">,</span>         <span class="co">// ♥</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span>   <span class="co">// khoảng trống trước khi lặp</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> MSG_LEN <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span>MSG<span class="op">);</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STEP_MS </span><span class="dv">100</span><span class="pp">      </span><span class="co">// dịch 1 cột mỗi 100 ms</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> offset <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lastStep <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> COL_OFF<span class="op">);</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawWindow<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>      byte col <span class="op">=</span> MSG<span class="op">[(</span>offset <span class="op">+</span> c<span class="op">)</span> <span class="op">%</span> MSG_LEN<span class="op">];</span>   <span class="co">// vòng lại đầu chuỗi</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>      <span class="dt">bool</span> on <span class="op">=</span> col <span class="op">&amp;</span> <span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> r<span class="op">);</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>      digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> on <span class="op">?</span> COL_ON <span class="op">:</span> COL_OFF<span class="op">);</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_ON<span class="op">);</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  drawWindow<span class="op">();</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> lastStep <span class="op">&gt;=</span> STEP_MS<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    lastStep <span class="op">=</span> millis<span class="op">();</span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> <span class="op">(</span>offset <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="op">%</span> MSG_LEN<span class="op">;</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Cách kiểm tra:</strong></p>
+<section id="test-3-chương-trình-trình-diễn" class="level3">
+<h3 class="anchored" data-anchor-id="test-3-chương-trình-trình-diễn">Test 3 – chương trình trình diễn</h3>
+<p>Bốn hiệu ứng chạy lần lượt rồi lặp lại: <strong>tim đập</strong>, <strong>mặt cười nháy mắt</strong>, <strong>mưa rơi</strong> và <strong>Game of Life</strong>. Hàm <code>show(img, ms)</code> giữ một hình trên ma trận trong <code>ms</code> mili giây bằng cách gọi <code>drawFrame</code> liên tục — thay cho <code>delay()</code>, vốn làm tắt hình.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>HIGH</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>LOW</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>LOW</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>HIGH</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">// ----- Các hình (mỗi byte = 1 hàng, bit 7 = cột 1) -----</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte HEART_BIG<span class="op">[</span><span class="dv">8</span><span class="op">]</span>   <span class="op">=</span> <span class="op">{</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0xFF</span><span class="op">,</span><span class="bn">0xFF</span><span class="op">,</span><span class="bn">0x7E</span><span class="op">,</span><span class="bn">0x3C</span><span class="op">,</span><span class="bn">0x18</span><span class="op">,</span><span class="bn">0x00</span><span class="op">};</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte HEART_SMALL<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x24</span><span class="op">,</span><span class="bn">0x7E</span><span class="op">,</span><span class="bn">0x3C</span><span class="op">,</span><span class="bn">0x18</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">};</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte SMILE<span class="op">[</span><span class="dv">8</span><span class="op">]</span>       <span class="op">=</span> <span class="op">{</span><span class="bn">0x3C</span><span class="op">,</span><span class="bn">0x42</span><span class="op">,</span><span class="bn">0xA5</span><span class="op">,</span><span class="bn">0x81</span><span class="op">,</span><span class="bn">0xA5</span><span class="op">,</span><span class="bn">0x99</span><span class="op">,</span><span class="bn">0x42</span><span class="op">,</span><span class="bn">0x3C</span><span class="op">};</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte WINK<span class="op">[</span><span class="dv">8</span><span class="op">]</span>        <span class="op">=</span> <span class="op">{</span><span class="bn">0x3C</span><span class="op">,</span><span class="bn">0x42</span><span class="op">,</span><span class="bn">0xB5</span><span class="op">,</span><span class="bn">0x81</span><span class="op">,</span><span class="bn">0xA5</span><span class="op">,</span><span class="bn">0x99</span><span class="op">,</span><span class="bn">0x42</span><span class="op">,</span><span class="bn">0x3C</span><span class="op">};</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>byte frame<span class="op">[</span><span class="dv">8</span><span class="op">];</span>   <span class="co">// hình thay đổi được (mưa, Game of Life)</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">// Quét từng đèn: mỗi lúc chỉ 1 LED sáng → an toàn với 220 Ω</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawFrame<span class="op">(</span><span class="at">const</span> byte img<span class="op">[</span><span class="dv">8</span><span class="op">])</span> <span class="op">{</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_ON<span class="op">);</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>img<span class="op">[</span>r<span class="op">]</span> <span class="op">&amp;</span> <span class="op">(</span><span class="bn">0x80</span> <span class="op">&gt;&gt;</span> c<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> COL_ON<span class="op">);</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        delayMicroseconds<span class="op">(</span><span class="dv">150</span><span class="op">);</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> COL_OFF<span class="op">);</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">// Giữ một hình trên ma trận trong ms mili giây</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> show<span class="op">(</span><span class="at">const</span> byte img<span class="op">[</span><span class="dv">8</span><span class="op">],</span> <span class="dt">unsigned</span> <span class="dt">int</span> ms<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">long</span> t0 <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> t0 <span class="op">&lt;</span> ms<span class="op">)</span> drawFrame<span class="op">(</span>img<span class="op">);</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">// ----- Game of Life: mỗi ô sống/chết theo số hàng xóm -----</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>byte cell<span class="op">(</span><span class="at">const</span> byte g<span class="op">[</span><span class="dv">8</span><span class="op">],</span> <span class="dt">int</span> r<span class="op">,</span> <span class="dt">int</span> c<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>  r <span class="op">=</span> <span class="op">(</span>r <span class="op">+</span> <span class="dv">8</span><span class="op">)</span> <span class="op">%</span> <span class="dv">8</span><span class="op">;</span>  c <span class="op">=</span> <span class="op">(</span>c <span class="op">+</span> <span class="dv">8</span><span class="op">)</span> <span class="op">%</span> <span class="dv">8</span><span class="op">;</span>          <span class="co">// tràn mép thì vòng sang mép kia</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="op">(</span>g<span class="op">[</span>r<span class="op">]</span> <span class="op">&gt;&gt;</span> <span class="op">(</span><span class="dv">7</span> <span class="op">-</span> c<span class="op">))</span> <span class="op">&amp;</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lifeStep<span class="op">(</span>byte g<span class="op">[</span><span class="dv">8</span><span class="op">])</span> <span class="op">{</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>  byte next<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">0</span><span class="op">};</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>      byte n <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> dr <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span> dr <span class="op">&lt;=</span> <span class="dv">1</span><span class="op">;</span> dr<span class="op">++)</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> dc <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span> dc <span class="op">&lt;=</span> <span class="dv">1</span><span class="op">;</span> dc<span class="op">++)</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="op">(</span>dr <span class="op">||</span> dc<span class="op">)</span> n <span class="op">+=</span> cell<span class="op">(</span>g<span class="op">,</span> r <span class="op">+</span> dr<span class="op">,</span> c <span class="op">+</span> dc<span class="op">);</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>      <span class="dt">bool</span> alive <span class="op">=</span> cell<span class="op">(</span>g<span class="op">,</span> r<span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">3</span> <span class="op">||</span> <span class="op">(</span>alive <span class="op">&amp;&amp;</span> n <span class="op">==</span> <span class="dv">2</span><span class="op">))</span> next<span class="op">[</span>r<span class="op">]</span> <span class="op">|=</span> <span class="bn">0x80</span> <span class="op">&gt;&gt;</span> c<span class="op">;</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>  memcpy<span class="op">(</span>g<span class="op">,</span> next<span class="op">,</span> <span class="dv">8</span><span class="op">);</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> COL_OFF<span class="op">);</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>  randomSeed<span class="op">(</span>analogRead<span class="op">(</span>A5<span class="op">));</span>   <span class="co">// A5 để trống → số ngẫu nhiên mỗi lần chạy khác nhau</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Tim đập</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">4</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>HEART_BIG<span class="op">,</span> <span class="dv">300</span><span class="op">);</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>HEART_SMALL<span class="op">,</span> <span class="dv">200</span><span class="op">);</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Mặt cười nháy mắt</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">3</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>SMILE<span class="op">,</span> <span class="dv">900</span><span class="op">);</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>WINK<span class="op">,</span> <span class="dv">250</span><span class="op">);</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 3. Mưa rơi</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>  memset<span class="op">(</span>frame<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">8</span><span class="op">);</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> r <span class="op">=</span> <span class="dv">7</span><span class="op">;</span> r <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span> r<span class="op">--)</span> frame<span class="op">[</span>r<span class="op">]</span> <span class="op">=</span> frame<span class="op">[</span>r <span class="op">-</span> <span class="dv">1</span><span class="op">];</span>   <span class="co">// dịch xuống 1 hàng</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>    frame<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>random<span class="op">(</span><span class="dv">6</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> frame<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">|=</span> <span class="bn">0x80</span> <span class="op">&gt;&gt;</span> c<span class="op">;</span>           <span class="co">// giọt mưa mới ở hàng trên</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>frame<span class="op">,</span> <span class="dv">80</span><span class="op">);</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 4. Game of Life</span></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> frame<span class="op">[</span>r<span class="op">]</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">256</span><span class="op">);</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> g <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> g <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> g<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>frame<span class="op">,</span> <span class="dv">150</span><span class="op">);</span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>    lifeStep<span class="op">(</span>frame<span class="op">);</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
 <ul>
-<li>Chữ <code>I</code>, <code>O</code>, <code>T</code> rồi trái tim chạy từ phải sang trái, hết chuỗi thì quay lại từ đầu.</li>
-<li>Đổi <code>STEP_MS</code> thành <code>50</code> (nhanh hơn) hoặc <code>200</code> (chậm hơn) — độ sáng không đổi vì việc vẽ không phụ thuộc tốc độ chạy.</li>
-<li>Thêm chữ: vẽ chữ trên giấy kẻ ô 8 hàng, mỗi cột đổi thành một byte (hàng 1 = bit 0 = giá trị 1, hàng 2 = 2, hàng 3 = 4, …, hàng 8 = 128) rồi chèn vào <code>MSG</code>.</li>
+<li><strong>Mưa rơi</strong>: mỗi bước dịch cả hình xuống một hàng, hàng trên cùng sinh giọt mới ngẫu nhiên (mỗi cột 1/6 cơ hội).</li>
+<li><strong>Game of Life</strong> (John Conway): mỗi đèn là một tế bào. Tế bào sống còn sống nếu có 2–3 hàng xóm sống; ô trống sinh tế bào mới nếu có đúng 3 hàng xóm sống. Từ một hình ngẫu nhiên, các đám đèn tự lớn lên, chết đi hoặc bò quanh ma trận. Mép trên nối với mép dưới, mép trái nối với mép phải.</li>
+<li><strong><code>randomSeed(analogRead(A5))</code></strong>: <code>A5</code> không nối gì nên đọc ra nhiễu ngẫu nhiên — mỗi lần bật, mưa và Game of Life khác nhau.</li>
 </ul>
+<video controls="" playsinline="" preload="metadata" poster="../assets/led-matrix-8x8-show-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/led-matrix-8x8-show-real.mp4" type="video/mp4">
+</video>
+<p>Ma trận được dựng trên đầu một joystick (chỉ làm giá đỡ, không nối dây). Lần lượt thấy trái tim đập to – nhỏ, mặt cười nháy mắt trái, rồi mưa rơi và các đám đèn của Game of Life.</p>
+</section>
+<section id="test-4-xúc-xắc-điện-tử" class="level3">
+<h3 class="anchored" data-anchor-id="test-4-xúc-xắc-điện-tử">Test 4 – xúc xắc điện tử</h3>
+<p>Không cần nút nhấn: gõ một ký tự bất kỳ trong <strong>Serial Monitor</strong> rồi nhấn <strong>Enter</strong> để lắc, hoặc chờ 5 giây để xúc xắc tự lắc.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span>             <span class="co">// R1 → R8</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span>     <span class="co">// C1 → C8</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>HIGH</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>LOW</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>LOW</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>HIGH</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define AUTO_MS </span><span class="dv">5000</span><span class="pp">   </span><span class="co">// tự lắc sau mỗi 5 giây</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte DICE<span class="op">[</span><span class="dv">6</span><span class="op">][</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x18</span><span class="op">,</span><span class="bn">0x18</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">},</span>   <span class="co">// 1</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x60</span><span class="op">,</span><span class="bn">0x60</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x06</span><span class="op">,</span><span class="bn">0x06</span><span class="op">},</span>   <span class="co">// 2</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x60</span><span class="op">,</span><span class="bn">0x60</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x18</span><span class="op">,</span><span class="bn">0x18</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x06</span><span class="op">,</span><span class="bn">0x06</span><span class="op">},</span>   <span class="co">// 3</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x66</span><span class="op">},</span>   <span class="co">// 4</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x18</span><span class="op">,</span><span class="bn">0x18</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x66</span><span class="op">},</span>   <span class="co">// 5</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x00</span><span class="op">,</span><span class="bn">0x66</span><span class="op">,</span><span class="bn">0x66</span><span class="op">},</span>   <span class="co">// 6</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>byte face <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lastRoll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">// Quét từng đèn: mỗi lúc chỉ 1 LED sáng → an toàn với 220 Ω</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawFrame<span class="op">(</span><span class="at">const</span> byte img<span class="op">[</span><span class="dv">8</span><span class="op">])</span> <span class="op">{</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_ON<span class="op">);</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>img<span class="op">[</span>r<span class="op">]</span> <span class="op">&amp;</span> <span class="op">(</span><span class="bn">0x80</span> <span class="op">&gt;&gt;</span> c<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> COL_ON<span class="op">);</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>        delayMicroseconds<span class="op">(</span><span class="dv">150</span><span class="op">);</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>COLS<span class="op">[</span>c<span class="op">],</span> COL_OFF<span class="op">);</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>r<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="co">// Giữ một hình trên ma trận trong ms mili giây</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> show<span class="op">(</span><span class="at">const</span> byte img<span class="op">[</span><span class="dv">8</span><span class="op">],</span> <span class="dt">unsigned</span> <span class="dt">int</span> ms<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">long</span> t0 <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> t0 <span class="op">&lt;</span> ms<span class="op">)</span> drawFrame<span class="op">(</span>img<span class="op">);</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> roll<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">12</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span>             <span class="co">// hiệu ứng đang lăn, chậm dần</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>DICE<span class="op">[</span>random<span class="op">(</span><span class="dv">6</span><span class="op">)],</span> <span class="dv">40</span> <span class="op">+</span> i <span class="op">*</span> <span class="dv">15</span><span class="op">);</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>  face <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Ket qua: "</span><span class="op">);</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>face <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>  lastRoll <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> COL_OFF<span class="op">);</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>  randomSeed<span class="op">(</span>analogRead<span class="op">(</span>A5<span class="op">));</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Go phim bat ky + Enter de lac xuc xac"</span><span class="op">);</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>Serial<span class="op">.</span>available<span class="op">())</span> <span class="op">{</span>                   <span class="co">// có ký tự gửi từ Serial Monitor</span></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>Serial<span class="op">.</span>available<span class="op">())</span> Serial<span class="op">.</span>read<span class="op">();</span> <span class="co">// đọc bỏ hết</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    roll<span class="op">();</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> lastRoll <span class="op">&gt;=</span> AUTO_MS<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>    roll<span class="op">();</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>  drawFrame<span class="op">(</span>DICE<span class="op">[</span>face<span class="op">]);</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Cách chơi:</strong></p>
+<ol type="1">
+<li>Nạp code, mở <strong>Serial Monitor</strong> ở 9600 baud.</li>
+<li>Gõ một ký tự (ví dụ <code>a</code>) vào ô <em>Message</em>, nhấn <strong>Enter</strong>: ma trận đổi mặt liên tục, chậm dần rồi dừng; Serial in <code>Ket qua: …</code> khớp số chấm trên ma trận.</li>
+<li>Không gõ gì thì 5 giây sau xúc xắc tự lắc. Sửa <code>AUTO_MS</code> để đổi khoảng thời gian; muốn <strong>chỉ lắc khi gõ phím</strong> thì xoá nhánh <code>else if (...) { roll(); }</code>.</li>
+</ol>
+<p>Mỗi chấm xúc xắc là một khối 2×2 LED, đặt ở các vị trí góc / giữa của lưới 8×8.</p>
+<video controls="" playsinline="" preload="metadata" poster="../assets/led-matrix-8x8-dice-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+<source src="../assets/led-matrix-8x8-dice-real.mp4" type="video/mp4">
+</video>
+<p>Ma trận hiện mặt <strong>1</strong>: một khối 2×2 LED ở giữa lưới.</p>
 </section>
 </section>
 <section id="module-max7219" class="level2">
 <h2 class="anchored" data-anchor-id="module-max7219">Module MAX7219</h2>
-<p>Nhiều kit bán ma trận 8×8 <strong>gắn sẵn trên một bo mạch có IC MAX7219</strong> (bo xanh, 5 chân <code>VCC GND DIN CS CLK</code> ở mỗi đầu). Khi đó toàn bộ phần quét hàng, điện trở, giới hạn dòng đã nằm trong IC:</p>
+<p>Nhiều kit bán ma trận 8×8 <strong>gắn sẵn trên một bo mạch có IC MAX7219</strong> (bo xanh, 5 chân <code>VCC GND DIN CS CLK</code> ở mỗi đầu). Khi đó toàn bộ phần quét, điện trở, giới hạn dòng đã nằm trong IC:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1112,7 +1059,7 @@ I_{LED} = \frac{5 - 1{,}8}{1000} \approx 3{,}2 \text{ mA}, \qquad I_{hàng} = 8 
 </tr>
 <tr class="even">
 <td>Độ sáng</td>
-<td>Tối (giới hạn dòng chân Uno)</td>
+<td>Tối dần khi hình nhiều điểm</td>
 <td>Sáng, chỉnh được 16 mức bằng lệnh</td>
 </tr>
 <tr class="odd">
@@ -1155,36 +1102,36 @@ I_{LED} = \frac{5 - 1{,}8}{1000} \approx 3{,}2 \text{ mA}, \qquad I_{hàng} = 8 
 </tbody>
 </table>
 <p>Cài thư viện <strong>LedControl</strong> (Eberhard Fahle) trong <strong>Library Manager</strong>, rồi nạp:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;LedControl.h&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">// LedControl(DIN, CLK, CS, số module)</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>LedControl lc<span class="op">(</span><span class="dv">12</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte HEART<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000000</span><span class="op">,</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01100110</span><span class="op">,</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11111111</span><span class="op">,</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11111111</span><span class="op">,</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01111110</span><span class="op">,</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00111100</span><span class="op">,</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00011000</span><span class="op">,</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000000</span><span class="op">,</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  lc<span class="op">.</span>shutdown<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="kw">false</span><span class="op">);</span>   <span class="co">// MAX7219 khởi động ở chế độ ngủ, phải đánh thức</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  lc<span class="op">.</span>setIntensity<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">4</span><span class="op">);</span>   <span class="co">// độ sáng 0–15</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  lc<span class="op">.</span>clearDisplay<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    lc<span class="op">.</span>setRow<span class="op">(</span><span class="dv">0</span><span class="op">,</span> r<span class="op">,</span> HEART<span class="op">[</span>r<span class="op">]);</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Không cần làm gì: MAX7219 tự giữ và tự quét hình</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Mảng <code>HEART</code> y hệt Test 2 — chỉ khác là gửi một lần trong <code>setup()</code> rồi thôi. Nếu hình bị xoay hoặc lật gương (tùy cách hàn ma trận lên bo), dùng <code>lc.setColumn()</code> thay cho <code>setRow()</code> hoặc đảo bit.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;LedControl.h&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">// LedControl(DIN, CLK, CS, số module)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>LedControl lc<span class="op">(</span><span class="dv">12</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte HEART<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000000</span><span class="op">,</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01100110</span><span class="op">,</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11111111</span><span class="op">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b11111111</span><span class="op">,</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01111110</span><span class="op">,</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00111100</span><span class="op">,</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00011000</span><span class="op">,</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000000</span><span class="op">,</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  lc<span class="op">.</span>shutdown<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="kw">false</span><span class="op">);</span>   <span class="co">// MAX7219 khởi động ở chế độ ngủ, phải đánh thức</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  lc<span class="op">.</span>setIntensity<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">4</span><span class="op">);</span>   <span class="co">// độ sáng 0–15</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  lc<span class="op">.</span>clearDisplay<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte r <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> r <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> r<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    lc<span class="op">.</span>setRow<span class="op">(</span><span class="dv">0</span><span class="op">,</span> r<span class="op">,</span> HEART<span class="op">[</span>r<span class="op">]);</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Không cần làm gì: MAX7219 tự giữ và tự quét hình</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Mảng <code>HEART</code> y hệt Test 2 — chỉ khác là gửi một lần trong <code>setup()</code> rồi thôi. Nếu hình bị xoay hoặc lật gương (tùy cách hàn ma trận lên bo), dùng <code>lc.setColumn()</code> thay cho <code>setRow()</code> hoặc đảo bit. Phần này chưa thử trên phần cứng thật vì kit dùng ma trận rời.</p>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
@@ -1201,8 +1148,16 @@ I_{LED} = \frac{5 - 1{,}8}{1000} \approx 3{,}2 \text{ mA}, \qquad I_{hàng} = 8 
 </thead>
 <tbody>
 <tr class="odd">
-<td>Không LED nào sáng ở Test 1</td>
+<td>Ma trận che kín breadboard, không cắm được dây</td>
+<td>Không cắm ma trận lên breadboard — dùng dây đực – cái cắm thẳng vào chân</td>
+</tr>
+<tr class="even">
+<td>Code chạy (Serial in đều) nhưng không LED nào sáng</td>
 <td>Ma trận ngược cực so với code — đảo <code>ROW_ON/OFF</code> và <code>COL_ON/OFF</code></td>
+</tr>
+<tr class="odd">
+<td>Sáng sai đèn ở bài thử 1 đèn</td>
+<td>Cầm ma trận sai hướng hoặc đếm chân từ mặt sau — mặt LED về phía mình, chữ <code>1088BS</code> ở dưới</td>
 </tr>
 <tr class="even">
 <td>Điểm chạy dọc thay vì ngang</td>
@@ -1210,31 +1165,23 @@ I_{LED} = \frac{5 - 1{,}8}{1000} \approx 3{,}2 \text{ mA}, \qquad I_{hàng} = 8 
 </tr>
 <tr class="odd">
 <td>Một hàng/cột luôn tắt</td>
-<td>Dây lỏng, hoặc chân ma trận bị cong không vào lỗ breadboard</td>
+<td>Đầu dây cái lỏng, hoặc dây và chân điện trở không cùng hàng 5 lỗ</td>
 </tr>
 <tr class="even">
-<td>Hai điểm sáng cùng lúc ở Test 1</td>
-<td>Hai chân ma trận cắm chung một cột lỗ breadboard — ma trận chưa vắt qua rãnh giữa</td>
+<td>Nhiều đèn sáng lung tung</td>
+<td>Code không khai báo đủ chân, các chân còn lại thả nổi — dùng code khai báo cả 16 chân</td>
 </tr>
 <tr class="odd">
-<td>Hình có “bóng ma” mờ ở hàng bên cạnh</td>
-<td>Bật hàng mới trước khi đặt xong cột — giữ đúng thứ tự trong <code>drawFrame</code></td>
+<td>Hình tắt hoặc nhấp nháy khi thêm code</td>
+<td>Có <code>delay()</code> trong <code>loop()</code> — dùng <code>show(img, ms)</code> thay cho <code>delay()</code></td>
 </tr>
 <tr class="even">
-<td>Hình nhấp nháy hoặc tắt khi thêm code</td>
-<td>Có <code>delay()</code> dài trong <code>loop()</code> — đổi sang kiểu <code>millis()</code> như Test 3</td>
+<td>Hình tối, nhất là hình nhiều điểm</td>
+<td>Bình thường khi quét từng đèn; tăng <code>delayMicroseconds</code> một chút, hoặc dùng MAX7219</td>
 </tr>
 <tr class="odd">
-<td>Cả hình rất tối</td>
-<td>Bình thường khi lái trực tiếp với 1 kΩ và quét 1/8; <strong>không</strong> hạ điện trở xuống 220 Ω (quá dòng chân Uno), dùng MAX7219 nếu cần sáng</td>
-</tr>
-<tr class="even">
-<td>Uno bị reset / nóng khi cả hàng sáng</td>
-<td>Dùng điện trở quá nhỏ hoặc đặt điện trở ở hàng thay vì cột</td>
-</tr>
-<tr class="odd">
-<td>MAX7219: không sáng gì</td>
-<td>Quên <code>lc.shutdown(0, false)</code>, hoặc đổi nhầm <code>DIN</code>/<code>CLK</code></td>
+<td>Uno nóng / reset</td>
+<td>Đang chạy code quét theo hàng với điện trở 220 Ω — chỉ dùng <code>drawFrame</code> quét từng đèn trong lab này</td>
 </tr>
 </tbody>
 </table>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 850" font-family="Helvetica, Arial, sans-serif" font-size="20">
 <rect width="1040" height="850" fill="#ffffff"/>
-<text x="780" y="26" text-anchor="middle" font-size="17" fill="#444">1 kΩ</text>
+<text x="780" y="26" text-anchor="middle" font-size="17" fill="#444">220 Ω</text>
 <polyline points="120,280 120,40 900,40" fill="none" stroke="#3f9a6e" stroke-width="2.4"/>
 <rect x="762" y="32" width="36" height="16" rx="3" fill="#fbfaf7" stroke="#bbb" stroke-width="1.2"/>
 <text x="910" y="47" fill="#333">UNO A3</text>
@@ -142,6 +142,6 @@
 <text x="470" y="416" text-anchor="middle" font-size="15" fill="#666">LED 8×8</text>
 <text x="470" y="436" text-anchor="middle" font-size="13" fill="#999">mặt LED, mã số ở dưới</text>
 <text x="230" y="352" text-anchor="end" font-size="12" fill="#e05252">R1·C1</text>
-<line x1="80" y1="818" x2="130" y2="818" stroke="#b5782f" stroke-width="2.4"/><text x="142" y="825" fill="#333">Hàng R1–R8 (cực âm): nối thẳng về Uno</text>
-<line x1="520" y1="818" x2="570" y2="818" stroke="#3f9a6e" stroke-width="2.4"/><text x="582" y="825" fill="#333">Cột C1–C8 (cực dương): qua 1 kΩ</text>
+<line x1="80" y1="818" x2="130" y2="818" stroke="#b5782f" stroke-width="2.4"/><text x="142" y="825" fill="#333">Hàng R1–R8 (cực dương): nối thẳng về Uno</text>
+<line x1="520" y1="818" x2="570" y2="818" stroke="#3f9a6e" stroke-width="2.4"/><text x="582" y="825" fill="#333">Cột C1–C8 (cực âm): qua 220 Ω</text>
 </svg>
