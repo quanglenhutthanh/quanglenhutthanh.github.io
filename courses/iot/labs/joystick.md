@@ -5,13 +5,13 @@ type: lab
 lab_no: 14
 status: todo
 source: note
-tags: [arduino, joystick, ky-023, analog, adc, servo]
+tags: [arduino, joystick, ky-023, analog, adc, servo, lcd-i2c, game]
 date: 2026-11-18
 ---
 
 # Lab 14 · Joystick analog 2 trục (KY-023)
 
-> Đọc module joystick 2 trục + nút nhấn bằng Arduino Uno: in giá trị thô ra Serial, nhận hướng đẩy (lên/xuống/trái/phải) có vùng chết, dùng joystick lái servo SG90 ([Lab 4](servo-sg90.md)), và phần mở rộng di chuyển một chấm sáng trên ma trận LED 8×8 ([Lab 13](led-matrix-8x8.md)).
+> Đọc module joystick 2 trục + nút nhấn bằng Arduino Uno: in giá trị thô ra Serial, nhận hướng đẩy (lên/xuống/trái/phải) có vùng chết, dùng joystick lái servo SG90 ([Lab 4](servo-sg90.md)), và hai phần mở rộng: di chuyển một chấm sáng trên ma trận LED 8×8 ([Lab 13](led-matrix-8x8.md)), làm game chạy vượt chướng ngại vật trên LCD 1602 ([Lab 2](lcd-i2c.md)).
 
 ## Joystick là gì
 
@@ -232,6 +232,8 @@ void loop() {
 
 Ghép servo SG90 từ [Lab 4](servo-sg90.md). Vì joystick và servo cùng cần `5V` mà Uno chỉ có một chân `5V`, dùng thanh nguồn breadboard để chia:
 
+![Mạch joystick điều khiển servo. Uno đưa 5V và GND ra hai thanh nguồn breadboard; joystick và servo cùng lấy nguồn từ đó. Tín hiệu: VRx → A0, SW → D2, dây cam của servo → D9. VRy không nối.](../assets/joystick-servo-wiring.svg){width=100%}
+
 | Từ | Đến |
 |---|---|
 | Uno `5V` | thanh `+` breadboard |
@@ -372,6 +374,206 @@ Chấm sáng xuất phát gần giữa, đi theo hướng đẩy và dừng ở 
 
 **Bài tập:** để lại "vệt" các ô đã đi qua (lưu vào mảng 8 byte như hình trái tim ở Lab 13 và quét bằng `drawFrame()`), hoặc làm game rắn săn mồi.
 
+## Mở rộng – game chạy vượt chướng ngại vật trên LCD 1602
+
+Ghép joystick với màn **LCD 1602 I²C** của [Lab 2](lcd-i2c.md) để làm một game chạy vô tận: nhân vật đứng yên ở cột 2, chướng ngại vật chạy từ phải sang trái, gạt cần lên hoặc ấn núm để nhảy. Không cần thêm linh kiện nào ngoài hai module đã có.
+
+LCD chỉ có 16 × 2 ô, mỗi ô 5 × 8 điểm, nên hình thô hơn màn OLED nhưng đủ cho lối chơi này. Nhân vật và chướng ngại vật được vẽ bằng **ký tự tự định nghĩa** (`createChar`, tối đa 8 ký tự — game dùng 5).
+
+### Mạch
+
+LCD và joystick cùng cần `5V`, nên chia nguồn bằng thanh `+`/`−` của breadboard như Test 3 (tháo servo ra):
+
+| Từ | Đến |
+|---|---|
+| Uno `5V` | thanh `+` |
+| Uno `GND` | thanh `−` |
+| LCD `VCC`, joystick `+5V` | thanh `+` |
+| LCD `GND`, joystick `GND` | thanh `−` |
+| LCD `SDA` | `A4` |
+| LCD `SCL` | `A5` |
+| Joystick `VRx` | `A0` |
+| Joystick `SW` | `D2` |
+
+`VRy` không nối. `A1` để trống và được dùng làm nguồn số ngẫu nhiên (`randomSeed(analogRead(A1))`), nhờ vậy mỗi ván chướng ngại vật xuất hiện khác nhau.
+
+### Cách chơi
+
+| Màn hình | Ý nghĩa |
+|---|---|
+| Người que ở **dòng dưới**, cột 2 | Nhân vật đang chạy trên mặt đất |
+| **Cây** ở dòng dưới | Phải **nhảy** qua |
+| **Chim** ở dòng trên | **Không được nhảy** lúc chim tới |
+| Người que ở **dòng trên** | Đang nhảy, ở trên không 3 nhịp rồi rơi xuống |
+| `X` ở vị trí nhân vật | Va chạm — thua |
+
+- **Gạt cần lên** hoặc **ấn núm** để nhảy.
+- Mỗi nhịp sống sót được 1 điểm. Game nhanh dần: một nhịp từ 250 ms giảm dần tới 110 ms.
+- Thua thì màn hiện điểm và kỷ lục (kỷ lục mất khi rút điện). Gạt lên hoặc ấn núm để chơi lại.
+
+### Code
+
+Cần thư viện `LiquidCrystal_I2C` như Lab 2.
+
+```cpp
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);   // không hiện gì thì thử 0x3F
+
+#define PIN_X    A0
+#define PIN_SW   2
+#define LEN_TANG true   // gạt lên → A0 tăng (kiểm tra bằng Test 1). Ngược thì đổi thành false
+#define NGUONG   250    // gạt quá mức này mới tính là "lên"
+
+// Ký tự tự vẽ 5×8 (1 = điểm sáng)
+byte chay1[8] = {0b01110, 0b01110, 0b00100, 0b01110, 0b10101, 0b00100, 0b01010, 0b10001};
+byte chay2[8] = {0b01110, 0b01110, 0b00100, 0b01110, 0b10101, 0b00100, 0b01010, 0b01010};
+byte nhayH[8] = {0b01110, 0b01110, 0b10101, 0b01110, 0b00100, 0b01010, 0b10001, 0b00000};
+byte cay[8]   = {0b00100, 0b00101, 0b10101, 0b10111, 0b11100, 0b00100, 0b00100, 0b00100};
+byte chim[8]  = {0b00000, 0b00000, 0b10001, 0b01010, 0b00100, 0b00000, 0b00000, 0b00000};
+#define K_CHAY1 0
+#define K_CHAY2 1
+#define K_NHAY  2
+#define K_CAY   3
+#define K_CHIM  4
+
+#define COT_NV 1          // nhân vật đứng ở cột thứ 2
+
+bool dat[16], troi[16];   // chướng ngại vật dòng dưới / dòng trên
+int  nhay = 0;            // số nhịp còn ở trên không (0 = đang đứng đất)
+int  khoangCach = 0;      // số nhịp từ chướng ngại vật gần nhất
+long diem = 0, kyLuc = 0;
+bool muonNhay = false;
+unsigned long lanCuoi = 0;
+int  centerX;
+
+bool bamNhay() {
+  int dx = analogRead(PIN_X) - centerX;
+  if (!LEN_TANG) dx = -dx;
+  return dx > NGUONG || digitalRead(PIN_SW) == LOW;
+}
+
+void choBamRoiTha() {                 // đợi bấm rồi thả ra, tránh nhảy ngay khi vào ván
+  while (!bamNhay()) delay(10);
+  while (bamNhay()) delay(10);
+}
+
+void vanMoi() {
+  for (byte c = 0; c < 16; c++) { dat[c] = false; troi[c] = false; }
+  nhay = 0; khoangCach = 0; diem = 0; muonNhay = false;
+  lcd.clear();
+}
+
+void ve(bool va) {
+  lcd.setCursor(0, 0);
+  for (byte c = 0; c < 16; c++) {
+    if (c == COT_NV && nhay > 0) lcd.write(va ? 'X' : K_NHAY);
+    else if (troi[c])            lcd.write(K_CHIM);
+    else                         lcd.write(' ');
+  }
+  lcd.setCursor(0, 1);
+  for (byte c = 0; c < 16; c++) {
+    if (c == COT_NV && nhay == 0) lcd.write(va ? 'X' : (diem % 2 ? K_CHAY2 : K_CHAY1));
+    else if (dat[c])              lcd.write(K_CAY);
+    else                          lcd.write(' ');
+  }
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PIN_SW, INPUT_PULLUP);
+  lcd.init();
+  lcd.backlight();
+  lcd.createChar(K_CHAY1, chay1);
+  lcd.createChar(K_CHAY2, chay2);
+  lcd.createChar(K_NHAY,  nhayH);
+  lcd.createChar(K_CAY,   cay);
+  lcd.createChar(K_CHIM,  chim);
+
+  delay(200);                         // không chạm cần lúc khởi động
+  long tong = 0;
+  for (byte i = 0; i < 16; i++) tong += analogRead(PIN_X);
+  centerX = tong / 16;
+  randomSeed(analogRead(A1));         // A1 để trống → số ngẫu nhiên khác mỗi lần
+
+  lcd.setCursor(0, 0); lcd.print("Gat len / an nut");
+  lcd.setCursor(0, 1); lcd.print("  de bat dau");
+  choBamRoiTha();
+  vanMoi();
+}
+
+void loop() {
+  if (bamNhay()) muonNhay = true;     // nhớ lệnh nhảy cho tới nhịp kế tiếp
+
+  int nhip = 250 - min(diem, 280L) / 2;   // 250 ms → nhanh dần tới 110 ms
+  if (millis() - lanCuoi < (unsigned long)nhip) return;
+  lanCuoi = millis();
+
+  // 1. Dời chướng ngại vật sang trái 1 ô
+  for (byte c = 0; c < 15; c++) { dat[c] = dat[c + 1]; troi[c] = troi[c + 1]; }
+  dat[15] = false; troi[15] = false;
+
+  // 2. Thỉnh thoảng sinh chướng ngại vật mới ở cột cuối (cách nhau ít nhất 4 ô)
+  khoangCach++;
+  if (khoangCach >= 4 && random(100) < 35) {
+    if (random(4) == 0) troi[15] = true;   // 1/4 là chim
+    else                dat[15]  = true;
+    khoangCach = 0;
+  }
+
+  // 3. Nhảy
+  if (nhay > 0) nhay--;
+  if (muonNhay && nhay == 0) nhay = 3;
+  muonNhay = false;
+
+  // 4. Va chạm
+  bool va = (nhay > 0 && troi[COT_NV]) || (nhay == 0 && dat[COT_NV]);
+  ve(va);
+
+  if (va) {
+    if (diem > kyLuc) kyLuc = diem;
+    Serial.print("Thua! Diem = "); Serial.println(diem);
+    delay(800);
+    lcd.clear();
+    lcd.setCursor(0, 0); lcd.print("THUA! Diem: "); lcd.print(diem);
+    lcd.setCursor(0, 1); lcd.print("Ky luc: ");     lcd.print(kyLuc);
+    choBamRoiTha();
+    vanMoi();
+    return;
+  }
+  diem++;
+}
+```
+
+### Code hoạt động thế nào
+
+Game chạy theo **nhịp** (tick): mỗi `nhip` mili giây làm một lượt 4 bước, giữa hai nhịp thì chỉ đọc joystick.
+
+1. **Dời chướng ngại vật.** Hai mảng `dat[16]` (dòng dưới) và `troi[16]` (dòng trên) ghi ô nào đang có chướng ngại vật. Mỗi nhịp, mọi phần tử dời sang trái một ô, ô cuối (cột 16) để trống.
+2. **Sinh chướng ngại vật mới** ở cột 16 với xác suất 35 %, nhưng chỉ khi đã cách cái trước ít nhất 4 ô (`khoangCach`) để luôn có chỗ đáp xuống. Cứ 4 cái thì khoảng 1 cái là chim.
+3. **Nhảy.** `nhay` là số nhịp còn ở trên không. Lệnh nhảy được ghi vào `muonNhay` ngay khi gạt (đọc liên tục trong `loop()`), nên dù gạt nhanh giữa hai nhịp cũng không bị bỏ sót. Chỉ nhảy được khi đang đứng đất (`nhay == 0`).
+4. **Va chạm.** Nhân vật luôn ở cột `COT_NV`; đang trên không mà gặp chim, hoặc đang dưới đất mà gặp cây, là thua.
+
+Hai khung `chay1`/`chay2` chỉ khác ở hai chân, đổi qua lại theo `diem % 2` nên nhân vật trông như đang chạy. Mỗi nhịp vẽ lại cả 32 ô bằng `setCursor` + `write`, không dùng `lcd.clear()` để màn không bị chớp.
+
+**Chỉnh độ khó:**
+
+| Muốn | Sửa |
+|---|---|
+| Chậm hơn / nhanh hơn | Số `250` (tốc độ đầu) và `280L` (điểm đạt tốc độ tối đa) trong dòng `nhip` |
+| Nhảy lâu hơn (dễ) / ngắn hơn (khó) | `nhay = 3` thành `4` / `2` |
+| Nhiều chướng ngại vật hơn | `random(100) < 35` thành số lớn hơn |
+| Nhiều chim hơn | `random(4) == 0` thành `random(2) == 0` |
+
+LCD 1602 đổi ký tự khá chậm (vài chục ms), nên khi game chạy nhanh, chướng ngại vật trông hơi nhòe — mắt người vẫn thấy rõ, nhưng quay bằng điện thoại có thể gần như không thấy.
+
+**Bài tập:**
+
+- Hiện điểm ở góc trên bên phải trong lúc chơi (chỉ cho chim xuất hiện từ cột 12 trở về trái để không đè lên số).
+- Lưu kỷ lục vào **EEPROM** (`#include <EEPROM.h>`, `EEPROM.put()` / `EEPROM.get()`) để rút điện không mất.
+- Thêm buzzer kêu "bíp" mỗi lần nhảy và khi thua.
+
 ## Lỗi hay gặp
 
 | Hiện tượng | Nguyên nhân / cách xử lý |
@@ -385,3 +587,6 @@ Chấm sáng xuất phát gần giữa, đi theo hướng đẩy và dừng ở 
 | Thả tay vẫn báo hướng | Điểm giữa đo lúc đang chạm cần (reset lại, không chạm), hoặc `VUNG_CHET` quá nhỏ |
 | Giá trị tối đa chỉ ~675 | `+5V` của module đang cắm vào `3.3V` |
 | Servo giật, board tự reset (Test 3) | Sụt nguồn khi servo quay — thêm tụ hoặc nguồn ngoài, xem Lab 4 |
+| Game: LCD sáng nhưng không có chữ | Sai địa chỉ I²C (thử `0x3F`) hoặc chưa chỉnh độ tương phản — xem Lab 2 |
+| Game: gạt xuống mới nhảy | Module ngược chiều — đổi `LEN_TANG` thành `false` |
+| Game: vừa vào ván đã nhảy liên tục | Lúc reset đang chạm cần nên điểm giữa đo sai — reset lại, không chạm cần |

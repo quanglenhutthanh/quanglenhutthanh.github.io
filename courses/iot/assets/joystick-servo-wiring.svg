@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 570" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="960" height="570" fill="#fff"/>
+
+<!-- Joystick module -->
+<text x="160" y="60" fill="#222" text-anchor="middle" font-weight="bold">Module joystick</text>
+<rect x="40" y="80" width="240" height="300" rx="10" fill="#1d1d1f" stroke="#000"/>
+<circle cx="58" cy="98" r="7" fill="#fff"/>
+<circle cx="58" cy="362" r="7" fill="#fff"/>
+<circle cx="210" cy="98" r="7" fill="#fff"/>
+<circle cx="210" cy="362" r="7" fill="#fff"/>
+<rect x="80" y="150" width="120" height="120" rx="10" fill="#3a3a3d" stroke="#555"/>
+<circle cx="140" cy="210" r="52" fill="#4a4a4e" stroke="#6a6a6e" stroke-width="2"/>
+<circle cx="140" cy="210" r="34" fill="#111" stroke="#2c2c2e" stroke-width="3"/>
+<circle cx="140" cy="210" r="23" fill="none" stroke="#2c2c2e" stroke-width="2"/>
+<g stroke="#9ad1ff" stroke-width="2.5" fill="#9ad1ff">
+  <line x1="84" y1="305" x2="196" y2="305"/>
+  <path d="M80 305 l10 -6 v12 z" stroke="none"/>
+  <path d="M200 305 l-10 -6 v12 z" stroke="none"/>
+</g>
+<text x="140" y="331" fill="#9ad1ff" text-anchor="middle" font-weight="bold">X</text>
+<text x="140" y="360" fill="#ccc" text-anchor="middle" font-size="12" letter-spacing="2">KY-023</text>
+<g fill="#fff" font-size="15" text-anchor="end" font-weight="bold">
+  <text x="272" y="135">SW</text>
+  <text x="272" y="185">VRy</text>
+  <text x="272" y="235">VRx</text>
+  <text x="272" y="285">+5V</text>
+  <text x="272" y="335">GND</text>
+</g>
+<g fill="#c9a227" stroke="#8a6d10">
+  <rect x="280" y="124" width="24" height="12"/>
+  <rect x="280" y="174" width="24" height="12"/>
+  <rect x="280" y="224" width="24" height="12"/>
+  <rect x="280" y="274" width="24" height="12"/>
+  <rect x="280" y="324" width="24" height="12"/>
+</g>
+<text x="316" y="185" fill="#999" font-size="13" font-style="italic">không nối</text>
+
+<!-- Breadboard rails -->
+<rect x="335" y="442" width="310" height="16" rx="3" fill="#fde2e2" stroke="#d62828" stroke-width="2"/>
+<rect x="310" y="472" width="360" height="16" rx="3" fill="#e3e8f5" stroke="#1d3f8f" stroke-width="2"/>
+<text x="420" y="455" fill="#b01e1e" font-size="12" font-weight="bold">thanh + breadboard (5 V)</text>
+<text x="400" y="485" fill="#1d3f8f" font-size="12" font-weight="bold">thanh − breadboard (GND)</text>
+
+<!-- Servo SG90 -->
+<text x="495" y="275" fill="#222" text-anchor="middle" font-weight="bold">Servo SG90</text>
+<rect x="415" y="300" width="20" height="14" rx="3" fill="#2a5db0" stroke="#1b3f7a"/>
+<rect x="545" y="300" width="20" height="14" rx="3" fill="#2a5db0" stroke="#1b3f7a"/>
+<rect x="430" y="288" width="120" height="70" rx="6" fill="#2a5db0" stroke="#1b3f7a"/>
+<circle cx="465" cy="323" r="16" fill="#e8e8e8" stroke="#999"/>
+<rect x="461" y="300" width="8" height="46" rx="4" fill="#fff" stroke="#999"/>
+<circle cx="465" cy="323" r="4" fill="#999"/>
+<text x="512" y="328" fill="#fff" font-size="12" text-anchor="middle">9g</text>
+
+<!-- Wires (drawn under connectors) -->
+<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- direct signals -->
+  <path d="M304 130 H686" stroke="#8e44ad"/>
+  <path d="M304 230 H686" stroke="#e67e22"/>
+  <!-- joystick power -->
+  <path d="M304 280 H345 V450" stroke="#d62828"/>
+  <path d="M304 330 H320 V480" stroke="#222"/>
+  <!-- servo cable -->
+  <path d="M550 305 H600 V280 H686" stroke="#f39c12"/>
+  <path d="M550 320 H585 V450" stroke="#d62828"/>
+  <path d="M550 335 H570 V438 M570 462 V480" stroke="#8b5a2b"/>
+  <!-- Uno power -->
+  <path d="M686 330 H630 V450" stroke="#d62828"/>
+  <path d="M686 380 H660 V480" stroke="#222"/>
+</g>
+<!-- hop of servo brown wire over + rail -->
+<path d="M570 438 A12 12 0 0 1 570 462" fill="none" stroke="#8b5a2b" stroke-width="6" stroke-linecap="round" transform="translate(0 0)"/>
+<!-- junction dots -->
+<g fill="#111">
+  <circle cx="345" cy="450" r="5"/>
+  <circle cx="320" cy="480" r="5"/>
+  <circle cx="585" cy="450" r="5"/>
+  <circle cx="570" cy="480" r="5"/>
+  <circle cx="630" cy="450" r="5"/>
+  <circle cx="660" cy="480" r="5"/>
+</g>
+
+<!-- wire labels -->
+<g font-size="14" fill="#333">
+  <text x="495" y="120" text-anchor="middle">SW → D2 · nút nhấn (INPUT_PULLUP)</text>
+  <text x="495" y="220" text-anchor="middle">VRx → A0 · trục X</text>
+  <text x="608" y="270" text-anchor="start" font-size="13">cam → D9</text>
+  <text x="352" y="300" font-size="13">+5V</text>
+  <text x="327" y="350" font-size="13">GND</text>
+  <text x="592" y="345" font-size="13">đỏ</text>
+  <text x="532" y="395" font-size="13" text-anchor="end">nâu</text>
+</g>
+
+<!-- Arduino Uno block -->
+<text x="810" y="60" fill="#222" text-anchor="middle" font-weight="bold">Arduino Uno</text>
+<rect x="700" y="80" width="230" height="340" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000">
+  <rect x="686" y="123" width="18" height="14"/>
+  <rect x="686" y="223" width="18" height="14"/>
+  <rect x="686" y="273" width="18" height="14"/>
+  <rect x="686" y="323" width="18" height="14"/>
+  <rect x="686" y="373" width="18" height="14"/>
+</g>
+<g fill="#fff" font-size="15" font-weight="bold">
+  <text x="714" y="135">D2</text>
+  <text x="714" y="235">A0</text>
+  <text x="714" y="285">D9</text>
+  <text x="714" y="335">5V</text>
+  <text x="714" y="385">GND</text>
+</g>
+<text x="840" y="200" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">Arduino Uno</text>
+<text x="840" y="224" fill="#cfe6ee" text-anchor="middle" font-size="13">(chỉ vẽ các chân dùng)</text>
+
+<!-- footnotes -->
+<text x="480" y="525" fill="#555" text-anchor="middle" font-size="14">Uno chỉ có một chân 5V → đưa 5V và GND ra hai thanh nguồn breadboard, joystick và servo cùng lấy nguồn từ đó.</text>
+<text x="480" y="548" fill="#555" text-anchor="middle" font-size="14">Chấm đen = điểm cắm vào thanh nguồn. Dây nâu vòng qua thanh + (không nối). VRy để trống vì Test 3 chỉ dùng trục X.</text>
+</svg>
