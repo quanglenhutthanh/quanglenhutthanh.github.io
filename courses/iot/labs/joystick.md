@@ -7,6 +7,11 @@ status: todo
 source: note
 tags: [arduino, joystick, ky-023, analog, adc, servo, lcd-i2c, game]
 date: 2026-11-18
+resources:
+  - ../assets/joystick-servo-real.mp4
+  - ../assets/joystick-servo-real-poster.jpg
+  - ../assets/joystick-lcd-game-real.mp4
+  - ../assets/joystick-lcd-game-real-poster.jpg
 ---
 
 # Lab 14 · Joystick analog 2 trục (KY-023)
@@ -302,6 +307,20 @@ void loop() {
 - Nếu đẩy phải mà servo quay trái, đổi `goc += dx / TOC_DO` thành `goc -= …`.
 - Board tự reset khi servo bắt đầu quay → sụt nguồn, xem mục *Nguồn cho servo* ở [Lab 4](servo-sg90.md) (thêm tụ 100 – 470 µF giữa thanh `+`/`−`).
 
+**Video mạch thật:**
+
+<video controls muted playsinline preload="metadata" poster="../assets/joystick-servo-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/joystick-servo-real.mp4" type="video/mp4">
+</video>
+
+Mạch chạy đúng code Test 3 ở trên: joystick cắm trên breadboard, servo SG90 nằm bên trái, nhìn từ phía mặt có cánh tay.
+
+- **Gạt cần lên**: `A0` tăng, `dx` dương, `goc` tăng dần tới tối đa **180°**. Trên module này, nhìn từ phía cánh tay thì 180° là cánh tay nghiêng sang **trái**.
+- **Gạt cần xuống**: `goc` giảm dần về 0°, cánh tay quay sang phải.
+- **Thả tay**: servo đứng yên ở góc đang có, vì code cộng dồn tốc độ chứ không ánh xạ thẳng vị trí cần → góc.
+
+Chiều này tùy cách cầm và cách gắn module. Muốn đảo chiều thì đổi `+=` thành `-=`.
+
 **Bài tập:** thêm servo thứ hai trên `D10`, lái bằng trục Y (`A1`) → giá camera pan – tilt 2 trục.
 
 ## Mở rộng – chấm sáng trên ma trận 8×8
@@ -567,6 +586,14 @@ Hai khung `chay1`/`chay2` chỉ khác ở hai chân, đổi qua lại theo `diem
 | Nhiều chim hơn | `random(4) == 0` thành `random(2) == 0` |
 
 LCD 1602 đổi ký tự khá chậm (vài chục ms), nên khi game chạy nhanh, chướng ngại vật trông hơi nhòe — mắt người vẫn thấy rõ, nhưng quay bằng điện thoại có thể gần như không thấy.
+
+**Video mạch thật:**
+
+<video controls muted playsinline preload="metadata" poster="../assets/joystick-lcd-game-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/joystick-lcd-game-real.mp4" type="video/mp4">
+</video>
+
+LCD 1602 I2C nằm bên trái, joystick bên phải. Người chơi đứng ở cột 2, dòng dưới. Cây xương rồng chạy từ phải sang trái. Mỗi khi cây tới gần, **gạt cần lên** để nhân vật nhảy lên dòng trên rồi rơi xuống sau 3 nhịp. Trong video, chướng ngại vật hơi mờ và nhòe đúng như đã nói ở trên, do LCD đổi ký tự chậm so với camera.
 
 **Bài tập:**
 
