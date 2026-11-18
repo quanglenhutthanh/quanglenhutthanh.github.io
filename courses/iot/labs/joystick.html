@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-18">
+
+<title>Lab 14 · Joystick analog 2 trục (KY-023) – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lab-14-joystick-analog-2-trục-ky-023" id="toc-lab-14-joystick-analog-2-trục-ky-023" class="nav-link active" data-scroll-target="#lab-14-joystick-analog-2-trục-ky-023">Lab 14 · Joystick analog 2 trục (KY-023)</a>
+  <ul class="collapse">
+  <li><a href="#joystick-là-gì" id="toc-joystick-là-gì" class="nav-link" data-scroll-target="#joystick-là-gì">Joystick là gì</a>
+  <ul class="collapse">
+  <li><a href="#từ-điện-áp-ra-con-số" id="toc-từ-điện-áp-ra-con-số" class="nav-link" data-scroll-target="#từ-điện-áp-ra-con-số">Từ điện áp ra con số</a></li>
+  <li><a href="#nút-nhấn-sw" id="toc-nút-nhấn-sw" class="nav-link" data-scroll-target="#nút-nhấn-sw">Nút nhấn SW</a></li>
+  </ul></li>
+  <li><a href="#ứng-dụng" id="toc-ứng-dụng" class="nav-link" data-scroll-target="#ứng-dụng">Ứng dụng</a></li>
+  <li><a href="#linh-kiện-và-chân" id="toc-linh-kiện-và-chân" class="nav-link" data-scroll-target="#linh-kiện-và-chân">Linh kiện và chân</a></li>
+  <li><a href="#lắp-mạch" id="toc-lắp-mạch" class="nav-link" data-scroll-target="#lắp-mạch">Lắp mạch</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <ul class="collapse">
+  <li><a href="#test-1-đọc-giá-trị-thô" id="toc-test-1-đọc-giá-trị-thô" class="nav-link" data-scroll-target="#test-1-đọc-giá-trị-thô">Test 1 – đọc giá trị thô</a></li>
+  <li><a href="#test-2-nhận-hướng-đẩy-nút-nhấn" id="toc-test-2-nhận-hướng-đẩy-nút-nhấn" class="nav-link" data-scroll-target="#test-2-nhận-hướng-đẩy-nút-nhấn">Test 2 – nhận hướng đẩy + nút nhấn</a></li>
+  <li><a href="#test-3-lái-servo-bằng-joystick" id="toc-test-3-lái-servo-bằng-joystick" class="nav-link" data-scroll-target="#test-3-lái-servo-bằng-joystick">Test 3 – lái servo bằng joystick</a></li>
+  </ul></li>
+  <li><a href="#mở-rộng-chấm-sáng-trên-ma-trận-88" id="toc-mở-rộng-chấm-sáng-trên-ma-trận-88" class="nav-link" data-scroll-target="#mở-rộng-chấm-sáng-trên-ma-trận-88">Mở rộng – chấm sáng trên ma trận 8×8</a></li>
+  <li><a href="#mở-rộng-game-chạy-vượt-chướng-ngại-vật-trên-lcd-1602" id="toc-mở-rộng-game-chạy-vượt-chướng-ngại-vật-trên-lcd-1602" class="nav-link" data-scroll-target="#mở-rộng-game-chạy-vượt-chướng-ngại-vật-trên-lcd-1602">Mở rộng – game chạy vượt chướng ngại vật trên LCD 1602</a>
+  <ul class="collapse">
+  <li><a href="#mạch" id="toc-mạch" class="nav-link" data-scroll-target="#mạch">Mạch</a></li>
+  <li><a href="#cách-chơi" id="toc-cách-chơi" class="nav-link" data-scroll-target="#cách-chơi">Cách chơi</a></li>
+  <li><a href="#code-1" id="toc-code-1" class="nav-link" data-scroll-target="#code-1">Code</a></li>
+  <li><a href="#code-hoạt-động-thế-nào" id="toc-code-hoạt-động-thế-nào" class="nav-link" data-scroll-target="#code-hoạt-động-thế-nào">Code hoạt động thế nào</a></li>
+  </ul></li>
+  <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 14 · Joystick analog 2 trục (KY-023)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 18, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lab-14-joystick-analog-2-trục-ky-023" class="level1">
+<h1>Lab 14 · Joystick analog 2 trục (KY-023)</h1>
+<blockquote class="blockquote">
+<p>Đọc module joystick 2 trục + nút nhấn bằng Arduino Uno: in giá trị thô ra Serial, nhận hướng đẩy (lên/xuống/trái/phải) có vùng chết, dùng joystick lái servo SG90 (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>), và hai phần mở rộng: di chuyển một chấm sáng trên ma trận LED 8×8 (<a href="../../../courses/iot/labs/led-matrix-8x8.html">Lab 13</a>), làm game chạy vượt chướng ngại vật trên LCD 1602 (<a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>).</p>
+</blockquote>
+<section id="joystick-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="joystick-là-gì">Joystick là gì</h2>
+<p>Module joystick (thường bán dưới tên <strong>KY-023</strong> hoặc <em>PS2 joystick module</em>) chính là cần gạt ngón cái của tay cầm chơi game, gắn lên một mạch nhỏ 5 chân. Bên trong không có IC nào, chỉ có <strong>3 linh kiện cơ bản</strong>:</p>
+<ul>
+<li><strong>2 biến trở 10 kΩ</strong> đặt vuông góc nhau: một cái xoay theo trục <strong>X</strong> (trái – phải), một cái theo trục <strong>Y</strong> (lên – xuống). Cần gạt gắn với trục của cả hai qua một khung cardan (gimbal).</li>
+<li><strong>1 nút nhấn</strong> nằm dưới đáy cần: <strong>ấn thẳng cần xuống</strong> thì nút đóng lại.</li>
+<li><strong>Lò xo</strong> kéo cần về giữa khi thả tay.</li>
+</ul>
+<pre><code>  +5V ──┬──────────────┐
+        │              │
+       ┌┴┐            ┌┴┐
+       │ │◄── VRx     │ │◄── VRy        SW ──o  o── GND
+       │ │  (trục X)  │ │  (trục Y)          nút nhấn
+       └┬┘            └┬┘                   (ấn cần xuống)
+        │              │
+  GND ──┴──────────────┘</code></pre>
+<p>Mỗi biến trở là một <strong>cầu phân áp</strong> giống hệt biến trở xoay đã dùng ở <a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>: hai đầu nối <code>5V</code> và <code>GND</code>, chân giữa (con chạy) ra điện áp 0 – 5 V tùy vị trí cần. Vì vậy cách đọc joystick cũng y như đọc biến trở: <code>analogRead()</code>.</p>
+<section id="từ-điện-áp-ra-con-số" class="level3">
+<h3 class="anchored" data-anchor-id="từ-điện-áp-ra-con-số">Từ điện áp ra con số</h3>
+<p>ADC của Uno là <strong>10 bit</strong>: 0 V → <code>0</code>, 5 V → <code>1023</code>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Vị trí cần</th>
+<th>Điện áp chân VRx/VRy</th>
+<th><code>analogRead()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Đẩy hết về một phía</td>
+<td>~0 V</td>
+<td>~0</td>
+</tr>
+<tr class="even">
+<td>Thả tay (ở giữa)</td>
+<td>~2,5 V</td>
+<td><strong>khoảng 490 – 530</strong>, không đúng 512</td>
+</tr>
+<tr class="odd">
+<td>Đẩy hết về phía kia</td>
+<td>~5 V</td>
+<td>~1023</td>
+</tr>
+</tbody>
+</table>
+<p>Hai điểm cần nhớ:</p>
+<ul>
+<li><strong>Điểm giữa lệch</strong> vài chục đơn vị so với 512 và khác nhau giữa hai trục, giữa các module. Code nên <strong>đo điểm giữa lúc khởi động</strong> thay vì viết cứng 512.</li>
+<li><strong>Không có “đẩy nhẹ = 0”</strong>: thả tay ra số vẫn rung ±2 – 5 đơn vị. Muốn biết “đang đẩy hay không” thì phải có <strong>vùng chết</strong> (dead zone) quanh điểm giữa.</li>
+</ul>
+<p>Chiều tăng/giảm của từng trục phụ thuộc vào cách cầm module (chân cắm ở bên nào), nên <strong>không đoán trước</strong> “đẩy lên là Y tăng hay giảm” — chạy Test 1 rồi ghi lại.</p>
+</section>
+<section id="nút-nhấn-sw" class="level3">
+<h3 class="anchored" data-anchor-id="nút-nhấn-sw">Nút nhấn SW</h3>
+<p>Chân <code>SW</code> nối xuống <code>GND</code> khi ấn, còn khi thả thì <strong>thả nổi</strong> (hầu hết module KY-023 để trống chỗ hàn điện trở kéo lên). Vì vậy phải bật <strong>điện trở kéo lên bên trong</strong> của Uno bằng <code>INPUT_PULLUP</code>:</p>
+<ul>
+<li>Không ấn → <code>HIGH</code>.</li>
+<li>Ấn cần xuống → <code>LOW</code>.</li>
+</ul>
+<p>Logic <strong>ngược</strong> so với nút nhấn có điện trở kéo xuống ở <a href="../../../courses/iot/labs/led-basics.html">Lab 1</a>. Nếu quên <code>INPUT_PULLUP</code>, <code>digitalRead()</code> sẽ ra 0/1 lung tung khi chưa ấn.</p>
+</section>
+</section>
+<section id="ứng-dụng" class="level2">
+<h2 class="anchored" data-anchor-id="ứng-dụng">Ứng dụng</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ví dụ</th>
+<th>Joystick làm gì</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Xe robot, tàu mô hình điều khiển từ xa</td>
+<td>Y = ga tiến/lùi, X = rẽ trái/phải; gửi qua Bluetooth, nRF24L01 hoặc Wi-Fi</td>
+</tr>
+<tr class="even">
+<td>Giá camera pan – tilt</td>
+<td>X lái servo quay ngang, Y lái servo gật lên xuống</td>
+</tr>
+<tr class="odd">
+<td>Cánh tay robot, cần cẩu mô hình</td>
+<td>Mỗi trục điều khiển một khớp, nút nhấn để kẹp/nhả</td>
+</tr>
+<tr class="even">
+<td>Menu trên LCD, OLED</td>
+<td>Lên/xuống chọn mục, ấn để xác nhận — thay cho 5 nút rời</td>
+</tr>
+<tr class="odd">
+<td>Game trên ma trận LED</td>
+<td>Di chuyển nhân vật (rắn săn mồi, pong…)</td>
+</tr>
+</tbody>
+</table>
+<p>Trong hệ IoT, joystick là <strong>thiết bị đầu vào</strong> ở tầng thiết bị: người dùng ra lệnh tại chỗ, vi điều khiển đọc rồi gửi lệnh tới cơ cấu chấp hành (ở gần, hoặc ở xa qua mạng).</p>
+</section>
+<section id="linh-kiện-và-chân" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện-và-chân">Linh kiện và chân</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Số lượng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arduino Uno</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Module joystick KY-023 (5 chân)</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Dây <strong>đực – cái</strong></td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Servo SG90 (Test 3)</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Breadboard + dây đực – đực (Test 3, để chia <code>5V</code>/<code>GND</code>)</td>
+<td>1 + vài sợi</td>
+</tr>
+</tbody>
+</table>
+<p>Module có hàng <strong>chân đực</strong> 5 chân, in nhãn ngay cạnh chân:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Chân module</th>
+<th>Nối vào Uno</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GND</code></td>
+<td><code>GND</code></td>
+<td>Mát</td>
+</tr>
+<tr class="even">
+<td><code>+5V</code></td>
+<td><code>5V</code></td>
+<td>Nguồn cho hai biến trở</td>
+</tr>
+<tr class="odd">
+<td><code>VRx</code></td>
+<td><code>A0</code></td>
+<td>Điện áp trục X</td>
+</tr>
+<tr class="even">
+<td><code>VRy</code></td>
+<td><code>A1</code></td>
+<td>Điện áp trục Y</td>
+</tr>
+<tr class="odd">
+<td><code>SW</code></td>
+<td><code>D2</code></td>
+<td>Nút nhấn (dùng <code>INPUT_PULLUP</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Module cấp <code>+5V</code> thì giá trị đọc đi hết 0 – 1023. Nếu lỡ cắm <code>+5V</code> vào <code>3.3V</code>, joystick vẫn chạy nhưng thang chỉ còn 0 – ~675 và điểm giữa ~338.</p>
+</section>
+<section id="lắp-mạch" class="level2">
+<h2 class="anchored" data-anchor-id="lắp-mạch">Lắp mạch</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/joystick-ky023-wiring.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Nối joystick KY-023 với Arduino Uno bằng 5 dây đực – cái. Uno chỉ vẽ các chân dùng tới. Chiều X/Y trên hình chỉ là trục, chiều tăng/giảm thật xác định bằng Test 1.</figcaption>
+</figure>
+</div>
+<p><strong>Rút cáp USB ra trước khi cắm dây.</strong></p>
+<ol type="1">
+<li>Cắm đầu <strong>cái</strong> của 5 dây vào 5 chân của module. Chọn màu dễ nhớ: đen = <code>GND</code>, đỏ = <code>+5V</code>, cam = <code>VRx</code>, xanh lá = <code>VRy</code>, tím = <code>SW</code>.</li>
+<li>Cắm đầu <strong>đực</strong> vào header Uno theo bảng trên: <code>GND</code> và <code>5V</code> ở hàng chân nguồn, <code>A0</code>/<code>A1</code> ở hàng chân analog (mép dưới), <code>D2</code> ở hàng chân digital (mép trên).</li>
+<li>Kiểm tra lại nhãn in trên module — một số bản in thứ tự chân khác (ví dụ <code>SW</code> ở đầu thay vì cuối). <strong>Nối theo nhãn, không theo vị trí.</strong></li>
+</ol>
+<p>Test 1 và Test 2 không cần breadboard.</p>
+</section>
+<section id="code" class="level2">
+<h2 class="anchored" data-anchor-id="code">Code</h2>
+<section id="test-1-đọc-giá-trị-thô" class="level3">
+<h3 class="anchored" data-anchor-id="test-1-đọc-giá-trị-thô">Test 1 – đọc giá trị thô</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_X  </span>A0</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_Y  </span>A1</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_SW </span><span class="dv">2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>PIN_SW<span class="op">,</span> INPUT_PULLUP<span class="op">);</span>   <span class="co">// không ấn = HIGH, ấn = LOW</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> x  <span class="op">=</span> analogRead<span class="op">(</span>PIN_X<span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> y  <span class="op">=</span> analogRead<span class="op">(</span>PIN_Y<span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> nhan <span class="op">=</span> digitalRead<span class="op">(</span>PIN_SW<span class="op">)</span> <span class="op">==</span> LOW<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"X = "</span><span class="op">);</span>    Serial<span class="op">.</span>print<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">Y = "</span><span class="op">);</span>  Serial<span class="op">.</span>print<span class="op">(</span>y<span class="op">);</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">SW = "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>nhan <span class="op">?</span> <span class="st">"NHAN"</span> <span class="op">:</span> <span class="st">"-"</span><span class="op">);</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Cách kiểm tra</strong> (Serial Monitor, 9600 baud). Cầm module sao cho chân cắm hướng về một phía cố định (ví dụ bên trái), rồi điền bảng:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Thao tác</th>
+<th>X</th>
+<th>Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Thả tay</td>
+<td>~500</td>
+<td>~500</td>
+</tr>
+<tr class="even">
+<td>Đẩy lên (ra xa người)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Đẩy xuống (về phía người)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Đẩy sang trái</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Đẩy sang phải</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Mỗi hướng chỉ <strong>một</strong> trục đổi mạnh (về gần 0 hoặc gần 1023), trục kia gần như đứng yên. Nếu đẩy lên mà X đổi thì module đang xoay 90° so với mình — xoay lại hoặc đổi vai X/Y trong code.</li>
+<li>Ấn thẳng cần xuống (nghe “tách”) thì cột <code>SW</code> hiện <code>NHAN</code>.</li>
+<li>Chú ý đẩy <strong>chéo</strong> thường không đạt đồng thời cả hai cực (0/1023), vì vòng giới hạn của cần là hình tròn.</li>
+<li>Ghi lại số lúc thả tay: đó là điểm giữa thật của module mình, dùng để chọn vùng chết ở Test 2.</li>
+</ul>
+<p><strong>Mẹo:</strong> Đổi dòng in thành <code>Serial.print(x); Serial.print(" "); Serial.println(y);</code> rồi mở <strong>Serial Plotter</strong> (<code>Tools → Serial Plotter</code>) để thấy hai đường X/Y di chuyển theo tay.</p>
+</section>
+<section id="test-2-nhận-hướng-đẩy-nút-nhấn" class="level3">
+<h3 class="anchored" data-anchor-id="test-2-nhận-hướng-đẩy-nút-nhấn">Test 2 – nhận hướng đẩy + nút nhấn</h3>
+<p>Đo điểm giữa lúc khởi động (trung bình 16 lần đọc, <strong>không chạm vào cần</strong> khi reset), sau đó:</p>
+<ul>
+<li>Nếu độ lệch cả hai trục đều nhỏ hơn <code>VUNG_CHET</code> → <code>GIUA</code>.</li>
+<li>Ngược lại, trục nào lệch nhiều hơn thì quyết định hướng.</li>
+<li>Chỉ in khi hướng <strong>thay đổi</strong>, và chỉ báo nút khi vừa <strong>ấn xuống</strong> (bắt cạnh), có chống dội phím.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_X  </span>A0</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_Y  </span>A1</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_SW </span><span class="dv">2</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define VUNG_CHET </span><span class="dv">150</span><span class="pp">   </span><span class="co">// lệch dưới mức này coi như đang ở giữa</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Kết quả Test 1: nếu đẩy sang phải mà X GIẢM thì đặt DAO_X = true,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// nếu đẩy lên mà Y GIẢM thì đặt DAO_Y = true.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">bool</span> DAO_X <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">bool</span> DAO_Y <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> centerX<span class="op">,</span> centerY<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> huongCu <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> swCu <span class="op">=</span> HIGH<span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lanDoiSW <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> docTrungBinh<span class="op">(</span>byte pin<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">long</span> tong <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> tong <span class="op">+=</span> analogRead<span class="op">(</span>pin<span class="op">);</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> tong <span class="op">/</span> <span class="dv">16</span><span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> tinhHuong<span class="op">(</span><span class="dt">int</span> dx<span class="op">,</span> <span class="dt">int</span> dy<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>abs<span class="op">(</span>dx<span class="op">)</span> <span class="op">&lt;</span> VUNG_CHET <span class="op">&amp;&amp;</span> abs<span class="op">(</span>dy<span class="op">)</span> <span class="op">&lt;</span> VUNG_CHET<span class="op">)</span> <span class="cf">return</span> <span class="st">"GIUA"</span><span class="op">;</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>abs<span class="op">(</span>dx<span class="op">)</span> <span class="op">&gt;</span> abs<span class="op">(</span>dy<span class="op">))</span> <span class="cf">return</span> dx <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"PHAI"</span> <span class="op">:</span> <span class="st">"TRAI"</span><span class="op">;</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> dy <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"LEN"</span> <span class="op">:</span> <span class="st">"XUONG"</span><span class="op">;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>PIN_SW<span class="op">,</span> INPUT_PULLUP<span class="op">);</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span>                       <span class="co">// chờ lò xo đưa cần về giữa</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  centerX <span class="op">=</span> docTrungBinh<span class="op">(</span>PIN_X<span class="op">);</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  centerY <span class="op">=</span> docTrungBinh<span class="op">(</span>PIN_Y<span class="op">);</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Diem giua: X = "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>centerX<span class="op">);</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">", Y = "</span><span class="op">);</span>          Serial<span class="op">.</span>println<span class="op">(</span>centerY<span class="op">);</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> dx <span class="op">=</span> analogRead<span class="op">(</span>PIN_X<span class="op">)</span> <span class="op">-</span> centerX<span class="op">;</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> dy <span class="op">=</span> analogRead<span class="op">(</span>PIN_Y<span class="op">)</span> <span class="op">-</span> centerY<span class="op">;</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>DAO_X<span class="op">)</span> dx <span class="op">=</span> <span class="op">-</span>dx<span class="op">;</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>DAO_Y<span class="op">)</span> dy <span class="op">=</span> <span class="op">-</span>dy<span class="op">;</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">const</span> <span class="dt">char</span><span class="op">*</span> huong <span class="op">=</span> tinhHuong<span class="op">(</span>dx<span class="op">,</span> dy<span class="op">);</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>strcmp<span class="op">(</span>huong<span class="op">,</span> huongCu<span class="op">)</span> <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span>        <span class="co">// chỉ in khi đổi hướng</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>huong<span class="op">);</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    huongCu <span class="op">=</span> huong<span class="op">;</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> sw <span class="op">=</span> digitalRead<span class="op">(</span>PIN_SW<span class="op">);</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>sw <span class="op">!=</span> swCu <span class="op">&amp;&amp;</span> millis<span class="op">()</span> <span class="op">-</span> lanDoiSW <span class="op">&gt;</span> <span class="dv">30</span><span class="op">)</span> <span class="op">{</span>  <span class="co">// chống dội 30 ms</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    lanDoiSW <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>sw <span class="op">==</span> LOW<span class="op">)</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"&gt;&gt; NUT NHAN"</span><span class="op">);</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    swCu <span class="op">=</span> sw<span class="op">;</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Lúc khởi động in <code>Diem giua: X = …, Y = …</code> gần với số thả tay ở Test 1.</li>
+<li>Đẩy lên/xuống/trái/phải in đúng <code>LEN</code>/<code>XUONG</code>/<code>TRAI</code>/<code>PHAI</code>, thả tay in <code>GIUA</code>. Nếu hướng bị ngược thì đổi <code>DAO_X</code> / <code>DAO_Y</code> thành <code>true</code>.</li>
+<li>Đẩy rất nhẹ (chưa ra khỏi vùng chết) thì không in gì. Muốn nhạy hơn thì giảm <code>VUNG_CHET</code> (đừng dưới ~40, vì sẽ “tự nhảy” khi thả tay).</li>
+<li>Mỗi lần ấn cần chỉ in <strong>một</strong> dòng <code>&gt;&gt; NUT NHAN</code>, giữ lâu không in thêm.</li>
+</ul>
+<p><code>tinhHuong()</code> chỉ trả về 4 hướng chính. Muốn 8 hướng (thêm chéo) thì xét riêng hai trục: mỗi trục vượt vùng chết thì góp một phần, ví dụ <code>LEN</code> + <code>PHAI</code> = <code>LEN-PHAI</code>.</p>
+</section>
+<section id="test-3-lái-servo-bằng-joystick" class="level3">
+<h3 class="anchored" data-anchor-id="test-3-lái-servo-bằng-joystick">Test 3 – lái servo bằng joystick</h3>
+<p>Ghép servo SG90 từ <a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>. Vì joystick và servo cùng cần <code>5V</code> mà Uno chỉ có một chân <code>5V</code>, dùng thanh nguồn breadboard để chia:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/joystick-servo-wiring.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Mạch joystick điều khiển servo. Uno đưa 5V và GND ra hai thanh nguồn breadboard; joystick và servo cùng lấy nguồn từ đó. Tín hiệu: VRx → A0, SW → D2, dây cam của servo → D9. VRy không nối.</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Từ</th>
+<th>Đến</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Uno <code>5V</code></td>
+<td>thanh <code>+</code> breadboard</td>
+</tr>
+<tr class="even">
+<td>Uno <code>GND</code></td>
+<td>thanh <code>−</code> breadboard</td>
+</tr>
+<tr class="odd">
+<td>Joystick <code>+5V</code>, servo dây <strong>đỏ</strong></td>
+<td>thanh <code>+</code></td>
+</tr>
+<tr class="even">
+<td>Joystick <code>GND</code>, servo dây <strong>nâu</strong></td>
+<td>thanh <code>−</code></td>
+</tr>
+<tr class="odd">
+<td>Joystick <code>VRx</code></td>
+<td><code>A0</code></td>
+</tr>
+<tr class="even">
+<td>Joystick <code>SW</code></td>
+<td><code>D2</code></td>
+</tr>
+<tr class="odd">
+<td>Servo dây <strong>cam</strong></td>
+<td><code>D9</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Vì sao không dùng <code>map()</code> thẳng?</strong> Cách đơn giản nhất là <code>servo.write(map(analogRead(A0), 0, 1023, 0, 180))</code>: servo đi theo vị trí cần. Nhưng cần có lò xo, thả tay là servo <strong>bật về 90°</strong> — chỉ hợp với kiểu “đánh lái” (như vô-lăng xe). Muốn servo <strong>ở lại</strong> góc vừa chỉnh (như giá camera) thì dùng <strong>điều khiển tốc độ</strong>: độ nghiêng của cần quyết định servo quay <strong>nhanh hay chậm</strong>, thả tay là servo đứng yên tại chỗ.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_X     </span>A0</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_SW    </span><span class="dv">2</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SERVO_PIN </span><span class="dv">9</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define VUNG_CHET </span><span class="dv">60</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TOC_DO    </span><span class="fl">200.0</span><span class="pp">  </span><span class="co">// càng lớn càng chậm: đẩy hết cỡ ≈ 512/200 = 2,6° mỗi 20 ms ≈ 130°/s</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Servo servo<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> centerX<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> goc <span class="op">=</span> <span class="dv">90</span><span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>PIN_SW<span class="op">,</span> INPUT_PULLUP<span class="op">);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">long</span> tong <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> tong <span class="op">+=</span> analogRead<span class="op">(</span>PIN_X<span class="op">);</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  centerX <span class="op">=</span> tong <span class="op">/</span> <span class="dv">16</span><span class="op">;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  servo<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  servo<span class="op">.</span>write<span class="op">(</span>goc<span class="op">);</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> dx <span class="op">=</span> analogRead<span class="op">(</span>PIN_X<span class="op">)</span> <span class="op">-</span> centerX<span class="op">;</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>abs<span class="op">(</span>dx<span class="op">)</span> <span class="op">&gt;</span> VUNG_CHET<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    goc <span class="op">+=</span> dx <span class="op">/</span> TOC_DO<span class="op">;</span>                 <span class="co">// nghiêng nhiều → quay nhanh</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    goc <span class="op">=</span> constrain<span class="op">(</span>goc<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">180</span><span class="op">);</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>digitalRead<span class="op">(</span>PIN_SW<span class="op">)</span> <span class="op">==</span> LOW<span class="op">)</span> goc <span class="op">=</span> <span class="dv">90</span><span class="op">;</span>   <span class="co">// ấn cần → về giữa</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  servo<span class="op">.</span>write<span class="op">((</span><span class="dt">int</span><span class="op">)</span>goc<span class="op">);</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">static</span> byte dem <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(++</span>dem <span class="op">&gt;=</span> <span class="dv">10</span><span class="op">)</span> <span class="op">{</span>                    <span class="co">// in mỗi ~200 ms cho đỡ rối</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    dem <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"dx = "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>dx<span class="op">);</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">goc = "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">((</span><span class="dt">int</span><span class="op">)</span>goc<span class="op">);</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">20</span><span class="op">);</span>                            <span class="co">// khớp chu kỳ xung servo 20 ms</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Khởi động, servo về 90°.</li>
+<li>Đẩy nhẹ sang một bên: servo quay chậm. Đẩy hết cỡ: quay nhanh. Thả tay: servo <strong>đứng yên</strong> ở góc hiện tại.</li>
+<li>Tới 0° hoặc 180° thì dừng, không cố quay tiếp (nhờ <code>constrain</code>).</li>
+<li>Ấn cần: servo về 90°.</li>
+<li>Nếu đẩy phải mà servo quay trái, đổi <code>goc += dx / TOC_DO</code> thành <code>goc -= …</code>.</li>
+<li>Board tự reset khi servo bắt đầu quay → sụt nguồn, xem mục <em>Nguồn cho servo</em> ở <a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a> (thêm tụ 100 – 470 µF giữa thanh <code>+</code>/<code>−</code>).</li>
+</ul>
+<p><strong>Bài tập:</strong> thêm servo thứ hai trên <code>D10</code>, lái bằng trục Y (<code>A1</code>) → giá camera pan – tilt 2 trục.</p>
+</section>
+</section>
+<section id="mở-rộng-chấm-sáng-trên-ma-trận-88" class="level2">
+<h2 class="anchored" data-anchor-id="mở-rộng-chấm-sáng-trên-ma-trận-88">Mở rộng – chấm sáng trên ma trận 8×8</h2>
+<p>Giữ nguyên mạch ma trận 1088BS của <a href="../../../courses/iot/labs/led-matrix-8x8.html">Lab 13</a> (chiếm <code>D2</code>–<code>D13</code> và <code>A0</code>–<code>A3</code>). Joystick dùng hai chân analog còn trống:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Chân module</th>
+<th>Uno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GND</code></td>
+<td><code>GND</code></td>
+</tr>
+<tr class="even">
+<td><code>+5V</code></td>
+<td><code>5V</code></td>
+</tr>
+<tr class="odd">
+<td><code>VRx</code></td>
+<td><code>A4</code></td>
+</tr>
+<tr class="even">
+<td><code>VRy</code></td>
+<td><code>A5</code></td>
+</tr>
+<tr class="odd">
+<td><code>SW</code></td>
+<td>không nối (hết chân; <code>D0</code>/<code>D1</code> để dành cho Serial)</td>
+</tr>
+</tbody>
+</table>
+<p><code>A4</code>/<code>A5</code> cũng là <code>SDA</code>/<code>SCL</code> của I²C, nhưng mạch này không dùng I²C nên dùng làm chân analog bình thường.</p>
+<p>Chỉ có <strong>một</strong> điểm sáng nên không cần quét: bật đúng một hàng và một cột là đủ.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ROWS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte COLS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> A0<span class="op">,</span> A1<span class="op">,</span> A2<span class="op">,</span> A3<span class="op">};</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_ON  </span>LOW<span class="pp">      </span><span class="co">// 1088BS; loại 1088AS thì đảo cả bốn dòng</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ROW_OFF </span>HIGH</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_ON  </span>HIGH</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COL_OFF </span>LOW</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_X </span>A4</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_Y </span>A5</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NGUONG </span><span class="dv">300</span><span class="pp">       </span><span class="co">// lệch khỏi giữa hơn mức này thì mới bước</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BUOC_MS </span><span class="dv">150</span><span class="pp">      </span><span class="co">// giữ cần thì cứ 150 ms bước một ô</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> px <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> py <span class="op">=</span> <span class="dv">3</span><span class="op">;</span>      <span class="co">// vị trí chấm: cột, hàng (0..7)</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lanCuoi <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> veCham<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> ROW_OFF<span class="op">);</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> COL_OFF<span class="op">);</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>ROWS<span class="op">[</span>py<span class="op">],</span> ROW_ON<span class="op">);</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>COLS<span class="op">[</span>px<span class="op">],</span> COL_ON<span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ROWS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>COLS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  veCham<span class="op">();</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> lanCuoi <span class="op">&lt;</span> BUOC_MS<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  lanCuoi <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> x <span class="op">=</span> analogRead<span class="op">(</span>PIN_X<span class="op">);</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> y <span class="op">=</span> analogRead<span class="op">(</span>PIN_Y<span class="op">);</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>x <span class="op">&gt;</span> <span class="dv">512</span> <span class="op">+</span> NGUONG <span class="op">&amp;&amp;</span> px <span class="op">&lt;</span> <span class="dv">7</span><span class="op">)</span> px<span class="op">++;</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>x <span class="op">&lt;</span> <span class="dv">512</span> <span class="op">-</span> NGUONG <span class="op">&amp;&amp;</span> px <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> px<span class="op">--;</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>y <span class="op">&gt;</span> <span class="dv">512</span> <span class="op">+</span> NGUONG <span class="op">&amp;&amp;</span> py <span class="op">&lt;</span> <span class="dv">7</span><span class="op">)</span> py<span class="op">++;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>y <span class="op">&lt;</span> <span class="dv">512</span> <span class="op">-</span> NGUONG <span class="op">&amp;&amp;</span> py <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> py<span class="op">--;</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  veCham<span class="op">();</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Chấm sáng xuất phát gần giữa, đi theo hướng đẩy và dừng ở mép. Nếu đi ngược chiều, đổi <code>px++</code>/<code>px--</code> (hoặc <code>py++</code>/<code>py--</code>) cho nhau. Ngưỡng 300 đủ lớn nên không cần đo điểm giữa như Test 2.</p>
+<p><strong>Bài tập:</strong> để lại “vệt” các ô đã đi qua (lưu vào mảng 8 byte như hình trái tim ở Lab 13 và quét bằng <code>drawFrame()</code>), hoặc làm game rắn săn mồi.</p>
+</section>
+<section id="mở-rộng-game-chạy-vượt-chướng-ngại-vật-trên-lcd-1602" class="level2">
+<h2 class="anchored" data-anchor-id="mở-rộng-game-chạy-vượt-chướng-ngại-vật-trên-lcd-1602">Mở rộng – game chạy vượt chướng ngại vật trên LCD 1602</h2>
+<p>Ghép joystick với màn <strong>LCD 1602 I²C</strong> của <a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a> để làm một game chạy vô tận: nhân vật đứng yên ở cột 2, chướng ngại vật chạy từ phải sang trái, gạt cần lên hoặc ấn núm để nhảy. Không cần thêm linh kiện nào ngoài hai module đã có.</p>
+<p>LCD chỉ có 16 × 2 ô, mỗi ô 5 × 8 điểm, nên hình thô hơn màn OLED nhưng đủ cho lối chơi này. Nhân vật và chướng ngại vật được vẽ bằng <strong>ký tự tự định nghĩa</strong> (<code>createChar</code>, tối đa 8 ký tự — game dùng 5).</p>
+<section id="mạch" class="level3">
+<h3 class="anchored" data-anchor-id="mạch">Mạch</h3>
+<p>LCD và joystick cùng cần <code>5V</code>, nên chia nguồn bằng thanh <code>+</code>/<code>−</code> của breadboard như Test 3 (tháo servo ra):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Từ</th>
+<th>Đến</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Uno <code>5V</code></td>
+<td>thanh <code>+</code></td>
+</tr>
+<tr class="even">
+<td>Uno <code>GND</code></td>
+<td>thanh <code>−</code></td>
+</tr>
+<tr class="odd">
+<td>LCD <code>VCC</code>, joystick <code>+5V</code></td>
+<td>thanh <code>+</code></td>
+</tr>
+<tr class="even">
+<td>LCD <code>GND</code>, joystick <code>GND</code></td>
+<td>thanh <code>−</code></td>
+</tr>
+<tr class="odd">
+<td>LCD <code>SDA</code></td>
+<td><code>A4</code></td>
+</tr>
+<tr class="even">
+<td>LCD <code>SCL</code></td>
+<td><code>A5</code></td>
+</tr>
+<tr class="odd">
+<td>Joystick <code>VRx</code></td>
+<td><code>A0</code></td>
+</tr>
+<tr class="even">
+<td>Joystick <code>SW</code></td>
+<td><code>D2</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>VRy</code> không nối. <code>A1</code> để trống và được dùng làm nguồn số ngẫu nhiên (<code>randomSeed(analogRead(A1))</code>), nhờ vậy mỗi ván chướng ngại vật xuất hiện khác nhau.</p>
+</section>
+<section id="cách-chơi" class="level3">
+<h3 class="anchored" data-anchor-id="cách-chơi">Cách chơi</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Màn hình</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Người que ở <strong>dòng dưới</strong>, cột 2</td>
+<td>Nhân vật đang chạy trên mặt đất</td>
+</tr>
+<tr class="even">
+<td><strong>Cây</strong> ở dòng dưới</td>
+<td>Phải <strong>nhảy</strong> qua</td>
+</tr>
+<tr class="odd">
+<td><strong>Chim</strong> ở dòng trên</td>
+<td><strong>Không được nhảy</strong> lúc chim tới</td>
+</tr>
+<tr class="even">
+<td>Người que ở <strong>dòng trên</strong></td>
+<td>Đang nhảy, ở trên không 3 nhịp rồi rơi xuống</td>
+</tr>
+<tr class="odd">
+<td><code>X</code> ở vị trí nhân vật</td>
+<td>Va chạm — thua</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Gạt cần lên</strong> hoặc <strong>ấn núm</strong> để nhảy.</li>
+<li>Mỗi nhịp sống sót được 1 điểm. Game nhanh dần: một nhịp từ 250 ms giảm dần tới 110 ms.</li>
+<li>Thua thì màn hiện điểm và kỷ lục (kỷ lục mất khi rút điện). Gạt lên hoặc ấn núm để chơi lại.</li>
+</ul>
+</section>
+<section id="code-1" class="level3">
+<h3 class="anchored" data-anchor-id="code-1">Code</h3>
+<p>Cần thư viện <code>LiquidCrystal_I2C</code> như Lab 2.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;LiquidCrystal_I2C.h&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>LiquidCrystal_I2C lcd<span class="op">(</span><span class="bn">0x27</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">2</span><span class="op">);</span>   <span class="co">// không hiện gì thì thử 0x3F</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_X    </span>A0</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define PIN_SW   </span><span class="dv">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LEN_TANG </span><span class="kw">true</span><span class="pp">   </span><span class="co">// gạt lên → A0 tăng (kiểm tra bằng Test 1). Ngược thì đổi thành false</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NGUONG   </span><span class="dv">250</span><span class="pp">    </span><span class="co">// gạt quá mức này mới tính là "lên"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Ký tự tự vẽ 5×8 (1 = điểm sáng)</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>byte chay1<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b10101</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b01010</span><span class="op">,</span> <span class="bn">0b10001</span><span class="op">};</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>byte chay2<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b10101</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b01010</span><span class="op">,</span> <span class="bn">0b01010</span><span class="op">};</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>byte nhayH<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b10101</span><span class="op">,</span> <span class="bn">0b01110</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b01010</span><span class="op">,</span> <span class="bn">0b10001</span><span class="op">,</span> <span class="bn">0b00000</span><span class="op">};</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>byte cay<span class="op">[</span><span class="dv">8</span><span class="op">]</span>   <span class="op">=</span> <span class="op">{</span><span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b00101</span><span class="op">,</span> <span class="bn">0b10101</span><span class="op">,</span> <span class="bn">0b10111</span><span class="op">,</span> <span class="bn">0b11100</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">};</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>byte chim<span class="op">[</span><span class="dv">8</span><span class="op">]</span>  <span class="op">=</span> <span class="op">{</span><span class="bn">0b00000</span><span class="op">,</span> <span class="bn">0b00000</span><span class="op">,</span> <span class="bn">0b10001</span><span class="op">,</span> <span class="bn">0b01010</span><span class="op">,</span> <span class="bn">0b00100</span><span class="op">,</span> <span class="bn">0b00000</span><span class="op">,</span> <span class="bn">0b00000</span><span class="op">,</span> <span class="bn">0b00000</span><span class="op">};</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="pp">#define K_CHAY1 </span><span class="dv">0</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="pp">#define K_CHAY2 </span><span class="dv">1</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="pp">#define K_NHAY  </span><span class="dv">2</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="pp">#define K_CAY   </span><span class="dv">3</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="pp">#define K_CHIM  </span><span class="dv">4</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COT_NV </span><span class="dv">1</span><span class="pp">          </span><span class="co">// nhân vật đứng ở cột thứ 2</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> dat<span class="op">[</span><span class="dv">16</span><span class="op">],</span> troi<span class="op">[</span><span class="dv">16</span><span class="op">];</span>   <span class="co">// chướng ngại vật dòng dưới / dòng trên</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span>  nhay <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>            <span class="co">// số nhịp còn ở trên không (0 = đang đứng đất)</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span>  khoangCach <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>      <span class="co">// số nhịp từ chướng ngại vật gần nhất</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> diem <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> kyLuc <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> muonNhay <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lanCuoi <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span>  centerX<span class="op">;</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> bamNhay<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> dx <span class="op">=</span> analogRead<span class="op">(</span>PIN_X<span class="op">)</span> <span class="op">-</span> centerX<span class="op">;</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>LEN_TANG<span class="op">)</span> dx <span class="op">=</span> <span class="op">-</span>dx<span class="op">;</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> dx <span class="op">&gt;</span> NGUONG <span class="op">||</span> digitalRead<span class="op">(</span>PIN_SW<span class="op">)</span> <span class="op">==</span> LOW<span class="op">;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> choBamRoiTha<span class="op">()</span> <span class="op">{</span>                 <span class="co">// đợi bấm rồi thả ra, tránh nhảy ngay khi vào ván</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(!</span>bamNhay<span class="op">())</span> delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>bamNhay<span class="op">())</span> delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> vanMoi<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span> dat<span class="op">[</span>c<span class="op">]</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span> troi<span class="op">[</span>c<span class="op">]</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  nhay <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> khoangCach <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> diem <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> muonNhay <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ve<span class="op">(</span><span class="dt">bool</span> va<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>c <span class="op">==</span> COT_NV <span class="op">&amp;&amp;</span> nhay <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> lcd<span class="op">.</span>write<span class="op">(</span>va <span class="op">?</span> <span class="ch">'X'</span> <span class="op">:</span> K_NHAY<span class="op">);</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>troi<span class="op">[</span>c<span class="op">])</span>            lcd<span class="op">.</span>write<span class="op">(</span>K_CHIM<span class="op">);</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>                         lcd<span class="op">.</span>write<span class="op">(</span><span class="ch">' '</span><span class="op">);</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>c <span class="op">==</span> COT_NV <span class="op">&amp;&amp;</span> nhay <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> lcd<span class="op">.</span>write<span class="op">(</span>va <span class="op">?</span> <span class="ch">'X'</span> <span class="op">:</span> <span class="op">(</span>diem <span class="op">%</span> <span class="dv">2</span> <span class="op">?</span> K_CHAY2 <span class="op">:</span> K_CHAY1<span class="op">));</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dat<span class="op">[</span>c<span class="op">])</span>              lcd<span class="op">.</span>write<span class="op">(</span>K_CAY<span class="op">);</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>                          lcd<span class="op">.</span>write<span class="op">(</span><span class="ch">' '</span><span class="op">);</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>PIN_SW<span class="op">,</span> INPUT_PULLUP<span class="op">);</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>init<span class="op">();</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>backlight<span class="op">();</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>createChar<span class="op">(</span>K_CHAY1<span class="op">,</span> chay1<span class="op">);</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>createChar<span class="op">(</span>K_CHAY2<span class="op">,</span> chay2<span class="op">);</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>createChar<span class="op">(</span>K_NHAY<span class="op">,</span>  nhayH<span class="op">);</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>createChar<span class="op">(</span>K_CAY<span class="op">,</span>   cay<span class="op">);</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>createChar<span class="op">(</span>K_CHIM<span class="op">,</span>  chim<span class="op">);</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span>                         <span class="co">// không chạm cần lúc khởi động</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>  <span class="dt">long</span> tong <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> tong <span class="op">+=</span> analogRead<span class="op">(</span>PIN_X<span class="op">);</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>  centerX <span class="op">=</span> tong <span class="op">/</span> <span class="dv">16</span><span class="op">;</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  randomSeed<span class="op">(</span>analogRead<span class="op">(</span>A1<span class="op">));</span>         <span class="co">// A1 để trống → số ngẫu nhiên khác mỗi lần</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span> lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"Gat len / an nut"</span><span class="op">);</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>  lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span> lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"  de bat dau"</span><span class="op">);</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  choBamRoiTha<span class="op">();</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>  vanMoi<span class="op">();</span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>bamNhay<span class="op">())</span> muonNhay <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>     <span class="co">// nhớ lệnh nhảy cho tới nhịp kế tiếp</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> nhip <span class="op">=</span> <span class="dv">250</span> <span class="op">-</span> min<span class="op">(</span>diem<span class="op">,</span> <span class="dv">280</span><span class="bu">L</span><span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span>   <span class="co">// 250 ms → nhanh dần tới 110 ms</span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> lanCuoi <span class="op">&lt;</span> <span class="op">(</span><span class="dt">unsigned</span> <span class="dt">long</span><span class="op">)</span>nhip<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  lanCuoi <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Dời chướng ngại vật sang trái 1 ô</span></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte c <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> c <span class="op">&lt;</span> <span class="dv">15</span><span class="op">;</span> c<span class="op">++)</span> <span class="op">{</span> dat<span class="op">[</span>c<span class="op">]</span> <span class="op">=</span> dat<span class="op">[</span>c <span class="op">+</span> <span class="dv">1</span><span class="op">];</span> troi<span class="op">[</span>c<span class="op">]</span> <span class="op">=</span> troi<span class="op">[</span>c <span class="op">+</span> <span class="dv">1</span><span class="op">];</span> <span class="op">}</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>  dat<span class="op">[</span><span class="dv">15</span><span class="op">]</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span> troi<span class="op">[</span><span class="dv">15</span><span class="op">]</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Thỉnh thoảng sinh chướng ngại vật mới ở cột cuối (cách nhau ít nhất 4 ô)</span></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>  khoangCach<span class="op">++;</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>khoangCach <span class="op">&gt;=</span> <span class="dv">4</span> <span class="op">&amp;&amp;</span> random<span class="op">(</span><span class="dv">100</span><span class="op">)</span> <span class="op">&lt;</span> <span class="dv">35</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>random<span class="op">(</span><span class="dv">4</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> troi<span class="op">[</span><span class="dv">15</span><span class="op">]</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>   <span class="co">// 1/4 là chim</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>                dat<span class="op">[</span><span class="dv">15</span><span class="op">]</span>  <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>    khoangCach <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 3. Nhảy</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>nhay <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> nhay<span class="op">--;</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>muonNhay <span class="op">&amp;&amp;</span> nhay <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> nhay <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>  muonNhay <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 4. Va chạm</span></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bool</span> va <span class="op">=</span> <span class="op">(</span>nhay <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> troi<span class="op">[</span>COT_NV<span class="op">])</span> <span class="op">||</span> <span class="op">(</span>nhay <span class="op">==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> dat<span class="op">[</span>COT_NV<span class="op">]);</span></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>  ve<span class="op">(</span>va<span class="op">);</span></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>va<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>diem <span class="op">&gt;</span> kyLuc<span class="op">)</span> kyLuc <span class="op">=</span> diem<span class="op">;</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Thua! Diem = "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>diem<span class="op">);</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">800</span><span class="op">);</span></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span> lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"THUA! Diem: "</span><span class="op">);</span> lcd<span class="op">.</span>print<span class="op">(</span>diem<span class="op">);</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>    lcd<span class="op">.</span>setCursor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span> lcd<span class="op">.</span>print<span class="op">(</span><span class="st">"Ky luc: "</span><span class="op">);</span>     lcd<span class="op">.</span>print<span class="op">(</span>kyLuc<span class="op">);</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>    choBamRoiTha<span class="op">();</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>    vanMoi<span class="op">();</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>  diem<span class="op">++;</span></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-hoạt-động-thế-nào" class="level3">
+<h3 class="anchored" data-anchor-id="code-hoạt-động-thế-nào">Code hoạt động thế nào</h3>
+<p>Game chạy theo <strong>nhịp</strong> (tick): mỗi <code>nhip</code> mili giây làm một lượt 4 bước, giữa hai nhịp thì chỉ đọc joystick.</p>
+<ol type="1">
+<li><strong>Dời chướng ngại vật.</strong> Hai mảng <code>dat[16]</code> (dòng dưới) và <code>troi[16]</code> (dòng trên) ghi ô nào đang có chướng ngại vật. Mỗi nhịp, mọi phần tử dời sang trái một ô, ô cuối (cột 16) để trống.</li>
+<li><strong>Sinh chướng ngại vật mới</strong> ở cột 16 với xác suất 35 %, nhưng chỉ khi đã cách cái trước ít nhất 4 ô (<code>khoangCach</code>) để luôn có chỗ đáp xuống. Cứ 4 cái thì khoảng 1 cái là chim.</li>
+<li><strong>Nhảy.</strong> <code>nhay</code> là số nhịp còn ở trên không. Lệnh nhảy được ghi vào <code>muonNhay</code> ngay khi gạt (đọc liên tục trong <code>loop()</code>), nên dù gạt nhanh giữa hai nhịp cũng không bị bỏ sót. Chỉ nhảy được khi đang đứng đất (<code>nhay == 0</code>).</li>
+<li><strong>Va chạm.</strong> Nhân vật luôn ở cột <code>COT_NV</code>; đang trên không mà gặp chim, hoặc đang dưới đất mà gặp cây, là thua.</li>
+</ol>
+<p>Hai khung <code>chay1</code>/<code>chay2</code> chỉ khác ở hai chân, đổi qua lại theo <code>diem % 2</code> nên nhân vật trông như đang chạy. Mỗi nhịp vẽ lại cả 32 ô bằng <code>setCursor</code> + <code>write</code>, không dùng <code>lcd.clear()</code> để màn không bị chớp.</p>
+<p><strong>Chỉnh độ khó:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Muốn</th>
+<th>Sửa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chậm hơn / nhanh hơn</td>
+<td>Số <code>250</code> (tốc độ đầu) và <code>280L</code> (điểm đạt tốc độ tối đa) trong dòng <code>nhip</code></td>
+</tr>
+<tr class="even">
+<td>Nhảy lâu hơn (dễ) / ngắn hơn (khó)</td>
+<td><code>nhay = 3</code> thành <code>4</code> / <code>2</code></td>
+</tr>
+<tr class="odd">
+<td>Nhiều chướng ngại vật hơn</td>
+<td><code>random(100) &lt; 35</code> thành số lớn hơn</td>
+</tr>
+<tr class="even">
+<td>Nhiều chim hơn</td>
+<td><code>random(4) == 0</code> thành <code>random(2) == 0</code></td>
+</tr>
+</tbody>
+</table>
+<p>LCD 1602 đổi ký tự khá chậm (vài chục ms), nên khi game chạy nhanh, chướng ngại vật trông hơi nhòe — mắt người vẫn thấy rõ, nhưng quay bằng điện thoại có thể gần như không thấy.</p>
+<p><strong>Bài tập:</strong></p>
+<ul>
+<li>Hiện điểm ở góc trên bên phải trong lúc chơi (chỉ cho chim xuất hiện từ cột 12 trở về trái để không đè lên số).</li>
+<li>Lưu kỷ lục vào <strong>EEPROM</strong> (<code>#include &lt;EEPROM.h&gt;</code>, <code>EEPROM.put()</code> / <code>EEPROM.get()</code>) để rút điện không mất.</li>
+<li>Thêm buzzer kêu “bíp” mỗi lần nhảy và khi thua.</li>
+</ul>
+</section>
+</section>
+<section id="lỗi-hay-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hiện tượng</th>
+<th>Nguyên nhân / cách xử lý</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X/Y luôn 0 hoặc luôn 1023</td>
+<td>Thiếu dây <code>+5V</code> hoặc <code>GND</code> của module — hai biến trở không có nguồn</td>
+</tr>
+<tr class="even">
+<td>X/Y nhảy lung tung dù không chạm</td>
+<td>Dây <code>VRx</code>/<code>VRy</code> chưa vào <code>A0</code>/<code>A1</code> (chân analog thả nổi), hoặc lỏng đầu cái</td>
+</tr>
+<tr class="odd">
+<td>Đẩy X mà số đổi ở Y</td>
+<td>Cắm <code>VRx</code> và <code>VRy</code> lẫn nhau, hoặc module đang xoay 90°</td>
+</tr>
+<tr class="even">
+<td><code>SW</code> lúc <code>NHAN</code> lúc không khi chưa chạm</td>
+<td>Thiếu <code>INPUT_PULLUP</code> (đang để <code>INPUT</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>SW</code> luôn <code>NHAN</code></td>
+<td>Dây <code>SW</code> cắm nhầm vào <code>GND</code>, hoặc cần đang bị ấn kẹt</td>
+</tr>
+<tr class="even">
+<td>Ấn một lần in nhiều dòng <code>&gt;&gt; NUT NHAN</code></td>
+<td>Dội phím — giữ đoạn chống dội 30 ms như Test 2</td>
+</tr>
+<tr class="odd">
+<td>Thả tay vẫn báo hướng</td>
+<td>Điểm giữa đo lúc đang chạm cần (reset lại, không chạm), hoặc <code>VUNG_CHET</code> quá nhỏ</td>
+</tr>
+<tr class="even">
+<td>Giá trị tối đa chỉ ~675</td>
+<td><code>+5V</code> của module đang cắm vào <code>3.3V</code></td>
+</tr>
+<tr class="odd">
+<td>Servo giật, board tự reset (Test 3)</td>
+<td>Sụt nguồn khi servo quay — thêm tụ hoặc nguồn ngoài, xem Lab 4</td>
+</tr>
+<tr class="even">
+<td>Game: LCD sáng nhưng không có chữ</td>
+<td>Sai địa chỉ I²C (thử <code>0x3F</code>) hoặc chưa chỉnh độ tương phản — xem Lab 2</td>
+</tr>
+<tr class="odd">
+<td>Game: gạt xuống mới nhảy</td>
+<td>Module ngược chiều — đổi <code>LEN_TANG</code> thành <code>false</code></td>
+</tr>
+<tr class="even">
+<td>Game: vừa vào ván đã nhảy liên tục</td>
+<td>Lúc reset đang chạm cần nên điểm giữa đo sai — reset lại, không chạm cần</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

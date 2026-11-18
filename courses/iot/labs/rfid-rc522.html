@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-c5f38c77227156819dc1db4051f19e1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1208,7 +1208,7 @@ Sector 15  block 60–62 [dữ liệu], block 63 [trailer]</code></pre>
 <ul>
 <li><strong>Thẻ quản trị (master card):</strong> quẹt thẻ master để vào chế độ “học”, thẻ tiếp theo được thêm vào danh sách. Lưu danh sách vào <strong>EEPROM</strong> (<code>#include &lt;EEPROM.h&gt;</code>) để không mất khi rút điện, không phải sửa code mỗi lần thêm thẻ.</li>
 <li><strong>Hiển thị lên LCD</strong> (<a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>): <code>Xin chao, Quang</code> theo tên ứng với từng UID, hoặc <code>The khong hop le</code>. Có thể lấy tên đọc từ block 4 ghi ở Phần B, thay vì lưu trong code.</li>
-<li><strong>Chấm công:</strong> mỗi lần quẹt, in ra Serial dòng <code>UID,thời gian</code>. Arduino không có đồng hồ thời gian thực, nên gửi lên Raspberry Pi (theo kiến trúc <a href="sensor-edge-cloud.md">Lab 9</a>) để Pi gắn giờ, lưu file CSV và đẩy lên cloud qua MQTT (<a href="../lectures/mqtt.md">bài MQTT</a>).</li>
+<li><strong>Chấm công:</strong> mỗi lần quẹt, in ra Serial dòng <code>UID,thời gian</code>. Arduino không có đồng hồ thời gian thực, nên gửi lên Raspberry Pi (theo kiến trúc <a href="../../../courses/iot/labs/sensor-edge-cloud.html">Lab 9</a>) để Pi gắn giờ, lưu file CSV và đẩy lên cloud qua MQTT (<a href="../../../courses/iot/lectures/mqtt.html">bài MQTT</a>).</li>
 <li><strong>Chống quẹt thử:</strong> sai 3 lần liên tiếp thì khóa đầu đọc 30 s.</li>
 </ul>
 </section>
