@@ -3,15 +3,24 @@ title: "Lab 13 · LED ma trận 8×8 (1088BS)"
 subject: "iot"
 type: lab
 lab_no: 13
-status: todo
+status: done
 source: note
 tags: [arduino, led-matrix, 8x8, multiplexing, max7219]
 date: 2026-11-17
+resources:
+  - ../assets/led-matrix-8x8-scan-real.mp4
+  - ../assets/led-matrix-8x8-scan-real-poster.jpg
+  - ../assets/led-matrix-8x8-heart-real.mp4
+  - ../assets/led-matrix-8x8-heart-real-poster.jpg
+  - ../assets/led-matrix-8x8-show-real.mp4
+  - ../assets/led-matrix-8x8-show-real-poster.jpg
+  - ../assets/led-matrix-8x8-dice-real.mp4
+  - ../assets/led-matrix-8x8-dice-real-poster.jpg
 ---
 
 # Lab 13 · LED ma trận 8×8 (1088BS)
 
-> Điều khiển ma trận LED 8×8 rời (16 chân) trực tiếp bằng Arduino Uno theo kiểu **quét hàng** (multiplexing): bật từng điểm, vẽ hình trái tim, rồi chạy chữ. Cuối lab có phần cho **module MAX7219** nếu kit của bạn là loại đã gắn sẵn IC điều khiển.
+> Điều khiển ma trận LED 8×8 rời (16 chân) trực tiếp bằng Arduino Uno, không dùng IC điều khiển: thử 1 đèn, chạy điểm sáng qua 64 đèn, vẽ trái tim, chạy chương trình trình diễn (tim đập, mặt cười, mưa rơi, Game of Life) và làm xúc xắc điện tử. Cuối lab có phần cho **module MAX7219** nếu kit của bạn là loại đã gắn sẵn IC.
 
 ## LED ma trận 8×8 là gì
 
@@ -20,290 +29,246 @@ Ma trận 8×8 gồm **64 LED** xếp thành 8 hàng × 8 cột trong một kh�
 - **8 LED cùng hàng** chung một cực,
 - **8 LED cùng cột** chung cực còn lại.
 
-Với **1088BS** (loại trong kit), hàng nối **cực âm** (cathode), cột nối **cực dương** (anode). Loại 1088AS thì ngược lại; hai loại có cùng sơ đồ chân, chỉ khác chiều cực.
-
-Kết quả là chỉ còn **16 chân**: 8 chân hàng + 8 chân cột. LED ở hàng `r`, cột `c` sáng khi chân hàng `r` ở mức "bật" **và** chân cột `c` ở mức "bật" (với 1088BS: cột HIGH, hàng LOW).
+Kết quả là chỉ còn **16 chân**: 8 chân hàng + 8 chân cột. Với con **1088BS** trong kit (đã thử thực tế), hàng nối **cực dương** (anode), cột nối **cực âm** (cathode): LED ở hàng `r`, cột `c` sáng khi chân hàng `r` ở `HIGH` **và** chân cột `c` ở `LOW`.
 
 ```
-            C1   C2   C3  ...  C8      (chân cột: cực dương)
+            C1   C2   C3  ...  C8      (chân cột: cực âm)
              │    │    │        │
-   R1 ───────●────●────●── … ───●      ● = 1 LED, anode nối cột,
-             │    │    │        │          cathode nối hàng
+   R1 ──────►●────●────●── … ───●      ● = 1 LED, anode nối hàng,
+             │    │    │        │          cathode nối cột
    R2 ──────►●────●────●── … ───●
              ⋮    ⋮    ⋮        ⋮
    R8 ──────►●────●────●── … ───●
 ```
 
-### Vì sao phải quét (multiplexing)
+**Hậu tố `AS` / `BS` không thống nhất giữa các hãng.** Có ma trận cùng mã, cùng sơ đồ chân nhưng ngược chiều cực. Vì vậy luôn làm [Bước 1 – thử 1 đèn](#bước-1--thử-1-đèn) trước; nếu ngược thì chỉ cần đảo 4 dòng `#define` trong code.
+
+### Vì sao phải quét
 
 Với kiểu nối chung này, **không thể** bật tùy ý nhiều điểm cùng lúc. Ví dụ muốn sáng (R1,C1) và (R2,C2): bật R1, R2, C1, C2 thì (R1,C2) và (R2,C1) cũng sáng theo — ra 4 điểm thay vì 2.
 
-Cách giải: **mỗi lúc chỉ bật một hàng**, đặt 8 chân cột theo hình của hàng đó, giữ khoảng 1 ms, tắt, chuyển sang hàng kế. Quét hết 8 hàng mất ~8 ms, tức hơn 100 lần/giây. Mắt người không thấy nhấp nháy ở tần số trên ~50 Hz nên thấy cả hình đứng yên. Đây cũng là nguyên lý của [LED 7 đoạn 4 số ở Lab 7](seven-segment-5641as.md), chỉ khác là 8 "chữ số" thay vì 4.
+Cách giải: bật **lần lượt từng điểm** của hình, mỗi điểm khoảng 0,15 ms, rồi lặp lại thật nhanh. Quét hết 64 điểm mất khoảng 10 ms, tức khoảng 100 lần/giây; mắt người không thấy nhấp nháy ở tần số trên ~50 Hz nên thấy cả hình đứng yên. Đây cũng là nguyên lý quét của [LED 7 đoạn 4 số ở Lab 7](seven-segment-5641as.md).
 
-Hệ quả: mỗi LED chỉ sáng **1/8 thời gian**, nên hình sẽ tối hơn so với một LED đơn cùng dòng điện.
+### Vì sao quét từng đèn, dùng điện trở 220 Ω
 
-## Linh kiện và chân
+Cách quét phổ biến hơn là **quét theo hàng**: bật cả một hàng, đặt 8 cột theo hình. Nhưng khi cả hàng sáng, **một chân hàng** phải cấp dòng cho cả 8 LED. Giới hạn của Uno là **40 mA mỗi chân** (khuyến nghị ≤ 20 mA). Với LED đỏ ($V_f \approx 1{,}8$ V):
+
+| Điện trở cột | Dòng 1 LED | Quét theo hàng (8 LED/chân) | Quét từng đèn (1 LED/chân) |
+|---|---|---|---|
+| 220 Ω | ~14,5 mA | **~116 mA — hỏng chân** | ~14,5 mA — an toàn |
+| 1 kΩ | ~3,2 mA | ~26 mA — an toàn | ~3,2 mA — rất tối |
+
+Lab này dùng **8 điện trở 220 Ω** (vòng đỏ – đỏ – nâu, kit có sẵn nhiều) và **quét từng đèn**: mỗi thời điểm chỉ một LED sáng, nên dòng qua mọi chân Uno luôn khoảng 14,5 mA. Đánh đổi là mỗi LED chỉ sáng một phần nhỏ thời gian; hình càng ít điểm thì càng sáng.
+
+**Không chạy code quét theo hàng với điện trở 220 Ω.** Nếu dùng 1 kΩ thì quét theo hàng được, nhưng phải đủ 8 điện trở 1 kΩ.
+
+## Linh kiện
 
 | Linh kiện | Số lượng |
 |---|---|
 | Arduino Uno | 1 |
 | LED ma trận 8×8 đỏ 1088BS, 16 chân | 1 |
-| Điện trở **1 kΩ** (nâu – đen – đỏ) | 8 |
-| Breadboard | 1 (loại lớn 830 lỗ) |
-| Dây đực – đực | 24 (8 cho hàng, 16 cho cột) |
+| Điện trở **220 Ω** (đỏ – đỏ – nâu) | 8 |
+| Breadboard | 1 (chỉ để cắm điện trở) |
+| Dây **đực – cái** | 16 (từ chân ma trận ra) |
+| Dây đực – đực | 8 (từ điện trở về Uno) |
 
-### Nhận chân ma trận
+**Không cắm ma trận lên breadboard.** Thân 1088BS rộng khoảng 32 mm, cắm vắt qua rãnh giữa sẽ che kín cả 5 lỗ mỗi bên, không còn chỗ cắm dây. Thay vào đó, cắm **đầu cái** của dây đực – cái thẳng vào từng chân ma trận.
 
-Đặt ma trận **mặt LED hướng về phía mình**, cạnh có in mã số (`1088BS`) ở **phía dưới**. Chân 1 ở **góc dưới bên trái**, đánh số **ngược chiều kim đồng hồ**: 1 → 8 dọc hàng chân dưới từ trái sang phải, 9 → 16 dọc hàng chân trên từ phải sang trái.
+## Sơ đồ chân và nối dây
 
-![Sơ đồ chân 1088BS nhìn từ mặt LED, cạnh có mã số ở dưới. Mỗi chân ghi số chân, vai trò (R = hàng, cực âm; C = cột, cực dương) và cột lỗ breadboard khi cắm ma trận ở cột 30–37](../assets/led-matrix-8x8-pinout.svg){width=100%}
+Cầm ma trận **mặt LED hướng về phía mình**, cạnh có in chữ `1088BS` ở **phía dưới**. Chân 1 ở **góc dưới bên trái**, đánh số **ngược chiều kim đồng hồ**: 1 → 8 dọc hàng chân dưới từ trái sang phải, 9 → 16 dọc hàng chân trên từ phải sang trái.
 
-Sơ đồ chân của 1088BS (giống hệt 1088AS, chỉ khác chiều cực):
+![Sơ đồ chân 1088BS nhìn từ mặt LED, cạnh có mã số ở dưới. Mỗi chân ghi số chân, vai trò (R = hàng, cực dương; C = cột, cực âm) và chân Arduino Uno cần nối tới](../assets/led-matrix-8x8-pinout.svg){width=100%}
 
-| Hàng | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 |
-|---|---|---|---|---|---|---|---|---|
-| Chân ma trận | 9 | 14 | 8 | 12 | 1 | 7 | 2 | 5 |
+Thứ tự hàng/cột **không theo quy luật** — do cách đi mạch bên trong — nên phải tra bảng, không đoán. Dùng 16 chân Uno: `D2`–`D13` và `A0`–`A3` (chân analog dùng được như chân digital). Chừa `D0`/`D1` cho Serial.
 
-| Cột | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 |
-|---|---|---|---|---|---|---|---|---|
-| Chân ma trận | 13 | 3 | 4 | 10 | 6 | 11 | 15 | 16 |
+**8 dây hàng (R) — cắm thẳng về Uno, không qua điện trở:**
 
-Thứ tự này **không theo quy luật** — do cách đi mạch bên trong — nên phải tra bảng, không đoán.
+| Hàng | Chân ma trận | Vị trí chân (đếm từ trái) | Uno |
+|---|---|---|---|
+| R1 | 9 | trên, thứ 8 (ngoài cùng phải) | `D2` |
+| R2 | 14 | trên, thứ 3 | `D3` |
+| R3 | 8 | dưới, thứ 8 (ngoài cùng phải) | `D4` |
+| R4 | 12 | trên, thứ 5 | `D5` |
+| R5 | 1 | dưới, thứ 1 (ngoài cùng trái) | `D6` |
+| R6 | 7 | dưới, thứ 7 | `D7` |
+| R7 | 2 | dưới, thứ 2 | `D8` |
+| R8 | 5 | dưới, thứ 5 | `D9` |
 
-**`AS` hay `BS`.** Hậu tố chỉ khác chiều cực: **1088BS** hàng là cathode (cột là anode), **1088AS** hàng là anode. Code trong lab mặc định cho 1088BS, có hằng số để đảo nếu dùng loại kia. Một số hãng ghi ngược quy ước, nên vẫn làm Bước 2 (thử nhanh) ở phần Lắp mạch để chắc chắn.
+**8 dây cột (C) — đi qua điện trở 220 Ω:**
 
-**Tự dò chân nếu không chắc**: nối `5V` qua một điện trở 1 kΩ vào một chân, `GND` vào một chân khác. Nếu một LED sáng thì chân nối `5V` là **hàng/cột anode**, chân nối `GND` là cathode, và vị trí LED sáng cho biết đó là hàng nào, cột nào. Lặp lại vài lần là dựng lại được bảng trên.
+| Cột | Chân ma trận | Vị trí chân (đếm từ trái) | Uno |
+|---|---|---|---|
+| C1 | 13 | trên, thứ 4 | 220 Ω → `D10` |
+| C2 | 3 | dưới, thứ 3 | 220 Ω → `D11` |
+| C3 | 4 | dưới, thứ 4 | 220 Ω → `D12` |
+| C4 | 10 | trên, thứ 7 | 220 Ω → `D13` |
+| C5 | 6 | dưới, thứ 6 | 220 Ω → `A0` |
+| C6 | 11 | trên, thứ 6 | 220 Ω → `A1` |
+| C7 | 15 | trên, thứ 2 | 220 Ω → `A2` |
+| C8 | 16 | trên, thứ 1 (ngoài cùng trái) | 220 Ω → `A3` |
 
-### Nối với Uno
+![Sơ đồ nối ma trận 1088BS với Arduino Uno. Màu nâu: 8 dây hàng nối thẳng về Uno; màu xanh lục: 8 dây cột đi qua điện trở 220 Ω](../assets/led-matrix-8x8-schematic.svg){width=100%}
 
-Dùng 16 chân của Uno: `D2`–`D13` và `A0`–`A3` (chân analog dùng được như chân digital, `A0` = 14 … `A3` = 17). Chừa `D0`/`D1` cho Serial.
+Đường đi của mỗi loại dây:
 
-| Hàng | Chân ma trận | Uno |
-|---|---|---|
-| R1 | 9 | `D2` |
-| R2 | 14 | `D3` |
-| R3 | 8 | `D4` |
-| R4 | 12 | `D5` |
-| R5 | 1 | `D6` |
-| R6 | 7 | `D7` |
-| R7 | 2 | `D8` |
-| R8 | 5 | `D9` |
+```
+Dây hàng:  chân R ──(đực–cái)───────────────────────────────────────► Uno D2…D9
 
-| Cột | Chân ma trận | Uno |
-|---|---|---|
-| C1 | 13 | `D10` qua 1 kΩ |
-| C2 | 3 | `D11` qua 1 kΩ |
-| C3 | 4 | `D12` qua 1 kΩ |
-| C4 | 10 | `D13` qua 1 kΩ |
-| C5 | 6 | `A0` qua 1 kΩ |
-| C6 | 11 | `A1` qua 1 kΩ |
-| C7 | 15 | `A2` qua 1 kΩ |
-| C8 | 16 | `A3` qua 1 kΩ |
+Dây cột:   chân C ──(đực–cái)──► [hàng lỗ X] ═ 220 Ω ═ [hàng lỗ Y] ──(đực–đực)──► Uno D10…D13 / A0…A3
+                                 └──── breadboard, điện trở vắt qua rãnh giữa ────┘
+```
 
-### Vì sao điện trở 1 kΩ, đặt ở cột
+- Mỗi điện trở **vắt qua rãnh giữa** breadboard. Ở mỗi đầu, dây và chân điện trở phải nằm **cùng một hàng 5 lỗ**.
+- Các điện trở cách nhau **ít nhất một hàng lỗ** để chân không chạm nhau.
+- Mạch **không dùng** `5V`, `GND`: ma trận lấy điện qua chính các chân D/A.
+- `A0`–`A3` ở hàng chân **ANALOG IN** (mép dưới bên phải Uno), dùng như chân digital.
 
-Khi quét theo hàng, **một chân hàng** phải gánh dòng của tối đa **8 LED** (với 1088BS là hút dòng về, vì hàng là cực âm) cùng lúc (cả hàng sáng), còn mỗi chân cột chỉ mang dòng của **1 LED**. Vì vậy điện trở đặt ở **cột** để mỗi LED có điện trở riêng, sáng đều nhau.
+## Lắp từng bước
 
-Giới hạn của Uno: tối đa **40 mA mỗi chân** (khuyến nghị ≤ 20 mA). Với LED đỏ ($V_f \approx 1{,}8$ V):
+Không cắm đủ 24 dây rồi mới thử. Mỗi bước chỉ cắm thêm vài dây, nạp code, thấy đúng rồi mới cắm tiếp — khi có lỗi thì biết ngay nằm ở mấy dây vừa cắm. **Rút USB mỗi lần cắm thêm dây.**
 
-$$
-I_{LED} = \frac{5 - 1{,}8}{1000} \approx 3{,}2 \text{ mA}, \qquad I_{hàng} = 8 \times 3{,}2 \approx 26 \text{ mA}
-$$
+Cả lab dùng chung phần khai báo chân dưới đây. Mảng `ROWS[]` / `COLS[]` theo đúng thứ tự R1…R8 và C1…C8:
 
-Dòng chân hàng dưới 40 mA, an toàn. Nếu dùng 220 Ω như các lab trước thì $I_{LED} \approx 14{,}5$ mA và cả hàng sáng sẽ kéo **~116 mA** qua một chân — đủ để làm hỏng chân đó. Hình hơi tối là cái giá phải trả khi lái trực tiếp; muốn sáng hơn thì dùng IC điều khiển (xem phần [MAX7219](#module-max7219)).
+```cpp
+const byte ROWS[8] = {2, 3, 4, 5, 6, 7, 8, 9};             // R1 → R8
+const byte COLS[8] = {10, 11, 12, 13, A0, A1, A2, A3};     // C1 → C8
 
-## Lắp mạch
+// 1088BS trong kit: hàng = cực dương, cột = cực âm
+// Nếu ma trận của bạn ngược cực, đổi ngược cả bốn dòng dưới.
+#define ROW_ON  HIGH
+#define ROW_OFF LOW
+#define COL_ON  LOW
+#define COL_OFF HIGH
+```
 
-![Sơ đồ nối ma trận 1088BS với Arduino Uno. Ma trận vẽ theo đúng vị trí chân khi nhìn từ mặt LED, cạnh có mã số ở dưới. Màu nâu: 8 dây hàng nối thẳng về Uno; màu xanh lục: 8 dây cột đi qua điện trở 1 kΩ](../assets/led-matrix-8x8-schematic.svg){width=100%}
+### Bước 1 – thử 1 đèn
 
-**Rút cáp USB ra trước khi cắm dây.** Mạch có 24 dây, nên làm từng bước và đánh dấu từng dòng trong bảng khi cắm xong.
-
-### Quy ước vị trí trên breadboard
-
-Đặt breadboard nằm ngang trước mặt. Các **cột lỗ** được đánh số 1 → 63 từ trái sang phải; mỗi cột lỗ có 5 lỗ ở **nửa gần** (phía mình, dưới rãnh giữa) nối chung với nhau, và 5 lỗ ở **nửa xa** (trên rãnh giữa) nối chung với nhau. Hai nửa **không** nối với nhau qua rãnh.
-
-Trong hướng dẫn này, "cột 33 – xa" nghĩa là *một lỗ bất kỳ còn trống ở cột 33, nửa xa*.
-
-Mạch chia hai vùng:
-
-- **Vùng ma trận**: cột 30 – 37.
-- **Vùng điện trở**: cột 4 – 18, mỗi điện trở cách nhau một cột.
-
-Vị trí từng chân ma trận trên cột lỗ 30 – 37 xem ở [hình sơ đồ chân](#nhận-chân-ma-trận) (hàng số nhỏ trên/dưới cùng).
-
-### Vì sao cần vùng điện trở riêng
-
-Trong vùng ma trận, 8 cột lỗ 30 – 37 nằm sát nhau và **mỗi cột đã thuộc về một chân khác nhau**. Không thể cắm điện trở từ chân này sang cột lỗ bên cạnh, vì cột bên cạnh chính là một chân khác của ma trận — sẽ nối tắt hai chân. Vì vậy điện trở được đặt ở chỗ trống bên trái, mỗi cái **vắt qua rãnh giữa**: một chân ở nửa gần, một chân ở nửa xa của cùng một cột lỗ. Dòng đi: chân ma trận → dây → điện trở → dây → Uno.
-
-### Hình lắp đầy đủ
-
-![Hình lắp trên breadboard (1088BS). Ma trận ở cột 30–37, 8 điện trở 1 kΩ vắt qua rãnh ở cột 4–18. Nhãn D2, A0… ở đầu mỗi dây là chân Arduino Uno cần cắm vào. Chữ nhỏ trên lỗ cạnh ma trận cho biết chân đó là hàng hay cột nào.](../assets/led-matrix-8x8-breadboard.svg){width=100%}
-
-Dây nâu (hàng) đi thẳng từ ma trận về Uno. Dây xanh (cột) đi từ ma trận vòng sang một điện trở, rồi từ đầu kia của điện trở về Uno. Các bước dưới đây đi lần lượt từng phần của hình này.
-
-### Bước 1 – cắm ma trận
-
-1. Tìm **cạnh có in mã số** (`1088BS`) trên thân ma trận. Cạnh đó hướng **về phía mình**.
-2. Đặt ma trận vắt ngang rãnh giữa, hàng chân có mã số (chân 1 – 8) cắm vào **nửa gần**, hàng chân kia (chân 9 – 16) cắm vào **nửa xa**.
-3. Canh cho **chân 1** (góc gần, bên trái) rơi vào **cột 30**. Khi đó chân 1 → 8 nằm ở cột 30 → 37 nửa gần, chân 16 → 9 nằm ở cột 30 → 37 nửa xa.
-4. Ấn đều hai tay lên thân ma trận cho đến khi cả 16 chân vào hết. Nếu một bên vào mà bên kia kẹt, rút ra và nắn thẳng chân — chân ma trận ngắn, dễ cong gập bên dưới mà không biết.
-
-Sau bước này, mỗi cột lỗ 30 – 37 có hai chân ma trận (một ở nửa gần, một ở nửa xa) — **đúng**, vì hai nửa không nối nhau.
-
-| Cột lỗ | Nửa gần: chân → vai trò | Nửa xa: chân → vai trò |
-|---|---|---|
-| 30 | 1 → **R5** | 16 → C8 |
-| 31 | 2 → **R7** | 15 → C7 |
-| 32 | 3 → C2 | 14 → **R2** |
-| 33 | 4 → C3 | 13 → C1 |
-| 34 | 5 → **R8** | 12 → **R4** |
-| 35 | 6 → C5 | 11 → C6 |
-| 36 | 7 → **R6** | 10 → C4 |
-| 37 | 8 → **R3** | 9 → **R1** |
-
-Thân ma trận sẽ che phần lớn các lỗ bên dưới, thường chỉ còn **1 – 2 lỗ ở mép ngoài** (phía xa nhất so với rãnh) của mỗi cột lỗ. Dây cắm vào các lỗ mép ngoài đó. Nếu thân ma trận che kín, nhấc ma trận ra, cắm dây vào các lỗ sát mép trước rồi mới cắm lại ma trận, hoặc dùng dây **đực – cái** cắm thẳng vào chân ma trận.
-
-### Bước 2 – thử nhanh trước khi đi dây
-
-Trước khi cắm 24 dây, kiểm tra hướng ma trận bằng một LED:
-
-1. Một dây từ `5V` của Uno, qua một **điện trở 1 kΩ**, vào **cột 33 – xa** (chân 13 = C1, cực dương với 1088BS).
-2. Một dây từ `GND` vào **cột 37 – xa** (chân 9 = R1, cực âm).
-3. Cắm USB: LED **góc trên bên trái** phải sáng.
-
-- Sáng đúng góc → đúng 1088BS, dùng code mặc định.
-- Không sáng → đổi chỗ hai dây (`5V` vào cột 37, `GND` vào cột 33). Nếu giờ sáng thì ma trận thực ra là loại hàng anode (như 1088AS): khi nạp code nhớ đảo `ROW_ON/OFF` và `COL_ON/OFF`.
-- Sáng ở góc khác → ma trận đang bị xoay, kiểm tra lại cạnh có mã số.
-
-**Rút USB** và gỡ hai dây thử ra trước khi sang bước tiếp.
-
-### Thử 1 đèn bằng code
-
-Trước khi cắm đủ 24 dây, cho Uno điều khiển một đèn (R1 · C1) với 3 dây và 1 điện trở:
-
-![Mạch thử 1 đèn: R1 (cột 37 – xa) về D2; C1 (a) từ cột 33 – xa sang cột 14 – xa; điện trở 1 kΩ vắt qua rãnh ở cột 14; C1 (b) từ cột 14 – gần về D10](../assets/led-matrix-8x8-test-1-led.svg){width=100%}
+Chỉ cắm **R1** và **C1**: 2 dây đực – cái, 1 điện trở, 1 dây đực – đực.
 
 | Dây | Từ | Đến |
 |---|---|---|
-| R1 | cột 37 – xa | `D2` |
-| C1 (a) | cột 33 – xa | cột 14 – xa |
-| Điện trở 1 kΩ | cột 14 – xa | cột 14 – gần (vắt qua rãnh) |
-| C1 (b) | cột 14 – gần | `D10` |
+| R1 | chân 9 (trên, ngoài cùng phải) | `D2` |
+| C1 | chân 13 (trên, thứ 4 từ trái) | một đầu điện trở 220 Ω |
+| — | đầu kia điện trở | `D10` |
 
 ```cpp
-#define ROW1 2     // R1 (cực âm)
-#define COL1 10    // C1 (cực dương), qua 1 kΩ
+#define ROW1 2     // R1 (cực dương)
+#define COL1 10    // C1 (cực âm), qua 220 Ω
 
 void setup() {
   Serial.begin(9600);
   pinMode(ROW1, OUTPUT);
   pinMode(COL1, OUTPUT);
-  digitalWrite(ROW1, LOW);
+  digitalWrite(ROW1, HIGH);   // hàng = cực dương
 }
 
 void loop() {
-  digitalWrite(COL1, HIGH);
+  digitalWrite(COL1, LOW);    // cột = cực âm → LOW thì sáng
   Serial.println("R1 C1: SANG");
   delay(500);
-  digitalWrite(COL1, LOW);
+  digitalWrite(COL1, HIGH);
   Serial.println("R1 C1: tat");
   delay(500);
 }
 ```
 
-LED góc trên bên trái nhấp nháy mỗi nửa giây là đúng. Các dây và điện trở này nằm đúng vị trí của mạch đầy đủ, nên **giữ nguyên** và cắm tiếp các bước dưới.
+**Kết quả đúng:** LED **góc trên bên trái** nhấp nháy mỗi nửa giây.
 
-### Bước 3 – 8 điện trở
-
-Cắm 8 điện trở 1 kΩ (nâu – đen – đỏ) **vắt qua rãnh giữa**, mỗi cái nằm dọc trong một cột lỗ: một chân ở nửa gần, một chân ở nửa xa.
-
-| Điện trở cho | Cột lỗ |
+| Hiện tượng | Nguyên nhân / cách xử lý |
 |---|---|
-| C5 | 4 |
-| C3 | 6 |
-| C2 | 8 |
-| C4 | 10 |
-| C6 | 12 |
-| C1 | 14 |
-| C7 | 16 |
-| C8 | 18 |
+| Serial in đều nhưng không sáng | Ma trận ngược cực: đổi `HIGH` ↔ `LOW` ở cả hai chân (`ROW1` thành `LOW`, `COL1` sáng khi `HIGH`). Nếu giờ sáng thì đảo 4 dòng `#define` ở mọi code sau |
+| Đổi cực vẫn không sáng | Đầu dây cái chưa ăn vào chân (ấn hết cỡ), hoặc dây và chân điện trở không cùng hàng 5 lỗ |
+| Sáng LED khác | Cắm nhầm chân — kiểm tra lại hướng cầm: mặt LED về phía mình, chữ `1088BS` ở dưới |
 
-Thứ tự điện trở không theo C1 → C8 mà được xếp sao cho **các dây không bắt chéo nhau** (xem hình lắp ở trên).
+Kiểm tra nhanh không cần code: dây điện trở sang `GND`, dây chân 9 sang `5V`; không sáng thì đổi chiều. Chiều nào sáng thì chân nối `5V` là cực dương.
 
-Cách một cột giữa hai điện trở để chân không chạm nhau. Bẻ chân điện trở thành hình chữ U cho vừa khoảng cách qua rãnh. Điện trở không phân cực.
+### Bước 2 – 2 hàng × 3 cột (6 đèn)
 
-### Bước 4 – 8 dây hàng (không qua điện trở)
+Giữ dây Bước 1, cắm thêm:
 
-Dùng **một màu dây** (ví dụ đỏ) cho tất cả dây hàng. Mỗi dây nối thẳng từ vùng ma trận về Uno:
-
-| Hàng | Từ lỗ | Đến Uno |
+| Thêm | Chân ma trận | Nối về Uno |
 |---|---|---|
-| R1 | cột 37 – xa | `D2` |
-| R2 | cột 32 – xa | `D3` |
-| R3 | cột 37 – gần | `D4` |
-| R4 | cột 34 – xa | `D5` |
-| R5 | cột 30 – gần | `D6` |
-| R6 | cột 36 – gần | `D7` |
-| R7 | cột 31 – gần | `D8` |
-| R8 | cột 34 – gần | `D9` |
+| C2 | 3 (dưới, thứ 3) | 220 Ω → `D11` |
+| C3 | 4 (dưới, thứ 4) | 220 Ω → `D12` |
+| R2 | 14 (trên, thứ 3) | thẳng → `D3` |
 
-### Bước 5 – 16 dây cột (qua điện trở)
+```cpp
+const byte ROWS[] = {2, 3};          // R1, R2  (cực dương)
+const byte COLS[] = {10, 11, 12};    // C1, C2, C3 (cực âm, qua 220 Ω)
+const byte NR = sizeof(ROWS);
+const byte NC = sizeof(COLS);
 
-Dùng **màu khác** (ví dụ xanh) cho dây cột. Mỗi cột cần **hai dây**: dây (a) từ chân ma trận tới điện trở, **cùng nửa** với chân ma trận (chân ở nửa xa thì vào đầu xa của điện trở, chân ở nửa gần thì vào đầu gần); dây (b) từ **đầu còn lại** của điện trở về Uno. Nhờ vậy dây (a) của nửa xa đi vòng phía trên, của nửa gần đi vòng phía dưới, không dây nào vắt ngang breadboard.
+void allOff() {
+  for (byte i = 0; i < NR; i++) digitalWrite(ROWS[i], LOW);
+  for (byte i = 0; i < NC; i++) digitalWrite(COLS[i], HIGH);
+}
 
-| Cột | (a) Từ chân ma trận | → đến điện trở | (b) Từ điện trở | → đến Uno |
-|---|---|---|---|---|
-| C1 | cột 33 – xa | cột 14 – xa | cột 14 – gần | `D10` |
-| C2 | cột 32 – gần | cột 8 – gần | cột 8 – xa | `D11` |
-| C3 | cột 33 – gần | cột 6 – gần | cột 6 – xa | `D12` |
-| C4 | cột 36 – xa | cột 10 – xa | cột 10 – gần | `D13` |
-| C5 | cột 35 – gần | cột 4 – gần | cột 4 – xa | `A0` |
-| C6 | cột 35 – xa | cột 12 – xa | cột 12 – gần | `A1` |
-| C7 | cột 31 – xa | cột 16 – xa | cột 16 – gần | `A2` |
-| C8 | cột 30 – xa | cột 18 – xa | cột 18 – gần | `A3` |
+void setup() {
+  Serial.begin(9600);
+  for (byte i = 0; i < NR; i++) pinMode(ROWS[i], OUTPUT);
+  for (byte i = 0; i < NC; i++) pinMode(COLS[i], OUTPUT);
+  allOff();
+}
 
-Mẹo: làm xong toàn bộ cột (a) trước, rồi mới làm cột (b). Lỗ cắm dây ở vùng điện trở nên chọn hàng ngoài cùng (`j` hoặc `a`), để chừa hàng `f`/`e` cho chân điện trở. Dây (b) đi về hàng chân **analog** `A0`–`A3` ở mép dưới bên phải Uno, đừng nhầm với hàng chân nguồn bên cạnh.
+void loop() {
+  for (byte r = 0; r < NR; r++) {
+    for (byte c = 0; c < NC; c++) {
+      allOff();
+      digitalWrite(ROWS[r], HIGH);   // bật hàng
+      digitalWrite(COLS[c], LOW);    // bật cột
+      Serial.print("R"); Serial.print(r + 1);
+      Serial.print(" C"); Serial.println(c + 1);
+      delay(500);
+    }
+  }
+}
+```
 
-### Bước 6 – kiểm tra trước khi cắm điện
+**Kết quả đúng:** điểm sáng chạy ① → ⑥, mỗi lúc chỉ một đèn, khớp dòng Serial:
 
-- **Đếm dây**: 8 dây đỏ (hàng) đi thẳng từ cột 30 – 37 về `D2`–`D9`; 16 dây xanh (cột) đi qua vùng điện trở.
-- **Mỗi lỗ ở vùng ma trận chỉ có một dây** ở mỗi nửa. Cả 16 vị trí (8 cột lỗ × 2 nửa) đều có đúng một dây.
-- **Không có dây nào nối thẳng** từ vùng ma trận về `D10`–`D13` / `A0`–`A3` mà bỏ qua điện trở.
-- Không có dây nào cắm vào thanh nguồn `+`/`−` — lab này không dùng thanh nguồn.
-- Dán bảng ở Bước 4 – 5 cạnh mạch để dò lại khi có lỗi.
+```
+         C1   C2   C3
+R1  →    ①    ②    ③      (hàng trên cùng)
+R2  →    ④    ⑤    ⑥      (hàng thứ 2)
+```
 
-### Bước 7 – cắm USB, nạp Test 1
+| Hiện tượng | Nguyên nhân |
+|---|---|
+| Serial in `R1 C2` mà không đèn nào sáng | Dây hoặc điện trở của C2 lỏng / không cùng hàng lỗ |
+| `R1 C2` sáng ở vị trí C3 và ngược lại | Hai dây `D11` và `D12` bị đổi chỗ trên Uno |
+| `R2 …` sáng ở hàng khác | Nhầm chân: R2 là chân 14, hàng chân **trên**, thứ 3 từ trái |
+| Đèn sáng lung tung, nhiều đèn cùng lúc | Đang chạy code cũ chỉ khai báo 2 chân — các chân còn lại thả nổi. Nạp đúng code bước này |
 
-Nạp code Test 1 bên dưới, mở Serial Monitor. Điểm sáng phải chạy từ góc trên bên trái, sang phải hết hàng 1, rồi xuống hàng 2… Nếu sai, so dòng `R? C?` trên Serial với vị trí LED thật và tra lại bảng Bước 4 – 5.
+### Bước 3 – đủ 16 dây
+
+Cắm thêm **C4 – C8** (mỗi cột một điện trở 220 Ω), chạy thử, rồi cắm **R3 – R8** theo bảng ở phần [Sơ đồ chân và nối dây](#sơ-đồ-chân-và-nối-dây). Hàng nào chưa cắm thì lúc chạy đến hàng đó ma trận chỉ tối. Sau đó chuyển sang Test 1.
+
+Đối chiếu nhanh khi cắm xong:
+
+```
+Hàng chân TRÊN (trái → phải):  C8  C7  R2  C1  R4  C6  C4  R1
+                        Uno:   A3  A2  D3  D10 D5  A1  D13 D2
+
+Hàng chân DƯỚI (trái → phải):  R5  R7  C2  C3  R8  C5  R6  R3
+                        Uno:   D6  D8  D11 D12 D9  A0  D7  D4
+```
 
 ## Code
 
-Cả ba test dùng chung phần khai báo chân dưới đây. Mảng `ROWS[]` / `COLS[]` theo đúng thứ tự R1…R8 và C1…C8, nên nếu nối khác bảng thì chỉ cần sửa hai mảng này.
+### Test 1 – chạy điểm sáng qua 64 đèn
+
+Kiểm tra toàn bộ dây: một điểm sáng chạy từ trái sang phải, trên xuống dưới, qua đủ 64 vị trí.
 
 ```cpp
-const byte ROWS[8] = {2, 3, 4, 5, 6, 7, 8, 9};
-const byte COLS[8] = {10, 11, 12, 13, A0, A1, A2, A3};
+const byte ROWS[8] = {2, 3, 4, 5, 6, 7, 8, 9};             // R1 → R8
+const byte COLS[8] = {10, 11, 12, 13, A0, A1, A2, A3};     // C1 → C8
 
-// 1088BS: hàng là cathode, cột là anode → cột HIGH + hàng LOW thì LED sáng.
-// Nếu Test 1 không có LED nào sáng (ma trận loại 1088AS), đổi ngược cả bốn dòng dưới.
-#define ROW_ON  LOW
-#define ROW_OFF HIGH
-#define COL_ON  HIGH
-#define COL_OFF LOW
-```
-
-### Test 1 – bật lần lượt từng điểm
-
-Cho một điểm sáng chạy qua đủ 64 vị trí, từ trái sang phải, trên xuống dưới. Đây là bài **kiểm tra dây**: nếu thứ tự chạy sai thì biết ngay dây nào bị lẫn.
-
-```cpp
-const byte ROWS[8] = {2, 3, 4, 5, 6, 7, 8, 9};
-const byte COLS[8] = {10, 11, 12, 13, A0, A1, A2, A3};
-
-#define ROW_ON  LOW
-#define ROW_OFF HIGH
-#define COL_ON  HIGH
-#define COL_OFF LOW
+#define ROW_ON  HIGH
+#define ROW_OFF LOW
+#define COL_ON  LOW
+#define COL_OFF HIGH
 
 void allOff() {
   for (byte i = 0; i < 8; i++) {
@@ -327,7 +292,6 @@ void loop() {
       allOff();
       digitalWrite(ROWS[r], ROW_ON);
       digitalWrite(COLS[c], COL_ON);
-
       Serial.print("R"); Serial.print(r + 1);
       Serial.print(" C"); Serial.println(c + 1);
       delay(150);
@@ -338,13 +302,18 @@ void loop() {
 
 **Cách kiểm tra:**
 
-- Mở Serial Monitor (9600 baud). Mỗi dòng `R? C?` tương ứng đúng **một** LED sáng ở hàng, cột đó (hàng 1 ở trên, cột 1 bên trái khi mã số ở dưới).
-- **Không LED nào sáng**: ma trận ngược cực so với code (loại hàng là anode, như 1088AS) — đổi `ROW_ON`/`ROW_OFF` thành `HIGH`/`LOW` và `COL_ON`/`COL_OFF` thành `LOW`/`HIGH`, nạp lại.
-- **Sáng nhưng sai chỗ**: ghi lại dòng Serial và vị trí thật, so với bảng để tìm dây bị đổi. Nếu hình bị xoay 90° (điểm chạy dọc thay vì ngang) thì hàng và cột đang bị đổi vai — tráo hai mảng `ROWS` và `COLS`, đồng thời đảo chiều `ON`/`OFF`.
+- Mỗi dòng `R? C?` trên Serial Monitor (9600 baud) tương ứng đúng **một** LED sáng ở hàng, cột đó.
+- **Sáng sai chỗ**: ghi lại dòng Serial và vị trí thật, tra bảng để tìm hai dây bị đổi. Nếu điểm chạy dọc thay vì ngang thì hàng và cột bị đổi vai.
 - **Một hàng hoặc một cột không bao giờ sáng**: dây đó lỏng hoặc chưa cắm.
-- `D13` có LED `L` trên board Uno nối song song, nên LED `L` sẽ nháy theo cột 4 — bình thường.
+- `D13` có LED `L` trên board Uno nối song song, nên LED `L` nháy theo cột 4 — bình thường.
 
-### Test 2 – vẽ hình trái tim (quét hàng)
+<video controls playsinline preload="metadata" poster="../assets/led-matrix-8x8-scan-real-poster.jpg" style="display:block; max-width:360px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/led-matrix-8x8-scan-real.mp4" type="video/mp4">
+</video>
+
+Mạch thật chạy Test 1: 16 dây đực – cái cắm thẳng vào chân ma trận, ma trận đặt đứng trước breadboard. Điểm sáng chạy lần lượt qua các vị trí; đoạn sau của video quay sang Uno và breadboard có các điện trở vắt qua rãnh giữa.
+
+### Test 2 – vẽ hình trái tim
 
 Hình được lưu thành mảng 8 byte, mỗi byte là một hàng, **bit 7 là cột 1** (trái), bit 0 là cột 8. Viết ở dạng nhị phân `0b…` thì nhìn code thấy luôn hình.
 
@@ -352,10 +321,10 @@ Hình được lưu thành mảng 8 byte, mỗi byte là một hàng, **bit 7 l�
 const byte ROWS[8] = {2, 3, 4, 5, 6, 7, 8, 9};
 const byte COLS[8] = {10, 11, 12, 13, A0, A1, A2, A3};
 
-#define ROW_ON  LOW
-#define ROW_OFF HIGH
-#define COL_ON  HIGH
-#define COL_OFF LOW
+#define ROW_ON  HIGH
+#define ROW_OFF LOW
+#define COL_ON  LOW
+#define COL_OFF HIGH
 
 const byte HEART[8] = {
   0b00000000,
@@ -377,17 +346,17 @@ void setup() {
   }
 }
 
-// Vẽ 1 khung hình: quét 8 hàng một lượt (~8 ms)
+// Quét từng đèn: mỗi lúc chỉ 1 LED sáng → dòng mỗi chân ~14,5 mA, an toàn với 220 Ω
 void drawFrame(const byte img[8]) {
   for (byte r = 0; r < 8; r++) {
-    // 1. Đặt 8 cột theo hình của hàng r
-    for (byte c = 0; c < 8; c++) {
-      bool on = img[r] & (0x80 >> c);      // bit 7 = cột 1
-      digitalWrite(COLS[c], on ? COL_ON : COL_OFF);
-    }
-    // 2. Bật hàng r, giữ 1 ms, tắt
     digitalWrite(ROWS[r], ROW_ON);
-    delay(1);
+    for (byte c = 0; c < 8; c++) {
+      if (img[r] & (0x80 >> c)) {           // bit 7 = cột 1
+        digitalWrite(COLS[c], COL_ON);
+        delayMicroseconds(150);
+        digitalWrite(COLS[c], COL_OFF);
+      }
+    }
     digitalWrite(ROWS[r], ROW_OFF);
   }
 }
@@ -399,44 +368,79 @@ void loop() {
 
 Giải thích:
 
-- **Thứ tự trong `drawFrame`**: đặt cột **trước**, rồi mới bật hàng, và tắt hàng **trước** khi chuyển sang hàng kế. Nếu làm ngược, hàng mới sẽ thoáng hiện hình của hàng cũ, gây "bóng ma" (ghosting) mờ mờ.
-- **`loop()` phải gọi `drawFrame` liên tục**. Chỉ cần thêm một `delay(500)` vào `loop()` là hình tắt ngay — vì ma trận không tự nhớ hình, CPU phải vẽ lại liên tục.
+- **`drawFrame` chỉ bật những điểm có bit `1`**, mỗi điểm 150 µs rồi tắt. Hình trái tim có 36 điểm nên một khung mất khoảng 5,4 ms, tức gần 200 khung mỗi giây.
+- **`loop()` phải gọi `drawFrame` liên tục.** Thêm một `delay(500)` vào `loop()` là hình tắt ngay — ma trận không tự nhớ hình, CPU phải vẽ lại liên tục.
+- Hình nhấp nháy thì giảm `delayMicroseconds(150)` xuống `100`; muốn sáng hơn thì tăng lên `250` (tăng quá sẽ bắt đầu thấy nháy).
+- Tự vẽ hình khác: sửa các số `0b…`, mỗi số `1` là một điểm sáng.
 
-**Cách kiểm tra:**
+<video controls playsinline preload="metadata" poster="../assets/led-matrix-8x8-heart-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/led-matrix-8x8-heart-real.mp4" type="video/mp4">
+</video>
 
-- Thấy trái tim đứng yên, không nhấp nháy.
-- Đổi `delay(1)` thành `delay(10)`: quét 8 hàng mất 80 ms (~12 Hz), sẽ thấy rõ các hàng sáng **lần lượt** từ trên xuống — đây chính là quét hàng chạy chậm.
-- Tự vẽ hình khác: sửa các số `0b…` trong `HEART`, mỗi số `1` là một điểm sáng.
+Trái tim hiện đứng yên, không nhấp nháy, dù thực ra mỗi lúc chỉ có một LED sáng.
 
-### Test 3 – chạy chữ
+### Test 3 – chương trình trình diễn
 
-Cho dòng chữ `IOT ♥` chạy từ phải sang trái. Lần này chữ được lưu **theo cột** (mỗi byte là một cột, bit 0 là hàng 1 trên cùng) vì chạy chữ ngang thực chất là dịch cửa sổ 8 cột dọc theo một dải cột dài.
-
-Không dùng `delay()` để đợi giữa hai bước dịch, vì như Test 2 cho thấy, `delay` làm ma trận tắt. Thay vào đó dùng `millis()`: vẫn vẽ liên tục, chỉ dịch khi đã đủ 100 ms.
+Bốn hiệu ứng chạy lần lượt rồi lặp lại: **tim đập**, **mặt cười nháy mắt**, **mưa rơi** và **Game of Life**. Hàm `show(img, ms)` giữ một hình trên ma trận trong `ms` mili giây bằng cách gọi `drawFrame` liên tục — thay cho `delay()`, vốn làm tắt hình.
 
 ```cpp
 const byte ROWS[8] = {2, 3, 4, 5, 6, 7, 8, 9};
 const byte COLS[8] = {10, 11, 12, 13, A0, A1, A2, A3};
 
-#define ROW_ON  LOW
-#define ROW_OFF HIGH
-#define COL_ON  HIGH
-#define COL_OFF LOW
+#define ROW_ON  HIGH
+#define ROW_OFF LOW
+#define COL_ON  LOW
+#define COL_OFF HIGH
 
-// Mỗi byte = 1 cột, bit 0 = hàng 1 (trên cùng)
-const byte MSG[] = {
-  0x41, 0x7F, 0x41,                   0x00, 0x00,   // I
-  0x3E, 0x41, 0x41, 0x41, 0x3E,       0x00, 0x00,   // O
-  0x01, 0x01, 0x7F, 0x01, 0x01,       0x00, 0x00,   // T
-  0x0C, 0x1E, 0x3E, 0x7C, 0x3E, 0x1E, 0x0C,         // ♥
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,   // khoảng trống trước khi lặp
-};
-const int MSG_LEN = sizeof(MSG);
+// ----- Các hình (mỗi byte = 1 hàng, bit 7 = cột 1) -----
+const byte HEART_BIG[8]   = {0x00,0x66,0xFF,0xFF,0x7E,0x3C,0x18,0x00};
+const byte HEART_SMALL[8] = {0x00,0x00,0x24,0x7E,0x3C,0x18,0x00,0x00};
+const byte SMILE[8]       = {0x3C,0x42,0xA5,0x81,0xA5,0x99,0x42,0x3C};
+const byte WINK[8]        = {0x3C,0x42,0xB5,0x81,0xA5,0x99,0x42,0x3C};
 
-#define STEP_MS 100      // dịch 1 cột mỗi 100 ms
+byte frame[8];   // hình thay đổi được (mưa, Game of Life)
 
-int offset = 0;
-unsigned long lastStep = 0;
+// Quét từng đèn: mỗi lúc chỉ 1 LED sáng → an toàn với 220 Ω
+void drawFrame(const byte img[8]) {
+  for (byte r = 0; r < 8; r++) {
+    digitalWrite(ROWS[r], ROW_ON);
+    for (byte c = 0; c < 8; c++) {
+      if (img[r] & (0x80 >> c)) {
+        digitalWrite(COLS[c], COL_ON);
+        delayMicroseconds(150);
+        digitalWrite(COLS[c], COL_OFF);
+      }
+    }
+    digitalWrite(ROWS[r], ROW_OFF);
+  }
+}
+
+// Giữ một hình trên ma trận trong ms mili giây
+void show(const byte img[8], unsigned int ms) {
+  unsigned long t0 = millis();
+  while (millis() - t0 < ms) drawFrame(img);
+}
+
+// ----- Game of Life: mỗi ô sống/chết theo số hàng xóm -----
+byte cell(const byte g[8], int r, int c) {
+  r = (r + 8) % 8;  c = (c + 8) % 8;          // tràn mép thì vòng sang mép kia
+  return (g[r] >> (7 - c)) & 1;
+}
+
+void lifeStep(byte g[8]) {
+  byte next[8] = {0};
+  for (int r = 0; r < 8; r++) {
+    for (int c = 0; c < 8; c++) {
+      byte n = 0;
+      for (int dr = -1; dr <= 1; dr++)
+        for (int dc = -1; dc <= 1; dc++)
+          if (dr || dc) n += cell(g, r + dr, c + dc);
+      bool alive = cell(g, r, c);
+      if (n == 3 || (alive && n == 2)) next[r] |= 0x80 >> c;
+    }
+  }
+  memcpy(g, next, 8);
+}
 
 void setup() {
   for (byte i = 0; i < 8; i++) {
@@ -445,47 +449,158 @@ void setup() {
     digitalWrite(ROWS[i], ROW_OFF);
     digitalWrite(COLS[i], COL_OFF);
   }
-}
-
-void drawWindow() {
-  for (byte r = 0; r < 8; r++) {
-    for (byte c = 0; c < 8; c++) {
-      byte col = MSG[(offset + c) % MSG_LEN];   // vòng lại đầu chuỗi
-      bool on = col & (1 << r);
-      digitalWrite(COLS[c], on ? COL_ON : COL_OFF);
-    }
-    digitalWrite(ROWS[r], ROW_ON);
-    delay(1);
-    digitalWrite(ROWS[r], ROW_OFF);
-  }
+  randomSeed(analogRead(A5));   // A5 để trống → số ngẫu nhiên mỗi lần chạy khác nhau
 }
 
 void loop() {
-  drawWindow();
+  // 1. Tim đập
+  for (byte i = 0; i < 4; i++) {
+    show(HEART_BIG, 300);
+    show(HEART_SMALL, 200);
+  }
 
-  if (millis() - lastStep >= STEP_MS) {
-    lastStep = millis();
-    offset = (offset + 1) % MSG_LEN;
+  // 2. Mặt cười nháy mắt
+  for (byte i = 0; i < 3; i++) {
+    show(SMILE, 900);
+    show(WINK, 250);
+  }
+
+  // 3. Mưa rơi
+  memset(frame, 0, 8);
+  for (int i = 0; i < 60; i++) {
+    for (int r = 7; r > 0; r--) frame[r] = frame[r - 1];   // dịch xuống 1 hàng
+    frame[0] = 0;
+    for (byte c = 0; c < 8; c++)
+      if (random(6) == 0) frame[0] |= 0x80 >> c;           // giọt mưa mới ở hàng trên
+    show(frame, 80);
+  }
+
+  // 4. Game of Life
+  for (byte r = 0; r < 8; r++) frame[r] = random(256);
+  for (int g = 0; g < 60; g++) {
+    show(frame, 150);
+    lifeStep(frame);
   }
 }
 ```
 
-**Cách kiểm tra:**
+Giải thích:
 
-- Chữ `I`, `O`, `T` rồi trái tim chạy từ phải sang trái, hết chuỗi thì quay lại từ đầu.
-- Đổi `STEP_MS` thành `50` (nhanh hơn) hoặc `200` (chậm hơn) — độ sáng không đổi vì việc vẽ không phụ thuộc tốc độ chạy.
-- Thêm chữ: vẽ chữ trên giấy kẻ ô 8 hàng, mỗi cột đổi thành một byte (hàng 1 = bit 0 = giá trị 1, hàng 2 = 2, hàng 3 = 4, …, hàng 8 = 128) rồi chèn vào `MSG`.
+- **Mưa rơi**: mỗi bước dịch cả hình xuống một hàng, hàng trên cùng sinh giọt mới ngẫu nhiên (mỗi cột 1/6 cơ hội).
+- **Game of Life** (John Conway): mỗi đèn là một tế bào. Tế bào sống còn sống nếu có 2–3 hàng xóm sống; ô trống sinh tế bào mới nếu có đúng 3 hàng xóm sống. Từ một hình ngẫu nhiên, các đám đèn tự lớn lên, chết đi hoặc bò quanh ma trận. Mép trên nối với mép dưới, mép trái nối với mép phải.
+- **`randomSeed(analogRead(A5))`**: `A5` không nối gì nên đọc ra nhiễu ngẫu nhiên — mỗi lần bật, mưa và Game of Life khác nhau.
+
+<video controls playsinline preload="metadata" poster="../assets/led-matrix-8x8-show-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/led-matrix-8x8-show-real.mp4" type="video/mp4">
+</video>
+
+Ma trận được dựng trên đầu một joystick (chỉ làm giá đỡ, không nối dây). Lần lượt thấy trái tim đập to – nhỏ, mặt cười nháy mắt trái, rồi mưa rơi và các đám đèn của Game of Life.
+
+### Test 4 – xúc xắc điện tử
+
+Không cần nút nhấn: gõ một ký tự bất kỳ trong **Serial Monitor** rồi nhấn **Enter** để lắc, hoặc chờ 5 giây để xúc xắc tự lắc.
+
+```cpp
+const byte ROWS[8] = {2, 3, 4, 5, 6, 7, 8, 9};             // R1 → R8
+const byte COLS[8] = {10, 11, 12, 13, A0, A1, A2, A3};     // C1 → C8
+
+#define ROW_ON  HIGH
+#define ROW_OFF LOW
+#define COL_ON  LOW
+#define COL_OFF HIGH
+
+#define AUTO_MS 5000   // tự lắc sau mỗi 5 giây
+
+const byte DICE[6][8] = {
+  {0x00,0x00,0x00,0x18,0x18,0x00,0x00,0x00},   // 1
+  {0x60,0x60,0x00,0x00,0x00,0x00,0x06,0x06},   // 2
+  {0x60,0x60,0x00,0x18,0x18,0x00,0x06,0x06},   // 3
+  {0x66,0x66,0x00,0x00,0x00,0x00,0x66,0x66},   // 4
+  {0x66,0x66,0x00,0x18,0x18,0x00,0x66,0x66},   // 5
+  {0x66,0x66,0x00,0x66,0x66,0x00,0x66,0x66},   // 6
+};
+
+byte face = 0;
+unsigned long lastRoll = 0;
+
+// Quét từng đèn: mỗi lúc chỉ 1 LED sáng → an toàn với 220 Ω
+void drawFrame(const byte img[8]) {
+  for (byte r = 0; r < 8; r++) {
+    digitalWrite(ROWS[r], ROW_ON);
+    for (byte c = 0; c < 8; c++) {
+      if (img[r] & (0x80 >> c)) {
+        digitalWrite(COLS[c], COL_ON);
+        delayMicroseconds(150);
+        digitalWrite(COLS[c], COL_OFF);
+      }
+    }
+    digitalWrite(ROWS[r], ROW_OFF);
+  }
+}
+
+// Giữ một hình trên ma trận trong ms mili giây
+void show(const byte img[8], unsigned int ms) {
+  unsigned long t0 = millis();
+  while (millis() - t0 < ms) drawFrame(img);
+}
+
+void roll() {
+  for (byte i = 0; i < 12; i++) {             // hiệu ứng đang lăn, chậm dần
+    show(DICE[random(6)], 40 + i * 15);
+  }
+  face = random(6);
+  Serial.print("Ket qua: ");
+  Serial.println(face + 1);
+  lastRoll = millis();
+}
+
+void setup() {
+  Serial.begin(9600);
+  for (byte i = 0; i < 8; i++) {
+    pinMode(ROWS[i], OUTPUT);
+    pinMode(COLS[i], OUTPUT);
+    digitalWrite(ROWS[i], ROW_OFF);
+    digitalWrite(COLS[i], COL_OFF);
+  }
+  randomSeed(analogRead(A5));
+  Serial.println("Go phim bat ky + Enter de lac xuc xac");
+}
+
+void loop() {
+  if (Serial.available()) {                   // có ký tự gửi từ Serial Monitor
+    while (Serial.available()) Serial.read(); // đọc bỏ hết
+    roll();
+  } else if (millis() - lastRoll >= AUTO_MS) {
+    roll();
+  }
+  drawFrame(DICE[face]);
+}
+```
+
+**Cách chơi:**
+
+1. Nạp code, mở **Serial Monitor** ở 9600 baud.
+2. Gõ một ký tự (ví dụ `a`) vào ô *Message*, nhấn **Enter**: ma trận đổi mặt liên tục, chậm dần rồi dừng; Serial in `Ket qua: …` khớp số chấm trên ma trận.
+3. Không gõ gì thì 5 giây sau xúc xắc tự lắc. Sửa `AUTO_MS` để đổi khoảng thời gian; muốn **chỉ lắc khi gõ phím** thì xoá nhánh `else if (...) { roll(); }`.
+
+Mỗi chấm xúc xắc là một khối 2×2 LED, đặt ở các vị trí góc / giữa của lưới 8×8.
+
+<video controls playsinline preload="metadata" poster="../assets/led-matrix-8x8-dice-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/led-matrix-8x8-dice-real.mp4" type="video/mp4">
+</video>
+
+Ma trận hiện mặt **1**: một khối 2×2 LED ở giữa lưới.
 
 ## Module MAX7219
 
-Nhiều kit bán ma trận 8×8 **gắn sẵn trên một bo mạch có IC MAX7219** (bo xanh, 5 chân `VCC GND DIN CS CLK` ở mỗi đầu). Khi đó toàn bộ phần quét hàng, điện trở, giới hạn dòng đã nằm trong IC:
+Nhiều kit bán ma trận 8×8 **gắn sẵn trên một bo mạch có IC MAX7219** (bo xanh, 5 chân `VCC GND DIN CS CLK` ở mỗi đầu). Khi đó toàn bộ phần quét, điện trở, giới hạn dòng đã nằm trong IC:
 
 | | Lái trực tiếp (lab trên) | Module MAX7219 |
 |---|---|---|
 | Số chân Uno dùng | 16 | 3 |
 | Điện trở ngoài | 8 cái | Không (1 điện trở `ISET` trên bo) |
 | CPU phải quét liên tục | Có — `delay()` làm tắt hình | Không — IC tự quét, Uno chỉ gửi hình 1 lần |
-| Độ sáng | Tối (giới hạn dòng chân Uno) | Sáng, chỉnh được 16 mức bằng lệnh |
+| Độ sáng | Tối dần khi hình nhiều điểm | Sáng, chỉnh được 16 mức bằng lệnh |
 | Ghép nhiều ma trận | Hết chân | Nối tiếp `DOUT` → `DIN`, vẫn 3 chân |
 
 Đây là cùng ý tưởng với IC **74HC595** ở [Lab 7](seven-segment-5641as.md) — dùng giao tiếp nối tiếp để giảm số chân — nhưng MAX7219 còn tự làm luôn việc quét và giới hạn dòng.
@@ -534,18 +649,18 @@ void loop() {
 }
 ```
 
-Mảng `HEART` y hệt Test 2 — chỉ khác là gửi một lần trong `setup()` rồi thôi. Nếu hình bị xoay hoặc lật gương (tùy cách hàn ma trận lên bo), dùng `lc.setColumn()` thay cho `setRow()` hoặc đảo bit.
+Mảng `HEART` y hệt Test 2 — chỉ khác là gửi một lần trong `setup()` rồi thôi. Nếu hình bị xoay hoặc lật gương (tùy cách hàn ma trận lên bo), dùng `lc.setColumn()` thay cho `setRow()` hoặc đảo bit. Phần này chưa thử trên phần cứng thật vì kit dùng ma trận rời.
 
 ## Lỗi hay gặp
 
 | Hiện tượng | Nguyên nhân / cách xử lý |
 |---|---|
-| Không LED nào sáng ở Test 1 | Ma trận ngược cực so với code — đảo `ROW_ON/OFF` và `COL_ON/OFF` |
+| Ma trận che kín breadboard, không cắm được dây | Không cắm ma trận lên breadboard — dùng dây đực – cái cắm thẳng vào chân |
+| Code chạy (Serial in đều) nhưng không LED nào sáng | Ma trận ngược cực so với code — đảo `ROW_ON/OFF` và `COL_ON/OFF` |
+| Sáng sai đèn ở bài thử 1 đèn | Cầm ma trận sai hướng hoặc đếm chân từ mặt sau — mặt LED về phía mình, chữ `1088BS` ở dưới |
 | Điểm chạy dọc thay vì ngang | Hàng và cột bị đổi vai — tráo mảng `ROWS` ↔ `COLS` và đảo cực |
-| Một hàng/cột luôn tắt | Dây lỏng, hoặc chân ma trận bị cong không vào lỗ breadboard |
-| Hai điểm sáng cùng lúc ở Test 1 | Hai chân ma trận cắm chung một cột lỗ breadboard — ma trận chưa vắt qua rãnh giữa |
-| Hình có "bóng ma" mờ ở hàng bên cạnh | Bật hàng mới trước khi đặt xong cột — giữ đúng thứ tự trong `drawFrame` |
-| Hình nhấp nháy hoặc tắt khi thêm code | Có `delay()` dài trong `loop()` — đổi sang kiểu `millis()` như Test 3 |
-| Cả hình rất tối | Bình thường khi lái trực tiếp với 1 kΩ và quét 1/8; **không** hạ điện trở xuống 220 Ω (quá dòng chân Uno), dùng MAX7219 nếu cần sáng |
-| Uno bị reset / nóng khi cả hàng sáng | Dùng điện trở quá nhỏ hoặc đặt điện trở ở hàng thay vì cột |
-| MAX7219: không sáng gì | Quên `lc.shutdown(0, false)`, hoặc đổi nhầm `DIN`/`CLK` |
+| Một hàng/cột luôn tắt | Đầu dây cái lỏng, hoặc dây và chân điện trở không cùng hàng 5 lỗ |
+| Nhiều đèn sáng lung tung | Code không khai báo đủ chân, các chân còn lại thả nổi — dùng code khai báo cả 16 chân |
+| Hình tắt hoặc nhấp nháy khi thêm code | Có `delay()` trong `loop()` — dùng `show(img, ms)` thay cho `delay()` |
+| Hình tối, nhất là hình nhiều điểm | Bình thường khi quét từng đèn; tăng `delayMicroseconds` một chút, hoặc dùng MAX7219 |
+| Uno nóng / reset | Đang chạy code quét theo hàng với điện trở 220 Ω — chỉ dùng `drawFrame` quét từng đèn trong lab này |
