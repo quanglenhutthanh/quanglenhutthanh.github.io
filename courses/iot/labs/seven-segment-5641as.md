@@ -21,15 +21,7 @@ resources:
 
 Bốn chữ số LED 7 đoạn chung một vỏ, cỡ chữ **0,56 inch**. Mỗi chữ số có 7 đoạn `A`–`G` và một dấu chấm `DP`:
 
-```
-      A
-     ───
-  F │   │ B
-     ─G─
-  E │   │ C
-     ───   • DP
-      D
-```
+![Tên 8 thanh của mỗi chữ số: A trên cùng, B–C bên phải, D dưới cùng, E–F bên trái, G ở giữa, DP là dấu chấm](../assets/7seg-segments.svg){width=60%}
 
 Hậu tố trong mã cho biết kiểu chung chân:
 
