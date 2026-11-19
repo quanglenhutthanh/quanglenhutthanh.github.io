@@ -102,7 +102,7 @@ Ghép với các linh kiện đã có trong kit:
 | Yêu cầu | Chọn thay thế |
 |---|---|
 | Quay liên tục nhiều vòng (bánh xe) | Động cơ DC + driver, hoặc servo 360° |
-| Định vị chính xác nhiều vòng (máy in 3D, CNC) | Động cơ bước (stepper) + driver A4988 |
+| Định vị chính xác nhiều vòng (máy in 3D, CNC) | Động cơ bước (stepper) + driver A4988, xem [Lab 16](stepper-28byj48.md) với loại 28BYJ-48 |
 | Lực lớn (khớp vai cánh tay robot, cửa nặng) | Servo lớn bánh răng kim loại như MG996R, kèm nguồn ngoài |
 | Chịu va đập, hoạt động liên tục lâu dài | MG90S (bánh răng kim loại) thay SG90 (bánh răng nhựa dễ mẻ răng) |
 
