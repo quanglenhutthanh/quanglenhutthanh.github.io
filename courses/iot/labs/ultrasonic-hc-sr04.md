@@ -290,6 +290,8 @@ Nối dây:
 | LED đỏ | `D5` → điện trở 220 Ω → chân dài (anode); chân ngắn (cathode) → thanh `−` |
 | Buzzer | Chân `+` (chân dài) → `D6`; chân `−` → thanh `−` |
 
+![Sơ đồ nối Test 3: HC-SR04 TRIG → D7, ECHO → D8, buzzer + → D6, LED đỏ qua 220 Ω → D5; Uno đưa 5V/GND ra hai thanh nguồn breadboard](../assets/ultrasonic-led-buzzer-wiring.svg){width=100%}
+
 ```cpp
 #define TRIG_PIN    7
 #define ECHO_PIN    8

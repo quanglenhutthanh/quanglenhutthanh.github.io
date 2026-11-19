@@ -52,9 +52,9 @@ $$
 | D1 | LED vàng 5 mm | Chân cong = anode (+) |
 | — | Breadboard, dây nối | |
 
-### Thiết kế trên Tinkercad
+### Sơ đồ nối dây
 
-![Mạch LED cơ bản trên Tinkercad](../assets/lab01a-tinkercad.png){width=80%}
+![Nối LED và điện trở với Arduino Uno: dây cam từ D13 qua R1 1 kΩ vào anode LED, dây đen từ cathode LED về GND](../assets/lab01a-wiring.svg){width=100%}
 
 ### Ảnh thực tế
 
@@ -85,6 +85,8 @@ Mạch dùng ba cột của breadboard làm ba **nút điện** (node): mọi d�
 | 13 | D13 ↔ chân phải R1 | Tín hiệu từ chân số 13 vào điện trở |
 | 10 | chân trái R1 ↔ anode LED | Nối điện trở với LED |
 | 6 | cathode LED ↔ GND | Đường về đất |
+
+![Mạch 1A trên Tinkercad: vị trí lỗ cắm dùng cho bảng bên dưới](../assets/lab01a-tinkercad.png){width=80%}
 
 Từng dây theo hình Tinkercad (dây xanh cho đường tín hiệu, dây đen cho đường GND):
 
@@ -148,9 +150,9 @@ Giữ nguyên mạch 1A nhưng chèn thêm nút nhấn S1 vào giữa điện tr
 | D1 | LED vàng 5 mm | Chân cong = anode (+) |
 | — | Breadboard, dây nối | |
 
-### Thiết kế trên Tinkercad
+### Sơ đồ nối dây
 
-![Mạch nút nhấn bật LED trên Tinkercad](../assets/lab01b-tinkercad.png){width=85%}
+![Nối mạch 1B với Arduino Uno: dây cam từ D13 qua R1 1 kΩ, qua nút nhấn S1 rồi vào anode LED; dây đen từ cathode LED về GND](../assets/lab01b-wiring.svg){width=100%}
 
 ### Video thực tế
 
@@ -176,6 +178,8 @@ Dòng điện chỉ có **một đường đi duy nhất**: từ D13 qua điện
 Breadboard nối như ở 1A. Điểm mới là nút nhấn:
 
 - Nút nhấn 4 chân được cắm **vắt qua rãnh giữa**. Hai chân thẳng hàng qua rãnh (f11–e11, f13–e13) luôn nối với nhau; khi nhấn, cặp cột 11 được nối với cặp cột 13.
+
+![Mạch 1B trên Tinkercad: vị trí lỗ cắm dùng cho bảng bên dưới](../assets/lab01b-tinkercad.png){width=85%}
 
 Đường đi theo hình Tinkercad:
 

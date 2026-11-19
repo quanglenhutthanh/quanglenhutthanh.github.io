@@ -279,6 +279,8 @@ Trong code, đèn ở `D8` được đặt tên `led1_G` (GREEN) nhưng mạch t
 | LED vàng | `D8` → điện trở → chân dài LED; chân ngắn → thanh `−` |
 | Uno `5V` / `GND` | Thanh `+` / `−` |
 
+![Sơ đồ nối Test 4: biến trở → A5, servo → D9, LED đỏ qua R1 → D12, LED vàng qua R2 → D8; Uno đưa 5V/GND ra hai thanh nguồn breadboard](../assets/servo-pot-wiring.svg){width=100%}
+
 Biến trở ở mạch này cắm vào `A5` thay vì `A0`. Chân analog nào cũng được, chỉ cần sửa `POT_PIN`. Lưu ý `A4`/`A5` trên Uno cũng là `SDA`/`SCL` của I²C: nếu sau này gắn thêm LCD của [Lab 2](lcd-i2c.md) thì phải chuyển biến trở sang `A0`–`A3`.
 
 ```cpp

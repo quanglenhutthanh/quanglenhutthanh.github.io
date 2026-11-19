@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 590" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="1040" height="590" fill="#fff"/>
+
+<!-- Breadboard rails -->
+<rect x="40" y="462" width="720" height="16" rx="3" fill="#e3e8f5" stroke="#1d3f8f" stroke-width="2"/>
+<rect x="30" y="492" width="760" height="16" rx="3" fill="#fde2e2" stroke="#d62828" stroke-width="2"/>
+<text x="255" y="475" fill="#1d3f8f" font-size="12" font-weight="bold" text-anchor="middle">thanh − breadboard (GND)</text>
+<text x="280" y="505" fill="#b01e1e" font-size="12" font-weight="bold" text-anchor="middle">thanh + breadboard (5 V)</text>
+
+<!-- LDR symbol defs -->
+<defs>
+  <g id="ldr">
+    <line x1="0" y1="-50" x2="0" y2="-22" stroke="#9a9a9a" stroke-width="4" stroke-linecap="round"/>
+    <line x1="0" y1="22" x2="0" y2="50" stroke="#9a9a9a" stroke-width="4" stroke-linecap="round"/>
+    <circle r="22" fill="#e8b36a" stroke="#9c6b2a" stroke-width="2"/>
+    <path d="M-14 -12 H12 V-6 H-12 V0 H12 V6 H-12 V12 H14" fill="none" stroke="#b03a2e" stroke-width="2"/>
+  </g>
+  <g id="r10k">
+    <line x1="0" y1="-50" x2="0" y2="-34" stroke="#9a9a9a" stroke-width="4" stroke-linecap="round"/>
+    <line x1="0" y1="34" x2="0" y2="50" stroke="#9a9a9a" stroke-width="4" stroke-linecap="round"/>
+    <rect x="-12" y="-36" width="24" height="72" rx="10" fill="#e6c79c" stroke="#a07d4f" stroke-width="2"/>
+    <rect x="-12" y="-26" width="24" height="7" fill="#7b3f00"/>
+    <rect x="-12" y="-12" width="24" height="7" fill="#111"/>
+    <rect x="-12" y="2" width="24" height="7" fill="#e67e22"/>
+    <rect x="-12" y="20" width="24" height="7" fill="#c9a227"/>
+  </g>
+</defs>
+
+<!-- LDR trái (A0) at x=150, resistor at x=100 -->
+<use href="#ldr" x="150" y="340"/>
+<use href="#r10k" x="100" y="350"/>
+<text x="182" y="336" fill="#222" font-weight="bold" font-size="14">LDR trái</text>
+<text x="182" y="354" fill="#777" font-size="12">quang trở</text>
+<text x="84" y="346" fill="#222" font-weight="bold" font-size="13" text-anchor="end">10 kΩ</text>
+
+<!-- LDR phải (A1) at x=400, resistor at x=350 -->
+<use href="#ldr" x="400" y="340"/>
+<use href="#r10k" x="350" y="350"/>
+<text x="432" y="336" fill="#222" font-weight="bold" font-size="14">LDR phải</text>
+<text x="432" y="354" fill="#777" font-size="12">quang trở</text>
+<text x="334" y="346" fill="#222" font-weight="bold" font-size="13" text-anchor="end">10 kΩ</text>
+
+<!-- Servo SG90 (D9) -->
+<text x="570" y="262" fill="#222" text-anchor="middle" font-weight="bold" font-size="14">Servo SG90</text>
+<rect x="506" y="282" width="20" height="14" rx="3" fill="#2a5db0" stroke="#1b3f7a"/>
+<rect x="520" y="270" width="100" height="70" rx="6" fill="#2a5db0" stroke="#1b3f7a"/>
+<circle cx="552" cy="305" r="16" fill="#e8e8e8" stroke="#999"/>
+<rect x="548" y="282" width="8" height="46" rx="4" fill="#fff" stroke="#999"/>
+<circle cx="552" cy="305" r="4" fill="#999"/>
+<text x="595" y="310" fill="#fff" font-size="12" text-anchor="middle">9g</text>
+
+<!-- Wires -->
+<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- signals to divider midpoints -->
+  <path d="M786 120 H150 V290" stroke="#5dade2"/>
+  <path d="M150 290 H100 V300" stroke="#5dade2"/>
+  <path d="M786 180 H400 V290" stroke="#2471a3"/>
+  <path d="M400 290 H350 V300" stroke="#2471a3"/>
+  <path d="M620 287 H680 V240 H786" stroke="#f39c12"/>
+  <!-- resistors to − rail -->
+  <path d="M100 400 V470" stroke="#222"/>
+  <path d="M350 400 V470" stroke="#222"/>
+  <path d="M620 317 H640 V470" stroke="#8b5a2b"/>
+  <path d="M786 380 H750 V470" stroke="#222"/>
+  <!-- LDRs and servo to + rail (hop over − rail) -->
+  <path d="M150 390 V458 M150 482 V500" stroke="#d62828"/>
+  <path d="M400 390 V458 M400 482 V500" stroke="#d62828"/>
+  <path d="M620 302 H660 V458 M660 482 V500" stroke="#d62828"/>
+  <path d="M786 330 H770 V500" stroke="#d62828"/>
+</g>
+<g fill="none" stroke="#d62828" stroke-width="6" stroke-linecap="round">
+  <path d="M150 458 A12 12 0 0 1 150 482"/>
+  <path d="M400 458 A12 12 0 0 1 400 482"/>
+  <path d="M660 458 A12 12 0 0 1 660 482"/>
+</g>
+
+<!-- connection dots -->
+<g fill="#111">
+  <circle cx="150" cy="290" r="6"/><circle cx="400" cy="290" r="6"/>
+  <circle cx="100" cy="300" r="5"/><circle cx="350" cy="300" r="5"/>
+  <circle cx="150" cy="390" r="5"/><circle cx="400" cy="390" r="5"/>
+  <circle cx="100" cy="400" r="5"/><circle cx="350" cy="400" r="5"/>
+  <circle cx="100" cy="470" r="5"/><circle cx="350" cy="470" r="5"/>
+  <circle cx="640" cy="470" r="5"/><circle cx="750" cy="470" r="5"/>
+  <circle cx="150" cy="500" r="5"/><circle cx="400" cy="500" r="5"/>
+  <circle cx="660" cy="500" r="5"/><circle cx="770" cy="500" r="5"/>
+</g>
+
+<!-- wire labels -->
+<g font-size="13" fill="#333" text-anchor="middle">
+  <text x="470" y="112">xanh nhạt · điểm giữa LDR trái → A0</text>
+  <text x="600" y="172">xanh dương · điểm giữa LDR phải → A1</text>
+  <text x="730" y="232">cam · D9</text>
+  <text x="668" y="400" text-anchor="start" font-size="12">đỏ</text>
+  <text x="632" y="400" text-anchor="end" font-size="12">nâu</text>
+</g>
+
+<!-- Arduino Uno block -->
+<text x="915" y="60" fill="#222" text-anchor="middle" font-weight="bold">Arduino Uno</text>
+<rect x="800" y="80" width="230" height="340" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000">
+  <rect x="786" y="113" width="18" height="14"/>
+  <rect x="786" y="173" width="18" height="14"/>
+  <rect x="786" y="233" width="18" height="14"/>
+  <rect x="786" y="323" width="18" height="14"/>
+  <rect x="786" y="373" width="18" height="14"/>
+</g>
+<g fill="#fff" font-size="15" font-weight="bold">
+  <text x="814" y="125">A0</text>
+  <text x="814" y="185">A1</text>
+  <text x="814" y="245">D9</text>
+  <text x="814" y="335">5V</text>
+  <text x="814" y="385">GND</text>
+</g>
+<text x="935" y="265" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">Arduino Uno</text>
+<text x="935" y="289" fill="#cfe6ee" text-anchor="middle" font-size="13">(chỉ vẽ các chân dùng)</text>
+
+<!-- footnotes -->
+<text x="520" y="545" fill="#555" text-anchor="middle" font-size="14">Mỗi LDR + điện trở 10 kΩ là một cầu chia áp: LDR lên 5V, điện trở xuống GND, điểm giữa về A0 / A1 (sáng hơn → số lớn hơn).</text>
+<text x="520" y="568" fill="#555" text-anchor="middle" font-size="14">Chấm đen = điểm cắm. Dây đỏ vòng qua thanh − (không nối). Servo lấy nguồn từ cùng hai thanh nguồn breadboard.</text>
+</svg>

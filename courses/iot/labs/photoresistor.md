@@ -233,6 +233,8 @@ Ghép quang trở với servo SG90 của [Lab 4](servo-sg90.md): hai LDR đặt 
 | Servo – tín hiệu | `D9` |
 | Servo – đỏ / nâu | Thanh `+` / `−` (đầu bên phải breadboard) |
 
+![Sơ đồ nối Test 4: hai cầu chia áp LDR + 10 kΩ, điểm giữa về A0 và A1, servo ở D9; Uno đưa 5V/GND ra hai thanh nguồn breadboard](../assets/ldr-servo-wiring.svg){width=100%}
+
 Mỗi LDR là một cầu chia áp riêng giống hệt Test 1, nên cả hai cho **số lớn khi sáng**.
 
 ```cpp

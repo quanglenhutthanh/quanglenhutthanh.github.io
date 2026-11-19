@@ -38,13 +38,13 @@ Mỗi thiết bị tớ (slave) có một **địa chỉ 7 bit** riêng; master 
 
 Trên **Arduino Uno**, I²C nằm cố định ở chân **A4 = SDA** và **A5 = SCL** — tương ứng chân **PC4/PC5** của chip ATmega328P. Bản R3 nối thêm hai chân này ra đầu header digital, ngay sau `AREF`, in nhãn `SDA`/`SCL` (sơ đồ pinout ghi là **D18/SDA** và **D19/SCL**, vì A4/A5 dùng như chân digital thì có số 18/19). Hai cặp chân này **thông nhau bên trong board**, nối vào cặp nào cũng được — nhưng chỉ là một bus, không phải hai.
 
-![Chân I²C trên header digital của Uno R3: D18 = SDA, D19 = SCL (cùng là PC4/PC5, thông với A4/A5)](../assets/lcd-i2c-uno-pins.png){width=90%}
+![Chân I²C trên header digital của Uno R3: D18 = SDA, D19 = SCL (cùng là PC4/PC5, thông với A4/A5)](../assets/lcd-i2c-uno-pins.svg){width=90%}
 
 Board khác dùng chân khác: Mega là 20/21, ESP32 mặc định GPIO 21/22.
 
 ## Sơ đồ kết nối
 
-![Nối LCD 1602 + module I²C vào Arduino Uno: chỉ cần 4 dây](../assets/lcd-i2c-wiring.png){width=100%}
+![Nối LCD 1602 + module I²C vào Arduino Uno: chỉ cần 4 dây](../assets/lcd-i2c-wiring.svg){width=100%}
 
 | Chân module I²C | Chân Arduino Uno | Màu dây trong hình |
 |---|---|---|

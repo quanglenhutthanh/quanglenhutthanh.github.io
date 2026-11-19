@@ -22,7 +22,7 @@
 </g>
 <text x="150" y="326" fill="#9ad1ff" text-anchor="middle" font-weight="bold">X</text>
 <text x="62" y="128" fill="#9ad1ff" text-anchor="middle" font-weight="bold">Y</text>
-<text x="150" y="358" fill="#ccc" text-anchor="middle" font-size="13" letter-spacing="2">KY-023 JOYSTICK</text>
+<text x="144" y="366" fill="#ccc" text-anchor="middle" font-size="12" letter-spacing="1.5">KY-023 JOYSTICK</text>
 <text x="170" y="40" fill="#222" text-anchor="middle" font-weight="bold">Module joystick</text>
 
 <!-- module pin labels + header pins -->

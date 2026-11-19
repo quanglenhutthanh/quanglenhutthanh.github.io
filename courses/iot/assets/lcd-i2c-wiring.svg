@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 490" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="960" height="490" fill="#fff"/>
+
+<!-- LCD 1602 -->
+<text x="220" y="60" fill="#222" text-anchor="middle" font-weight="bold">LCD 1602 + module I²C</text>
+<rect x="40" y="80" width="360" height="170" rx="8" fill="#2e8b57" stroke="#1e6b3f" stroke-width="2"/>
+<g fill="#fff">
+  <circle cx="56" cy="96" r="7"/>
+  <circle cx="384" cy="96" r="7"/>
+  <circle cx="56" cy="234" r="7"/>
+  <circle cx="384" cy="234" r="7"/>
+</g>
+<rect x="72" y="108" width="296" height="114" rx="6" fill="#1d1d1f"/>
+<rect x="88" y="124" width="264" height="82" rx="3" fill="#a8d26a"/>
+<g font-family="Menlo, Consolas, monospace" font-size="19" fill="#2f4f1f" font-weight="bold">
+  <text x="100" y="157">Hello World!</text>
+  <text x="100" y="190">Hello IOT!</text>
+</g>
+<!-- 16-pin header between LCD and backpack -->
+<g stroke="#c9a227" stroke-width="3">
+  <line x1="160" y1="250" x2="160" y2="262"/><line x1="174" y1="250" x2="174" y2="262"/>
+  <line x1="188" y1="250" x2="188" y2="262"/><line x1="202" y1="250" x2="202" y2="262"/>
+  <line x1="216" y1="250" x2="216" y2="262"/><line x1="230" y1="250" x2="230" y2="262"/>
+  <line x1="244" y1="250" x2="244" y2="262"/><line x1="258" y1="250" x2="258" y2="262"/>
+  <line x1="272" y1="250" x2="272" y2="262"/><line x1="286" y1="250" x2="286" y2="262"/>
+  <line x1="300" y1="250" x2="300" y2="262"/><line x1="314" y1="250" x2="314" y2="262"/>
+  <line x1="328" y1="250" x2="328" y2="262"/><line x1="342" y1="250" x2="342" y2="262"/>
+  <line x1="356" y1="250" x2="356" y2="262"/><line x1="370" y1="250" x2="370" y2="262"/>
+</g>
+
+<!-- I2C backpack (PCF8574) -->
+<rect x="150" y="262" width="230" height="84" rx="5" fill="#1d1d1f" stroke="#000"/>
+<rect x="168" y="286" width="72" height="34" rx="3" fill="#333" stroke="#555"/>
+<text x="204" y="307" fill="#ddd" text-anchor="middle" font-size="11">PCF8574</text>
+<rect x="258" y="288" width="30" height="30" rx="3" fill="#2a5db0" stroke="#1b3f7a"/>
+<circle cx="273" cy="303" r="9" fill="#e8e8e8" stroke="#999"/>
+<path d="M267 303 H279 M273 297 V309" stroke="#777" stroke-width="2"/>
+<text x="273" y="334" fill="#aaa" text-anchor="middle" font-size="10">tương phản</text>
+<g fill="#fff" font-size="13" text-anchor="end" font-weight="bold">
+  <text x="372" y="275">GND</text>
+  <text x="372" y="295">VCC</text>
+  <text x="372" y="315">SDA</text>
+  <text x="372" y="335">SCL</text>
+</g>
+<g fill="#c9a227" stroke="#8a6d10">
+  <rect x="380" y="265" width="24" height="10"/>
+  <rect x="380" y="285" width="24" height="10"/>
+  <rect x="380" y="305" width="24" height="10"/>
+  <rect x="380" y="325" width="24" height="10"/>
+</g>
+<text x="265" y="366" fill="#999" text-anchor="middle" font-size="13" font-style="italic">module I²C hàn sẵn ở mặt sau LCD</text>
+
+<!-- Wires -->
+<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M404 270 H460 V180 H686" stroke="#222"/>
+  <path d="M404 290 H500 V230 H686" stroke="#d62828"/>
+  <path d="M404 310 H540 V280 H686" stroke="#8c8c8c"/>
+  <path d="M404 330 H686" stroke="#27ae60"/>
+</g>
+
+<!-- wire labels -->
+<g font-size="14" fill="#333" text-anchor="middle">
+  <text x="573" y="170">đen · GND → GND</text>
+  <text x="593" y="220">đỏ · VCC → 5V</text>
+  <text x="613" y="270">xám · SDA → A4</text>
+  <text x="613" y="320">xanh lá · SCL → A5</text>
+</g>
+
+<!-- Arduino Uno block -->
+<text x="815" y="60" fill="#222" text-anchor="middle" font-weight="bold">Arduino Uno</text>
+<rect x="700" y="80" width="230" height="340" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000">
+  <rect x="686" y="173" width="18" height="14"/>
+  <rect x="686" y="223" width="18" height="14"/>
+  <rect x="686" y="273" width="18" height="14"/>
+  <rect x="686" y="323" width="18" height="14"/>
+</g>
+<g fill="#fff" font-size="15" font-weight="bold">
+  <text x="714" y="185">GND</text>
+  <text x="714" y="235">5V</text>
+  <text x="714" y="285">A4 <tspan fill="#cfe6ee" font-weight="normal" font-size="13">(SDA)</tspan></text>
+  <text x="714" y="335">A5 <tspan fill="#cfe6ee" font-weight="normal" font-size="13">(SCL)</tspan></text>
+</g>
+<text x="815" y="380" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">Arduino Uno</text>
+<text x="815" y="402" fill="#cfe6ee" text-anchor="middle" font-size="13">(chỉ vẽ các chân dùng)</text>
+
+<!-- footnotes -->
+<text x="480" y="450" fill="#555" text-anchor="middle" font-size="14">Chỉ 4 dây: 2 dây nguồn (GND, 5V) và 2 dây I²C (SDA → A4, SCL → A5). Không cần breadboard.</text>
+<text x="480" y="473" fill="#555" text-anchor="middle" font-size="14">Trên Uno R3, A4/A5 thông với chân SDA/SCL ở đầu header digital, nối cặp nào cũng được. Địa chỉ I²C thường là 0x27 hoặc 0x3F.</text>
+</svg>

@@ -112,7 +112,7 @@ Cách này tốn 12/20 chân của Uno, gần như không còn chỗ cho cảm b
 
 **74HC595** là thanh ghi dịch 8 bit: Arduino gửi 8 bit **nối tiếp** qua một dây dữ liệu, mỗi bit kèm một xung clock, rồi phát một xung chốt (latch) để cả 8 bit cùng xuất ra 8 chân `Q0`–`Q7`. Arduino chỉ cần **3 dây** (dữ liệu, clock, chốt) thay vì 8. Bản thử này mới bật **chữ số đầu tiên**.
 
-![Sơ đồ nối 5641AS với 74HC595. Màu xám là dây nối trước, màu xanh lục là dây nối sau, khi lắp từng bước trên breadboard](../assets/7seg-595-schematic.png){width=100%}
+![Sơ đồ nối 5641AS với 74HC595. Màu xám là dây nối trước, màu xanh lục là dây nối sau, khi lắp từng bước trên breadboard](../assets/7seg-595-schematic.svg){width=100%}
 
 ### Nối dây
 
@@ -195,7 +195,7 @@ Chữ số đầu tiên đã sáng và hiển thị số `5`:
 
 Giữ nguyên phần 74HC595 ở trên, chỉ đổi cách nối 4 chân chữ số: thay vì `D1` nối cố định xuống `GND`, cả `D1`–`D4` đều nối về Arduino, **mỗi chân qua một điện trở 220 Ω**. Arduino kéo chân nào xuống `LOW` thì chữ số đó sáng.
 
-![Sơ đồ đủ 4 số: 8 dây đoạn từ 74HC595 (xanh lục) giữ như bản một số, thêm 4 dây chọn chữ số qua 220 Ω về Arduino D2–D5 (nâu)](../assets/7seg-595-4digits-schematic.png){width=100%}
+![Sơ đồ đủ 4 số: 8 dây đoạn từ 74HC595 (xanh lục) giữ như bản một số, thêm 4 dây chọn chữ số qua 220 Ω về Arduino D2–D5 (nâu)](../assets/7seg-595-4digits-schematic.svg){width=100%}
 
 ### Nối dây
 

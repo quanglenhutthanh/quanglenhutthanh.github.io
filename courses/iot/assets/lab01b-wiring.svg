@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 510" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="1000" height="510" fill="#fff"/>
+
+<!-- LED D1 -->
+<text x="200" y="150" fill="#222" text-anchor="middle" font-weight="bold">D1 · LED vàng 5 mm</text>
+<path d="M178 232 V196 A22 22 0 0 1 222 196 V232 Z" fill="#f4d03f" stroke="#b7950b" stroke-width="2"/>
+<path d="M186 198 A14 14 0 0 1 198 184" fill="none" stroke="#fff6c8" stroke-width="3" stroke-linecap="round"/>
+<path d="M180 232 H228 V240 H180 Z" fill="#e5c235" stroke="#b7950b" stroke-width="2"/>
+<line x1="180" y1="229" x2="180" y2="243" stroke="#b7950b" stroke-width="3"/>
+<g stroke="#9a9a9a" stroke-width="4" stroke-linecap="round" fill="none">
+  <line x1="190" y1="240" x2="190" y2="272"/>
+  <line x1="212" y1="240" x2="212" y2="292"/>
+</g>
+<g font-size="13" fill="#333">
+  <text x="168" y="266" text-anchor="end">cathode (−)</text>
+  <text x="168" y="282" text-anchor="end" fill="#777" font-size="12">chân ngắn, mép vát</text>
+  <text x="236" y="266">anode (+)</text>
+  <text x="236" y="282" fill="#777" font-size="12">chân dài</text>
+</g>
+
+<!-- Push button S1 -->
+<text x="348" y="376" fill="#222" text-anchor="middle" font-weight="bold">S1 · nút nhấn</text>
+<g stroke="#9a9a9a" stroke-width="4" stroke-linecap="round">
+  <line x1="304" y1="320" x2="318" y2="320"/>
+  <line x1="378" y1="320" x2="392" y2="320"/>
+</g>
+<rect x="318" y="290" width="60" height="60" rx="5" fill="#3a3a3d" stroke="#1d1d1f" stroke-width="2"/>
+<g fill="#6a6a6e">
+  <circle cx="326" cy="298" r="3"/>
+  <circle cx="370" cy="298" r="3"/>
+  <circle cx="326" cy="342" r="3"/>
+  <circle cx="370" cy="342" r="3"/>
+</g>
+<circle cx="348" cy="320" r="17" fill="#111" stroke="#555" stroke-width="2"/>
+<text x="348" y="393" fill="#777" text-anchor="middle" font-size="12">nhấn = nối · nhả = hở</text>
+
+<!-- Resistor R1 -->
+<text x="538" y="292" fill="#222" text-anchor="middle" font-weight="bold">R1 · 1 kΩ</text>
+<g stroke="#9a9a9a" stroke-width="4" stroke-linecap="round">
+  <line x1="468" y1="320" x2="494" y2="320"/>
+  <line x1="582" y1="320" x2="608" y2="320"/>
+</g>
+<rect x="492" y="306" width="92" height="28" rx="11" fill="#e6c79c" stroke="#a07d4f" stroke-width="2"/>
+<g>
+  <rect x="505" y="306" width="8" height="28" fill="#7b3f00"/>
+  <rect x="521" y="306" width="8" height="28" fill="#111"/>
+  <rect x="537" y="306" width="8" height="28" fill="#d62828"/>
+  <rect x="562" y="306" width="8" height="28" fill="#c9a227"/>
+</g>
+<text x="538" y="356" fill="#777" text-anchor="middle" font-size="12">nâu – đen – đỏ – nhũ</text>
+
+<!-- Wires -->
+<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M726 180 H640 V320 H608" stroke="#e67e22"/>
+  <path d="M468 320 H392" stroke="#27ae60"/>
+  <path d="M304 320 H212 V292" stroke="#27ae60"/>
+  <path d="M190 272 V400 H726" stroke="#222"/>
+</g>
+<!-- connection dots -->
+<g fill="#111">
+  <circle cx="608" cy="320" r="5"/>
+  <circle cx="468" cy="320" r="5"/>
+  <circle cx="392" cy="320" r="5"/>
+  <circle cx="304" cy="320" r="5"/>
+  <circle cx="212" cy="292" r="5"/>
+  <circle cx="190" cy="272" r="5"/>
+</g>
+
+<!-- wire labels -->
+<g font-size="14" fill="#333">
+  <text x="683" y="170" text-anchor="middle">cam · D13 → R1</text>
+  <text x="430" y="304" text-anchor="middle" font-size="13">R1 → S1</text>
+  <text x="258" y="342" text-anchor="middle" font-size="13">S1 → anode</text>
+  <text x="600" y="390" text-anchor="middle">đen · cathode → GND</text>
+</g>
+<!-- current direction arrows -->
+<g fill="#e67e22"><path d="M676 180 l12 -7 v14 z"/></g>
+<g fill="#222"><path d="M700 400 l-12 -7 v14 z"/></g>
+
+<!-- Arduino Uno block -->
+<text x="855" y="60" fill="#222" text-anchor="middle" font-weight="bold">Arduino Uno</text>
+<rect x="740" y="80" width="230" height="350" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000">
+  <rect x="726" y="173" width="18" height="14"/>
+  <rect x="726" y="393" width="18" height="14"/>
+</g>
+<g fill="#fff" font-size="15" font-weight="bold">
+  <text x="754" y="185">D13</text>
+  <text x="754" y="405">GND</text>
+</g>
+<rect x="804" y="174" width="18" height="10" rx="2" fill="#f4d03f" stroke="#b7950b"/>
+<text x="830" y="184" fill="#cfe6ee" font-size="12">đèn L (sáng liên tục)</text>
+<text x="870" y="270" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">Arduino Uno</text>
+<text x="870" y="294" fill="#cfe6ee" text-anchor="middle" font-size="13">(chỉ vẽ các chân dùng)</text>
+
+<!-- footnotes -->
+<text x="500" y="465" fill="#555" text-anchor="middle" font-size="14">Mạch nối tiếp: D13 → R1 → S1 → LED → GND. Code giữ D13 = HIGH; nút nhấn quyết định LED sáng hay tắt.</text>
+<text x="500" y="488" fill="#555" text-anchor="middle" font-size="14">Chấm đen = điểm nối (qua cột chung của breadboard). Nút cắm vắt qua rãnh giữa, hình chỉ vẽ hai phía của nút.</text>
+</svg>

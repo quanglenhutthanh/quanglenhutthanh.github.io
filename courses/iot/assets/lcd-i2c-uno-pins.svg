@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="960" height="580" fill="#fff"/>
+
+<!-- Arduino Uno block -->
+<text x="250" y="42" fill="#222" text-anchor="middle" font-weight="bold">Arduino Uno R3</text>
+<rect x="60" y="60" width="380" height="380" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#fff">
+  <circle cx="84" cy="84" r="8"/>
+  <circle cx="84" cy="416" r="8"/>
+</g>
+<rect x="110" y="200" width="150" height="60" rx="4" fill="#1d1d1f" stroke="#000"/>
+<text x="185" y="236" fill="#ddd" text-anchor="middle" font-size="13">ATmega328P</text>
+<text x="185" y="290" fill="#cfe6ee" text-anchor="middle" font-size="13" font-style="italic">nét đứt = nối sẵn</text>
+<text x="185" y="308" fill="#cfe6ee" text-anchor="middle" font-size="13" font-style="italic">bên trong board</text>
+
+<!-- internal links: A4 ↔ SDA, A5 ↔ SCL -->
+<g fill="none" stroke-width="5" stroke-dasharray="10 6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M400 431 V110 H431" stroke="#27ae60"/>
+  <path d="M350 431 V150 H386 M414 150 H431" stroke="#8c8c8c"/>
+</g>
+<path d="M386 150 A14 14 0 0 1 414 150" fill="none" stroke="#8c8c8c" stroke-width="5" stroke-linecap="round"/>
+
+<!-- Digital header (right edge, top part) -->
+<g fill="#222" stroke="#000">
+  <rect x="431" y="103" width="18" height="14"/>
+  <rect x="431" y="143" width="18" height="14"/>
+  <rect x="431" y="183" width="18" height="14"/>
+  <rect x="431" y="223" width="18" height="14"/>
+  <rect x="431" y="263" width="18" height="14"/>
+  <rect x="431" y="303" width="18" height="14"/>
+</g>
+<g stroke="#bbb" stroke-width="1.5">
+  <line x1="449" y1="110" x2="470" y2="110"/><line x1="449" y1="150" x2="470" y2="150"/>
+  <line x1="449" y1="190" x2="470" y2="190"/><line x1="449" y1="230" x2="470" y2="230"/>
+  <line x1="449" y1="270" x2="470" y2="270"/><line x1="449" y1="310" x2="470" y2="310"/>
+</g>
+<g font-size="13" fill="#555" text-anchor="middle" font-weight="bold">
+  <text x="520" y="86">Chân</text>
+  <text x="620" y="86">Chip</text>
+  <text x="720" y="86">I²C</text>
+</g>
+<!-- name pills -->
+<g>
+  <rect x="470" y="98" width="100" height="24" rx="12" fill="#e67e22"/>
+  <rect x="470" y="138" width="100" height="24" rx="12" fill="#e67e22"/>
+  <rect x="470" y="178" width="100" height="24" rx="12" fill="#666"/>
+  <rect x="470" y="218" width="100" height="24" rx="12" fill="#111"/>
+  <rect x="470" y="258" width="100" height="24" rx="12" fill="#e67e22"/>
+  <rect x="470" y="298" width="100" height="24" rx="12" fill="#e67e22"/>
+</g>
+<g fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">
+  <text x="520" y="115">D19 / SCL</text>
+  <text x="520" y="155">D18 / SDA</text>
+  <text x="520" y="195">AREF</text>
+  <text x="520" y="235">GND</text>
+  <text x="520" y="275">D13</text>
+  <text x="520" y="315">D12</text>
+</g>
+<!-- chip pills -->
+<g fill="#f4d03f">
+  <rect x="580" y="98" width="80" height="24" rx="4"/>
+  <rect x="580" y="138" width="80" height="24" rx="4"/>
+  <rect x="580" y="258" width="80" height="24" rx="4"/>
+  <rect x="580" y="298" width="80" height="24" rx="4"/>
+</g>
+<g fill="#333" font-size="13" font-weight="bold" text-anchor="middle">
+  <text x="620" y="115">PC5</text>
+  <text x="620" y="155">PC4</text>
+  <text x="620" y="275">PB5</text>
+  <text x="620" y="315">PB4</text>
+</g>
+<!-- I2C pills -->
+<g fill="#1f6fb2">
+  <rect x="670" y="98" width="100" height="24" rx="12"/>
+  <rect x="670" y="138" width="100" height="24" rx="12"/>
+</g>
+<g fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">
+  <text x="720" y="115">SCL</text>
+  <text x="720" y="155">SDA</text>
+</g>
+<!-- highlight -->
+<rect x="460" y="90" width="320" height="80" rx="6" fill="none" stroke="#d62828" stroke-width="3"/>
+<g font-size="14" fill="#b01e1e" font-weight="bold">
+  <text x="796" y="115">D19 = A5 = SCL</text>
+  <text x="796" y="155">D18 = A4 = SDA</text>
+</g>
+<text x="796" y="190" fill="#777" font-size="12">ngay trên chân AREF</text>
+
+<!-- Analog header (bottom edge) -->
+<g fill="#222" stroke="#000">
+  <rect x="143" y="431" width="14" height="18"/>
+  <rect x="193" y="431" width="14" height="18"/>
+  <rect x="243" y="431" width="14" height="18"/>
+  <rect x="293" y="431" width="14" height="18"/>
+  <rect x="343" y="431" width="14" height="18"/>
+  <rect x="393" y="431" width="14" height="18"/>
+</g>
+<g>
+  <rect x="128" y="456" width="44" height="22" rx="11" fill="#666"/>
+  <rect x="178" y="456" width="44" height="22" rx="11" fill="#666"/>
+  <rect x="228" y="456" width="44" height="22" rx="11" fill="#666"/>
+  <rect x="278" y="456" width="44" height="22" rx="11" fill="#666"/>
+  <rect x="328" y="456" width="44" height="22" rx="11" fill="#e67e22"/>
+  <rect x="378" y="456" width="44" height="22" rx="11" fill="#e67e22"/>
+  <rect x="328" y="484" width="44" height="22" rx="11" fill="#1f6fb2"/>
+  <rect x="378" y="484" width="44" height="22" rx="11" fill="#1f6fb2"/>
+</g>
+<g fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">
+  <text x="150" y="472">A0</text>
+  <text x="200" y="472">A1</text>
+  <text x="250" y="472">A2</text>
+  <text x="300" y="472">A3</text>
+  <text x="350" y="472">A4</text>
+  <text x="400" y="472">A5</text>
+  <text x="350" y="500">SDA</text>
+  <text x="400" y="500">SCL</text>
+</g>
+<text x="440" y="474" fill="#555" font-size="13">header analog</text>
+
+<!-- footnotes -->
+<text x="480" y="540" fill="#555" text-anchor="middle" font-size="14">A4/A5 và cặp SDA/SCL ở đầu header digital là cùng hai chân PC4/PC5 của ATmega328P. Dùng như chân digital thì A4 = D18, A5 = D19.</text>
+<text x="480" y="563" fill="#555" text-anchor="middle" font-size="14">Chỉ có một bus I²C: nối vào cặp nào cũng được. Màu nét đứt giống dây trong sơ đồ nối LCD (xám = SDA, xanh lá = SCL).</text>
+</svg>
