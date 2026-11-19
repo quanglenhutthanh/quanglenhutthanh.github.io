@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1470 700" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="1470" height="700" fill="#fff"/>
+<rect x="100" y="162" width="1135" height="16" rx="3" fill="#fde2e2" stroke="#d62828" stroke-width="2"/>
+<rect x="100" y="197" width="1135" height="16" rx="3" fill="#e3e8f5" stroke="#1d3f8f" stroke-width="2"/>
+<text x="430" y="174" fill="#b01e1e" font-size="12" font-weight="bold" text-anchor="middle">thanh + (5 V)</text>
+<text x="430" y="209" fill="#1d3f8f" font-size="12" font-weight="bold" text-anchor="middle">thanh − (GND)</text>
+<rect x="120" y="310" width="380" height="120" rx="6" fill="#2c2c2e" stroke="#000" stroke-width="2"/>
+<rect x="650" y="310" width="535" height="120" rx="6" fill="#1d1d1f" stroke="#000" stroke-width="2"/>
+<path d="M650 356 A14 14 0 0 1 650 384" fill="#555" stroke="#000" stroke-width="2"/>
+<g fill="#c9a227" stroke="#8a6d10">
+  <rect x="155" y="296" width="10" height="14"/>
+  <rect x="215" y="296" width="10" height="14"/>
+  <rect x="275" y="296" width="10" height="14"/>
+  <rect x="335" y="296" width="10" height="14"/>
+  <rect x="395" y="296" width="10" height="14"/>
+  <rect x="455" y="296" width="10" height="14"/>
+  <rect x="155" y="430" width="10" height="14"/>
+  <rect x="215" y="430" width="10" height="14"/>
+  <rect x="275" y="430" width="10" height="14"/>
+  <rect x="335" y="430" width="10" height="14"/>
+  <rect x="395" y="430" width="10" height="14"/>
+  <rect x="455" y="430" width="10" height="14"/>
+  <rect x="685" y="296" width="10" height="14"/>
+  <rect x="750" y="296" width="10" height="14"/>
+  <rect x="815" y="296" width="10" height="14"/>
+  <rect x="880" y="296" width="10" height="14"/>
+  <rect x="945" y="296" width="10" height="14"/>
+  <rect x="1010" y="296" width="10" height="14"/>
+  <rect x="1075" y="296" width="10" height="14"/>
+  <rect x="1140" y="296" width="10" height="14"/>
+  <rect x="685" y="430" width="10" height="14"/>
+  <rect x="750" y="430" width="10" height="14"/>
+  <rect x="815" y="430" width="10" height="14"/>
+  <rect x="880" y="430" width="10" height="14"/>
+  <rect x="945" y="430" width="10" height="14"/>
+  <rect x="1010" y="430" width="10" height="14"/>
+  <rect x="1075" y="430" width="10" height="14"/>
+  <rect x="1140" y="430" width="10" height="14"/>
+</g>
+<g fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">
+  <text x="160" y="332">D1</text>
+  <text x="220" y="332">A</text>
+  <text x="280" y="332">F</text>
+  <text x="340" y="332">D2</text>
+  <text x="400" y="332">D3</text>
+  <text x="460" y="332">B</text>
+  <text x="160" y="420">E</text>
+  <text x="220" y="420">D</text>
+  <text x="280" y="420">DP</text>
+  <text x="340" y="420">C</text>
+  <text x="400" y="420">G</text>
+  <text x="460" y="420">D4</text>
+  <text x="690" y="332">VCC</text>
+  <text x="755" y="332">Q0</text>
+  <text x="820" y="332">DS</text>
+  <text x="885" y="332">OE</text>
+  <text x="950" y="332">ST</text>
+  <text x="1015" y="332">SH</text>
+  <text x="1080" y="332">MR</text>
+  <text x="1145" y="332">Q7'</text>
+  <text x="690" y="420">Q1</text>
+  <text x="755" y="420">Q2</text>
+  <text x="820" y="420">Q3</text>
+  <text x="885" y="420">Q4</text>
+  <text x="950" y="420">Q5</text>
+  <text x="1015" y="420">Q6</text>
+  <text x="1080" y="420">Q7</text>
+  <text x="1145" y="420">GND</text>
+</g>
+<text x="310" y="372" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">5641AS</text>
+<text x="310" y="390" fill="#bbb" text-anchor="middle" font-size="12">LED 7 đoạn 4 số · cathode chung</text>
+<text x="917" y="372" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">74HC595</text>
+<text x="917" y="390" fill="#bbb" text-anchor="middle" font-size="12">thanh ghi dịch 8 bit</text>
+<g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M220 296 V240 H755 V296" stroke="#8c8c8c"/>
+  <path d="M280 296 V258 H616 V465 H690 V444" stroke="#27ae60"/>
+  <path d="M460 296 V276 H572 V490 H755 V444" stroke="#27ae60"/>
+  <path d="M400 444 V515 H820 V444" stroke="#27ae60"/>
+  <path d="M340 444 V540 H885 V444" stroke="#27ae60"/>
+  <path d="M280 444 V565 H950 V444" stroke="#27ae60"/>
+  <path d="M220 444 V590 H1015 V444" stroke="#27ae60"/>
+  <path d="M160 444 V615 H1080 V444" stroke="#27ae60"/>
+  <path d="M690 296 V248 A8 8 0 0 0 690 232 V218 A13 13 0 0 0 690 192 V170" stroke="#d62828"/>
+  <path d="M885 296 V205" stroke="#222"/>
+  <path d="M1080 296 V218 A13 13 0 0 0 1080 192 V170" stroke="#d62828"/>
+  <path d="M1145 444 V465 H1215 V205" stroke="#222"/>
+  <path d="M820 296 V218 A13 13 0 0 0 820 192 V183 A13 13 0 0 0 820 157 V60 H1246" stroke="#8e44ad"/>
+  <path d="M950 296 V218 A13 13 0 0 0 950 192 V183 A13 13 0 0 0 950 157 V90 H1246" stroke="#8e44ad"/>
+  <path d="M1015 296 V218 A13 13 0 0 0 1015 192 V183 A13 13 0 0 0 1015 157 V120 H1246" stroke="#8e44ad"/>
+  <path d="M160 296 V205" stroke="#222"/>
+  <path d="M1235 170 H1246" stroke="#d62828"/>
+  <path d="M1235 205 H1246" stroke="#222"/>
+</g>
+<g fill="none" stroke-linecap="round">
+  <path d="M690 248 A8 8 0 0 0 690 232" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M690 248 A8 8 0 0 0 690 232" stroke="#d62828" stroke-width="5"/>
+  <path d="M690 218 A13 13 0 0 0 690 192" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M690 218 A13 13 0 0 0 690 192" stroke="#d62828" stroke-width="5"/>
+  <path d="M1080 218 A13 13 0 0 0 1080 192" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M1080 218 A13 13 0 0 0 1080 192" stroke="#d62828" stroke-width="5"/>
+  <path d="M820 218 A13 13 0 0 0 820 192" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M820 218 A13 13 0 0 0 820 192" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M820 183 A13 13 0 0 0 820 157" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M820 183 A13 13 0 0 0 820 157" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M950 218 A13 13 0 0 0 950 192" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M950 218 A13 13 0 0 0 950 192" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M950 183 A13 13 0 0 0 950 157" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M950 183 A13 13 0 0 0 950 157" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M1015 218 A13 13 0 0 0 1015 192" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M1015 218 A13 13 0 0 0 1015 192" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M1015 183 A13 13 0 0 0 1015 157" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M1015 183 A13 13 0 0 0 1015 157" stroke="#8e44ad" stroke-width="5"/>
+</g>
+<rect x="149" y="230" width="22" height="48" rx="9" fill="#e6c79c" stroke="#a07d4f" stroke-width="2"/>
+<rect x="149" y="239" width="22" height="5" fill="#d62828"/>
+<rect x="149" y="248" width="22" height="5" fill="#d62828"/>
+<rect x="149" y="257" width="22" height="5" fill="#7b3f00"/>
+<rect x="149" y="268" width="22" height="4" fill="#c9a227"/>
+<text x="142" y="259" fill="#222" text-anchor="end" font-size="13" font-weight="bold">220 Ω</text>
+<g fill="#111">
+  <circle cx="690" cy="170" r="5"/>
+  <circle cx="885" cy="205" r="5"/>
+  <circle cx="1080" cy="170" r="5"/>
+  <circle cx="1215" cy="205" r="5"/>
+  <circle cx="160" cy="205" r="5"/>
+</g>
+<g font-size="12" fill="#333" text-anchor="middle">
+  <text x="1130" y="54">DS (data) → D11</text>
+  <text x="1130" y="84">ST (latch) → D8</text>
+  <text x="1130" y="114">SH (clock) → D12</text>
+</g>
+<rect x="1260" y="30" width="190" height="200" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000">
+  <rect x="1246" y="53" width="18" height="14"/>
+  <rect x="1246" y="83" width="18" height="14"/>
+  <rect x="1246" y="113" width="18" height="14"/>
+  <rect x="1246" y="163" width="18" height="14"/>
+  <rect x="1246" y="198" width="18" height="14"/>
+</g>
+<g fill="#fff" font-size="14" font-weight="bold">
+  <text x="1274" y="65">D11</text>
+  <text x="1274" y="95">D8</text>
+  <text x="1274" y="125">D12</text>
+  <text x="1274" y="175">5V</text>
+  <text x="1274" y="210">GND</text>
+</g>
+<text x="1385" y="126" fill="#fff" text-anchor="middle" font-size="17" font-weight="bold">Arduino</text>
+<text x="1385" y="146" fill="#fff" text-anchor="middle" font-size="17" font-weight="bold">Uno</text>
+<text x="735" y="660" fill="#555" text-anchor="middle" font-size="14">Xám = dây nối trước, xanh lục = dây nối sau khi lắp từng bước. D1 nối GND qua 220 Ω nên chỉ chữ số đầu sáng.</text>
+<text x="735" y="683" fill="#555" text-anchor="middle" font-size="14">Q0–Q7 → A, F, B, G, C, DP, D, E. Tím = dây điều khiển. Chỗ dây vòng qua là hai dây chéo nhau, không nối.</text>
+</svg>

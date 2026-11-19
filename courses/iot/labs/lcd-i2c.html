@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f7b4dd7c00d09131344c922f6194db6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Trên <strong>Arduino Uno</strong>, I²C nằm cố định ở chân <strong>A4 = SDA</strong> và <strong>A5 = SCL</strong> — tương ứng chân <strong>PC4/PC5</strong> của chip ATmega328P. Bản R3 nối thêm hai chân này ra đầu header digital, ngay sau <code>AREF</code>, in nhãn <code>SDA</code>/<code>SCL</code> (sơ đồ pinout ghi là <strong>D18/SDA</strong> và <strong>D19/SCL</strong>, vì A4/A5 dùng như chân digital thì có số 18/19). Hai cặp chân này <strong>thông nhau bên trong board</strong>, nối vào cặp nào cũng được — nhưng chỉ là một bus, không phải hai.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/lcd-i2c-uno-pins.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="../assets/lcd-i2c-uno-pins.svg" class="img-fluid figure-img" style="width:90.0%"></p>
 <figcaption>Chân I²C trên header digital của Uno R3: D18 = SDA, D19 = SCL (cùng là PC4/PC5, thông với A4/A5)</figcaption>
 </figure>
 </div>
@@ -254,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="sơ-đồ-kết-nối">Sơ đồ kết nối</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/lcd-i2c-wiring.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="../assets/lcd-i2c-wiring.svg" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Nối LCD 1602 + module I²C vào Arduino Uno: chỉ cần 4 dây</figcaption>
 </figure>
 </div>

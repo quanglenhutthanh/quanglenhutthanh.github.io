@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-19">
+
+<title>Lab 15 · LED 7 đoạn 1 số (5161AS) – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lab-15-led-7-đoạn-1-số-5161as" id="toc-lab-15-led-7-đoạn-1-số-5161as" class="nav-link active" data-scroll-target="#lab-15-led-7-đoạn-1-số-5161as">Lab 15 · LED 7 đoạn 1 số (5161AS)</a>
+  <ul class="collapse">
+  <li><a href="#led-7-đoạn-1-số-là-gì" id="toc-led-7-đoạn-1-số-là-gì" class="nav-link" data-scroll-target="#led-7-đoạn-1-số-là-gì">LED 7 đoạn 1 số là gì</a></li>
+  <li><a href="#linh-kiện" id="toc-linh-kiện" class="nav-link" data-scroll-target="#linh-kiện">Linh kiện</a></li>
+  <li><a href="#sơ-đồ-chân" id="toc-sơ-đồ-chân" class="nav-link" data-scroll-target="#sơ-đồ-chân">Sơ đồ chân</a></li>
+  <li><a href="#nối-dây" id="toc-nối-dây" class="nav-link" data-scroll-target="#nối-dây">Nối dây</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <ul class="collapse">
+  <li><a href="#test-1-thử-từng-thanh" id="toc-test-1-thử-từng-thanh" class="nav-link" data-scroll-target="#test-1-thử-từng-thanh">Test 1 – thử từng thanh</a></li>
+  <li><a href="#test-2-đếm-0-9" id="toc-test-2-đếm-0-9" class="nav-link" data-scroll-target="#test-2-đếm-0-9">Test 2 – đếm 0 → 9</a></li>
+  <li><a href="#test-3-bộ-đếm-bằng-nút-nhấn" id="toc-test-3-bộ-đếm-bằng-nút-nhấn" class="nav-link" data-scroll-target="#test-3-bộ-đếm-bằng-nút-nhấn">Test 3 – bộ đếm bằng nút nhấn</a></li>
+  <li><a href="#test-4-xúc-xắc" id="toc-test-4-xúc-xắc" class="nav-link" data-scroll-target="#test-4-xúc-xắc">Test 4 – xúc xắc</a></li>
+  </ul></li>
+  <li><a href="#so-sánh-với-led-7-đoạn-4-số" id="toc-so-sánh-với-led-7-đoạn-4-số" class="nav-link" data-scroll-target="#so-sánh-với-led-7-đoạn-4-số">So sánh với LED 7 đoạn 4 số</a></li>
+  <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 15 · LED 7 đoạn 1 số (5161AS)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 19, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lab-15-led-7-đoạn-1-số-5161as" class="level1">
+<h1>Lab 15 · LED 7 đoạn 1 số (5161AS)</h1>
+<blockquote class="blockquote">
+<p>Hiển thị một chữ số trên LED 7 đoạn <strong>1 số</strong> với Arduino Uno. Module có <strong>8 thanh</strong> sáng (7 đoạn <code>A</code>–<code>G</code> và dấu chấm <code>DP</code>), mỗi thanh là một LED riêng. Lab đi từ sơ đồ chân, nối dây trực tiếp 8 chân, thử từng thanh, đếm 0 → 9, rồi làm bộ đếm bằng nút nhấn và xúc xắc. Chỉ có một chữ số nên <strong>không cần quét</strong>, khác với <a href="../../../courses/iot/labs/seven-segment-5641as.html">Lab 7</a> (4 số).</p>
+</blockquote>
+<section id="led-7-đoạn-1-số-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="led-7-đoạn-1-số-là-gì">LED 7 đoạn 1 số là gì</h2>
+<p>Một chữ số gồm 8 LED trong một vỏ: 7 thanh <code>A</code>–<code>G</code> ghép thành hình số <code>8</code> và một dấu chấm <code>DP</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/7seg-segments.svg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Tên 8 thanh của LED 7 đoạn: A trên cùng, B–C bên phải, D dưới cùng, E–F bên trái, G ở giữa, DP là dấu chấm</figcaption>
+</figure>
+</div>
+<p>Bật đúng tổ hợp thanh sẽ ra chữ số: số <code>1</code> = <code>B C</code>, số <code>7</code> = <code>A B C</code>, số <code>8</code> = cả 7 thanh.</p>
+<p>Tất cả 8 LED nối chung <strong>một đầu</strong> vào chân chung (<code>COM</code>). Hậu tố trong mã cho biết kiểu chung:</p>
+<ul>
+<li><strong>5161AS</strong>: <strong>cathode chung (common cathode)</strong>. <code>COM</code> nối <code>GND</code>, thanh sáng khi chân thanh ở mức <code>HIGH</code>.</li>
+<li><strong>5161BS</strong>: <strong>anode chung (common anode)</strong>. <code>COM</code> nối <code>5V</code>, thanh sáng khi chân thanh ở mức <code>LOW</code>.</li>
+</ul>
+<p>Hai loại trông giống hệt nhau, chỉ khác chữ <code>A</code>/<code>B</code> in ở cạnh vỏ. Code trong lab có một dòng <code>#define</code> để đổi qua lại.</p>
+</section>
+<section id="linh-kiện" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện">Linh kiện</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Số lượng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arduino Uno + cáp USB</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>LED 7 đoạn 1 số 5161AS (hoặc 5161BS)</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Điện trở 220 Ω</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>Nút nhấn 4 chân</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Breadboard, dây cắm đực–đực</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sơ-đồ-chân" class="level2">
+<h2 class="anchored" data-anchor-id="sơ-đồ-chân">Sơ đồ chân</h2>
+<p><strong>10 chân</strong>, chia hai hàng 5 chân ở <strong>trên</strong> và <strong>dưới</strong> thân (không như 5641AS có chân ở giữa). Đặt module sao cho dấu chấm <code>DP</code> ở góc <strong>dưới bên phải</strong>, nhìn mặt trước: chân <strong>1</strong> ở góc <strong>dưới bên trái</strong>, đánh số <strong>ngược chiều kim đồng hồ</strong> (1 → 5 hàng dưới từ trái sang phải, 6 → 10 hàng trên từ phải sang trái).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hàng trên (10 → 6)</th>
+<th>10 <code>G</code></th>
+<th>9 <code>F</code></th>
+<th>8 <code>COM</code></th>
+<th>7 <code>A</code></th>
+<th>6 <code>B</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Hàng dưới (1 → 5)</strong></td>
+<td><strong>1 <code>E</code></strong></td>
+<td><strong>2 <code>D</code></strong></td>
+<td><strong>3 <code>COM</code></strong></td>
+<td><strong>4 <code>C</code></strong></td>
+<td><strong>5 <code>DP</code></strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Chân <strong>3</strong> và <strong>8</strong> (chính giữa mỗi hàng) đều là <code>COM</code>, đã nối sẵn bên trong. Chỉ cần nối một chân, nối cả hai cũng được.</li>
+<li>Mỗi thanh nằm gần chân của nó: <code>A</code> ở trên cùng → chân 7 hàng trên, <code>D</code> ở dưới cùng → chân 2 hàng dưới, <code>DP</code> ở góc dưới phải → chân 5.</li>
+</ul>
+<p><strong>Kiểm tra kiểu chung chân</strong> bằng đồng hồ ở thang đo diode: que <strong>đen</strong> vào chân 3 (<code>COM</code>), que <strong>đỏ</strong> vào chân 7 (<code>A</code>). Thanh A sáng mờ → cathode chung (5161AS). Phải đảo que mới sáng → anode chung (5161BS).</p>
+<p>Không có đồng hồ thì thử bằng chính Arduino: nối <code>COM</code> xuống <code>GND</code>, nối chân 7 lên <code>5V</code> <strong>qua điện trở 220 Ω</strong>. Thanh A sáng → cathode chung. Không sáng thì đảo: <code>COM</code> lên <code>5V</code>, chân 7 qua 220 Ω xuống <code>GND</code>.</p>
+</section>
+<section id="nối-dây" class="level2">
+<h2 class="anchored" data-anchor-id="nối-dây">Nối dây</h2>
+<p>Cắm module <strong>bắc ngang rãnh giữa breadboard</strong>: hàng chân trên ở một nửa, hàng chân dưới ở nửa kia.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/7seg-1-digit-wiring.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Sơ đồ nối LED 7 đoạn 1 số 5161AS với Arduino Uno: 8 chân thanh qua 8 điện trở 220 Ω vào D2–D9, COM (chân 3) xuống GND, nút nhấn giữa D10 và GND</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Thanh</th>
+<th>Chân 5161AS</th>
+<th>Nối Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>A</code></td>
+<td>7</td>
+<td><code>2</code></td>
+</tr>
+<tr class="even">
+<td><code>B</code></td>
+<td>6</td>
+<td><code>3</code></td>
+</tr>
+<tr class="odd">
+<td><code>C</code></td>
+<td>4</td>
+<td><code>4</code></td>
+</tr>
+<tr class="even">
+<td><code>D</code></td>
+<td>2</td>
+<td><code>5</code></td>
+</tr>
+<tr class="odd">
+<td><code>E</code></td>
+<td>1</td>
+<td><code>6</code></td>
+</tr>
+<tr class="even">
+<td><code>F</code></td>
+<td>9</td>
+<td><code>7</code></td>
+</tr>
+<tr class="odd">
+<td><code>G</code></td>
+<td>10</td>
+<td><code>8</code></td>
+</tr>
+<tr class="even">
+<td><code>DP</code></td>
+<td>5</td>
+<td><code>9</code></td>
+</tr>
+<tr class="odd">
+<td><code>COM</code></td>
+<td>3 (hoặc 8)</td>
+<td><code>GND</code> (loại 5161BS: <code>5V</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mỗi chân thanh đi qua một điện trở 220 Ω riêng.</strong> Không thay 8 điện trở bằng một điện trở duy nhất trên chân <code>COM</code>: dòng chung khi đó chia cho số thanh đang sáng, nên số <code>1</code> (2 thanh) sẽ sáng hơn hẳn số <code>8</code> (7 thanh).</p>
+<p>Dòng mỗi thanh với 220 Ω khoảng (5 − 2) / 220 ≈ 14 mA. Khi hiện số <code>8.</code> cả 8 thanh sáng, chân <code>COM</code> nhận ~110 mA. Chân <code>COM</code> nối thẳng <code>GND</code> (không qua chân Arduino) nên không sao; mỗi chân Arduino <code>2</code>–<code>9</code> chỉ cấp 14 mA, dưới mức 20 mA khuyến nghị.</p>
+<p>Nút nhấn (dùng ở Test 3, 4): một chân vào Arduino <code>10</code>, chân chéo đối diện vào <code>GND</code>. Code bật điện trở kéo lên trong (<code>INPUT_PULLUP</code>), nên không cần điện trở ngoài: nhả nút đọc <code>HIGH</code>, nhấn đọc <code>LOW</code>.</p>
+</section>
+<section id="code" class="level2">
+<h2 class="anchored" data-anchor-id="code">Code</h2>
+<p>Cả bốn test dùng chung phần khai báo dưới đây. Mỗi chữ số được lưu thành <strong>1 byte</strong>: bit 0 = <code>A</code>, bit 1 = <code>B</code>, …, bit 6 = <code>G</code>, bit 7 = <code>DP</code>. Ví dụ số <code>2</code> sáng <code>A B G E D</code> = bit 0, 1, 6, 4, 3 = <code>0b01011011</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define COMMON_CATHODE </span><span class="dv">1</span><span class="pp">   </span><span class="co">// 5161AS = 1, 5161BS (anode chung) = 0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> SEG_PINS<span class="op">[</span><span class="dv">8</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">};</span>  <span class="co">// A B C D E F G DP</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// bit:  7  6 5 4 3 2 1 0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">// thanh: DP G F E D C B A</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte DIGITS<span class="op">[</span><span class="dv">10</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00111111</span><span class="op">,</span>  <span class="co">// 0</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000110</span><span class="op">,</span>  <span class="co">// 1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01011011</span><span class="op">,</span>  <span class="co">// 2</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01001111</span><span class="op">,</span>  <span class="co">// 3</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01100110</span><span class="op">,</span>  <span class="co">// 4</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01101101</span><span class="op">,</span>  <span class="co">// 5</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01111101</span><span class="op">,</span>  <span class="co">// 6</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b00000111</span><span class="op">,</span>  <span class="co">// 7</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01111111</span><span class="op">,</span>  <span class="co">// 8</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="bn">0b01101111</span><span class="op">,</span>  <span class="co">// 9</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> show<span class="op">(</span>byte pattern<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> on <span class="op">=</span> pattern <span class="op">&amp;</span> <span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> i<span class="op">);</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// anode chung: thanh sáng khi chân ở LOW, nên đảo bit</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>SEG_PINS<span class="op">[</span>i<span class="op">],</span> <span class="op">(</span>on <span class="op">==</span> COMMON_CATHODE<span class="op">)</span> <span class="op">?</span> HIGH <span class="op">:</span> LOW<span class="op">);</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setupSegments<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> pinMode<span class="op">(</span>SEG_PINS<span class="op">[</span>i<span class="op">],</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  show<span class="op">(</span><span class="dv">0</span><span class="op">);</span>  <span class="co">// tắt hết</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Muốn bật thêm dấu chấm: <code>show(DIGITS[n] | 0b10000000);</code>.</p>
+<section id="test-1-thử-từng-thanh" class="level3">
+<h3 class="anchored" data-anchor-id="test-1-thử-từng-thanh">Test 1 – thử từng thanh</h3>
+<p>Bật lần lượt <code>A</code> → <code>B</code> → … → <code>G</code> → <code>DP</code>, mỗi thanh 0,5 giây, rồi bật cả 8. Đây là bước kiểm tra dây: thanh nào sáng sai thứ tự là dây chân đó bị lắp lệch.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// (dán phần khai báo chung ở trên vào đây)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  setupSegments<span class="op">();</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> i<span class="op">);</span>      <span class="co">// chỉ bật thanh thứ i</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  show<span class="op">(</span><span class="bn">0xFF</span><span class="op">);</span>          <span class="co">// cả 8 thanh: "8."</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  show<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="test-2-đếm-0-9" class="level3">
+<h3 class="anchored" data-anchor-id="test-2-đếm-0-9">Test 2 – đếm 0 → 9</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// (dán phần khai báo chung ở trên vào đây)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  setupSegments<span class="op">();</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> n <span class="op">&lt;=</span> <span class="dv">9</span><span class="op">;</span> n<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>DIGITS<span class="op">[</span>n<span class="op">]);</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>   <span class="co">// chỉ một chữ số, không phải quét nên dùng delay() được</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="test-3-bộ-đếm-bằng-nút-nhấn" class="level3">
+<h3 class="anchored" data-anchor-id="test-3-bộ-đếm-bằng-nút-nhấn">Test 3 – bộ đếm bằng nút nhấn</h3>
+<p>Mỗi lần nhấn nút, số tăng 1 (9 → quay về 0). Nút cơ khí bị <strong>rung (bounce)</strong>: một lần nhấn tạo ra nhiều xung <code>HIGH</code>/<code>LOW</code> trong vài ms, nếu đếm mọi cạnh xuống thì một lần nhấn có thể nhảy 2–3 số. Code chỉ chấp nhận cạnh xuống cách lần trước ít nhất 50 ms.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// (dán phần khai báo chung ở trên vào đây)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> BUTTON_PIN <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">long</span> DEBOUNCE_MS <span class="op">=</span> <span class="dv">50</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lastState <span class="op">=</span> HIGH<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lastPress <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  setupSegments<span class="op">();</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>BUTTON_PIN<span class="op">,</span> INPUT_PULLUP<span class="op">);</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  show<span class="op">(</span>DIGITS<span class="op">[</span>count<span class="op">]);</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> state <span class="op">=</span> digitalRead<span class="op">(</span>BUTTON_PIN<span class="op">);</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>lastState <span class="op">==</span> HIGH <span class="op">&amp;&amp;</span> state <span class="op">==</span> LOW <span class="op">&amp;&amp;</span>          <span class="co">// cạnh xuống = vừa nhấn</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      millis<span class="op">()</span> <span class="op">-</span> lastPress <span class="op">&gt;</span> DEBOUNCE_MS<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    lastPress <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="op">(</span>count <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="op">%</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>DIGITS<span class="op">[</span>count<span class="op">]);</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  lastState <span class="op">=</span> state<span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="test-4-xúc-xắc" class="level3">
+<h3 class="anchored" data-anchor-id="test-4-xúc-xắc">Test 4 – xúc xắc</h3>
+<p>Giữ nút: số chạy nhanh 1 → 6. Nhả nút: số chậm dần rồi dừng ở một giá trị ngẫu nhiên, dấu chấm <code>DP</code> bật để báo đã có kết quả.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// (dán phần khai báo chung ở trên vào đây)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> BUTTON_PIN <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  setupSegments<span class="op">();</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>BUTTON_PIN<span class="op">,</span> INPUT_PULLUP<span class="op">);</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  randomSeed<span class="op">(</span>analogRead<span class="op">(</span>A0<span class="op">));</span>   <span class="co">// A0 để trống: nhiễu analog làm hạt giống ngẫu nhiên</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  show<span class="op">(</span>DIGITS<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">|</span> <span class="bn">0b10000000</span><span class="op">);</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>digitalRead<span class="op">(</span>BUTTON_PIN<span class="op">)</span> <span class="op">==</span> HIGH<span class="op">)</span> <span class="cf">return</span><span class="op">;</span>     <span class="co">// chưa nhấn</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> face <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>digitalRead<span class="op">(</span>BUTTON_PIN<span class="op">)</span> <span class="op">==</span> LOW<span class="op">)</span> <span class="op">{</span>         <span class="co">// đang giữ nút: lắc nhanh</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    face <span class="op">=</span> face <span class="op">%</span> <span class="dv">6</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>DIGITS<span class="op">[</span>face<span class="op">]);</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">40</span><span class="op">);</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> wait <span class="op">=</span> <span class="dv">40</span><span class="op">;</span> wait <span class="op">&lt;</span> <span class="dv">300</span><span class="op">;</span> wait <span class="op">+=</span> <span class="dv">30</span><span class="op">)</span> <span class="op">{</span>    <span class="co">// nhả nút: chậm dần</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    face <span class="op">=</span> random<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">7</span><span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    show<span class="op">(</span>DIGITS<span class="op">[</span>face<span class="op">]);</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span>wait<span class="op">);</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  show<span class="op">(</span>DIGITS<span class="op">[</span>face<span class="op">]</span> <span class="op">|</span> <span class="bn">0b10000000</span><span class="op">);</span>                 <span class="co">// kết quả + dấu chấm</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="so-sánh-với-led-7-đoạn-4-số" class="level2">
+<h2 class="anchored" data-anchor-id="so-sánh-với-led-7-đoạn-4-số">So sánh với LED 7 đoạn 4 số</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1 số (5161AS, lab này)</th>
+<th>4 số (5641AS, <a href="../../../courses/iot/labs/seven-segment-5641as.html">Lab 7</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Số chân</td>
+<td>10 (2 chân <code>COM</code> trùng nhau)</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>Chân Arduino cần</td>
+<td>8</td>
+<td>12 (hoặc 3 + 4 khi dùng 74HC595)</td>
+</tr>
+<tr class="odd">
+<td>Quét</td>
+<td>Không cần, dùng <code>delay()</code> thoải mái</td>
+<td>Bắt buộc, không được <code>delay()</code> dài</td>
+</tr>
+<tr class="even">
+<td>Độ sáng</td>
+<td>Sáng 100% thời gian</td>
+<td>Mỗi số chỉ sáng ~1/4 thời gian</td>
+</tr>
+</tbody>
+</table>
+<p>8 chân Arduino cho một chữ số là khá tốn. Khi cần thêm cảm biến, chuyển 8 chân thanh sang <strong>74HC595</strong> giống Lab 7: Arduino chỉ còn dùng 3 dây, và bảng <code>DIGITS</code> vẫn giữ nguyên nếu nối <code>Q0</code>–<code>Q7</code> theo thứ tự <code>A</code>–<code>DP</code>.</p>
+</section>
+<section id="lỗi-hay-gặp" class="level2">
+<h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hiện tượng</th>
+<th>Nguyên nhân thường gặp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Không thanh nào sáng</td>
+<td><code>COM</code> chưa nối, hoặc nối sai kiểu: 5161AS cần <code>COM</code> → <code>GND</code>, 5161BS cần <code>COM</code> → <code>5V</code>. Kiểm tra mã in ở cạnh vỏ và dòng <code>#define COMMON_CATHODE</code></td>
+</tr>
+<tr class="even">
+<td>Hiện “ngược”: thanh cần tắt thì sáng, cần sáng thì tắt</td>
+<td>Module anode chung nhưng code để <code>COMMON_CATHODE 1</code> (hoặc ngược lại)</td>
+</tr>
+<tr class="odd">
+<td>Số hiện sai hình</td>
+<td>Một dây thanh lắp lệch. Chạy Test 1, thanh nào sáng sai thứ tự là dây chân đó</td>
+</tr>
+<tr class="even">
+<td>Một thanh không bao giờ sáng</td>
+<td>Chân của thanh đó chưa cắm chặt, điện trở chưa nối, hoặc thanh đã cháy (thử bằng đồng hồ ở thang diode)</td>
+</tr>
+<tr class="odd">
+<td>Số <code>1</code> sáng hơn số <code>8</code></td>
+<td>Dùng một điện trở chung ở <code>COM</code> thay vì 8 điện trở ở 8 chân thanh</td>
+</tr>
+<tr class="even">
+<td>Nhấn nút một lần, số nhảy 2–3 bước</td>
+<td>Nút bị rung, thiếu đoạn chống rung (debounce)</td>
+</tr>
+<tr class="odd">
+<td>Nút không có tác dụng</td>
+<td>Chưa <code>INPUT_PULLUP</code>, hoặc hai chân nút cắm cùng một cặp đã nối sẵn bên trong. Cắm theo <strong>đường chéo</strong> cho chắc</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1470 810" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="1470" height="810" fill="#fff"/>
+<rect x="100" y="267" width="1135" height="16" rx="3" fill="#fde2e2" stroke="#d62828" stroke-width="2"/>
+<rect x="100" y="302" width="1135" height="16" rx="3" fill="#e3e8f5" stroke="#1d3f8f" stroke-width="2"/>
+<text x="612" y="279" fill="#b01e1e" font-size="12" font-weight="bold" text-anchor="middle">thanh + (5 V)</text>
+<text x="612" y="314" fill="#1d3f8f" font-size="12" font-weight="bold" text-anchor="middle">thanh − (GND)</text>
+<rect x="120" y="410" width="380" height="120" rx="6" fill="#2c2c2e" stroke="#000" stroke-width="2"/>
+<rect x="650" y="410" width="535" height="120" rx="6" fill="#1d1d1f" stroke="#000" stroke-width="2"/>
+<path d="M650 456 A14 14 0 0 1 650 484" fill="#555" stroke="#000" stroke-width="2"/>
+<g fill="#c9a227" stroke="#8a6d10">
+  <rect x="155" y="396" width="10" height="14"/>
+  <rect x="215" y="396" width="10" height="14"/>
+  <rect x="275" y="396" width="10" height="14"/>
+  <rect x="335" y="396" width="10" height="14"/>
+  <rect x="395" y="396" width="10" height="14"/>
+  <rect x="455" y="396" width="10" height="14"/>
+  <rect x="155" y="530" width="10" height="14"/>
+  <rect x="215" y="530" width="10" height="14"/>
+  <rect x="275" y="530" width="10" height="14"/>
+  <rect x="335" y="530" width="10" height="14"/>
+  <rect x="395" y="530" width="10" height="14"/>
+  <rect x="455" y="530" width="10" height="14"/>
+  <rect x="685" y="396" width="10" height="14"/>
+  <rect x="750" y="396" width="10" height="14"/>
+  <rect x="815" y="396" width="10" height="14"/>
+  <rect x="880" y="396" width="10" height="14"/>
+  <rect x="945" y="396" width="10" height="14"/>
+  <rect x="1010" y="396" width="10" height="14"/>
+  <rect x="1075" y="396" width="10" height="14"/>
+  <rect x="1140" y="396" width="10" height="14"/>
+  <rect x="685" y="530" width="10" height="14"/>
+  <rect x="750" y="530" width="10" height="14"/>
+  <rect x="815" y="530" width="10" height="14"/>
+  <rect x="880" y="530" width="10" height="14"/>
+  <rect x="945" y="530" width="10" height="14"/>
+  <rect x="1010" y="530" width="10" height="14"/>
+  <rect x="1075" y="530" width="10" height="14"/>
+  <rect x="1140" y="530" width="10" height="14"/>
+</g>
+<g fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">
+  <text x="160" y="432">D1</text>
+  <text x="220" y="432">A</text>
+  <text x="280" y="432">F</text>
+  <text x="340" y="432">D2</text>
+  <text x="400" y="432">D3</text>
+  <text x="460" y="432">B</text>
+  <text x="160" y="520">E</text>
+  <text x="220" y="520">D</text>
+  <text x="280" y="520">DP</text>
+  <text x="340" y="520">C</text>
+  <text x="400" y="520">G</text>
+  <text x="460" y="520">D4</text>
+  <text x="690" y="432">VCC</text>
+  <text x="755" y="432">Q0</text>
+  <text x="820" y="432">DS</text>
+  <text x="885" y="432">OE</text>
+  <text x="950" y="432">ST</text>
+  <text x="1015" y="432">SH</text>
+  <text x="1080" y="432">MR</text>
+  <text x="1145" y="432">Q7'</text>
+  <text x="690" y="520">Q1</text>
+  <text x="755" y="520">Q2</text>
+  <text x="820" y="520">Q3</text>
+  <text x="885" y="520">Q4</text>
+  <text x="950" y="520">Q5</text>
+  <text x="1015" y="520">Q6</text>
+  <text x="1080" y="520">Q7</text>
+  <text x="1145" y="520">GND</text>
+</g>
+<text x="310" y="472" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">5641AS</text>
+<text x="310" y="490" fill="#bbb" text-anchor="middle" font-size="12">LED 7 đoạn 4 số · cathode chung</text>
+<text x="917" y="472" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">74HC595</text>
+<text x="917" y="490" fill="#bbb" text-anchor="middle" font-size="12">thanh ghi dịch 8 bit</text>
+<g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M220 396 V336 H755 V396" stroke="#27ae60"/>
+  <path d="M280 396 V356 H616 V575 H690 V544" stroke="#27ae60"/>
+  <path d="M460 396 V376 H572 V600 H755 V544" stroke="#27ae60"/>
+  <path d="M400 544 V625 H820 V544" stroke="#27ae60"/>
+  <path d="M340 544 V650 H885 V544" stroke="#27ae60"/>
+  <path d="M280 544 V675 H950 V544" stroke="#27ae60"/>
+  <path d="M220 544 V700 H1015 V544" stroke="#27ae60"/>
+  <path d="M160 544 V725 H1080 V544" stroke="#27ae60"/>
+  <path d="M690 396 V344 A8 8 0 0 0 690 328 V323 A13 13 0 0 0 690 297 V275" stroke="#d62828"/>
+  <path d="M885 396 V310" stroke="#222"/>
+  <path d="M1080 396 V323 A13 13 0 0 0 1080 297 V275" stroke="#d62828"/>
+  <path d="M1145 544 V575 H1215 V310" stroke="#222"/>
+  <path d="M820 396 V323 A13 13 0 0 0 820 297 V288 A13 13 0 0 0 820 262 V170 H1246" stroke="#8e44ad"/>
+  <path d="M950 396 V323 A13 13 0 0 0 950 297 V288 A13 13 0 0 0 950 262 V200 H1246" stroke="#8e44ad"/>
+  <path d="M1015 396 V323 A13 13 0 0 0 1015 297 V288 A13 13 0 0 0 1015 262 V230 H1246" stroke="#8e44ad"/>
+  <path d="M160 396 V323 A13 13 0 0 0 160 297 V288 A13 13 0 0 0 160 262 V50 H1246" stroke="#8b5a2b"/>
+  <path d="M340 396 V364 A8 8 0 0 0 340 348 V344 A8 8 0 0 0 340 328 V323 A13 13 0 0 0 340 297 V288 A13 13 0 0 0 340 262 V80 H1246" stroke="#8b5a2b"/>
+  <path d="M400 396 V364 A8 8 0 0 0 400 348 V344 A8 8 0 0 0 400 328 V323 A13 13 0 0 0 400 297 V288 A13 13 0 0 0 400 262 V110 H1246" stroke="#8b5a2b"/>
+  <path d="M460 544 V560 H530 V384 A8 8 0 0 0 530 368 V364 A8 8 0 0 0 530 348 V344 A8 8 0 0 0 530 328 V323 A13 13 0 0 0 530 297 V288 A13 13 0 0 0 530 262 V140 H1246" stroke="#8b5a2b"/>
+  <path d="M1235 275 H1246" stroke="#d62828"/>
+  <path d="M1235 310 H1246" stroke="#222"/>
+</g>
+<g fill="none" stroke-linecap="round">
+  <path d="M690 344 A8 8 0 0 0 690 328" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M690 344 A8 8 0 0 0 690 328" stroke="#d62828" stroke-width="5"/>
+  <path d="M690 323 A13 13 0 0 0 690 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M690 323 A13 13 0 0 0 690 297" stroke="#d62828" stroke-width="5"/>
+  <path d="M1080 323 A13 13 0 0 0 1080 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M1080 323 A13 13 0 0 0 1080 297" stroke="#d62828" stroke-width="5"/>
+  <path d="M820 323 A13 13 0 0 0 820 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M820 323 A13 13 0 0 0 820 297" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M820 288 A13 13 0 0 0 820 262" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M820 288 A13 13 0 0 0 820 262" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M950 323 A13 13 0 0 0 950 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M950 323 A13 13 0 0 0 950 297" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M950 288 A13 13 0 0 0 950 262" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M950 288 A13 13 0 0 0 950 262" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M1015 323 A13 13 0 0 0 1015 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M1015 323 A13 13 0 0 0 1015 297" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M1015 288 A13 13 0 0 0 1015 262" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M1015 288 A13 13 0 0 0 1015 262" stroke="#8e44ad" stroke-width="5"/>
+  <path d="M160 323 A13 13 0 0 0 160 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M160 323 A13 13 0 0 0 160 297" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M160 288 A13 13 0 0 0 160 262" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M160 288 A13 13 0 0 0 160 262" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M340 364 A8 8 0 0 0 340 348" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M340 364 A8 8 0 0 0 340 348" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M340 344 A8 8 0 0 0 340 328" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M340 344 A8 8 0 0 0 340 328" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M340 323 A13 13 0 0 0 340 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M340 323 A13 13 0 0 0 340 297" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M340 288 A13 13 0 0 0 340 262" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M340 288 A13 13 0 0 0 340 262" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M400 364 A8 8 0 0 0 400 348" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M400 364 A8 8 0 0 0 400 348" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M400 344 A8 8 0 0 0 400 328" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M400 344 A8 8 0 0 0 400 328" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M400 323 A13 13 0 0 0 400 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M400 323 A13 13 0 0 0 400 297" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M400 288 A13 13 0 0 0 400 262" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M400 288 A13 13 0 0 0 400 262" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M530 384 A8 8 0 0 0 530 368" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M530 384 A8 8 0 0 0 530 368" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M530 364 A8 8 0 0 0 530 348" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M530 364 A8 8 0 0 0 530 348" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M530 344 A8 8 0 0 0 530 328" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M530 344 A8 8 0 0 0 530 328" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M530 323 A13 13 0 0 0 530 297" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M530 323 A13 13 0 0 0 530 297" stroke="#8b5a2b" stroke-width="5"/>
+  <path d="M530 288 A13 13 0 0 0 530 262" stroke="#fff" stroke-width="10" stroke-linecap="butt"/>
+  <path d="M530 288 A13 13 0 0 0 530 262" stroke="#8b5a2b" stroke-width="5"/>
+</g>
+<rect x="149" y="187" width="22" height="48" rx="9" fill="#e6c79c" stroke="#a07d4f" stroke-width="2"/>
+<rect x="149" y="196" width="22" height="5" fill="#d62828"/>
+<rect x="149" y="205" width="22" height="5" fill="#d62828"/>
+<rect x="149" y="214" width="22" height="5" fill="#7b3f00"/>
+<rect x="149" y="225" width="22" height="4" fill="#c9a227"/>
+<rect x="329" y="187" width="22" height="48" rx="9" fill="#e6c79c" stroke="#a07d4f" stroke-width="2"/>
+<rect x="329" y="196" width="22" height="5" fill="#d62828"/>
+<rect x="329" y="205" width="22" height="5" fill="#d62828"/>
+<rect x="329" y="214" width="22" height="5" fill="#7b3f00"/>
+<rect x="329" y="225" width="22" height="4" fill="#c9a227"/>
+<rect x="389" y="187" width="22" height="48" rx="9" fill="#e6c79c" stroke="#a07d4f" stroke-width="2"/>
+<rect x="389" y="196" width="22" height="5" fill="#d62828"/>
+<rect x="389" y="205" width="22" height="5" fill="#d62828"/>
+<rect x="389" y="214" width="22" height="5" fill="#7b3f00"/>
+<rect x="389" y="225" width="22" height="4" fill="#c9a227"/>
+<rect x="519" y="187" width="22" height="48" rx="9" fill="#e6c79c" stroke="#a07d4f" stroke-width="2"/>
+<rect x="519" y="196" width="22" height="5" fill="#d62828"/>
+<rect x="519" y="205" width="22" height="5" fill="#d62828"/>
+<rect x="519" y="214" width="22" height="5" fill="#7b3f00"/>
+<rect x="519" y="225" width="22" height="4" fill="#c9a227"/>
+<text x="142" y="216" fill="#222" text-anchor="end" font-size="13" font-weight="bold">220 Ω</text>
+<g fill="#111">
+  <circle cx="690" cy="275" r="5"/>
+  <circle cx="885" cy="310" r="5"/>
+  <circle cx="1080" cy="275" r="5"/>
+  <circle cx="1215" cy="310" r="5"/>
+</g>
+<g font-size="12" fill="#333" text-anchor="middle">
+  <text x="1050" y="44">chữ số D1 → D2</text>
+  <text x="1050" y="74">chữ số D2 → D3</text>
+  <text x="1050" y="104">chữ số D3 → D4</text>
+  <text x="1050" y="134">chữ số D4 → D5</text>
+  <text x="1130" y="164">DS (data) → D11</text>
+  <text x="1130" y="194">ST (latch) → D8</text>
+  <text x="1130" y="224">SH (clock) → D12</text>
+</g>
+<rect x="1260" y="25" width="190" height="310" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000">
+  <rect x="1246" y="43" width="18" height="14"/>
+  <rect x="1246" y="73" width="18" height="14"/>
+  <rect x="1246" y="103" width="18" height="14"/>
+  <rect x="1246" y="133" width="18" height="14"/>
+  <rect x="1246" y="163" width="18" height="14"/>
+  <rect x="1246" y="193" width="18" height="14"/>
+  <rect x="1246" y="223" width="18" height="14"/>
+  <rect x="1246" y="268" width="18" height="14"/>
+  <rect x="1246" y="303" width="18" height="14"/>
+</g>
+<g fill="#fff" font-size="14" font-weight="bold">
+  <text x="1274" y="55">D2</text>
+  <text x="1274" y="85">D3</text>
+  <text x="1274" y="115">D4</text>
+  <text x="1274" y="145">D5</text>
+  <text x="1274" y="175">D11</text>
+  <text x="1274" y="205">D8</text>
+  <text x="1274" y="235">D12</text>
+  <text x="1274" y="280">5V</text>
+  <text x="1274" y="315">GND</text>
+</g>
+<text x="1385" y="176" fill="#fff" text-anchor="middle" font-size="17" font-weight="bold">Arduino</text>
+<text x="1385" y="196" fill="#fff" text-anchor="middle" font-size="17" font-weight="bold">Uno</text>
+<text x="735" y="770" fill="#555" text-anchor="middle" font-size="14">Xanh lục = 8 dây đoạn Q0–Q7 → A…G, DP (giữ như bản một số). Nâu = 4 dây chọn chữ số, mỗi dây qua 220 Ω về D2–D5.</text>
+<text x="735" y="793" fill="#555" text-anchor="middle" font-size="14">Tím = 3 dây điều khiển 74HC595. Chỗ dây vòng qua là hai dây chéo nhau, không nối. Chấm đen = điểm cắm vào thanh nguồn.</text>
+</svg>

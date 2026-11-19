@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 670" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="960" height="670" fill="#fff"/>
+
+<!-- 7-segment module -->
+<text x="170" y="60" fill="#222" text-anchor="middle" font-weight="bold">LED 7 đoạn 1 số</text>
+<rect x="40" y="80" width="260" height="440" rx="10" fill="#1d1d1f" stroke="#000"/>
+<rect x="66" y="140" width="164" height="260" rx="8" fill="#2c2c2e" stroke="#444"/>
+<g>
+<rect x="110" y="163" width="76" height="14" rx="7" fill="#ff3b30"/>
+<rect x="96" y="178" width="14" height="82" rx="7" fill="#ff3b30"/>
+<rect x="186" y="178" width="14" height="82" rx="7" fill="#ff3b30"/>
+<rect x="110" y="263" width="76" height="14" rx="7" fill="#ff3b30"/>
+<rect x="96" y="278" width="14" height="82" rx="7" fill="#ff3b30"/>
+<rect x="186" y="278" width="14" height="82" rx="7" fill="#ff3b30"/>
+<rect x="110" y="363" width="76" height="14" rx="7" fill="#ff3b30"/>
+<circle cx="216" cy="372" r="8" fill="#ff3b30"/>
+</g>
+<g fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">
+  <text x="148" y="155">A</text>
+  <text x="216" y="224">B</text>
+  <text x="216" y="324">C</text>
+  <text x="148" y="397">D</text>
+  <text x="80" y="324">E</text>
+  <text x="80" y="224">F</text>
+  <text x="148" y="256">G</text>
+  <text x="216" y="397" font-size="11">DP</text>
+</g>
+<text x="148" y="440" fill="#ccc" text-anchor="middle" font-size="12" letter-spacing="2">5161AS</text>
+<text x="148" y="460" fill="#9ad1ff" text-anchor="middle" font-size="12">cathode chung</text>
+<g fill="#fff" font-size="15" text-anchor="end" font-weight="bold">
+  <text x="292" y="125">A <tspan fill="#999" font-weight="normal" font-size="12">(7)</tspan></text>
+  <text x="292" y="165">B <tspan fill="#999" font-weight="normal" font-size="12">(6)</tspan></text>
+  <text x="292" y="205">C <tspan fill="#999" font-weight="normal" font-size="12">(4)</tspan></text>
+  <text x="292" y="245">D <tspan fill="#999" font-weight="normal" font-size="12">(2)</tspan></text>
+  <text x="292" y="285">E <tspan fill="#999" font-weight="normal" font-size="12">(1)</tspan></text>
+  <text x="292" y="325">F <tspan fill="#999" font-weight="normal" font-size="12">(9)</tspan></text>
+  <text x="292" y="365">G <tspan fill="#999" font-weight="normal" font-size="12">(10)</tspan></text>
+  <text x="292" y="405">DP <tspan fill="#999" font-weight="normal" font-size="12">(5)</tspan></text>
+  <text x="292" y="445">COM <tspan fill="#999" font-weight="normal" font-size="12">(8)</tspan></text>
+  <text x="292" y="485">COM <tspan fill="#999" font-weight="normal" font-size="12">(3)</tspan></text>
+</g>
+<g fill="#c9a227" stroke="#8a6d10">
+  <rect x="300" y="114" width="24" height="12"/>
+  <rect x="300" y="154" width="24" height="12"/>
+  <rect x="300" y="194" width="24" height="12"/>
+  <rect x="300" y="234" width="24" height="12"/>
+  <rect x="300" y="274" width="24" height="12"/>
+  <rect x="300" y="314" width="24" height="12"/>
+  <rect x="300" y="354" width="24" height="12"/>
+  <rect x="300" y="394" width="24" height="12"/>
+  <rect x="300" y="434" width="24" height="12"/>
+  <rect x="300" y="474" width="24" height="12"/>
+</g>
+<text x="336" y="445" fill="#999" font-size="13" font-style="italic">không nối (trùng chân 3)</text>
+
+<!-- GND rail -->
+<rect x="320" y="572" width="380" height="16" rx="3" fill="#e3e8f5" stroke="#1d3f8f" stroke-width="2"/>
+<text x="452" y="585" fill="#1d3f8f" font-size="12" font-weight="bold" text-anchor="middle">thanh − breadboard (GND)</text>
+
+<!-- Wires -->
+<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M324 120 H686" stroke="#8e44ad"/>
+  <path d="M324 160 H686" stroke="#e67e22"/>
+  <path d="M324 200 H686" stroke="#c9a227"/>
+  <path d="M324 240 H686" stroke="#27ae60"/>
+  <path d="M324 280 H686" stroke="#2980b9"/>
+  <path d="M324 320 H686" stroke="#16a085"/>
+  <path d="M324 360 H686" stroke="#c0392b"/>
+  <path d="M324 400 H686" stroke="#7f8c8d"/>
+  <path d="M324 480 H345 V580" stroke="#222"/>
+  <path d="M580 460 H686" stroke="#5d6d7e"/>
+  <path d="M560 480 V580" stroke="#222"/>
+  <path d="M686 520 H660 V580" stroke="#222"/>
+</g>
+
+<!-- 220 ohm resistors -->
+<text x="458" y="102" fill="#333" text-anchor="middle" font-size="13" font-weight="bold">8 × 220 Ω</text>
+<g><rect x="430" y="112" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="440" y="112" width="5" height="16" fill="#d62828"/><rect x="450" y="112" width="5" height="16" fill="#d62828"/><rect x="460" y="112" width="5" height="16" fill="#8b5a2b"/><rect x="474" y="112" width="5" height="16" fill="#c9a227"/></g>
+<g><rect x="430" y="152" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="440" y="152" width="5" height="16" fill="#d62828"/><rect x="450" y="152" width="5" height="16" fill="#d62828"/><rect x="460" y="152" width="5" height="16" fill="#8b5a2b"/><rect x="474" y="152" width="5" height="16" fill="#c9a227"/></g>
+<g><rect x="430" y="192" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="440" y="192" width="5" height="16" fill="#d62828"/><rect x="450" y="192" width="5" height="16" fill="#d62828"/><rect x="460" y="192" width="5" height="16" fill="#8b5a2b"/><rect x="474" y="192" width="5" height="16" fill="#c9a227"/></g>
+<g><rect x="430" y="232" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="440" y="232" width="5" height="16" fill="#d62828"/><rect x="450" y="232" width="5" height="16" fill="#d62828"/><rect x="460" y="232" width="5" height="16" fill="#8b5a2b"/><rect x="474" y="232" width="5" height="16" fill="#c9a227"/></g>
+<g><rect x="430" y="272" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="440" y="272" width="5" height="16" fill="#d62828"/><rect x="450" y="272" width="5" height="16" fill="#d62828"/><rect x="460" y="272" width="5" height="16" fill="#8b5a2b"/><rect x="474" y="272" width="5" height="16" fill="#c9a227"/></g>
+<g><rect x="430" y="312" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="440" y="312" width="5" height="16" fill="#d62828"/><rect x="450" y="312" width="5" height="16" fill="#d62828"/><rect x="460" y="312" width="5" height="16" fill="#8b5a2b"/><rect x="474" y="312" width="5" height="16" fill="#c9a227"/></g>
+<g><rect x="430" y="352" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="440" y="352" width="5" height="16" fill="#d62828"/><rect x="450" y="352" width="5" height="16" fill="#d62828"/><rect x="460" y="352" width="5" height="16" fill="#8b5a2b"/><rect x="474" y="352" width="5" height="16" fill="#c9a227"/></g>
+<g><rect x="430" y="392" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="440" y="392" width="5" height="16" fill="#d62828"/><rect x="450" y="392" width="5" height="16" fill="#d62828"/><rect x="460" y="392" width="5" height="16" fill="#8b5a2b"/><rect x="474" y="392" width="5" height="16" fill="#c9a227"/></g>
+
+<!-- Button -->
+<rect x="536" y="436" width="48" height="48" rx="4" fill="#3a3a3d" stroke="#111"/>
+<circle cx="560" cy="460" r="14" fill="#111" stroke="#666" stroke-width="2"/>
+
+<!-- junction dots -->
+<g fill="#111">
+  <circle cx="345" cy="580" r="5"/>
+  <circle cx="560" cy="580" r="5"/>
+  <circle cx="660" cy="580" r="5"/>
+</g>
+
+<!-- wire labels -->
+<g font-size="13" fill="#333">
+  <text x="590" y="111" text-anchor="middle">A → D2</text>
+  <text x="590" y="151" text-anchor="middle">B → D3</text>
+  <text x="590" y="191" text-anchor="middle">C → D4</text>
+  <text x="590" y="231" text-anchor="middle">D → D5</text>
+  <text x="590" y="271" text-anchor="middle">E → D6</text>
+  <text x="590" y="311" text-anchor="middle">F → D7</text>
+  <text x="590" y="351" text-anchor="middle">G → D8</text>
+  <text x="590" y="391" text-anchor="middle">DP → D9</text>
+  <text x="592" y="428" text-anchor="start">nút → D10</text>
+  <text x="352" y="530">COM → GND</text>
+  <text x="568" y="530">nút → GND</text>
+</g>
+
+<!-- Arduino Uno block -->
+<text x="815" y="60" fill="#222" text-anchor="middle" font-weight="bold">Arduino Uno</text>
+<rect x="700" y="80" width="230" height="460" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000">
+  <rect x="686" y="113" width="18" height="14"/>
+  <rect x="686" y="153" width="18" height="14"/>
+  <rect x="686" y="193" width="18" height="14"/>
+  <rect x="686" y="233" width="18" height="14"/>
+  <rect x="686" y="273" width="18" height="14"/>
+  <rect x="686" y="313" width="18" height="14"/>
+  <rect x="686" y="353" width="18" height="14"/>
+  <rect x="686" y="393" width="18" height="14"/>
+  <rect x="686" y="453" width="18" height="14"/>
+  <rect x="686" y="513" width="18" height="14"/>
+</g>
+<g fill="#fff" font-size="15" font-weight="bold">
+  <text x="714" y="125">D2</text>
+  <text x="714" y="165">D3</text>
+  <text x="714" y="205">D4</text>
+  <text x="714" y="245">D5</text>
+  <text x="714" y="285">D6</text>
+  <text x="714" y="325">D7</text>
+  <text x="714" y="365">D8</text>
+  <text x="714" y="405">D9</text>
+  <text x="714" y="465">D10</text>
+  <text x="714" y="525">GND</text>
+</g>
+<text x="850" y="300" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">Arduino Uno</text>
+<text x="850" y="324" fill="#cfe6ee" text-anchor="middle" font-size="13">(chỉ vẽ các chân dùng)</text>
+
+<!-- footnotes -->
+<text x="480" y="625" fill="#555" text-anchor="middle" font-size="14">Mỗi chân thanh đi qua một điện trở 220 Ω riêng (đỏ-đỏ-nâu). Số trong ngoặc là số chân trên vỏ 5161AS.</text>
+<text x="480" y="648" fill="#555" text-anchor="middle" font-size="14">5161BS (anode chung): nối COM lên 5V thay vì GND. Nút nhấn cắm chéo, dùng INPUT_PULLUP nên không cần điện trở.</text>
+</svg>

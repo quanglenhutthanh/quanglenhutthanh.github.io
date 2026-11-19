@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 590" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="1040" height="590" fill="#fff"/>
+
+<!-- Breadboard rails -->
+<rect x="40" y="462" width="720" height="16" rx="3" fill="#e3e8f5" stroke="#1d3f8f" stroke-width="2"/>
+<rect x="30" y="492" width="760" height="16" rx="3" fill="#fde2e2" stroke="#d62828" stroke-width="2"/>
+<text x="400" y="475" fill="#1d3f8f" font-size="12" font-weight="bold" text-anchor="middle">thanh − breadboard (GND)</text>
+<text x="330" y="505" fill="#b01e1e" font-size="12" font-weight="bold" text-anchor="middle">thanh + breadboard (5 V)</text>
+
+<!-- LED đỏ (D12) -->
+<text x="100" y="143" fill="#222" text-anchor="middle" font-weight="bold" font-size="14">LED đỏ</text>
+<g transform="translate(-100 -24)">
+  <path d="M178 232 V196 A22 22 0 0 1 222 196 V232 Z" fill="#e74c3c" stroke="#a93226" stroke-width="2"/>
+  <path d="M186 198 A14 14 0 0 1 198 184" fill="none" stroke="#f5b7b1" stroke-width="3" stroke-linecap="round"/>
+  <path d="M180 232 H228 V240 H180 Z" fill="#cf3b2c" stroke="#a93226" stroke-width="2"/>
+  <g stroke="#9a9a9a" stroke-width="4" stroke-linecap="round">
+    <line x1="190" y1="240" x2="190" y2="272"/>
+    <line x1="212" y1="240" x2="212" y2="292"/>
+  </g>
+</g>
+
+<!-- LED vàng (D8) -->
+<text x="260" y="192" fill="#222" text-anchor="middle" font-weight="bold" font-size="14">LED vàng</text>
+<g transform="translate(60 26)">
+  <path d="M178 232 V196 A22 22 0 0 1 222 196 V232 Z" fill="#f4d03f" stroke="#b7950b" stroke-width="2"/>
+  <path d="M186 198 A14 14 0 0 1 198 184" fill="none" stroke="#fff6c8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M180 232 H228 V240 H180 Z" fill="#e5c235" stroke="#b7950b" stroke-width="2"/>
+  <g stroke="#9a9a9a" stroke-width="4" stroke-linecap="round">
+    <line x1="190" y1="240" x2="190" y2="272"/>
+    <line x1="212" y1="240" x2="212" y2="292"/>
+  </g>
+</g>
+
+<!-- Resistors R1 (y=120), R2 (y=170) -->
+<g stroke="#9a9a9a" stroke-width="4" stroke-linecap="round">
+  <line x1="150" y1="120" x2="172" y2="120"/><line x1="240" y1="120" x2="262" y2="120"/>
+  <line x1="310" y1="170" x2="332" y2="170"/><line x1="400" y1="170" x2="422" y2="170"/>
+</g>
+<g stroke="#a07d4f" stroke-width="2" fill="#e6c79c">
+  <rect x="170" y="108" width="72" height="24" rx="10"/>
+  <rect x="330" y="158" width="72" height="24" rx="10"/>
+</g>
+<g>
+  <rect x="181" y="108" width="7" height="24" fill="#d62828"/>
+  <rect x="195" y="108" width="7" height="24" fill="#d62828"/>
+  <rect x="209" y="108" width="7" height="24" fill="#7b3f00"/>
+  <rect x="228" y="108" width="7" height="24" fill="#c9a227"/>
+  <rect x="341" y="158" width="7" height="24" fill="#d62828"/>
+  <rect x="355" y="158" width="7" height="24" fill="#d62828"/>
+  <rect x="369" y="158" width="7" height="24" fill="#7b3f00"/>
+  <rect x="388" y="158" width="7" height="24" fill="#c9a227"/>
+</g>
+<text x="206" y="98" fill="#222" text-anchor="middle" font-size="13" font-weight="bold">R1 · 220 Ω</text>
+<text x="366" y="148" fill="#222" text-anchor="middle" font-size="13" font-weight="bold">R2 · 220 Ω</text>
+
+<!-- Servo SG90 (D9) -->
+<text x="490" y="244" fill="#222" text-anchor="middle" font-weight="bold" font-size="14">Servo SG90</text>
+<rect x="426" y="262" width="20" height="14" rx="3" fill="#2a5db0" stroke="#1b3f7a"/>
+<rect x="440" y="250" width="100" height="70" rx="6" fill="#2a5db0" stroke="#1b3f7a"/>
+<circle cx="472" cy="285" r="16" fill="#e8e8e8" stroke="#999"/>
+<rect x="468" y="262" width="8" height="46" rx="4" fill="#fff" stroke="#999"/>
+<circle cx="472" cy="285" r="4" fill="#999"/>
+<text x="515" y="290" fill="#fff" font-size="12" text-anchor="middle">9g</text>
+
+<!-- Potentiometer (A5) -->
+<g stroke="#9a9a9a" stroke-width="4" stroke-linecap="round">
+  <line x1="650" y1="310" x2="650" y2="332"/>
+  <line x1="670" y1="310" x2="670" y2="332"/>
+  <line x1="690" y1="310" x2="690" y2="332"/>
+</g>
+<rect x="635" y="330" width="70" height="64" rx="6" fill="#2a5db0" stroke="#1b3f7a"/>
+<circle cx="670" cy="362" r="20" fill="#e8e8e8" stroke="#999"/>
+<line x1="670" y1="362" x2="670" y2="345" stroke="#555" stroke-width="4" stroke-linecap="round"/>
+<text x="670" y="422" fill="#222" text-anchor="middle" font-weight="bold" font-size="14">Biến trở</text>
+<!-- Wires -->
+<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- signals -->
+  <path d="M786 120 H262" stroke="#8e44ad"/>
+  <path d="M786 170 H422" stroke="#2980b9"/>
+  <path d="M540 267 H600 V220 H786" stroke="#f39c12"/>
+  <path d="M670 310 V280 H786" stroke="#27ae60"/>
+  <!-- resistor → anode -->
+  <path d="M150 120 V284 H112 V268" stroke="#8e44ad"/>
+  <path d="M310 170 V334 H272 V318" stroke="#2980b9"/>
+  <!-- to − rail -->
+  <path d="M90 248 V470" stroke="#222"/>
+  <path d="M250 298 V470" stroke="#222"/>
+  <path d="M540 297 H560 V470" stroke="#8b5a2b"/>
+  <path d="M650 310 H625 V470" stroke="#222"/>
+  <path d="M786 380 H750 V470" stroke="#222"/>
+  <!-- to + rail (hop over − rail) -->
+  <path d="M540 282 H580 V458 M580 482 V500" stroke="#d62828"/>
+  <path d="M690 310 H715 V458 M715 482 V500" stroke="#d62828"/>
+  <path d="M786 330 H770 V500" stroke="#d62828"/>
+</g>
+<g fill="none" stroke="#d62828" stroke-width="6" stroke-linecap="round">
+  <path d="M580 458 A12 12 0 0 1 580 482"/>
+  <path d="M715 458 A12 12 0 0 1 715 482"/>
+</g>
+
+<!-- connection dots -->
+<g fill="#111">
+  <circle cx="262" cy="120" r="5"/><circle cx="150" cy="120" r="5"/>
+  <circle cx="422" cy="170" r="5"/><circle cx="310" cy="170" r="5"/>
+  <circle cx="112" cy="268" r="5"/><circle cx="90" cy="248" r="5"/>
+  <circle cx="272" cy="318" r="5"/><circle cx="250" cy="298" r="5"/>
+  <circle cx="90" cy="470" r="5"/><circle cx="250" cy="470" r="5"/>
+  <circle cx="560" cy="470" r="5"/><circle cx="625" cy="470" r="5"/>
+  <circle cx="750" cy="470" r="5"/>
+  <circle cx="580" cy="500" r="5"/><circle cx="715" cy="500" r="5"/>
+  <circle cx="770" cy="500" r="5"/>
+</g>
+
+<!-- wire labels -->
+<g font-size="13" fill="#333" text-anchor="middle">
+  <text x="520" y="112">tím · D12 → R1 → LED đỏ</text>
+  <text x="600" y="162">xanh dương · D8 → R2 → LED vàng</text>
+  <text x="700" y="212">cam · D9</text>
+  <text x="730" y="272">xanh lá · A5</text>
+  <text x="588" y="370" text-anchor="start" font-size="12">đỏ</text>
+  <text x="552" y="370" text-anchor="end" font-size="12">nâu</text>
+</g>
+
+<!-- Arduino Uno block -->
+<text x="915" y="60" fill="#222" text-anchor="middle" font-weight="bold">Arduino Uno</text>
+<rect x="800" y="80" width="230" height="340" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000">
+  <rect x="786" y="113" width="18" height="14"/>
+  <rect x="786" y="163" width="18" height="14"/>
+  <rect x="786" y="213" width="18" height="14"/>
+  <rect x="786" y="273" width="18" height="14"/>
+  <rect x="786" y="323" width="18" height="14"/>
+  <rect x="786" y="373" width="18" height="14"/>
+</g>
+<g fill="#fff" font-size="15" font-weight="bold">
+  <text x="814" y="125">D12</text>
+  <text x="814" y="175">D8</text>
+  <text x="814" y="225">D9</text>
+  <text x="814" y="285">A5</text>
+  <text x="814" y="335">5V</text>
+  <text x="814" y="385">GND</text>
+</g>
+<text x="940" y="250" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">Arduino Uno</text>
+<text x="940" y="274" fill="#cfe6ee" text-anchor="middle" font-size="13">(chỉ vẽ các chân dùng)</text>
+
+<!-- footnotes -->
+<text x="520" y="545" fill="#555" text-anchor="middle" font-size="14">Uno đưa 5V và GND ra hai thanh nguồn; servo, biến trở và cathode hai LED cùng lấy nguồn / GND từ đó. Chân dài LED (anode) nối về phía điện trở.</text>
+<text x="520" y="568" fill="#555" text-anchor="middle" font-size="14">Chấm đen = điểm cắm. Dây đỏ vòng qua thanh − (không nối). Mạch thật dùng 220 Ω; bản Tinkercad dùng 1 kΩ, LED mờ hơn nhưng vẫn chạy.</text>
+</svg>

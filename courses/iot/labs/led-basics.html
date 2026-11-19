@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f7b4dd7c00d09131344c922f6194db6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -215,7 +215,7 @@ window.Quarto = {
   <li><a href="#a-led-cơ-bản-nhấp-nháy" id="toc-a-led-cơ-bản-nhấp-nháy" class="nav-link" data-scroll-target="#a-led-cơ-bản-nhấp-nháy">1A · LED cơ bản (nhấp nháy)</a>
   <ul class="collapse">
   <li><a href="#linh-kiện" id="toc-linh-kiện" class="nav-link" data-scroll-target="#linh-kiện">Linh kiện</a></li>
-  <li><a href="#thiết-kế-trên-tinkercad" id="toc-thiết-kế-trên-tinkercad" class="nav-link" data-scroll-target="#thiết-kế-trên-tinkercad">Thiết kế trên Tinkercad</a></li>
+  <li><a href="#sơ-đồ-nối-dây" id="toc-sơ-đồ-nối-dây" class="nav-link" data-scroll-target="#sơ-đồ-nối-dây">Sơ đồ nối dây</a></li>
   <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a></li>
   <li><a href="#sơ-đồ-nguyên-lý" id="toc-sơ-đồ-nguyên-lý" class="nav-link" data-scroll-target="#sơ-đồ-nguyên-lý">Sơ đồ nguyên lý</a></li>
   <li><a href="#đi-dây-trên-breadboard" id="toc-đi-dây-trên-breadboard" class="nav-link" data-scroll-target="#đi-dây-trên-breadboard">Đi dây trên breadboard</a></li>
@@ -225,7 +225,7 @@ window.Quarto = {
   <li><a href="#b-thêm-nút-nhấn" id="toc-b-thêm-nút-nhấn" class="nav-link" data-scroll-target="#b-thêm-nút-nhấn">1B · Thêm nút nhấn</a>
   <ul class="collapse">
   <li><a href="#linh-kiện-1" id="toc-linh-kiện-1" class="nav-link" data-scroll-target="#linh-kiện-1">Linh kiện</a></li>
-  <li><a href="#thiết-kế-trên-tinkercad-1" id="toc-thiết-kế-trên-tinkercad-1" class="nav-link" data-scroll-target="#thiết-kế-trên-tinkercad-1">Thiết kế trên Tinkercad</a></li>
+  <li><a href="#sơ-đồ-nối-dây-1" id="toc-sơ-đồ-nối-dây-1" class="nav-link" data-scroll-target="#sơ-đồ-nối-dây-1">Sơ đồ nối dây</a></li>
   <li><a href="#video-thực-tế" id="toc-video-thực-tế" class="nav-link" data-scroll-target="#video-thực-tế">Video thực tế</a></li>
   <li><a href="#sơ-đồ-nguyên-lý-1" id="toc-sơ-đồ-nguyên-lý-1" class="nav-link" data-scroll-target="#sơ-đồ-nguyên-lý-1">Sơ đồ nguyên lý</a></li>
   <li><a href="#đi-dây-trên-breadboard-1" id="toc-đi-dây-trên-breadboard-1" class="nav-link" data-scroll-target="#đi-dây-trên-breadboard-1">Đi dây trên breadboard</a></li>
@@ -324,12 +324,12 @@ I = \frac{V_{D13} - V_F}{R} = \frac{5\,\text{V} - 2\,\text{V}}{1000\,\Omega} \ap
 </tbody>
 </table>
 </section>
-<section id="thiết-kế-trên-tinkercad" class="level3">
-<h3 class="anchored" data-anchor-id="thiết-kế-trên-tinkercad">Thiết kế trên Tinkercad</h3>
+<section id="sơ-đồ-nối-dây" class="level3">
+<h3 class="anchored" data-anchor-id="sơ-đồ-nối-dây">Sơ đồ nối dây</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/lab01a-tinkercad.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Mạch LED cơ bản trên Tinkercad</figcaption>
+<p><img src="../assets/lab01a-wiring.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Nối LED và điện trở với Arduino Uno: dây cam từ D13 qua R1 1 kΩ vào anode LED, dây đen từ cathode LED về GND</figcaption>
 </figure>
 </div>
 </section>
@@ -392,6 +392,12 @@ I = \frac{V_{D13} - V_F}{R} = \frac{5\,\text{V} - 2\,\text{V}}{1000\,\Omega} \ap
 </tr>
 </tbody>
 </table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/lab01a-tinkercad.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Mạch 1A trên Tinkercad: vị trí lỗ cắm dùng cho bảng bên dưới</figcaption>
+</figure>
+</div>
 <p>Từng dây theo hình Tinkercad (dây xanh cho đường tín hiệu, dây đen cho đường GND):</p>
 <table class="caption-top table">
 <thead>
@@ -523,12 +529,12 @@ I = \frac{V_{D13} - V_F}{R} = \frac{5\,\text{V} - 2\,\text{V}}{1000\,\Omega} \ap
 </tbody>
 </table>
 </section>
-<section id="thiết-kế-trên-tinkercad-1" class="level3">
-<h3 class="anchored" data-anchor-id="thiết-kế-trên-tinkercad-1">Thiết kế trên Tinkercad</h3>
+<section id="sơ-đồ-nối-dây-1" class="level3">
+<h3 class="anchored" data-anchor-id="sơ-đồ-nối-dây-1">Sơ đồ nối dây</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/lab01b-tinkercad.png" class="img-fluid figure-img" style="width:85.0%"></p>
-<figcaption>Mạch nút nhấn bật LED trên Tinkercad</figcaption>
+<p><img src="../assets/lab01b-wiring.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Nối mạch 1B với Arduino Uno: dây cam từ D13 qua R1 1 kΩ, qua nút nhấn S1 rồi vào anode LED; dây đen từ cathode LED về GND</figcaption>
 </figure>
 </div>
 </section>
@@ -561,6 +567,12 @@ I = \frac{V_{D13} - V_F}{R} = \frac{5\,\text{V} - 2\,\text{V}}{1000\,\Omega} \ap
 <ul>
 <li>Nút nhấn 4 chân được cắm <strong>vắt qua rãnh giữa</strong>. Hai chân thẳng hàng qua rãnh (f11–e11, f13–e13) luôn nối với nhau; khi nhấn, cặp cột 11 được nối với cặp cột 13.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/lab01b-tinkercad.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Mạch 1B trên Tinkercad: vị trí lỗ cắm dùng cho bảng bên dưới</figcaption>
+</figure>
+</div>
 <p>Đường đi theo hình Tinkercad:</p>
 <table class="caption-top table">
 <thead>

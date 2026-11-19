@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 400" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="580" height="400" fill="#fff"/>
+<rect x="40" y="30" width="230" height="340" rx="10" fill="#1d1d1f" stroke="#000"/>
+<rect x="66" y="56" width="178" height="288" rx="8" fill="#2c2c2e" stroke="#444"/>
+<rect x="110" y="80" width="90" height="16" rx="8" fill="#ff3b30"/>
+<rect x="90" y="98" width="16" height="96" rx="8" fill="#ff3b30"/>
+<rect x="204" y="98" width="16" height="96" rx="8" fill="#ff3b30"/>
+<rect x="110" y="192" width="90" height="16" rx="8" fill="#ff3b30"/>
+<rect x="90" y="210" width="16" height="96" rx="8" fill="#ff3b30"/>
+<rect x="204" y="210" width="16" height="96" rx="8" fill="#ff3b30"/>
+<rect x="110" y="304" width="90" height="16" rx="8" fill="#ff3b30"/>
+<circle cx="236" cy="314" r="9" fill="#ff3b30"/>
+<g fill="#fff" font-size="15" font-weight="bold" text-anchor="middle">
+  <text x="155" y="73">A</text>
+  <text x="155" y="185">G</text>
+  <text x="155" y="338">D</text>
+  <text x="78" y="151">F</text>
+  <text x="78" y="263">E</text>
+  <text x="232" y="151">B</text>
+  <text x="232" y="263">C</text>
+</g>
+<g font-size="14" fill="#333">
+<text x="300" y="70" font-weight="bold" fill="#222">8 thanh = 8 LED</text>
+<rect x="300" y="92" width="30" height="18" rx="4" fill="#ff3b30"/>
+<text x="315" y="106" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">A</text>
+<text x="342" y="106">trên cùng</text>
+<rect x="300" y="122" width="30" height="18" rx="4" fill="#ff3b30"/>
+<text x="315" y="136" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">B</text>
+<text x="342" y="136">phải trên</text>
+<rect x="300" y="152" width="30" height="18" rx="4" fill="#ff3b30"/>
+<text x="315" y="166" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">C</text>
+<text x="342" y="166">phải dưới</text>
+<rect x="300" y="182" width="30" height="18" rx="4" fill="#ff3b30"/>
+<text x="315" y="196" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">D</text>
+<text x="342" y="196">dưới cùng</text>
+<rect x="300" y="212" width="30" height="18" rx="4" fill="#ff3b30"/>
+<text x="315" y="226" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">E</text>
+<text x="342" y="226">trái dưới</text>
+<rect x="300" y="242" width="30" height="18" rx="4" fill="#ff3b30"/>
+<text x="315" y="256" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">F</text>
+<text x="342" y="256">trái trên</text>
+<rect x="300" y="272" width="30" height="18" rx="4" fill="#ff3b30"/>
+<text x="315" y="286" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">G</text>
+<text x="342" y="286">giữa</text>
+<rect x="300" y="302" width="30" height="18" rx="4" fill="#ff3b30"/>
+<text x="315" y="316" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">DP</text>
+<text x="342" y="316">dấu chấm</text>
+</g>
+<text x="300" y="360" fill="#555" font-size="13">Thứ tự A → F đi theo chiều kim đồng hồ,</text>
+<text x="300" y="378" fill="#555" font-size="13">bắt đầu từ thanh trên cùng.</text>
+</svg>
