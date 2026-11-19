@@ -37,6 +37,8 @@ Loại rẻ nhất, có sẵn trong hầu hết kit Arduino:
 | Tốc độ tối đa thực tế | ~15 vòng/phút |
 | Dòng | ~100 mA mỗi cuộn, ~200 mA khi bật 2 cuộn cùng lúc |
 
+![Động cơ 28BYJ-48 trong kit: vỏ thép tròn có hai tai bắt vít, trục ra bằng đồng lệch tâm có hai mặt vát, nắp nhựa xanh phía sau, cáp 5 dây xanh dương – hồng – vàng – cam – đỏ kết thúc bằng jack trắng 5 chân](../assets/kit-28byj48.jpg){width=60%}
+
 Hộp số làm trục ra **chậm nhưng khỏe và mịn**: mỗi bước full-step chỉ 360° / 2048 ≈ 0,18°. Đổi lại, tốc độ tối đa chỉ khoảng 15 vòng/phút (4 giây một vòng).
 
 ### Vì sao cần driver ULN2003
@@ -44,6 +46,15 @@ Hộp số làm trục ra **chậm nhưng khỏe và mịn**: mỗi bước full
 Mỗi cuộn dây cần ~100 mA, trong khi chân Arduino chỉ nên cấp tối đa 20 mA. Board driver dùng IC **ULN2003**: 7 transistor Darlington, mỗi kênh chịu được 500 mA. Arduino chỉ gửi tín hiệu logic vào `IN1`–`IN4`; khi `INx` ở mức `HIGH`, transistor tương ứng nối đầu cuộn dây xuống `GND`, dây đỏ chung đã có sẵn 5V nên cuộn dây có điện. IC cũng có sẵn diode dập xung ngược sinh ra khi tắt cuộn dây.
 
 4 LED `A`–`D` trên board nối song song với 4 kênh: LED nào sáng là cuộn đó đang có điện. Đây là công cụ debug rất tiện: chạy chậm là nhìn thấy được chuỗi bước.
+
+![Board driver ULN2003 trong kit: IC ULN2003 ở giữa, jack trắng 5 chân cho động cơ, 4 LED A–D phía dưới, hàng chân IN1–IN4 ở cạnh trên, cụm chân nguồn 5–12V có jumper ở cạnh trái](../assets/kit-uln2003.jpg){width=60%}
+
+Nhìn board trong kit:
+
+- **Cạnh trên**: in nhãn `IN1`–`IN7` (IC có 7 kênh) nhưng chỉ `IN1`–`IN4` có hàn chân, `IN5`–`IN7` để trống vì động cơ chỉ có 4 pha.
+- **Cạnh trái**: cụm chân nguồn, in `5-12V`, gồm cặp chân `−` `+` và một cặp chân có **nắp jumper**. Jumper là công tắc nguồn cho động cơ: **phải cắm jumper** thì cuộn dây mới có điện. Rút jumper ra thì LED vẫn có thể nháy nhưng trục đứng yên.
+- **Giữa**: IC ULN2003 và jack trắng 5 chân cho động cơ. Dòng chữ Trung `步进电机` nghĩa là "động cơ bước".
+- **Cạnh dưới**: 4 LED `A`–`D` (vỏ trong suốt, sáng đỏ khi có điện) cùng 4 điện trở hạn dòng cho LED.
 
 ## Linh kiện
 
@@ -55,11 +66,13 @@ Mỗi cuộn dây cần ~100 mA, trong khi chân Arduino chỉ nên cấp tối 
 | Biến trở 10 kΩ (Test 3) | 1 |
 | Breadboard, dây cắm đực–cái và đực–đực | |
 
+![Bộ động cơ bước trong kit: board driver ULN2003 và động cơ 28BYJ-48 với cáp 5 dây](../assets/kit-stepper-set.jpg){width=80%}
+
 Dán một mẩu băng dính lên trục động cơ làm "kim chỉ": trục quay rất chậm, không có kim thì khó thấy nó có đang quay hay không.
 
 ## Nối dây
 
-Cắm jack 5 chân của động cơ vào ổ trắng trên board driver (có khấc, chỉ cắm được một chiều). Phần còn lại:
+Cắm jack 5 chân của động cơ vào ổ trắng trên board driver (có khấc, chỉ cắm được một chiều) và kiểm tra **jumper nguồn** ở cạnh trái board đã cắm. Board dùng chân đực nên nối sang Arduino/breadboard bằng dây **đực–cái**. Trên sơ đồ, chân `+`/`−` được vẽ cạnh `IN1`–`IN4` cho gọn; trên board thật chúng nằm ở cạnh trái, cạnh chữ `5-12V`. Phần còn lại:
 
 ![Sơ đồ nối 28BYJ-48 + ULN2003 với Arduino Uno: IN1–IN4 vào D8–D11, nguồn + và − của driver lấy từ thanh nguồn breadboard, biến trở 10 kΩ có chân giữa vào A0](../assets/stepper-28byj48-wiring.svg){width=100%}
 
@@ -273,7 +286,7 @@ Cần nhanh và khỏe hơn (máy in 3D, CNC) thì dùng động cơ bước **b
 |---|---|
 | Động cơ rung, kêu nhưng không quay (Test 1) | Khai báo `Stepper motor(2048, 8, 9, 10, 11)`. Phải là `8, 10, 9, 11` |
 | Rung, không quay ở mọi test | Bước quá nhanh: giảm `setSpeed()` hoặc tăng `usPerStep`. Hoặc một dây `IN` cắm lỏng: chạy chậm như đầu Test 2 và xem LED nào không bao giờ sáng |
-| LED `A`–`D` nháy đúng nhưng trục không quay | Thiếu nguồn: chân `+`/`−` của driver chưa nối, hoặc jack động cơ chưa cắm hết |
+| LED `A`–`D` nháy đúng nhưng trục không quay | Thiếu nguồn cho động cơ: chưa cắm jumper ở cụm chân `5-12V`, chân `+`/`−` của driver chưa nối, hoặc jack động cơ chưa cắm hết |
 | Không LED nào sáng | Driver chưa có nguồn, hoặc `GND` driver và `GND` Arduino không chung |
 | Uno reset / mất USB khi động cơ chạy | Nguồn USB yếu. Dùng nguồn 5 V riêng cho driver, nối chung `GND` |
 | Quay được nửa vòng thay vì 1 vòng | Lẫn full-step và half-step: thư viện `Stepper` dùng 2048 bước/vòng, code half-step dùng 4096 |
