@@ -51,7 +51,27 @@ Hai loại trông giống hệt nhau, chỉ khác chữ `A`/`B` in ở cạnh v�
 
 **Kiểm tra kiểu chung chân** bằng đồng hồ ở thang đo diode: que **đen** vào chân 3 (`COM`), que **đỏ** vào chân 7 (`A`). Thanh A sáng mờ → cathode chung (5161AS). Phải đảo que mới sáng → anode chung (5161BS).
 
-Không có đồng hồ thì thử bằng chính Arduino: nối `COM` xuống `GND`, nối chân 7 lên `5V` **qua điện trở 220 Ω**. Thanh A sáng → cathode chung. Không sáng thì đảo: `COM` lên `5V`, chân 7 qua 220 Ω xuống `GND`.
+### Mạch test không cần code
+
+Không có đồng hồ thì dùng Arduino làm nguồn 5 V để thử từng thanh, chưa cần nạp code:
+
+![Mạch test 5161AS: COM (chân 3) xuống GND, dây thử từ 5V qua điện trở 220 Ω cắm vào chân 7 làm thanh A sáng. Cắm dây thử lần lượt vào các chân thanh khác để thử hết 8 thanh](../assets/7seg-1-digit-test.svg){width=100%}
+
+1. Cắm module bắc ngang rãnh giữa breadboard. Nối chân **3** (`COM`) xuống `GND` của Arduino.
+2. Nối `5V` vào một đầu điện trở **220 Ω**. Đầu kia của điện trở nối một sợi dây thử.
+3. Cắm USB cho Arduino (code đang chạy trên board không ảnh hưởng, chỉ dùng chân 5V và GND).
+4. Cắm dây thử lần lượt vào từng chân thanh và ghi lại thanh nào sáng:
+
+| Chân | 7 | 6 | 4 | 2 | 1 | 9 | 10 | 5 |
+|---|---|---|---|---|---|---|---|---|
+| Thanh sáng | `A` | `B` | `C` | `D` | `E` | `F` | `G` | `DP` |
+
+- Cả 8 thanh sáng đúng bảng → module là cathode chung (5161AS), sơ đồ chân đúng, chuyển sang phần nối dây.
+- Không thanh nào sáng → thử loại anode chung (5161BS): đổi chân 3 lên `5V`, dây thử qua 220 Ω xuống `GND`, rồi cắm lại lần lượt.
+- Một thanh sáng sai vị trí so với bảng → module trong kit có sơ đồ chân khác, ghi lại bảng thực tế và sửa thứ tự trong `SEG_PINS` của code cho khớp.
+- Đúng một thanh không sáng → thanh đó hỏng hoặc chân chưa cắm chặt.
+
+**Không bao giờ bỏ điện trở**: cắm thẳng 5V vào chân thanh sẽ làm cháy LED trong vài giây.
 
 ## Nối dây
 

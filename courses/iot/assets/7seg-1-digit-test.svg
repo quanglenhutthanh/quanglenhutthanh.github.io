@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" font-family="Helvetica, Arial, sans-serif" font-size="16">
+<rect width="960" height="600" fill="#fff"/>
+
+<!-- 5161AS, nhìn mặt trước, chân thật -->
+<text x="240" y="40" fill="#222" text-anchor="middle" font-weight="bold">5161AS (nhìn mặt trước)</text>
+<g fill="#c9a227" stroke="#8a6d10">
+  <rect x="145" y="104" width="10" height="28"/>
+  <rect x="190" y="104" width="10" height="28"/>
+  <rect x="235" y="104" width="10" height="28"/>
+  <rect x="280" y="104" width="10" height="28"/>
+  <rect x="325" y="104" width="10" height="28"/>
+  <rect x="145" y="428" width="10" height="28"/>
+  <rect x="190" y="428" width="10" height="28"/>
+  <rect x="235" y="428" width="10" height="28"/>
+  <rect x="280" y="428" width="10" height="28"/>
+  <rect x="325" y="428" width="10" height="28"/>
+</g>
+<rect x="110" y="130" width="260" height="300" rx="8" fill="#1d1d1f" stroke="#000"/>
+<rect x="150" y="162" width="180" height="244" rx="6" fill="#2c2c2e" stroke="#444"/>
+<rect x="198" y="168" width="80" height="14" rx="7" fill="#ff3b30"/>
+<rect x="180" y="184" width="14" height="88" rx="7" fill="#4a2422"/>
+<rect x="282" y="184" width="14" height="88" rx="7" fill="#4a2422"/>
+<rect x="198" y="275" width="80" height="14" rx="7" fill="#4a2422"/>
+<rect x="180" y="292" width="14" height="88" rx="7" fill="#4a2422"/>
+<rect x="282" y="292" width="14" height="88" rx="7" fill="#4a2422"/>
+<rect x="198" y="382" width="80" height="14" rx="7" fill="#4a2422"/>
+<circle cx="314" cy="390" r="8" fill="#4a2422"/>
+<g font-size="11" text-anchor="middle">
+  <text x="150" y="152" fill="#888" font-weight="normal">10 G</text>
+  <text x="195" y="152" fill="#888" font-weight="normal">9 F</text>
+  <text x="240" y="152" fill="#888" font-weight="normal">8 COM</text>
+  <text x="285" y="152" fill="#fff" font-weight="bold">7 A</text>
+  <text x="330" y="152" fill="#888" font-weight="normal">6 B</text>
+  <text x="150" y="422" fill="#888" font-weight="normal">1 E</text>
+  <text x="195" y="422" fill="#888" font-weight="normal">2 D</text>
+  <text x="240" y="422" fill="#fff" font-weight="bold">3 COM</text>
+  <text x="285" y="422" fill="#888" font-weight="normal">4 C</text>
+  <text x="330" y="422" fill="#888" font-weight="normal">5 DP</text>
+</g>
+<text x="238" y="200" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">A sáng</text>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Wires -->
+<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M686 200 H660 V60 H420" stroke="#d62828"/>
+  <path d="M420 60 H285 V104" stroke="#e67e22"/>
+  <path d="M686 380 H660 V540 H240 V456" stroke="#222"/>
+</g>
+
+<!-- 220 ohm resistor -->
+<g><rect x="440" y="52" width="56" height="16" rx="7" fill="#e9d3a8" stroke="#a88a52"/><rect x="450" y="52" width="5" height="16" fill="#d62828"/><rect x="460" y="52" width="5" height="16" fill="#d62828"/><rect x="470" y="52" width="5" height="16" fill="#8b5a2b"/><rect x="484" y="52" width="5" height="16" fill="#c9a227"/></g>
+<g fill="#111"><circle cx="420" cy="60" r="5"/><circle cx="285" cy="104" r="5"/></g>
+
+<!-- labels -->
+<g font-size="13" fill="#333">
+  <text x="468" y="40" text-anchor="middle" font-weight="bold">220 Ω</text>
+  <text x="668" y="130">5V</text>
+  <text x="668" y="470">GND</text>
+  <text x="260" y="530">COM (chân 3) → GND</text>
+</g>
+<g font-size="13" fill="#b35400">
+  <text x="400" y="150" font-weight="bold">dây thử (cam)</text>
+  <text x="400" y="170">đang cắm chân 7 → thanh A sáng.</text>
+  <text x="400" y="190">Rút đầu này, cắm lần lượt vào</text>
+  <text x="400" y="210">7 · 6 · 4 · 2 · 1 · 9 · 10 · 5</text>
+  <text x="400" y="230">→ A · B · C · D · E · F · G · DP</text>
+</g>
+
+<!-- Arduino Uno block -->
+<text x="815" y="120" fill="#222" text-anchor="middle" font-weight="bold">Arduino Uno</text>
+<rect x="700" y="140" width="230" height="300" rx="10" fill="#1f6f8b" stroke="#145063"/>
+<g fill="#222" stroke="#000"><rect x="686" y="193" width="18" height="14"/><rect x="686" y="373" width="18" height="14"/></g>
+<g fill="#fff" font-size="15" font-weight="bold"><text x="714" y="205">5V</text><text x="714" y="385">GND</text></g>
+<text x="815" y="285" fill="#fff" text-anchor="middle" font-size="20" font-weight="bold">Arduino Uno</text>
+<text x="815" y="309" fill="#cfe6ee" text-anchor="middle" font-size="12">(chỉ lấy nguồn, không cần code)</text>
+
+<!-- footnotes -->
+<text x="480" y="572" fill="#555" text-anchor="middle" font-size="14">Không thanh nào sáng → có thể là 5161BS (anode chung): đổi COM lên 5V, dây thử qua 220 Ω xuống GND.</text>
+<text x="480" y="592" fill="#555" text-anchor="middle" font-size="14">Luôn để điện trở 220 Ω trên dây thử; cắm thẳng 5V vào chân thanh sẽ cháy LED.</text>
+</svg>
