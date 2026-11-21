@@ -87,7 +87,9 @@
       "/courses/iot/labs/rtc-ds1302.html",
       "/courses/iot/labs/led-matrix-8x8.html",
       "/courses/iot/labs/joystick.html",
-      "/courses/iot/labs/seven-segment-1-digit.html"
+      "/courses/iot/labs/seven-segment-1-digit.html",
+      "/courses/iot/labs/stepper-28byj48.html",
+      "/courses/iot/labs/flame-sensor-ky026.html"
     ]
   },
   {

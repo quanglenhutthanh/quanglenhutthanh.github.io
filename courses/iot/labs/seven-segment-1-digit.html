@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-64a26ec15462cd39104ebf1146fd9b50.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-f7b4dd7c00d09131344c922f6194db6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -170,7 +170,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#led-7-đoạn-1-số-là-gì" id="toc-led-7-đoạn-1-số-là-gì" class="nav-link" data-scroll-target="#led-7-đoạn-1-số-là-gì">LED 7 đoạn 1 số là gì</a></li>
   <li><a href="#linh-kiện" id="toc-linh-kiện" class="nav-link" data-scroll-target="#linh-kiện">Linh kiện</a></li>
-  <li><a href="#sơ-đồ-chân" id="toc-sơ-đồ-chân" class="nav-link" data-scroll-target="#sơ-đồ-chân">Sơ đồ chân</a></li>
+  <li><a href="#sơ-đồ-chân" id="toc-sơ-đồ-chân" class="nav-link" data-scroll-target="#sơ-đồ-chân">Sơ đồ chân</a>
+  <ul class="collapse">
+  <li><a href="#mạch-test-không-cần-code" id="toc-mạch-test-không-cần-code" class="nav-link" data-scroll-target="#mạch-test-không-cần-code">Mạch test không cần code</a></li>
+  </ul></li>
   <li><a href="#nối-dây" id="toc-nối-dây" class="nav-link" data-scroll-target="#nối-dây">Nối dây</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
   <ul class="collapse">
@@ -306,7 +309,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Mỗi thanh nằm gần chân của nó: <code>A</code> ở trên cùng → chân 7 hàng trên, <code>D</code> ở dưới cùng → chân 2 hàng dưới, <code>DP</code> ở góc dưới phải → chân 5.</li>
 </ul>
 <p><strong>Kiểm tra kiểu chung chân</strong> bằng đồng hồ ở thang đo diode: que <strong>đen</strong> vào chân 3 (<code>COM</code>), que <strong>đỏ</strong> vào chân 7 (<code>A</code>). Thanh A sáng mờ → cathode chung (5161AS). Phải đảo que mới sáng → anode chung (5161BS).</p>
-<p>Không có đồng hồ thì thử bằng chính Arduino: nối <code>COM</code> xuống <code>GND</code>, nối chân 7 lên <code>5V</code> <strong>qua điện trở 220 Ω</strong>. Thanh A sáng → cathode chung. Không sáng thì đảo: <code>COM</code> lên <code>5V</code>, chân 7 qua 220 Ω xuống <code>GND</code>.</p>
+<section id="mạch-test-không-cần-code" class="level3">
+<h3 class="anchored" data-anchor-id="mạch-test-không-cần-code">Mạch test không cần code</h3>
+<p>Không có đồng hồ thì dùng Arduino làm nguồn 5 V để thử từng thanh, chưa cần nạp code:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/7seg-1-digit-test.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Mạch test 5161AS: COM (chân 3) xuống GND, dây thử từ 5V qua điện trở 220 Ω cắm vào chân 7 làm thanh A sáng. Cắm dây thử lần lượt vào các chân thanh khác để thử hết 8 thanh</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Cắm module bắc ngang rãnh giữa breadboard. Nối chân <strong>3</strong> (<code>COM</code>) xuống <code>GND</code> của Arduino.</li>
+<li>Nối <code>5V</code> vào một đầu điện trở <strong>220 Ω</strong>. Đầu kia của điện trở nối một sợi dây thử.</li>
+<li>Cắm USB cho Arduino (code đang chạy trên board không ảnh hưởng, chỉ dùng chân 5V và GND).</li>
+<li>Cắm dây thử lần lượt vào từng chân thanh và ghi lại thanh nào sáng:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Chân</th>
+<th>7</th>
+<th>6</th>
+<th>4</th>
+<th>2</th>
+<th>1</th>
+<th>9</th>
+<th>10</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Thanh sáng</td>
+<td><code>A</code></td>
+<td><code>B</code></td>
+<td><code>C</code></td>
+<td><code>D</code></td>
+<td><code>E</code></td>
+<td><code>F</code></td>
+<td><code>G</code></td>
+<td><code>DP</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Cả 8 thanh sáng đúng bảng → module là cathode chung (5161AS), sơ đồ chân đúng, chuyển sang phần nối dây.</li>
+<li>Không thanh nào sáng → thử loại anode chung (5161BS): đổi chân 3 lên <code>5V</code>, dây thử qua 220 Ω xuống <code>GND</code>, rồi cắm lại lần lượt.</li>
+<li>Một thanh sáng sai vị trí so với bảng → module trong kit có sơ đồ chân khác, ghi lại bảng thực tế và sửa thứ tự trong <code>SEG_PINS</code> của code cho khớp.</li>
+<li>Đúng một thanh không sáng → thanh đó hỏng hoặc chân chưa cắm chặt.</li>
+</ul>
+<p><strong>Không bao giờ bỏ điện trở</strong>: cắm thẳng 5V vào chân thanh sẽ làm cháy LED trong vài giây.</p>
+</section>
 </section>
 <section id="nối-dây" class="level2">
 <h2 class="anchored" data-anchor-id="nối-dây">Nối dây</h2>
