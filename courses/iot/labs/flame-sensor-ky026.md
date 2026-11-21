@@ -7,6 +7,9 @@ status: todo
 source: note
 tags: [arduino, flame-sensor, ky-026, infrared, lm393, sensor, buzzer]
 date: 2026-11-21
+resources:
+  - ../assets/flame-ky026-remote-real.mp4
+  - ../assets/flame-ky026-remote-real-poster.jpg
 ---
 
 # Lab 17 · Cảm biến lửa KY-026
@@ -140,12 +143,49 @@ Mở Serial Monitor (9600 baud) và làm lần lượt:
 Ghi kết quả bước 3 vào hằng số dùng cho Test 3:
 
 ```cpp
-const bool FLAME_D_ACTIVE = HIGH;   // D0 lúc CÓ lửa: HIGH hay LOW (bước 3)
+const bool FLAME_D_ACTIVE = LOW;    // D0 lúc CÓ lửa (bước 3). Module trong kit: LOW
 ```
 
 Chiều của `A0` không cần ghi: Test 2 tự đo mức nền nên chạy được với cả hai chiều.
 
 **Chỉnh ngưỡng `D0`**: đặt ngọn lửa ở khoảng cách muốn bắt đầu báo (ví dụ 40 cm), vặn biến trở từ từ tới đúng lúc `L2` vừa sáng. Từ giờ, lửa ở gần hơn khoảng đó là `D0` báo. Vặn quá nhạy thì `L2` sáng cả khi không có lửa (do ánh sáng phòng).
+
+### Test 1b – `D0` bật LED
+
+Mạch nhỏ nhất: chỉ module và một LED (qua điện trở 220 Ω vào `D6`), chưa cần buzzer hay `A0`. LED trên breadboard sáng tắt giống hệt đèn báo lửa trên module, vì cả hai cùng theo `D0`.
+
+```cpp
+const int FLAME_D = 2;     // chân D0 của KY-026
+const int LED_PIN = 6;     // LED (qua điện trở 220 Ω)
+
+// Mức của D0 khi CÓ lửa. Nếu LED sáng khi KHÔNG có lửa, đổi HIGH <-> LOW
+const bool FLAME_ACTIVE = LOW;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(FLAME_D, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  bool flame = (digitalRead(FLAME_D) == FLAME_ACTIVE);
+
+  digitalWrite(LED_PIN, flame ? HIGH : LOW);
+
+  Serial.println(flame ? "CO LUA" : "khong co lua");
+  delay(100);
+}
+```
+
+<video controls playsinline preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
+</video>
+
+Mạch thật chạy code trên, thử bằng **remote hồng ngoại** thay cho lửa:
+
+- Bấm giữ một nút remote, chĩa vào mắt đen của module: **đèn báo lửa trên module sáng xanh** và **LED xanh lá trên breadboard** sáng theo. Thả nút thì cả hai tắt.
+- Với module trong kit, `D0` xuống `LOW` khi có hồng ngoại, nên `FLAME_ACTIVE = LOW`. Để `HIGH` thì kết quả ngược lại: Serial báo "CO LUA" suốt khi không có gì.
+- Remote đặt gần phát hồng ngoại mạnh hơn nhiều so với ngọn lửa bật lửa ở xa. Remote bắt được mà lửa không bắt được thì module vẫn tốt: lau muội trên mắt đen, đưa lửa vào khoảng 10–15 cm ngay trước mắt, rồi vặn biến trở tới khi đèn báo vừa sáng.
 
 ### Test 2 – đo độ mạnh ngọn lửa bằng `A0`
 
@@ -212,7 +252,7 @@ const int FLAME_D = 2;
 const int LED_PIN = 6;
 const int BUZZER  = 7;
 
-const bool FLAME_D_ACTIVE = HIGH;            // lấy từ Test 1
+const bool FLAME_D_ACTIVE = LOW;             // lấy từ Test 1 (module trong kit: LOW)
 const int  A_THRESHOLD    = 150;             // lệch nền bao nhiêu thì coi là có lửa
 const unsigned long CONFIRM_MS = 300;        // phải thấy lửa liên tục ngần này
 const unsigned long HOLD_MS    = 3000;       // giữ báo động sau khi hết lửa
@@ -320,6 +360,8 @@ Mở rộng gợi ý:
 | `L2` không bao giờ sáng, `A0` vẫn đổi khi có lửa | Ngưỡng quá cao: vặn biến trở về phía nhạy hơn tới khi `L2` sáng với lửa ở ~30 cm |
 | `A0` gần như không đổi khi có lửa | Nhầm chân: dây `A0` của module đang cắm vào chân khác. Hoặc mắt cảm biến không hướng về ngọn lửa |
 | `D0` luôn đọc cùng một giá trị dù `L2` có đổi | Dây `D0` lỏng hoặc cắm nhầm chân `2`; kiểm tra `pinMode(FLAME_D, INPUT)` |
+| Remote làm đèn báo sáng nhưng bật lửa thì không | Lửa ở xa yếu hơn remote rất nhiều. Lau muội trên mắt đen, đưa lửa vào 10–15 cm ngay trước mắt, vặn biến trở về phía nhạy hơn |
+| Test 1b: Serial báo "CO LUA" suốt dù không có lửa | `FLAME_ACTIVE` sai mức. Module trong kit cần `LOW` |
 | Test 3 báo ngược: báo khi **không** có lửa | `FLAME_D_ACTIVE` sai mức so với module trong kit, đổi `HIGH` ↔ `LOW` |
 | Test 2/3: `percent` sai hoặc báo động ngay khi bật nguồn | Lúc khởi động có lửa / nắng / đèn chiếu vào cảm biến nên `baseline` sai. Che bớt nguồn sáng rồi nhấn reset |
 | Báo nhầm khi trời nắng hoặc bật đèn | Cảm biến đo hồng ngoại, không phân biệt được nguồn. Tăng `A_THRESHOLD`, tăng `CONFIRM_MS`, che chắn hai bên mắt cảm biến bằng ống nhỏ (thu hẹp góc nhìn) |
