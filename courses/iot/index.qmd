@@ -16,8 +16,22 @@ listing:
       title: "Topic"
       status: "Status"
       tags: "Tags"
-  - id: labs
+  - id: labs-arduino
     contents: "labs/*.md"
+    include:
+      board: "arduino-uno"
+    type: table
+    fields: [lab_no, title, status, tags]
+    sort: "lab_no asc"
+    field-display-names:
+      lab_no: "#"
+      title: "Lab"
+      status: "Status"
+      tags: "Tags"
+  - id: labs-esp32
+    contents: "labs/*.md"
+    include:
+      board: "esp32-s3"
     type: table
     fields: [lab_no, title, status, tags]
     sort: "lab_no asc"
@@ -39,9 +53,20 @@ Học phần Internet of Things (IoT): hệ thống gồm các thiết bị có 
 
 ## Labs
 
-Thực hành với Arduino Uno, thiết kế và mô phỏng trên Tinkercad Circuits. Mỗi lab gồm sơ đồ nguyên lý vẽ lại, giải thích mạch và code.
+Mỗi lab gồm sơ đồ chân, sơ đồ nối dây, ảnh/video mạch thật và code.
 
-:::{#labs}
+### Arduino Uno R3
+
+Board Uno R3 tương thích (clone, chip USB CH340) trong kit; một số lab mô phỏng thêm trên Tinkercad Circuits.
+
+:::{#labs-arduino}
+:::
+
+### ESP32-S3
+
+ESP32-S3 DevKit: có sẵn Wi-Fi và Bluetooth LE, chạy mức logic 3,3 V.
+
+:::{#labs-esp32}
 :::
 
 ## References

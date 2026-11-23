@@ -1,8 +1,9 @@
 ---
-title: "Lab 17 · Cảm biến lửa KY-026"
+title: "Lab 17 · Arduino · Cảm biến lửa KY-026"
 subject: "iot"
 type: lab
 lab_no: 17
+board: arduino-uno
 status: todo
 source: note
 tags: [arduino, flame-sensor, ky-026, infrared, lm393, sensor, buzzer]
@@ -12,8 +13,6 @@ resources:
   - ../assets/flame-ky026-remote-real.mp4
   - ../assets/flame-ky026-remote-real-poster.jpg
 ---
-
-# Lab 17 · Cảm biến lửa KY-026
 
 > Đọc module cảm biến lửa KY-026 với Arduino Uno qua cả ngõ ra **analog** (`A0`) lẫn **digital** (`D0`). Sau đó chỉnh ngưỡng bằng biến trở, đo "độ mạnh" ngọn lửa, rồi làm mạch báo cháy bằng LED và buzzer có chống báo động giả. Module dùng chung ý tưởng với cảm biến hồng ngoại FC-51 ở [Lab 8](infrared-remote-fc51.md); cách đọc analog và ngưỡng giống cảm biến nước ở [Lab 11](water-sensor.md).
 

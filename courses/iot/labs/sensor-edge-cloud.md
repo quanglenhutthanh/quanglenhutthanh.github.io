@@ -1,15 +1,14 @@
 ---
-title: "Lab 9 · Hệ IoT 3 tầng: Arduino → Raspberry Pi → Cloud dashboard"
+title: "Lab 9 · Arduino · Hệ IoT 3 tầng: Arduino → Raspberry Pi → Cloud dashboard"
 subject: "iot"
 type: lab
 lab_no: 9
+board: arduino-uno
 status: todo
 source: note
 tags: [arduino, raspberry-pi, edge-computing, cloud, dashboard]
 date: 2026-11-15
 ---
-
-# Lab 9 · Hệ IoT 3 tầng: Arduino → Raspberry Pi → Cloud dashboard
 
 ## Abstract
 

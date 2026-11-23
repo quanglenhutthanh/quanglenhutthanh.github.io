@@ -1,8 +1,9 @@
 ---
-title: "Lab 6 · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách"
+title: "Lab 6 · Arduino · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách"
 subject: "iot"
 type: lab
 lab_no: 6
+board: arduino-uno
 status: reading
 source: slide
 tags: [arduino, hc-sr04, hc-sr05, ultrasonic, sensor, distance, pulsein]
@@ -13,8 +14,6 @@ resources:
   - ../assets/ultrasonic-led-real.mp4
   - ../assets/ultrasonic-led-real-poster.jpg
 ---
-
-# Lab 6 · Cảm biến siêu âm HC-SR04 / HC-SR05 – đo khoảng cách
 
 > Đo khoảng cách bằng sóng siêu âm với Arduino Uno: phát xung `TRIG`, đo độ rộng xung `ECHO` bằng `pulseIn()`, đổi thời gian ra cm. Sau đó lọc nhiễu bằng trung vị, làm đèn báo lùi xe 3 màu, và bù sai số nhiệt độ bằng DHT11. Đây là lab đầu tiên đọc một cảm biến bằng **độ rộng xung** thay vì mức điện áp.
 

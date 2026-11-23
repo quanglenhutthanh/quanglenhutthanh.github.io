@@ -1,8 +1,9 @@
 ---
-title: "Lab 14 · Joystick analog 2 trục (KY-023)"
+title: "Lab 14 · Arduino · Joystick analog 2 trục (KY-023)"
 subject: "iot"
 type: lab
 lab_no: 14
+board: arduino-uno
 status: todo
 source: note
 tags: [arduino, joystick, ky-023, analog, adc, servo, lcd-i2c, game]
@@ -13,8 +14,6 @@ resources:
   - ../assets/joystick-lcd-game-real.mp4
   - ../assets/joystick-lcd-game-real-poster.jpg
 ---
-
-# Lab 14 · Joystick analog 2 trục (KY-023)
 
 > Đọc module joystick 2 trục + nút nhấn bằng Arduino Uno: in giá trị thô ra Serial, nhận hướng đẩy (lên/xuống/trái/phải) có vùng chết, dùng joystick lái servo SG90 ([Lab 4](servo-sg90.md)), và hai phần mở rộng: di chuyển một chấm sáng trên ma trận LED 8×8 ([Lab 13](led-matrix-8x8.md)), làm game chạy vượt chướng ngại vật trên LCD 1602 ([Lab 2](lcd-i2c.md)).
 

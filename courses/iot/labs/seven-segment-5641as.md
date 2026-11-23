@@ -1,8 +1,9 @@
 ---
-title: "Lab 7 · LED 7 đoạn 4 số 5641AS + IC 74HC595"
+title: "Lab 7 · Arduino · LED 7 đoạn 4 số 5641AS + IC 74HC595"
 subject: "iot"
 type: lab
 lab_no: 7
+board: arduino-uno
 status: reading
 source: note
 tags: [arduino, 7-segment, 5641as, 74hc595, shift-register, multiplexing, display, raspberry-pi, serial]
@@ -12,8 +13,6 @@ resources:
   - ../assets/7seg-595-real-poster.jpg
   - ../assets/7seg-rpi-dht-real.mp4
 ---
-
-# Lab 7 · LED 7 đoạn 4 số 5641AS + IC 74HC595
 
 > Hiển thị số trên LED 7 đoạn 4 số **5641AS** với Arduino Uno. Lab giải thích sơ đồ chân và cách quét (multiplexing), nối trực tiếp 12 chân với thư viện `SevSeg`, rồi dùng **IC dịch 74HC595** để Arduino chỉ cần 3 dây cho 8 chân đoạn. Cuối lab, mạch được dùng làm màn hình hiển thị nhiệt độ, độ ẩm mà **Raspberry Pi** gửi sang qua cổng Serial. Đây là lab đầu tiên dùng **thanh ghi dịch** để mở rộng số chân ra.
 

@@ -1,8 +1,9 @@
 ---
-title: "Lab 10 · RFID: module RC522 + thẻ MIFARE Classic 1K"
+title: "Lab 10 · Arduino · RFID: module RC522 + thẻ MIFARE Classic 1K"
 subject: "iot"
 type: lab
 lab_no: 10
+board: arduino-uno
 status: todo
 source: note
 tags: [arduino, rfid, rc522, mfrc522, mifare, spi, servo, access-control]

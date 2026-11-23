@@ -1,8 +1,9 @@
 ---
-title: "Lab 11 · Cảm biến mực nước (water sensor)"
+title: "Lab 11 · Arduino · Cảm biến mực nước (water sensor)"
 subject: "iot"
 type: lab
 lab_no: 11
+board: arduino-uno
 status: done
 source: slide
 tags: [arduino, water-sensor, sensor, adc]
@@ -11,8 +12,6 @@ resources:
   - ../assets/water-sensor-led-real.mp4
   - ../assets/water-sensor-led-real-poster.jpg
 ---
-
-# Lab 11 · Cảm biến mực nước (water sensor)
 
 > Đọc module cảm biến nước bằng Arduino Uno: in giá trị analog lên Serial Monitor và quan sát số đọc thay đổi khi nhúng cảm biến vào nước, rồi làm mạch báo có nước bằng LED.
 

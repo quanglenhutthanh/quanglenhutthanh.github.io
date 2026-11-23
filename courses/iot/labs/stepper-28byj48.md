@@ -1,15 +1,14 @@
 ---
-title: "Lab 16 · Động cơ bước 28BYJ-48 + driver ULN2003"
+title: "Lab 16 · Arduino · Động cơ bước 28BYJ-48 + driver ULN2003"
 subject: "iot"
 type: lab
 lab_no: 16
+board: arduino-uno
 status: todo
 source: note
 tags: [arduino, stepper, 28byj-48, uln2003, motor, potentiometer]
 date: 2026-11-19
 ---
-
-# Lab 16 · Động cơ bước 28BYJ-48 + driver ULN2003
 
 > Điều khiển động cơ bước (stepper motor) 28BYJ-48 qua board driver ULN2003 với Arduino Uno. Lab đi từ nguyên lý "bước", nối dây, quay bằng thư viện `Stepper`, tự viết chuỗi bật cuộn dây (half-step) để thấy động cơ thật sự được điều khiển thế nào, rồi cho trục quay theo biến trở. Khác với servo ở [Lab 4](servo-sg90.md), động cơ bước quay **liên tục nhiều vòng** và định vị bằng cách **đếm bước**, không có cảm biến vị trí bên trong.
 

@@ -1,15 +1,14 @@
 ---
-title: "Lab 2 · Màn hình LCD 1602 + I²C"
+title: "Lab 2 · Arduino · Màn hình LCD 1602 + I²C"
 subject: "iot"
 type: lab
 lab_no: 2
+board: arduino-uno
 status: done
 source: slide
 tags: [arduino, lcd, lcd1602, i2c, pcf8574, display]
 date: 2026-10-31
 ---
-
-# Lab 2 · Màn hình LCD 1602 + I²C
 
 > Cách nối màn hình LCD 16×2 có gắn module I²C vào Arduino Uno và hiển thị chữ bằng thư viện `LiquidCrystal_I2C`.
 

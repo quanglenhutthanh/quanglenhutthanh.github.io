@@ -1,15 +1,14 @@
 ---
-title: "Lab 3 · Cảm biến nhiệt độ – độ ẩm DHT11"
+title: "Lab 3 · Arduino · Cảm biến nhiệt độ – độ ẩm DHT11"
 subject: "iot"
 type: lab
 lab_no: 3
+board: arduino-uno
 status: done
 source: slide
 tags: [arduino, dht11, sensor, temperature, humidity, lcd1602]
 date: 2026-11-01
 ---
-
-# Lab 3 · Cảm biến nhiệt độ – độ ẩm DHT11
 
 > Đọc nhiệt độ và độ ẩm từ DHT11 bằng Arduino Uno, in ra Serial Monitor rồi hiển thị lên LCD 1602 I²C của [Lab 2](lcd-i2c.md).
 

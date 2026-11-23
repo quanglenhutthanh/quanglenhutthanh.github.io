@@ -1,8 +1,9 @@
 ---
-title: "Lab 1 · LED cơ bản & nút nhấn"
+title: "Lab 1 · Arduino · LED cơ bản & nút nhấn"
 subject: "iot"
 type: lab
 lab_no: 1
+board: arduino-uno
 status: done
 source: tinkercad
 tags: [arduino, led, push-button, breadboard, series-circuit, blink]
@@ -11,8 +12,6 @@ resources:
   - ../assets/lab01b-real.mp4
   - ../assets/lab01b-real-poster.jpg
 ---
-
-# Lab 1 · LED cơ bản & nút nhấn
 
 > Hai mạch đầu tiên với Arduino Uno, thiết kế trên Tinkercad Circuits:
 >

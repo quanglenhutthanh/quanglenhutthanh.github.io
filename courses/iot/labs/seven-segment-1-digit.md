@@ -1,15 +1,14 @@
 ---
-title: "Lab 15 · LED 7 đoạn 1 số (5161AS)"
+title: "Lab 15 · Arduino · LED 7 đoạn 1 số (5161AS)"
 subject: "iot"
 type: lab
 lab_no: 15
+board: arduino-uno
 status: todo
 source: note
 tags: [arduino, 7-segment, 5161as, display, button]
 date: 2026-11-19
 ---
-
-# Lab 15 · LED 7 đoạn 1 số (5161AS)
 
 > Hiển thị một chữ số trên LED 7 đoạn **1 số** với Arduino Uno. Module có **8 thanh** sáng (7 đoạn `A`–`G` và dấu chấm `DP`), mỗi thanh là một LED riêng. Lab đi từ sơ đồ chân, nối dây trực tiếp 8 chân, thử từng thanh, đếm 0 → 9, rồi làm bộ đếm bằng nút nhấn và xúc xắc. Chỉ có một chữ số nên **không cần quét**, khác với [Lab 7](seven-segment-5641as.md) (4 số).
 

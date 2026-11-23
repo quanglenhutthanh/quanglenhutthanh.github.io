@@ -1,8 +1,9 @@
 ---
-title: "Lab 5 · Quang trở (LDR) – cảm biến ánh sáng"
+title: "Lab 5 · Arduino · Quang trở (LDR) – cảm biến ánh sáng"
 subject: "iot"
 type: lab
 lab_no: 5
+board: arduino-uno
 status: done
 source: slide
 tags: [arduino, ldr, photoresistor, sensor, light, adc, pwm, servo]
@@ -11,8 +12,6 @@ resources:
   - ../assets/ldr-servo-real.mp4
   - ../assets/ldr-servo-real-poster.jpg
 ---
-
-# Lab 5 · Quang trở (LDR) – cảm biến ánh sáng
 
 > Đo cường độ ánh sáng bằng quang trở và Arduino Uno: đọc giá trị analog lên Serial Monitor, làm đèn ngủ tự bật khi trời tối, chỉnh độ sáng LED theo ánh sáng phòng, rồi dùng hai quang trở để servo tự xoay về phía sáng hơn. Đây là lab đầu tiên tự mắc **cầu chia áp** để đọc một cảm biến analog.
 

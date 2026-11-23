@@ -1,8 +1,9 @@
 ---
-title: "Lab 4 · Động cơ servo SG90 (9g)"
+title: "Lab 4 · Arduino · Động cơ servo SG90 (9g)"
 subject: "iot"
 type: lab
 lab_no: 4
+board: arduino-uno
 status: done
 source: slide
 tags: [arduino, servo, sg90, pwm, actuator, potentiometer]
@@ -11,8 +12,6 @@ resources:
   - ../assets/servo-pot-real.mp4
   - ../assets/servo-pot-real-poster.jpg
 ---
-
-# Lab 4 · Động cơ servo SG90 (9g)
 
 > Điều khiển servo SG90 quay đến góc mong muốn bằng Arduino Uno: quét qua lại 0–180°, nhập góc từ Serial Monitor, rồi xoay theo biến trở. Đây là lab đầu tiên dùng **cơ cấu chấp hành** (actuator) thay vì cảm biến hay màn hình.
 

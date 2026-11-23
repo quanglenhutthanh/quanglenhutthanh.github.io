@@ -1,8 +1,9 @@
 ---
-title: "Lab 12 · Module đồng hồ thời gian thực (RTC DS1302)"
+title: "Lab 12 · Arduino · Module đồng hồ thời gian thực (RTC DS1302)"
 subject: "iot"
 type: lab
 lab_no: 12
+board: arduino-uno
 status: done
 source: note
 tags: [arduino, rtc, ds1302, time]
@@ -11,8 +12,6 @@ resources:
   - ../assets/rtc-lcd-clock-real.mp4
   - ../assets/rtc-lcd-clock-real-poster.jpg
 ---
-
-# Lab 12 · Module đồng hồ thời gian thực (RTC DS1302)
 
 > Giới thiệu module **MH-Real-Time Clock Modules** trong kit, dùng chip **DS1302**. Module giúp Arduino biết được ngày giờ thực, kể cả khi đã rút nguồn.
 

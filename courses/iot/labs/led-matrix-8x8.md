@@ -1,8 +1,9 @@
 ---
-title: "Lab 13 · LED ma trận 8×8 (1088BS)"
+title: "Lab 13 · Arduino · LED ma trận 8×8 (1088BS)"
 subject: "iot"
 type: lab
 lab_no: 13
+board: arduino-uno
 status: done
 source: note
 tags: [arduino, led-matrix, 8x8, multiplexing, max7219]
@@ -17,8 +18,6 @@ resources:
   - ../assets/led-matrix-8x8-dice-real.mp4
   - ../assets/led-matrix-8x8-dice-real-poster.jpg
 ---
-
-# Lab 13 · LED ma trận 8×8 (1088BS)
 
 > Điều khiển ma trận LED 8×8 rời (16 chân) trực tiếp bằng Arduino Uno, không dùng IC điều khiển: thử 1 đèn, chạy điểm sáng qua 64 đèn, vẽ trái tim, chạy chương trình trình diễn (tim đập, mặt cười, mưa rơi, Game of Life) và làm xúc xắc điện tử. Cuối lab có phần cho **module MAX7219** nếu kit của bạn là loại đã gắn sẵn IC.
 

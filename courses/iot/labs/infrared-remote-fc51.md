@@ -1,8 +1,9 @@
 ---
-title: "Lab 8 · Hồng ngoại: remote IR + mắt thu VS1838B và cảm biến tránh vật cản FC-51"
+title: "Lab 8 · Arduino · Hồng ngoại: remote IR + mắt thu VS1838B và cảm biến tránh vật cản FC-51"
 subject: "iot"
 type: lab
 lab_no: 8
+board: arduino-uno
 status: reading
 source: note
 tags: [arduino, infrared, ir-remote, vs1838b, nec, irremote, fc-51, obstacle, sensor]
@@ -13,8 +14,6 @@ resources:
   - ../assets/fc51-led-real.mp4
   - ../assets/fc51-led-real-poster.jpg
 ---
-
-# Lab 8 · Hồng ngoại: remote IR + mắt thu VS1838B và cảm biến tránh vật cản FC-51
 
 > Dùng hai linh kiện hồng ngoại trong kit với Arduino Uno: **remote + mắt thu VS1838B** để nhận lệnh từ xa (đọc mã phím, bật tắt và chỉnh độ sáng LED), và **cảm biến FC-51** để phát hiện vật cản. Cuối lab ghép hai phần thành "công tắc đèn 2 cách": bật đèn bằng remote hoặc bằng cách vẫy tay. Điểm chính của lab là thấy cùng là hồng ngoại nhưng có hai cách dùng hoàn toàn khác nhau.
 
