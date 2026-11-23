@@ -25,6 +25,54 @@ resources:
 - Đây là module học tập, **không thay được đầu báo cháy thật**: nó không phát hiện khói, không thấy lửa bị che khuất và báo nhầm với ánh nắng.
 :::
 
+## Lý thuyết
+
+::: {.callout-note collapse="true"}
+## Cảm biến lửa hoạt động thế nào
+
+Ngọn lửa không chỉ phát ánh sáng nhìn thấy mà còn phát rất mạnh ở vùng **hồng ngoại gần** (bước sóng ~760–1100 nm). Mắt cảm biến của KY-026 là một **photodiode/phototransistor hồng ngoại** vỏ đen; nhựa đen lọc bớt ánh sáng nhìn thấy, chỉ cho hồng ngoại đi qua. Càng nhiều hồng ngoại chiếu vào, dòng qua nó càng lớn và điện áp ở chân analog càng thay đổi nhiều.
+
+Điện áp đó được đưa tới hai nơi:
+
+1. Thẳng ra chân **`A0`**: ngõ ra **analog**, Arduino đọc bằng `analogRead()` (0–1023) để biết lửa gần hay xa, to hay nhỏ.
+2. Vào IC so sánh **LM393**, so với điện áp do **biến trở xanh** đặt ra: ngõ ra **digital** `D0` chỉ có hai mức "có lửa / không có lửa". Khi vượt ngưỡng, LED `L2` trên module sáng.
+
+Vì đo hồng ngoại nên cảm biến **không phân biệt được** lửa thật với các nguồn hồng ngoại khác như **ánh nắng**, **bóng đèn sợi đốt / halogen**, **remote TV** hay bếp điện đang đỏ. Đèn LED và đèn huỳnh quang phát rất ít hồng ngoại nên ít gây nhiễu.
+:::
+
+::: {.callout-note collapse="true"}
+## Nhìn module
+
+Từ đầu xa hàng chân vào:
+
+- **Mắt cảm biến**: "bóng LED" **vỏ đen** 5 mm, chân dài để bẻ cong hướng mắt về phía cần canh. Nó không bao giờ sáng, đừng nhầm với LED.
+- **Biến trở xanh** (hộp vuông có vít đồng): vặn để đổi ngưỡng của `D0`.
+- **IC LM393** (8 chân), các điện trở dán và hai LED `L1`, `L2`.
+
+**KY-026 và module lửa "4 chân" khác:** loại bo xanh dương ghi `AO DO GND VCC` (thường in "Flame sensor") dùng cùng sơ đồ LM393, nhưng **mức logic của `D0` có thể ngược**. Loại này kéo `D0` xuống `LOW` khi có lửa, một số board KY-026 lại đưa `D0` lên `HIGH`. Chiều thay đổi của `A0` cũng tùy cách mắc phototransistor. Vì vậy [Test 1](#test-1) cho bạn tự xác định trên module trong kit.
+:::
+
+::: {.callout-note collapse="true"}
+## Ứng dụng, giới hạn và mở rộng
+
+| | Cảm biến lửa IR (KY-026) | Đầu báo khói | Cảm biến nhiệt (DHT11, [Lab 3](dht11.md)) |
+|---|---|---|---|
+| Phát hiện | Ánh sáng hồng ngoại của ngọn lửa | Hạt khói trong không khí | Nhiệt độ tăng |
+| Tốc độ | Gần như tức thì | Vài giây – vài chục giây | Chậm (phải đợi phòng nóng lên) |
+| Cần "nhìn thấy" lửa | Có, trong góc ~60° | Không | Không |
+| Báo nhầm với | Nắng, đèn sợi đốt, remote | Hơi nước, bụi | Máy sưởi, nắng chiếu |
+| Lửa âm ỉ không ngọn | Không thấy | Thấy | Thấy (chậm) |
+
+Hệ thống thật thường **kết hợp** nhiều loại. Robot chữa cháy dùng vài mắt hồng ngoại xếp vòng cung để biết lửa ở bên trái hay phải rồi quay về phía đó; lò đốt gas dùng cảm biến lửa để ngắt van khi ngọn lửa tắt.
+
+Mở rộng gợi ý:
+
+- Gắn hai module KY-026 lệch nhau ~45°, so `percent` hai bên để biết lửa nằm bên nào, rồi cho servo ([Lab 4](servo-sg90.md)) quay về phía đó.
+- Hiển thị `percent` lên LCD I²C ([Lab 2](lcd-i2c.md)) hoặc LED 7 đoạn ([Lab 15](seven-segment-1-digit.md)).
+- Gửi cảnh báo lên dashboard qua hệ 3 tầng ở [Lab 9](sensor-edge-cloud.md).
+:::
+
+
 ## Tổng quan
 
 :::: {layout="[48,52]"}
@@ -348,53 +396,6 @@ void loop() {
 - Nâng `A_THRESHOLD` lên `300` để chỉ báo khi lửa gần; hạ xuống `60` để nhạy hơn (dễ báo nhầm hơn).
 - Buzzer **active** vẫn kêu với `tone()`, chỉ không đổi cao độ. Có thể thay `tone()` / `noTone()` bằng `digitalWrite(BUZZER, HIGH/LOW)`.
 
-:::
-
-## Tìm hiểu thêm
-
-::: {.callout-note collapse="true"}
-## Cảm biến lửa hoạt động thế nào
-
-Ngọn lửa không chỉ phát ánh sáng nhìn thấy mà còn phát rất mạnh ở vùng **hồng ngoại gần** (bước sóng ~760–1100 nm). Mắt cảm biến của KY-026 là một **photodiode/phototransistor hồng ngoại** vỏ đen; nhựa đen lọc bớt ánh sáng nhìn thấy, chỉ cho hồng ngoại đi qua. Càng nhiều hồng ngoại chiếu vào, dòng qua nó càng lớn và điện áp ở chân analog càng thay đổi nhiều.
-
-Điện áp đó được đưa tới hai nơi:
-
-1. Thẳng ra chân **`A0`**: ngõ ra **analog**, Arduino đọc bằng `analogRead()` (0–1023) để biết lửa gần hay xa, to hay nhỏ.
-2. Vào IC so sánh **LM393**, so với điện áp do **biến trở xanh** đặt ra: ngõ ra **digital** `D0` chỉ có hai mức "có lửa / không có lửa". Khi vượt ngưỡng, LED `L2` trên module sáng.
-
-Vì đo hồng ngoại nên cảm biến **không phân biệt được** lửa thật với các nguồn hồng ngoại khác như **ánh nắng**, **bóng đèn sợi đốt / halogen**, **remote TV** hay bếp điện đang đỏ. Đèn LED và đèn huỳnh quang phát rất ít hồng ngoại nên ít gây nhiễu.
-:::
-
-::: {.callout-note collapse="true"}
-## Nhìn module
-
-Từ đầu xa hàng chân vào:
-
-- **Mắt cảm biến**: "bóng LED" **vỏ đen** 5 mm, chân dài để bẻ cong hướng mắt về phía cần canh. Nó không bao giờ sáng, đừng nhầm với LED.
-- **Biến trở xanh** (hộp vuông có vít đồng): vặn để đổi ngưỡng của `D0`.
-- **IC LM393** (8 chân), các điện trở dán và hai LED `L1`, `L2`.
-
-**KY-026 và module lửa "4 chân" khác:** loại bo xanh dương ghi `AO DO GND VCC` (thường in "Flame sensor") dùng cùng sơ đồ LM393, nhưng **mức logic của `D0` có thể ngược**. Loại này kéo `D0` xuống `LOW` khi có lửa, một số board KY-026 lại đưa `D0` lên `HIGH`. Chiều thay đổi của `A0` cũng tùy cách mắc phototransistor. Vì vậy [Test 1](#test-1) cho bạn tự xác định trên module trong kit.
-:::
-
-::: {.callout-note collapse="true"}
-## Ứng dụng, giới hạn và mở rộng
-
-| | Cảm biến lửa IR (KY-026) | Đầu báo khói | Cảm biến nhiệt (DHT11, [Lab 3](dht11.md)) |
-|---|---|---|---|
-| Phát hiện | Ánh sáng hồng ngoại của ngọn lửa | Hạt khói trong không khí | Nhiệt độ tăng |
-| Tốc độ | Gần như tức thì | Vài giây – vài chục giây | Chậm (phải đợi phòng nóng lên) |
-| Cần "nhìn thấy" lửa | Có, trong góc ~60° | Không | Không |
-| Báo nhầm với | Nắng, đèn sợi đốt, remote | Hơi nước, bụi | Máy sưởi, nắng chiếu |
-| Lửa âm ỉ không ngọn | Không thấy | Thấy | Thấy (chậm) |
-
-Hệ thống thật thường **kết hợp** nhiều loại. Robot chữa cháy dùng vài mắt hồng ngoại xếp vòng cung để biết lửa ở bên trái hay phải rồi quay về phía đó; lò đốt gas dùng cảm biến lửa để ngắt van khi ngọn lửa tắt.
-
-Mở rộng gợi ý:
-
-- Gắn hai module KY-026 lệch nhau ~45°, so `percent` hai bên để biết lửa nằm bên nào, rồi cho servo ([Lab 4](servo-sg90.md)) quay về phía đó.
-- Hiển thị `percent` lên LCD I²C ([Lab 2](lcd-i2c.md)) hoặc LED 7 đoạn ([Lab 15](seven-segment-1-digit.md)).
-- Gửi cảnh báo lên dashboard qua hệ 3 tầng ở [Lab 9](sensor-edge-cloud.md).
 :::
 
 ## Lỗi hay gặp

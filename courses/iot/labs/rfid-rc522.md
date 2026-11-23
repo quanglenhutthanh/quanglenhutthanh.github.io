@@ -24,6 +24,126 @@ resources:
 - **Không ghi vào sector trailer** (block 3, 7, 11, …) khi chưa hiểu access bits: ghi sai là khóa vĩnh viễn cả sector. Code Phần B chặn sẵn việc này.
 :::
 
+## Lý thuyết
+
+::: {.callout-note collapse="true"}
+## RFID là gì, các dải tần
+
+**RFID** (*Radio Frequency Identification*) là nhận dạng bằng sóng vô tuyến, gồm hai phần:
+
+| | Đầu đọc (reader) | Thẻ (tag) |
+|---|---|---|
+| Trong lab | Module RC522 | Thẻ trắng |
+| Nguồn điện | Lấy từ Arduino | **Không có pin** (thẻ thụ động) |
+| Thành phần | Chip MFRC522 + anten in trên mạch | Chip nhỏ + cuộn dây anten trong vỏ nhựa |
+
+Anten của đầu đọc tạo **từ trường xoay chiều 13,56 MHz**. Khi đưa thẻ lại gần, cuộn dây trong thẻ **sinh ra dòng điện cảm ứng** (giống máy biến áp không lõi), đủ nuôi chip. Chip trả lời bằng cách **thay đổi tải** trên cuộn dây, đầu đọc nhận ra thay đổi đó thành dữ liệu. Vì năng lượng truyền bằng cảm ứng nên **tầm đọc rất ngắn** (0–5 cm với RC522), và đó cũng là điểm cố ý của chuẩn 13,56 MHz: khó bị đọc trộm từ xa.
+
+| Dải tần | Tầm đọc | Ví dụ |
+|---|---|---|
+| **LF 125 kHz** | ~10 cm | Thẻ chấm công, thẻ thang máy đời cũ (EM4100). Chỉ có mã số, không ghi được |
+| **HF 13,56 MHz** | ~0–10 cm | **Thẻ trong lab (MIFARE)**, thẻ xe buýt, thẻ ngân hàng không chạm, **NFC**, CCCD gắn chip |
+| **UHF 860–960 MHz** | 1–10 m | Tem hàng hóa trong kho, thu phí không dừng (ETC) |
+
+RC522 chỉ đọc **13,56 MHz** theo chuẩn **ISO/IEC 14443A**; thẻ 125 kHz không đọc được. **NFC** trên điện thoại là một nhánh của RFID 13,56 MHz: app như *NFC Tools* hay *MIFARE Classic Tool* đọc được thẻ trong kit, tiện để kiểm tra chéo Phần A. Thẻ **không cần bóc túi nilon**: sóng đi xuyên nilon, ví, vỏ điện thoại nhựa.
+:::
+
+::: {.callout-note collapse="true"}
+## Thẻ MIFARE Classic 1K: UID, bộ nhớ, xác thực
+
+Thẻ trắng trong kit là **MIFARE Classic 1K** (còn gọi là **S50**).
+
+**UID** dài **4 byte**, ghi sẵn từ nhà máy. Đa số hệ thống gửi xe, khóa cửa giá rẻ chỉ dựa vào UID. ⚠️ UID **không phải bí mật**: đầu đọc nào cũng đọc được, và thẻ "magic" cho phép chép UID sang thẻ khác. Khóa cửa dùng UID như Phần C chỉ hợp cho học tập hoặc độ an toàn thấp.
+
+**Bộ nhớ:** 1 KB chia thành **16 sector × 4 block × 16 byte**, block đánh số 0–63:
+
+```
+Sector 0   block 0   [UID + dữ liệu nhà sản xuất]   ← chỉ đọc
+           block 1   [dữ liệu]
+           block 2   [dữ liệu]
+           block 3   [Key A | Access bits | Key B]   ← sector trailer
+Sector 1   block 4   [dữ liệu]                       ← Phần B ghi vào đây
+           block 5   [dữ liệu]
+           block 6   [dữ liệu]
+           block 7   [Key A | Access bits | Key B]   ← sector trailer
+...
+Sector 15  block 60–62 [dữ liệu], block 63 [trailer]
+```
+
+- **Block 0** chứa UID, khóa cứng từ nhà máy.
+- **Block cuối mỗi sector** (3, 7, …, 63) là **sector trailer**: Key A, Key B (6 byte mỗi khóa) và **access bits** quy định ai được đọc/ghi block nào.
+- Còn lại **47 block dữ liệu**, tổng 752 byte ghi được.
+
+**Xác thực:** muốn đọc/ghi một block, đầu đọc phải **xác thực** với sector chứa block đó bằng Key A hoặc Key B. Thẻ mới có cả hai khóa là **`FF FF FF FF FF FF`**. Thuật toán *Crypto1* của MIFARE Classic đã bị bẻ khóa từ năm 2008, nên hệ thống mới dùng **MIFARE DESFire** hoặc **MIFARE Plus** với AES.
+:::
+
+::: {.callout-note collapse="true"}
+## Nhìn module RC522 (vị trí chân, mức logic)
+
+- **Nửa dưới** module là **anten in trên mạch** (đường đồng chạy vòng quanh mép): chỗ đặt thẻ.
+- **Nửa trên**: **chip MFRC522** (32 chân), **thạch anh `27.120`** MHz (= 2 × 13,56 MHz), **LED nguồn `D1`** ở góc trái và hàng 8 lỗ chân dọc mép trên.
+
+Nhìn mặt có linh kiện (anten ở dưới), nhãn chân in **lộn ngược**, đọc từ **phải sang trái**:
+
+```
+   phía LED D1                                      phía thạch anh
+   3.3V   RST   GND   IRQ   MISO  MOSI  SCK   SDA ■   (■ = pad vuông, chân 1)
+    ○      ○     ○     ○     ○     ○     ○     □
+   ┌─────────────────────────────────────────────┐
+   │  D1      chip MFRC522              27.120   │
+   │                                             │
+   │             ~~~ anten ~~~                   │
+   └─────────────────────────────────────────────┘
+```
+
+**Mức logic:** chân tín hiệu (`SCK`, `MOSI`, `SDA`, `RST`) nhận mức 5 V từ Uno. Datasheet không ghi là chịu được 5 V, nhưng nối thẳng là cách phổ biến và chạy ổn; muốn đúng chuẩn thì dùng **module chuyển mức logic** 5 V ↔ 3,3 V. Chiều ngược lại, `MISO` ra 3,3 V, Uno vẫn đọc là `HIGH` (xem bảng điện áp ở [Lab 8](infrared-remote-fc51.md#low-là-bao-nhiêu-volt)).
+:::
+
+::: {.callout-note collapse="true"}
+## SPI là gì
+
+Các lab trước dùng `digitalRead()` một chân ([Lab 8](infrared-remote-fc51.md)), giao thức 1 dây của DHT11 ([Lab 3](dht11.md)), I²C 2 dây của LCD ([Lab 2](lcd-i2c.md)), dịch bit qua 74HC595 ([Lab 7](seven-segment-5641as.md)). RC522 dùng **SPI** (*Serial Peripheral Interface*): 4 dây, nhanh hơn I²C nhiều.
+
+```
+         Uno (master)                 RC522 (slave)
+   D13 SCK  ───────────────────────▶  SCK     xung nhịp, do master tạo
+   D11 MOSI ───────────────────────▶  MOSI    master gửi
+   D12 MISO ◀───────────────────────  MISO    slave trả lời
+   D10 SS   ───────────────────────▶  SDA     LOW = "tôi đang nói với bạn"
+```
+
+| | I²C (LCD, Lab 2) | SPI (RC522) |
+|---|---|---|
+| Số dây tín hiệu | 2 (`SDA`, `SCL`) | 4 (`SCK`, `MOSI`, `MISO`, `SS`) |
+| Chọn thiết bị | Bằng **địa chỉ** gửi trên dây | Bằng **một chân SS riêng** mỗi thiết bị |
+| Tốc độ thường dùng | 100–400 kbit/s | 1–10 Mbit/s |
+| Chân trên Uno | `A4`, `A5` | **Cố định** `D11`, `D12`, `D13`; `SS` tùy ý |
+
+`SCK`, `MOSI`, `MISO` **cố định** vì nối với bộ SPI phần cứng của ATmega328P (cũng có trên header ICSP 6 chân). Tên chân `SDA` trên module là vì chip cũng hỗ trợ I²C, nhưng module nối sẵn để chạy SPI.
+:::
+
+::: {.callout-note collapse="true"}
+## Ứng dụng, RFID hay mã vạch / QR
+
+| Ứng dụng | Dùng gì |
+|---|---|
+| Khóa cửa phòng, tủ đồ | RC522 + servo / khóa chốt điện (*solenoid*) + relay |
+| Chấm công, điểm danh | RC522 + LCD + gửi dữ liệu về server |
+| Bãi giữ xe | RC522 đọc thẻ + camera chụp biển số, ghép theo UID |
+| Thẻ xe buýt, ví điện tử nội bộ | Ghi số dư vào block dữ liệu (MIFARE có *value block* với lệnh cộng/trừ) |
+| Quản lý thiết bị, sách thư viện | Dán tem NFC vào từng món, quét bằng điện thoại |
+| Kho hàng, chuỗi cung ứng | RFID **UHF**: đọc hàng trăm tem cùng lúc từ vài mét |
+
+| | RFID 13,56 MHz | Mã vạch / QR |
+|---|---|---|
+| Cần nhìn thấy | Không, đọc xuyên giấy, nhựa | Có, phải thấy rõ tem |
+| Ghi lại được | Có (752 byte trên MIFARE 1K) | Không, in một lần |
+| Chép / làm giả | Khó hơn (cần thẻ đặc biệt) | Chụp ảnh là xong |
+| Bền | Chip trong vỏ nhựa, chịu bẩn, trầy | Mờ, rách là không đọc được |
+| Giá mỗi tem/thẻ | Vài nghìn đồng | Gần như bằng 0 |
+:::
+
+
 ## Tổng quan
 
 :::: {layout="[45,55]" layout-valign="center"}
@@ -226,7 +346,7 @@ Nạp code, mở Serial Monitor (baud **9600**). Dòng đầu phải là phiên 
 
 ### Test A2 – xem toàn bộ bộ nhớ thẻ {#test-a2}
 
-Nạp ví dụ có sẵn **File → Examples → MFRC522 → DumpInfo**, đặt thẻ lên đầu đọc và **giữ yên khoảng 2 giây**. Serial in cả 64 block, sector 15 ở trên cùng, sector 0 ở dưới cùng. Đối chiếu với [bộ nhớ thẻ](#tìm-hiểu-thêm):
+Nạp ví dụ có sẵn **File → Examples → MFRC522 → DumpInfo**, đặt thẻ lên đầu đọc và **giữ yên khoảng 2 giây**. Serial in cả 64 block, sector 15 ở trên cùng, sector 0 ở dưới cùng. Đối chiếu với [bộ nhớ thẻ](#lý-thuyết):
 
 - **Block 0**: 4 byte đầu là UID đã đọc ở Test A1.
 - **Block 3, 7, …, 63** (trailer): `00 00 00 00 00 00  FF 07 80 69  FF FF FF FF FF FF`. Key A hiện `00` vì thẻ không cho đọc Key A; `FF 07 80 69` là access bits mặc định; Key B là `FF…FF`.
@@ -596,125 +716,6 @@ void loop() {
 - **Chấm công:** mỗi lần quẹt in ra `UID,thời gian`. Arduino không có đồng hồ thời gian thực, nên gửi lên Raspberry Pi (kiến trúc [Lab 9](sensor-edge-cloud.md)) để gắn giờ, lưu CSV và đẩy lên cloud qua MQTT ([bài MQTT](../lectures/mqtt.md)).
 - **Chống quẹt thử:** sai 3 lần liên tiếp thì khóa đầu đọc 30 s.
 
-:::
-
-## Tìm hiểu thêm
-
-::: {.callout-note collapse="true"}
-## RFID là gì, các dải tần
-
-**RFID** (*Radio Frequency Identification*) là nhận dạng bằng sóng vô tuyến, gồm hai phần:
-
-| | Đầu đọc (reader) | Thẻ (tag) |
-|---|---|---|
-| Trong lab | Module RC522 | Thẻ trắng |
-| Nguồn điện | Lấy từ Arduino | **Không có pin** (thẻ thụ động) |
-| Thành phần | Chip MFRC522 + anten in trên mạch | Chip nhỏ + cuộn dây anten trong vỏ nhựa |
-
-Anten của đầu đọc tạo **từ trường xoay chiều 13,56 MHz**. Khi đưa thẻ lại gần, cuộn dây trong thẻ **sinh ra dòng điện cảm ứng** (giống máy biến áp không lõi), đủ nuôi chip. Chip trả lời bằng cách **thay đổi tải** trên cuộn dây, đầu đọc nhận ra thay đổi đó thành dữ liệu. Vì năng lượng truyền bằng cảm ứng nên **tầm đọc rất ngắn** (0–5 cm với RC522), và đó cũng là điểm cố ý của chuẩn 13,56 MHz: khó bị đọc trộm từ xa.
-
-| Dải tần | Tầm đọc | Ví dụ |
-|---|---|---|
-| **LF 125 kHz** | ~10 cm | Thẻ chấm công, thẻ thang máy đời cũ (EM4100). Chỉ có mã số, không ghi được |
-| **HF 13,56 MHz** | ~0–10 cm | **Thẻ trong lab (MIFARE)**, thẻ xe buýt, thẻ ngân hàng không chạm, **NFC**, CCCD gắn chip |
-| **UHF 860–960 MHz** | 1–10 m | Tem hàng hóa trong kho, thu phí không dừng (ETC) |
-
-RC522 chỉ đọc **13,56 MHz** theo chuẩn **ISO/IEC 14443A**; thẻ 125 kHz không đọc được. **NFC** trên điện thoại là một nhánh của RFID 13,56 MHz: app như *NFC Tools* hay *MIFARE Classic Tool* đọc được thẻ trong kit, tiện để kiểm tra chéo Phần A. Thẻ **không cần bóc túi nilon**: sóng đi xuyên nilon, ví, vỏ điện thoại nhựa.
-:::
-
-::: {.callout-note collapse="true"}
-## Thẻ MIFARE Classic 1K: UID, bộ nhớ, xác thực
-
-Thẻ trắng trong kit là **MIFARE Classic 1K** (còn gọi là **S50**).
-
-**UID** dài **4 byte**, ghi sẵn từ nhà máy. Đa số hệ thống gửi xe, khóa cửa giá rẻ chỉ dựa vào UID. ⚠️ UID **không phải bí mật**: đầu đọc nào cũng đọc được, và thẻ "magic" cho phép chép UID sang thẻ khác. Khóa cửa dùng UID như Phần C chỉ hợp cho học tập hoặc độ an toàn thấp.
-
-**Bộ nhớ:** 1 KB chia thành **16 sector × 4 block × 16 byte**, block đánh số 0–63:
-
-```
-Sector 0   block 0   [UID + dữ liệu nhà sản xuất]   ← chỉ đọc
-           block 1   [dữ liệu]
-           block 2   [dữ liệu]
-           block 3   [Key A | Access bits | Key B]   ← sector trailer
-Sector 1   block 4   [dữ liệu]                       ← Phần B ghi vào đây
-           block 5   [dữ liệu]
-           block 6   [dữ liệu]
-           block 7   [Key A | Access bits | Key B]   ← sector trailer
-...
-Sector 15  block 60–62 [dữ liệu], block 63 [trailer]
-```
-
-- **Block 0** chứa UID, khóa cứng từ nhà máy.
-- **Block cuối mỗi sector** (3, 7, …, 63) là **sector trailer**: Key A, Key B (6 byte mỗi khóa) và **access bits** quy định ai được đọc/ghi block nào.
-- Còn lại **47 block dữ liệu**, tổng 752 byte ghi được.
-
-**Xác thực:** muốn đọc/ghi một block, đầu đọc phải **xác thực** với sector chứa block đó bằng Key A hoặc Key B. Thẻ mới có cả hai khóa là **`FF FF FF FF FF FF`**. Thuật toán *Crypto1* của MIFARE Classic đã bị bẻ khóa từ năm 2008, nên hệ thống mới dùng **MIFARE DESFire** hoặc **MIFARE Plus** với AES.
-:::
-
-::: {.callout-note collapse="true"}
-## Nhìn module RC522 (vị trí chân, mức logic)
-
-- **Nửa dưới** module là **anten in trên mạch** (đường đồng chạy vòng quanh mép): chỗ đặt thẻ.
-- **Nửa trên**: **chip MFRC522** (32 chân), **thạch anh `27.120`** MHz (= 2 × 13,56 MHz), **LED nguồn `D1`** ở góc trái và hàng 8 lỗ chân dọc mép trên.
-
-Nhìn mặt có linh kiện (anten ở dưới), nhãn chân in **lộn ngược**, đọc từ **phải sang trái**:
-
-```
-   phía LED D1                                      phía thạch anh
-   3.3V   RST   GND   IRQ   MISO  MOSI  SCK   SDA ■   (■ = pad vuông, chân 1)
-    ○      ○     ○     ○     ○     ○     ○     □
-   ┌─────────────────────────────────────────────┐
-   │  D1      chip MFRC522              27.120   │
-   │                                             │
-   │             ~~~ anten ~~~                   │
-   └─────────────────────────────────────────────┘
-```
-
-**Mức logic:** chân tín hiệu (`SCK`, `MOSI`, `SDA`, `RST`) nhận mức 5 V từ Uno. Datasheet không ghi là chịu được 5 V, nhưng nối thẳng là cách phổ biến và chạy ổn; muốn đúng chuẩn thì dùng **module chuyển mức logic** 5 V ↔ 3,3 V. Chiều ngược lại, `MISO` ra 3,3 V, Uno vẫn đọc là `HIGH` (xem bảng điện áp ở [Lab 8](infrared-remote-fc51.md#low-là-bao-nhiêu-volt)).
-:::
-
-::: {.callout-note collapse="true"}
-## SPI là gì
-
-Các lab trước dùng `digitalRead()` một chân ([Lab 8](infrared-remote-fc51.md)), giao thức 1 dây của DHT11 ([Lab 3](dht11.md)), I²C 2 dây của LCD ([Lab 2](lcd-i2c.md)), dịch bit qua 74HC595 ([Lab 7](seven-segment-5641as.md)). RC522 dùng **SPI** (*Serial Peripheral Interface*): 4 dây, nhanh hơn I²C nhiều.
-
-```
-         Uno (master)                 RC522 (slave)
-   D13 SCK  ───────────────────────▶  SCK     xung nhịp, do master tạo
-   D11 MOSI ───────────────────────▶  MOSI    master gửi
-   D12 MISO ◀───────────────────────  MISO    slave trả lời
-   D10 SS   ───────────────────────▶  SDA     LOW = "tôi đang nói với bạn"
-```
-
-| | I²C (LCD, Lab 2) | SPI (RC522) |
-|---|---|---|
-| Số dây tín hiệu | 2 (`SDA`, `SCL`) | 4 (`SCK`, `MOSI`, `MISO`, `SS`) |
-| Chọn thiết bị | Bằng **địa chỉ** gửi trên dây | Bằng **một chân SS riêng** mỗi thiết bị |
-| Tốc độ thường dùng | 100–400 kbit/s | 1–10 Mbit/s |
-| Chân trên Uno | `A4`, `A5` | **Cố định** `D11`, `D12`, `D13`; `SS` tùy ý |
-
-`SCK`, `MOSI`, `MISO` **cố định** vì nối với bộ SPI phần cứng của ATmega328P (cũng có trên header ICSP 6 chân). Tên chân `SDA` trên module là vì chip cũng hỗ trợ I²C, nhưng module nối sẵn để chạy SPI.
-:::
-
-::: {.callout-note collapse="true"}
-## Ứng dụng, RFID hay mã vạch / QR
-
-| Ứng dụng | Dùng gì |
-|---|---|
-| Khóa cửa phòng, tủ đồ | RC522 + servo / khóa chốt điện (*solenoid*) + relay |
-| Chấm công, điểm danh | RC522 + LCD + gửi dữ liệu về server |
-| Bãi giữ xe | RC522 đọc thẻ + camera chụp biển số, ghép theo UID |
-| Thẻ xe buýt, ví điện tử nội bộ | Ghi số dư vào block dữ liệu (MIFARE có *value block* với lệnh cộng/trừ) |
-| Quản lý thiết bị, sách thư viện | Dán tem NFC vào từng món, quét bằng điện thoại |
-| Kho hàng, chuỗi cung ứng | RFID **UHF**: đọc hàng trăm tem cùng lúc từ vài mét |
-
-| | RFID 13,56 MHz | Mã vạch / QR |
-|---|---|---|
-| Cần nhìn thấy | Không, đọc xuyên giấy, nhựa | Có, phải thấy rõ tem |
-| Ghi lại được | Có (752 byte trên MIFARE 1K) | Không, in một lần |
-| Chép / làm giả | Khó hơn (cần thẻ đặc biệt) | Chụp ảnh là xong |
-| Bền | Chip trong vỏ nhựa, chịu bẩn, trầy | Mờ, rách là không đọc được |
-| Giá mỗi tem/thẻ | Vài nghìn đồng | Gần như bằng 0 |
 :::
 
 ## Lỗi hay gặp
