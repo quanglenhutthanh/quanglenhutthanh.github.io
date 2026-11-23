@@ -7,236 +7,139 @@ status: todo
 source: note
 tags: [arduino, rfid, rc522, mfrc522, mifare, spi, servo, access-control]
 date: 2026-11-16
+lightbox: true
 resources:
   - ../assets/rfid-servo-real.mp4
   - ../assets/rfid-servo-real-poster.jpg
 ---
 
-# Lab 10 · RFID: module RC522 + thẻ MIFARE Classic 1K
+> Dùng module **RC522** với Arduino Uno để đọc thẻ RFID 13,56 MHz trong kit. Lab đi từ **đọc mã UID** (Phần A), sang **đọc/ghi dữ liệu** vào bộ nhớ thẻ (Phần B), rồi ghép thành **khóa cửa quẹt thẻ** (Phần C): thẻ hợp lệ thì servo mở khóa, đèn xanh và còi kêu một tiếng; thẻ lạ thì đèn đỏ và còi kêu ba tiếng. Đây là lab đầu tiên dùng giao tiếp **SPI**.
 
-> Dùng module **RC522** với Arduino Uno để đọc thẻ RFID 13,56 MHz trong kit (thẻ trắng và móc khóa). Lab đi từ **đọc mã UID** của thẻ, sang **đọc/ghi dữ liệu** vào bộ nhớ thẻ, và cuối cùng ghép thành **khóa cửa quẹt thẻ**: thẻ hợp lệ thì servo mở khóa, đèn xanh và còi kêu một tiếng; thẻ lạ thì đèn đỏ và còi kêu ba tiếng. Đây cũng là lab đầu tiên dùng giao tiếp **SPI**.
+::: {.callout-warning}
+## Ba điều cần nhớ trước khi cắm điện
 
-## RFID là gì
+- **Nguồn RC522 là 3,3 V**: chân `3.3V` của module vào `3.3V` của Uno, **không phải `5V`**, nếu không chip có thể hỏng.
+- **Phải hàn chân header** trước khi dùng. Cắm hờ dây vào lỗ làm SPI lúc chạy lúc không (xem [Hàn chân header](#rc522-header)).
+- **Không ghi vào sector trailer** (block 3, 7, 11, …) khi chưa hiểu access bits: ghi sai là khóa vĩnh viễn cả sector. Code Phần B chặn sẵn việc này.
+:::
 
-**RFID** (*Radio Frequency Identification*) là nhận dạng bằng sóng vô tuyến. Một hệ RFID có hai phần:
+## Tổng quan
 
-| | Đầu đọc (reader) | Thẻ (tag) |
+:::: {layout="[52,48]"}
+
+::: {}
+**Sơ đồ chân và nối dây**
+
+| Chân | Nối Uno | Ý nghĩa |
 |---|---|---|
-| Trong lab | Module RC522 | Thẻ trắng |
-| Nguồn điện | Lấy từ Arduino | **Không có pin** (thẻ thụ động) |
-| Thành phần | Chip MFRC522 + anten in trên mạch | Chip nhỏ + cuộn dây anten bên trong vỏ nhựa |
+| `SDA` | `D10` | Chọn chip SPI (SS) |
+| `SCK` | `D13` | Xung nhịp SPI |
+| `MOSI` | `D11` | Uno → RC522 |
+| `MISO` | `D12` | RC522 → Uno |
+| `IRQ` | *bỏ trống* | Báo ngắt |
+| `GND` | `GND` | Mass |
+| `RST` | `D9` | Reset chip |
+| `3.3V` | **`3.3V`** | Nguồn |
+| LED xanh (+) | `D5` qua 220 Ω | Phần C |
+| LED đỏ (+) | `D6` qua 220 Ω | Phần C |
+| Buzzer (+) | `D7` | Phần C |
+| Servo cam / đỏ | `D3` / `5V` | Phần C |
+:::
 
-Thẻ không có pin, vậy lấy điện ở đâu? Anten của đầu đọc tạo ra một **từ trường xoay chiều 13,56 MHz**. Khi đưa thẻ lại gần, cuộn dây trong thẻ nằm trong từ trường này và **sinh ra dòng điện cảm ứng** (giống máy biến áp không có lõi), đủ để nuôi chip trong thẻ. Chip trả lời bằng cách **thay đổi tải** trên cuộn dây của mình, đầu đọc nhận ra thay đổi đó thành dữ liệu.
+::: {}
+**Thông số RC522**
 
-Vì năng lượng truyền bằng cảm ứng nên **tầm đọc rất ngắn**, chỉ khoảng **0–5 cm** với RC522. Đây là điểm cố ý của chuẩn 13,56 MHz: thẻ phải chạm gần mới đọc được, nên khó bị đọc trộm từ xa.
-
-### Các dải tần RFID
-
-| Dải tần | Tầm đọc | Ví dụ |
-|---|---|---|
-| **LF 125 kHz** | ~10 cm | Thẻ chấm công, thẻ thang máy đời cũ (EM4100). Chỉ có mã số, không ghi được |
-| **HF 13,56 MHz** | ~0–10 cm | **Thẻ trong lab (MIFARE)**, thẻ xe buýt, thẻ ngân hàng không chạm, **NFC** trên điện thoại, CCCD gắn chip |
-| **UHF 860–960 MHz** | 1–10 m | Tem hàng hóa trong kho, thu phí không dừng (ETC) |
-
-RC522 chỉ đọc dải **13,56 MHz** theo chuẩn **ISO/IEC 14443A**. Thẻ 125 kHz (thẻ chấm công dày, thường in số trên mặt) **không đọc được** bằng RC522.
-
-**NFC** trên điện thoại là một nhánh của RFID 13,56 MHz. Điện thoại Android có NFC đọc được thẻ trong kit bằng app như *NFC Tools* hay *MIFARE Classic Tool*, tiện để kiểm tra chéo kết quả ở Phần A.
-
-## Thẻ MIFARE Classic 1K
-
-Thẻ trắng trong kit là **MIFARE Classic 1K** (còn gọi là **S50**), loại thẻ 13,56 MHz phổ biến nhất. (Móc khóa đi kèm thì RC522 không đọc được, xem [Test A1](#test-a1--kiểm-tra-module-và-đọc-uid).)
-
-### UID
-
-Mỗi thẻ có một **UID** (*Unique Identifier*) dài **4 byte**, ghi sẵn từ nhà máy, ví dụ `A3 5F 1C 0B`. Phần A chỉ đọc UID này. Đa số hệ thống gửi xe, khóa cửa giá rẻ chỉ dựa vào UID để nhận thẻ.
-
-⚠️ UID **không phải là bí mật**: bất kỳ đầu đọc nào cũng đọc được, và có loại thẻ "magic" (thẻ UID đổi được) cho phép chép UID sang thẻ khác. Hệ thống dùng UID làm khóa cửa (như Phần C) chỉ phù hợp cho mục đích học tập hoặc độ an toàn thấp.
-
-### Bộ nhớ: 16 sector × 4 block × 16 byte {#mifare-memory}
-
-Bộ nhớ 1 KB (1024 byte) chia thành **16 sector**, mỗi sector có **4 block**, mỗi block **16 byte**. Block được đánh số liên tục từ 0 đến 63:
-
-```
-Sector 0   block 0   [UID + dữ liệu nhà sản xuất]   ← chỉ đọc
-           block 1   [dữ liệu]
-           block 2   [dữ liệu]
-           block 3   [Key A | Access bits | Key B]   ← sector trailer
-Sector 1   block 4   [dữ liệu]                       ← Phần B ghi vào đây
-           block 5   [dữ liệu]
-           block 6   [dữ liệu]
-           block 7   [Key A | Access bits | Key B]   ← sector trailer
-...
-Sector 15  block 60–62 [dữ liệu], block 63 [trailer]
-```
-
-- **Block 0** chứa UID, khóa cứng từ nhà máy, không ghi được.
-- **Block cuối của mỗi sector** (3, 7, 11, …, 63) là **sector trailer**: chứa hai khóa **Key A**, **Key B** (6 byte mỗi khóa) và các **access bits** quy định ai được đọc/ghi block nào.
-- Còn lại **47 block dữ liệu** (16 sector × 3 block − block 0), tổng cộng 752 byte ghi được.
-
-### Xác thực trước khi đọc/ghi
-
-Muốn đọc hoặc ghi một block, đầu đọc phải **xác thực** (*authenticate*) với sector chứa block đó bằng Key A hoặc Key B. Thẻ mới xuất xưởng có cả hai khóa là **`FF FF FF FF FF FF`**, nên code trong lab dùng khóa này.
-
-⚠️ **Không ghi vào sector trailer** (block 3, 7, 11, …) khi chưa hiểu rõ access bits. Ghi sai access bits hoặc quên khóa mới là **khóa vĩnh viễn** cả sector đó, không có cách mở lại. Code Phần B chặn sẵn việc ghi vào trailer.
-
-Thuật toán mã hóa của MIFARE Classic (*Crypto1*) đã bị bẻ khóa từ năm 2008, nên thẻ này **không an toàn** cho thanh toán hay kiểm soát ra vào quan trọng. Hệ thống mới dùng **MIFARE DESFire** hoặc **MIFARE Plus** với mã hóa AES.
-
-## Module RC522
-
-![Bộ RFID trong kit: móc khóa xanh dương, thẻ trắng còn trong túi nilon, module `RFID-RC522` (bản `V133`) cùng hai hàng chân 8 pin chưa hàn: một hàng thẳng, một hàng cong 90°](../assets/kit-rc522-set.jpg){width=75%}
-
-Bộ RFID trong kit gồm:
-
-- **Module `RFID-RC522`** (in `V133` trên mạch), mạch xanh dương:
-  - **Nửa dưới** là **anten in trên mạch**: đường đồng chạy vòng quanh mép, bên trong in hình sóng radio. Đây là chỗ đặt thẻ.
-  - **Nửa trên** là **chip MFRC522** (con chip vuông 32 chân ở giữa), **thạch anh `27.120`** MHz (vỏ kim loại bên phải, đúng bằng 2 × 13,56 MHz), một **LED nguồn `D1`** ở góc trái và hàng 8 lỗ chân dọc mép trên.
-- **Hai hàng chân 8 pin** (*pin header*) để rời: một hàng **thẳng**, một hàng **cong 90°**. Module bán ra **chưa hàn chân**, chỉ dùng **một** trong hai hàng (xem [Hàn chân header](#rc522-header)).
-- **Thẻ trắng** cỡ thẻ ATM và **móc khóa xanh dương** (*keyfob*). Thẻ trắng là MIFARE Classic 1K 13,56 MHz. **Móc khóa trong kit thì RC522 không đọc được** (đã thử ở [Test A1](#test-a1--kiểm-tra-module-và-đọc-uid)), nhiều khả năng là loại 125 kHz dù vỏ giống hệt loại 13,56 MHz.
-
-![Thẻ trắng (còn trong túi nilon) và móc khóa xanh dương: nhìn bên ngoài không phân biệt được thẻ 13,56 MHz với 125 kHz, phải thử bằng đầu đọc hoặc NFC điện thoại](../assets/kit-rfid-tags.jpg){width=55%}
-
-Thẻ **không cần bóc túi nilon** để đọc, sóng đi xuyên qua nilon dễ dàng (và qua cả ví, vỏ điện thoại bằng nhựa).
-
-**8 chân**, nhãn in ngay dưới hàng lỗ. Nhìn mặt có linh kiện, **anten ở dưới, hàng lỗ ở trên**: nhãn bị in **lộn ngược**, đọc từ **phải sang trái** là `SDA` · `SCK` · `MOSI` · `MISO` · `IRQ` · `GND` · `RST` · `3.3V`. Nói cách khác, **`SDA` là chân sát thạch anh** (lỗ có **pad vuông**, chân số 1), **`3.3V` là chân sát LED `D1`**. Hai chân dễ cắm nhầm nhất, `GND` và `3.3V`, nằm ở đầu phía LED.
-
-```
-   phía LED D1                                      phía thạch anh
-   3.3V   RST   GND   IRQ   MISO  MOSI  SCK   SDA ■   (■ = pad vuông, chân 1)
-    ○      ○     ○     ○     ○     ○     ○     □
-   ┌─────────────────────────────────────────────┐
-   │  D1      chip MFRC522              27.120   │
-   │                                             │
-   │             ~~~ anten ~~~                   │
-   └─────────────────────────────────────────────┘
-```
-
-Bảng chức năng và cách nối:
-
-| Chân | Chức năng | Nối vào Uno |
-|---|---|---|
-| `SDA` | Chọn chip SPI (SS / CS). Tên `SDA` vì chip cũng hỗ trợ I²C, nhưng module nối sẵn để chạy SPI | `D10` |
-| `SCK` | Xung nhịp SPI | `D13` |
-| `MOSI` | Dữ liệu Uno → RC522 | `D11` |
-| `MISO` | Dữ liệu RC522 → Uno | `D12` |
-| `IRQ` | Báo ngắt | **Không nối** |
-| `GND` | Mass | `GND` |
-| `RST` | Reset chip | `D9` |
-| `3.3V` | Nguồn | **`3.3V`** |
-
-| Thông số | RC522 |
+| | |
 |---|---|
-| Điện áp nguồn | **3,3 V** |
-| Dòng tiêu thụ | 13–26 mA khi đọc |
+| Điện áp | **3,3 V**, 13–26 mA khi đọc |
 | Tần số | 13,56 MHz |
 | Chuẩn thẻ | ISO/IEC 14443A (MIFARE Classic, Ultralight, NTAG…) |
-| Tầm đọc | 0–5 cm (thẻ), ngắn hơn với móc khóa |
-| Giao tiếp | SPI (tới 10 Mbit/s), I²C, UART. Module nối sẵn cho SPI |
+| Tầm đọc | 0–5 cm |
+| Giao tiếp | SPI (tới 10 Mbit/s) |
 
-⚠️ **Nguồn của RC522 là 3,3 V, không phải 5 V.** Cắm `3.3V` của module vào `5V` của Uno có thể làm hỏng chip. Đây là module đầu tiên trong kit cần chú ý điều này.
+**Thẻ trong kit**
 
-Còn các **chân tín hiệu** (`SCK`, `MOSI`, `SDA`, `RST`) thì nhận mức 5 V từ Uno. Datasheet MFRC522 không ghi là chịu được 5 V, nhưng nối thẳng như trên là cách làm phổ biến và chạy ổn trong thực tế. Muốn đúng chuẩn thì đặt **module chuyển mức logic** (*logic level shifter*) 5 V ↔ 3,3 V ở giữa. Chiều ngược lại, `MISO` ra mức 3,3 V, Uno vẫn đọc là `HIGH` (ngưỡng ~3 V, xem bảng điện áp ở [Lab 8](infrared-remote-fc51.md#low-là-bao-nhiêu-volt)).
+| | |
+|---|---|
+| Thẻ trắng | MIFARE Classic 1K, UID `5A 4D E5 8B`, đọc được |
+| Móc khóa xanh | **Không đọc được**, nhiều khả năng là loại 125 kHz |
+:::
+
+::::
+
+**Linh kiện:** Arduino Uno + cáp USB · module RC522 (đã hàn hàng chân cong 90°) + thẻ trắng + móc khóa · LED xanh lá, LED đỏ + 2 điện trở 220 Ω · buzzer · servo SG90 · breadboard, dây đực–đực, dây đực–cái. Phần A, B chỉ cần RC522.
+
+**Chọn chân:**
+
+- `D10`–`D13` là SPI phần cứng, `D9` là `RST`. Đây là cách nối mặc định trong ví dụ của thư viện.
+- **Servo ở `D3`**, không phải `D9` như [Lab 4](servo-sg90.md), vì `D9` đã dùng cho `RST`.
+- `Servo` chiếm Timer1, `tone()` chiếm Timer2, nên hai thứ không tranh nhau.
+- RC522 nối `3.3V`, các module khác nối `5V`. Không kéo chung một thanh nguồn cho tất cả.
+
+## Mạch thực tế
+
+:::: {layout="[45,55]" layout-valign="center"}
+
+![Module RC522 lật ngược (anten ở trên), hàng chân cong 90° đã hàn, dải 8 dây cái cắm vào; LED `D1` sát chân `3.3V` sáng đỏ](../assets/rc522-wiring-real.jpg)
+
+::: {}
+```{=html}
+<video class="lab-video" controls playsinline preload="metadata" poster="../assets/rfid-servo-real-poster.jpg">
+  <source src="../assets/rfid-servo-real.mp4" type="video/mp4">
+</video>
+```
+
+[Test C1](#test-c1): quẹt thẻ trắng, servo về 0°, 3 giây sau tự quay lại 90°
+:::
+
+::::
+
+- **Thứ tự chân** (module lật ngược, anten ở trên, đọc từ trái sang): `SDA` · `SCK` · `MOSI` · `MISO` · `IRQ` · `GND` · `RST` · `3.3V`. `SDA` nằm sát **thạch anh `27.120`** (lỗ pad vuông), `3.3V` sát **LED `D1`**.
+- **Màu dây** theo thứ tự trong dải, không theo quy ước: **đen** `SDA` → `D10`, **nâu** `SCK` → `D13`, **đỏ** `MOSI` → `D11`, **cam** `MISO` → `D12`, **vàng** `IRQ` (trống), **xanh lá** `GND`, **xanh dương** `RST` → `D9`, **tím** `3.3V`. Ở đây dây **đỏ không phải nguồn**, nguồn là dây **tím**: luôn dò theo nhãn in trên mạch.
+- **LED `D1` sáng đỏ** nghĩa là module đã có điện.
+- `D13` là `SCK`, nên **LED `L` trên Uno nháy mờ** mỗi khi đọc thẻ. Đó là bình thường.
+
+## Chuẩn bị
+
+**Thư viện:** Arduino IDE → **Tools → Manage Libraries** → tìm **MFRC522** → cài bản của **GithubCommunity** (tác giả gốc *miguelbalboa*), bản 1.4.x. `SPI.h` có sẵn. Đừng cài nhầm **MFRC522v2**: bản này có cú pháp khác (`MFRC522DriverPinSimple`…) và code trong lab không chạy với nó.
 
 ### Hàn chân header {#rc522-header}
 
-Module bán ra chưa có chân. **Phải hàn** chứ không cắm hờ dây vào lỗ được: tiếp xúc lỏng làm SPI lúc chạy lúc không, Serial báo `0x00` / `0xFF` và rất khó tìm ra lỗi.
+Module bán ra **chưa hàn chân**, kèm hai hàng 8 pin: một hàng thẳng, một hàng cong 90°. Lab dùng **hàng cong 90°** để module nằm phẳng trên bàn, mặt anten ngửa lên, nối Uno bằng dây đực–cái.
 
-**Chọn hàng chân nào?**
+::: {.callout-tip collapse="true"}
+## Các bước hàn và so sánh hai loại hàng chân
+
+![Hàng chân cong 90° đặt vào 8 lỗ trước khi hàn: phần nhựa đen ở mặt có linh kiện, đầu chân dài cong chĩa ra ngoài mép trên](../assets/kit-rc522-header.jpg){width=65%}
 
 | | Hàng **cong 90°** (khuyên dùng) | Hàng **thẳng** |
 |---|---|---|
-| Sau khi hàn | Chân chĩa **ngang ra ngoài mép**, song song mặt mạch | Chân chĩa **thẳng xuống** dưới mặt mạch |
-| Cách dùng | Module **nằm phẳng trên bàn**, nối Uno bằng **dây đực – cái** | Cắm module **nằm sấp** lên breadboard |
-| Ưu điểm | Mặt anten luôn ngửa lên, đặt thẻ lên dễ; breadboard trống cho LED, buzzer, servo | Không cần dây đực – cái, cắm vào là xong |
-| Nhược điểm | Cần 7 dây đực – cái | Module che mất ~8 hàng breadboard; mặt có linh kiện úp xuống, nhưng vẫn đặt thẻ ở mặt trên được |
+| Sau khi hàn | Chân chĩa **ngang ra ngoài mép** | Chân chĩa **thẳng xuống** |
+| Cách dùng | Module **nằm phẳng**, nối bằng **dây đực–cái** | Cắm module **nằm sấp** lên breadboard |
+| Ưu điểm | Mặt anten ngửa lên; breadboard trống cho LED, buzzer, servo | Không cần dây đực–cái |
+| Nhược điểm | Cần 7 dây đực–cái | Module che mất ~8 hàng breadboard |
 
-Lab này dùng **hàng cong 90°**, giống ảnh dưới:
+1. **Đặt hàng chân từ mặt có linh kiện**: thanh nhựa đen sát mặt này, đầu chân ngắn xuyên ra mặt sau, **đầu cong dài chĩa ra ngoài mép** (không đè lên chip).
+2. **Cố định** cho vuông góc mép mạch bằng kẹp giấy hoặc băng dính, hoặc lật úp module và kê đầu chân dài lên cục tẩy.
+3. **Hàn một chân ở đầu** (`SDA`) trước, chỉnh cho thẳng, rồi hàn chân **ở đầu kia** (`3.3V`).
+4. Hàn **6 chân còn lại**. Mỏ hàn ~320–350 °C, áp vào **cả chân lẫn pad** 1–2 giây rồi mới đưa thiếc vào. Mỗi mối dưới 3–4 giây để không bong pad.
+5. **Kiểm tra:**
+   - Mối tốt có hình **nón nhỏ, bóng**. Mối **cục tròn** hoặc **xám sần** là hàn nguội, cần hàn lại.
+   - Chân cách nhau 2,54 mm: soi kỹ **không có cầu thiếc**, nhất là `GND`–`RST`–`3.3V`.
+   - Có đồng hồ vạn năng thì đo thông mạch `3.3V` với `GND`: **không được kêu**.
 
-![Hàng chân cong 90° đặt vào 8 lỗ của module trước khi hàn: phần nhựa đen nằm ở mặt có linh kiện, đầu chân ngắn xuyên qua lỗ, đầu chân dài cong chĩa ra ngoài mép trên; hàng chân thẳng để bên phải không dùng](../assets/kit-rc522-header.jpg){width=65%}
-
-Các bước:
-
-1. **Đặt hàng chân từ mặt có linh kiện** (mặt có nhãn chữ): thanh nhựa đen nằm sát mặt này, **đầu chân ngắn** xuyên qua lỗ ra mặt sau, **đầu cong dài chĩa ra ngoài mép**, không chĩa vào trong đè lên chip. Đúng như ảnh trên.
-2. **Cố định** hàng chân cho vuông góc mép mạch: kẹp bằng kẹp giấy, dán băng dính giấy, hoặc lật úp module rồi kê đầu chân dài lên một cục tẩy cho mạch nằm cân.
-3. **Lật ra mặt sau, hàn một chân ở đầu** (ví dụ `SDA`) trước. Nhìn lại: nếu hàng chân bị nghiêng thì vừa chạm mỏ hàn vào mối hàn vừa chỉnh lại cho thẳng. Hàn chân **ở đầu kia** (`3.3V`), kiểm tra lần nữa.
-4. Hàn **6 chân còn lại**. Mỏ hàn ~320–350 °C, áp mỏ vào **cả chân lẫn pad** 1–2 giây rồi mới đưa thiếc vào, thiếc tự chảy quanh chân. Tổng thời gian mỗi mối dưới 3–4 giây để không làm bong pad.
-5. **Kiểm tra mối hàn:**
-   - Mối tốt có hình **nón nhỏ, bóng**, bao kín pad. Mối dạng **cục tròn** chỉ đậu trên chân, hoặc **xám sần** là hàn nguội: hàn lại.
-   - Các chân cách nhau chỉ **2,54 mm**: soi kỹ **không có thiếc nối hai chân cạnh nhau**, nhất là `GND`–`RST`–`3.3V`. Có cầu thiếc thì kéo mỏ hàn sạch dọc khe giữa hai chân để tách.
-   - Nếu có đồng hồ vạn năng: để chế độ thông mạch (kêu bíp), đo `3.3V` với `GND`: **không được kêu**. Kêu là đang chập, phải sửa trước khi cắm điện.
-
-Chưa có mỏ hàn thì nhờ thầy / phòng lab hàn giúp, hoặc mua module **đã hàn sẵn chân** (đắt hơn vài nghìn đồng). Cách "chữa cháy" là bẻ chân để cắm nghiêng vào lỗ cho chân tì vào thành lỗ, nhưng chỉ đủ để thử nhanh, không đủ tin cậy cho cả lab.
-
-### SPI là gì
-
-Các lab trước đã gặp nhiều cách giao tiếp: `digitalRead()` một chân ([Lab 8](infrared-remote-fc51.md)), giao thức 1 dây của DHT11 ([Lab 3](dht11.md)), I²C 2 dây của LCD ([Lab 2](lcd-i2c.md)), dịch bit qua 74HC595 ([Lab 7](seven-segment-5641as.md)). RC522 dùng **SPI** (*Serial Peripheral Interface*): 4 dây, nhanh hơn I²C nhiều.
-
-```
-         Uno (master)                 RC522 (slave)
-   D13 SCK  ───────────────────────▶  SCK     xung nhịp, do master tạo
-   D11 MOSI ───────────────────────▶  MOSI    master gửi
-   D12 MISO ◀───────────────────────  MISO    slave trả lời
-   D10 SS   ───────────────────────▶  SDA     LOW = "tôi đang nói với bạn"
-```
-
-| | I²C (LCD, Lab 2) | SPI (RC522) |
-|---|---|---|
-| Số dây tín hiệu | 2 (`SDA`, `SCL`) | 4 (`SCK`, `MOSI`, `MISO`, `SS`) |
-| Chọn thiết bị | Bằng **địa chỉ** gửi trên dây | Bằng **một chân SS riêng** cho mỗi thiết bị |
-| Tốc độ thường dùng | 100–400 kbit/s | 1–10 Mbit/s |
-| Chân trên Uno | `A4`, `A5` | **Cố định** `D11`, `D12`, `D13`; `SS` chọn tùy ý |
-
-Chân `SCK`, `MOSI`, `MISO` trên Uno **cố định** vì nối với bộ SPI phần cứng bên trong ATmega328P, không đổi được. Chân `SS` thì chọn chân digital nào cũng được, lab dùng `D10` theo thói quen. Cũng 3 chân này có trên **header ICSP** 6 chân ở cuối board.
-
-**Hệ quả:** `D13` đã thành `SCK`, nên **LED `L` trên board sẽ nháy mờ** mỗi khi Arduino nói chuyện với RC522. Đó là bình thường, không phải lỗi. Lab này **không dùng** LED `L` làm đèn báo.
-
-## Linh kiện và chân
-
-| Linh kiện | Số lượng | Ghi chú |
-|---|---|---|
-| Arduino Uno + cáp USB | 1 | |
-| Module RC522 + thẻ trắng + móc khóa | 1 bộ | Đã hàn hàng chân cong 90° ([cách hàn](#rc522-header)) |
-| LED xanh lá, LED đỏ + 2 điện trở 220 Ω | 1 bộ | Phần C |
-| Buzzer | 1 | Phần C |
-| Servo SG90 | 1 | Phần C, làm chốt khóa |
-| Breadboard, dây đực – đực, dây đực – cái | | Dây đực – cái để nối thẳng vào header RC522 |
-
-Nối dây đầy đủ (Phần A, B chỉ cần RC522):
-
-| Linh kiện | Chân | Nối vào Uno |
-|---|---|---|
-| RC522 | `SDA` | `D10` |
-| RC522 | `SCK` | `D13` |
-| RC522 | `MOSI` | `D11` |
-| RC522 | `MISO` | `D12` |
-| RC522 | `IRQ` | (bỏ trống) |
-| RC522 | `GND` | `GND` |
-| RC522 | `RST` | `D9` |
-| RC522 | `3.3V` | **`3.3V`** |
-| LED xanh lá | Chân dài qua 220 Ω | `D5` |
-| LED đỏ | Chân dài qua 220 Ω | `D6` |
-| Buzzer | Chân `+` (dài) | `D7` |
-| Servo | Cam (tín hiệu) | `D3` |
-| Servo | Đỏ | `5V` |
-| LED, buzzer, servo | Chân âm / nâu | `GND` |
-
-Giải thích cách chọn chân:
-
-- `D10`–`D13` dành cho SPI, `D9` cho `RST`: đây là cách nối mặc định trong ví dụ của thư viện, nên đọc tài liệu trên mạng sẽ khớp.
-- **Servo ở `D3`**, không phải `D9` như [Lab 4](servo-sg90.md), vì `D9` đã là `RST`. Thư viện `Servo` tạo xung trên chân nào cũng được.
-- Thư viện `Servo` chiếm Timer1, `tone()` chiếm Timer2: hai thứ không tranh nhau. `D5`, `D6` vẫn dùng bình thường.
-- **RC522 nối `3.3V`**, các module còn lại nối `5V`. Không kéo chung một thanh nguồn cho tất cả.
-
-## Cài thư viện
-
-Arduino IDE → **Tools → Manage Libraries** → tìm **MFRC522** → cài bản của **GithubCommunity** (tác giả gốc *miguelbalboa*), bản 1.4.x.
-
-Thư viện này đã ngừng phát triển nhưng vẫn là bản được dùng nhiều nhất, ví dụ trên mạng gần như đều viết cho nó. Có một bản mới tên **MFRC522v2** với cú pháp khác (`MFRC522DriverPinSimple`, `MFRC522DriverSPI`…): code trong lab **không** dùng bản đó, nếu lỡ cài thì gỡ ra để tránh nhầm.
-
-`SPI.h` có sẵn trong Arduino IDE, không cần cài.
+Chưa có mỏ hàn thì nhờ phòng lab hàn giúp, hoặc mua module đã hàn sẵn chân. Bẻ chân cắm nghiêng vào lỗ chỉ đủ để thử nhanh, không đủ tin cậy cho cả lab.
+:::
 
 ## Phần A – Đọc UID của thẻ
 
-### Test A1 – kiểm tra module và đọc UID
+### Test A1 – kiểm tra module và đọc UID {#test-a1}
+
+Kiểm tra dây SPI bằng phiên bản chip, rồi đọc UID 4 byte của thẻ. **Ghi lại UID** vì Phần C cần dùng.
+
+::: {.panel-tabset}
+
+#### Code
 
 ```cpp
 #include <SPI.h>
@@ -277,58 +180,60 @@ void loop() {
 }
 ```
 
-Giải thích:
-
-- Thư viện gọi đầu đọc là **PCD** (*Proximity Coupling Device*) và thẻ là **PICC** (*Proximity Integrated Circuit Card*), theo tên trong chuẩn ISO 14443. Hàm bắt đầu bằng `PCD_` làm việc với module, `PICC_` làm việc với thẻ.
-- **`PCD_DumpVersionToSerial()`** đọc thanh ghi phiên bản của chip. Đây là bước kiểm tra dây quan trọng nhất:
-
-  | Serial in | Ý nghĩa |
-  |---|---|
-  | `Firmware Version: 0x92 = v2.0` hoặc `0x91 = v1.0` | Chip MFRC522 chính hãng, dây SPI đúng |
-  | `0x12`, `0x82`, `0x88`, `0xB2` … `= (unknown)` | **Chip clone**, rất hay gặp trên module giá rẻ. Thường vẫn đọc thẻ bình thường. Module trong kit là `0x82` |
-  | `0x00` hoặc `0xFF` kèm `WARNING: Communication failure` | **Không nói chuyện được với chip**: sai dây, chưa hàn header, hoặc chưa cấp nguồn |
-
-- **`PICC_IsNewCardPresent()`** gửi lệnh tìm thẻ; **`PICC_ReadCardSerial()`** chọn thẻ đó và đọc UID vào `rfid.uid`. Phải gọi cả hai, theo đúng thứ tự.
-- **`rfid.uid.sak`** (*Select Acknowledge*) là byte thẻ trả về khi được chọn, cho biết loại thẻ. `PICC_GetTypeName()` đổi ra chữ, ví dụ `MIFARE 1KB`.
-- **`PICC_HaltA()`** đưa thẻ vào trạng thái nghỉ. Nếu bỏ dòng này, giữ thẻ trên đầu đọc sẽ không in liên tục mà in xen kẽ, vì thẻ bị chọn lại ở mỗi vòng `loop()`.
-- `uidByte[i] < 0x10` thêm số `0` đằng trước để byte `0x0B` in ra `0B` chứ không phải `B`, cho UID luôn đủ 2 ký tự mỗi byte.
-
-**Cách kiểm tra:** nạp code, mở Serial Monitor (baud **9600**). Dòng đầu tiên phải là phiên bản chip (không phải `0x00` / `0xFF`). Đặt thẻ trắng **phẳng, sát** lên mặt anten, rồi đến móc khóa. Kết quả thật trên module trong kit:
-
-![Serial Monitor Test A1: `Firmware Version: 0x82 = (unknown)`, sau đó `UID: 5A 4D E5 8B | loai the: MIFARE 1KB`](../assets/rfid-uid-serial.png){width=70%}
-
-- Module trong kit báo **`0x82 = (unknown)`**: chip **clone**, không phải MFRC522 chính hãng (`0x91` / `0x92`). Không có dòng `WARNING`, và thẻ vẫn đọc bình thường, nên bỏ qua chữ `unknown`.
-- Thẻ được nhận đúng là **MIFARE 1KB**. UID 4 byte `5A 4D E5 8B` là của **thẻ trắng**.
-
-- **Móc khóa xanh dương trong kit không đọc được**, kể cả khi đặt phẳng, chạm hẳn giữa anten và đã tăng độ nhạy anten lên tối đa (xem dưới). Nhiều khả năng móc khóa là loại **125 kHz** (EM4100) có vỏ giống hệt loại 13,56 MHz, mà RC522 không đọc được dải này. Cách kiểm tra: áp móc khóa vào điện thoại Android có NFC; điện thoại không phản ứng (trong khi thẻ trắng thì có) là móc khóa 125 kHz.
-
-**Ghi lại UID của các thẻ đọc được**, Phần C cần dùng.
-
-**Tăng độ nhạy anten.** Module clone thường đọc yếu, nhất là với móc khóa có anten nhỏ. Thêm một dòng ngay sau `rfid.PCD_Init();`:
+**Tăng độ nhạy anten** (module clone thường đọc yếu): thêm ngay sau `rfid.PCD_Init();`
 
 ```cpp
 rfid.PCD_SetAntennaGain(rfid.RxGain_max);   // độ nhạy thu tối đa (48 dB)
 ```
 
-Lần chạy đầu tiên, Serial báo `Firmware Version: 0x0` kèm `WARNING: Communication failure` dù đèn `D1` đã sáng: module có điện nhưng dây SPI chưa đúng. Dò lại từng dây theo **nhãn in trên mạch** (xem bảng [Lỗi hay gặp](#lỗi-hay-gặp)) thì chạy.
+#### Giải thích
 
-### Test A2 – xem toàn bộ bộ nhớ thẻ
+- Thư viện gọi đầu đọc là **PCD** (*Proximity Coupling Device*) và thẻ là **PICC** (*Proximity Integrated Circuit Card*), theo chuẩn ISO 14443. Hàm `PCD_` làm việc với module, `PICC_` làm việc với thẻ.
+- **`PCD_DumpVersionToSerial()`** đọc thanh ghi phiên bản chip, là bước kiểm tra dây quan trọng nhất:
 
-Thư viện có sẵn ví dụ **File → Examples → MFRC522 → DumpInfo**. Nạp ví dụ này, đặt thẻ lên đầu đọc và **giữ yên khoảng 2 giây**: Serial in ra cả 64 block của thẻ dưới dạng bảng, sector 15 ở trên cùng, sector 0 ở dưới cùng.
+  | Serial in | Ý nghĩa |
+  |---|---|
+  | `0x92 = v2.0` hoặc `0x91 = v1.0` | Chip chính hãng, dây SPI đúng |
+  | `0x12`, `0x82`, `0x88`, `0xB2` … `= (unknown)` | **Chip clone**, thường vẫn đọc thẻ bình thường. Module trong kit là `0x82` |
+  | `0x00` / `0xFF` kèm `WARNING: Communication failure` | **Không nói chuyện được với chip**: sai dây, chưa hàn header, hoặc chưa có nguồn |
 
-Đối chiếu với phần [bộ nhớ](#mifare-memory):
+- **`PICC_IsNewCardPresent()`** tìm thẻ, **`PICC_ReadCardSerial()`** chọn thẻ và đọc UID vào `rfid.uid`. Phải gọi cả hai, đúng thứ tự.
+- **`rfid.uid.sak`** (*Select Acknowledge*) cho biết loại thẻ; `PICC_GetTypeName()` đổi ra chữ, ví dụ `MIFARE 1KB`.
+- **`PICC_HaltA()`** cho thẻ nghỉ. Bỏ dòng này thì giữ thẻ trên đầu đọc sẽ in xen kẽ, vì thẻ bị chọn lại mỗi vòng `loop()`.
+- `uidByte[i] < 0x10` thêm số `0` đằng trước để byte `0x0B` in ra `0B`.
 
-- **Block 0**: 4 byte đầu chính là UID đã đọc ở Test A1.
-- **Block 3, 7, …, 63** (trailer): đều có dạng `00 00 00 00 00 00  FF 07 80 69  FF FF FF FF FF FF`. Key A luôn hiển thị là `00` vì thẻ không cho đọc Key A, `FF 07 80 69` là access bits mặc định, Key B là `FF…FF`.
+#### Kết quả
+
+Nạp code, mở Serial Monitor (baud **9600**). Dòng đầu phải là phiên bản chip (không phải `0x00` / `0xFF`). Đặt thẻ **phẳng, sát** lên mặt anten.
+
+![Serial Monitor Test A1: `Firmware Version: 0x82 = (unknown)`, sau đó `UID: 5A 4D E5 8B | loai the: MIFARE 1KB`](../assets/rfid-uid-serial.png){width=70%}
+
+- **`0x82 = (unknown)`**: chip clone. Không có dòng `WARNING` và thẻ vẫn đọc bình thường, nên bỏ qua chữ `unknown`.
+- Thẻ trắng được nhận đúng là **MIFARE 1KB**, UID `5A 4D E5 8B`.
+- **Móc khóa xanh không đọc được**, kể cả khi đặt sát và đã tăng độ nhạy tối đa. Nhiều khả năng đó là loại **125 kHz** (EM4100) vỏ giống hệt. Kiểm tra bằng điện thoại Android có NFC: điện thoại không phản ứng với móc khóa (trong khi có phản ứng với thẻ trắng) là 125 kHz.
+- Lần chạy đầu, Serial báo `0x0` kèm `Communication failure` dù `D1` đã sáng: có điện nhưng dây SPI sai. Dò lại từng dây theo nhãn in trên mạch (xem [Lỗi hay gặp](#lỗi-hay-gặp)) thì chạy.
+
+:::
+
+### Test A2 – xem toàn bộ bộ nhớ thẻ {#test-a2}
+
+Nạp ví dụ có sẵn **File → Examples → MFRC522 → DumpInfo**, đặt thẻ lên đầu đọc và **giữ yên khoảng 2 giây**. Serial in cả 64 block, sector 15 ở trên cùng, sector 0 ở dưới cùng. Đối chiếu với [bộ nhớ thẻ](#tìm-hiểu-thêm):
+
+- **Block 0**: 4 byte đầu là UID đã đọc ở Test A1.
+- **Block 3, 7, …, 63** (trailer): `00 00 00 00 00 00  FF 07 80 69  FF FF FF FF FF FF`. Key A hiện `00` vì thẻ không cho đọc Key A; `FF 07 80 69` là access bits mặc định; Key B là `FF…FF`.
 - Các block dữ liệu khác của thẻ mới đều là `00`.
 
-Nếu Serial in `MIFARE_Read() failed: Timeout` hoặc `Authentication failed` ở giữa chừng: thẻ bị nhấc ra trước khi đọc xong. Đặt lại và giữ yên lâu hơn.
+Gặp `MIFARE_Read() failed: Timeout` hoặc `Authentication failed` giữa chừng nghĩa là thẻ bị nhấc ra trước khi đọc xong.
 
 ## Phần B – Ghi và đọc dữ liệu trên thẻ
 
-Biến thẻ thành "bộ nhớ bỏ túi": gõ một dòng chữ (tối đa 16 ký tự) vào Serial Monitor, chạm thẻ để ghi vào **block 4**. Từ đó, mỗi lần chạm thẻ, Arduino đọc lại và in ra dòng chữ đã ghi.
+### Test B1 – ghi tên lên thẻ {#test-b1}
 
-### Test B1 – ghi tên lên thẻ
+Biến thẻ thành "bộ nhớ bỏ túi": gõ một dòng chữ (tối đa 16 ký tự) vào Serial Monitor, chạm thẻ để ghi vào **block 4**. Từ đó, mỗi lần chạm thẻ, Arduino đọc lại và in ra.
+
+::: {.panel-tabset}
+
+#### Code
 
 ```cpp
 #include <SPI.h>
@@ -416,46 +321,51 @@ void loop() {
 }
 ```
 
-Giải thích:
+#### Giải thích
 
 - **`MIFARE_Key key`** chứa 6 byte khóa, đặt hết là `0xFF` cho thẻ mới.
-- **`PCD_Authenticate(KEY_A, BLOCK, …)`** xác thực với **cả sector** chứa `BLOCK` (block 4 → sector 1). Sau khi xác thực, đọc/ghi được block 4, 5, 6 mà không cần xác thực lại. Muốn chuyển sang sector khác thì phải xác thực lại.
-- **`MIFARE_Write()`** luôn ghi **đủ 16 byte**. Chữ ngắn hơn 16 ký tự được đệm bằng dấu cách.
-- **`MIFARE_Read()`** cần bộ đệm **18 byte**: 16 byte dữ liệu và 2 byte CRC thẻ gửi kèm. Đưa mảng 16 byte vào sẽ báo lỗi `STATUS_NO_ROOM`.
-- **`isTrailer()`**: block trailer có số thứ tự chia 4 dư 3. Đổi `BLOCK` thành 3, 7, … thì code từ chối ghi, tránh khóa hỏng thẻ.
-- **`PCD_StopCrypto1()`** tắt mã hóa sau khi đã xác thực. Thiếu dòng này thì lần chạm thẻ sau (kể cả thẻ khác) sẽ báo lỗi xác thực.
-- In ra cả dạng chữ lẫn hex. Byte không in được (như `00` của thẻ mới) hiện thành dấu `.`.
+- **`PCD_Authenticate(KEY_A, BLOCK, …)`** xác thực với **cả sector** chứa `BLOCK` (block 4 → sector 1). Sau đó đọc/ghi được block 4, 5, 6 mà không cần xác thực lại; sang sector khác thì phải xác thực lại.
+- **`MIFARE_Write()`** luôn ghi **đủ 16 byte**. Chữ ngắn hơn được đệm bằng dấu cách.
+- **`MIFARE_Read()`** cần bộ đệm **18 byte** (16 byte dữ liệu + 2 byte CRC). Dùng mảng 16 byte sẽ báo `STATUS_NO_ROOM`.
+- **`isTrailer()`**: block trailer có số thứ tự chia 4 dư 3. Đổi `BLOCK` thành 3, 7, … thì code từ chối ghi.
+- **`PCD_StopCrypto1()`** tắt mã hóa sau khi xác thực. Thiếu dòng này thì lần chạm thẻ sau sẽ báo lỗi xác thực.
+- Byte không in được (như `00` của thẻ mới) hiện thành dấu `.`.
 
-**Cách kiểm tra:**
+#### Cách thử
 
-1. Serial Monitor để **baud 9600**, ô kết thúc dòng chọn **Newline** (góc dưới bên phải).
-2. Chạm thẻ trắng: thẻ mới in `Block 4: "................"` và hex toàn `00`.
-3. Gõ `Xin chao IoT` rồi Enter. Serial in `Se ghi "Xin chao IoT" vao the tiep theo`.
-4. Chạm thẻ trắng: in `Ghi: OK` rồi `Block 4: "Xin chao IoT    "`.
-5. **Rút USB, cắm lại**, chạm thẻ trắng lần nữa: chữ vẫn còn. Dữ liệu nằm **trong thẻ**, không phải trong Arduino.
-6. Chạm một thẻ 13,56 MHz khác (nếu có): vẫn là `....`, vì đó là thẻ khác.
+1. Serial Monitor để **baud 9600**, ô kết thúc dòng chọn **Newline**.
+2. Chạm thẻ trắng: thẻ mới in `Block 4: "................"`, hex toàn `00`.
+3. Gõ `Xin chao IoT` rồi Enter: Serial in `Se ghi "Xin chao IoT" vao the tiep theo`.
+4. Chạm thẻ: in `Ghi: OK` rồi `Block 4: "Xin chao IoT    "`.
+5. **Rút USB, cắm lại**, chạm thẻ lần nữa: chữ vẫn còn, vì dữ liệu nằm **trong thẻ**.
+6. Chạm một thẻ 13,56 MHz khác (nếu có): vẫn là `....`.
 
-Gõ tiếng Việt có dấu sẽ bị cắt ngắn và hiện sai: mỗi chữ có dấu chiếm 2–3 byte UTF-8, và Serial Monitor không hiển thị lại được. Dùng chữ không dấu.
+Dùng chữ không dấu: mỗi chữ có dấu chiếm 2–3 byte UTF-8 nên bị cắt ngắn và hiện sai.
 
 **Thử thêm:**
 
-- Gõ chữ rồi chạm thẻ **thật nhanh, nhấc ra ngay**: có thể báo `Ghi: Timeout`, chữ cũ vẫn còn. Thẻ cần nằm trong từ trường suốt quá trình ghi.
-- Đặt tờ giấy, tấm nhựa, bàn tay giữa thẻ và đầu đọc: vẫn đọc được. Thử với **tấm kim loại** (nắp hộp, mặt lưng điện thoại kim loại): không đọc được, vì kim loại chặn từ trường.
+- Chạm thẻ rồi **nhấc ra ngay**: có thể báo `Ghi: Timeout`, chữ cũ vẫn còn. Thẻ cần nằm trong từ trường suốt lúc ghi.
+- Đặt giấy, nhựa, bàn tay giữa thẻ và đầu đọc: vẫn đọc được. Thử với **tấm kim loại**: không đọc được, vì kim loại chặn từ trường.
+
+:::
 
 ## Phần C – Khóa cửa quẹt thẻ
 
-Ghép mọi thứ thành một **hệ thống kiểm soát ra vào**: chỉ thẻ có UID nằm trong danh sách được phép mới mở khóa. Làm hai bước: Test C1 chỉ thêm servo vào code Test A1 cho dễ kiểm tra, Test C2 mới thêm đèn và còi.
+Chỉ thẻ có UID trong danh sách được phép mới mở khóa. Test C1 chỉ thêm servo vào code Test A1 cho dễ kiểm tra; Test C2 thêm đèn và còi.
 
-### Test C1 – quẹt thẻ, servo mở rồi tự đóng
+### Test C1 – quẹt thẻ, servo mở rồi tự đóng {#test-c1}
 
-Giữ nguyên mạch Phần A, nối thêm servo: **cam** → `D3`, **đỏ** → `5V`, **nâu** → `GND`. Code là Test A1 cộng thêm phần servo:
+Giữ nguyên mạch Phần A, nối thêm servo: **cam** → `D3`, **đỏ** → `5V`, **nâu** → `GND`.
 
 | Sự kiện | Servo |
 |---|---|
 | Khởi động / đang chờ | **90°** (đóng) |
-| Quẹt **thẻ trắng** | Về **0°** (mở) |
-| 3 s sau, không cần quẹt | **Tự quay lại 90°** |
+| Quẹt **thẻ trắng** | Về **0°** (mở), 3 s sau **tự quay lại 90°** |
 | Thẻ khác | Đứng yên, Serial in `the la` |
+
+::: {.panel-tabset}
+
+#### Code
 
 ```cpp
 #include <SPI.h>
@@ -522,29 +432,37 @@ void loop() {
 }
 ```
 
-Giải thích:
+#### Giải thích
 
-- Phần đọc và in UID **giữ nguyên Test A1**: nếu servo không chạy, Serial vẫn cho biết thẻ đã được đọc hay chưa, nên biết ngay lỗi nằm ở phần đọc thẻ hay phần servo.
-- **Tự đóng bằng `millis()`**: lúc quẹt thẻ lưu thời điểm vào `openedAt`; đầu mỗi vòng `loop()` kiểm tra đã đủ `OPEN_MS` chưa. Không dùng `delay(3000)`, nên trong 3 giây đó module vẫn đọc thẻ bình thường.
-- Đổi thời gian giữ bằng `OPEN_MS` (ví dụ `5000` là 5 giây), đổi góc bằng `ANGLE_CLOSE` / `ANGLE_OPEN` tùy cách gắn chốt khóa.
+- Phần đọc và in UID **giữ nguyên Test A1**: nếu servo không chạy, Serial vẫn cho biết thẻ đã được đọc chưa, nên biết ngay lỗi ở phần đọc thẻ hay phần servo.
+- **Tự đóng bằng `millis()`**: lúc quẹt lưu thời điểm vào `openedAt`, đầu mỗi vòng `loop()` kiểm tra đã đủ `OPEN_MS` chưa. Không dùng `delay(3000)`, nên trong 3 giây đó vẫn đọc thẻ bình thường.
+- Đổi thời gian giữ bằng `OPEN_MS`, đổi góc bằng `ANGLE_CLOSE` / `ANGLE_OPEN` tùy cách gắn chốt khóa.
 
-**Kết quả trên mạch thật:**
+#### Kết quả
 
-<video controls playsinline preload="metadata" poster="../assets/rfid-servo-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+```{=html}
+<video class="lab-video" controls playsinline preload="metadata" poster="../assets/rfid-servo-real-poster.jpg">
   <source src="../assets/rfid-servo-real.mp4" type="video/mp4">
 </video>
+```
 
-Đưa thẻ trắng lại gần module, servo quay về 0°, 3 giây sau tự quay lại 90°. Module RC522 nối bằng dải dây 8 màu, servo SG90 cắm qua breadboard.
+Đưa thẻ trắng lại gần module, servo quay về 0°, 3 giây sau tự quay lại 90°. RC522 nối bằng dải dây 8 màu, servo SG90 cắm qua breadboard.
 
-### Test C2 – thêm đèn và còi
+:::
 
-Mạch đầy đủ: thêm LED xanh `D5`, LED đỏ `D6`, buzzer `D7` như bảng [Linh kiện và chân](#linh-kiện-và-chân). Code này dùng góc ngược với Test C1 (khóa ở 0°, mở ở 90°); đổi `ANGLE_LOCK` / `ANGLE_OPEN` cho khớp cách gắn servo.
+### Test C2 – thêm đèn và còi {#test-c2}
+
+Mạch đầy đủ theo bảng [Tổng quan](#tổng-quan): thêm LED xanh `D5`, LED đỏ `D6`, buzzer `D7`. Code này dùng góc ngược với Test C1 (khóa ở 0°, mở ở 90°); đổi `ANGLE_LOCK` / `ANGLE_OPEN` cho khớp cách gắn servo.
 
 | Sự kiện | Đèn | Còi | Servo |
 |---|---|---|---|
 | Đang chờ | Tắt | | 0° (khóa) |
 | **Thẻ hợp lệ** | **Xanh** sáng 3 s | 1 tiếng dài | **90° (mở)**, 3 s sau tự về 0° |
 | **Thẻ lạ** | **Đỏ** nháy 3 lần | 3 tiếng ngắn | Đứng yên |
+
+::: {.panel-tabset}
+
+#### Code
 
 ```cpp
 #include <SPI.h>
@@ -644,69 +562,155 @@ void loop() {
 }
 ```
 
-Giải thích:
+#### Giải thích
 
-- **`ALLOWED`** là mảng 2 chiều, mỗi hàng là một UID 4 byte. Thêm thẻ thì thêm một hàng, `N_ALLOWED` tự tính lại số hàng.
-- **`memcmp(a, b, 4) == 0`** so sánh 4 byte một lúc, gọn hơn viết vòng lặp so từng byte.
-- **Tự khóa lại bằng `millis()`**, không dùng `delay(3000)`: trong lúc cửa đang mở, `loop()` vẫn chạy, nên quẹt thẻ lạ vẫn được báo ngay. Cùng ý tưởng với Phần C của [Lab 8](infrared-remote-fc51.md#phần-c--công-tắc-đèn-2-cách).
-- Quẹt thẻ hợp lệ khi cửa **đang mở** sẽ gia hạn thêm 3 s (vì `openedAt` được đặt lại).
-- **`deny()`** có dùng `delay()` (~0,9 s): chấp nhận được vì đó là lúc báo lỗi, không cần phản hồi gì khác.
-- **`tone(pin, tần số, thời gian)`** chạy được với cả buzzer **passive** (kêu đúng tần số: 2000 Hz cao, 400 Hz trầm) và **active** (kêu được nhưng không đổi cao độ, chỉ khác độ dài tiếng). Với active buzzer, có thể thay `tone()` bằng `digitalWrite(BUZZER, HIGH)` + `delay()` + `LOW`.
-- Servo nối nguồn `5V` của Uno, RC522 nối `3.3V`. Servo quay có thể làm sụt áp nguồn chung; nếu thấy RC522 đọc chập chờn **đúng lúc servo quay**, cấp nguồn servo bằng pin 4×AA riêng (nối chung `GND` với Uno).
+- **`ALLOWED`** là mảng 2 chiều, mỗi hàng là một UID 4 byte. Thêm thẻ thì thêm một hàng, `N_ALLOWED` tự tính lại.
+- **`memcmp(a, b, 4) == 0`** so sánh 4 byte một lúc.
+- **Tự khóa lại bằng `millis()`**: lúc cửa đang mở, `loop()` vẫn chạy nên thẻ lạ vẫn được báo ngay. Cùng ý tưởng với Phần C của [Lab 8](infrared-remote-fc51.md#phần-c--công-tắc-đèn-2-cách). Quẹt thẻ hợp lệ khi cửa đang mở sẽ gia hạn thêm 3 s.
+- **`deny()`** dùng `delay()` (~0,9 s): chấp nhận được vì lúc báo lỗi không cần phản hồi gì khác.
+- **`tone(pin, tần số, thời gian)`** chạy với cả buzzer **passive** (đúng tần số) và **active** (kêu nhưng không đổi cao độ). Với active buzzer có thể thay bằng `digitalWrite(BUZZER, HIGH)` + `delay()` + `LOW`.
+- Servo quay có thể làm sụt áp nguồn chung. Nếu RC522 đọc chập chờn **đúng lúc servo quay**, cấp nguồn servo bằng pin 4×AA riêng (nối chung `GND` với Uno).
 
-**Cách kiểm tra:**
+#### Cách thử
 
-1. Hàng đầu của `ALLOWED` đã là UID **thẻ trắng** trong kit (`5A 4D E5 8B`). Thẻ của bạn khác UID thì sửa lại theo Test A1.
-2. Nạp code. Quẹt thẻ trắng: đèn xanh, bíp dài, servo quay 90°, 3 s sau quay về và Serial in `Da khoa lai`.
-3. Quẹt một **thẻ 13,56 MHz khác** không có trong danh sách (thẻ xe buýt, thẻ thang máy, thẻ gửi xe…): đèn đỏ nháy 3 lần, 3 tiếng bíp ngắn, servo đứng yên. Móc khóa trong kit không dùng được cho bước này vì RC522 không đọc được nó (xem Test A1).
+1. Hàng đầu của `ALLOWED` là UID thẻ trắng trong kit (`5A 4D E5 8B`). Thẻ của bạn khác UID thì sửa theo Test A1.
+2. Quẹt thẻ trắng: đèn xanh, bíp dài, servo quay 90°, 3 s sau quay về và Serial in `Da khoa lai`.
+3. Quẹt một **thẻ 13,56 MHz khác** (thẻ xe buýt, thẻ thang máy, thẻ gửi xe…): đèn đỏ nháy 3 lần, 3 tiếng bíp ngắn, servo đứng yên. Móc khóa trong kit không dùng được cho bước này.
 4. Thêm UID của thẻ đó vào `ALLOWED`, nạp lại: giờ cả hai đều mở được.
 
 > 📷 *Chờ ảnh/video Test C2 (đèn + còi).*
 
-**Mở rộng:**
+#### Mở rộng
 
-- **Thẻ quản trị (master card):** quẹt thẻ master để vào chế độ "học", thẻ tiếp theo được thêm vào danh sách. Lưu danh sách vào **EEPROM** (`#include <EEPROM.h>`) để không mất khi rút điện, không phải sửa code mỗi lần thêm thẻ.
-- **Hiển thị lên LCD** ([Lab 2](lcd-i2c.md)): `Xin chao, Quang` theo tên ứng với từng UID, hoặc `The khong hop le`. Có thể lấy tên đọc từ block 4 ghi ở Phần B, thay vì lưu trong code.
-- **Chấm công:** mỗi lần quẹt, in ra Serial dòng `UID,thời gian`. Arduino không có đồng hồ thời gian thực, nên gửi lên Raspberry Pi (theo kiến trúc [Lab 9](sensor-edge-cloud.md)) để Pi gắn giờ, lưu file CSV và đẩy lên cloud qua MQTT ([bài MQTT](../lectures/mqtt.md)).
+- **Thẻ quản trị (master card):** quẹt thẻ master để vào chế độ "học", thẻ tiếp theo được thêm vào danh sách. Lưu danh sách vào **EEPROM** để không mất khi rút điện.
+- **Hiển thị lên LCD** ([Lab 2](lcd-i2c.md)): `Xin chao, Quang` theo UID, hoặc `The khong hop le`. Có thể lấy tên từ block 4 ghi ở Phần B.
+- **Chấm công:** mỗi lần quẹt in ra `UID,thời gian`. Arduino không có đồng hồ thời gian thực, nên gửi lên Raspberry Pi (kiến trúc [Lab 9](sensor-edge-cloud.md)) để gắn giờ, lưu CSV và đẩy lên cloud qua MQTT ([bài MQTT](../lectures/mqtt.md)).
 - **Chống quẹt thử:** sai 3 lần liên tiếp thì khóa đầu đọc 30 s.
 
-## Ứng dụng
+:::
+
+## Tìm hiểu thêm
+
+::: {.callout-note collapse="true"}
+## RFID là gì, các dải tần
+
+**RFID** (*Radio Frequency Identification*) là nhận dạng bằng sóng vô tuyến, gồm hai phần:
+
+| | Đầu đọc (reader) | Thẻ (tag) |
+|---|---|---|
+| Trong lab | Module RC522 | Thẻ trắng |
+| Nguồn điện | Lấy từ Arduino | **Không có pin** (thẻ thụ động) |
+| Thành phần | Chip MFRC522 + anten in trên mạch | Chip nhỏ + cuộn dây anten trong vỏ nhựa |
+
+Anten của đầu đọc tạo **từ trường xoay chiều 13,56 MHz**. Khi đưa thẻ lại gần, cuộn dây trong thẻ **sinh ra dòng điện cảm ứng** (giống máy biến áp không lõi), đủ nuôi chip. Chip trả lời bằng cách **thay đổi tải** trên cuộn dây, đầu đọc nhận ra thay đổi đó thành dữ liệu. Vì năng lượng truyền bằng cảm ứng nên **tầm đọc rất ngắn** (0–5 cm với RC522), và đó cũng là điểm cố ý của chuẩn 13,56 MHz: khó bị đọc trộm từ xa.
+
+| Dải tần | Tầm đọc | Ví dụ |
+|---|---|---|
+| **LF 125 kHz** | ~10 cm | Thẻ chấm công, thẻ thang máy đời cũ (EM4100). Chỉ có mã số, không ghi được |
+| **HF 13,56 MHz** | ~0–10 cm | **Thẻ trong lab (MIFARE)**, thẻ xe buýt, thẻ ngân hàng không chạm, **NFC**, CCCD gắn chip |
+| **UHF 860–960 MHz** | 1–10 m | Tem hàng hóa trong kho, thu phí không dừng (ETC) |
+
+RC522 chỉ đọc **13,56 MHz** theo chuẩn **ISO/IEC 14443A**; thẻ 125 kHz không đọc được. **NFC** trên điện thoại là một nhánh của RFID 13,56 MHz: app như *NFC Tools* hay *MIFARE Classic Tool* đọc được thẻ trong kit, tiện để kiểm tra chéo Phần A. Thẻ **không cần bóc túi nilon**: sóng đi xuyên nilon, ví, vỏ điện thoại nhựa.
+:::
+
+::: {.callout-note collapse="true"}
+## Thẻ MIFARE Classic 1K: UID, bộ nhớ, xác thực
+
+Thẻ trắng trong kit là **MIFARE Classic 1K** (còn gọi là **S50**).
+
+**UID** dài **4 byte**, ghi sẵn từ nhà máy. Đa số hệ thống gửi xe, khóa cửa giá rẻ chỉ dựa vào UID. ⚠️ UID **không phải bí mật**: đầu đọc nào cũng đọc được, và thẻ "magic" cho phép chép UID sang thẻ khác. Khóa cửa dùng UID như Phần C chỉ hợp cho học tập hoặc độ an toàn thấp.
+
+**Bộ nhớ:** 1 KB chia thành **16 sector × 4 block × 16 byte**, block đánh số 0–63:
+
+```
+Sector 0   block 0   [UID + dữ liệu nhà sản xuất]   ← chỉ đọc
+           block 1   [dữ liệu]
+           block 2   [dữ liệu]
+           block 3   [Key A | Access bits | Key B]   ← sector trailer
+Sector 1   block 4   [dữ liệu]                       ← Phần B ghi vào đây
+           block 5   [dữ liệu]
+           block 6   [dữ liệu]
+           block 7   [Key A | Access bits | Key B]   ← sector trailer
+...
+Sector 15  block 60–62 [dữ liệu], block 63 [trailer]
+```
+
+- **Block 0** chứa UID, khóa cứng từ nhà máy.
+- **Block cuối mỗi sector** (3, 7, …, 63) là **sector trailer**: Key A, Key B (6 byte mỗi khóa) và **access bits** quy định ai được đọc/ghi block nào.
+- Còn lại **47 block dữ liệu**, tổng 752 byte ghi được.
+
+**Xác thực:** muốn đọc/ghi một block, đầu đọc phải **xác thực** với sector chứa block đó bằng Key A hoặc Key B. Thẻ mới có cả hai khóa là **`FF FF FF FF FF FF`**. Thuật toán *Crypto1* của MIFARE Classic đã bị bẻ khóa từ năm 2008, nên hệ thống mới dùng **MIFARE DESFire** hoặc **MIFARE Plus** với AES.
+:::
+
+::: {.callout-note collapse="true"}
+## Nhìn module RC522 và bộ thẻ trong kit
+
+![Bộ RFID trong kit: móc khóa xanh dương, thẻ trắng trong túi nilon, module `RFID-RC522` (bản `V133`) cùng hai hàng chân 8 pin chưa hàn](../assets/kit-rc522-set.jpg){width=75%}
+
+- **Nửa dưới** module là **anten in trên mạch** (đường đồng chạy vòng quanh mép): chỗ đặt thẻ.
+- **Nửa trên**: **chip MFRC522** (32 chân), **thạch anh `27.120`** MHz (= 2 × 13,56 MHz), **LED nguồn `D1`** ở góc trái và hàng 8 lỗ chân dọc mép trên.
+
+Nhìn mặt có linh kiện (anten ở dưới), nhãn chân in **lộn ngược**, đọc từ **phải sang trái**:
+
+```
+   phía LED D1                                      phía thạch anh
+   3.3V   RST   GND   IRQ   MISO  MOSI  SCK   SDA ■   (■ = pad vuông, chân 1)
+    ○      ○     ○     ○     ○     ○     ○     □
+   ┌─────────────────────────────────────────────┐
+   │  D1      chip MFRC522              27.120   │
+   │                                             │
+   │             ~~~ anten ~~~                   │
+   └─────────────────────────────────────────────┘
+```
+
+![Thẻ trắng và móc khóa xanh dương: nhìn bên ngoài không phân biệt được 13,56 MHz với 125 kHz](../assets/kit-rfid-tags.jpg){width=55%}
+
+**Mức logic:** chân tín hiệu (`SCK`, `MOSI`, `SDA`, `RST`) nhận mức 5 V từ Uno. Datasheet không ghi là chịu được 5 V, nhưng nối thẳng là cách phổ biến và chạy ổn; muốn đúng chuẩn thì dùng **module chuyển mức logic** 5 V ↔ 3,3 V. Chiều ngược lại, `MISO` ra 3,3 V, Uno vẫn đọc là `HIGH` (xem bảng điện áp ở [Lab 8](infrared-remote-fc51.md#low-là-bao-nhiêu-volt)).
+:::
+
+::: {.callout-note collapse="true"}
+## SPI là gì
+
+Các lab trước dùng `digitalRead()` một chân ([Lab 8](infrared-remote-fc51.md)), giao thức 1 dây của DHT11 ([Lab 3](dht11.md)), I²C 2 dây của LCD ([Lab 2](lcd-i2c.md)), dịch bit qua 74HC595 ([Lab 7](seven-segment-5641as.md)). RC522 dùng **SPI** (*Serial Peripheral Interface*): 4 dây, nhanh hơn I²C nhiều.
+
+```
+         Uno (master)                 RC522 (slave)
+   D13 SCK  ───────────────────────▶  SCK     xung nhịp, do master tạo
+   D11 MOSI ───────────────────────▶  MOSI    master gửi
+   D12 MISO ◀───────────────────────  MISO    slave trả lời
+   D10 SS   ───────────────────────▶  SDA     LOW = "tôi đang nói với bạn"
+```
+
+| | I²C (LCD, Lab 2) | SPI (RC522) |
+|---|---|---|
+| Số dây tín hiệu | 2 (`SDA`, `SCL`) | 4 (`SCK`, `MOSI`, `MISO`, `SS`) |
+| Chọn thiết bị | Bằng **địa chỉ** gửi trên dây | Bằng **một chân SS riêng** mỗi thiết bị |
+| Tốc độ thường dùng | 100–400 kbit/s | 1–10 Mbit/s |
+| Chân trên Uno | `A4`, `A5` | **Cố định** `D11`, `D12`, `D13`; `SS` tùy ý |
+
+`SCK`, `MOSI`, `MISO` **cố định** vì nối với bộ SPI phần cứng của ATmega328P (cũng có trên header ICSP 6 chân). Tên chân `SDA` trên module là vì chip cũng hỗ trợ I²C, nhưng module nối sẵn để chạy SPI.
+:::
+
+::: {.callout-note collapse="true"}
+## Ứng dụng, RFID hay mã vạch / QR
 
 | Ứng dụng | Dùng gì |
 |---|---|
 | Khóa cửa phòng, tủ đồ | RC522 + servo / khóa chốt điện (*solenoid*) + relay |
 | Chấm công, điểm danh | RC522 + LCD + gửi dữ liệu về server |
 | Bãi giữ xe | RC522 đọc thẻ + camera chụp biển số, ghép theo UID |
-| Thẻ xe buýt, ví điện tử nội bộ | Ghi số dư vào block dữ liệu (MIFARE dùng *value block* có sẵn lệnh cộng/trừ) |
+| Thẻ xe buýt, ví điện tử nội bộ | Ghi số dư vào block dữ liệu (MIFARE có *value block* với lệnh cộng/trừ) |
 | Quản lý thiết bị, sách thư viện | Dán tem NFC vào từng món, quét bằng điện thoại |
-| Kho hàng, chuỗi cung ứng | RFID **UHF**: đọc hàng trăm tem cùng lúc từ vài mét, không cần quét từng món như mã vạch |
-
-**RFID hay mã vạch / QR?**
+| Kho hàng, chuỗi cung ứng | RFID **UHF**: đọc hàng trăm tem cùng lúc từ vài mét |
 
 | | RFID 13,56 MHz | Mã vạch / QR |
 |---|---|---|
 | Cần nhìn thấy | Không, đọc xuyên giấy, nhựa | Có, phải thấy rõ tem |
 | Ghi lại được | Có (752 byte trên MIFARE 1K) | Không, in một lần |
 | Chép / làm giả | Khó hơn (cần thẻ đặc biệt) | Chụp ảnh là xong |
-| Bền | Chip trong vỏ nhựa, chịu được bẩn, trầy | Mờ, rách là không đọc được |
+| Bền | Chip trong vỏ nhựa, chịu bẩn, trầy | Mờ, rách là không đọc được |
 | Giá mỗi tem/thẻ | Vài nghìn đồng | Gần như bằng 0 |
-
-## Ảnh thực tế
-
-### Module RC522 đã hàn chân và nối dây
-
-![Module RC522 cầm ngược (anten ở trên), hàng chân cong 90° đã hàn, nhãn đọc từ trái sang `SDA` · `SCK` · `MOSI` · `MISO` · `IRQ` · `GND` · `RST` · `3.3V`; một dải 8 dây cái nhiều màu cắm vào hàng chân; LED `D1` sát chân `3.3V` sáng đỏ](../assets/rc522-wiring-real.jpg){width=55%}
-
-Đọc mạch:
-
-- Module được **lật ngược** (anten lên trên) nên nhãn chân đọc xuôi được, từ trái sang: `SDA` · `SCK` · `MOSI` · `MISO` · `IRQ` · `GND` · `RST` · `3.3V`. Đúng như phần [module RC522](#module-rc522): `SDA` sát **thạch anh `27.120`**, `3.3V` sát **LED `D1`**.
-- Hàng chân **cong 90°** đã hàn, chân chĩa ra ngoài mép, nên cắm được cả một **dải 8 dây cái liền nhau** (dây cầu vồng) vào một lần, gọn hơn cắm từng dây.
-- Màu dây theo thứ tự trong dải, không theo quy ước: **đen** `SDA` → `D10`, **nâu** `SCK` → `D13`, **đỏ** `MOSI` → `D11`, **cam** `MISO` → `D12`, **vàng** `IRQ` (để trống ở đầu Uno), **xanh lá** `GND` → `GND`, **xanh dương** `RST` → `D9`, **tím** `3.3V` → `3.3V`. Khi dây không theo màu quy ước thì càng phải dò theo nhãn: ở đây dây **đỏ không phải nguồn**, nguồn là dây **tím**.
-- **LED `D1` sáng đỏ**: module đã có điện. Kết quả đọc thẻ trên mạch này là ảnh Serial ở [Test A1](#test-a1--kiểm-tra-module-và-đọc-uid).
-
-Video Phần C (quẹt thẻ, servo mở rồi tự đóng) xem ở [Test C1](#test-c1--quẹt-thẻ-servo-mở-rồi-tự-đóng).
-
-> 📷 *Chờ ảnh Phần B và Test C2.*
+:::
 
 ## Lỗi hay gặp
 
@@ -715,7 +719,7 @@ Video Phần C (quẹt thẻ, servo mở rồi tự đóng) xem ở [Test C1](#t
 | LED `D1` trên module không sáng | Module chưa có điện: dây `3.3V` / `GND` cắm sai chân (đọc **nhãn in trên mạch**, đừng đếm theo vị trí), lỏng đầu dây cái, hoặc mối hàn hai chân này chưa ăn |
 | `D1` đã sáng nhưng Serial in `Firmware Version: 0x00` hoặc `0xFF`, `Communication failure` | Có điện nhưng không nói chuyện được với chip. Dò **từng dây** tín hiệu theo nhãn trên mạch: `SDA`→`D10`, `SCK`→`D13`, `MOSI`→`D11`, `MISO`→`D12`, `RST`→`D9` (thiếu `RST` thì chip ở trạng thái tắt, trả về đúng `0x00`). Kiểm tra mối hàn 5 chân này và đếm lại lỗ `D9`–`D13` trên Uno |
 | Phiên bản `(unknown)` như `0x12`, `0x88` | Chip clone. Thường vẫn đọc thẻ bình thường, bỏ qua cảnh báo. Nếu không đọc được thẻ thì thử đổi module |
-| Phiên bản đúng nhưng đặt thẻ không in gì | Thẻ chưa đủ gần: đặt **phẳng, sát** lên phần anten (nửa trên mạch), không phải phần chip. Hoặc thẻ không phải 13,56 MHz (thẻ chấm công 125 kHz) |
+| Phiên bản đúng nhưng đặt thẻ không in gì | Thẻ chưa đủ gần: đặt **phẳng, sát** lên phần anten (vùng có đường đồng chạy vòng quanh mép), không phải phần chip. Hoặc thẻ không phải 13,56 MHz (thẻ chấm công 125 kHz) |
 | Đọc được thẻ trắng, móc khóa thì phải để thật sát | Anten trong móc khóa nhỏ hơn nhiều: bình thường. Thêm `PCD_SetAntennaGain(rfid.RxGain_max)` |
 | Thẻ trắng đọc được, móc khóa **không bao giờ** đọc được | Móc khóa là loại **125 kHz**, RC522 không đọc được. Kiểm tra bằng NFC trên điện thoại |
 | Đang chạy được, chạm thẻ xong thì lại báo `0x0` | Dây bị lỏng do module xê dịch khi ấn thẻ. Ấn chặt lại các đầu dây, dán băng dính cố định module và bó dây |
