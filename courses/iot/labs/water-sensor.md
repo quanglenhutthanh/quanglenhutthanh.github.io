@@ -13,7 +13,7 @@ resources:
   - ../assets/water-sensor-led-real-poster.jpg
 ---
 
-> Đọc module cảm biến nước bằng Arduino Uno: in giá trị analog lên Serial Monitor và quan sát số đọc thay đổi khi nhúng cảm biến vào nước, rồi làm mạch báo có nước bằng LED.
+> Đọc module cảm biến nước bằng Arduino Uno: in giá trị analog lên Serial Monitor và quan sát số đọc thay đổi khi nhúng cảm biến vào nước, làm mạch báo có nước bằng LED, rồi đo mực nước (cm) hiện lên Serial.
 
 ## Cảm biến nước là gì
 
@@ -197,6 +197,109 @@ Giải thích:
 - Nhúng đầu cảm biến vào cốc nước: LED sáng ngay, Serial in `-> CO NUOC`.
 - Nhỏ một giọt nước bắc ngang hai đường đồng cạnh nhau: LED cũng sáng. Đây là cách module dùng để **báo mưa** hoặc **báo rò rỉ nước** dưới gầm máy giặt.
 - Rút ra và lau khô: LED tắt.
+
+### Test 3 – đo mực nước, hiện lên Serial
+
+Test 1 chỉ in số thô 0–1023. Test này đổi số đó thành **mực nước** (cm) và **mức** (khô / thấp / trung bình / cao), kèm một thanh ngang để nhìn cho dễ. Mạch giữ nguyên, không cần LED.
+
+Số đọc **không tăng đều** theo độ sâu: chạm nước là nhảy lên vài trăm, sau đó tăng chậm dần. Vì vậy không dùng `map(raw, 0, 1023, 0, 40)` được, mà phải **hiệu chỉnh**: đo số đọc thật ở vài độ sâu, rồi nội suy giữa các điểm đó.
+
+**Bước hiệu chỉnh** (dùng code Test 1):
+
+1. Lấy bút đánh dấu lên mặt sau module các vạch **0, 1, 2, 3, 4 cm** tính từ **đầu dưới** vùng đường đồng.
+2. Nhúng cảm biến đứng thẳng vào cốc nước đến từng vạch, chờ 2–3 giây cho số ổn định, ghi lại số đọc.
+3. Điền 5 số đó vào mảng `RAW_MOC` trong code dưới đây. Số trong code chỉ là ví dụ, mạch của bạn sẽ khác (tùy loại nước, độ mòn đường đồng).
+
+```cpp
+#define WATER_PIN  A0
+
+// Số đọc thật ở các độ sâu 0, 1, 2, 3, 4 cm (thay bằng số đo của bạn)
+const int   RAW_MOC[] = { 0, 480, 560, 610, 640 };
+const float CM_MOC[]  = { 0, 1.0, 2.0, 3.0, 4.0 };
+const int   SO_MOC    = 5;
+
+#define NGUONG_KHO  50   // dưới mức này coi là khô
+
+// Đọc 10 lần lấy trung bình cho bớt nhiễu
+int docTrungBinh() {
+  long tong = 0;
+  for (int i = 0; i < 10; i++) {
+    tong += analogRead(WATER_PIN);
+    delay(5);
+  }
+  return tong / 10;
+}
+
+// Nội suy tuyến tính giữa hai mốc hiệu chỉnh gần nhất
+float doiRaCm(int raw) {
+  if (raw <= RAW_MOC[0]) return 0;
+  for (int i = 1; i < SO_MOC; i++) {
+    if (raw <= RAW_MOC[i]) {
+      float tiLe = (float)(raw - RAW_MOC[i - 1]) / (RAW_MOC[i] - RAW_MOC[i - 1]);
+      return CM_MOC[i - 1] + tiLe * (CM_MOC[i] - CM_MOC[i - 1]);
+    }
+  }
+  return CM_MOC[SO_MOC - 1];   // vượt mốc cuối → coi như ngập hết
+}
+
+const char* mucNuoc(int raw, float cm) {
+  if (raw < NGUONG_KHO) return "KHO";
+  if (cm < 1.5)         return "THAP";
+  if (cm < 3.0)         return "TRUNG BINH";
+  return "CAO";
+}
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("=== Do muc nuoc ===");
+}
+
+void loop() {
+  int raw = docTrungBinh();
+  float cm = doiRaCm(raw);
+
+  Serial.print("raw = ");
+  Serial.print(raw);
+  Serial.print("  |  muc nuoc = ");
+  Serial.print(cm, 1);
+  Serial.print(" cm  |  ");
+  Serial.print(mucNuoc(raw, cm));
+
+  // thanh ngang: mỗi dấu # = 0.25 cm, tối đa 16 dấu
+  Serial.print("  [");
+  int soDau = cm / 4.0 * 16;
+  for (int i = 0; i < 16; i++) {
+    Serial.print(i < soDau ? '#' : ' ');
+  }
+  Serial.println("]");
+
+  delay(500);
+}
+```
+
+Giải thích:
+
+- **`docTrungBinh()`**: mặt nước dao động khi cầm tay, số đọc nhảy vài chục đơn vị. Lấy trung bình 10 lần đọc cho số ổn định hơn.
+- **`doiRaCm()`**: tìm hai mốc hiệu chỉnh kẹp `raw` ở giữa, rồi tính tỉ lệ. Ví dụ `raw = 520` nằm giữa mốc 1 cm (480) và 2 cm (560), đúng chính giữa, nên ra **1,5 cm**. Đây là nội suy tuyến tính từng đoạn: đường cong thật được xấp xỉ bằng các đoạn thẳng nối các điểm đã đo.
+- **`RAW_MOC` phải tăng dần.** Nếu hai mốc bằng nhau thì phép chia sẽ chia cho 0. Khi đó đo lại hoặc bỏ bớt một mốc (giảm `SO_MOC`).
+- **`mucNuoc()`**: chia mực nước thành 4 mức. Đổi các ngưỡng 1,5 và 3,0 cm cho hợp với việc bạn dùng (bể cá, chậu cây…).
+
+Kết quả trên Serial Monitor (9600 baud) sẽ có dạng:
+
+```
+=== Do muc nuoc ===
+raw = 3  |  muc nuoc = 0.0 cm  |  KHO  [                ]
+raw = 488  |  muc nuoc = 1.1 cm  |  THAP  [####            ]
+raw = 585  |  muc nuoc = 2.5 cm  |  TRUNG BINH  [##########      ]
+raw = 633  |  muc nuoc = 3.8 cm  |  CAO  [###############  ]
+```
+
+**Cách kiểm tra:**
+
+- Để khô: in `KHO`, thanh trống.
+- Nhúng từ từ đến từng vạch đã đánh dấu: số cm in ra phải gần đúng vạch (lệch khoảng ±0,3 cm là bình thường).
+- Rút ra từ từ: số cm giảm dần về 0.
+- Kết quả chỉ đúng với **loại nước đã dùng khi hiệu chỉnh**. Đổi sang nước khác (nước muối, nước mưa) thì phải hiệu chỉnh lại.
 
 ## Lưu ý: cảm biến bị ăn mòn
 
