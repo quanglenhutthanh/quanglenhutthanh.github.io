@@ -169,7 +169,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tổng-quan" id="toc-tổng-quan" class="nav-link active" data-scroll-target="#tổng-quan">Tổng quan</a></li>
+  <li><a href="#lý-thuyết" id="toc-lý-thuyết" class="nav-link active" data-scroll-target="#lý-thuyết">Lý thuyết</a></li>
+  <li><a href="#tổng-quan" id="toc-tổng-quan" class="nav-link" data-scroll-target="#tổng-quan">Tổng quan</a></li>
   <li><a href="#mạch-thực-tế" id="toc-mạch-thực-tế" class="nav-link" data-scroll-target="#mạch-thực-tế">Mạch thực tế</a></li>
   <li><a href="#chuẩn-bị" id="toc-chuẩn-bị" class="nav-link" data-scroll-target="#chuẩn-bị">Chuẩn bị</a>
   <ul class="collapse">
@@ -189,7 +190,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#test-c1" id="toc-test-c1" class="nav-link" data-scroll-target="#test-c1">Test C1 – quẹt thẻ, servo mở rồi tự đóng</a></li>
   <li><a href="#test-c2" id="toc-test-c2" class="nav-link" data-scroll-target="#test-c2">Test C2 – thêm đèn và còi</a></li>
   </ul></li>
-  <li><a href="#tìm-hiểu-thêm" id="toc-tìm-hiểu-thêm" class="nav-link" data-scroll-target="#tìm-hiểu-thêm">Tìm hiểu thêm</a></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul>
 </nav>
@@ -242,6 +242,304 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </div>
+<section id="lý-thuyết" class="level2">
+<h2 class="anchored" data-anchor-id="lý-thuyết">Lý thuyết</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>RFID là gì, các dải tần
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>RFID</strong> (<em>Radio Frequency Identification</em>) là nhận dạng bằng sóng vô tuyến, gồm hai phần:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Đầu đọc (reader)</th>
+<th>Thẻ (tag)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trong lab</td>
+<td>Module RC522</td>
+<td>Thẻ trắng</td>
+</tr>
+<tr class="even">
+<td>Nguồn điện</td>
+<td>Lấy từ Arduino</td>
+<td><strong>Không có pin</strong> (thẻ thụ động)</td>
+</tr>
+<tr class="odd">
+<td>Thành phần</td>
+<td>Chip MFRC522 + anten in trên mạch</td>
+<td>Chip nhỏ + cuộn dây anten trong vỏ nhựa</td>
+</tr>
+</tbody>
+</table>
+<p>Anten của đầu đọc tạo <strong>từ trường xoay chiều 13,56 MHz</strong>. Khi đưa thẻ lại gần, cuộn dây trong thẻ <strong>sinh ra dòng điện cảm ứng</strong> (giống máy biến áp không lõi), đủ nuôi chip. Chip trả lời bằng cách <strong>thay đổi tải</strong> trên cuộn dây, đầu đọc nhận ra thay đổi đó thành dữ liệu. Vì năng lượng truyền bằng cảm ứng nên <strong>tầm đọc rất ngắn</strong> (0–5 cm với RC522), và đó cũng là điểm cố ý của chuẩn 13,56 MHz: khó bị đọc trộm từ xa.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dải tần</th>
+<th>Tầm đọc</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>LF 125 kHz</strong></td>
+<td>~10 cm</td>
+<td>Thẻ chấm công, thẻ thang máy đời cũ (EM4100). Chỉ có mã số, không ghi được</td>
+</tr>
+<tr class="even">
+<td><strong>HF 13,56 MHz</strong></td>
+<td>~0–10 cm</td>
+<td><strong>Thẻ trong lab (MIFARE)</strong>, thẻ xe buýt, thẻ ngân hàng không chạm, <strong>NFC</strong>, CCCD gắn chip</td>
+</tr>
+<tr class="odd">
+<td><strong>UHF 860–960 MHz</strong></td>
+<td>1–10 m</td>
+<td>Tem hàng hóa trong kho, thu phí không dừng (ETC)</td>
+</tr>
+</tbody>
+</table>
+<p>RC522 chỉ đọc <strong>13,56 MHz</strong> theo chuẩn <strong>ISO/IEC 14443A</strong>; thẻ 125 kHz không đọc được. <strong>NFC</strong> trên điện thoại là một nhánh của RFID 13,56 MHz: app như <em>NFC Tools</em> hay <em>MIFARE Classic Tool</em> đọc được thẻ trong kit, tiện để kiểm tra chéo Phần A. Thẻ <strong>không cần bóc túi nilon</strong>: sóng đi xuyên nilon, ví, vỏ điện thoại nhựa.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Thẻ MIFARE Classic 1K: UID, bộ nhớ, xác thực
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Thẻ trắng trong kit là <strong>MIFARE Classic 1K</strong> (còn gọi là <strong>S50</strong>).</p>
+<p><strong>UID</strong> dài <strong>4 byte</strong>, ghi sẵn từ nhà máy. Đa số hệ thống gửi xe, khóa cửa giá rẻ chỉ dựa vào UID. ⚠️ UID <strong>không phải bí mật</strong>: đầu đọc nào cũng đọc được, và thẻ “magic” cho phép chép UID sang thẻ khác. Khóa cửa dùng UID như Phần C chỉ hợp cho học tập hoặc độ an toàn thấp.</p>
+<p><strong>Bộ nhớ:</strong> 1 KB chia thành <strong>16 sector × 4 block × 16 byte</strong>, block đánh số 0–63:</p>
+<pre><code>Sector 0   block 0   [UID + dữ liệu nhà sản xuất]   ← chỉ đọc
+           block 1   [dữ liệu]
+           block 2   [dữ liệu]
+           block 3   [Key A | Access bits | Key B]   ← sector trailer
+Sector 1   block 4   [dữ liệu]                       ← Phần B ghi vào đây
+           block 5   [dữ liệu]
+           block 6   [dữ liệu]
+           block 7   [Key A | Access bits | Key B]   ← sector trailer
+...
+Sector 15  block 60–62 [dữ liệu], block 63 [trailer]</code></pre>
+<ul>
+<li><strong>Block 0</strong> chứa UID, khóa cứng từ nhà máy.</li>
+<li><strong>Block cuối mỗi sector</strong> (3, 7, …, 63) là <strong>sector trailer</strong>: Key A, Key B (6 byte mỗi khóa) và <strong>access bits</strong> quy định ai được đọc/ghi block nào.</li>
+<li>Còn lại <strong>47 block dữ liệu</strong>, tổng 752 byte ghi được.</li>
+</ul>
+<p><strong>Xác thực:</strong> muốn đọc/ghi một block, đầu đọc phải <strong>xác thực</strong> với sector chứa block đó bằng Key A hoặc Key B. Thẻ mới có cả hai khóa là <strong><code>FF FF FF FF FF FF</code></strong>. Thuật toán <em>Crypto1</em> của MIFARE Classic đã bị bẻ khóa từ năm 2008, nên hệ thống mới dùng <strong>MIFARE DESFire</strong> hoặc <strong>MIFARE Plus</strong> với AES.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Nhìn module RC522 (vị trí chân, mức logic)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Nửa dưới</strong> module là <strong>anten in trên mạch</strong> (đường đồng chạy vòng quanh mép): chỗ đặt thẻ.</li>
+<li><strong>Nửa trên</strong>: <strong>chip MFRC522</strong> (32 chân), <strong>thạch anh <code>27.120</code></strong> MHz (= 2 × 13,56 MHz), <strong>LED nguồn <code>D1</code></strong> ở góc trái và hàng 8 lỗ chân dọc mép trên.</li>
+</ul>
+<p>Nhìn mặt có linh kiện (anten ở dưới), nhãn chân in <strong>lộn ngược</strong>, đọc từ <strong>phải sang trái</strong>:</p>
+<pre><code>   phía LED D1                                      phía thạch anh
+   3.3V   RST   GND   IRQ   MISO  MOSI  SCK   SDA ■   (■ = pad vuông, chân 1)
+    ○      ○     ○     ○     ○     ○     ○     □
+   ┌─────────────────────────────────────────────┐
+   │  D1      chip MFRC522              27.120   │
+   │                                             │
+   │             ~~~ anten ~~~                   │
+   └─────────────────────────────────────────────┘</code></pre>
+<p><strong>Mức logic:</strong> chân tín hiệu (<code>SCK</code>, <code>MOSI</code>, <code>SDA</code>, <code>RST</code>) nhận mức 5 V từ Uno. Datasheet không ghi là chịu được 5 V, nhưng nối thẳng là cách phổ biến và chạy ổn; muốn đúng chuẩn thì dùng <strong>module chuyển mức logic</strong> 5 V ↔︎ 3,3 V. Chiều ngược lại, <code>MISO</code> ra 3,3 V, Uno vẫn đọc là <code>HIGH</code> (xem bảng điện áp ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html#low-là-bao-nhiêu-volt">Lab 8</a>).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>SPI là gì
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Các lab trước dùng <code>digitalRead()</code> một chân (<a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a>), giao thức 1 dây của DHT11 (<a href="../../../courses/iot/labs/dht11.html">Lab 3</a>), I²C 2 dây của LCD (<a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>), dịch bit qua 74HC595 (<a href="../../../courses/iot/labs/seven-segment-5641as.html">Lab 7</a>). RC522 dùng <strong>SPI</strong> (<em>Serial Peripheral Interface</em>): 4 dây, nhanh hơn I²C nhiều.</p>
+<pre><code>         Uno (master)                 RC522 (slave)
+   D13 SCK  ───────────────────────▶  SCK     xung nhịp, do master tạo
+   D11 MOSI ───────────────────────▶  MOSI    master gửi
+   D12 MISO ◀───────────────────────  MISO    slave trả lời
+   D10 SS   ───────────────────────▶  SDA     LOW = "tôi đang nói với bạn"</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>I²C (LCD, Lab 2)</th>
+<th>SPI (RC522)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Số dây tín hiệu</td>
+<td>2 (<code>SDA</code>, <code>SCL</code>)</td>
+<td>4 (<code>SCK</code>, <code>MOSI</code>, <code>MISO</code>, <code>SS</code>)</td>
+</tr>
+<tr class="even">
+<td>Chọn thiết bị</td>
+<td>Bằng <strong>địa chỉ</strong> gửi trên dây</td>
+<td>Bằng <strong>một chân SS riêng</strong> mỗi thiết bị</td>
+</tr>
+<tr class="odd">
+<td>Tốc độ thường dùng</td>
+<td>100–400 kbit/s</td>
+<td>1–10 Mbit/s</td>
+</tr>
+<tr class="even">
+<td>Chân trên Uno</td>
+<td><code>A4</code>, <code>A5</code></td>
+<td><strong>Cố định</strong> <code>D11</code>, <code>D12</code>, <code>D13</code>; <code>SS</code> tùy ý</td>
+</tr>
+</tbody>
+</table>
+<p><code>SCK</code>, <code>MOSI</code>, <code>MISO</code> <strong>cố định</strong> vì nối với bộ SPI phần cứng của ATmega328P (cũng có trên header ICSP 6 chân). Tên chân <code>SDA</code> trên module là vì chip cũng hỗ trợ I²C, nhưng module nối sẵn để chạy SPI.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Ứng dụng, RFID hay mã vạch / QR
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ứng dụng</th>
+<th>Dùng gì</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Khóa cửa phòng, tủ đồ</td>
+<td>RC522 + servo / khóa chốt điện (<em>solenoid</em>) + relay</td>
+</tr>
+<tr class="even">
+<td>Chấm công, điểm danh</td>
+<td>RC522 + LCD + gửi dữ liệu về server</td>
+</tr>
+<tr class="odd">
+<td>Bãi giữ xe</td>
+<td>RC522 đọc thẻ + camera chụp biển số, ghép theo UID</td>
+</tr>
+<tr class="even">
+<td>Thẻ xe buýt, ví điện tử nội bộ</td>
+<td>Ghi số dư vào block dữ liệu (MIFARE có <em>value block</em> với lệnh cộng/trừ)</td>
+</tr>
+<tr class="odd">
+<td>Quản lý thiết bị, sách thư viện</td>
+<td>Dán tem NFC vào từng món, quét bằng điện thoại</td>
+</tr>
+<tr class="even">
+<td>Kho hàng, chuỗi cung ứng</td>
+<td>RFID <strong>UHF</strong>: đọc hàng trăm tem cùng lúc từ vài mét</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>RFID 13,56 MHz</th>
+<th>Mã vạch / QR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cần nhìn thấy</td>
+<td>Không, đọc xuyên giấy, nhựa</td>
+<td>Có, phải thấy rõ tem</td>
+</tr>
+<tr class="even">
+<td>Ghi lại được</td>
+<td>Có (752 byte trên MIFARE 1K)</td>
+<td>Không, in một lần</td>
+</tr>
+<tr class="odd">
+<td>Chép / làm giả</td>
+<td>Khó hơn (cần thẻ đặc biệt)</td>
+<td>Chụp ảnh là xong</td>
+</tr>
+<tr class="even">
+<td>Bền</td>
+<td>Chip trong vỏ nhựa, chịu bẩn, trầy</td>
+<td>Mờ, rách là không đọc được</td>
+</tr>
+<tr class="odd">
+<td>Giá mỗi tem/thẻ</td>
+<td>Vài nghìn đồng</td>
+<td>Gần như bằng 0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
 <section id="tổng-quan" class="level2">
 <h2 class="anchored" data-anchor-id="tổng-quan">Tổng quan</h2>
 <div class="quarto-layout-panel" data-layout="[45,55]">
@@ -425,7 +723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="rc522-header">Hàn chân header</h3>
 <p>Module bán ra <strong>chưa hàn chân</strong>, kèm hai hàng 8 pin: một hàng thẳng, một hàng cong 90°. Lab dùng <strong>hàng cong 90°</strong> để module nằm phẳng trên bàn, mặt anten ngửa lên, nối Uno bằng dây đực–cái.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -434,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -505,44 +803,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Giải thích</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Kết quả</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;SPI.h&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;MFRC522.h&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SS_PIN  </span><span class="dv">10</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RST_PIN </span><span class="dv">9</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>MFRC522 rfid<span class="op">(</span>SS_PIN<span class="op">,</span> RST_PIN<span class="op">);</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  SPI<span class="op">.</span>begin<span class="op">();</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_Init<span class="op">();</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_DumpVersionToSerial<span class="op">();</span>   <span class="co">// in phiên bản chip, để biết đã nối đúng chưa</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Hay dua the lai gan dau doc..."</span><span class="op">);</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Có thẻ mới trong vùng đọc không?</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_IsNewCardPresent<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Đọc UID của thẻ đó</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_ReadCardSerial<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"UID:"</span><span class="op">);</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> rfid<span class="op">.</span>uid<span class="op">.</span>size<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="bn">0x10</span> <span class="op">?</span> <span class="st">" 0"</span> <span class="op">:</span> <span class="st">" "</span><span class="op">);</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  MFRC522<span class="op">::</span>PICC_Type type <span class="op">=</span> rfid<span class="op">.</span>PICC_GetType<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>sak<span class="op">);</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"   | loai the: "</span><span class="op">);</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>PICC_GetTypeName<span class="op">(</span>type<span class="op">));</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PICC_HaltA<span class="op">();</span>        <span class="co">// cho thẻ "ngủ", không đọc lại liên tục</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_StopCrypto1<span class="op">();</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;SPI.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;MFRC522.h&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SS_PIN  </span><span class="dv">10</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RST_PIN </span><span class="dv">9</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>MFRC522 rfid<span class="op">(</span>SS_PIN<span class="op">,</span> RST_PIN<span class="op">);</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  SPI<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_Init<span class="op">();</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_DumpVersionToSerial<span class="op">();</span>   <span class="co">// in phiên bản chip, để biết đã nối đúng chưa</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Hay dua the lai gan dau doc..."</span><span class="op">);</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Có thẻ mới trong vùng đọc không?</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_IsNewCardPresent<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Đọc UID của thẻ đó</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_ReadCardSerial<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"UID:"</span><span class="op">);</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> rfid<span class="op">.</span>uid<span class="op">.</span>size<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="bn">0x10</span> <span class="op">?</span> <span class="st">" 0"</span> <span class="op">:</span> <span class="st">" "</span><span class="op">);</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  MFRC522<span class="op">::</span>PICC_Type type <span class="op">=</span> rfid<span class="op">.</span>PICC_GetType<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>sak<span class="op">);</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"   | loai the: "</span><span class="op">);</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>PICC_GetTypeName<span class="op">(</span>type<span class="op">));</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PICC_HaltA<span class="op">();</span>        <span class="co">// cho thẻ "ngủ", không đọc lại liên tục</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_StopCrypto1<span class="op">();</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Tăng độ nhạy anten</strong> (module clone thường đọc yếu): thêm ngay sau <code>rfid.PCD_Init();</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rfid<span class="op">.</span>PCD_SetAntennaGain<span class="op">(</span>rfid<span class="op">.</span>RxGain_max<span class="op">);</span>   <span class="co">// độ nhạy thu tối đa (48 dB)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rfid<span class="op">.</span>PCD_SetAntennaGain<span class="op">(</span>rfid<span class="op">.</span>RxGain_max<span class="op">);</span>   <span class="co">// độ nhạy thu tối đa (48 dB)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <ul>
@@ -600,7 +898,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="test-a2" class="level3">
 <h3 class="anchored" data-anchor-id="test-a2">Test A2 – xem toàn bộ bộ nhớ thẻ</h3>
-<p>Nạp ví dụ có sẵn <strong>File → Examples → MFRC522 → DumpInfo</strong>, đặt thẻ lên đầu đọc và <strong>giữ yên khoảng 2 giây</strong>. Serial in cả 64 block, sector 15 ở trên cùng, sector 0 ở dưới cùng. Đối chiếu với <a href="#tìm-hiểu-thêm">bộ nhớ thẻ</a>:</p>
+<p>Nạp ví dụ có sẵn <strong>File → Examples → MFRC522 → DumpInfo</strong>, đặt thẻ lên đầu đọc và <strong>giữ yên khoảng 2 giây</strong>. Serial in cả 64 block, sector 15 ở trên cùng, sector 0 ở dưới cùng. Đối chiếu với <a href="#lý-thuyết">bộ nhớ thẻ</a>:</p>
 <ul>
 <li><strong>Block 0</strong>: 4 byte đầu là UID đã đọc ở Test A1.</li>
 <li><strong>Block 3, 7, …, 63</strong> (trailer): <code>00 00 00 00 00 00  FF 07 80 69  FF FF FF FF FF FF</code>. Key A hiện <code>00</code> vì thẻ không cho đọc Key A; <code>FF 07 80 69</code> là access bits mặc định; Key B là <code>FF…FF</code>.</li>
@@ -618,89 +916,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Giải thích</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Cách thử</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;SPI.h&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;MFRC522.h&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SS_PIN  </span><span class="dv">10</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RST_PIN </span><span class="dv">9</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BLOCK   </span><span class="dv">4</span><span class="pp">        </span><span class="co">// block dữ liệu đầu tiên của sector 1</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>MFRC522 rfid<span class="op">(</span>SS_PIN<span class="op">,</span> RST_PIN<span class="op">);</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>MFRC522<span class="op">::</span>MIFARE_Key key<span class="op">;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>String pending <span class="op">=</span> <span class="st">""</span><span class="op">;</span>     <span class="co">// chữ đang chờ ghi vào thẻ tiếp theo</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  SPI<span class="op">.</span>begin<span class="op">();</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_Init<span class="op">();</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">6</span><span class="op">;</span> i<span class="op">++)</span> key<span class="op">.</span>keyByte<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="bn">0xFF</span><span class="op">;</span>   <span class="co">// khóa mặc định FF FF FF FF FF FF</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Cham the de doc. Go chu (toi da 16 ky tu) + Enter de ghi."</span><span class="op">);</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isTrailer<span class="op">(</span>byte block<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> block <span class="op">%</span> <span class="dv">4</span> <span class="op">==</span> <span class="dv">3</span><span class="op">;</span> <span class="op">}</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> handleCard<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Xác thực với sector chứa BLOCK bằng Key A</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  MFRC522<span class="op">::</span>StatusCode st <span class="op">=</span> rfid<span class="op">.</span>PCD_Authenticate<span class="op">(</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      MFRC522<span class="op">::</span>PICC_CMD_MF_AUTH_KEY_A<span class="op">,</span> BLOCK<span class="op">,</span> <span class="op">&amp;</span>key<span class="op">,</span> <span class="op">&amp;</span>rfid<span class="op">.</span>uid<span class="op">);</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>st <span class="op">!=</span> MFRC522<span class="op">::</span>STATUS_OK<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Xac thuc loi: "</span><span class="op">);</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>GetStatusCodeName<span class="op">(</span>st<span class="op">));</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Nếu có chữ đang chờ thì ghi trước</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>pending<span class="op">.</span>length<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>BLOCK <span class="op">==</span> <span class="dv">0</span> <span class="op">||</span> isTrailer<span class="op">(</span>BLOCK<span class="op">))</span> <span class="op">{</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Khong ghi vao block 0 / sector trailer!"</span><span class="op">);</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    byte data<span class="op">[</span><span class="dv">16</span><span class="op">];</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> data<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> i <span class="op">&lt;</span> pending<span class="op">.</span>length<span class="op">()</span> <span class="op">?</span> pending<span class="op">[</span>i<span class="op">]</span> <span class="op">:</span> <span class="ch">' '</span><span class="op">;</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    st <span class="op">=</span> rfid<span class="op">.</span>MIFARE_Write<span class="op">(</span>BLOCK<span class="op">,</span> data<span class="op">,</span> <span class="dv">16</span><span class="op">);</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Ghi: "</span><span class="op">);</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>st <span class="op">==</span> MFRC522<span class="op">::</span>STATUS_OK<span class="op">)</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"OK"</span><span class="op">);</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>GetStatusCodeName<span class="op">(</span>st<span class="op">));</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>st <span class="op">==</span> MFRC522<span class="op">::</span>STATUS_OK<span class="op">)</span> pending <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 3. Đọc lại block</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  byte buf<span class="op">[</span><span class="dv">18</span><span class="op">];</span>          <span class="co">// 16 byte dữ liệu + 2 byte CRC</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  byte size <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span>buf<span class="op">);</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  st <span class="op">=</span> rfid<span class="op">.</span>MIFARE_Read<span class="op">(</span>BLOCK<span class="op">,</span> buf<span class="op">,</span> <span class="op">&amp;</span>size<span class="op">);</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>st <span class="op">!=</span> MFRC522<span class="op">::</span>STATUS_OK<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Doc loi: "</span><span class="op">);</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>GetStatusCodeName<span class="op">(</span>st<span class="op">));</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Block "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>BLOCK<span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span><span class="st">": </span><span class="sc">\"</span><span class="st">"</span><span class="op">);</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> Serial<span class="op">.</span>write<span class="op">(</span>buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;=</span> <span class="dv">32</span> <span class="op">&amp;&amp;</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="dv">127</span> <span class="op">?</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">:</span> <span class="ch">'.'</span><span class="op">);</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\"</span><span class="st">   hex:"</span><span class="op">);</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="bn">0x10</span> <span class="op">?</span> <span class="st">" 0"</span> <span class="op">:</span> <span class="st">" "</span><span class="op">);</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>buf<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>Serial<span class="op">.</span>available<span class="op">())</span> <span class="op">{</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    pending <span class="op">=</span> Serial<span class="op">.</span>readStringUntil<span class="op">(</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">);</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    pending<span class="op">.</span>trim<span class="op">();</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>pending<span class="op">.</span>length<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">16</span><span class="op">)</span> pending <span class="op">=</span> pending<span class="op">.</span>substring<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">16</span><span class="op">);</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Se ghi </span><span class="sc">\"</span><span class="st">"</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>pending<span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"</span><span class="sc">\"</span><span class="st"> vao the tiep theo"</span><span class="op">);</span></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_IsNewCardPresent<span class="op">()</span> <span class="op">||</span> <span class="op">!</span>rfid<span class="op">.</span>PICC_ReadCardSerial<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>rfid<span class="op">.</span>PICC_GetType<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>sak<span class="op">)</span> <span class="op">!=</span> MFRC522<span class="op">::</span>PICC_TYPE_MIFARE_1K<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Khong phai the MIFARE Classic 1K, bo qua"</span><span class="op">);</span></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    handleCard<span class="op">();</span></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PICC_HaltA<span class="op">();</span></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_StopCrypto1<span class="op">();</span>   <span class="co">// bắt buộc sau khi đã xác thực</span></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;SPI.h&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;MFRC522.h&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SS_PIN  </span><span class="dv">10</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RST_PIN </span><span class="dv">9</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BLOCK   </span><span class="dv">4</span><span class="pp">        </span><span class="co">// block dữ liệu đầu tiên của sector 1</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>MFRC522 rfid<span class="op">(</span>SS_PIN<span class="op">,</span> RST_PIN<span class="op">);</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>MFRC522<span class="op">::</span>MIFARE_Key key<span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>String pending <span class="op">=</span> <span class="st">""</span><span class="op">;</span>     <span class="co">// chữ đang chờ ghi vào thẻ tiếp theo</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  SPI<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_Init<span class="op">();</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">6</span><span class="op">;</span> i<span class="op">++)</span> key<span class="op">.</span>keyByte<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="bn">0xFF</span><span class="op">;</span>   <span class="co">// khóa mặc định FF FF FF FF FF FF</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Cham the de doc. Go chu (toi da 16 ky tu) + Enter de ghi."</span><span class="op">);</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isTrailer<span class="op">(</span>byte block<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> block <span class="op">%</span> <span class="dv">4</span> <span class="op">==</span> <span class="dv">3</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> handleCard<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Xác thực với sector chứa BLOCK bằng Key A</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  MFRC522<span class="op">::</span>StatusCode st <span class="op">=</span> rfid<span class="op">.</span>PCD_Authenticate<span class="op">(</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>      MFRC522<span class="op">::</span>PICC_CMD_MF_AUTH_KEY_A<span class="op">,</span> BLOCK<span class="op">,</span> <span class="op">&amp;</span>key<span class="op">,</span> <span class="op">&amp;</span>rfid<span class="op">.</span>uid<span class="op">);</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>st <span class="op">!=</span> MFRC522<span class="op">::</span>STATUS_OK<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Xac thuc loi: "</span><span class="op">);</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>GetStatusCodeName<span class="op">(</span>st<span class="op">));</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Nếu có chữ đang chờ thì ghi trước</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>pending<span class="op">.</span>length<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>BLOCK <span class="op">==</span> <span class="dv">0</span> <span class="op">||</span> isTrailer<span class="op">(</span>BLOCK<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Khong ghi vao block 0 / sector trailer!"</span><span class="op">);</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    byte data<span class="op">[</span><span class="dv">16</span><span class="op">];</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> data<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> i <span class="op">&lt;</span> pending<span class="op">.</span>length<span class="op">()</span> <span class="op">?</span> pending<span class="op">[</span>i<span class="op">]</span> <span class="op">:</span> <span class="ch">' '</span><span class="op">;</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    st <span class="op">=</span> rfid<span class="op">.</span>MIFARE_Write<span class="op">(</span>BLOCK<span class="op">,</span> data<span class="op">,</span> <span class="dv">16</span><span class="op">);</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Ghi: "</span><span class="op">);</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>st <span class="op">==</span> MFRC522<span class="op">::</span>STATUS_OK<span class="op">)</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"OK"</span><span class="op">);</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>GetStatusCodeName<span class="op">(</span>st<span class="op">));</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>st <span class="op">==</span> MFRC522<span class="op">::</span>STATUS_OK<span class="op">)</span> pending <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 3. Đọc lại block</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>  byte buf<span class="op">[</span><span class="dv">18</span><span class="op">];</span>          <span class="co">// 16 byte dữ liệu + 2 byte CRC</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>  byte size <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span>buf<span class="op">);</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>  st <span class="op">=</span> rfid<span class="op">.</span>MIFARE_Read<span class="op">(</span>BLOCK<span class="op">,</span> buf<span class="op">,</span> <span class="op">&amp;</span>size<span class="op">);</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>st <span class="op">!=</span> MFRC522<span class="op">::</span>STATUS_OK<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Doc loi: "</span><span class="op">);</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>GetStatusCodeName<span class="op">(</span>st<span class="op">));</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Block "</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>BLOCK<span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span><span class="st">": </span><span class="sc">\"</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> Serial<span class="op">.</span>write<span class="op">(</span>buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;=</span> <span class="dv">32</span> <span class="op">&amp;&amp;</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="dv">127</span> <span class="op">?</span> buf<span class="op">[</span>i<span class="op">]</span> <span class="op">:</span> <span class="ch">'.'</span><span class="op">);</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\"</span><span class="st">   hex:"</span><span class="op">);</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>buf<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="bn">0x10</span> <span class="op">?</span> <span class="st">" 0"</span> <span class="op">:</span> <span class="st">" "</span><span class="op">);</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>buf<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>Serial<span class="op">.</span>available<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>    pending <span class="op">=</span> Serial<span class="op">.</span>readStringUntil<span class="op">(</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">);</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>    pending<span class="op">.</span>trim<span class="op">();</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>pending<span class="op">.</span>length<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">16</span><span class="op">)</span> pending <span class="op">=</span> pending<span class="op">.</span>substring<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">16</span><span class="op">);</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Se ghi </span><span class="sc">\"</span><span class="st">"</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>pending<span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"</span><span class="sc">\"</span><span class="st"> vao the tiep theo"</span><span class="op">);</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_IsNewCardPresent<span class="op">()</span> <span class="op">||</span> <span class="op">!</span>rfid<span class="op">.</span>PICC_ReadCardSerial<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>rfid<span class="op">.</span>PICC_GetType<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>sak<span class="op">)</span> <span class="op">!=</span> MFRC522<span class="op">::</span>PICC_TYPE_MIFARE_1K<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Khong phai the MIFARE Classic 1K, bo qua"</span><span class="op">);</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    handleCard<span class="op">();</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PICC_HaltA<span class="op">();</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_StopCrypto1<span class="op">();</span>   <span class="co">// bắt buộc sau khi đã xác thực</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <ul>
@@ -765,68 +1063,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Giải thích</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Kết quả</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;SPI.h&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;MFRC522.h&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SS_PIN    </span><span class="dv">10</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RST_PIN   </span><span class="dv">9</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SERVO_PIN </span><span class="dv">3</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANGLE_CLOSE </span><span class="dv">90</span><span class="pp">     </span><span class="co">// bình thường: 90 độ</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANGLE_OPEN  </span><span class="dv">0</span><span class="pp">      </span><span class="co">// quẹt thẻ: về 0 độ</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define OPEN_MS     </span><span class="dv">3000</span><span class="pp">   </span><span class="co">// giữ ở 0 độ 3 giây rồi tự quay lại</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>MFRC522 rfid<span class="op">(</span>SS_PIN<span class="op">,</span> RST_PIN<span class="op">);</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>Servo s<span class="op">;</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte WHITE_CARD<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="bn">0x5A</span><span class="op">,</span> <span class="bn">0x4D</span><span class="op">,</span> <span class="bn">0xE5</span><span class="op">,</span> <span class="bn">0x8B</span><span class="op">};</span>   <span class="co">// UID thẻ trắng, lấy từ Test A1</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isOpen <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> openedAt <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  SPI<span class="op">.</span>begin<span class="op">();</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_Init<span class="op">();</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_DumpVersionToSerial<span class="op">();</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>write<span class="op">(</span>ANGLE_CLOSE<span class="op">);</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Hay dua the lai gan dau doc..."</span><span class="op">);</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Tự quay lại 90 độ khi đã mở đủ 3 giây</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>isOpen <span class="op">&amp;&amp;</span> millis<span class="op">()</span> <span class="op">-</span> openedAt <span class="op">&gt;=</span> OPEN_MS<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span>write<span class="op">(</span>ANGLE_CLOSE<span class="op">);</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    isOpen <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"   -&gt; het gio, servo tu ve 90"</span><span class="op">);</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_IsNewCardPresent<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_ReadCardSerial<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"UID:"</span><span class="op">);</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> rfid<span class="op">.</span>uid<span class="op">.</span>size<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="bn">0x10</span> <span class="op">?</span> <span class="st">" 0"</span> <span class="op">:</span> <span class="st">" "</span><span class="op">);</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  MFRC522<span class="op">::</span>PICC_Type type <span class="op">=</span> rfid<span class="op">.</span>PICC_GetType<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>sak<span class="op">);</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"   | loai the: "</span><span class="op">);</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>PICC_GetTypeName<span class="op">(</span>type<span class="op">));</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>memcmp<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">,</span> WHITE_CARD<span class="op">,</span> <span class="dv">4</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span>write<span class="op">(</span>ANGLE_OPEN<span class="op">);</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    isOpen <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    openedAt <span class="op">=</span> millis<span class="op">();</span>          <span class="co">// quẹt lại khi đang mở thì tính lại 3 giây</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"   -&gt; the dung, servo ve 0"</span><span class="op">);</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"   -&gt; the la"</span><span class="op">);</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PICC_HaltA<span class="op">();</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_StopCrypto1<span class="op">();</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;SPI.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;MFRC522.h&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SS_PIN    </span><span class="dv">10</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RST_PIN   </span><span class="dv">9</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SERVO_PIN </span><span class="dv">3</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANGLE_CLOSE </span><span class="dv">90</span><span class="pp">     </span><span class="co">// bình thường: 90 độ</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANGLE_OPEN  </span><span class="dv">0</span><span class="pp">      </span><span class="co">// quẹt thẻ: về 0 độ</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define OPEN_MS     </span><span class="dv">3000</span><span class="pp">   </span><span class="co">// giữ ở 0 độ 3 giây rồi tự quay lại</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>MFRC522 rfid<span class="op">(</span>SS_PIN<span class="op">,</span> RST_PIN<span class="op">);</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>Servo s<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte WHITE_CARD<span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="bn">0x5A</span><span class="op">,</span> <span class="bn">0x4D</span><span class="op">,</span> <span class="bn">0xE5</span><span class="op">,</span> <span class="bn">0x8B</span><span class="op">};</span>   <span class="co">// UID thẻ trắng, lấy từ Test A1</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isOpen <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> openedAt <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  SPI<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_Init<span class="op">();</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_DumpVersionToSerial<span class="op">();</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  s<span class="op">.</span>write<span class="op">(</span>ANGLE_CLOSE<span class="op">);</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Hay dua the lai gan dau doc..."</span><span class="op">);</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Tự quay lại 90 độ khi đã mở đủ 3 giây</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>isOpen <span class="op">&amp;&amp;</span> millis<span class="op">()</span> <span class="op">-</span> openedAt <span class="op">&gt;=</span> OPEN_MS<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span>write<span class="op">(</span>ANGLE_CLOSE<span class="op">);</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    isOpen <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"   -&gt; het gio, servo tu ve 90"</span><span class="op">);</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_IsNewCardPresent<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_ReadCardSerial<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"UID:"</span><span class="op">);</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> rfid<span class="op">.</span>uid<span class="op">.</span>size<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="bn">0x10</span> <span class="op">?</span> <span class="st">" 0"</span> <span class="op">:</span> <span class="st">" "</span><span class="op">);</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  MFRC522<span class="op">::</span>PICC_Type type <span class="op">=</span> rfid<span class="op">.</span>PICC_GetType<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>sak<span class="op">);</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"   | loai the: "</span><span class="op">);</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>rfid<span class="op">.</span>PICC_GetTypeName<span class="op">(</span>type<span class="op">));</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>memcmp<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">.</span>uidByte<span class="op">,</span> WHITE_CARD<span class="op">,</span> <span class="dv">4</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span>write<span class="op">(</span>ANGLE_OPEN<span class="op">);</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    isOpen <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    openedAt <span class="op">=</span> millis<span class="op">();</span>          <span class="co">// quẹt lại khi đang mở thì tính lại 3 giây</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"   -&gt; the dung, servo ve 0"</span><span class="op">);</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"   -&gt; the la"</span><span class="op">);</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PICC_HaltA<span class="op">();</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_StopCrypto1<span class="op">();</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <ul>
@@ -887,101 +1185,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Giải thích</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Cách thử</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false" href="">Mở rộng</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;SPI.h&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;MFRC522.h&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SS_PIN    </span><span class="dv">10</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RST_PIN   </span><span class="dv">9</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_OK    </span><span class="dv">5</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_DENY  </span><span class="dv">6</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BUZZER    </span><span class="dv">7</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SERVO_PIN </span><span class="dv">3</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANGLE_LOCK   </span><span class="dv">0</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANGLE_OPEN   </span><span class="dv">90</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define OPEN_MS      </span><span class="dv">3000</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">// Danh sách UID được phép: thay bằng UID ghi lại ở Test A1</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ALLOWED<span class="op">[][</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x5A</span><span class="op">,</span> <span class="bn">0x4D</span><span class="op">,</span> <span class="bn">0xE5</span><span class="op">,</span> <span class="bn">0x8B</span><span class="op">},</span>   <span class="co">// thẻ trắng</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x7A</span><span class="op">,</span> <span class="bn">0x21</span><span class="op">,</span> <span class="bn">0xE4</span><span class="op">,</span> <span class="bn">0x80</span><span class="op">},</span>   <span class="co">// thẻ thứ hai (mẫu, thay bằng UID thật)</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte N_ALLOWED <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span>ALLOWED<span class="op">)</span> <span class="op">/</span> <span class="kw">sizeof</span><span class="op">(</span>ALLOWED<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>MFRC522 rfid<span class="op">(</span>SS_PIN<span class="op">,</span> RST_PIN<span class="op">);</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>Servo lock<span class="op">;</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isOpen <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> openedAt <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isAllowed<span class="op">(</span><span class="at">const</span> MFRC522<span class="op">::</span>Uid<span class="op">&amp;</span> uid<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>uid<span class="op">.</span>size <span class="op">!=</span> <span class="dv">4</span><span class="op">)</span> <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N_ALLOWED<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>memcmp<span class="op">(</span>uid<span class="op">.</span>uidByte<span class="op">,</span> ALLOWED<span class="op">[</span>i<span class="op">],</span> <span class="dv">4</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> printUid<span class="op">(</span><span class="at">const</span> MFRC522<span class="op">::</span>Uid<span class="op">&amp;</span> uid<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> uid<span class="op">.</span>size<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="bn">0x10</span> <span class="op">?</span> <span class="st">" 0"</span> <span class="op">:</span> <span class="st">" "</span><span class="op">);</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> grant<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"  -&gt; MO CUA"</span><span class="op">);</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_OK<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  lock<span class="op">.</span>write<span class="op">(</span>ANGLE_OPEN<span class="op">);</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  tone<span class="op">(</span>BUZZER<span class="op">,</span> <span class="dv">2000</span><span class="op">,</span> <span class="dv">400</span><span class="op">);</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  isOpen <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>  openedAt <span class="op">=</span> millis<span class="op">();</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> deny<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"  -&gt; TU CHOI"</span><span class="op">);</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">3</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>LED_DENY<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    tone<span class="op">(</span>BUZZER<span class="op">,</span> <span class="dv">400</span><span class="op">,</span> <span class="dv">120</span><span class="op">);</span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>LED_DENY<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_OK<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_DENY<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>BUZZER<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>  lock<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>  lock<span class="op">.</span>write<span class="op">(</span>ANGLE_LOCK<span class="op">);</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  SPI<span class="op">.</span>begin<span class="op">();</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_Init<span class="op">();</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Khoa cua RFID san sang"</span><span class="op">);</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Tự khóa lại sau OPEN_MS</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>isOpen <span class="op">&amp;&amp;</span> millis<span class="op">()</span> <span class="op">-</span> openedAt <span class="op">&gt;</span> OPEN_MS<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    lock<span class="op">.</span>write<span class="op">(</span>ANGLE_LOCK<span class="op">);</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>LED_OK<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>    isOpen <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Da khoa lai"</span><span class="op">);</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Quẹt thẻ</span></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_IsNewCardPresent<span class="op">()</span> <span class="op">||</span> <span class="op">!</span>rfid<span class="op">.</span>PICC_ReadCardSerial<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"The:"</span><span class="op">);</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>  printUid<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">);</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>isAllowed<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">))</span> grant<span class="op">();</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> deny<span class="op">();</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PICC_HaltA<span class="op">();</span></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_StopCrypto1<span class="op">();</span></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;SPI.h&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;MFRC522.h&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SS_PIN    </span><span class="dv">10</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define RST_PIN   </span><span class="dv">9</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_OK    </span><span class="dv">5</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_DENY  </span><span class="dv">6</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BUZZER    </span><span class="dv">7</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SERVO_PIN </span><span class="dv">3</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANGLE_LOCK   </span><span class="dv">0</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ANGLE_OPEN   </span><span class="dv">90</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define OPEN_MS      </span><span class="dv">3000</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">// Danh sách UID được phép: thay bằng UID ghi lại ở Test A1</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte ALLOWED<span class="op">[][</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x5A</span><span class="op">,</span> <span class="bn">0x4D</span><span class="op">,</span> <span class="bn">0xE5</span><span class="op">,</span> <span class="bn">0x8B</span><span class="op">},</span>   <span class="co">// thẻ trắng</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="bn">0x7A</span><span class="op">,</span> <span class="bn">0x21</span><span class="op">,</span> <span class="bn">0xE4</span><span class="op">,</span> <span class="bn">0x80</span><span class="op">},</span>   <span class="co">// thẻ thứ hai (mẫu, thay bằng UID thật)</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> byte N_ALLOWED <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span>ALLOWED<span class="op">)</span> <span class="op">/</span> <span class="kw">sizeof</span><span class="op">(</span>ALLOWED<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>MFRC522 rfid<span class="op">(</span>SS_PIN<span class="op">,</span> RST_PIN<span class="op">);</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>Servo lock<span class="op">;</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isOpen <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> openedAt <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isAllowed<span class="op">(</span><span class="at">const</span> MFRC522<span class="op">::</span>Uid<span class="op">&amp;</span> uid<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>uid<span class="op">.</span>size <span class="op">!=</span> <span class="dv">4</span><span class="op">)</span> <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N_ALLOWED<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>memcmp<span class="op">(</span>uid<span class="op">.</span>uidByte<span class="op">,</span> ALLOWED<span class="op">[</span>i<span class="op">],</span> <span class="dv">4</span><span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> printUid<span class="op">(</span><span class="at">const</span> MFRC522<span class="op">::</span>Uid<span class="op">&amp;</span> uid<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> uid<span class="op">.</span>size<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> <span class="bn">0x10</span> <span class="op">?</span> <span class="st">" 0"</span> <span class="op">:</span> <span class="st">" "</span><span class="op">);</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>uid<span class="op">.</span>uidByte<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> grant<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"  -&gt; MO CUA"</span><span class="op">);</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>LED_OK<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>  lock<span class="op">.</span>write<span class="op">(</span>ANGLE_OPEN<span class="op">);</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>  tone<span class="op">(</span>BUZZER<span class="op">,</span> <span class="dv">2000</span><span class="op">,</span> <span class="dv">400</span><span class="op">);</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>  isOpen <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>  openedAt <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> deny<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"  -&gt; TU CHOI"</span><span class="op">);</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>byte i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">3</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>LED_DENY<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    tone<span class="op">(</span>BUZZER<span class="op">,</span> <span class="dv">400</span><span class="op">,</span> <span class="dv">120</span><span class="op">);</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>LED_DENY<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_OK<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_DENY<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>BUZZER<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>  lock<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>  lock<span class="op">.</span>write<span class="op">(</span>ANGLE_LOCK<span class="op">);</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>  SPI<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_Init<span class="op">();</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Khoa cua RFID san sang"</span><span class="op">);</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1. Tự khóa lại sau OPEN_MS</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>isOpen <span class="op">&amp;&amp;</span> millis<span class="op">()</span> <span class="op">-</span> openedAt <span class="op">&gt;</span> OPEN_MS<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>    lock<span class="op">.</span>write<span class="op">(</span>ANGLE_LOCK<span class="op">);</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>LED_OK<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>    isOpen <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Da khoa lai"</span><span class="op">);</span></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2. Quẹt thẻ</span></span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>rfid<span class="op">.</span>PICC_IsNewCardPresent<span class="op">()</span> <span class="op">||</span> <span class="op">!</span>rfid<span class="op">.</span>PICC_ReadCardSerial<span class="op">())</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"The:"</span><span class="op">);</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>  printUid<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">);</span></span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>isAllowed<span class="op">(</span>rfid<span class="op">.</span>uid<span class="op">))</span> grant<span class="op">();</span></span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> deny<span class="op">();</span></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PICC_HaltA<span class="op">();</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>  rfid<span class="op">.</span>PCD_StopCrypto1<span class="op">();</span></span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <ul>
@@ -1015,304 +1313,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-</section>
-<section id="tìm-hiểu-thêm" class="level2">
-<h2 class="anchored" data-anchor-id="tìm-hiểu-thêm">Tìm hiểu thêm</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>RFID là gì, các dải tần
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><strong>RFID</strong> (<em>Radio Frequency Identification</em>) là nhận dạng bằng sóng vô tuyến, gồm hai phần:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>Đầu đọc (reader)</th>
-<th>Thẻ (tag)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Trong lab</td>
-<td>Module RC522</td>
-<td>Thẻ trắng</td>
-</tr>
-<tr class="even">
-<td>Nguồn điện</td>
-<td>Lấy từ Arduino</td>
-<td><strong>Không có pin</strong> (thẻ thụ động)</td>
-</tr>
-<tr class="odd">
-<td>Thành phần</td>
-<td>Chip MFRC522 + anten in trên mạch</td>
-<td>Chip nhỏ + cuộn dây anten trong vỏ nhựa</td>
-</tr>
-</tbody>
-</table>
-<p>Anten của đầu đọc tạo <strong>từ trường xoay chiều 13,56 MHz</strong>. Khi đưa thẻ lại gần, cuộn dây trong thẻ <strong>sinh ra dòng điện cảm ứng</strong> (giống máy biến áp không lõi), đủ nuôi chip. Chip trả lời bằng cách <strong>thay đổi tải</strong> trên cuộn dây, đầu đọc nhận ra thay đổi đó thành dữ liệu. Vì năng lượng truyền bằng cảm ứng nên <strong>tầm đọc rất ngắn</strong> (0–5 cm với RC522), và đó cũng là điểm cố ý của chuẩn 13,56 MHz: khó bị đọc trộm từ xa.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Dải tần</th>
-<th>Tầm đọc</th>
-<th>Ví dụ</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>LF 125 kHz</strong></td>
-<td>~10 cm</td>
-<td>Thẻ chấm công, thẻ thang máy đời cũ (EM4100). Chỉ có mã số, không ghi được</td>
-</tr>
-<tr class="even">
-<td><strong>HF 13,56 MHz</strong></td>
-<td>~0–10 cm</td>
-<td><strong>Thẻ trong lab (MIFARE)</strong>, thẻ xe buýt, thẻ ngân hàng không chạm, <strong>NFC</strong>, CCCD gắn chip</td>
-</tr>
-<tr class="odd">
-<td><strong>UHF 860–960 MHz</strong></td>
-<td>1–10 m</td>
-<td>Tem hàng hóa trong kho, thu phí không dừng (ETC)</td>
-</tr>
-</tbody>
-</table>
-<p>RC522 chỉ đọc <strong>13,56 MHz</strong> theo chuẩn <strong>ISO/IEC 14443A</strong>; thẻ 125 kHz không đọc được. <strong>NFC</strong> trên điện thoại là một nhánh của RFID 13,56 MHz: app như <em>NFC Tools</em> hay <em>MIFARE Classic Tool</em> đọc được thẻ trong kit, tiện để kiểm tra chéo Phần A. Thẻ <strong>không cần bóc túi nilon</strong>: sóng đi xuyên nilon, ví, vỏ điện thoại nhựa.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Thẻ MIFARE Classic 1K: UID, bộ nhớ, xác thực
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Thẻ trắng trong kit là <strong>MIFARE Classic 1K</strong> (còn gọi là <strong>S50</strong>).</p>
-<p><strong>UID</strong> dài <strong>4 byte</strong>, ghi sẵn từ nhà máy. Đa số hệ thống gửi xe, khóa cửa giá rẻ chỉ dựa vào UID. ⚠️ UID <strong>không phải bí mật</strong>: đầu đọc nào cũng đọc được, và thẻ “magic” cho phép chép UID sang thẻ khác. Khóa cửa dùng UID như Phần C chỉ hợp cho học tập hoặc độ an toàn thấp.</p>
-<p><strong>Bộ nhớ:</strong> 1 KB chia thành <strong>16 sector × 4 block × 16 byte</strong>, block đánh số 0–63:</p>
-<pre><code>Sector 0   block 0   [UID + dữ liệu nhà sản xuất]   ← chỉ đọc
-           block 1   [dữ liệu]
-           block 2   [dữ liệu]
-           block 3   [Key A | Access bits | Key B]   ← sector trailer
-Sector 1   block 4   [dữ liệu]                       ← Phần B ghi vào đây
-           block 5   [dữ liệu]
-           block 6   [dữ liệu]
-           block 7   [Key A | Access bits | Key B]   ← sector trailer
-...
-Sector 15  block 60–62 [dữ liệu], block 63 [trailer]</code></pre>
-<ul>
-<li><strong>Block 0</strong> chứa UID, khóa cứng từ nhà máy.</li>
-<li><strong>Block cuối mỗi sector</strong> (3, 7, …, 63) là <strong>sector trailer</strong>: Key A, Key B (6 byte mỗi khóa) và <strong>access bits</strong> quy định ai được đọc/ghi block nào.</li>
-<li>Còn lại <strong>47 block dữ liệu</strong>, tổng 752 byte ghi được.</li>
-</ul>
-<p><strong>Xác thực:</strong> muốn đọc/ghi một block, đầu đọc phải <strong>xác thực</strong> với sector chứa block đó bằng Key A hoặc Key B. Thẻ mới có cả hai khóa là <strong><code>FF FF FF FF FF FF</code></strong>. Thuật toán <em>Crypto1</em> của MIFARE Classic đã bị bẻ khóa từ năm 2008, nên hệ thống mới dùng <strong>MIFARE DESFire</strong> hoặc <strong>MIFARE Plus</strong> với AES.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Nhìn module RC522 (vị trí chân, mức logic)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ul>
-<li><strong>Nửa dưới</strong> module là <strong>anten in trên mạch</strong> (đường đồng chạy vòng quanh mép): chỗ đặt thẻ.</li>
-<li><strong>Nửa trên</strong>: <strong>chip MFRC522</strong> (32 chân), <strong>thạch anh <code>27.120</code></strong> MHz (= 2 × 13,56 MHz), <strong>LED nguồn <code>D1</code></strong> ở góc trái và hàng 8 lỗ chân dọc mép trên.</li>
-</ul>
-<p>Nhìn mặt có linh kiện (anten ở dưới), nhãn chân in <strong>lộn ngược</strong>, đọc từ <strong>phải sang trái</strong>:</p>
-<pre><code>   phía LED D1                                      phía thạch anh
-   3.3V   RST   GND   IRQ   MISO  MOSI  SCK   SDA ■   (■ = pad vuông, chân 1)
-    ○      ○     ○     ○     ○     ○     ○     □
-   ┌─────────────────────────────────────────────┐
-   │  D1      chip MFRC522              27.120   │
-   │                                             │
-   │             ~~~ anten ~~~                   │
-   └─────────────────────────────────────────────┘</code></pre>
-<p><strong>Mức logic:</strong> chân tín hiệu (<code>SCK</code>, <code>MOSI</code>, <code>SDA</code>, <code>RST</code>) nhận mức 5 V từ Uno. Datasheet không ghi là chịu được 5 V, nhưng nối thẳng là cách phổ biến và chạy ổn; muốn đúng chuẩn thì dùng <strong>module chuyển mức logic</strong> 5 V ↔︎ 3,3 V. Chiều ngược lại, <code>MISO</code> ra 3,3 V, Uno vẫn đọc là <code>HIGH</code> (xem bảng điện áp ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html#low-là-bao-nhiêu-volt">Lab 8</a>).</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>SPI là gì
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Các lab trước dùng <code>digitalRead()</code> một chân (<a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a>), giao thức 1 dây của DHT11 (<a href="../../../courses/iot/labs/dht11.html">Lab 3</a>), I²C 2 dây của LCD (<a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>), dịch bit qua 74HC595 (<a href="../../../courses/iot/labs/seven-segment-5641as.html">Lab 7</a>). RC522 dùng <strong>SPI</strong> (<em>Serial Peripheral Interface</em>): 4 dây, nhanh hơn I²C nhiều.</p>
-<pre><code>         Uno (master)                 RC522 (slave)
-   D13 SCK  ───────────────────────▶  SCK     xung nhịp, do master tạo
-   D11 MOSI ───────────────────────▶  MOSI    master gửi
-   D12 MISO ◀───────────────────────  MISO    slave trả lời
-   D10 SS   ───────────────────────▶  SDA     LOW = "tôi đang nói với bạn"</code></pre>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>I²C (LCD, Lab 2)</th>
-<th>SPI (RC522)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Số dây tín hiệu</td>
-<td>2 (<code>SDA</code>, <code>SCL</code>)</td>
-<td>4 (<code>SCK</code>, <code>MOSI</code>, <code>MISO</code>, <code>SS</code>)</td>
-</tr>
-<tr class="even">
-<td>Chọn thiết bị</td>
-<td>Bằng <strong>địa chỉ</strong> gửi trên dây</td>
-<td>Bằng <strong>một chân SS riêng</strong> mỗi thiết bị</td>
-</tr>
-<tr class="odd">
-<td>Tốc độ thường dùng</td>
-<td>100–400 kbit/s</td>
-<td>1–10 Mbit/s</td>
-</tr>
-<tr class="even">
-<td>Chân trên Uno</td>
-<td><code>A4</code>, <code>A5</code></td>
-<td><strong>Cố định</strong> <code>D11</code>, <code>D12</code>, <code>D13</code>; <code>SS</code> tùy ý</td>
-</tr>
-</tbody>
-</table>
-<p><code>SCK</code>, <code>MOSI</code>, <code>MISO</code> <strong>cố định</strong> vì nối với bộ SPI phần cứng của ATmega328P (cũng có trên header ICSP 6 chân). Tên chân <code>SDA</code> trên module là vì chip cũng hỗ trợ I²C, nhưng module nối sẵn để chạy SPI.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Ứng dụng, RFID hay mã vạch / QR
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Ứng dụng</th>
-<th>Dùng gì</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Khóa cửa phòng, tủ đồ</td>
-<td>RC522 + servo / khóa chốt điện (<em>solenoid</em>) + relay</td>
-</tr>
-<tr class="even">
-<td>Chấm công, điểm danh</td>
-<td>RC522 + LCD + gửi dữ liệu về server</td>
-</tr>
-<tr class="odd">
-<td>Bãi giữ xe</td>
-<td>RC522 đọc thẻ + camera chụp biển số, ghép theo UID</td>
-</tr>
-<tr class="even">
-<td>Thẻ xe buýt, ví điện tử nội bộ</td>
-<td>Ghi số dư vào block dữ liệu (MIFARE có <em>value block</em> với lệnh cộng/trừ)</td>
-</tr>
-<tr class="odd">
-<td>Quản lý thiết bị, sách thư viện</td>
-<td>Dán tem NFC vào từng món, quét bằng điện thoại</td>
-</tr>
-<tr class="even">
-<td>Kho hàng, chuỗi cung ứng</td>
-<td>RFID <strong>UHF</strong>: đọc hàng trăm tem cùng lúc từ vài mét</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>RFID 13,56 MHz</th>
-<th>Mã vạch / QR</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Cần nhìn thấy</td>
-<td>Không, đọc xuyên giấy, nhựa</td>
-<td>Có, phải thấy rõ tem</td>
-</tr>
-<tr class="even">
-<td>Ghi lại được</td>
-<td>Có (752 byte trên MIFARE 1K)</td>
-<td>Không, in một lần</td>
-</tr>
-<tr class="odd">
-<td>Chép / làm giả</td>
-<td>Khó hơn (cần thẻ đặc biệt)</td>
-<td>Chụp ảnh là xong</td>
-</tr>
-<tr class="even">
-<td>Bền</td>
-<td>Chip trong vỏ nhựa, chịu bẩn, trầy</td>
-<td>Mờ, rách là không đọc được</td>
-</tr>
-<tr class="odd">
-<td>Giá mỗi tem/thẻ</td>
-<td>Vài nghìn đồng</td>
-<td>Gần như bằng 0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>

@@ -169,7 +169,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tổng-quan" id="toc-tổng-quan" class="nav-link active" data-scroll-target="#tổng-quan">Tổng quan</a></li>
+  <li><a href="#lý-thuyết" id="toc-lý-thuyết" class="nav-link active" data-scroll-target="#lý-thuyết">Lý thuyết</a></li>
+  <li><a href="#tổng-quan" id="toc-tổng-quan" class="nav-link" data-scroll-target="#tổng-quan">Tổng quan</a></li>
   <li><a href="#sơ-đồ-và-mạch-thực-tế" id="toc-sơ-đồ-và-mạch-thực-tế" class="nav-link" data-scroll-target="#sơ-đồ-và-mạch-thực-tế">Sơ đồ và mạch thực tế</a></li>
   <li><a href="#các-bài-test" id="toc-các-bài-test" class="nav-link" data-scroll-target="#các-bài-test">Các bài test</a>
   <ul class="collapse">
@@ -178,7 +179,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#test-2" id="toc-test-2" class="nav-link" data-scroll-target="#test-2">Test 2 – đo độ mạnh ngọn lửa bằng <code>A0</code></a></li>
   <li><a href="#test-3" id="toc-test-3" class="nav-link" data-scroll-target="#test-3">Test 3 – báo cháy bằng LED và buzzer</a></li>
   </ul></li>
-  <li><a href="#tìm-hiểu-thêm" id="toc-tìm-hiểu-thêm" class="nav-link" data-scroll-target="#tìm-hiểu-thêm">Tìm hiểu thêm</a></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul>
 </nav>
@@ -232,6 +232,117 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </div>
+<section id="lý-thuyết" class="level2">
+<h2 class="anchored" data-anchor-id="lý-thuyết">Lý thuyết</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Cảm biến lửa hoạt động thế nào
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Ngọn lửa không chỉ phát ánh sáng nhìn thấy mà còn phát rất mạnh ở vùng <strong>hồng ngoại gần</strong> (bước sóng ~760–1100 nm). Mắt cảm biến của KY-026 là một <strong>photodiode/phototransistor hồng ngoại</strong> vỏ đen; nhựa đen lọc bớt ánh sáng nhìn thấy, chỉ cho hồng ngoại đi qua. Càng nhiều hồng ngoại chiếu vào, dòng qua nó càng lớn và điện áp ở chân analog càng thay đổi nhiều.</p>
+<p>Điện áp đó được đưa tới hai nơi:</p>
+<ol type="1">
+<li>Thẳng ra chân <strong><code>A0</code></strong>: ngõ ra <strong>analog</strong>, Arduino đọc bằng <code>analogRead()</code> (0–1023) để biết lửa gần hay xa, to hay nhỏ.</li>
+<li>Vào IC so sánh <strong>LM393</strong>, so với điện áp do <strong>biến trở xanh</strong> đặt ra: ngõ ra <strong>digital</strong> <code>D0</code> chỉ có hai mức “có lửa / không có lửa”. Khi vượt ngưỡng, LED <code>L2</code> trên module sáng.</li>
+</ol>
+<p>Vì đo hồng ngoại nên cảm biến <strong>không phân biệt được</strong> lửa thật với các nguồn hồng ngoại khác như <strong>ánh nắng</strong>, <strong>bóng đèn sợi đốt / halogen</strong>, <strong>remote TV</strong> hay bếp điện đang đỏ. Đèn LED và đèn huỳnh quang phát rất ít hồng ngoại nên ít gây nhiễu.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Nhìn module
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Từ đầu xa hàng chân vào:</p>
+<ul>
+<li><strong>Mắt cảm biến</strong>: “bóng LED” <strong>vỏ đen</strong> 5 mm, chân dài để bẻ cong hướng mắt về phía cần canh. Nó không bao giờ sáng, đừng nhầm với LED.</li>
+<li><strong>Biến trở xanh</strong> (hộp vuông có vít đồng): vặn để đổi ngưỡng của <code>D0</code>.</li>
+<li><strong>IC LM393</strong> (8 chân), các điện trở dán và hai LED <code>L1</code>, <code>L2</code>.</li>
+</ul>
+<p><strong>KY-026 và module lửa “4 chân” khác:</strong> loại bo xanh dương ghi <code>AO DO GND VCC</code> (thường in “Flame sensor”) dùng cùng sơ đồ LM393, nhưng <strong>mức logic của <code>D0</code> có thể ngược</strong>. Loại này kéo <code>D0</code> xuống <code>LOW</code> khi có lửa, một số board KY-026 lại đưa <code>D0</code> lên <code>HIGH</code>. Chiều thay đổi của <code>A0</code> cũng tùy cách mắc phototransistor. Vì vậy <a href="#test-1">Test 1</a> cho bạn tự xác định trên module trong kit.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Ứng dụng, giới hạn và mở rộng
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Cảm biến lửa IR (KY-026)</th>
+<th>Đầu báo khói</th>
+<th>Cảm biến nhiệt (DHT11, <a href="../../../courses/iot/labs/dht11.html">Lab 3</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Phát hiện</td>
+<td>Ánh sáng hồng ngoại của ngọn lửa</td>
+<td>Hạt khói trong không khí</td>
+<td>Nhiệt độ tăng</td>
+</tr>
+<tr class="even">
+<td>Tốc độ</td>
+<td>Gần như tức thì</td>
+<td>Vài giây – vài chục giây</td>
+<td>Chậm (phải đợi phòng nóng lên)</td>
+</tr>
+<tr class="odd">
+<td>Cần “nhìn thấy” lửa</td>
+<td>Có, trong góc ~60°</td>
+<td>Không</td>
+<td>Không</td>
+</tr>
+<tr class="even">
+<td>Báo nhầm với</td>
+<td>Nắng, đèn sợi đốt, remote</td>
+<td>Hơi nước, bụi</td>
+<td>Máy sưởi, nắng chiếu</td>
+</tr>
+<tr class="odd">
+<td>Lửa âm ỉ không ngọn</td>
+<td>Không thấy</td>
+<td>Thấy</td>
+<td>Thấy (chậm)</td>
+</tr>
+</tbody>
+</table>
+<p>Hệ thống thật thường <strong>kết hợp</strong> nhiều loại. Robot chữa cháy dùng vài mắt hồng ngoại xếp vòng cung để biết lửa ở bên trái hay phải rồi quay về phía đó; lò đốt gas dùng cảm biến lửa để ngắt van khi ngọn lửa tắt.</p>
+<p>Mở rộng gợi ý:</p>
+<ul>
+<li>Gắn hai module KY-026 lệch nhau ~45°, so <code>percent</code> hai bên để biết lửa nằm bên nào, rồi cho servo (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>) quay về phía đó.</li>
+<li>Hiển thị <code>percent</code> lên LCD I²C (<a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>) hoặc LED 7 đoạn (<a href="../../../courses/iot/labs/seven-segment-1-digit.html">Lab 15</a>).</li>
+<li>Gửi cảnh báo lên dashboard qua hệ 3 tầng ở <a href="../../../courses/iot/labs/sensor-edge-cloud.html">Lab 9</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
 <section id="tổng-quan" class="level2">
 <h2 class="anchored" data-anchor-id="tổng-quan">Tổng quan</h2>
 <div class="quarto-layout-panel" data-layout="[48,52]">
@@ -612,117 +723,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-</section>
-<section id="tìm-hiểu-thêm" class="level2">
-<h2 class="anchored" data-anchor-id="tìm-hiểu-thêm">Tìm hiểu thêm</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Cảm biến lửa hoạt động thế nào
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Ngọn lửa không chỉ phát ánh sáng nhìn thấy mà còn phát rất mạnh ở vùng <strong>hồng ngoại gần</strong> (bước sóng ~760–1100 nm). Mắt cảm biến của KY-026 là một <strong>photodiode/phototransistor hồng ngoại</strong> vỏ đen; nhựa đen lọc bớt ánh sáng nhìn thấy, chỉ cho hồng ngoại đi qua. Càng nhiều hồng ngoại chiếu vào, dòng qua nó càng lớn và điện áp ở chân analog càng thay đổi nhiều.</p>
-<p>Điện áp đó được đưa tới hai nơi:</p>
-<ol type="1">
-<li>Thẳng ra chân <strong><code>A0</code></strong>: ngõ ra <strong>analog</strong>, Arduino đọc bằng <code>analogRead()</code> (0–1023) để biết lửa gần hay xa, to hay nhỏ.</li>
-<li>Vào IC so sánh <strong>LM393</strong>, so với điện áp do <strong>biến trở xanh</strong> đặt ra: ngõ ra <strong>digital</strong> <code>D0</code> chỉ có hai mức “có lửa / không có lửa”. Khi vượt ngưỡng, LED <code>L2</code> trên module sáng.</li>
-</ol>
-<p>Vì đo hồng ngoại nên cảm biến <strong>không phân biệt được</strong> lửa thật với các nguồn hồng ngoại khác như <strong>ánh nắng</strong>, <strong>bóng đèn sợi đốt / halogen</strong>, <strong>remote TV</strong> hay bếp điện đang đỏ. Đèn LED và đèn huỳnh quang phát rất ít hồng ngoại nên ít gây nhiễu.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Nhìn module
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Từ đầu xa hàng chân vào:</p>
-<ul>
-<li><strong>Mắt cảm biến</strong>: “bóng LED” <strong>vỏ đen</strong> 5 mm, chân dài để bẻ cong hướng mắt về phía cần canh. Nó không bao giờ sáng, đừng nhầm với LED.</li>
-<li><strong>Biến trở xanh</strong> (hộp vuông có vít đồng): vặn để đổi ngưỡng của <code>D0</code>.</li>
-<li><strong>IC LM393</strong> (8 chân), các điện trở dán và hai LED <code>L1</code>, <code>L2</code>.</li>
-</ul>
-<p><strong>KY-026 và module lửa “4 chân” khác:</strong> loại bo xanh dương ghi <code>AO DO GND VCC</code> (thường in “Flame sensor”) dùng cùng sơ đồ LM393, nhưng <strong>mức logic của <code>D0</code> có thể ngược</strong>. Loại này kéo <code>D0</code> xuống <code>LOW</code> khi có lửa, một số board KY-026 lại đưa <code>D0</code> lên <code>HIGH</code>. Chiều thay đổi của <code>A0</code> cũng tùy cách mắc phototransistor. Vì vậy <a href="#test-1">Test 1</a> cho bạn tự xác định trên module trong kit.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Ứng dụng, giới hạn và mở rộng
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th>Cảm biến lửa IR (KY-026)</th>
-<th>Đầu báo khói</th>
-<th>Cảm biến nhiệt (DHT11, <a href="../../../courses/iot/labs/dht11.html">Lab 3</a>)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Phát hiện</td>
-<td>Ánh sáng hồng ngoại của ngọn lửa</td>
-<td>Hạt khói trong không khí</td>
-<td>Nhiệt độ tăng</td>
-</tr>
-<tr class="even">
-<td>Tốc độ</td>
-<td>Gần như tức thì</td>
-<td>Vài giây – vài chục giây</td>
-<td>Chậm (phải đợi phòng nóng lên)</td>
-</tr>
-<tr class="odd">
-<td>Cần “nhìn thấy” lửa</td>
-<td>Có, trong góc ~60°</td>
-<td>Không</td>
-<td>Không</td>
-</tr>
-<tr class="even">
-<td>Báo nhầm với</td>
-<td>Nắng, đèn sợi đốt, remote</td>
-<td>Hơi nước, bụi</td>
-<td>Máy sưởi, nắng chiếu</td>
-</tr>
-<tr class="odd">
-<td>Lửa âm ỉ không ngọn</td>
-<td>Không thấy</td>
-<td>Thấy</td>
-<td>Thấy (chậm)</td>
-</tr>
-</tbody>
-</table>
-<p>Hệ thống thật thường <strong>kết hợp</strong> nhiều loại. Robot chữa cháy dùng vài mắt hồng ngoại xếp vòng cung để biết lửa ở bên trái hay phải rồi quay về phía đó; lò đốt gas dùng cảm biến lửa để ngắt van khi ngọn lửa tắt.</p>
-<p>Mở rộng gợi ý:</p>
-<ul>
-<li>Gắn hai module KY-026 lệch nhau ~45°, so <code>percent</code> hai bên để biết lửa nằm bên nào, rồi cho servo (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>) quay về phía đó.</li>
-<li>Hiển thị <code>percent</code> lên LCD I²C (<a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>) hoặc LED 7 đoạn (<a href="../../../courses/iot/labs/seven-segment-1-digit.html">Lab 15</a>).</li>
-<li>Gửi cảnh báo lên dashboard qua hệ 3 tầng ở <a href="../../../courses/iot/labs/sensor-edge-cloud.html">Lab 9</a>.</li>
-</ul>
-</div>
-</div>
-</div>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
