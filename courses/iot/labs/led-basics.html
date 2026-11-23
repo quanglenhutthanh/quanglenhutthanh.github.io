@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-10-29">
 
-<title>Lab 1 · LED cơ bản &amp; nút nhấn – Le Nhut Thanh Quang</title>
+<title>Lab 1 · Arduino · LED cơ bản &amp; nút nhấn – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -209,9 +209,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lab-1-led-cơ-bản-nút-nhấn" id="toc-lab-1-led-cơ-bản-nút-nhấn" class="nav-link active" data-scroll-target="#lab-1-led-cơ-bản-nút-nhấn">Lab 1 · LED cơ bản &amp; nút nhấn</a>
-  <ul class="collapse">
-  <li><a href="#kiến-thức-nền" id="toc-kiến-thức-nền" class="nav-link" data-scroll-target="#kiến-thức-nền">Kiến thức nền</a></li>
+  <li><a href="#kiến-thức-nền" id="toc-kiến-thức-nền" class="nav-link active" data-scroll-target="#kiến-thức-nền">Kiến thức nền</a></li>
   <li><a href="#a-led-cơ-bản-nhấp-nháy" id="toc-a-led-cơ-bản-nhấp-nháy" class="nav-link" data-scroll-target="#a-led-cơ-bản-nhấp-nháy">1A · LED cơ bản (nhấp nháy)</a>
   <ul class="collapse">
   <li><a href="#linh-kiện" id="toc-linh-kiện" class="nav-link" data-scroll-target="#linh-kiện">Linh kiện</a></li>
@@ -233,7 +231,6 @@ window.Quarto = {
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#mở-rộng-để-vi-điều-khiển-đọc-nút-nhấn" id="toc-mở-rộng-để-vi-điều-khiển-đọc-nút-nhấn" class="nav-link" data-scroll-target="#mở-rộng-để-vi-điều-khiển-đọc-nút-nhấn">Mở rộng: để vi điều khiển đọc nút nhấn</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -242,7 +239,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 1 · LED cơ bản &amp; nút nhấn</h1>
+<h1 class="title">Lab 1 · Arduino · LED cơ bản &amp; nút nhấn</h1>
 </div>
 
 
@@ -265,8 +262,6 @@ window.Quarto = {
 </header>
 
 
-<section id="lab-1-led-cơ-bản-nút-nhấn" class="level1">
-<h1>Lab 1 · LED cơ bản &amp; nút nhấn</h1>
 <blockquote class="blockquote">
 <p>Hai mạch đầu tiên với Arduino Uno, thiết kế trên Tinkercad Circuits:</p>
 <ul>
@@ -680,7 +675,6 @@ I = \frac{V_{D13} - V_F}{R} = \frac{5\,\text{V} - 2\,\text{V}}{1000\,\Omega} \ap
 <p>Hành vi nhìn từ ngoài giống hệt 1B, nhưng giờ trạng thái nút đã nằm trong biến <code>pressed</code> — từ đây có thể thêm chống dội phím (debounce), toggle, hoặc <code>Serial.println(pressed)</code> để gửi dữ liệu đi.</p>
 
 
-</section>
 </section>
 </section>
 

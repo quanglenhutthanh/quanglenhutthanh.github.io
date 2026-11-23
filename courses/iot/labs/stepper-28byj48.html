@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-11-19">
 
-<title>Lab 16 · Động cơ bước 28BYJ-48 + driver ULN2003 – Le Nhut Thanh Quang</title>
+<title>Lab 16 · Arduino · Động cơ bước 28BYJ-48 + driver ULN2003 – Le Nhut Thanh Quang</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -166,9 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lab-16-động-cơ-bước-28byj-48-driver-uln2003" id="toc-lab-16-động-cơ-bước-28byj-48-driver-uln2003" class="nav-link active" data-scroll-target="#lab-16-động-cơ-bước-28byj-48-driver-uln2003">Lab 16 · Động cơ bước 28BYJ-48 + driver ULN2003</a>
-  <ul class="collapse">
-  <li><a href="#động-cơ-bước-là-gì" id="toc-động-cơ-bước-là-gì" class="nav-link" data-scroll-target="#động-cơ-bước-là-gì">Động cơ bước là gì</a>
+  <li><a href="#động-cơ-bước-là-gì" id="toc-động-cơ-bước-là-gì" class="nav-link active" data-scroll-target="#động-cơ-bước-là-gì">Động cơ bước là gì</a>
   <ul class="collapse">
   <li><a href="#byj-48" id="toc-byj-48" class="nav-link" data-scroll-target="#byj-48">28BYJ-48</a></li>
   <li><a href="#vì-sao-cần-driver-uln2003" id="toc-vì-sao-cần-driver-uln2003" class="nav-link" data-scroll-target="#vì-sao-cần-driver-uln2003">Vì sao cần driver ULN2003</a></li>
@@ -183,7 +181,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#so-sánh-động-cơ-dc-servo-động-cơ-bước" id="toc-so-sánh-động-cơ-dc-servo-động-cơ-bước" class="nav-link" data-scroll-target="#so-sánh-động-cơ-dc-servo-động-cơ-bước">So sánh: động cơ DC, servo, động cơ bước</a></li>
   <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -192,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 16 · Động cơ bước 28BYJ-48 + driver ULN2003</h1>
+<h1 class="title">Lab 16 · Arduino · Động cơ bước 28BYJ-48 + driver ULN2003</h1>
 </div>
 
 
@@ -215,8 +212,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="lab-16-động-cơ-bước-28byj-48-driver-uln2003" class="level1">
-<h1>Lab 16 · Động cơ bước 28BYJ-48 + driver ULN2003</h1>
 <blockquote class="blockquote">
 <p>Điều khiển động cơ bước (stepper motor) 28BYJ-48 qua board driver ULN2003 với Arduino Uno. Lab đi từ nguyên lý “bước”, nối dây, quay bằng thư viện <code>Stepper</code>, tự viết chuỗi bật cuộn dây (half-step) để thấy động cơ thật sự được điều khiển thế nào, rồi cho trục quay theo biến trở. Khác với servo ở <a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>, động cơ bước quay <strong>liên tục nhiều vòng</strong> và định vị bằng cách <strong>đếm bước</strong>, không có cảm biến vị trí bên trong.</p>
 </blockquote>
@@ -728,7 +723,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
