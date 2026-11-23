@@ -7,6 +7,7 @@ status: todo
 source: note
 tags: [arduino, flame-sensor, ky-026, infrared, lm393, sensor, buzzer]
 date: 2026-11-21
+lightbox: true
 resources:
   - ../assets/flame-ky026-remote-real.mp4
   - ../assets/flame-ky026-remote-real-poster.jpg
@@ -14,101 +15,79 @@ resources:
 
 # Lab 17 · Cảm biến lửa KY-026
 
-> Đọc module cảm biến lửa (flame sensor) KY-026 với Arduino Uno: hiểu vì sao nó "thấy" được ngọn lửa, đọc cả ngõ ra **analog** lẫn **digital**, chỉnh ngưỡng bằng biến trở trên module, đo "độ mạnh" ngọn lửa, rồi làm mạch báo cháy bằng LED và buzzer có chống báo động giả. Module dùng chung ý tưởng với cảm biến hồng ngoại FC-51 ở [Lab 8](infrared-remote-fc51.md) và cách đọc analog/ngưỡng giống cảm biến nước ở [Lab 11](water-sensor.md).
+> Đọc module cảm biến lửa KY-026 với Arduino Uno qua cả ngõ ra **analog** (`A0`) lẫn **digital** (`D0`). Sau đó chỉnh ngưỡng bằng biến trở, đo "độ mạnh" ngọn lửa, rồi làm mạch báo cháy bằng LED và buzzer có chống báo động giả. Module dùng chung ý tưởng với cảm biến hồng ngoại FC-51 ở [Lab 8](infrared-remote-fc51.md); cách đọc analog và ngưỡng giống cảm biến nước ở [Lab 11](water-sensor.md).
 
 ::: {.callout-warning}
 ## An toàn khi thử với lửa
 
 - Chỉ dùng **bật lửa** hoặc **một cây nến** nhỏ, bật/thắp trong vài giây rồi tắt. Không thử với giấy, cồn hay bất kỳ thứ gì có thể bắt lửa lan ra.
-- Làm trên bàn trống, giữ ngọn lửa cách module **ít nhất 20 cm**. Module, dây cắm và breadboard bằng nhựa: hơ sát sẽ chảy.
-- Có thể làm gần hết lab **không cần lửa**: remote hồng ngoại ở [Lab 8](infrared-remote-fc51.md) cũng làm cảm biến phản ứng (xem [Test 1](#test-1--đọc-hai-ngõ-ra)).
+- Làm trên bàn trống, giữ ngọn lửa cách module **ít nhất 20 cm**. Module, dây cắm và breadboard bằng nhựa nên hơ sát sẽ chảy.
+- Có thể làm gần hết lab **không cần lửa**: remote hồng ngoại ở [Lab 8](infrared-remote-fc51.md) cũng làm cảm biến phản ứng (xem [Test 1](#test-1)).
 - Đây là module học tập, **không thay được đầu báo cháy thật**: nó không phát hiện khói, không thấy lửa bị che khuất và báo nhầm với ánh nắng.
 :::
 
-## Cảm biến lửa hoạt động thế nào
+## Tổng quan
 
-Ngọn lửa không chỉ phát ánh sáng nhìn thấy mà còn phát rất mạnh ở vùng **hồng ngoại gần** (bước sóng ~760–1100 nm). Mắt cảm biến của KY-026 là một **photodiode/phototransistor hồng ngoại** vỏ đen (nhựa đen lọc bớt ánh sáng nhìn thấy, chỉ cho hồng ngoại đi qua). Càng nhiều hồng ngoại chiếu vào, dòng qua nó càng lớn, điện áp ở chân analog càng thay đổi nhiều.
+:::: {layout="[48,52]"}
 
-Điện áp đó được đưa tới hai nơi:
+::: {}
+**Sơ đồ chân và nối dây**
 
-1. Thẳng ra chân **`A0`** → ngõ ra **analog**, Arduino đọc bằng `analogRead()` (0–1023), thấy được lửa gần hay xa, to hay nhỏ.
-2. Vào IC so sánh **LM393**, so với điện áp do **biến trở xanh** trên module đặt ra → ngõ ra **digital** `D0`: chỉ có hai mức "có lửa / không có lửa". Khi vượt ngưỡng, LED `L2` trên module cũng sáng.
-
-Vì đo hồng ngoại nên cảm biến **không phân biệt được** lửa thật với các nguồn hồng ngoại khác: **ánh nắng**, **bóng đèn sợi đốt / đèn halogen**, **remote TV**, bếp điện đang đỏ. Đèn LED và đèn huỳnh quang phát rất ít hồng ngoại nên ít gây nhiễu.
-
-| Thông số | Giá trị điển hình |
-|---|---|
-| Điện áp hoạt động | 3,3–5 V |
-| Bước sóng nhạy | ~760–1100 nm (đỉnh ~940 nm) |
-| Góc phát hiện | ~60° phía trước mắt cảm biến |
-| Khoảng cách phát hiện | ~20 cm – 1 m với bật lửa (tùy ngưỡng và độ sáng phòng) |
-| IC so sánh | LM393 |
-| Ngõ ra | `A0` analog + `D0` digital (ngưỡng chỉnh bằng biến trở) |
-| LED trên module | `L1` nguồn, `L2` sáng khi `D0` báo có lửa |
-
-### Nhìn module
-
-Module có **4 chân**, theo thứ tự in trên board:
-
-| Chân | Ý nghĩa |
-|---|---|
-| `A0` | Ngõ ra analog |
-| `G` | GND |
-| `+` | Nguồn 5 V |
-| `D0` | Ngõ ra digital (sau LM393) |
-
-Trên board, từ đầu xa hàng chân vào:
-
-- **Mắt cảm biến**: một "bóng LED" **vỏ đen** 5 mm, chân dài để có thể bẻ cong hướng mắt về phía cần canh. Đừng nhầm với LED: nó không bao giờ sáng.
-- **Biến trở xanh** (hộp vuông có vít đồng): vặn để đổi ngưỡng của `D0`.
-- **IC LM393** (8 chân), các điện trở dán và hai LED `L1`, `L2`.
-
-::: {.callout-note}
-## KY-026 và module cảm biến lửa "4 chân" khác
-
-Ngoài KY-026 còn có loại module lửa 4 chân bo xanh dương ghi `AO DO GND VCC` (thường in "Flame sensor"), cùng sơ đồ LM393 nhưng **mức logic của `D0` có thể ngược nhau**: loại này kéo `D0` xuống `LOW` khi có lửa, một số board KY-026 lại đưa `D0` lên `HIGH`. Chiều thay đổi của `A0` cũng tùy cách mắc phototransistor trên board. Vì vậy lab này **không đoán trước**: Test 1 cho bạn tự xác định trên module trong kit, rồi ghi vào hằng số ở đầu code.
+| Chân | Nối Uno | Ý nghĩa |
+|---|---|---|
+| `A0` | `A0` | Ngõ ra analog (0–1023) |
+| `G` | `GND` | Mass |
+| `+` | `5V` | Nguồn |
+| `D0` | `2` | Ngõ ra digital (sau LM393) |
+| LED đỏ (+) | `D6` qua 220 Ω | Test 1b, 3 |
+| Buzzer (+) | `D7` | Test 3 |
 :::
 
-## Linh kiện
+::: {}
+**Thông số**
 
-| Linh kiện | Số lượng | Dùng ở |
-|---|---|---|
-| Arduino Uno + cáp USB | 1 | |
-| Module cảm biến lửa KY-026 | 1 | |
-| LED đỏ + điện trở 220 Ω | 1 | Test 3 |
-| Buzzer (active hoặc passive) | 1 | Test 3 |
-| Breadboard, dây đực–đực, dây đực–cái | | |
-| Bật lửa hoặc nến (hoặc remote hồng ngoại) | 1 | để thử |
-
-## Nối dây
-
-Module có chân đực, nối sang Uno bằng dây **đực–cái**. LED và buzzer cắm trên breadboard, lấy GND chung từ thanh `−`.
-
-![Sơ đồ nối KY-026 với Arduino Uno: A0 → A0, D0 → D2, + và G vào thanh nguồn breadboard; LED đỏ qua điện trở 220 Ω vào D6, buzzer vào D7](../assets/flame-ky026-wiring.svg){width=100%}
-
-| Module KY-026 | Nối Arduino |
+| | |
 |---|---|
-| `A0` | `A0` |
-| `G` | `GND` |
-| `+` | `5V` |
-| `D0` | `2` |
+| Điện áp | 3,3–5 V |
+| Bước sóng nhạy | ~760–1100 nm (đỉnh ~940 nm) |
+| Góc / tầm phát hiện | ~60° · 20 cm – 1 m (bật lửa) |
+| IC so sánh | LM393, ngưỡng chỉnh bằng biến trở xanh |
+| LED trên module | `L1` nguồn · `L2` sáng khi `D0` báo lửa |
+:::
 
-| Linh kiện Test 3 | Nối |
-|---|---|
-| LED đỏ: chân dài (+) | `D6` qua điện trở 220 Ω |
-| LED đỏ: chân ngắn (−) | `GND` |
-| Buzzer: chân `+` (dài) | `D7` |
-| Buzzer: chân `−` | `GND` |
+::::
 
-`D0` vào chân `2` để sau này có thể dùng ngắt ngoài (`attachInterrupt`) nếu muốn; chân digital nào cũng chạy được với code bên dưới.
+**Linh kiện:** Arduino Uno + cáp USB · module KY-026 · LED đỏ + điện trở 220 Ω · buzzer (active hoặc passive) · breadboard, dây đực–đực, đực–cái · bật lửa/nến hoặc remote hồng ngoại để thử.
 
-**Hướng mắt cảm biến**: bẻ nhẹ chân mắt cảm biến cho nó **nằm ngang, hướng ra phía trước**, không chĩa lên trần (đèn trần và ánh sáng cửa sổ dễ gây nhiễu). Không bẻ đi bẻ lại nhiều lần, chân dễ gãy.
+## Sơ đồ và mạch thực tế
 
-## Code
+:::: {layout-ncol=2 layout-valign="center"}
 
-### Test 1 – đọc hai ngõ ra
+![Sơ đồ nối: `A0` → `A0`, `D0` → `D2`, `+`/`G` vào thanh nguồn; LED đỏ qua 220 Ω vào `D6`, buzzer vào `D7`](../assets/flame-ky026-wiring.svg)
 
-In cả `A0` và `D0` lên Serial Monitor mỗi 200 ms để xem module phản ứng thế nào.
+::: {}
+<video class="lab-video" controls playsinline preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg">
+  <source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
+</video>
+
+Mạch thật chạy [Test 1b](#test-1b), thử bằng remote thay cho lửa
+:::
+
+::::
+
+- Module có chân đực, nối sang Uno bằng dây **đực–cái**; LED và buzzer lấy GND chung từ thanh `−` của breadboard.
+- **Hướng mắt cảm biến** (bóng vỏ đen, không bao giờ sáng): bẻ nhẹ cho nằm ngang, hướng ra phía trước, không chĩa lên trần vì đèn và cửa sổ dễ gây nhiễu. Đừng bẻ đi bẻ lại vì chân dễ gãy.
+- `D0` vào chân `2` để có thể dùng ngắt ngoài (`attachInterrupt`) sau này; chân digital nào cũng chạy được với code bên dưới.
+
+## Các bài test
+
+### Test 1 – đọc hai ngõ ra {#test-1}
+
+In `A0` và `D0` lên Serial Monitor để xác định module trong kit phản ứng theo chiều nào. Kết quả được dùng cho các test sau.
+
+::: {.panel-tabset}
+
+#### Code
 
 ```cpp
 const int FLAME_A = A0;
@@ -132,13 +111,15 @@ void loop() {
 }
 ```
 
+#### Cách thử
+
 Mở Serial Monitor (9600 baud) và làm lần lượt:
 
-1. **Không có lửa**: ghi lại giá trị `A0` và `D0`. `L2` nên tắt. Nếu `L2` đang sáng sẵn, vặn biến trở (thường là ngược chiều kim đồng hồ) tới khi nó vừa tắt.
+1. **Không có lửa**: ghi lại `A0` và `D0`. `L2` nên tắt. Nếu `L2` đang sáng sẵn, vặn biến trở (thường là ngược chiều kim đồng hồ) tới khi nó vừa tắt.
 2. **Bật lửa cách ~50 cm**, trước mắt cảm biến: `A0` thay đổi rõ, ghi lại nó **tăng hay giảm**.
-3. **Đưa lại gần ~20 cm**: `A0` thay đổi nhiều hơn nữa. Khi vượt ngưỡng, `L2` sáng và `D0` đổi mức, ghi lại `D0` lúc có lửa là `0` hay `1`.
-4. **Xoay mắt cảm biến lệch ra** khoảng 45°, 90° so với ngọn lửa: thấy góc phát hiện có hạn.
-5. **Không cần lửa**: chĩa remote TV/remote kit vào mắt cảm biến và bấm giữ một nút. `A0` dao động, `L2` nháy theo xung hồng ngoại của remote. Thử thêm: hướng ra cửa sổ có nắng, hoặc lại gần bóng đèn sợi đốt.
+3. **Đưa lại gần ~20 cm**: `A0` đổi nhiều hơn. Khi vượt ngưỡng, `L2` sáng và `D0` đổi mức. Ghi lại `D0` lúc có lửa là `0` hay `1`.
+4. **Xoay mắt cảm biến lệch** 45°, 90° so với ngọn lửa để thấy góc phát hiện có hạn.
+5. **Không cần lửa**: bấm giữ một nút remote chĩa vào mắt cảm biến. `A0` dao động, `L2` nháy theo xung hồng ngoại. Thử thêm với cửa sổ có nắng hoặc bóng đèn sợi đốt.
 
 Ghi kết quả bước 3 vào hằng số dùng cho Test 3:
 
@@ -148,11 +129,19 @@ const bool FLAME_D_ACTIVE = LOW;    // D0 lúc CÓ lửa (bước 3). Module tro
 
 Chiều của `A0` không cần ghi: Test 2 tự đo mức nền nên chạy được với cả hai chiều.
 
-**Chỉnh ngưỡng `D0`**: đặt ngọn lửa ở khoảng cách muốn bắt đầu báo (ví dụ 40 cm), vặn biến trở từ từ tới đúng lúc `L2` vừa sáng. Từ giờ, lửa ở gần hơn khoảng đó là `D0` báo. Vặn quá nhạy thì `L2` sáng cả khi không có lửa (do ánh sáng phòng).
+#### Chỉnh ngưỡng `D0`
 
-### Test 1b – `D0` bật LED
+Đặt ngọn lửa ở khoảng cách muốn bắt đầu báo (ví dụ 40 cm), vặn biến trở từ từ tới đúng lúc `L2` vừa sáng. Từ đó, lửa ở gần hơn khoảng này sẽ làm `D0` báo. Vặn quá nhạy thì `L2` sáng cả khi không có lửa (do ánh sáng phòng).
 
-Mạch nhỏ nhất: chỉ module và một LED (qua điện trở 220 Ω vào `D6`), chưa cần buzzer hay `A0`. LED trên breadboard sáng tắt giống hệt đèn báo lửa trên module, vì cả hai cùng theo `D0`.
+:::
+
+### Test 1b – `D0` bật LED {#test-1b}
+
+Mạch nhỏ nhất: module và một LED (qua 220 Ω vào `D6`). LED trên breadboard sáng tắt giống hệt `L2` trên module vì cả hai cùng theo `D0`.
+
+::: {.panel-tabset}
+
+#### Code
 
 ```cpp
 const int FLAME_D = 2;     // chân D0 của KY-026
@@ -177,19 +166,25 @@ void loop() {
 }
 ```
 
-<video controls playsinline preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+#### Kết quả
+
+<video class="lab-video" controls playsinline preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg">
   <source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
 </video>
 
-Mạch thật chạy code trên, thử bằng **remote hồng ngoại** thay cho lửa:
+- Bấm giữ nút remote chĩa vào mắt đen: **đèn báo lửa trên module** và **LED trên breadboard** cùng sáng. Thả nút thì cả hai tắt.
+- Module trong kit kéo `D0` xuống `LOW` khi có hồng ngoại, nên `FLAME_ACTIVE = LOW`. Để `HIGH` thì kết quả ngược lại: Serial báo "CO LUA" suốt khi không có gì.
+- Remote bắt được mà lửa không bắt được thì module vẫn tốt, vì remote ở gần phát hồng ngoại mạnh hơn nhiều. Lau muội trên mắt đen, đưa lửa vào 10–15 cm, rồi vặn biến trở tới khi đèn báo vừa sáng.
 
-- Bấm giữ một nút remote, chĩa vào mắt đen của module: **đèn báo lửa trên module sáng xanh** và **LED xanh lá trên breadboard** sáng theo. Thả nút thì cả hai tắt.
-- Với module trong kit, `D0` xuống `LOW` khi có hồng ngoại, nên `FLAME_ACTIVE = LOW`. Để `HIGH` thì kết quả ngược lại: Serial báo "CO LUA" suốt khi không có gì.
-- Remote đặt gần phát hồng ngoại mạnh hơn nhiều so với ngọn lửa bật lửa ở xa. Remote bắt được mà lửa không bắt được thì module vẫn tốt: lau muội trên mắt đen, đưa lửa vào khoảng 10–15 cm ngay trước mắt, rồi vặn biến trở tới khi đèn báo vừa sáng.
+:::
 
-### Test 2 – đo độ mạnh ngọn lửa bằng `A0`
+### Test 2 – đo độ mạnh ngọn lửa bằng `A0` {#test-2}
 
-`D0` chỉ nói "có / không". `A0` cho biết ngọn lửa **gần hay xa, to hay nhỏ**. Nhưng giá trị thô phụ thuộc ánh sáng phòng, nên code **đo mức nền** khi khởi động (lúc chắc chắn không có lửa) rồi tính độ lệch so với nền.
+`D0` chỉ nói "có / không", còn `A0` cho biết lửa **gần hay xa, to hay nhỏ**. Giá trị thô phụ thuộc ánh sáng phòng, nên code **đo mức nền** lúc khởi động rồi tính độ lệch so với nền.
+
+::: {.panel-tabset}
+
+#### Code
 
 ```cpp
 const int FLAME_A = A0;
@@ -233,18 +228,26 @@ void loop() {
 }
 ```
 
-- Mở **Tools → Serial Plotter** thay vì Serial Monitor: thấy đường `A0` nhảy lên/xuống mỗi khi bật lửa, `baseline` là đường thẳng ngang.
-- Đưa ngọn lửa ra xa dần từng 10 cm và ghi `percent`: số giảm rất nhanh theo khoảng cách (cường độ ánh sáng giảm theo bình phương khoảng cách), nên không dùng được để **đo** khoảng cách chính xác, chỉ để so "gần hơn / xa hơn".
-- Nhấn nút reset trên Uno lúc đang để lửa trước cảm biến: `baseline` sai, `percent` gần 0 khi có lửa và tăng khi tắt lửa. Đây là lý do code in lời nhắc lúc khởi động.
+#### Cách thử
 
-### Test 3 – báo cháy bằng LED và buzzer
+- Mở **Tools → Serial Plotter**: đường `A0` nhảy lên/xuống mỗi khi bật lửa, `baseline` là đường ngang.
+- Đưa lửa ra xa dần từng 10 cm và ghi `percent`. Số giảm rất nhanh theo khoảng cách (cường độ giảm theo bình phương khoảng cách), nên chỉ dùng để so "gần hơn / xa hơn", không đo được khoảng cách chính xác.
+- Nhấn reset trên Uno lúc đang để lửa trước cảm biến: `baseline` sai, `percent` gần 0 khi có lửa và tăng khi tắt lửa. Vì vậy code in lời nhắc lúc khởi động.
 
-Mạch báo cháy đơn giản nhưng có hai chi tiết của hệ thống thật:
+:::
 
-- **Chống báo động giả**: chỉ báo khi thấy lửa **liên tục ≥ 300 ms**. Một tia nắng lóe qua, một lần bấm remote ngắn không đủ để kích hoạt.
-- **Giữ báo động**: báo động kéo dài thêm **3 giây** sau khi hết thấy lửa, tránh tình trạng ngọn lửa chập chờn làm còi tắt bật liên tục.
+### Test 3 – báo cháy bằng LED và buzzer {#test-3}
 
-Code dùng cả hai ngõ ra: có lửa khi `D0` báo **hoặc** `A0` lệch nền quá `A_THRESHOLD`. Còi kêu ngắt quãng bằng `millis()`, không dùng `delay()`, nên vẫn đọc cảm biến liên tục trong lúc báo động.
+Mạch báo cháy có hai chi tiết của hệ thống thật:
+
+- **Chống báo động giả**: chỉ báo khi thấy lửa **liên tục ≥ 300 ms**, nên tia nắng lóe qua hay một lần bấm remote ngắn không kích hoạt được.
+- **Giữ báo động** thêm **3 giây** sau khi hết lửa, để ngọn lửa chập chờn không làm còi tắt bật liên tục.
+
+::: {.panel-tabset}
+
+#### Code
+
+Có lửa khi `D0` báo **hoặc** `A0` lệch nền quá `A_THRESHOLD`. Còi kêu ngắt quãng bằng `millis()` thay vì `delay()`, nên vẫn đọc cảm biến liên tục trong lúc báo động.
 
 ```cpp
 const int FLAME_A = A0;
@@ -325,15 +328,54 @@ void loop() {
 }
 ```
 
-Thử:
+#### Nối thêm
 
-- Bật lửa **chưa tới 0,3 giây** rồi tắt ngay: không báo. Giữ lâu hơn: báo.
+| Linh kiện | Nối |
+|---|---|
+| LED đỏ: chân dài (+) | `D6` qua điện trở 220 Ω |
+| LED đỏ: chân ngắn (−) | `GND` |
+| Buzzer: chân `+` (dài) | `D7` |
+| Buzzer: chân `−` | `GND` |
+
+#### Cách thử
+
+- Bật lửa **chưa tới 0,3 giây** rồi tắt ngay thì không báo; giữ lâu hơn thì báo.
 - Tắt lửa: còi còn kêu thêm 3 giây rồi mới tắt.
-- Bấm remote một cái ngắn: không báo. Bấm giữ remote: có thể báo, vì với cảm biến, remote cũng là "lửa".
+- Bấm remote một cái ngắn: không báo. Bấm giữ: có thể báo, vì với cảm biến, remote cũng là "lửa".
 - Nâng `A_THRESHOLD` lên `300` để chỉ báo khi lửa gần; hạ xuống `60` để nhạy hơn (dễ báo nhầm hơn).
-- Buzzer **active** (có mạch dao động bên trong) vẫn kêu với `tone()`, chỉ không đổi cao độ. Có thể thay `tone(BUZZER, 2000)` / `noTone(BUZZER)` bằng `digitalWrite(BUZZER, HIGH/LOW)`.
+- Buzzer **active** vẫn kêu với `tone()`, chỉ không đổi cao độ. Có thể thay `tone()` / `noTone()` bằng `digitalWrite(BUZZER, HIGH/LOW)`.
 
-## Ứng dụng và giới hạn
+:::
+
+## Tìm hiểu thêm
+
+::: {.callout-note collapse="true"}
+## Cảm biến lửa hoạt động thế nào
+
+Ngọn lửa không chỉ phát ánh sáng nhìn thấy mà còn phát rất mạnh ở vùng **hồng ngoại gần** (bước sóng ~760–1100 nm). Mắt cảm biến của KY-026 là một **photodiode/phototransistor hồng ngoại** vỏ đen; nhựa đen lọc bớt ánh sáng nhìn thấy, chỉ cho hồng ngoại đi qua. Càng nhiều hồng ngoại chiếu vào, dòng qua nó càng lớn và điện áp ở chân analog càng thay đổi nhiều.
+
+Điện áp đó được đưa tới hai nơi:
+
+1. Thẳng ra chân **`A0`**: ngõ ra **analog**, Arduino đọc bằng `analogRead()` (0–1023) để biết lửa gần hay xa, to hay nhỏ.
+2. Vào IC so sánh **LM393**, so với điện áp do **biến trở xanh** đặt ra: ngõ ra **digital** `D0` chỉ có hai mức "có lửa / không có lửa". Khi vượt ngưỡng, LED `L2` trên module sáng.
+
+Vì đo hồng ngoại nên cảm biến **không phân biệt được** lửa thật với các nguồn hồng ngoại khác như **ánh nắng**, **bóng đèn sợi đốt / halogen**, **remote TV** hay bếp điện đang đỏ. Đèn LED và đèn huỳnh quang phát rất ít hồng ngoại nên ít gây nhiễu.
+:::
+
+::: {.callout-note collapse="true"}
+## Nhìn module
+
+Từ đầu xa hàng chân vào:
+
+- **Mắt cảm biến**: "bóng LED" **vỏ đen** 5 mm, chân dài để bẻ cong hướng mắt về phía cần canh. Nó không bao giờ sáng, đừng nhầm với LED.
+- **Biến trở xanh** (hộp vuông có vít đồng): vặn để đổi ngưỡng của `D0`.
+- **IC LM393** (8 chân), các điện trở dán và hai LED `L1`, `L2`.
+
+**KY-026 và module lửa "4 chân" khác:** loại bo xanh dương ghi `AO DO GND VCC` (thường in "Flame sensor") dùng cùng sơ đồ LM393, nhưng **mức logic của `D0` có thể ngược**. Loại này kéo `D0` xuống `LOW` khi có lửa, một số board KY-026 lại đưa `D0` lên `HIGH`. Chiều thay đổi của `A0` cũng tùy cách mắc phototransistor. Vì vậy [Test 1](#test-1) cho bạn tự xác định trên module trong kit.
+:::
+
+::: {.callout-note collapse="true"}
+## Ứng dụng, giới hạn và mở rộng
 
 | | Cảm biến lửa IR (KY-026) | Đầu báo khói | Cảm biến nhiệt (DHT11, [Lab 3](dht11.md)) |
 |---|---|---|---|
@@ -343,13 +385,14 @@ Thử:
 | Báo nhầm với | Nắng, đèn sợi đốt, remote | Hơi nước, bụi | Máy sưởi, nắng chiếu |
 | Lửa âm ỉ không ngọn | Không thấy | Thấy | Thấy (chậm) |
 
-Hệ thống thật thường **kết hợp** nhiều loại: robot chữa cháy dùng vài mắt hồng ngoại xếp vòng cung để biết lửa ở bên trái hay phải rồi quay về phía đó; lò đốt gas dùng cảm biến lửa để ngắt van khi ngọn lửa tắt.
+Hệ thống thật thường **kết hợp** nhiều loại. Robot chữa cháy dùng vài mắt hồng ngoại xếp vòng cung để biết lửa ở bên trái hay phải rồi quay về phía đó; lò đốt gas dùng cảm biến lửa để ngắt van khi ngọn lửa tắt.
 
 Mở rộng gợi ý:
 
-- Gắn hai module KY-026 lệch nhau ~45°, so `percent` của hai bên để biết lửa nằm bên nào, rồi cho servo ([Lab 4](servo-sg90.md)) quay về phía đó.
+- Gắn hai module KY-026 lệch nhau ~45°, so `percent` hai bên để biết lửa nằm bên nào, rồi cho servo ([Lab 4](servo-sg90.md)) quay về phía đó.
 - Hiển thị `percent` lên LCD I²C ([Lab 2](lcd-i2c.md)) hoặc LED 7 đoạn ([Lab 15](seven-segment-1-digit.md)).
 - Gửi cảnh báo lên dashboard qua hệ 3 tầng ở [Lab 9](sensor-edge-cloud.md).
+:::
 
 ## Lỗi hay gặp
 
