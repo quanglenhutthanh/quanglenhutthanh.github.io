@@ -82,7 +82,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f7b4dd7c00d09131344c922f6194db6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-6d134d386e80d0188abb3d197e375917.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -168,21 +171,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#lab-17-cảm-biến-lửa-ky-026" id="toc-lab-17-cảm-biến-lửa-ky-026" class="nav-link active" data-scroll-target="#lab-17-cảm-biến-lửa-ky-026">Lab 17 · Cảm biến lửa KY-026</a>
   <ul class="collapse">
-  <li><a href="#cảm-biến-lửa-hoạt-động-thế-nào" id="toc-cảm-biến-lửa-hoạt-động-thế-nào" class="nav-link" data-scroll-target="#cảm-biến-lửa-hoạt-động-thế-nào">Cảm biến lửa hoạt động thế nào</a>
-  <ul class="collapse">
-  <li><a href="#nhìn-module" id="toc-nhìn-module" class="nav-link" data-scroll-target="#nhìn-module">Nhìn module</a></li>
-  </ul></li>
-  <li><a href="#linh-kiện" id="toc-linh-kiện" class="nav-link" data-scroll-target="#linh-kiện">Linh kiện</a></li>
-  <li><a href="#nối-dây" id="toc-nối-dây" class="nav-link" data-scroll-target="#nối-dây">Nối dây</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
-  <ul class="collapse">
-  <li><a href="#test-1-đọc-hai-ngõ-ra" id="toc-test-1-đọc-hai-ngõ-ra" class="nav-link" data-scroll-target="#test-1-đọc-hai-ngõ-ra">Test 1 – đọc hai ngõ ra</a></li>
-  <li><a href="#test-1b-d0-bật-led" id="toc-test-1b-d0-bật-led" class="nav-link" data-scroll-target="#test-1b-d0-bật-led">Test 1b – <code>D0</code> bật LED</a></li>
-  <li><a href="#test-2-đo-độ-mạnh-ngọn-lửa-bằng-a0" id="toc-test-2-đo-độ-mạnh-ngọn-lửa-bằng-a0" class="nav-link" data-scroll-target="#test-2-đo-độ-mạnh-ngọn-lửa-bằng-a0">Test 2 – đo độ mạnh ngọn lửa bằng <code>A0</code></a></li>
-  <li><a href="#test-3-báo-cháy-bằng-led-và-buzzer" id="toc-test-3-báo-cháy-bằng-led-và-buzzer" class="nav-link" data-scroll-target="#test-3-báo-cháy-bằng-led-và-buzzer">Test 3 – báo cháy bằng LED và buzzer</a></li>
-  </ul></li>
-  <li><a href="#ứng-dụng-và-giới-hạn" id="toc-ứng-dụng-và-giới-hạn" class="nav-link" data-scroll-target="#ứng-dụng-và-giới-hạn">Ứng dụng và giới hạn</a></li>
-  <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
+  <li><a href="#tổng-quan" id="toc-tổng-quan" class="nav-link" data-scroll-target="#tổng-quan">Tổng quan</a></li>
+  <li><a href="#sơ-đồ-và-mạch-thực-tế" id="toc-sơ-đồ-và-mạch-thực-tế" class="nav-link" data-scroll-target="#sơ-đồ-và-mạch-thực-tế">Sơ đồ và mạch thực tế</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -218,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="lab-17-cảm-biến-lửa-ky-026" class="level1">
 <h1>Lab 17 · Cảm biến lửa KY-026</h1>
 <blockquote class="blockquote">
-<p>Đọc module cảm biến lửa (flame sensor) KY-026 với Arduino Uno: hiểu vì sao nó “thấy” được ngọn lửa, đọc cả ngõ ra <strong>analog</strong> lẫn <strong>digital</strong>, chỉnh ngưỡng bằng biến trở trên module, đo “độ mạnh” ngọn lửa, rồi làm mạch báo cháy bằng LED và buzzer có chống báo động giả. Module dùng chung ý tưởng với cảm biến hồng ngoại FC-51 ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a> và cách đọc analog/ngưỡng giống cảm biến nước ở <a href="../../../courses/iot/labs/water-sensor.html">Lab 11</a>.</p>
+<p>Đọc module cảm biến lửa KY-026 với Arduino Uno qua cả ngõ ra <strong>analog</strong> (<code>A0</code>) lẫn <strong>digital</strong> (<code>D0</code>). Sau đó chỉnh ngưỡng bằng biến trở, đo “độ mạnh” ngọn lửa, rồi làm mạch báo cháy bằng LED và buzzer có chống báo động giả. Module dùng chung ý tưởng với cảm biến hồng ngoại FC-51 ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a>; cách đọc analog và ngưỡng giống cảm biến nước ở <a href="../../../courses/iot/labs/water-sensor.html">Lab 11</a>.</p>
 </blockquote>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -232,226 +222,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <ul>
 <li>Chỉ dùng <strong>bật lửa</strong> hoặc <strong>một cây nến</strong> nhỏ, bật/thắp trong vài giây rồi tắt. Không thử với giấy, cồn hay bất kỳ thứ gì có thể bắt lửa lan ra.</li>
-<li>Làm trên bàn trống, giữ ngọn lửa cách module <strong>ít nhất 20 cm</strong>. Module, dây cắm và breadboard bằng nhựa: hơ sát sẽ chảy.</li>
-<li>Có thể làm gần hết lab <strong>không cần lửa</strong>: remote hồng ngoại ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a> cũng làm cảm biến phản ứng (xem <a href="#test-1--đọc-hai-ngõ-ra">Test 1</a>).</li>
+<li>Làm trên bàn trống, giữ ngọn lửa cách module <strong>ít nhất 20 cm</strong>. Module, dây cắm và breadboard bằng nhựa nên hơ sát sẽ chảy.</li>
+<li>Có thể làm gần hết lab <strong>không cần lửa</strong>: remote hồng ngoại ở <a href="../../../courses/iot/labs/infrared-remote-fc51.html">Lab 8</a> cũng làm cảm biến phản ứng (xem <a href="#test-1">Test 1</a>).</li>
 <li>Đây là module học tập, <strong>không thay được đầu báo cháy thật</strong>: nó không phát hiện khói, không thấy lửa bị che khuất và báo nhầm với ánh nắng.</li>
 </ul>
 </div>
 </div>
-<section id="cảm-biến-lửa-hoạt-động-thế-nào" class="level2">
-<h2 class="anchored" data-anchor-id="cảm-biến-lửa-hoạt-động-thế-nào">Cảm biến lửa hoạt động thế nào</h2>
-<p>Ngọn lửa không chỉ phát ánh sáng nhìn thấy mà còn phát rất mạnh ở vùng <strong>hồng ngoại gần</strong> (bước sóng ~760–1100 nm). Mắt cảm biến của KY-026 là một <strong>photodiode/phototransistor hồng ngoại</strong> vỏ đen (nhựa đen lọc bớt ánh sáng nhìn thấy, chỉ cho hồng ngoại đi qua). Càng nhiều hồng ngoại chiếu vào, dòng qua nó càng lớn, điện áp ở chân analog càng thay đổi nhiều.</p>
-<p>Điện áp đó được đưa tới hai nơi:</p>
-<ol type="1">
-<li>Thẳng ra chân <strong><code>A0</code></strong> → ngõ ra <strong>analog</strong>, Arduino đọc bằng <code>analogRead()</code> (0–1023), thấy được lửa gần hay xa, to hay nhỏ.</li>
-<li>Vào IC so sánh <strong>LM393</strong>, so với điện áp do <strong>biến trở xanh</strong> trên module đặt ra → ngõ ra <strong>digital</strong> <code>D0</code>: chỉ có hai mức “có lửa / không có lửa”. Khi vượt ngưỡng, LED <code>L2</code> trên module cũng sáng.</li>
-</ol>
-<p>Vì đo hồng ngoại nên cảm biến <strong>không phân biệt được</strong> lửa thật với các nguồn hồng ngoại khác: <strong>ánh nắng</strong>, <strong>bóng đèn sợi đốt / đèn halogen</strong>, <strong>remote TV</strong>, bếp điện đang đỏ. Đèn LED và đèn huỳnh quang phát rất ít hồng ngoại nên ít gây nhiễu.</p>
+<section id="tổng-quan" class="level2">
+<h2 class="anchored" data-anchor-id="tổng-quan">Tổng quan</h2>
+<div class="quarto-layout-panel" data-layout="[48,52]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 48.0%;justify-content: center;">
+<p><strong>Sơ đồ chân và nối dây</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Thông số</th>
-<th>Giá trị điển hình</th>
+<th style="text-align: left;">Chân</th>
+<th style="text-align: left;">Nối Uno</th>
+<th style="text-align: left;">Ý nghĩa</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Điện áp hoạt động</td>
-<td>3,3–5 V</td>
+<td style="text-align: left;"><code>A0</code></td>
+<td style="text-align: left;"><code>A0</code></td>
+<td style="text-align: left;">Ngõ ra analog (0–1023)</td>
 </tr>
 <tr class="even">
-<td>Bước sóng nhạy</td>
-<td>~760–1100 nm (đỉnh ~940 nm)</td>
+<td style="text-align: left;"><code>G</code></td>
+<td style="text-align: left;"><code>GND</code></td>
+<td style="text-align: left;">Mass</td>
 </tr>
 <tr class="odd">
-<td>Góc phát hiện</td>
-<td>~60° phía trước mắt cảm biến</td>
+<td style="text-align: left;"><code>+</code></td>
+<td style="text-align: left;"><code>5V</code></td>
+<td style="text-align: left;">Nguồn</td>
 </tr>
 <tr class="even">
-<td>Khoảng cách phát hiện</td>
-<td>~20 cm – 1 m với bật lửa (tùy ngưỡng và độ sáng phòng)</td>
+<td style="text-align: left;"><code>D0</code></td>
+<td style="text-align: left;"><code>2</code></td>
+<td style="text-align: left;">Ngõ ra digital (sau LM393)</td>
 </tr>
 <tr class="odd">
-<td>IC so sánh</td>
-<td>LM393</td>
+<td style="text-align: left;">LED đỏ (+)</td>
+<td style="text-align: left;"><code>D6</code> qua 220 Ω</td>
+<td style="text-align: left;">Test 1b, 3</td>
 </tr>
 <tr class="even">
-<td>Ngõ ra</td>
-<td><code>A0</code> analog + <code>D0</code> digital (ngưỡng chỉnh bằng biến trở)</td>
-</tr>
-<tr class="odd">
-<td>LED trên module</td>
-<td><code>L1</code> nguồn, <code>L2</code> sáng khi <code>D0</code> báo có lửa</td>
+<td style="text-align: left;">Buzzer (+)</td>
+<td style="text-align: left;"><code>D7</code></td>
+<td style="text-align: left;">Test 3</td>
 </tr>
 </tbody>
 </table>
-<section id="nhìn-module" class="level3">
-<h3 class="anchored" data-anchor-id="nhìn-module">Nhìn module</h3>
-<p>Module có <strong>4 chân</strong>, theo thứ tự in trên board:</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 52.0%;justify-content: center;">
+<p><strong>Thông số</strong></p>
 <table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Chân</th>
-<th>Ý nghĩa</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
-<td><code>A0</code></td>
-<td>Ngõ ra analog</td>
+<td style="text-align: left;">Điện áp</td>
+<td style="text-align: left;">3,3–5 V</td>
 </tr>
 <tr class="even">
-<td><code>G</code></td>
-<td>GND</td>
+<td style="text-align: left;">Bước sóng nhạy</td>
+<td style="text-align: left;">~760–1100 nm (đỉnh ~940 nm)</td>
 </tr>
 <tr class="odd">
-<td><code>+</code></td>
-<td>Nguồn 5 V</td>
+<td style="text-align: left;">Góc / tầm phát hiện</td>
+<td style="text-align: left;">~60° · 20 cm – 1 m (bật lửa)</td>
 </tr>
 <tr class="even">
-<td><code>D0</code></td>
-<td>Ngõ ra digital (sau LM393)</td>
+<td style="text-align: left;">IC so sánh</td>
+<td style="text-align: left;">LM393, ngưỡng chỉnh bằng biến trở xanh</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LED trên module</td>
+<td style="text-align: left;"><code>L1</code> nguồn · <code>L2</code> sáng khi <code>D0</code> báo lửa</td>
 </tr>
 </tbody>
 </table>
-<p>Trên board, từ đầu xa hàng chân vào:</p>
-<ul>
-<li><strong>Mắt cảm biến</strong>: một “bóng LED” <strong>vỏ đen</strong> 5 mm, chân dài để có thể bẻ cong hướng mắt về phía cần canh. Đừng nhầm với LED: nó không bao giờ sáng.</li>
-<li><strong>Biến trở xanh</strong> (hộp vuông có vít đồng): vặn để đổi ngưỡng của <code>D0</code>.</li>
-<li><strong>IC LM393</strong> (8 chân), các điện trở dán và hai LED <code>L1</code>, <code>L2</code>.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>KY-026 và module cảm biến lửa “4 chân” khác
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Ngoài KY-026 còn có loại module lửa 4 chân bo xanh dương ghi <code>AO DO GND VCC</code> (thường in “Flame sensor”), cùng sơ đồ LM393 nhưng <strong>mức logic của <code>D0</code> có thể ngược nhau</strong>: loại này kéo <code>D0</code> xuống <code>LOW</code> khi có lửa, một số board KY-026 lại đưa <code>D0</code> lên <code>HIGH</code>. Chiều thay đổi của <code>A0</code> cũng tùy cách mắc phototransistor trên board. Vì vậy lab này <strong>không đoán trước</strong>: Test 1 cho bạn tự xác định trên module trong kit, rồi ghi vào hằng số ở đầu code.</p>
 </div>
-</div>
+<p><strong>Linh kiện:</strong> Arduino Uno + cáp USB · module KY-026 · LED đỏ + điện trở 220 Ω · buzzer (active hoặc passive) · breadboard, dây đực–đực, đực–cái · bật lửa/nến hoặc remote hồng ngoại để thử.</p>
 </section>
-</section>
-<section id="linh-kiện" class="level2">
-<h2 class="anchored" data-anchor-id="linh-kiện">Linh kiện</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Linh kiện</th>
-<th>Số lượng</th>
-<th>Dùng ở</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Arduino Uno + cáp USB</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Module cảm biến lửa KY-026</td>
-<td>1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>LED đỏ + điện trở 220 Ω</td>
-<td>1</td>
-<td>Test 3</td>
-</tr>
-<tr class="even">
-<td>Buzzer (active hoặc passive)</td>
-<td>1</td>
-<td>Test 3</td>
-</tr>
-<tr class="odd">
-<td>Breadboard, dây đực–đực, dây đực–cái</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Bật lửa hoặc nến (hoặc remote hồng ngoại)</td>
-<td>1</td>
-<td>để thử</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="nối-dây" class="level2">
-<h2 class="anchored" data-anchor-id="nối-dây">Nối dây</h2>
-<p>Module có chân đực, nối sang Uno bằng dây <strong>đực–cái</strong>. LED và buzzer cắm trên breadboard, lấy GND chung từ thanh <code>−</code>.</p>
+<section id="sơ-đồ-và-mạch-thực-tế" class="level2">
+<h2 class="anchored" data-anchor-id="sơ-đồ-và-mạch-thực-tế">Sơ đồ và mạch thực tế</h2>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/flame-ky026-wiring.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Sơ đồ nối KY-026 với Arduino Uno: A0 → A0, D0 → D2, + và G vào thanh nguồn breadboard; LED đỏ qua điện trở 220 Ω vào D6, buzzer vào D7</figcaption>
+<p><a href="../assets/flame-ky026-wiring.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Sơ đồ nối: A0 → A0, D0 → D2, +/G vào thanh nguồn; LED đỏ qua 220 Ω vào D6, buzzer vào D7"><img src="../assets/flame-ky026-wiring.svg" class="img-fluid figure-img" alt="Sơ đồ nối: A0 → A0, D0 → D2, +/G vào thanh nguồn; LED đỏ qua 220 Ω vào D6, buzzer vào D7"></a></p>
+<figcaption>Sơ đồ nối: <code>A0</code> → <code>A0</code>, <code>D0</code> → <code>D2</code>, <code>+</code>/<code>G</code> vào thanh nguồn; LED đỏ qua 220 Ω vào <code>D6</code>, buzzer vào <code>D7</code></figcaption>
 </figure>
 </div>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Module KY-026</th>
-<th>Nối Arduino</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>A0</code></td>
-<td><code>A0</code></td>
-</tr>
-<tr class="even">
-<td><code>G</code></td>
-<td><code>GND</code></td>
-</tr>
-<tr class="odd">
-<td><code>+</code></td>
-<td><code>5V</code></td>
-</tr>
-<tr class="even">
-<td><code>D0</code></td>
-<td><code>2</code></td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Linh kiện Test 3</th>
-<th>Nối</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>LED đỏ: chân dài (+)</td>
-<td><code>D6</code> qua điện trở 220 Ω</td>
-</tr>
-<tr class="even">
-<td>LED đỏ: chân ngắn (−)</td>
-<td><code>GND</code></td>
-</tr>
-<tr class="odd">
-<td>Buzzer: chân <code>+</code> (dài)</td>
-<td><code>D7</code></td>
-</tr>
-<tr class="even">
-<td>Buzzer: chân <code>−</code></td>
-<td><code>GND</code></td>
-</tr>
-</tbody>
-</table>
-<p><code>D0</code> vào chân <code>2</code> để sau này có thể dùng ngắt ngoài (<code>attachInterrupt</code>) nếu muốn; chân digital nào cũng chạy được với code bên dưới.</p>
-<p><strong>Hướng mắt cảm biến</strong>: bẻ nhẹ chân mắt cảm biến cho nó <strong>nằm ngang, hướng ra phía trước</strong>, không chĩa lên trần (đèn trần và ánh sáng cửa sổ dễ gây nhiễu). Không bẻ đi bẻ lại nhiều lần, chân dễ gãy.</p>
-</section>
-<section id="code" class="level2">
-<h2 class="anchored" data-anchor-id="code">Code</h2>
-<section id="test-1-đọc-hai-ngõ-ra" class="level3">
-<h3 class="anchored" data-anchor-id="test-1-đọc-hai-ngõ-ra">Test 1 – đọc hai ngõ ra</h3>
-<p>In cả <code>A0</code> và <code>D0</code> lên Serial Monitor mỗi 200 ms để xem module phản ứng thế nào.</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<video class="lab-video" controls="" playsinline="" preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg">
+<source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
+</video>
+<p>Mạch thật chạy <a href="#test-1b">Test 1b</a>, thử bằng remote thay cho lửa</p>
+<p>:::</p>
+<p>::::</p>
+<ul>
+<li>Module có chân đực, nối sang Uno bằng dây <strong>đực–cái</strong>; LED và buzzer lấy GND chung từ thanh <code>−</code> của breadboard.</li>
+<li><strong>Hướng mắt cảm biến</strong> (bóng vỏ đen, không bao giờ sáng): bẻ nhẹ cho nằm ngang, hướng ra phía trước, không chĩa lên trần vì đèn và cửa sổ dễ gây nhiễu. Đừng bẻ đi bẻ lại vì chân dễ gãy.</li>
+<li><code>D0</code> vào chân <code>2</code> để có thể dùng ngắt ngoài (<code>attachInterrupt</code>) sau này; chân digital nào cũng chạy được với code bên dưới.</li>
+</ul>
+<section id="các-bài-test" class="level2">
+<h2 class="anchored" data-anchor-id="các-bài-test">Các bài test</h2>
+<section id="test-1" class="level3">
+<h3 class="anchored" data-anchor-id="test-1">Test 1 – đọc hai ngõ ra</h3>
+<p>In <code>A0</code> và <code>D0</code> lên Serial Monitor để xác định module trong kit phản ứng theo chiều nào. Kết quả được dùng cho các test sau.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Cách thử</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Chỉnh ngưỡng <code>D0</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_A <span class="op">=</span> A0<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_D <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -471,22 +359,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Mở Serial Monitor (9600 baud) và làm lần lượt:</p>
 <ol type="1">
-<li><strong>Không có lửa</strong>: ghi lại giá trị <code>A0</code> và <code>D0</code>. <code>L2</code> nên tắt. Nếu <code>L2</code> đang sáng sẵn, vặn biến trở (thường là ngược chiều kim đồng hồ) tới khi nó vừa tắt.</li>
+<li><strong>Không có lửa</strong>: ghi lại <code>A0</code> và <code>D0</code>. <code>L2</code> nên tắt. Nếu <code>L2</code> đang sáng sẵn, vặn biến trở (thường là ngược chiều kim đồng hồ) tới khi nó vừa tắt.</li>
 <li><strong>Bật lửa cách ~50 cm</strong>, trước mắt cảm biến: <code>A0</code> thay đổi rõ, ghi lại nó <strong>tăng hay giảm</strong>.</li>
-<li><strong>Đưa lại gần ~20 cm</strong>: <code>A0</code> thay đổi nhiều hơn nữa. Khi vượt ngưỡng, <code>L2</code> sáng và <code>D0</code> đổi mức, ghi lại <code>D0</code> lúc có lửa là <code>0</code> hay <code>1</code>.</li>
-<li><strong>Xoay mắt cảm biến lệch ra</strong> khoảng 45°, 90° so với ngọn lửa: thấy góc phát hiện có hạn.</li>
-<li><strong>Không cần lửa</strong>: chĩa remote TV/remote kit vào mắt cảm biến và bấm giữ một nút. <code>A0</code> dao động, <code>L2</code> nháy theo xung hồng ngoại của remote. Thử thêm: hướng ra cửa sổ có nắng, hoặc lại gần bóng đèn sợi đốt.</li>
+<li><strong>Đưa lại gần ~20 cm</strong>: <code>A0</code> đổi nhiều hơn. Khi vượt ngưỡng, <code>L2</code> sáng và <code>D0</code> đổi mức. Ghi lại <code>D0</code> lúc có lửa là <code>0</code> hay <code>1</code>.</li>
+<li><strong>Xoay mắt cảm biến lệch</strong> 45°, 90° so với ngọn lửa để thấy góc phát hiện có hạn.</li>
+<li><strong>Không cần lửa</strong>: bấm giữ một nút remote chĩa vào mắt cảm biến. <code>A0</code> dao động, <code>L2</code> nháy theo xung hồng ngoại. Thử thêm với cửa sổ có nắng hoặc bóng đèn sợi đốt.</li>
 </ol>
 <p>Ghi kết quả bước 3 vào hằng số dùng cho Test 3:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">bool</span> FLAME_D_ACTIVE <span class="op">=</span> LOW<span class="op">;</span>    <span class="co">// D0 lúc CÓ lửa (bước 3). Module trong kit: LOW</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Chiều của <code>A0</code> không cần ghi: Test 2 tự đo mức nền nên chạy được với cả hai chiều.</p>
-<p><strong>Chỉnh ngưỡng <code>D0</code></strong>: đặt ngọn lửa ở khoảng cách muốn bắt đầu báo (ví dụ 40 cm), vặn biến trở từ từ tới đúng lúc <code>L2</code> vừa sáng. Từ giờ, lửa ở gần hơn khoảng đó là <code>D0</code> báo. Vặn quá nhạy thì <code>L2</code> sáng cả khi không có lửa (do ánh sáng phòng).</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Đặt ngọn lửa ở khoảng cách muốn bắt đầu báo (ví dụ 40 cm), vặn biến trở từ từ tới đúng lúc <code>L2</code> vừa sáng. Từ đó, lửa ở gần hơn khoảng này sẽ làm <code>D0</code> báo. Vặn quá nhạy thì <code>L2</code> sáng cả khi không có lửa (do ánh sáng phòng).</p>
+</div>
+</div>
+</div>
 </section>
-<section id="test-1b-d0-bật-led" class="level3">
-<h3 class="anchored" data-anchor-id="test-1b-d0-bật-led">Test 1b – <code>D0</code> bật LED</h3>
-<p>Mạch nhỏ nhất: chỉ module và một LED (qua điện trở 220 Ω vào <code>D6</code>), chưa cần buzzer hay <code>A0</code>. LED trên breadboard sáng tắt giống hệt đèn báo lửa trên module, vì cả hai cùng theo <code>D0</code>.</p>
+<section id="test-1b" class="level3">
+<h3 class="anchored">Test 1b – <code>D0</code> bật LED</h3>
+<p>Mạch nhỏ nhất: module và một LED (qua 220 Ω vào <code>D6</code>). LED trên breadboard sáng tắt giống hệt <code>L2</code> trên module vì cả hai cùng theo <code>D0</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Kết quả</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_D <span class="op">=</span> <span class="dv">2</span><span class="op">;</span>     <span class="co">// chân D0 của KY-026</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> LED_PIN <span class="op">=</span> <span class="dv">6</span><span class="op">;</span>     <span class="co">// LED (qua điện trở 220 Ω)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -507,19 +406,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>flame <span class="op">?</span> <span class="st">"CO LUA"</span> <span class="op">:</span> <span class="st">"khong co lua"</span><span class="op">);</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<video controls="" playsinline="" preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<video class="lab-video" controls="" playsinline="" preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg">
 <source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
 </video>
-<p>Mạch thật chạy code trên, thử bằng <strong>remote hồng ngoại</strong> thay cho lửa:</p>
 <ul>
-<li>Bấm giữ một nút remote, chĩa vào mắt đen của module: <strong>đèn báo lửa trên module sáng xanh</strong> và <strong>LED xanh lá trên breadboard</strong> sáng theo. Thả nút thì cả hai tắt.</li>
-<li>Với module trong kit, <code>D0</code> xuống <code>LOW</code> khi có hồng ngoại, nên <code>FLAME_ACTIVE = LOW</code>. Để <code>HIGH</code> thì kết quả ngược lại: Serial báo “CO LUA” suốt khi không có gì.</li>
-<li>Remote đặt gần phát hồng ngoại mạnh hơn nhiều so với ngọn lửa bật lửa ở xa. Remote bắt được mà lửa không bắt được thì module vẫn tốt: lau muội trên mắt đen, đưa lửa vào khoảng 10–15 cm ngay trước mắt, rồi vặn biến trở tới khi đèn báo vừa sáng.</li>
+<li>Bấm giữ nút remote chĩa vào mắt đen: <strong>đèn báo lửa trên module</strong> và <strong>LED trên breadboard</strong> cùng sáng. Thả nút thì cả hai tắt.</li>
+<li>Module trong kit kéo <code>D0</code> xuống <code>LOW</code> khi có hồng ngoại, nên <code>FLAME_ACTIVE = LOW</code>. Để <code>HIGH</code> thì kết quả ngược lại: Serial báo “CO LUA” suốt khi không có gì.</li>
+<li>Remote bắt được mà lửa không bắt được thì module vẫn tốt, vì remote ở gần phát hồng ngoại mạnh hơn nhiều. Lau muội trên mắt đen, đưa lửa vào 10–15 cm, rồi vặn biến trở tới khi đèn báo vừa sáng.</li>
 </ul>
-</section>
-<section id="test-2-đo-độ-mạnh-ngọn-lửa-bằng-a0" class="level3">
-<h3 class="anchored" data-anchor-id="test-2-đo-độ-mạnh-ngọn-lửa-bằng-a0">Test 2 – đo độ mạnh ngọn lửa bằng <code>A0</code></h3>
-<p><code>D0</code> chỉ nói “có / không”. <code>A0</code> cho biết ngọn lửa <strong>gần hay xa, to hay nhỏ</strong>. Nhưng giá trị thô phụ thuộc ánh sáng phòng, nên code <strong>đo mức nền</strong> khi khởi động (lúc chắc chắn không có lửa) rồi tính độ lệch so với nền.</p>
+<p>:::</p>
+<section id="test-2" class="level3">
+<h3 class="anchored" data-anchor-id="test-2">Test 2 – đo độ mạnh ngọn lửa bằng <code>A0</code></h3>
+<p><code>D0</code> chỉ nói “có / không”, còn <code>A0</code> cho biết lửa <strong>gần hay xa, to hay nhỏ</strong>. Giá trị thô phụ thuộc ánh sáng phòng, nên code <strong>đo mức nền</strong> lúc khởi động rồi tính độ lệch so với nền.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Cách thử</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_A <span class="op">=</span> A0<span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> SAMPLES <span class="op">=</span> <span class="dv">50</span><span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -559,20 +463,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <ul>
-<li>Mở <strong>Tools → Serial Plotter</strong> thay vì Serial Monitor: thấy đường <code>A0</code> nhảy lên/xuống mỗi khi bật lửa, <code>baseline</code> là đường thẳng ngang.</li>
-<li>Đưa ngọn lửa ra xa dần từng 10 cm và ghi <code>percent</code>: số giảm rất nhanh theo khoảng cách (cường độ ánh sáng giảm theo bình phương khoảng cách), nên không dùng được để <strong>đo</strong> khoảng cách chính xác, chỉ để so “gần hơn / xa hơn”.</li>
-<li>Nhấn nút reset trên Uno lúc đang để lửa trước cảm biến: <code>baseline</code> sai, <code>percent</code> gần 0 khi có lửa và tăng khi tắt lửa. Đây là lý do code in lời nhắc lúc khởi động.</li>
+<li>Mở <strong>Tools → Serial Plotter</strong>: đường <code>A0</code> nhảy lên/xuống mỗi khi bật lửa, <code>baseline</code> là đường ngang.</li>
+<li>Đưa lửa ra xa dần từng 10 cm và ghi <code>percent</code>. Số giảm rất nhanh theo khoảng cách (cường độ giảm theo bình phương khoảng cách), nên chỉ dùng để so “gần hơn / xa hơn”, không đo được khoảng cách chính xác.</li>
+<li>Nhấn reset trên Uno lúc đang để lửa trước cảm biến: <code>baseline</code> sai, <code>percent</code> gần 0 khi có lửa và tăng khi tắt lửa. Vì vậy code in lời nhắc lúc khởi động.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
-<section id="test-3-báo-cháy-bằng-led-và-buzzer" class="level3">
-<h3 class="anchored" data-anchor-id="test-3-báo-cháy-bằng-led-và-buzzer">Test 3 – báo cháy bằng LED và buzzer</h3>
-<p>Mạch báo cháy đơn giản nhưng có hai chi tiết của hệ thống thật:</p>
+<section id="test-3" class="level3">
+<h3 class="anchored" data-anchor-id="test-3">Test 3 – báo cháy bằng LED và buzzer</h3>
+<p>Mạch báo cháy có hai chi tiết của hệ thống thật:</p>
 <ul>
-<li><strong>Chống báo động giả</strong>: chỉ báo khi thấy lửa <strong>liên tục ≥ 300 ms</strong>. Một tia nắng lóe qua, một lần bấm remote ngắn không đủ để kích hoạt.</li>
-<li><strong>Giữ báo động</strong>: báo động kéo dài thêm <strong>3 giây</strong> sau khi hết thấy lửa, tránh tình trạng ngọn lửa chập chờn làm còi tắt bật liên tục.</li>
+<li><strong>Chống báo động giả</strong>: chỉ báo khi thấy lửa <strong>liên tục ≥ 300 ms</strong>, nên tia nắng lóe qua hay một lần bấm remote ngắn không kích hoạt được.</li>
+<li><strong>Giữ báo động</strong> thêm <strong>3 giây</strong> sau khi hết lửa, để ngọn lửa chập chờn không làm còi tắt bật liên tục.</li>
 </ul>
-<p>Code dùng cả hai ngõ ra: có lửa khi <code>D0</code> báo <strong>hoặc</strong> <code>A0</code> lệch nền quá <code>A_THRESHOLD</code>. Còi kêu ngắt quãng bằng <code>millis()</code>, không dùng <code>delay()</code>, nên vẫn đọc cảm biến liên tục trong lúc báo động.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Nối thêm</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Cách thử</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>Có lửa khi <code>D0</code> báo <strong>hoặc</strong> <code>A0</code> lệch nền quá <code>A_THRESHOLD</code>. Còi kêu ngắt quãng bằng <code>millis()</code> thay vì <code>delay()</code>, nên vẫn đọc cảm biến liên tục trong lúc báo động.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_A <span class="op">=</span> A0<span class="op">;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_D <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> LED_PIN <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
@@ -649,67 +562,157 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  setAlarmOutputs<span class="op">(</span>alarm<span class="op">);</span></span>
 <span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Thử:</p>
-<ul>
-<li>Bật lửa <strong>chưa tới 0,3 giây</strong> rồi tắt ngay: không báo. Giữ lâu hơn: báo.</li>
-<li>Tắt lửa: còi còn kêu thêm 3 giây rồi mới tắt.</li>
-<li>Bấm remote một cái ngắn: không báo. Bấm giữ remote: có thể báo, vì với cảm biến, remote cũng là “lửa”.</li>
-<li>Nâng <code>A_THRESHOLD</code> lên <code>300</code> để chỉ báo khi lửa gần; hạ xuống <code>60</code> để nhạy hơn (dễ báo nhầm hơn).</li>
-<li>Buzzer <strong>active</strong> (có mạch dao động bên trong) vẫn kêu với <code>tone()</code>, chỉ không đổi cao độ. Có thể thay <code>tone(BUZZER, 2000)</code> / <code>noTone(BUZZER)</code> bằng <code>digitalWrite(BUZZER, HIGH/LOW)</code>.</li>
-</ul>
-</section>
-</section>
-<section id="ứng-dụng-và-giới-hạn" class="level2">
-<h2 class="anchored" data-anchor-id="ứng-dụng-và-giới-hạn">Ứng dụng và giới hạn</h2>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th></th>
-<th>Cảm biến lửa IR (KY-026)</th>
-<th>Đầu báo khói</th>
-<th>Cảm biến nhiệt (DHT11, <a href="../../../courses/iot/labs/dht11.html">Lab 3</a>)</th>
+<th style="text-align: left;">Linh kiện</th>
+<th style="text-align: left;">Nối</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Phát hiện</td>
-<td>Ánh sáng hồng ngoại của ngọn lửa</td>
-<td>Hạt khói trong không khí</td>
-<td>Nhiệt độ tăng</td>
+<td style="text-align: left;">LED đỏ: chân dài (+)</td>
+<td style="text-align: left;"><code>D6</code> qua điện trở 220 Ω</td>
 </tr>
 <tr class="even">
-<td>Tốc độ</td>
-<td>Gần như tức thì</td>
-<td>Vài giây – vài chục giây</td>
-<td>Chậm (phải đợi phòng nóng lên)</td>
+<td style="text-align: left;">LED đỏ: chân ngắn (−)</td>
+<td style="text-align: left;"><code>GND</code></td>
 </tr>
 <tr class="odd">
-<td>Cần “nhìn thấy” lửa</td>
-<td>Có, trong góc ~60°</td>
-<td>Không</td>
-<td>Không</td>
+<td style="text-align: left;">Buzzer: chân <code>+</code> (dài)</td>
+<td style="text-align: left;"><code>D7</code></td>
 </tr>
 <tr class="even">
-<td>Báo nhầm với</td>
-<td>Nắng, đèn sợi đốt, remote</td>
-<td>Hơi nước, bụi</td>
-<td>Máy sưởi, nắng chiếu</td>
-</tr>
-<tr class="odd">
-<td>Lửa âm ỉ không ngọn</td>
-<td>Không thấy</td>
-<td>Thấy</td>
-<td>Thấy (chậm)</td>
+<td style="text-align: left;">Buzzer: chân <code>−</code></td>
+<td style="text-align: left;"><code>GND</code></td>
 </tr>
 </tbody>
 </table>
-<p>Hệ thống thật thường <strong>kết hợp</strong> nhiều loại: robot chữa cháy dùng vài mắt hồng ngoại xếp vòng cung để biết lửa ở bên trái hay phải rồi quay về phía đó; lò đốt gas dùng cảm biến lửa để ngắt van khi ngọn lửa tắt.</p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<ul>
+<li>Bật lửa <strong>chưa tới 0,3 giây</strong> rồi tắt ngay thì không báo; giữ lâu hơn thì báo.</li>
+<li>Tắt lửa: còi còn kêu thêm 3 giây rồi mới tắt.</li>
+<li>Bấm remote một cái ngắn: không báo. Bấm giữ: có thể báo, vì với cảm biến, remote cũng là “lửa”.</li>
+<li>Nâng <code>A_THRESHOLD</code> lên <code>300</code> để chỉ báo khi lửa gần; hạ xuống <code>60</code> để nhạy hơn (dễ báo nhầm hơn).</li>
+<li>Buzzer <strong>active</strong> vẫn kêu với <code>tone()</code>, chỉ không đổi cao độ. Có thể thay <code>tone()</code> / <code>noTone()</code> bằng <code>digitalWrite(BUZZER, HIGH/LOW)</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="tìm-hiểu-thêm" class="level2">
+<h2 class="anchored" data-anchor-id="tìm-hiểu-thêm">Tìm hiểu thêm</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Cảm biến lửa hoạt động thế nào
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Ngọn lửa không chỉ phát ánh sáng nhìn thấy mà còn phát rất mạnh ở vùng <strong>hồng ngoại gần</strong> (bước sóng ~760–1100 nm). Mắt cảm biến của KY-026 là một <strong>photodiode/phototransistor hồng ngoại</strong> vỏ đen; nhựa đen lọc bớt ánh sáng nhìn thấy, chỉ cho hồng ngoại đi qua. Càng nhiều hồng ngoại chiếu vào, dòng qua nó càng lớn và điện áp ở chân analog càng thay đổi nhiều.</p>
+<p>Điện áp đó được đưa tới hai nơi:</p>
+<ol type="1">
+<li>Thẳng ra chân <strong><code>A0</code></strong>: ngõ ra <strong>analog</strong>, Arduino đọc bằng <code>analogRead()</code> (0–1023) để biết lửa gần hay xa, to hay nhỏ.</li>
+<li>Vào IC so sánh <strong>LM393</strong>, so với điện áp do <strong>biến trở xanh</strong> đặt ra: ngõ ra <strong>digital</strong> <code>D0</code> chỉ có hai mức “có lửa / không có lửa”. Khi vượt ngưỡng, LED <code>L2</code> trên module sáng.</li>
+</ol>
+<p>Vì đo hồng ngoại nên cảm biến <strong>không phân biệt được</strong> lửa thật với các nguồn hồng ngoại khác như <strong>ánh nắng</strong>, <strong>bóng đèn sợi đốt / halogen</strong>, <strong>remote TV</strong> hay bếp điện đang đỏ. Đèn LED và đèn huỳnh quang phát rất ít hồng ngoại nên ít gây nhiễu.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Nhìn module
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Từ đầu xa hàng chân vào:</p>
+<ul>
+<li><strong>Mắt cảm biến</strong>: “bóng LED” <strong>vỏ đen</strong> 5 mm, chân dài để bẻ cong hướng mắt về phía cần canh. Nó không bao giờ sáng, đừng nhầm với LED.</li>
+<li><strong>Biến trở xanh</strong> (hộp vuông có vít đồng): vặn để đổi ngưỡng của <code>D0</code>.</li>
+<li><strong>IC LM393</strong> (8 chân), các điện trở dán và hai LED <code>L1</code>, <code>L2</code>.</li>
+</ul>
+<p><strong>KY-026 và module lửa “4 chân” khác:</strong> loại bo xanh dương ghi <code>AO DO GND VCC</code> (thường in “Flame sensor”) dùng cùng sơ đồ LM393, nhưng <strong>mức logic của <code>D0</code> có thể ngược</strong>. Loại này kéo <code>D0</code> xuống <code>LOW</code> khi có lửa, một số board KY-026 lại đưa <code>D0</code> lên <code>HIGH</code>. Chiều thay đổi của <code>A0</code> cũng tùy cách mắc phototransistor. Vì vậy <a href="#test-1">Test 1</a> cho bạn tự xác định trên module trong kit.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Ứng dụng, giới hạn và mở rộng
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Cảm biến lửa IR (KY-026)</th>
+<th style="text-align: left;">Đầu báo khói</th>
+<th style="text-align: left;">Cảm biến nhiệt (DHT11, <a href="../../../courses/iot/labs/dht11.html">Lab 3</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Phát hiện</td>
+<td style="text-align: left;">Ánh sáng hồng ngoại của ngọn lửa</td>
+<td style="text-align: left;">Hạt khói trong không khí</td>
+<td style="text-align: left;">Nhiệt độ tăng</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tốc độ</td>
+<td style="text-align: left;">Gần như tức thì</td>
+<td style="text-align: left;">Vài giây – vài chục giây</td>
+<td style="text-align: left;">Chậm (phải đợi phòng nóng lên)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cần “nhìn thấy” lửa</td>
+<td style="text-align: left;">Có, trong góc ~60°</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">Không</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Báo nhầm với</td>
+<td style="text-align: left;">Nắng, đèn sợi đốt, remote</td>
+<td style="text-align: left;">Hơi nước, bụi</td>
+<td style="text-align: left;">Máy sưởi, nắng chiếu</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lửa âm ỉ không ngọn</td>
+<td style="text-align: left;">Không thấy</td>
+<td style="text-align: left;">Thấy</td>
+<td style="text-align: left;">Thấy (chậm)</td>
+</tr>
+</tbody>
+</table>
+<p>Hệ thống thật thường <strong>kết hợp</strong> nhiều loại. Robot chữa cháy dùng vài mắt hồng ngoại xếp vòng cung để biết lửa ở bên trái hay phải rồi quay về phía đó; lò đốt gas dùng cảm biến lửa để ngắt van khi ngọn lửa tắt.</p>
 <p>Mở rộng gợi ý:</p>
 <ul>
-<li>Gắn hai module KY-026 lệch nhau ~45°, so <code>percent</code> của hai bên để biết lửa nằm bên nào, rồi cho servo (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>) quay về phía đó.</li>
+<li>Gắn hai module KY-026 lệch nhau ~45°, so <code>percent</code> hai bên để biết lửa nằm bên nào, rồi cho servo (<a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a>) quay về phía đó.</li>
 <li>Hiển thị <code>percent</code> lên LCD I²C (<a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a>) hoặc LED 7 đoạn (<a href="../../../courses/iot/labs/seven-segment-1-digit.html">Lab 15</a>).</li>
 <li>Gửi cảnh báo lên dashboard qua hệ 3 tầng ở <a href="../../../courses/iot/labs/sensor-edge-cloud.html">Lab 9</a>.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
 <section id="lỗi-hay-gặp" class="level2">
 <h2 class="anchored" data-anchor-id="lỗi-hay-gặp">Lỗi hay gặp</h2>
@@ -720,59 +723,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <thead>
 <tr class="header">
-<th>Hiện tượng</th>
-<th>Nguyên nhân thường gặp</th>
+<th style="text-align: left;">Hiện tượng</th>
+<th style="text-align: left;">Nguyên nhân thường gặp</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>L1</code> không sáng</td>
-<td>Chưa có nguồn: kiểm tra <code>+</code> vào <code>5V</code>, <code>G</code> vào <code>GND</code></td>
+<td style="text-align: left;"><code>L1</code> không sáng</td>
+<td style="text-align: left;">Chưa có nguồn: kiểm tra <code>+</code> vào <code>5V</code>, <code>G</code> vào <code>GND</code></td>
 </tr>
 <tr class="even">
-<td><code>L2</code> sáng liên tục dù không có lửa</td>
-<td>Ngưỡng quá nhạy: vặn biến trở ngược lại. Hoặc mắt cảm biến đang hướng ra cửa sổ / đèn sợi đốt</td>
+<td style="text-align: left;"><code>L2</code> sáng liên tục dù không có lửa</td>
+<td style="text-align: left;">Ngưỡng quá nhạy: vặn biến trở ngược lại. Hoặc mắt cảm biến đang hướng ra cửa sổ / đèn sợi đốt</td>
 </tr>
 <tr class="odd">
-<td><code>L2</code> không bao giờ sáng, <code>A0</code> vẫn đổi khi có lửa</td>
-<td>Ngưỡng quá cao: vặn biến trở về phía nhạy hơn tới khi <code>L2</code> sáng với lửa ở ~30 cm</td>
+<td style="text-align: left;"><code>L2</code> không bao giờ sáng, <code>A0</code> vẫn đổi khi có lửa</td>
+<td style="text-align: left;">Ngưỡng quá cao: vặn biến trở về phía nhạy hơn tới khi <code>L2</code> sáng với lửa ở ~30 cm</td>
 </tr>
 <tr class="even">
-<td><code>A0</code> gần như không đổi khi có lửa</td>
-<td>Nhầm chân: dây <code>A0</code> của module đang cắm vào chân khác. Hoặc mắt cảm biến không hướng về ngọn lửa</td>
+<td style="text-align: left;"><code>A0</code> gần như không đổi khi có lửa</td>
+<td style="text-align: left;">Nhầm chân: dây <code>A0</code> của module đang cắm vào chân khác. Hoặc mắt cảm biến không hướng về ngọn lửa</td>
 </tr>
 <tr class="odd">
-<td><code>D0</code> luôn đọc cùng một giá trị dù <code>L2</code> có đổi</td>
-<td>Dây <code>D0</code> lỏng hoặc cắm nhầm chân <code>2</code>; kiểm tra <code>pinMode(FLAME_D, INPUT)</code></td>
+<td style="text-align: left;"><code>D0</code> luôn đọc cùng một giá trị dù <code>L2</code> có đổi</td>
+<td style="text-align: left;">Dây <code>D0</code> lỏng hoặc cắm nhầm chân <code>2</code>; kiểm tra <code>pinMode(FLAME_D, INPUT)</code></td>
 </tr>
 <tr class="even">
-<td>Remote làm đèn báo sáng nhưng bật lửa thì không</td>
-<td>Lửa ở xa yếu hơn remote rất nhiều. Lau muội trên mắt đen, đưa lửa vào 10–15 cm ngay trước mắt, vặn biến trở về phía nhạy hơn</td>
+<td style="text-align: left;">Remote làm đèn báo sáng nhưng bật lửa thì không</td>
+<td style="text-align: left;">Lửa ở xa yếu hơn remote rất nhiều. Lau muội trên mắt đen, đưa lửa vào 10–15 cm ngay trước mắt, vặn biến trở về phía nhạy hơn</td>
 </tr>
 <tr class="odd">
-<td>Test 1b: Serial báo “CO LUA” suốt dù không có lửa</td>
-<td><code>FLAME_ACTIVE</code> sai mức. Module trong kit cần <code>LOW</code></td>
+<td style="text-align: left;">Test 1b: Serial báo “CO LUA” suốt dù không có lửa</td>
+<td style="text-align: left;"><code>FLAME_ACTIVE</code> sai mức. Module trong kit cần <code>LOW</code></td>
 </tr>
 <tr class="even">
-<td>Test 3 báo ngược: báo khi <strong>không</strong> có lửa</td>
-<td><code>FLAME_D_ACTIVE</code> sai mức so với module trong kit, đổi <code>HIGH</code> ↔︎ <code>LOW</code></td>
+<td style="text-align: left;">Test 3 báo ngược: báo khi <strong>không</strong> có lửa</td>
+<td style="text-align: left;"><code>FLAME_D_ACTIVE</code> sai mức so với module trong kit, đổi <code>HIGH</code> ↔︎ <code>LOW</code></td>
 </tr>
 <tr class="odd">
-<td>Test 2/3: <code>percent</code> sai hoặc báo động ngay khi bật nguồn</td>
-<td>Lúc khởi động có lửa / nắng / đèn chiếu vào cảm biến nên <code>baseline</code> sai. Che bớt nguồn sáng rồi nhấn reset</td>
+<td style="text-align: left;">Test 2/3: <code>percent</code> sai hoặc báo động ngay khi bật nguồn</td>
+<td style="text-align: left;">Lúc khởi động có lửa / nắng / đèn chiếu vào cảm biến nên <code>baseline</code> sai. Che bớt nguồn sáng rồi nhấn reset</td>
 </tr>
 <tr class="even">
-<td>Báo nhầm khi trời nắng hoặc bật đèn</td>
-<td>Cảm biến đo hồng ngoại, không phân biệt được nguồn. Tăng <code>A_THRESHOLD</code>, tăng <code>CONFIRM_MS</code>, che chắn hai bên mắt cảm biến bằng ống nhỏ (thu hẹp góc nhìn)</td>
+<td style="text-align: left;">Báo nhầm khi trời nắng hoặc bật đèn</td>
+<td style="text-align: left;">Cảm biến đo hồng ngoại, không phân biệt được nguồn. Tăng <code>A_THRESHOLD</code>, tăng <code>CONFIRM_MS</code>, che chắn hai bên mắt cảm biến bằng ống nhỏ (thu hẹp góc nhìn)</td>
 </tr>
 <tr class="odd">
-<td>Còi kêu liên tục không tắt</td>
-<td><code>HOLD_MS</code> chưa hết hoặc ngọn lửa vẫn trong tầm nhìn. Nếu lửa đã tắt hẳn mà còi vẫn kêu, xem dòng trên (nguồn hồng ngoại khác)</td>
+<td style="text-align: left;">Còi kêu liên tục không tắt</td>
+<td style="text-align: left;"><code>HOLD_MS</code> chưa hết hoặc ngọn lửa vẫn trong tầm nhìn. Nếu lửa đã tắt hẳn mà còi vẫn kêu, xem dòng trên (nguồn hồng ngoại khác)</td>
 </tr>
 </tbody>
 </table>
 
 
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -1267,6 +1279,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
