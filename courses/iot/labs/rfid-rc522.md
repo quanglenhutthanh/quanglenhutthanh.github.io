@@ -25,7 +25,9 @@ resources:
 
 ## Tổng quan
 
-:::: {layout="[52,48]"}
+:::: {layout="[45,55]" layout-valign="center"}
+
+![Bộ RFID trong kit: module `RFID-RC522` (bản `V133`), hai hàng chân 8 pin chưa hàn (thẳng và cong 90°), thẻ trắng trong túi nilon, móc khóa xanh dương](../assets/kit-rc522-set.jpg)
 
 ::: {}
 **Sơ đồ chân và nối dây**
@@ -45,6 +47,12 @@ resources:
 | Buzzer (+) | `D7` | Phần C |
 | Servo cam / đỏ | `D3` / `5V` | Phần C |
 :::
+
+::::
+
+:::: {layout="[45,55]" layout-valign="center"}
+
+![Thẻ trắng (MIFARE Classic 1K) và móc khóa xanh dương: nhìn bên ngoài không phân biệt được 13,56 MHz với 125 kHz](../assets/kit-rfid-tags.jpg)
 
 ::: {}
 **Thông số RC522**
@@ -643,9 +651,7 @@ Sector 15  block 60–62 [dữ liệu], block 63 [trailer]
 :::
 
 ::: {.callout-note collapse="true"}
-## Nhìn module RC522 và bộ thẻ trong kit
-
-![Bộ RFID trong kit: móc khóa xanh dương, thẻ trắng trong túi nilon, module `RFID-RC522` (bản `V133`) cùng hai hàng chân 8 pin chưa hàn](../assets/kit-rc522-set.jpg){width=75%}
+## Nhìn module RC522 (vị trí chân, mức logic)
 
 - **Nửa dưới** module là **anten in trên mạch** (đường đồng chạy vòng quanh mép): chỗ đặt thẻ.
 - **Nửa trên**: **chip MFRC522** (32 chân), **thạch anh `27.120`** MHz (= 2 × 13,56 MHz), **LED nguồn `D1`** ở góc trái và hàng 8 lỗ chân dọc mép trên.
@@ -662,8 +668,6 @@ Nhìn mặt có linh kiện (anten ở dưới), nhãn chân in **lộn ngược
    │             ~~~ anten ~~~                   │
    └─────────────────────────────────────────────┘
 ```
-
-![Thẻ trắng và móc khóa xanh dương: nhìn bên ngoài không phân biệt được 13,56 MHz với 125 kHz](../assets/kit-rfid-tags.jpg){width=55%}
 
 **Mức logic:** chân tín hiệu (`SCK`, `MOSI`, `SDA`, `RST`) nhận mức 5 V từ Uno. Datasheet không ghi là chịu được 5 V, nhưng nối thẳng là cách phổ biến và chạy ổn; muốn đúng chuẩn thì dùng **module chuyển mức logic** 5 V ↔ 3,3 V. Chiều ngược lại, `MISO` ra 3,3 V, Uno vẫn đọc là `HIGH` (xem bảng điện áp ở [Lab 8](infrared-remote-fc51.md#low-là-bao-nhiêu-volt)).
 :::
