@@ -173,6 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#test-1-đọc-giá-trị-cảm-biến" id="toc-test-1-đọc-giá-trị-cảm-biến" class="nav-link" data-scroll-target="#test-1-đọc-giá-trị-cảm-biến">Test 1 – đọc giá trị cảm biến</a></li>
   <li><a href="#test-2-có-nước-thì-đèn-sáng" id="toc-test-2-có-nước-thì-đèn-sáng" class="nav-link" data-scroll-target="#test-2-có-nước-thì-đèn-sáng">Test 2 – có nước thì đèn sáng</a></li>
+  <li><a href="#test-3-đo-mực-nước-hiện-lên-serial" id="toc-test-3-đo-mực-nước-hiện-lên-serial" class="nav-link" data-scroll-target="#test-3-đo-mực-nước-hiện-lên-serial">Test 3 – đo mực nước, hiện lên Serial</a></li>
   </ul></li>
   <li><a href="#lưu-ý-cảm-biến-bị-ăn-mòn" id="toc-lưu-ý-cảm-biến-bị-ăn-mòn" class="nav-link" data-scroll-target="#lưu-ý-cảm-biến-bị-ăn-mòn">Lưu ý: cảm biến bị ăn mòn</a></li>
   <li><a href="#ảnh-thực-tế" id="toc-ảnh-thực-tế" class="nav-link" data-scroll-target="#ảnh-thực-tế">Ảnh thực tế</a>
@@ -212,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <blockquote class="blockquote">
-<p>Đọc module cảm biến nước bằng Arduino Uno: in giá trị analog lên Serial Monitor và quan sát số đọc thay đổi khi nhúng cảm biến vào nước, rồi làm mạch báo có nước bằng LED.</p>
+<p>Đọc module cảm biến nước bằng Arduino Uno: in giá trị analog lên Serial Monitor và quan sát số đọc thay đổi khi nhúng cảm biến vào nước, làm mạch báo có nước bằng LED, rồi đo mực nước (cm) hiện lên Serial.</p>
 </blockquote>
 <section id="cảm-biến-nước-là-gì" class="level2">
 <h2 class="anchored" data-anchor-id="cảm-biến-nước-là-gì">Cảm biến nước là gì</h2>
@@ -490,29 +491,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Rút ra và lau khô: LED tắt.</li>
 </ul>
 </section>
+<section id="test-3-đo-mực-nước-hiện-lên-serial" class="level3">
+<h3 class="anchored" data-anchor-id="test-3-đo-mực-nước-hiện-lên-serial">Test 3 – đo mực nước, hiện lên Serial</h3>
+<p>Test 1 chỉ in số thô 0–1023. Test này đổi số đó thành <strong>mực nước</strong> (cm) và <strong>mức</strong> (khô / thấp / trung bình / cao), kèm một thanh ngang để nhìn cho dễ. Mạch giữ nguyên, không cần LED.</p>
+<p>Số đọc <strong>không tăng đều</strong> theo độ sâu: chạm nước là nhảy lên vài trăm, sau đó tăng chậm dần. Vì vậy không dùng <code>map(raw, 0, 1023, 0, 40)</code> được, mà phải <strong>hiệu chỉnh</strong>: đo số đọc thật ở vài độ sâu, rồi nội suy giữa các điểm đó.</p>
+<p><strong>Bước hiệu chỉnh</strong> (dùng code Test 1):</p>
+<ol type="1">
+<li>Lấy bút đánh dấu lên mặt sau module các vạch <strong>0, 1, 2, 3, 4 cm</strong> tính từ <strong>đầu dưới</strong> vùng đường đồng.</li>
+<li>Nhúng cảm biến đứng thẳng vào cốc nước đến từng vạch, chờ 2–3 giây cho số ổn định, ghi lại số đọc.</li>
+<li>Điền 5 số đó vào mảng <code>RAW_MOC</code> trong code dưới đây. Số trong code chỉ là ví dụ, mạch của bạn sẽ khác (tùy loại nước, độ mòn đường đồng).</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WATER_PIN  </span>A0</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Số đọc thật ở các độ sâu 0, 1, 2, 3, 4 cm (thay bằng số đo của bạn)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span>   RAW_MOC<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">480</span><span class="op">,</span> <span class="dv">560</span><span class="op">,</span> <span class="dv">610</span><span class="op">,</span> <span class="dv">640</span> <span class="op">};</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">float</span> CM_MOC<span class="op">[]</span>  <span class="op">=</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="fl">1.0</span><span class="op">,</span> <span class="fl">2.0</span><span class="op">,</span> <span class="fl">3.0</span><span class="op">,</span> <span class="fl">4.0</span> <span class="op">};</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span>   SO_MOC    <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NGUONG_KHO  </span><span class="dv">50</span><span class="pp">   </span><span class="co">// dưới mức này coi là khô</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Đọc 10 lần lấy trung bình cho bớt nhiễu</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> docTrungBinh<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">long</span> tong <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    tong <span class="op">+=</span> analogRead<span class="op">(</span>WATER_PIN<span class="op">);</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">5</span><span class="op">);</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> tong <span class="op">/</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">// Nội suy tuyến tính giữa hai mốc hiệu chỉnh gần nhất</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> doiRaCm<span class="op">(</span><span class="dt">int</span> raw<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>raw <span class="op">&lt;=</span> RAW_MOC<span class="op">[</span><span class="dv">0</span><span class="op">])</span> <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> SO_MOC<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>raw <span class="op">&lt;=</span> RAW_MOC<span class="op">[</span>i<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="dt">float</span> tiLe <span class="op">=</span> <span class="op">(</span><span class="dt">float</span><span class="op">)(</span>raw <span class="op">-</span> RAW_MOC<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">])</span> <span class="op">/</span> <span class="op">(</span>RAW_MOC<span class="op">[</span>i<span class="op">]</span> <span class="op">-</span> RAW_MOC<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]);</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> CM_MOC<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">+</span> tiLe <span class="op">*</span> <span class="op">(</span>CM_MOC<span class="op">[</span>i<span class="op">]</span> <span class="op">-</span> CM_MOC<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]);</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> CM_MOC<span class="op">[</span>SO_MOC <span class="op">-</span> <span class="dv">1</span><span class="op">];</span>   <span class="co">// vượt mốc cuối → coi như ngập hết</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> mucNuoc<span class="op">(</span><span class="dt">int</span> raw<span class="op">,</span> <span class="dt">float</span> cm<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>raw <span class="op">&lt;</span> NGUONG_KHO<span class="op">)</span> <span class="cf">return</span> <span class="st">"KHO"</span><span class="op">;</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>cm <span class="op">&lt;</span> <span class="fl">1.5</span><span class="op">)</span>         <span class="cf">return</span> <span class="st">"THAP"</span><span class="op">;</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>cm <span class="op">&lt;</span> <span class="fl">3.0</span><span class="op">)</span>         <span class="cf">return</span> <span class="st">"TRUNG BINH"</span><span class="op">;</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="st">"CAO"</span><span class="op">;</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"=== Do muc nuoc ==="</span><span class="op">);</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> docTrungBinh<span class="op">();</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="dt">float</span> cm <span class="op">=</span> doiRaCm<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"raw = "</span><span class="op">);</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  |  muc nuoc = "</span><span class="op">);</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>cm<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" cm  |  "</span><span class="op">);</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>mucNuoc<span class="op">(</span>raw<span class="op">,</span> cm<span class="op">));</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  <span class="co">// thanh ngang: mỗi dấu # = 0.25 cm, tối đa 16 dấu</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"  ["</span><span class="op">);</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> soDau <span class="op">=</span> cm <span class="op">/</span> <span class="fl">4.0</span> <span class="op">*</span> <span class="dv">16</span><span class="op">;</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">16</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span>i <span class="op">&lt;</span> soDau <span class="op">?</span> <span class="ch">'#'</span> <span class="op">:</span> <span class="ch">' '</span><span class="op">);</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"]"</span><span class="op">);</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Giải thích:</p>
+<ul>
+<li><strong><code>docTrungBinh()</code></strong>: mặt nước dao động khi cầm tay, số đọc nhảy vài chục đơn vị. Lấy trung bình 10 lần đọc cho số ổn định hơn.</li>
+<li><strong><code>doiRaCm()</code></strong>: tìm hai mốc hiệu chỉnh kẹp <code>raw</code> ở giữa, rồi tính tỉ lệ. Ví dụ <code>raw = 520</code> nằm giữa mốc 1 cm (480) và 2 cm (560), đúng chính giữa, nên ra <strong>1,5 cm</strong>. Đây là nội suy tuyến tính từng đoạn: đường cong thật được xấp xỉ bằng các đoạn thẳng nối các điểm đã đo.</li>
+<li><strong><code>RAW_MOC</code> phải tăng dần.</strong> Nếu hai mốc bằng nhau thì phép chia sẽ chia cho 0. Khi đó đo lại hoặc bỏ bớt một mốc (giảm <code>SO_MOC</code>).</li>
+<li><strong><code>mucNuoc()</code></strong>: chia mực nước thành 4 mức. Đổi các ngưỡng 1,5 và 3,0 cm cho hợp với việc bạn dùng (bể cá, chậu cây…).</li>
+</ul>
+<p>Kết quả trên Serial Monitor (9600 baud) sẽ có dạng:</p>
+<pre><code>=== Do muc nuoc ===
+raw = 3  |  muc nuoc = 0.0 cm  |  KHO  [                ]
+raw = 488  |  muc nuoc = 1.1 cm  |  THAP  [####            ]
+raw = 585  |  muc nuoc = 2.5 cm  |  TRUNG BINH  [##########      ]
+raw = 633  |  muc nuoc = 3.8 cm  |  CAO  [###############  ]</code></pre>
+<p><strong>Cách kiểm tra:</strong></p>
+<ul>
+<li>Để khô: in <code>KHO</code>, thanh trống.</li>
+<li>Nhúng từ từ đến từng vạch đã đánh dấu: số cm in ra phải gần đúng vạch (lệch khoảng ±0,3 cm là bình thường).</li>
+<li>Rút ra từ từ: số cm giảm dần về 0.</li>
+<li>Kết quả chỉ đúng với <strong>loại nước đã dùng khi hiệu chỉnh</strong>. Đổi sang nước khác (nước muối, nước mưa) thì phải hiệu chỉnh lại.</li>
+</ul>
+</section>
 </section>
 <section id="lưu-ý-cảm-biến-bị-ăn-mòn" class="level2">
 <h2 class="anchored" data-anchor-id="lưu-ý-cảm-biến-bị-ăn-mòn">Lưu ý: cảm biến bị ăn mòn</h2>
 <p>Khi cấp điện liên tục mà các đường đồng ngâm trong nước, dòng điện một chiều gây <strong>điện phân</strong>, đường đồng bị oxy hóa và mòn dần sau vài ngày đến vài tuần, số đọc sẽ lệch. Khi dùng lâu dài (không chỉ test), nên cấp nguồn cho module bằng một chân digital, chỉ bật lúc đọc:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WATER_PIN  </span>A0</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define POWER_PIN  </span><span class="dv">7</span><span class="pp">     </span><span class="co">// chân + của module nối D7 thay vì 5V</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>POWER_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span>                          <span class="co">// chờ module ổn định</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>WATER_PIN<span class="op">);</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Water = "</span><span class="op">);</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>raw<span class="op">);</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WATER_PIN  </span>A0</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define POWER_PIN  </span><span class="dv">7</span><span class="pp">     </span><span class="co">// chân + của module nối D7 thay vì 5V</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>POWER_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span>                          <span class="co">// chờ module ổn định</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> raw <span class="op">=</span> analogRead<span class="op">(</span>WATER_PIN<span class="op">);</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  digitalWrite<span class="op">(</span>POWER_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Water = "</span><span class="op">);</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>raw<span class="op">);</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Module tiêu thụ dưới 20 mA, chân digital của Uno cấp được (tối đa 40 mA, khuyến nghị 20 mA).</p>
 </section>
 <section id="ảnh-thực-tế" class="level2">

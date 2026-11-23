@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-22">
+
+<title>Lab 18 · Arduino · Smart greenhouse với Raspberry Pi – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-6d134d386e80d0188abb3d197e375917.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#kiến-trúc-hệ-thống" id="toc-kiến-trúc-hệ-thống" class="nav-link active" data-scroll-target="#kiến-trúc-hệ-thống">Kiến trúc hệ thống</a></li>
+  <li><a href="#linh-kiện" id="toc-linh-kiện" class="nav-link" data-scroll-target="#linh-kiện">Linh kiện</a></li>
+  <li><a href="#nối-dây" id="toc-nối-dây" class="nav-link" data-scroll-target="#nối-dây">Nối dây</a></li>
+  <li><a href="#giao-thức-serial" id="toc-giao-thức-serial" class="nav-link" data-scroll-target="#giao-thức-serial">Giao thức Serial</a></li>
+  <li><a href="#code-arduino" id="toc-code-arduino" class="nav-link" data-scroll-target="#code-arduino">Code Arduino</a></li>
+  <li><a href="#code-raspberry-pi" id="toc-code-raspberry-pi" class="nav-link" data-scroll-target="#code-raspberry-pi">Code Raspberry Pi</a></li>
+  <li><a href="#kết-quả" id="toc-kết-quả" class="nav-link" data-scroll-target="#kết-quả">Kết quả</a></li>
+  <li><a href="#ghi-chú-khi-làm" id="toc-ghi-chú-khi-làm" class="nav-link" data-scroll-target="#ghi-chú-khi-làm">Ghi chú khi làm</a></li>
+  <li><a href="#mở-rộng" id="toc-mở-rộng" class="nav-link" data-scroll-target="#mở-rộng">Mở rộng</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 18 · Arduino · Smart greenhouse với Raspberry Pi</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>Ghép các cảm biến và cơ cấu chấp hành đã học thành một <strong>nhà kính thông minh</strong> thu nhỏ. <strong>Arduino Uno</strong> đọc cảm biến (nhiệt độ – độ ẩm <a href="../../../courses/iot/labs/dht11.html">DHT11</a>, ánh sáng <a href="../../../courses/iot/labs/photoresistor.html">LDR</a>, mực nước <a href="../../../courses/iot/labs/water-sensor.html">water sensor</a>) và điều khiển thiết bị (servo mở cửa thông gió, LED chiếu sáng, buzzer báo hết nước). <strong>Raspberry Pi</strong> nhận dữ liệu qua cáp USB (Serial), ghi log, áp luật điều khiển rồi gửi lệnh ngược lại cho Arduino. Lab đi tiếp mô hình chia việc Pi ↔︎ Arduino ở <a href="../../../courses/iot/labs/seven-segment-5641as.html">Lab 7</a> và kiến trúc 3 tầng ở <a href="../../../courses/iot/labs/sensor-edge-cloud.html">Lab 9</a>.</p>
+</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Đang soạn
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lab đang ở dạng khung. Sơ đồ nối dây thật, ảnh, video và các ghi chú khi làm sẽ được bổ sung sau.</p>
+</div>
+</div>
+<section id="kiến-trúc-hệ-thống" class="level2">
+<h2 class="anchored" data-anchor-id="kiến-trúc-hệ-thống">Kiến trúc hệ thống</h2>
+<pre><code>┌──────────────────────────────┐   dữ liệu cảm biến   ┌────────────────────────────┐
+│          Arduino Uno         │  ────────────────►   │        Raspberry Pi        │
+│  DHT11 · LDR · water sensor  │      USB Serial      │ ghi log · luật điều khiển  │
+│  servo · LED · buzzer · LCD  │  ◄────────────────   │ (tuỳ chọn) gửi lên cloud   │
+└──────────────────────────────┘   lệnh điều khiển    └────────────────────────────┘</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tầng</th>
+<th>Thiết bị</th>
+<th>Nhiệm vụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Thiết bị</td>
+<td>Arduino Uno</td>
+<td>Đọc cảm biến theo chu kỳ, điều khiển servo/LED/buzzer, phản ứng tại chỗ khi mất kết nối với Pi</td>
+</tr>
+<tr class="even">
+<td>Edge</td>
+<td>Raspberry Pi</td>
+<td>Nhận dữ liệu, lưu log, quyết định bật/tắt theo ngưỡng, (tuỳ chọn) đẩy lên dashboard</td>
+</tr>
+</tbody>
+</table>
+<p>Vì sao chia như vậy: Arduino xử lý phần cứng cần thời gian thực và chạy được ngay khi cắm nguồn; Pi là máy tính Linux có mạng, lưu trữ và dễ viết logic phức tạp bằng Python.</p>
+</section>
+<section id="linh-kiện" class="level2">
+<h2 class="anchored" data-anchor-id="linh-kiện">Linh kiện</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Vai trò trong nhà kính</th>
+<th>Lab tham khảo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arduino Uno + cáp USB</td>
+<td>Vi điều khiển, nối với Pi</td>
+<td><a href="../../../courses/iot/labs/led-basics.html">Lab 1</a></td>
+</tr>
+<tr class="even">
+<td>Raspberry Pi</td>
+<td>Edge gateway</td>
+<td><a href="../../../courses/iot/labs/sensor-edge-cloud.html">Lab 9</a></td>
+</tr>
+<tr class="odd">
+<td>DHT11</td>
+<td>Nhiệt độ, độ ẩm không khí</td>
+<td><a href="../../../courses/iot/labs/dht11.html">Lab 3</a></td>
+</tr>
+<tr class="even">
+<td>Quang trở (LDR) + điện trở 10 kΩ</td>
+<td>Cường độ ánh sáng</td>
+<td><a href="../../../courses/iot/labs/photoresistor.html">Lab 5</a></td>
+</tr>
+<tr class="odd">
+<td>Water sensor</td>
+<td>Mực nước trong bể tưới</td>
+<td><a href="../../../courses/iot/labs/water-sensor.html">Lab 11</a></td>
+</tr>
+<tr class="even">
+<td>Servo SG90</td>
+<td>Mở/đóng cửa thông gió</td>
+<td><a href="../../../courses/iot/labs/servo-sg90.html">Lab 4</a></td>
+</tr>
+<tr class="odd">
+<td>LED (+ điện trở 220 Ω)</td>
+<td>Đèn chiếu sáng bổ sung</td>
+<td><a href="../../../courses/iot/labs/led-basics.html">Lab 1</a></td>
+</tr>
+<tr class="even">
+<td>Buzzer</td>
+<td>Báo bể hết nước</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>LCD 1602 I²C (tuỳ chọn)</td>
+<td>Hiển thị số đo tại chỗ</td>
+<td><a href="../../../courses/iot/labs/lcd-i2c.html">Lab 2</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nối-dây" class="level2">
+<h2 class="anchored" data-anchor-id="nối-dây">Nối dây</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Linh kiện</th>
+<th>Chân linh kiện</th>
+<th>Arduino Uno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DHT11</td>
+<td>DATA</td>
+<td><code>D2</code></td>
+</tr>
+<tr class="even">
+<td>LDR (cầu phân áp)</td>
+<td>điểm giữa</td>
+<td><code>A0</code></td>
+</tr>
+<tr class="odd">
+<td>Water sensor</td>
+<td>S</td>
+<td><code>A1</code></td>
+</tr>
+<tr class="even">
+<td>Servo SG90</td>
+<td>tín hiệu (cam)</td>
+<td><code>D9</code></td>
+</tr>
+<tr class="odd">
+<td>LED</td>
+<td>anode (qua 220 Ω)</td>
+<td><code>D6</code></td>
+</tr>
+<tr class="even">
+<td>Buzzer</td>
+<td>+</td>
+<td><code>D8</code></td>
+</tr>
+<tr class="odd">
+<td>LCD I²C</td>
+<td>SDA / SCL</td>
+<td><code>A4</code> / <code>A5</code></td>
+</tr>
+</tbody>
+</table>
+<p>Tất cả <code>VCC</code> nối 5 V, <code>GND</code> nối chung GND. Servo nên cấp nguồn riêng nếu bị giật/reset board.</p>
+<!-- TODO: thêm sơ đồ nối dây và ảnh mạch thật -->
+</section>
+<section id="giao-thức-serial" class="level2">
+<h2 class="anchored" data-anchor-id="giao-thức-serial">Giao thức Serial</h2>
+<p>Hai bên trao đổi theo <strong>từng dòng văn bản</strong>, kết thúc bằng <code>\n</code>, baud 9600.</p>
+<p><strong>Arduino → Pi</strong> (mỗi 2 giây):</p>
+<pre><code>T=27.0,H=65,L=540,W=320</code></pre>
+<p><code>T</code> nhiệt độ (°C), <code>H</code> độ ẩm (%), <code>L</code> ánh sáng (0–1023), <code>W</code> mực nước (0–1023).</p>
+<p><strong>Pi → Arduino</strong> (lệnh):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lệnh</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>VENT=OPEN</code> / <code>VENT=CLOSE</code></td>
+<td>Mở / đóng cửa thông gió (servo 90° / 0°)</td>
+</tr>
+<tr class="even">
+<td><code>LIGHT=ON</code> / <code>LIGHT=OFF</code></td>
+<td>Bật / tắt đèn LED</td>
+</tr>
+<tr class="odd">
+<td><code>ALARM=ON</code> / <code>ALARM=OFF</code></td>
+<td>Bật / tắt buzzer</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-arduino" class="level2">
+<h2 class="anchored" data-anchor-id="code-arduino">Code Arduino</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;DHT.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Servo.h&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> DHT_PIN    <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> LDR_PIN    <span class="op">=</span> A0<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> WATER_PIN  <span class="op">=</span> A1<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> SERVO_PIN  <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> LED_PIN    <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> BUZZER_PIN <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>DHT dht<span class="op">(</span>DHT_PIN<span class="op">,</span> DHT11<span class="op">);</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>Servo vent<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> buf<span class="op">[</span><span class="dv">32</span><span class="op">];</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>byte len <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> <span class="dt">long</span> lastSend <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> handleCommand<span class="op">(</span><span class="at">const</span> <span class="dt">char</span> <span class="op">*</span>cmd<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>      <span class="op">(!</span>strcmp<span class="op">(</span>cmd<span class="op">,</span> <span class="st">"VENT=OPEN"</span><span class="op">))</span>  vent<span class="op">.</span>write<span class="op">(</span><span class="dv">90</span><span class="op">);</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(!</span>strcmp<span class="op">(</span>cmd<span class="op">,</span> <span class="st">"VENT=CLOSE"</span><span class="op">))</span> vent<span class="op">.</span>write<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(!</span>strcmp<span class="op">(</span>cmd<span class="op">,</span> <span class="st">"LIGHT=ON"</span><span class="op">))</span>   digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(!</span>strcmp<span class="op">(</span>cmd<span class="op">,</span> <span class="st">"LIGHT=OFF"</span><span class="op">))</span>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(!</span>strcmp<span class="op">(</span>cmd<span class="op">,</span> <span class="st">"ALARM=ON"</span><span class="op">))</span>   tone<span class="op">(</span>BUZZER_PIN<span class="op">,</span> <span class="dv">2000</span><span class="op">);</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(!</span>strcmp<span class="op">(</span>cmd<span class="op">,</span> <span class="st">"ALARM=OFF"</span><span class="op">))</span>  noTone<span class="op">(</span>BUZZER_PIN<span class="op">);</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> readSerial<span class="op">()</span> <span class="op">{</span>                     <span class="co">// đọc không chặn, gặp '\n' mới xử lý</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>Serial<span class="op">.</span>available<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> c <span class="op">=</span> Serial<span class="op">.</span>read<span class="op">();</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>c <span class="op">==</span> <span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      buf<span class="op">[</span>len<span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>      handleCommand<span class="op">(</span>buf<span class="op">);</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      len <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>c <span class="op">!=</span> <span class="ch">'</span><span class="sc">\r</span><span class="ch">'</span> <span class="op">&amp;&amp;</span> len <span class="op">&lt;</span> <span class="kw">sizeof</span><span class="op">(</span>buf<span class="op">)</span> <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      buf<span class="op">[</span>len<span class="op">++]</span> <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  dht<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  vent<span class="op">.</span>attach<span class="op">(</span>SERVO_PIN<span class="op">);</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  vent<span class="op">.</span>write<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>BUZZER_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  readSerial<span class="op">();</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>millis<span class="op">()</span> <span class="op">-</span> lastSend <span class="op">&gt;=</span> <span class="dv">2000</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    lastSend <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> t <span class="op">=</span> dht<span class="op">.</span>readTemperature<span class="op">();</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> h <span class="op">=</span> dht<span class="op">.</span>readHumidity<span class="op">();</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>isnan<span class="op">(</span>t<span class="op">)</span> <span class="op">||</span> isnan<span class="op">(</span>h<span class="op">))</span> <span class="cf">return</span><span class="op">;</span>   <span class="co">// DHT11 đọc lỗi, bỏ qua lần này</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"T="</span><span class="op">);</span>  Serial<span class="op">.</span>print<span class="op">(</span>t<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">",H="</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>h<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">",L="</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span>analogRead<span class="op">(</span>LDR_PIN<span class="op">));</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">",W="</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>analogRead<span class="op">(</span>WATER_PIN<span class="op">));</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-raspberry-pi" class="level2">
+<h2 class="anchored" data-anchor-id="code-raspberry-pi">Code Raspberry Pi</h2>
+<p>Cần <code>pip install pyserial</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> serial</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>PORT <span class="op">=</span> <span class="st">"/dev/ttyACM0"</span>   <span class="co"># clone CH340 thường là /dev/ttyUSB0</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>TEMP_HIGH  <span class="op">=</span> <span class="fl">30.0</span>       <span class="co"># °C  → mở cửa thông gió</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>LIGHT_LOW  <span class="op">=</span> <span class="dv">300</span>        <span class="co"># LDR → bật đèn (tuỳ cách mắc cầu phân áp)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>WATER_LOW  <span class="op">=</span> <span class="dv">100</span>        <span class="co"># water sensor → báo hết nước</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ser <span class="op">=</span> serial.Serial(PORT, <span class="dv">9600</span>, timeout<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)           <span class="co"># mở cổng làm Uno reset, chờ bootloader</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> {}</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> send(cmd):</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state.get(cmd.split(<span class="st">"="</span>)[<span class="dv">0</span>]) <span class="op">!=</span> cmd:      <span class="co"># chỉ gửi khi trạng thái đổi</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        ser.write((cmd <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>).encode())</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        state[cmd.split(<span class="st">"="</span>)[<span class="dv">0</span>]] <span class="op">=</span> cmd</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"→"</span>, cmd)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse(line):</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {k: <span class="bu">float</span>(v) <span class="cf">for</span> k, v <span class="kw">in</span> (p.split(<span class="st">"="</span>) <span class="cf">for</span> p <span class="kw">in</span> line.split(<span class="st">","</span>))}</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"greenhouse_log.csv"</span>, <span class="st">"a"</span>, newline<span class="op">=</span><span class="st">""</span>) <span class="im">as</span> f:</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    log <span class="op">=</span> csv.writer(f)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        line <span class="op">=</span> ser.readline().decode(errors<span class="op">=</span><span class="st">"ignore"</span>).strip()</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> line.startswith(<span class="st">"T="</span>):</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> parse(line)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        log.writerow([datetime.now().isoformat(timespec<span class="op">=</span><span class="st">"seconds"</span>),</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                      d[<span class="st">"T"</span>], d[<span class="st">"H"</span>], d[<span class="st">"L"</span>], d[<span class="st">"W"</span>]])</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        f.flush()</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(d)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        send(<span class="st">"VENT=OPEN"</span>  <span class="cf">if</span> d[<span class="st">"T"</span>] <span class="op">&gt;</span> TEMP_HIGH <span class="cf">else</span> <span class="st">"VENT=CLOSE"</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        send(<span class="st">"LIGHT=ON"</span>   <span class="cf">if</span> d[<span class="st">"L"</span>] <span class="op">&lt;</span> LIGHT_LOW <span class="cf">else</span> <span class="st">"LIGHT=OFF"</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        send(<span class="st">"ALARM=ON"</span>   <span class="cf">if</span> d[<span class="st">"W"</span>] <span class="op">&lt;</span> WATER_LOW <span class="cf">else</span> <span class="st">"ALARM=OFF"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ngưỡng ở trên là giá trị mẫu, cần chỉnh lại theo số đo thực tế của từng cảm biến.</p>
+</section>
+<section id="kết-quả" class="level2">
+<h2 class="anchored" data-anchor-id="kết-quả">Kết quả</h2>
+<!-- TODO: ảnh mô hình nhà kính, video demo, log mẫu -->
+</section>
+<section id="ghi-chú-khi-làm" class="level2">
+<h2 class="anchored" data-anchor-id="ghi-chú-khi-làm">Ghi chú khi làm</h2>
+<!-- TODO: bổ sung từ note thực hành -->
+</section>
+<section id="mở-rộng" class="level2">
+<h2 class="anchored" data-anchor-id="mở-rộng">Mở rộng</h2>
+<ul>
+<li>Đẩy dữ liệu từ Pi lên cloud/dashboard như <a href="../../../courses/iot/labs/sensor-edge-cloud.html">Lab 9</a>.</li>
+<li>Thêm máy bơm mini qua relay để tự tưới khi đất khô (cảm biến độ ẩm đất).</li>
+<li>Nếu mất kết nối với Pi quá 10 giây, Arduino tự chạy luật dự phòng tại chỗ.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
