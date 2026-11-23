@@ -66,9 +66,11 @@ resources:
 ![Sơ đồ nối: `A0` → `A0`, `D0` → `D2`, `+`/`G` vào thanh nguồn; LED đỏ qua 220 Ω vào `D6`, buzzer vào `D7`](../assets/flame-ky026-wiring.svg)
 
 ::: {}
+```{=html}
 <video class="lab-video" controls playsinline preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg">
   <source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
 </video>
+```
 
 Mạch thật chạy [Test 1b](#test-1b), thử bằng remote thay cho lửa
 :::
@@ -168,9 +170,11 @@ void loop() {
 
 #### Kết quả
 
+```{=html}
 <video class="lab-video" controls playsinline preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg">
   <source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
 </video>
+```
 
 - Bấm giữ nút remote chĩa vào mắt đen: **đèn báo lửa trên module** và **LED trên breadboard** cùng sáng. Thả nút thì cả hai tắt.
 - Module trong kit kéo `D0` xuống `LOW` khi có hồng ngoại, nên `FLAME_ACTIVE = LOW`. Để `HIGH` thì kết quả ngược lại: Serial báo "CO LUA" suốt khi không có gì.
