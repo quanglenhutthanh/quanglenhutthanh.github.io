@@ -173,6 +173,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#tổng-quan" id="toc-tổng-quan" class="nav-link" data-scroll-target="#tổng-quan">Tổng quan</a></li>
   <li><a href="#sơ-đồ-và-mạch-thực-tế" id="toc-sơ-đồ-và-mạch-thực-tế" class="nav-link" data-scroll-target="#sơ-đồ-và-mạch-thực-tế">Sơ đồ và mạch thực tế</a></li>
+  <li><a href="#các-bài-test" id="toc-các-bài-test" class="nav-link" data-scroll-target="#các-bài-test">Các bài test</a>
+  <ul class="collapse">
+  <li><a href="#test-1" id="toc-test-1" class="nav-link" data-scroll-target="#test-1">Test 1 – đọc hai ngõ ra</a></li>
+  <li><a href="#test-1b" id="toc-test-1b" class="nav-link" data-scroll-target="#test-1b">Test 1b – <code>D0</code> bật LED</a></li>
+  <li><a href="#test-2" id="toc-test-2" class="nav-link" data-scroll-target="#test-2">Test 2 – đo độ mạnh ngọn lửa bằng <code>A0</code></a></li>
+  <li><a href="#test-3" id="toc-test-3" class="nav-link" data-scroll-target="#test-3">Test 3 – báo cháy bằng LED và buzzer</a></li>
+  </ul></li>
+  <li><a href="#tìm-hiểu-thêm" id="toc-tìm-hiểu-thêm" class="nav-link" data-scroll-target="#tìm-hiểu-thêm">Tìm hiểu thêm</a></li>
+  <li><a href="#lỗi-hay-gặp" id="toc-lỗi-hay-gặp" class="nav-link" data-scroll-target="#lỗi-hay-gặp">Lỗi hay gặp</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -319,18 +328,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <video class="lab-video" controls="" playsinline="" preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg">
-<source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
+  <source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
 </video>
 <p>Mạch thật chạy <a href="#test-1b">Test 1b</a>, thử bằng remote thay cho lửa</p>
-<p>:::</p>
-<p>::::</p>
+</div>
+</div>
+</div>
 <ul>
 <li>Module có chân đực, nối sang Uno bằng dây <strong>đực–cái</strong>; LED và buzzer lấy GND chung từ thanh <code>−</code> của breadboard.</li>
 <li><strong>Hướng mắt cảm biến</strong> (bóng vỏ đen, không bao giờ sáng): bẻ nhẹ cho nằm ngang, hướng ra phía trước, không chĩa lên trần vì đèn và cửa sổ dễ gây nhiễu. Đừng bẻ đi bẻ lại vì chân dễ gãy.</li>
 <li><code>D0</code> vào chân <code>2</code> để có thể dùng ngắt ngoài (<code>attachInterrupt</code>) sau này; chân digital nào cũng chạy được với code bên dưới.</li>
 </ul>
+</section>
 <section id="các-bài-test" class="level2">
 <h2 class="anchored" data-anchor-id="các-bài-test">Các bài test</h2>
 <section id="test-1" class="level3">
@@ -380,12 +391,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="test-1b" class="level3">
-<h3 class="anchored">Test 1b – <code>D0</code> bật LED</h3>
+<h3 class="anchored" data-anchor-id="test-1b">Test 1b – <code>D0</code> bật LED</h3>
 <p>Mạch nhỏ nhất: module và một LED (qua 220 Ω vào <code>D6</code>). LED trên breadboard sáng tắt giống hệt <code>L2</code> trên module vì cả hai cùng theo <code>D0</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Kết quả</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Kết quả</a></li></ul>
 <div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_D <span class="op">=</span> <span class="dv">2</span><span class="op">;</span>     <span class="co">// chân D0 của KY-026</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> LED_PIN <span class="op">=</span> <span class="dv">6</span><span class="op">;</span>     <span class="co">// LED (qua điện trở 220 Ω)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -407,23 +418,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <video class="lab-video" controls="" playsinline="" preload="metadata" poster="../assets/flame-ky026-remote-real-poster.jpg">
-<source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
+  <source src="../assets/flame-ky026-remote-real.mp4" type="video/mp4">
 </video>
 <ul>
 <li>Bấm giữ nút remote chĩa vào mắt đen: <strong>đèn báo lửa trên module</strong> và <strong>LED trên breadboard</strong> cùng sáng. Thả nút thì cả hai tắt.</li>
 <li>Module trong kit kéo <code>D0</code> xuống <code>LOW</code> khi có hồng ngoại, nên <code>FLAME_ACTIVE = LOW</code>. Để <code>HIGH</code> thì kết quả ngược lại: Serial báo “CO LUA” suốt khi không có gì.</li>
 <li>Remote bắt được mà lửa không bắt được thì module vẫn tốt, vì remote ở gần phát hồng ngoại mạnh hơn nhiều. Lau muội trên mắt đen, đưa lửa vào 10–15 cm, rồi vặn biến trở tới khi đèn báo vừa sáng.</li>
 </ul>
-<p>:::</p>
+</div>
+</div>
+</div>
+</section>
 <section id="test-2" class="level3">
 <h3 class="anchored" data-anchor-id="test-2">Test 2 – đo độ mạnh ngọn lửa bằng <code>A0</code></h3>
 <p><code>D0</code> chỉ nói “có / không”, còn <code>A0</code> cho biết lửa <strong>gần hay xa, to hay nhỏ</strong>. Giá trị thô phụ thuộc ánh sáng phòng, nên code <strong>đo mức nền</strong> lúc khởi động rồi tính độ lệch so với nền.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Cách thử</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Cách thử</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_A <span class="op">=</span> A0<span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> SAMPLES <span class="op">=</span> <span class="dv">50</span><span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -464,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <ul>
 <li>Mở <strong>Tools → Serial Plotter</strong>: đường <code>A0</code> nhảy lên/xuống mỗi khi bật lửa, <code>baseline</code> là đường ngang.</li>
 <li>Đưa lửa ra xa dần từng 10 cm và ghi <code>percent</code>. Số giảm rất nhanh theo khoảng cách (cường độ giảm theo bình phương khoảng cách), nên chỉ dùng để so “gần hơn / xa hơn”, không đo được khoảng cách chính xác.</li>
@@ -482,9 +496,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Giữ báo động</strong> thêm <strong>3 giây</strong> sau khi hết lửa, để ngọn lửa chập chờn không làm còi tắt bật liên tục.</li>
 </ul>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Nối thêm</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Cách thử</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Nối thêm</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Cách thử</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <p>Có lửa khi <code>D0</code> báo <strong>hoặc</strong> <code>A0</code> lệch nền quá <code>A_THRESHOLD</code>. Còi kêu ngắt quãng bằng <code>millis()</code> thay vì <code>delay()</code>, nên vẫn đọc cảm biến liên tục trong lúc báo động.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_A <span class="op">=</span> A0<span class="op">;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> FLAME_D <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
@@ -563,35 +577,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  setAlarmOutputs<span class="op">(</span>alarm<span class="op">);</span></span>
 <span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Linh kiện</th>
-<th style="text-align: left;">Nối</th>
+<th>Linh kiện</th>
+<th>Nối</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">LED đỏ: chân dài (+)</td>
-<td style="text-align: left;"><code>D6</code> qua điện trở 220 Ω</td>
+<td>LED đỏ: chân dài (+)</td>
+<td><code>D6</code> qua điện trở 220 Ω</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">LED đỏ: chân ngắn (−)</td>
-<td style="text-align: left;"><code>GND</code></td>
+<td>LED đỏ: chân ngắn (−)</td>
+<td><code>GND</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Buzzer: chân <code>+</code> (dài)</td>
-<td style="text-align: left;"><code>D7</code></td>
+<td>Buzzer: chân <code>+</code> (dài)</td>
+<td><code>D7</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Buzzer: chân <code>−</code></td>
-<td style="text-align: left;"><code>GND</code></td>
+<td>Buzzer: chân <code>−</code></td>
+<td><code>GND</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
 <ul>
 <li>Bật lửa <strong>chưa tới 0,3 giây</strong> rồi tắt ngay thì không báo; giữ lâu hơn thì báo.</li>
 <li>Tắt lửa: còi còn kêu thêm 3 giây rồi mới tắt.</li>
@@ -602,6 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="tìm-hiểu-thêm" class="level2">
 <h2 class="anchored" data-anchor-id="tìm-hiểu-thêm">Tìm hiểu thêm</h2>
@@ -664,42 +679,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">Cảm biến lửa IR (KY-026)</th>
-<th style="text-align: left;">Đầu báo khói</th>
-<th style="text-align: left;">Cảm biến nhiệt (DHT11, <a href="../../../courses/iot/labs/dht11.html">Lab 3</a>)</th>
+<th></th>
+<th>Cảm biến lửa IR (KY-026)</th>
+<th>Đầu báo khói</th>
+<th>Cảm biến nhiệt (DHT11, <a href="../../../courses/iot/labs/dht11.html">Lab 3</a>)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Phát hiện</td>
-<td style="text-align: left;">Ánh sáng hồng ngoại của ngọn lửa</td>
-<td style="text-align: left;">Hạt khói trong không khí</td>
-<td style="text-align: left;">Nhiệt độ tăng</td>
+<td>Phát hiện</td>
+<td>Ánh sáng hồng ngoại của ngọn lửa</td>
+<td>Hạt khói trong không khí</td>
+<td>Nhiệt độ tăng</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Tốc độ</td>
-<td style="text-align: left;">Gần như tức thì</td>
-<td style="text-align: left;">Vài giây – vài chục giây</td>
-<td style="text-align: left;">Chậm (phải đợi phòng nóng lên)</td>
+<td>Tốc độ</td>
+<td>Gần như tức thì</td>
+<td>Vài giây – vài chục giây</td>
+<td>Chậm (phải đợi phòng nóng lên)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Cần “nhìn thấy” lửa</td>
-<td style="text-align: left;">Có, trong góc ~60°</td>
-<td style="text-align: left;">Không</td>
-<td style="text-align: left;">Không</td>
+<td>Cần “nhìn thấy” lửa</td>
+<td>Có, trong góc ~60°</td>
+<td>Không</td>
+<td>Không</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Báo nhầm với</td>
-<td style="text-align: left;">Nắng, đèn sợi đốt, remote</td>
-<td style="text-align: left;">Hơi nước, bụi</td>
-<td style="text-align: left;">Máy sưởi, nắng chiếu</td>
+<td>Báo nhầm với</td>
+<td>Nắng, đèn sợi đốt, remote</td>
+<td>Hơi nước, bụi</td>
+<td>Máy sưởi, nắng chiếu</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Lửa âm ỉ không ngọn</td>
-<td style="text-align: left;">Không thấy</td>
-<td style="text-align: left;">Thấy</td>
-<td style="text-align: left;">Thấy (chậm)</td>
+<td>Lửa âm ỉ không ngọn</td>
+<td>Không thấy</td>
+<td>Thấy</td>
+<td>Thấy (chậm)</td>
 </tr>
 </tbody>
 </table>
@@ -723,68 +738,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Hiện tượng</th>
-<th style="text-align: left;">Nguyên nhân thường gặp</th>
+<th>Hiện tượng</th>
+<th>Nguyên nhân thường gặp</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>L1</code> không sáng</td>
-<td style="text-align: left;">Chưa có nguồn: kiểm tra <code>+</code> vào <code>5V</code>, <code>G</code> vào <code>GND</code></td>
+<td><code>L1</code> không sáng</td>
+<td>Chưa có nguồn: kiểm tra <code>+</code> vào <code>5V</code>, <code>G</code> vào <code>GND</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>L2</code> sáng liên tục dù không có lửa</td>
-<td style="text-align: left;">Ngưỡng quá nhạy: vặn biến trở ngược lại. Hoặc mắt cảm biến đang hướng ra cửa sổ / đèn sợi đốt</td>
+<td><code>L2</code> sáng liên tục dù không có lửa</td>
+<td>Ngưỡng quá nhạy: vặn biến trở ngược lại. Hoặc mắt cảm biến đang hướng ra cửa sổ / đèn sợi đốt</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>L2</code> không bao giờ sáng, <code>A0</code> vẫn đổi khi có lửa</td>
-<td style="text-align: left;">Ngưỡng quá cao: vặn biến trở về phía nhạy hơn tới khi <code>L2</code> sáng với lửa ở ~30 cm</td>
+<td><code>L2</code> không bao giờ sáng, <code>A0</code> vẫn đổi khi có lửa</td>
+<td>Ngưỡng quá cao: vặn biến trở về phía nhạy hơn tới khi <code>L2</code> sáng với lửa ở ~30 cm</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>A0</code> gần như không đổi khi có lửa</td>
-<td style="text-align: left;">Nhầm chân: dây <code>A0</code> của module đang cắm vào chân khác. Hoặc mắt cảm biến không hướng về ngọn lửa</td>
+<td><code>A0</code> gần như không đổi khi có lửa</td>
+<td>Nhầm chân: dây <code>A0</code> của module đang cắm vào chân khác. Hoặc mắt cảm biến không hướng về ngọn lửa</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>D0</code> luôn đọc cùng một giá trị dù <code>L2</code> có đổi</td>
-<td style="text-align: left;">Dây <code>D0</code> lỏng hoặc cắm nhầm chân <code>2</code>; kiểm tra <code>pinMode(FLAME_D, INPUT)</code></td>
+<td><code>D0</code> luôn đọc cùng một giá trị dù <code>L2</code> có đổi</td>
+<td>Dây <code>D0</code> lỏng hoặc cắm nhầm chân <code>2</code>; kiểm tra <code>pinMode(FLAME_D, INPUT)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Remote làm đèn báo sáng nhưng bật lửa thì không</td>
-<td style="text-align: left;">Lửa ở xa yếu hơn remote rất nhiều. Lau muội trên mắt đen, đưa lửa vào 10–15 cm ngay trước mắt, vặn biến trở về phía nhạy hơn</td>
+<td>Remote làm đèn báo sáng nhưng bật lửa thì không</td>
+<td>Lửa ở xa yếu hơn remote rất nhiều. Lau muội trên mắt đen, đưa lửa vào 10–15 cm ngay trước mắt, vặn biến trở về phía nhạy hơn</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Test 1b: Serial báo “CO LUA” suốt dù không có lửa</td>
-<td style="text-align: left;"><code>FLAME_ACTIVE</code> sai mức. Module trong kit cần <code>LOW</code></td>
+<td>Test 1b: Serial báo “CO LUA” suốt dù không có lửa</td>
+<td><code>FLAME_ACTIVE</code> sai mức. Module trong kit cần <code>LOW</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Test 3 báo ngược: báo khi <strong>không</strong> có lửa</td>
-<td style="text-align: left;"><code>FLAME_D_ACTIVE</code> sai mức so với module trong kit, đổi <code>HIGH</code> ↔︎ <code>LOW</code></td>
+<td>Test 3 báo ngược: báo khi <strong>không</strong> có lửa</td>
+<td><code>FLAME_D_ACTIVE</code> sai mức so với module trong kit, đổi <code>HIGH</code> ↔︎ <code>LOW</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Test 2/3: <code>percent</code> sai hoặc báo động ngay khi bật nguồn</td>
-<td style="text-align: left;">Lúc khởi động có lửa / nắng / đèn chiếu vào cảm biến nên <code>baseline</code> sai. Che bớt nguồn sáng rồi nhấn reset</td>
+<td>Test 2/3: <code>percent</code> sai hoặc báo động ngay khi bật nguồn</td>
+<td>Lúc khởi động có lửa / nắng / đèn chiếu vào cảm biến nên <code>baseline</code> sai. Che bớt nguồn sáng rồi nhấn reset</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Báo nhầm khi trời nắng hoặc bật đèn</td>
-<td style="text-align: left;">Cảm biến đo hồng ngoại, không phân biệt được nguồn. Tăng <code>A_THRESHOLD</code>, tăng <code>CONFIRM_MS</code>, che chắn hai bên mắt cảm biến bằng ống nhỏ (thu hẹp góc nhìn)</td>
+<td>Báo nhầm khi trời nắng hoặc bật đèn</td>
+<td>Cảm biến đo hồng ngoại, không phân biệt được nguồn. Tăng <code>A_THRESHOLD</code>, tăng <code>CONFIRM_MS</code>, che chắn hai bên mắt cảm biến bằng ống nhỏ (thu hẹp góc nhìn)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Còi kêu liên tục không tắt</td>
-<td style="text-align: left;"><code>HOLD_MS</code> chưa hết hoặc ngọn lửa vẫn trong tầm nhìn. Nếu lửa đã tắt hẳn mà còi vẫn kêu, xem dòng trên (nguồn hồng ngoại khác)</td>
+<td>Còi kêu liên tục không tắt</td>
+<td><code>HOLD_MS</code> chưa hết hoặc ngọn lửa vẫn trong tầm nhìn. Nếu lửa đã tắt hẳn mà còi vẫn kêu, xem dòng trên (nguồn hồng ngoại khác)</td>
 </tr>
 </tbody>
 </table>
 
 
-</section>
-</div>
-</div>
-</div>
-</section>
-</section>
-</div>
-</div>
-</div>
 </section>
 </section>
 
