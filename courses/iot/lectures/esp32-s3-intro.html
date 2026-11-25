@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-25">
+
+<title>Giới thiệu ESP32-S3 – Le Nhut Thanh Quang</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-6d134d386e80d0188abb3d197e375917.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Le Nhut Thanh Quang</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../courses/index.html"> 
+<span class="menu-text">Learning Space</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lenhutthanhquang"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#giới-thiệu-esp32-s3" id="toc-giới-thiệu-esp32-s3" class="nav-link active" data-scroll-target="#giới-thiệu-esp32-s3">Giới thiệu ESP32-S3</a>
+  <ul class="collapse">
+  <li><a href="#esp32-s3-là-gì" id="toc-esp32-s3-là-gì" class="nav-link" data-scroll-target="#esp32-s3-là-gì">ESP32-S3 là gì</a></li>
+  <li><a href="#thông-số-chính" id="toc-thông-số-chính" class="nav-link" data-scroll-target="#thông-số-chính">Thông số chính</a></li>
+  <li><a href="#board-esp32-s3-devkit-trong-kit" id="toc-board-esp32-s3-devkit-trong-kit" class="nav-link" data-scroll-target="#board-esp32-s3-devkit-trong-kit">Board ESP32-S3 DevKit trong kit</a>
+  <ul class="collapse">
+  <li><a href="#board-chính" id="toc-board-chính" class="nav-link" data-scroll-target="#board-chính">Board chính</a></li>
+  <li><a href="#io-shield" id="toc-io-shield" class="nav-link" data-scroll-target="#io-shield">IO Shield</a></li>
+  </ul></li>
+  <li><a href="#lập-trình" id="toc-lập-trình" class="nav-link" data-scroll-target="#lập-trình">Lập trình</a></li>
+  <li><a href="#lưu-ý-khi-lắp-mạch" id="toc-lưu-ý-khi-lắp-mạch" class="nav-link" data-scroll-target="#lưu-ý-khi-lắp-mạch">Lưu ý khi lắp mạch</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Giới thiệu ESP32-S3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 25, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="giới-thiệu-esp32-s3" class="level1">
+<h1>Giới thiệu ESP32-S3</h1>
+<blockquote class="blockquote">
+<p>Note tham khảo về vi điều khiển <strong>ESP32-S3</strong> và board phát triển ESP32-S3 DevKit dùng cho các lab có kết nối mạng. Phần nền tảng Arduino xem ở bài <a href="../../../courses/iot/lectures/arduino-intro.html">Giới thiệu Arduino &amp; board Arduino Uno</a>.</p>
+</blockquote>
+<section id="esp32-s3-là-gì" class="level2">
+<h2 class="anchored" data-anchor-id="esp32-s3-là-gì">ESP32-S3 là gì</h2>
+<p><strong>ESP32-S3</strong> là dòng vi điều khiển (SoC) của hãng <strong>Espressif</strong>, tích hợp sẵn <strong>Wi-Fi</strong> và <strong>Bluetooth Low Energy</strong> trên cùng một chip. Khác với Arduino Uno (không có mạng, phải gắn thêm module), ESP32-S3 tự kết nối được Internet, nên phù hợp làm <strong>thiết bị tầng cảm biến + kết nối</strong> trong kiến trúc IoT: đọc cảm biến rồi gửi dữ liệu lên broker MQTT, server hoặc cloud (xem <a href="../../../courses/iot/lectures/mqtt.html">MQTT</a>).</p>
+<p>Chip <strong>S3</strong> là thế hệ mới trong họ ESP32, bổ sung so với ESP32 gốc:</p>
+<ul>
+<li>Lõi <strong>Xtensa LX7</strong> (thay LX6), có thêm tập lệnh vector giúp chạy mô hình AI/ML nhỏ (nhận dạng giọng nói, hình ảnh) nhanh hơn.</li>
+<li><strong>USB OTG</strong> gốc trên chip: có thể làm USB device (giả lập bàn phím, chuột, ổ đĩa…).</li>
+<li>Hỗ trợ camera (giao diện DVP) và màn hình LCD song song.</li>
+<li>Chỉ có <strong>Bluetooth LE 5</strong>, <strong>không có Bluetooth Classic</strong> (ESP32 gốc có cả hai).</li>
+</ul>
+</section>
+<section id="thông-số-chính" class="level2">
+<h2 class="anchored" data-anchor-id="thông-số-chính">Thông số chính</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Thông số</th>
+<th>Giá trị</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lõi xử lý</td>
+<td>2 lõi Xtensa LX7 32 bit, tối đa <strong>240 MHz</strong></td>
+</tr>
+<tr class="even">
+<td>SRAM</td>
+<td>512 KB (trên chip)</td>
+</tr>
+<tr class="odd">
+<td>Flash / PSRAM</td>
+<td>Nằm ngoài chip, tùy module (ví dụ 8 MB flash, 8 MB PSRAM)</td>
+</tr>
+<tr class="even">
+<td>Wi-Fi</td>
+<td>802.11 b/g/n, băng tần <strong>2,4 GHz</strong></td>
+</tr>
+<tr class="odd">
+<td>Bluetooth</td>
+<td>Bluetooth LE 5</td>
+</tr>
+<tr class="even">
+<td>Mức logic</td>
+<td><strong>3,3 V</strong> (chân I/O <strong>không chịu được 5 V</strong>)</td>
+</tr>
+<tr class="odd">
+<td>GPIO</td>
+<td>Tối đa 45 chân, hỗ trợ PWM, ADC, I²C, SPI, UART, I²S, touch…</td>
+</tr>
+<tr class="even">
+<td>ADC</td>
+<td>12 bit (0–4095), 2 bộ ADC</td>
+</tr>
+<tr class="odd">
+<td>Nguồn cấp</td>
+<td>USB 5 V (board hạ xuống 3,3 V qua bộ ổn áp)</td>
+</tr>
+</tbody>
+</table>
+<p>So sánh nhanh với Arduino Uno:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Arduino Uno R3</th>
+<th>ESP32-S3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vi điều khiển</td>
+<td>ATmega328P, 8 bit, 16 MHz</td>
+<td>Xtensa LX7, 32 bit, 2 lõi, tới 240 MHz</td>
+</tr>
+<tr class="even">
+<td>RAM</td>
+<td>2 KB</td>
+<td>512 KB (+ PSRAM nếu có)</td>
+</tr>
+<tr class="odd">
+<td>Mức logic</td>
+<td>5 V</td>
+<td><strong>3,3 V</strong></td>
+</tr>
+<tr class="even">
+<td>ADC</td>
+<td>10 bit (0–1023)</td>
+<td>12 bit (0–4095)</td>
+</tr>
+<tr class="odd">
+<td>Kết nối mạng</td>
+<td>Không</td>
+<td>Wi-Fi + Bluetooth LE</td>
+</tr>
+<tr class="even">
+<td>Cổng USB</td>
+<td>USB-B</td>
+<td>USB-C</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="board-esp32-s3-devkit-trong-kit" class="level2">
+<h2 class="anchored" data-anchor-id="board-esp32-s3-devkit-trong-kit">Board ESP32-S3 DevKit trong kit</h2>
+<p>Kit gồm <strong>hai phần</strong> ghép với nhau:</p>
+<ul>
+<li><strong>ESP32-S3 DEV KIT V2.0</strong> (hãng MakerEDU): board chính gắn module <strong>ESP32-S3-WROOM-1</strong> của Espressif, có sẵn mạch nguồn, hai cổng USB-C, nút bấm, LED RGB và hai hàng chân đánh số GPIO.</li>
+<li><strong>IO Shield</strong>: board mở rộng cắm khớp bên dưới, kéo mỗi chân GPIO ra <strong>bộ 3 chân <code>GND – 5V – SIG</code></strong> để cắm thẳng cảm biến/servo bằng dây 3 sợi, không cần breadboard.</li>
+</ul>
+<section id="board-chính" class="level3">
+<h3 class="anchored" data-anchor-id="board-chính">Board chính</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-esp32s3-front.jpg" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>ESP32-S3 DEV KIT V2.0, mặt trước</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Khu vực</th>
+<th>Mô tả</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Module ESP32-S3-WROOM-1</strong></td>
+<td>Khối kim loại có tem ở nửa dưới board; phần <strong>anten PCB</strong> (vân đen) nhô ra ngoài mép board: <strong>không che bằng tay/vật kim loại</strong> khi dùng Wi-Fi</td>
+</tr>
+<tr class="even">
+<td><strong>Hai cổng USB-C</strong></td>
+<td>Phía trên board. Một cổng qua chip cầu nối USB–UART (nạp code + Serial Monitor), một cổng là <strong>USB gốc</strong> của chip (USB OTG/JTAG)</td>
+</tr>
+<tr class="odd">
+<td><strong>Nút <code>BOOT</code></strong></td>
+<td>Nối GPIO0; giữ khi cấp điện hoặc nhấn <code>RESET</code> để vào chế độ nạp firmware</td>
+</tr>
+<tr class="even">
+<td><strong>Nút <code>RESET</code></strong></td>
+<td>Khởi động lại chương trình</td>
+</tr>
+<tr class="odd">
+<td><strong>Nút <code>KEY</code></strong></td>
+<td>Nút bấm người dùng, đọc được bằng code (dùng thử <code>digitalRead</code>)</td>
+</tr>
+<tr class="even">
+<td><strong>LED <code>RGB</code></strong></td>
+<td>Đèn RGB trên board để thử nhanh</td>
+</tr>
+<tr class="odd">
+<td><strong>Hai hàng chân hai bên</strong></td>
+<td>Số in trên board là <strong>số GPIO</strong>; ngoài ra có <code>3V3</code>, <code>5V</code>, <code>GND</code>, <code>RST</code>, <code>TX</code>, <code>RX</code></td>
+</tr>
+</tbody>
+</table>
+<p>Mặt sau in nhãn đầy đủ <code>IOxx</code> cho từng chân, cùng chân <code>3V3</code>, <code>5V</code>, <code>GND</code>. Có hai cụm pad <strong><code>ESP</code></strong> và <strong><code>UART</code></strong> (kèm <code>J1</code>) ở cạnh chân <code>5V</code>/<code>GND</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-esp32s3-back.jpg" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Mặt sau: nhãn chân IO, ID sản phẩm, phiên bản 2.0</figcaption>
+</figure>
+</div>
+</section>
+<section id="io-shield" class="level3">
+<h3 class="anchored" data-anchor-id="io-shield">IO Shield</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-esp32s3-io-shield.jpg" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>IO Shield (chưa cắm board)</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Khu vực</th>
+<th>Mô tả</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Hai khe cắm (socket) giữa board</strong></td>
+<td>Cắm ESP32-S3 vào, <strong>đầu USB-C hướng về phía mũi tên <code>USB</code></strong> in trên shield</td>
+</tr>
+<tr class="even">
+<td><strong>Hai cột chân bên trái/phải</strong></td>
+<td>Mỗi GPIO một bộ 3 chân: <code>SIG</code> (vàng, tín hiệu GPIO), <code>5V</code> (đỏ), <code>GND</code> (đen). Số bên cạnh là số GPIO</td>
+</tr>
+<tr class="odd">
+<td><strong>Cụm <code>I2C</code></strong></td>
+<td>8 bộ <code>SCL</code> (xanh lá, <strong>GPIO9</strong>), <code>SDA</code> (vàng, <strong>GPIO8</strong>), <code>5V</code>, <code>GND</code> song song, cắm được nhiều module I²C</td>
+</tr>
+<tr class="even">
+<td><strong>Cụm <code>3V3</code></strong></td>
+<td>Các chân 3,3 V cho module cần 3,3 V</td>
+</tr>
+<tr class="odd">
+<td><strong>Jack DC + cụm <code>VIN</code></strong></td>
+<td>Cấp nguồn ngoài qua jack DC; mạch giảm áp (cuộn 470, tụ 100 µF/16 V và 47 µF/35 V, IC ổn áp) tạo ra nguồn 5 V cho cả board</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/kit-esp32s3-on-shield.jpg" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>ESP32-S3 DEV KIT đã cắm vào IO Shield</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>[!NOTE] Chân <code>SIG</code> trên shield là <strong>GPIO nối thẳng, mức logic 3,3 V</strong>, dù hàng bên cạnh có chân <code>5V</code>. Cấp 5 V cho cảm biến thì được, nhưng tín hiệu <strong>đưa ngược vào <code>SIG</code> phải ≤ 3,3 V</strong> (xem phần lưu ý bên dưới). Tên chân là <strong>số GPIO</strong> (ví dụ <code>GPIO4</code>), không có <code>D</code>/<code>A</code> như Uno; chân nào đọc analog được là do ADC gắn với chân đó.</p>
+</blockquote>
+</section>
+</section>
+<section id="lập-trình" class="level2">
+<h2 class="anchored" data-anchor-id="lập-trình">Lập trình</h2>
+<p>Có thể dùng <strong>Arduino IDE</strong> với gói board <strong>esp32 by Espressif Systems</strong> (Boards Manager), viết sketch với <code>setup()</code>/<code>loop()</code> quen thuộc, nên các hàm như <code>pinMode</code>, <code>digitalWrite</code>, <code>Serial.print</code> dùng như trên Uno. Ngoài ra còn có <strong>ESP-IDF</strong> (framework chính hãng, C/C++) và <strong>MicroPython</strong>.</p>
+<p>Các điểm khác Uno khi viết code:</p>
+<ul>
+<li><code>analogRead()</code> trả về <strong>0–4095</strong> (12 bit), không phải 0–1023.</li>
+<li><code>analogWrite()</code> dùng được trên mọi chân (PWM do phần cứng LEDC cấp).</li>
+<li>Kết nối Wi-Fi bằng thư viện <code>WiFi.h</code> đi kèm gói board:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span><span class="st">"TEN_WIFI"</span><span class="op">,</span> <span class="st">"MAT_KHAU"</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>WiFi<span class="op">.</span>localIP<span class="op">());</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Chọn board trong Arduino IDE: <code>Tools → Board → esp32 → ESP32S3 Dev Module</code>; nếu dùng cổng USB gốc cần bật <code>USB CDC On Boot: Enabled</code> để Serial Monitor hoạt động.</li>
+</ul>
+</section>
+<section id="lưu-ý-khi-lắp-mạch" class="level2">
+<h2 class="anchored" data-anchor-id="lưu-ý-khi-lắp-mạch">Lưu ý khi lắp mạch</h2>
+<ul>
+<li><strong>Logic 3,3 V</strong>: không đưa tín hiệu 5 V vào chân GPIO. Cảm biến/module 5 V (ví dụ HC-SR04 chân <code>ECHO</code>) cần <strong>chia áp hoặc chuyển mức logic</strong>.</li>
+<li>Chân <code>3V3</code> cấp được dòng nhỏ; module tải lớn (servo, motor, dải LED) dùng chân <code>5V</code> hoặc <strong>nguồn ngoài</strong>, và phải <strong>chung GND</strong>.</li>
+<li>Mỗi chân GPIO nên giữ <strong>≤ 20 mA</strong>.</li>
+<li>Một số chân có vai trò riêng khi khởi động (strapping, như GPIO0, GPIO3, GPIO45, GPIO46) hoặc dành cho flash/PSRAM nội bộ (khoảng GPIO26–37 tùy module): <strong>tránh dùng</strong> cho cảm biến/nút bấm nếu không cần thiết.</li>
+<li>Rút USB trước khi đổi dây, như với Uno.</li>
+<li>Nếu không nạp được code: giữ nút <code>BOOT</code>, nhấn <code>RST</code> rồi thả <code>BOOT</code>, sau đó nạp lại.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quanglenhutthanh\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Built with Quarto · © 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
