@@ -15,9 +15,13 @@ resources:
 
 > Đọc module cảm biến nước bằng Arduino Uno: in giá trị analog lên Serial Monitor và quan sát số đọc thay đổi khi nhúng cảm biến vào nước, làm mạch báo có nước bằng LED, rồi đo mực nước (cm) hiện lên Serial.
 
-## Cảm biến nước là gì
+## Giới thiệu module
+
+### Nguyên lý hoạt động
 
 Module **water sensor** (hay *water level sensor*, *rain/water detection sensor*) là một mạch in màu đỏ, phần dưới có nhiều **đường đồng song song để trần**, xen kẽ nhau: một nửa nối nguồn, một nửa nối về chân tín hiệu qua một transistor NPN. Khi khô, giữa các đường không có dòng điện. Khi nước chạm vào, nước (có lẫn ion, không phải nước cất) dẫn điện nối các đường lại với nhau, transistor dẫn, điện áp ở chân tín hiệu tăng lên. **Ngập càng sâu**, càng nhiều đường được nối, **điện áp càng cao**.
+
+### Thông số
 
 | Thông số | Giá trị điển hình |
 |---|---|
@@ -27,13 +31,14 @@ Module **water sensor** (hay *water level sensor*, *rain/water detection sensor*
 | Vùng phát hiện | ~40 × 16 mm |
 | Đèn trên module | LED nguồn `PWR` sáng khi cấp điện |
 
-Module có 3 chân:
+### Ứng dụng
 
-| Chân | Ý nghĩa |
-|---|---|
-| `S` (signal) | Ngõ ra analog |
-| `+` | Nguồn 5 V |
-| `−` | GND |
+- **Báo mưa**: gắn ngoài trời, có giọt nước bắc qua các đường đồng thì báo, dùng để tự thu phơi đồ hoặc đóng cửa sổ.
+- **Báo rò rỉ nước**: đặt dưới gầm máy giặt, bồn rửa, đáy tủ lạnh.
+- **Theo dõi mực nước** trong bể cá, thùng chứa, chậu cây (xem phần *Xem thêm*).
+- **Trong hệ IoT**: gửi trạng thái "có nước / mức nước" lên cloud để cảnh báo qua điện thoại.
+
+### Hình thực tế
 
 ![Mặt trước module trong kit: hàng 3 chân `S + −` ở trên cùng, đèn `Power`, transistor và các điện trở dán ở giữa, bên dưới là 10 đường đồng trần chạy dọc](../assets/kit-water-sensor-front.jpg){width=40%}
 
@@ -53,7 +58,17 @@ Nhìn từ mặt trước, từ trên xuống:
 
 Cảm biến này chỉ cho biết **có nước / ngập nhiều hay ít**, không đo mực nước chính xác theo mm: số đọc phụ thuộc độ dẫn điện của nước (nước máy, nước muối, nước mưa cho số khác nhau).
 
-## Linh kiện và chân
+## Chân và cách lắp
+
+### Chân module
+
+| Chân | Ý nghĩa |
+|---|---|
+| `S` (signal) | Ngõ ra analog |
+| `+` | Nguồn 5 V |
+| `−` | GND |
+
+### Linh kiện và nối dây
 
 | Linh kiện | Số lượng |
 |---|---|
@@ -72,7 +87,7 @@ Nối dây:
 | `+` | `5V` |
 | `−` | `GND` |
 
-## Lắp mạch
+### Lắp mạch
 
 Mạch đầy đủ (dùng cho cả Test 1 và Test 2):
 
@@ -124,7 +139,66 @@ Nên dùng dây khác màu (ví dụ vàng – đỏ – đen) để khỏi nh�
 
 **Bước 6 – thử với nước.** Đặt cốc nước **xa** Uno và breadboard, nhúng từ từ phần đường đồng vào. Lần đầu chỉ nhúng 1–2 cm để thấy số thay đổi, không nhúng quá vạch chữ *Water Sensor*.
 
-## Code
+## Ví dụ mạch thực tế: có nước thì đèn sáng
+
+Cảm biến chạm nước thì LED sáng, khô thì tắt. Mạch như phần [Lắp mạch](#lắp-mạch), gồm cả LED ở bước 3: `D8` → điện trở 220 Ω → chân dài LED, chân ngắn LED → `GND`. Muốn chỉ xem số đọc thô mà không cần LED, xem Test 1 ở phần *Xem thêm*.
+
+```cpp
+#define WATER_PIN  A0
+#define LED_PIN    8
+
+#define NGUONG     100   // số đọc lớn hơn mức này → coi là có nước
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  int raw = analogRead(WATER_PIN);
+  bool coNuoc = raw > NGUONG;
+
+  digitalWrite(LED_PIN, coNuoc ? HIGH : LOW);
+
+  Serial.print("Water = ");
+  Serial.print(raw);
+  Serial.println(coNuoc ? "  -> CO NUOC" : "  -> kho");
+  delay(200);
+}
+```
+
+Giải thích:
+
+- **Ngưỡng `NGUONG`**: lúc khô số đọc gần 0, vừa chạm nước đã nhảy lên vài trăm, nên khoảng cách rất rộng, một ngưỡng 100 là đủ, không cần hysteresis như [Lab 5](photoresistor.md). Nếu số `Water` in ra Serial lúc khô của bạn cao hơn (nước đọng, độ ẩm cao) thì nâng ngưỡng lên.
+- **Không có LED rời?** Đổi `LED_PIN` thành `13` để dùng LED `L` có sẵn trên board Uno.
+
+**Cách kiểm tra:**
+
+- Cảm biến khô: LED tắt, Serial in `-> kho`.
+- Nhúng đầu cảm biến vào cốc nước: LED sáng ngay, Serial in `-> CO NUOC`.
+- Nhỏ một giọt nước bắc ngang hai đường đồng cạnh nhau: LED cũng sáng. Đây là cách module dùng để **báo mưa** hoặc **báo rò rỉ nước** dưới gầm máy giặt.
+- Rút ra và lau khô: LED tắt.
+
+### Mạch thật và video
+
+<video controls playsinline preload="metadata" poster="../assets/water-sensor-led-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
+  <source src="../assets/water-sensor-led-real.mp4" type="video/mp4">
+</video>
+
+Mạch thật chạy code Test 2:
+
+- **Module water sensor** nằm cạnh bát nước, nối về Uno bằng 3 dây: vàng (`S` → `A0`), đỏ (`+` → `5V`), đen (`−` → `GND`). Đèn `Power` đỏ trên module sáng ngay khi cắm USB, kể cả lúc chưa có nước.
+- **LED vàng** trên breadboard, có điện trở 220 Ω, nối về `D8` và `GND` bằng hai dây xanh lá.
+
+Kết quả:
+
+- **Khoảng 0–4 s**: cảm biến khô, nằm trên mặt giấy. LED vàng **tắt**.
+- **Khoảng 4–6 s**: cầm module ở phần chân cắm, nhúng vùng đường đồng xuống bát nước. Ngay khi đường đồng chạm nước, LED vàng **sáng**.
+- **Khoảng 6–11 s**: giữ cảm biến trong nước, chỉ ngập phần đường đồng, chưa tới vạch chữ *Water Sensor*. LED sáng ổn định, không nháy.
+
+Đúng như phần **Cách kiểm tra** của Test 2: khô thì tắt, có nước thì sáng. Khoảng cách giữa số đọc lúc khô (gần 0) và lúc chạm nước (vài trăm) rất lớn, nên một ngưỡng 100 là đủ để LED không nháy.
+
+## Xem thêm
 
 ### Test 1 – đọc giá trị cảm biến
 
@@ -154,49 +228,7 @@ void loop() {
 
 **Chỉ nhúng phần có đường đồng**, không để nước chạm tới linh kiện và chân cắm phía trên module.
 
-**Ghi lại số đọc** lúc khô và lúc vừa chạm nước. Test 2 cần số này để chọn ngưỡng.
-
-### Test 2 – có nước thì đèn sáng
-
-Thêm một LED: cảm biến chạm nước thì LED sáng, khô thì tắt.
-
-Mạch như phần [Lắp mạch](#lắp-mạch), có thêm LED ở bước 3: `D8` → điện trở 220 Ω → chân dài LED, chân ngắn LED → `GND`.
-
-```cpp
-#define WATER_PIN  A0
-#define LED_PIN    8
-
-#define NGUONG     100   // số đọc lớn hơn mức này → coi là có nước
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(LED_PIN, OUTPUT);
-}
-
-void loop() {
-  int raw = analogRead(WATER_PIN);
-  bool coNuoc = raw > NGUONG;
-
-  digitalWrite(LED_PIN, coNuoc ? HIGH : LOW);
-
-  Serial.print("Water = ");
-  Serial.print(raw);
-  Serial.println(coNuoc ? "  -> CO NUOC" : "  -> kho");
-  delay(200);
-}
-```
-
-Giải thích:
-
-- **Ngưỡng `NGUONG`**: lúc khô số đọc gần 0, vừa chạm nước đã nhảy lên vài trăm, nên khoảng cách rất rộng, một ngưỡng 100 là đủ, không cần hysteresis như [Lab 5](photoresistor.md). Nếu ở Test 1 số lúc khô của bạn cao hơn (nước đọng, độ ẩm cao) thì nâng ngưỡng lên.
-- **Không có LED rời?** Đổi `LED_PIN` thành `13` để dùng LED `L` có sẵn trên board Uno.
-
-**Cách kiểm tra:**
-
-- Cảm biến khô: LED tắt, Serial in `-> kho`.
-- Nhúng đầu cảm biến vào cốc nước: LED sáng ngay, Serial in `-> CO NUOC`.
-- Nhỏ một giọt nước bắc ngang hai đường đồng cạnh nhau: LED cũng sáng. Đây là cách module dùng để **báo mưa** hoặc **báo rò rỉ nước** dưới gầm máy giặt.
-- Rút ra và lau khô: LED tắt.
+**Ghi lại số đọc** lúc khô và lúc vừa chạm nước để chọn ngưỡng cho Test 2.
 
 ### Test 3 – đo mực nước, hiện lên Serial
 
@@ -204,7 +236,7 @@ Test 1 chỉ in số thô 0–1023. Test này đổi số đó thành **mực n�
 
 Số đọc **không tăng đều** theo độ sâu: chạm nước là nhảy lên vài trăm, sau đó tăng chậm dần. Vì vậy không dùng `map(raw, 0, 1023, 0, 40)` được, mà phải **hiệu chỉnh**: đo số đọc thật ở vài độ sâu, rồi nội suy giữa các điểm đó.
 
-**Bước hiệu chỉnh** (dùng code Test 1):
+**Bước hiệu chỉnh** (dùng code Test 1 ở trên):
 
 1. Lấy bút đánh dấu lên mặt sau module các vạch **0, 1, 2, 3, 4 cm** tính từ **đầu dưới** vùng đường đồng.
 2. Nhúng cảm biến đứng thẳng vào cốc nước đến từng vạch, chờ 2–3 giây cho số ổn định, ghi lại số đọc.
@@ -301,7 +333,7 @@ raw = 633  |  muc nuoc = 3.8 cm  |  CAO  [###############  ]
 - Rút ra từ từ: số cm giảm dần về 0.
 - Kết quả chỉ đúng với **loại nước đã dùng khi hiệu chỉnh**. Đổi sang nước khác (nước muối, nước mưa) thì phải hiệu chỉnh lại.
 
-## Lưu ý: cảm biến bị ăn mòn
+### Lưu ý: cảm biến bị ăn mòn
 
 Khi cấp điện liên tục mà các đường đồng ngâm trong nước, dòng điện một chiều gây **điện phân**, đường đồng bị oxy hóa và mòn dần sau vài ngày đến vài tuần, số đọc sẽ lệch. Khi dùng lâu dài (không chỉ test), nên cấp nguồn cho module bằng một chân digital, chỉ bật lúc đọc:
 
@@ -329,28 +361,7 @@ void loop() {
 
 Module tiêu thụ dưới 20 mA, chân digital của Uno cấp được (tối đa 40 mA, khuyến nghị 20 mA).
 
-## Ảnh thực tế
-
-### Video Test 2
-
-<video controls playsinline preload="metadata" poster="../assets/water-sensor-led-real-poster.jpg" style="display:block; max-width:640px; width:100%; margin:0 auto; border-radius:8px;">
-  <source src="../assets/water-sensor-led-real.mp4" type="video/mp4">
-</video>
-
-Mạch thật chạy code Test 2:
-
-- **Module water sensor** nằm cạnh bát nước, nối về Uno bằng 3 dây: vàng (`S` → `A0`), đỏ (`+` → `5V`), đen (`−` → `GND`). Đèn `Power` đỏ trên module sáng ngay khi cắm USB, kể cả lúc chưa có nước.
-- **LED vàng** trên breadboard, có điện trở 220 Ω, nối về `D8` và `GND` bằng hai dây xanh lá.
-
-Kết quả:
-
-- **Khoảng 0–4 s**: cảm biến khô, nằm trên mặt giấy. LED vàng **tắt**.
-- **Khoảng 4–6 s**: cầm module ở phần chân cắm, nhúng vùng đường đồng xuống bát nước. Ngay khi đường đồng chạm nước, LED vàng **sáng**.
-- **Khoảng 6–11 s**: giữ cảm biến trong nước, chỉ ngập phần đường đồng, chưa tới vạch chữ *Water Sensor*. LED sáng ổn định, không nháy.
-
-Đúng như phần **Cách kiểm tra** của Test 2: khô thì tắt, có nước thì sáng. Khoảng cách giữa số đọc lúc khô (gần 0) và lúc chạm nước (vài trăm) rất lớn, nên một ngưỡng 100 là đủ để LED không nháy.
-
-## Lỗi hay gặp
+### Lỗi hay gặp
 
 | Hiện tượng | Nguyên nhân / cách xử lý |
 |---|---|
